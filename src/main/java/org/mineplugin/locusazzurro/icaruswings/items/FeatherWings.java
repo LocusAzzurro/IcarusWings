@@ -12,12 +12,46 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @SuppressWarnings("unused")
+@Mod.EventBusSubscriber
 public class FeatherWings extends ElytraItem{
+	
+	public FeatherWingsType type;
+	public FeatherWings(FeatherWingsType type) {
+		super(new Properties().tab(ModGroup.itemGroup).durability(type.getDurability()));
+		this.type = type;
+	}
+	
 	public FeatherWings() {
-		super(new Properties().tab(ModGroup.itemGroup).durability(100));
+		super(new Properties().tab(ModGroup.itemGroup).durability(FeatherWingsType.FEATHER.getDurability()));
+		this.type = FeatherWingsType.FEATHER;
+	}
+	
+	public FeatherWingsType getType() {
+		return this.type;
+	}
+	
+	public static enum FeatherWingsType {
+		FEATHER(100),
+		FEATHER_COLORED(150),
+		FEATHER_GOLDEN(200);
+		
+		private final int durability;
+		private FeatherWingsType(int durability) {
+			this.durability = durability;
+		}
+		
+		public int getDurability()
+		{
+			return this.durability;
+		}
 	}
 	
 	@Nullable
@@ -52,6 +86,23 @@ public class FeatherWings extends ElytraItem{
 	    	//TODO: penalty in nether (5 dura per tick + fire)
 	    }
 	    return true;
+	}
+	
+	//speed mod test
+	@SubscribeEvent (priority = EventPriority.LOW)
+	public static void onPlayerTick(TickEvent.PlayerTickEvent event)
+	{
+		PlayerEntity player = event.player;
+		if (player.isFallFlying()) {
+            Vector3d lookAngle = player.getLookAngle();
+            double d0 = 1.5D;
+            double d1 = 0.1D;
+            Vector3d flyAngle = player.getDeltaMovement();
+            player.setDeltaMovement(flyAngle.add(
+            		lookAngle.x * 0.1D + (lookAngle.x * 1.5D - flyAngle.x) * 0.5D,
+            		lookAngle.y * 0.1D + (lookAngle.y * 1.5D - flyAngle.y) * 0.5D,
+            		lookAngle.z * 0.1D + (lookAngle.z * 1.5D - flyAngle.z) * 0.5D));
+        }
 	}
 	
 }
