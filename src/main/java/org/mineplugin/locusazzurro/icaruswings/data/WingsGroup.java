@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings;
+package org.mineplugin.locusazzurro.icaruswings.data;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

@@ -1,6 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.render;
 
-import org.mineplugin.locusazzurro.icaruswings.Utils;
+import org.mineplugin.locusazzurro.icaruswings.data.Utils;
 import org.mineplugin.locusazzurro.icaruswings.items.FeatherWings;
 
 import net.minecraft.client.renderer.entity.IEntityRenderer;

@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings;
+package org.mineplugin.locusazzurro.icaruswings.data;
 
 import java.util.function.Supplier;
 import net.minecraft.inventory.EquipmentSlotType;

@@ -2,7 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 
 import javax.annotation.Nullable;
 
-import org.mineplugin.locusazzurro.icaruswings.ModGroup;
+import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;

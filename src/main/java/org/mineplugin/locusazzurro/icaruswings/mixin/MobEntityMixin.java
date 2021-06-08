@@ -1,6 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.mixin;
 
-import org.mineplugin.locusazzurro.icaruswings.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings;
+package org.mineplugin.locusazzurro.icaruswings.data;
 
 import org.mineplugin.locusazzurro.icaruswings.blocks.*;
 

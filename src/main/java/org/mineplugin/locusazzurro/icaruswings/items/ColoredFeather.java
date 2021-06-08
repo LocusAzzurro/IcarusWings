@@ -1,6 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import org.mineplugin.locusazzurro.icaruswings.ModGroup;
+import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import net.minecraft.item.Item;
 
