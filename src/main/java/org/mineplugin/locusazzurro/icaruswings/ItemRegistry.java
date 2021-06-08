@@ -10,7 +10,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Utils.MOD_ID);
-    public static final RegistryObject<Item> blueFeather = ITEMS.register("blue_feather", BlueFeather::new);
+    public static final RegistryObject<Item> redFeather = ITEMS.register("red_feather", ColoredFeather::new);
+    public static final RegistryObject<Item> blueFeather = ITEMS.register("blue_feather", ColoredFeather::new);
+    public static final RegistryObject<Item> greenFeather = ITEMS.register("green_feather", ColoredFeather::new);
+    public static final RegistryObject<Item> cyanFeather = ITEMS.register("cyan_feather", ColoredFeather::new);
+    public static final RegistryObject<Item> grayFeather = ITEMS.register("gray_feather", ColoredFeather::new);
+    
     public static final RegistryObject<Item> beeswax = ITEMS.register("beeswax", Beeswax::new);
     public static final RegistryObject<Item> beeswaxBlock = ITEMS.register("beeswax_block", 
     		() -> new BlockItem(BlockRegistry.beeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));

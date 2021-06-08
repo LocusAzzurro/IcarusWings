@@ -4,8 +4,8 @@ import org.mineplugin.locusazzurro.icaruswings.ModGroup;
 
 import net.minecraft.item.Item;
 
-public class BlueFeather extends Item{
-	public BlueFeather()
+public class ColoredFeather extends Item{
+	public ColoredFeather()
 	{
 		super(new Properties().tab(ModGroup.itemGroup));
 		
