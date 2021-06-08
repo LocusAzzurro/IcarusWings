@@ -17,8 +17,8 @@ public class Beeswax extends Item{
 	}
 	
 	private static final Food food = (new Food.Builder())
-		.saturationMod(2)
-		.nutrition(2)
+		.saturationMod(0)
+		.nutrition(1)
 		.build();
 
 	@SubscribeEvent
