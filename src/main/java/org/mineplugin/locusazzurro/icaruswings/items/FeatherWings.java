@@ -88,21 +88,4 @@ public class FeatherWings extends ElytraItem{
 	    return true;
 	}
 	
-	//speed mod test
-	@SubscribeEvent (priority = EventPriority.LOW)
-	public static void onPlayerTick(TickEvent.PlayerTickEvent event)
-	{
-		PlayerEntity player = event.player;
-		if (player.isFallFlying()) {
-            Vector3d lookAngle = player.getLookAngle();
-            double d0 = 1.5D;
-            double d1 = 0.1D;
-            Vector3d flyAngle = player.getDeltaMovement();
-            player.setDeltaMovement(flyAngle.add(
-            		lookAngle.x * 0.1D + (lookAngle.x * 1.5D - flyAngle.x) * 0.5D,
-            		lookAngle.y * 0.1D + (lookAngle.y * 1.5D - flyAngle.y) * 0.5D,
-            		lookAngle.z * 0.1D + (lookAngle.z * 1.5D - flyAngle.z) * 0.5D));
-        }
-	}
-	
 }

@@ -26,6 +26,8 @@ public class ItemRegistry {
     public static final RegistryObject<Item> coloredFeatherWings = ITEMS.register("colored_feather_wings", 
     		() -> new FeatherWings(FeatherWings.FeatherWingsType.FEATHER_COLORED));
     
+    public static final RegistryObject<Item> ikarosWings = ITEMS.register("ikaros_wings", IkarosWings::new);
+    
 
 }
 

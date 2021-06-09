@@ -13,6 +13,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -39,11 +40,14 @@ public class WheatGrains extends Item{
 		
 		PlayerEntity player = event.getPlayer();
 		Entity target = event.getTarget();
-		if (player.getItemInHand(Hand.MAIN_HAND).getItem() == ItemRegistry.wheatGrains.get()) {
+		World world = event.getWorld();
+		if (!world.isClientSide() && player.getItemInHand(Hand.MAIN_HAND).getItem() == ItemRegistry.wheatGrains.get()) {
 			if (target instanceof ParrotEntity)
 			{
 				player.getItemInHand(Hand.MAIN_HAND).shrink(1);
-				event.getWorld().playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.PARROT_EAT, SoundCategory.VOICE, 2.0f, 1.3f, false);
+				target.playSound(SoundEvents.PARROT_EAT, 2.0f, 1.3f);
+				//world.playSound(player, target, SoundEvents.PARROT_EAT, SoundCategory.VOICE, 2.0f, 1.3f);
+				//world.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.PARROT_EAT, SoundCategory.VOICE, 2.0f, 1.3f, false);
 				if (Math.random() > ACQUIRE_FEATHER_CHANCE) {
 					
 					int variant = ((ParrotEntity) target).getVariant();
