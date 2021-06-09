@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "locusazzurro_icaruswings:block/beeswax_block"
+  }
+}

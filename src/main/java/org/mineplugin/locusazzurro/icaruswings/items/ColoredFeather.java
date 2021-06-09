@@ -10,4 +10,5 @@ public class ColoredFeather extends Item{
 		super(new Properties().tab(ModGroup.itemGroup));
 		
 	}
+	//TODO: add book quill recipe with color feathers
 }

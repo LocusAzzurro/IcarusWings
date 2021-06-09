@@ -1,4 +1,21 @@
 {
+"item.locusazzurro_icaruswings.red_feather":"Red Feather",
 "item.locusazzurro_icaruswings.blue_feather":"Blue Feather",
+"item.locusazzurro_icaruswings.green_feather":"Green Feather",
+"item.locusazzurro_icaruswings.cyan_feather":"Cyan Feather",
+"item.locusazzurro_icaruswings.gray_feather":"Gray Feather",
+
+"item.locusazzurro_icaruswings.beeswax":"Beeswax",
+"item.locusazzurro_icaruswings.wheat_grains":"Wheat Grains",
+
+"block.locusazzurro_icaruswings.beeswax_block":"Beeswax Block",
+"block.locusazzurro_icaruswings.refined_beeswax_block":"Refined Beeswax Block",
+"block.locusazzurro_icaruswings.smooth_refined_beeswax_block":"Smooth Refined Beeswax Block",
+
+"item.locusazzurro_icaruswings.feather_wings":"Feather Wings",
+"item.locusazzurro_icaruswings.colored_feather_wings":"Colored Feather Wings",
+
+"item.locusazzurro_icaruswings.ikaros_wings":"Dual Variable Wings",
+
 "itemGroup.icaruswings_group":"Icarus Wings"
 }
