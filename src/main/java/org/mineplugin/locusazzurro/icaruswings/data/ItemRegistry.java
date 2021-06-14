@@ -26,10 +26,22 @@ public class ItemRegistry {
     		() -> new BlockItem(BlockRegistry.smoothRefinedBeeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     
     public static final RegistryObject<Item> wheatGrains = ITEMS.register("wheat_grains", WheatGrains::new);
+    public static final RegistryObject<Item> wheatString = ITEMS.register("wheat_string", WheatString::new);
     
     public static final RegistryObject<Item> featherWings = ITEMS.register("feather_wings", FeatherWings::new);
     public static final RegistryObject<Item> coloredFeatherWings = ITEMS.register("colored_feather_wings", 
     		() -> new FeatherWings(FeatherWings.FeatherWingsType.FEATHER_COLORED));
+    
+    public static final RegistryObject<Item> fallenRelicCore = ITEMS.register("fallen_relic_core",
+    		() -> new FallenRelic(FallenRelic.RelicType.CORE));
+    public static final RegistryObject<Item> fallenRelicInterface = ITEMS.register("fallen_relic_interface",
+    		() -> new FallenRelic(FallenRelic.RelicType.INTERFACE));
+    public static final RegistryObject<Item> fallenRelicOffensive = ITEMS.register("fallen_relic_offensive",
+    		() -> new FallenRelic(FallenRelic.RelicType.OFFENSIVE));
+    public static final RegistryObject<Item> fallenRelicDefensive = ITEMS.register("fallen_relic_defensive",
+    		() -> new FallenRelic(FallenRelic.RelicType.DEFENSIVE));
+    public static final RegistryObject<Item> fallenRelicPropulsion = ITEMS.register("fallen_relic_propulsion",
+    		() -> new FallenRelic(FallenRelic.RelicType.PROPULSION));
     
     public static final RegistryObject<Item> synapseHelmet = ITEMS.register("synapse_helmet",
     		() -> new SynapseArmor(EquipmentSlotType.HEAD));
