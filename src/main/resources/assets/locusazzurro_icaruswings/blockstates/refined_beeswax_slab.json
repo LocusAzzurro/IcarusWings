@@ -1,0 +1,14 @@
+
+{
+  "variants": {
+    "type=bottom": {
+      "model": "locusazzurro_icaruswings:block/refined_beeswax_slab"
+    },
+    "type=double": {
+      "model": "locusazzurro_icaruswings:block/refined_beeswax_block"
+    },
+    "type=top": {
+      "model": "locusazzurro_icaruswings:block/refined_beeswax_slab_top"
+    }
+  }
+}

@@ -12,8 +12,8 @@ public class RefinedBeeswaxBlock extends Block{
 		super(AbstractBlock
 				.Properties.of(Material.STONE)
 				.strength(1.5f, 6.0f)
-				.speedFactor(1.5f)
-				.friction(0.7f)
+				.speedFactor(1.2f)
+				.friction(0.8f)
 				.sound(SoundType.STONE)
 				.requiresCorrectToolForDrops()
 				.harvestLevel(1)

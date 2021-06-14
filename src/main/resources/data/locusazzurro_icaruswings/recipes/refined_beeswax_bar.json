@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:blasting",
+	"ingredient":
+	{
+		"item": "locusazzurro_icaruswings:beeswax_block"
+	},
+	"result":
+	{
+		"item": "locusazzurro_icaruswings:refined_beeswax_bar"
+	},
+	"experience": 2
+	
+}

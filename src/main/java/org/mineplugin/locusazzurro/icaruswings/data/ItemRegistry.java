@@ -20,8 +20,11 @@ public class ItemRegistry {
     public static final RegistryObject<Item> beeswax = ITEMS.register("beeswax", Beeswax::new);
     public static final RegistryObject<Item> beeswaxBlock = ITEMS.register("beeswax_block", 
     		() -> new BlockItem(BlockRegistry.beeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    public static final RegistryObject<Item> refinedBeeswaxBar = ITEMS.register("refined_beeswax_bar", RefinedBeeswaxBar::new);
     public static final RegistryObject<Item> refinedBeeswaxBlock = ITEMS.register("refined_beeswax_block",
     		() -> new BlockItem(BlockRegistry.refinedBeeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    public static final RegistryObject<Item> refinedBeeswaxSlab = ITEMS.register("refined_beeswax_slab",
+    		() -> new BlockItem(BlockRegistry.refinedBeeswaxSlab.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> smoothRefinedBeeswaxBlock = ITEMS.register("smooth_refined_beeswax_block",
     		() -> new BlockItem(BlockRegistry.smoothRefinedBeeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     
