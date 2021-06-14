@@ -2,6 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.data;
 
 import org.mineplugin.locusazzurro.icaruswings.items.*;
 
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
@@ -29,6 +30,15 @@ public class ItemRegistry {
     public static final RegistryObject<Item> featherWings = ITEMS.register("feather_wings", FeatherWings::new);
     public static final RegistryObject<Item> coloredFeatherWings = ITEMS.register("colored_feather_wings", 
     		() -> new FeatherWings(FeatherWings.FeatherWingsType.FEATHER_COLORED));
+    
+    public static final RegistryObject<Item> synapseHelmet = ITEMS.register("synapse_helmet",
+    		() -> new SynapseArmor(EquipmentSlotType.HEAD));
+    public static final RegistryObject<Item> synapseChestplate = ITEMS.register("synapse_chestplate",
+    		() -> new SynapseArmor(EquipmentSlotType.CHEST));
+    public static final RegistryObject<Item> synapseLeggings = ITEMS.register("synapse_leggings",
+    		() -> new SynapseArmor(EquipmentSlotType.LEGS));
+    public static final RegistryObject<Item> synapseBoots = ITEMS.register("synapse_boots",
+    		() -> new SynapseArmor(EquipmentSlotType.FEET));
     
     public static final RegistryObject<Item> ikarosWings = ITEMS.register("ikaros_wings", IkarosWings::new);
     
