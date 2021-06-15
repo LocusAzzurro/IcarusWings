@@ -2,6 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 
 import javax.annotation.Nullable;
 
+import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.items.FeatherWings.FeatherWingsType;
 
@@ -45,10 +46,8 @@ public class IkarosWings extends ElytraItem{
 	public static void onPlayerTick(TickEvent.PlayerTickEvent event)
 	{
 		PlayerEntity player = event.player;
-		if (player.isFallFlying()) {
+		if (player.isFallFlying() && player.getItemBySlot(EquipmentSlotType.CHEST).getItem() == ItemRegistry.ikarosWings.get()) {
             Vector3d lookAngle = player.getLookAngle();
-            double d0 = 1.5D;
-            double d1 = 0.1D;
             Vector3d flyAngle = player.getDeltaMovement();
             player.setDeltaMovement(flyAngle.add(
             		lookAngle.x * 0.1D + (lookAngle.x * 1.5D - flyAngle.x) * 0.5D,

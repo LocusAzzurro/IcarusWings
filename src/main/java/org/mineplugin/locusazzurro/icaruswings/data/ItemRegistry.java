@@ -17,6 +17,13 @@ public class ItemRegistry {
     public static final RegistryObject<Item> cyanFeather = ITEMS.register("cyan_feather", ColoredFeather::new);
     public static final RegistryObject<Item> grayFeather = ITEMS.register("gray_feather", ColoredFeather::new);
     
+    public static final RegistryObject<Item> featherBunch = ITEMS.register("feather_bunch", 
+    		() -> new FeatherWings(FeatherWings.FeatherWingsType.FEATHER));
+    public static final RegistryObject<Item> coloredFeatherBunch = ITEMS.register("colored_feather_bunch", 
+    		() -> new FeatherWings(FeatherWings.FeatherWingsType.FEATHER_COLORED));
+    public static final RegistryObject<Item> goldenFeatherBunch = ITEMS.register("golden_feather_bunch", 
+    		() -> new FeatherWings(FeatherWings.FeatherWingsType.FEATHER_GOLDEN));
+    
     public static final RegistryObject<Item> beeswax = ITEMS.register("beeswax", Beeswax::new);
     public static final RegistryObject<Item> beeswaxBlock = ITEMS.register("beeswax_block", 
     		() -> new BlockItem(BlockRegistry.beeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));

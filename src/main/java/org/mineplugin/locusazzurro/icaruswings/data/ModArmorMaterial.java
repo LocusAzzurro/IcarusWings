@@ -14,12 +14,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public enum ModArmorMaterial implements IArmorMaterial{
 	// name, duraMulti, slotProt[4], enchValue, sound, toughness, KBRes, repIng
 	FEATHER("feather", 4, new int[] {1,2,3,1}, 15, SoundEvents.ARMOR_EQUIP_CHAIN,
-			0.0F, 0.0F, () -> {return Ingredient.of(Items.FEATHER);}),
+			0.0F, 0.0F, () -> {return Ingredient.of(ItemRegistry.featherBunch.get());}),
 	GOLDEN_FEATHER("golden_feather", 7, new int[] {1,3,5,2}, 20, SoundEvents.ARMOR_EQUIP_GOLD,
-			0.5F, 0.0F, () -> {return Ingredient.of(Items.FEATHER);}), //TODO change repair mat
+			0.5F, 0.0F, () -> {return Ingredient.of(ItemRegistry.goldenFeatherBunch.get());}), 
 	WAX("wax", 5, new int[] {1,2,3,1}, 10, SoundEvents.HONEY_BLOCK_SLIDE,
-			0.0F, 0.0F, () -> {return Ingredient.of(ItemRegistry.beeswax.get());}),
-	SYNAPSE("synapse_tech", 40, new int[] {3,6,8,3}, 12, SoundEvents.ARMOR_EQUIP_GOLD,
+			0.0F, 0.0F, () -> {return Ingredient.of(ItemRegistry.refinedBeeswaxBar.get());}),
+	SYNAPSE("synapse_tech", 40, new int[] {3,6,8,3}, 12, SoundEvents.ARMOR_EQUIP_DIAMOND,
 			4.0F, 0.0F, () -> {return Ingredient.of(ItemRegistry.beeswax.get());}) //TODO change repair mat
 	;
 	
