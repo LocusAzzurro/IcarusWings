@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "locusazzurro_icaruswings:refined_beeswax_block"
+  },
+  "result": "locusazzurro_icaruswings:refined_beeswax_stairs",
+  "count": 1
+}

@@ -1,7 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "##"
+    "#",
+	"#"
   ],
   "key": {
     "#": {
@@ -9,7 +10,7 @@
     }
   },
   "result": {
-    "item": "locusazzurro_icaruswings:refined_beeswax_slab",
+    "item": "locusazzurro_icaruswings:refined_beeswax_pillar",
     "count": 2
   }
 }

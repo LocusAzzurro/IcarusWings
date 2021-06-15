@@ -29,6 +29,8 @@ public class ItemRegistry {
     		() -> new BlockItem(BlockRegistry.refinedBeeswaxPillar.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> refinedBeeswaxStairs = ITEMS.register("refined_beeswax_stairs",
     		() -> new BlockItem(BlockRegistry.refinedBeeswaxStairs.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    public static final RegistryObject<Item> refinedBeeswaxBlockChiseled = ITEMS.register("chiseled_refined_beeswax_block",
+    		() -> new BlockItem(BlockRegistry.refinedBeeswaxBlockChiseled.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> smoothRefinedBeeswaxBlock = ITEMS.register("smooth_refined_beeswax_block",
     		() -> new BlockItem(BlockRegistry.smoothRefinedBeeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     

@@ -14,5 +14,6 @@ public class BlockRegistry {
     public static final RegistryObject<Block> refinedBeeswaxSlab = BLOCKS.register("refined_beeswax_slab", RefinedBeeswaxSlab::new);
     public static final RegistryObject<Block> refinedBeeswaxPillar = BLOCKS.register("refined_beeswax_pillar", RefinedBeeswaxPillar::new);
     public static final RegistryObject<Block> refinedBeeswaxStairs = BLOCKS.register("refined_beeswax_stairs", RefinedBeeswaxStairs::new);
+    public static final RegistryObject<Block> refinedBeeswaxBlockChiseled = BLOCKS.register("chiseled_refined_beeswax_block", RefinedBeeswaxBlock::new);
     public static final RegistryObject<Block> smoothRefinedBeeswaxBlock = BLOCKS.register("smooth_refined_beeswax_block", RefinedBeeswaxBlock::new);
 }
