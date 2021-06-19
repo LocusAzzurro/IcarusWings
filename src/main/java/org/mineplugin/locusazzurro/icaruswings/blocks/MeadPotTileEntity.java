@@ -62,14 +62,13 @@ public class MeadPotTileEntity extends TileEntity implements ITickableTileEntity
 		return FERMENTATION_TIME;
 	}
 	
-	//TODO: increment fermentation only when exposed to sky and has air above
 	@Override
 	public void tick() {
 		World world = this.level;
 		boolean needUpdate = false;
 		if (world != null && !world.isClientSide) {
 			int skyLight = this.level.getBrightness(LightType.SKY, this.getBlockPos().above());
-			if (this.isFermenting && (fermentationProgress < FERMENTATION_TIME && skyLight > 13)) {
+			if (this.isFermenting && (fermentationProgress < FERMENTATION_TIME) && skyLight > 13) {
 				fermentationProgress ++;
 				needUpdate = true;
 			}

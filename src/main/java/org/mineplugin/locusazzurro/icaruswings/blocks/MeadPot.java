@@ -91,17 +91,19 @@ public class MeadPot extends Block{
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (!worldIn.isClientSide && handIn == Hand.MAIN_HAND) {
             MeadPotTileEntity meadPotTE = (MeadPotTileEntity) worldIn.getBlockEntity(pos);
-            ItemStack stack = player.getItemInHand(handIn);
-            if (stack.getItem() == Items.HONEY_BOTTLE && stack.getCount() >= 4
+            ItemStack stackIn = player.getItemInHand(handIn);
+            if (stackIn.getItem() == Items.HONEY_BOTTLE && stackIn.getCount() >= 4
             		&& !meadPotTE.isFermenting() && !meadPotTE.isComplete()) {
-            	stack.shrink(4);
-            	player.inventory.add(new ItemStack(Items.GLASS_BOTTLE, 4));
+            	ItemStack stackOut = new ItemStack(Items.GLASS_BOTTLE, 4);
+            	stackIn.shrink(4);
+            	if (!player.inventory.add(stackOut)) player.drop(stackOut, false);
             	meadPotTE.startFermeting();
             	return ActionResultType.SUCCESS;
             }
-            if (stack.getItem() == Items.GLASS_BOTTLE && meadPotTE.isComplete()) {
-            	stack.shrink(1);
-            	player.inventory.add(new ItemStack(ItemRegistry.mead.get()));
+            if (stackIn.getItem() == Items.GLASS_BOTTLE && meadPotTE.isComplete()) {
+            	ItemStack stackOut = new ItemStack(ItemRegistry.mead.get());
+            	stackIn.shrink(1);
+            	if (!player.inventory.add(stackOut)) player.drop(stackOut, false);
             	meadPotTE.setEmpty();
             	return ActionResultType.SUCCESS;
             }
