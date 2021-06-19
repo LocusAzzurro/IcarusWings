@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "locusazzurro_icaruswings:block/refined_beeswax_pillar_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "locusazzurro_icaruswings:block/refined_beeswax_pillar"
+    },
+    "axis=z": {
+      "model": "locusazzurro_icaruswings:block/refined_beeswax_pillar_horizontal",
+      "x": 90
+    }
+  }
+}

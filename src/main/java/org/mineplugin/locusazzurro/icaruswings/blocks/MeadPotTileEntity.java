@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 
 public class MeadPotTileEntity extends TileEntity implements ITickableTileEntity{
@@ -24,15 +25,13 @@ public class MeadPotTileEntity extends TileEntity implements ITickableTileEntity
 		this.isFermenting = true;
 		this.isComplete = false;
 		this.setParentBlockState(MeadPot.MeadPotState.FERMENTING);
-		//System.out.println("startFem called");
 	}
 	
 	public void setComplete() {
-		this.fermentationProgress = 101;
+		this.fermentationProgress = FERMENTATION_TIME;
 		this.isFermenting = false;
 		this.isComplete = true;
 		this.setParentBlockState(MeadPot.MeadPotState.COMPLETE);
-		//System.out.println("setComplete called");
 	}
 	
 	public void setEmpty() {
@@ -55,20 +54,28 @@ public class MeadPotTileEntity extends TileEntity implements ITickableTileEntity
 		return this.isComplete;
 	}
 	
+	public int getFermentationProgress() {
+		return this.fermentationProgress;
+	}
+	
+	public static int getFermentationTime() {
+		return FERMENTATION_TIME;
+	}
+	
+	//TODO: increment fermentation only when exposed to sky and has air above
 	@Override
 	public void tick() {
 		World world = this.level;
 		boolean needUpdate = false;
 		if (world != null && !world.isClientSide) {
-			if (this.isFermenting && (fermentationProgress < FERMENTATION_TIME)) {
+			int skyLight = this.level.getBrightness(LightType.SKY, this.getBlockPos().above());
+			if (this.isFermenting && (fermentationProgress < FERMENTATION_TIME && skyLight > 13)) {
 				fermentationProgress ++;
-				//System.out.println("TE Tick #" + fermentationProgress);
 				needUpdate = true;
 			}
 			if (this.isFermenting && (fermentationProgress == FERMENTATION_TIME)) {
 				
 				this.setComplete();
-				//System.out.println("Complete - TE Tick #" + fermentationProgress);
 				needUpdate = true;
 			}
 			if (needUpdate) this.setChanged();

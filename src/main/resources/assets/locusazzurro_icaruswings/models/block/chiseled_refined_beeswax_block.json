@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "locusazzurro_icaruswings:block/chiseled_refined_beeswax_block_top",
+	"side": "locusazzurro_icaruswings:block/chiseled_refined_beeswax_block_side"
+  }
+}
