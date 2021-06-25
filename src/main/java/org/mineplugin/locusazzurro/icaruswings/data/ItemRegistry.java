@@ -76,6 +76,8 @@ public class ItemRegistry {
     public static final RegistryObject<Item> restoredFallenRelicPropulsion = ITEMS.register("restored_fallen_relic_propulsion",
     		() -> new FallenRelic(FallenRelic.RelicType.PROPULSION, true));
     
+    public static final RegistryObject<Item> synapseRepairKit = ITEMS.register("synapse_repair_kit", SynapseRepairKit::new);
+    
     public static final RegistryObject<Item> synapseHelmet = ITEMS.register("synapse_helmet",
     		() -> new SynapseArmor(EquipmentSlotType.HEAD));
     public static final RegistryObject<Item> synapseChestplate = ITEMS.register("synapse_chestplate",

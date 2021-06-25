@@ -20,7 +20,7 @@ public enum ModArmorMaterial implements IArmorMaterial{
 	WAX("wax", 5, new int[] {1,2,3,1}, 10, SoundEvents.HONEY_BLOCK_SLIDE,
 			0.0F, 0.0F, () -> {return Ingredient.of(ItemRegistry.refinedBeeswaxBar.get());}),
 	SYNAPSE("synapse_tech", 40, new int[] {3,6,8,3}, 12, SoundEvents.ARMOR_EQUIP_DIAMOND,
-			4.0F, 0.0F, () -> {return Ingredient.of(ItemRegistry.beeswax.get());}) //TODO change repair mat
+			4.0F, 0.0F, () -> {return Ingredient.of(ItemRegistry.synapseRepairKit.get());}) 
 	;
 	
 	//fuck mojang
