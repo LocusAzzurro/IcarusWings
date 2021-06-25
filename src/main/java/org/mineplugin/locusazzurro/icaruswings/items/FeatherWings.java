@@ -15,6 +15,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -63,6 +64,7 @@ public class FeatherWings extends ElytraItem {
 
 	@Override
 	public boolean canElytraFly(ItemStack stack, net.minecraft.entity.LivingEntity entity) {
+		if (entity.level.dimension() == World.END) return false;
 		return true;
 	}
 
@@ -83,19 +85,29 @@ public class FeatherWings extends ElytraItem {
 
 	@Override
 	public boolean elytraFlightTick(ItemStack stack, net.minecraft.entity.LivingEntity entity, int flightTicks) {
-		if (!entity.level.isClientSide && (flightTicks + 1) % 20 == 0) {
+		if (!entity.level.isClientSide() && (flightTicks + 1) % 20 == 0) {
+			int dmg = 1;
 			if (entity instanceof PlayerEntity) {
-				int dmg = 1;
+				if (entity.level.dimension() == World.NETHER) {
+					dmg = 5;
+					entity.setSecondsOnFire(10);
+					stack.hurtAndBreak(dmg, entity,
+							e -> e.broadcastBreakEvent(net.minecraft.inventory.EquipmentSlotType.CHEST));
+					return true;
+				}
 				int y = (int) entity.getY();
 				dmg = Math.max(y >> 6, 1) + (Math.random() * 64 < (y & 63) ? 1 : 0);
 
 				stack.hurtAndBreak(dmg, entity,
 						e -> e.broadcastBreakEvent(net.minecraft.inventory.EquipmentSlotType.CHEST));
-
+				return true;
 			}
-			// TODO: penalty in nether (5 dura per tick + fire)
+			stack.hurtAndBreak(dmg, entity,
+					e -> e.broadcastBreakEvent(net.minecraft.inventory.EquipmentSlotType.CHEST));
+			return true;
 		}
 		return true;
 	}
+	// TODO: penalty in nether (5 dura per tick + fire)
 
 }
