@@ -68,7 +68,6 @@ public class FeatherWings extends ElytraItem {
 		return true;
 	}
 
-	// TODO: disable in the end
 	@Override
 	public boolean isValidRepairItem(ItemStack toBeRepaired, ItemStack repairMat) {
 		Item item = toBeRepaired.getItem();
@@ -90,24 +89,18 @@ public class FeatherWings extends ElytraItem {
 			if (entity instanceof PlayerEntity) {
 				if (entity.level.dimension() == World.NETHER) {
 					dmg = 5;
+					if(((FeatherWings)stack.getItem()).getType() != FeatherWingsType.FEATHER_GOLDEN)
 					entity.setSecondsOnFire(10);
-					stack.hurtAndBreak(dmg, entity,
-							e -> e.broadcastBreakEvent(net.minecraft.inventory.EquipmentSlotType.CHEST));
-					return true;
 				}
-				int y = (int) entity.getY();
-				dmg = Math.max(y >> 6, 1) + (Math.random() * 64 < (y & 63) ? 1 : 0);
-
-				stack.hurtAndBreak(dmg, entity,
-						e -> e.broadcastBreakEvent(net.minecraft.inventory.EquipmentSlotType.CHEST));
-				return true;
+				else {
+					int y = (int) entity.getY();
+					dmg = Math.max(y >> 6, 1) + (Math.random() * 64 < (y & 63) ? 1 : 0);
+				}
 			}
-			stack.hurtAndBreak(dmg, entity,
-					e -> e.broadcastBreakEvent(net.minecraft.inventory.EquipmentSlotType.CHEST));
+			stack.hurtAndBreak(dmg, entity,	e -> e.broadcastBreakEvent(EquipmentSlotType.CHEST));
 			return true;
 		}
 		return true;
 	}
-	// TODO: penalty in nether (5 dura per tick + fire)
 
 }

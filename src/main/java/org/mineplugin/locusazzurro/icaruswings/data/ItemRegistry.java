@@ -51,6 +51,8 @@ public class ItemRegistry {
     public static final RegistryObject<Item> featherWings = ITEMS.register("feather_wings", FeatherWings::new);
     public static final RegistryObject<Item> coloredFeatherWings = ITEMS.register("colored_feather_wings", 
     		() -> new FeatherWings(FeatherWings.FeatherWingsType.FEATHER_COLORED));
+    public static final RegistryObject<Item> goldenFeatherWings = ITEMS.register("golden_feather_wings", 
+    		() -> new FeatherWings(FeatherWings.FeatherWingsType.FEATHER_GOLDEN));
     
     public static final RegistryObject<Item> fallenRelicCore = ITEMS.register("fallen_relic_core",
     		() -> new FallenRelic(FallenRelic.RelicType.CORE));
@@ -62,6 +64,17 @@ public class ItemRegistry {
     		() -> new FallenRelic(FallenRelic.RelicType.DEFENSIVE));
     public static final RegistryObject<Item> fallenRelicPropulsion = ITEMS.register("fallen_relic_propulsion",
     		() -> new FallenRelic(FallenRelic.RelicType.PROPULSION));
+    
+    public static final RegistryObject<Item> restoredFallenRelicCore = ITEMS.register("restored_fallen_relic_core",
+    		() -> new FallenRelic(FallenRelic.RelicType.CORE, true));
+    public static final RegistryObject<Item> restoredFallenRelicInterface = ITEMS.register("restored_fallen_relic_interface",
+    		() -> new FallenRelic(FallenRelic.RelicType.INTERFACE, true));
+    public static final RegistryObject<Item> restoredFallenRelicOffensive = ITEMS.register("restored_fallen_relic_offensive",
+    		() -> new FallenRelic(FallenRelic.RelicType.OFFENSIVE, true));
+    public static final RegistryObject<Item> restoredFallenRelicDefensive = ITEMS.register("restored_fallen_relic_defensive",
+    		() -> new FallenRelic(FallenRelic.RelicType.DEFENSIVE, true));
+    public static final RegistryObject<Item> restoredFallenRelicPropulsion = ITEMS.register("restored_fallen_relic_propulsion",
+    		() -> new FallenRelic(FallenRelic.RelicType.PROPULSION, true));
     
     public static final RegistryObject<Item> synapseHelmet = ITEMS.register("synapse_helmet",
     		() -> new SynapseArmor(EquipmentSlotType.HEAD));
