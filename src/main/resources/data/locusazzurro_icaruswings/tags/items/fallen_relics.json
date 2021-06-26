@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+	"locusazzurro_icaruswings:fallen_relic_interface",
+	"locusazzurro_icaruswings:fallen_relic_offensive",
+	"locusazzurro_icaruswings:fallen_relic_defensive",
+	"locusazzurro_icaruswings:fallen_relic_propulsion",
+	"locusazzurro_icaruswings:fallen_relic_core"
+  ]
+}

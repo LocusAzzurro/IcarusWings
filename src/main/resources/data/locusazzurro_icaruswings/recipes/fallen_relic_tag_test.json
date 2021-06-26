@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RS"
+  ],
+  "key": {
+    "S": {
+      "tag": "locusazzurro_icaruswings:fallen_relics"
+    },
+    "R": {
+      "tag": "locusazzurro_icaruswings:restored_fallen_relics"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:ikaros_wings",
+    "count": 1
+  }
+}

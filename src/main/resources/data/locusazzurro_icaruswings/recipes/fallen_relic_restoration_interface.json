@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "SRS",
+	" D "
+  ],
+  "key": {
+    "P": {
+      "item": "locusazzurro_icaruswings:purpur_ingot"
+    },
+    "R": {
+      "item": "locusazzurro_icaruswings:fallen_relic_interface"
+    },
+    "S": [
+      {
+        "item": "locusazzurro_icaruswings:steel_ingot"
+      },
+      {
+        "tag": "forge:ingots/steel"
+      }
+    ],
+    "D": {
+      "item": "locusazzurro_icaruswings:daedalus_decryptor"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:restored_fallen_relic_interface",
+    "count": 1
+  }
+}

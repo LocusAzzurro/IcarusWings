@@ -13,9 +13,12 @@ import net.minecraft.enchantment.IArmorVanishable;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.monster.EndermanEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class SynapseArmor extends ArmorItem implements IArmorVanishable{
 	
@@ -63,5 +66,9 @@ public class SynapseArmor extends ArmorItem implements IArmorVanishable{
 	    // boots - propulsion - move speed
 		//slot check and attr builder
 		return builder.build();
+	}
+	
+	public boolean isEnderMask(ItemStack stack, PlayerEntity player, EndermanEntity endermanEntity) {
+		return (this.slot == EquipmentSlotType.HEAD);
 	}
 }
