@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "locusazzurro_icaruswings:golden_feather"
+    },
+    {
+      "item": "locusazzurro_icaruswings:golden_feather"
+    },
+    {
+      "item": "locusazzurro_icaruswings:golden_feather"
+    },
+    {
+      "item": "locusazzurro_icaruswings:golden_feather"
+    },
+    {
+      "item": "locusazzurro_icaruswings:golden_string"
+    }
+  ],
+  "result": {
+    "item": "locusazzurro_icaruswings:golden_feather_bunch"
+  }
+}

@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:blasting",
+	"ingredient":
+	{
+		"item": "locusazzurro_icaruswings:steel_mixture"
+	},
+	"result":
+	{
+		"item": "locusazzurro_icaruswings:steel_ingot"
+	},
+	"experience": 0.4
+	
+}

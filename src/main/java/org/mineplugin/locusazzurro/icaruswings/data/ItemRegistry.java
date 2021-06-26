@@ -11,11 +11,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Utils.MOD_ID);
+    
     public static final RegistryObject<Item> redFeather = ITEMS.register("red_feather", ColoredFeather::new);
     public static final RegistryObject<Item> blueFeather = ITEMS.register("blue_feather", ColoredFeather::new);
     public static final RegistryObject<Item> greenFeather = ITEMS.register("green_feather", ColoredFeather::new);
     public static final RegistryObject<Item> cyanFeather = ITEMS.register("cyan_feather", ColoredFeather::new);
     public static final RegistryObject<Item> grayFeather = ITEMS.register("gray_feather", ColoredFeather::new);
+    public static final RegistryObject<Item> goldenFeather = ITEMS.register("golden_feather", GoldenFeather::new);
     
     public static final RegistryObject<Item> featherBunch = ITEMS.register("feather_bunch", 
     		() -> new FeatherWings(FeatherWings.FeatherWingsType.FEATHER));
@@ -23,6 +25,13 @@ public class ItemRegistry {
     		() -> new FeatherWings(FeatherWings.FeatherWingsType.FEATHER_COLORED));
     public static final RegistryObject<Item> goldenFeatherBunch = ITEMS.register("golden_feather_bunch", 
     		() -> new FeatherWings(FeatherWings.FeatherWingsType.FEATHER_GOLDEN));
+    
+    public static final RegistryObject<Item> steelIngot = ITEMS.register("steel_ingot", WorldIngot::new);
+    public static final RegistryObject<Item> magmaIngot = ITEMS.register("magma_ingot", WorldIngot::new);
+    public static final RegistryObject<Item> purpurIngot = ITEMS.register("purpur_ingot", WorldIngot::new);
+    public static final RegistryObject<Item> steelIngotRaw = ITEMS.register("steel_mixture", WorldIngotMaterial::new);
+    public static final RegistryObject<Item> magmaIngotRaw = ITEMS.register("magma_mixture", WorldIngotMaterial::new);
+    public static final RegistryObject<Item> purpurIngotRaw = ITEMS.register("purpur_mixture", WorldIngotMaterial::new);
     
     public static final RegistryObject<Item> beeswax = ITEMS.register("beeswax", Beeswax::new);
     public static final RegistryObject<Item> beeswaxBlock = ITEMS.register("beeswax_block", 
@@ -47,6 +56,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> mead = ITEMS.register("mead", Mead::new);
     public static final RegistryObject<Item> wheatGrains = ITEMS.register("wheat_grains", WheatGrains::new);
     public static final RegistryObject<Item> wheatString = ITEMS.register("wheat_string", WheatString::new);
+    public static final RegistryObject<Item> goldenString = ITEMS.register("golden_string", GoldenString::new);
     
     public static final RegistryObject<Item> featherWings = ITEMS.register("feather_wings", FeatherWings::new);
     public static final RegistryObject<Item> coloredFeatherWings = ITEMS.register("colored_feather_wings", 
