@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ModArmorMaterial;
@@ -9,6 +10,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.IArmorVanishable;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -19,6 +21,9 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.World;
 
 public class SynapseArmor extends ArmorItem implements IArmorVanishable{
 	
@@ -71,4 +76,5 @@ public class SynapseArmor extends ArmorItem implements IArmorVanishable{
 	public boolean isEnderMask(ItemStack stack, PlayerEntity player, EndermanEntity endermanEntity) {
 		return (this.slot == EquipmentSlotType.HEAD);
 	}
+	
 }

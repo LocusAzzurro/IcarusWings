@@ -55,4 +55,5 @@ public class IkarosWings extends ElytraItem{
             		lookAngle.z * 0.1D + (lookAngle.z * 1.5D - flyAngle.z) * 0.5D));
         }
 	}
+	//TODO: buff speed
 }

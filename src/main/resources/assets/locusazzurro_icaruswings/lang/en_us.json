@@ -5,17 +5,71 @@
 "item.locusazzurro_icaruswings.cyan_feather":"Cyan Feather",
 "item.locusazzurro_icaruswings.gray_feather":"Gray Feather",
 
-"item.locusazzurro_icaruswings.beeswax":"Beeswax",
-"item.locusazzurro_icaruswings.wheat_grains":"Wheat Grains",
+"item.locusazzurro_icaruswings.golden_feather":"Golden Feather",
 
+"item.locusazzurro_icaruswings.feather_bunch":"Bunch of Feathers",
+"item.locusazzurro_icaruswings.colored_feather_bunch":"Bunch of Colored Feathers",
+"item.locusazzurro_icaruswings.golden_feather_bunch":"Bunch of Golden Feathers",
+
+"__comment.ingot.translations":"焱髓锭 紫影锭",
+"item.locusazzurro_icaruswings.steel_ingot":"Steel Ingot",
+"item.locusazzurro_icaruswings.magma_ingot":"Magmite Ingot", 
+"item.locusazzurro_icaruswings.purpur_ingot":"Chorusite Ingot",
+
+"item.locusazzurro_icaruswings.steel_mixture":"Raw Steel Mixture",
+"item.locusazzurro_icaruswings.magma_mixture":"Raw Magmite Mixture",
+"item.locusazzurro_icaruswings.purpur_mixture":"Raw Chorusite Mixture",
+
+"item.locusazzurro_icaruswings.beeswax":"Beeswax",
+"item.locusazzurro_icaruswings.refined_beeswax_bar":"Refined Beeswax Bar",
 "block.locusazzurro_icaruswings.beeswax_block":"Beeswax Block",
 "block.locusazzurro_icaruswings.refined_beeswax_block":"Refined Beeswax Block",
+"block.locusazzurro_icaruswings.refined_beeswax_slab":"Refined Beeswax Slab",
+"block.locusazzurro_icaruswings.refined_beeswax_pillar":"Refined Beeswax Pillar",
+"block.locusazzurro_icaruswings.refined_beeswax_stairs":"Refined Beeswax Stairs",
+"block.locusazzurro_icaruswings.chiseled_refined_beeswax_block":"Chiseled Refined Beeswax Block",
 "block.locusazzurro_icaruswings.smooth_refined_beeswax_block":"Smooth Refined Beeswax Block",
+
+"block.locusazzurro_icaruswings.mead_pot":"Mead Pot",
+"item.locusazzurro_icaruswings.mead":"Mead",
+
+"item.locusazzurro_icaruswings.wheat_grains":"Wheat Grains",
+"item.locusazzurro_icaruswings.wheat_string":"Wheat String",
+"item.locusazzurro_icaruswings.golden_string":"Golden String",
 
 "item.locusazzurro_icaruswings.feather_wings":"Feather Wings",
 "item.locusazzurro_icaruswings.colored_feather_wings":"Colored Feather Wings",
+"item.locusazzurro_icaruswings.golden_feather_wings":"Golden Feather Wings",
+
+"item.locusazzurro_icaruswings.fallen_relic_core":"Fallen Relic",
+"item.locusazzurro_icaruswings.fallen_relic_interface":"Fallen Relic",
+"item.locusazzurro_icaruswings.fallen_relic_offensive":"Fallen Relic",
+"item.locusazzurro_icaruswings.fallen_relic_defensive":"Fallen Relic",
+"item.locusazzurro_icaruswings.fallen_relic_propulsion":"Fallen Relic",
+
+"item.locusazzurro_icaruswings.restored_fallen_relic_core":"Restored Fallen Relic",
+"item.locusazzurro_icaruswings.restored_fallen_relic_interface":"Restored Fallen Relic",
+"item.locusazzurro_icaruswings.restored_fallen_relic_offensive":"Restored Fallen Relic",
+"item.locusazzurro_icaruswings.restored_fallen_relic_defensive":"Restored Fallen Relic",
+"item.locusazzurro_icaruswings.restored_fallen_relic_propulsion":"Restored Fallen Relic",
+
+"item.locusazzurro_icaruswings.fallen_relic_core.tooltip":"Core Systems",
+"item.locusazzurro_icaruswings.fallen_relic_interface.tooltip":"Interface Systems",
+"item.locusazzurro_icaruswings.fallen_relic_offensive.tooltip":"Offensive Systems",
+"item.locusazzurro_icaruswings.fallen_relic_defensive.tooltip":"Defensive Systems",
+"item.locusazzurro_icaruswings.fallen_relic_propulsion.tooltip":"Propulsion Systems",
+
+"item.locusazzurro_icaruswings.daedalus_decryptor":"Daedalus Decryptor",
+
+"item.locusazzurro_icaruswings.synapse_helmet":"Synapsian Helmet",
+"item.locusazzurro_icaruswings.synapse_chestplate":"Synapsian Chestplate",
+"item.locusazzurro_icaruswings.synapse_leggings":"Synapsian Leggings",
+"item.locusazzurro_icaruswings.synapse_boots":"Synapsian Boots",
+
+"item.locusazzurro_icaruswings.synapse_repair_kit":"Synapsian Mutadaptive Repairer",
 
 "item.locusazzurro_icaruswings.ikaros_wings":"Dual Variable Wings",
 
 "itemGroup.icaruswings_group":"Icarus Wings"
+
 }
