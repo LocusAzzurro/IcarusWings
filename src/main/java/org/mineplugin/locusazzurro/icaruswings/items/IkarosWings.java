@@ -35,11 +35,14 @@ public class IkarosWings extends ElytraItem{
 		return stack.getDamageValue() < stack.getMaxDamage() - 10;
 	}
 	
-	//TODO: add core repair
 	@Override
-	public boolean isValidRepairItem(ItemStack p_82789_1_, ItemStack p_82789_2_) {
-		//return p_82789_2_.getItem() == Items.PHANTOM_MEMBRANE;
-		return false;
+	public boolean isValidRepairItem(ItemStack toRepair, ItemStack repairItem) {
+		return repairItem.getItem() == ItemRegistry.synapseWingsRecharger.get();
+	}
+	
+	@Override
+	public float getXpRepairRatio(ItemStack stackIn) {
+		return 0.0f;
 	}
 	
 	@SubscribeEvent (priority = EventPriority.LOW)

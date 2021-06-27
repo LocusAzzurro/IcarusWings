@@ -2,29 +2,28 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
-import net.minecraft.item.Food;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber()
-public class Beeswax extends Item{
+public class QuantumFuel extends Item{
 
-	public Beeswax() {
-		super(new Properties().tab(ModGroup.itemGroup).food(food));
+	public QuantumFuel() {
+		super(new Properties().tab(ModGroup.itemGroup).stacksTo(4));
 	}
 	
-	private static final Food food = (new Food.Builder())
-		.saturationMod(0)
-		.nutrition(1)
-		.build();
-
-	@SubscribeEvent
+	@Override
+	public boolean isFoil(ItemStack stackIn) {
+		return true;
+	}
+	
 	public static void onFuelTime(FurnaceFuelBurnTimeEvent event) {
-		event.setBurnTime(200);
+		event.setBurnTime(12800);
 		event.setResult(Event.Result.ALLOW);
 	}
+	
+	//TODO: 1 nether star makes 4 fuel, wings recharger needs repair kit + 2 fuel
 }
-

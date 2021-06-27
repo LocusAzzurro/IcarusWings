@@ -33,6 +33,13 @@ public class ItemRegistry {
     public static final RegistryObject<Item> magmaIngotRaw = ITEMS.register("magma_mixture", WorldIngotMaterial::new);
     public static final RegistryObject<Item> purpurIngotRaw = ITEMS.register("purpur_mixture", WorldIngotMaterial::new);
     
+    public static final RegistryObject<Item> zephirEssence = ITEMS.register("zephir_essence", WorldEssence::new);
+    public static final RegistryObject<Item> netherEssence = ITEMS.register("nether_essence", WorldEssence::new);
+    public static final RegistryObject<Item> voidEssence = ITEMS.register("void_essence", WorldEssence::new);
+    
+    public static final RegistryObject<Item> reforgedNetheriteIngot = ITEMS.register("reforged_netherite_ingot", WorldIngot::new);
+    public static final RegistryObject<Item> synapseAlloyIngot = ITEMS.register("synapse_alloy_ingot", WorldIngot::new);
+    
     public static final RegistryObject<Item> beeswax = ITEMS.register("beeswax", Beeswax::new);
     public static final RegistryObject<Item> beeswaxBlock = ITEMS.register("beeswax_block", 
     		() -> new BlockItem(BlockRegistry.beeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
@@ -75,6 +82,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> fallenRelicPropulsion = ITEMS.register("fallen_relic_propulsion",
     		() -> new FallenRelic(FallenRelic.RelicType.PROPULSION));
     
+    public static final RegistryObject<Item> daedalusManuscript = ITEMS.register("daedalus_manuscript", DaedalusDecryptor::new);
     public static final RegistryObject<Item> daedalusDecryptor = ITEMS.register("daedalus_decryptor", DaedalusDecryptor::new);
     
     public static final RegistryObject<Item> restoredFallenRelicCore = ITEMS.register("restored_fallen_relic_core",
@@ -89,6 +97,8 @@ public class ItemRegistry {
     		() -> new FallenRelic(FallenRelic.RelicType.PROPULSION, true));
     
     public static final RegistryObject<Item> synapseRepairKit = ITEMS.register("synapse_repair_kit", SynapseRepairKit::new);
+    public static final RegistryObject<Item> synapseWingsRecharger = ITEMS.register("synapse_wings_recharger", SynapseWingsRecharger::new);
+    public static final RegistryObject<Item> quantumFuel = ITEMS.register("quantum_fuel", QuantumFuel::new);
     
     public static final RegistryObject<Item> synapseHelmet = ITEMS.register("synapse_helmet",
     		() -> new SynapseArmor(EquipmentSlotType.HEAD));
