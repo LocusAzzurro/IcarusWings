@@ -14,4 +14,9 @@ public class TileEntityTypeRegistry {
 		meadPotTileEntity = TILE_ENTITIES.register(
 		"mead_pot_tile_entity", () -> TileEntityType.Builder
 		.of(MeadPotTileEntity::new, BlockRegistry.meadPot.get()).build(null));
+	
+	public static final RegistryObject<TileEntityType<AmphoraTileEntity>> 
+		amphoraTileEntity = TILE_ENTITIES.register(
+		"amphora_tile_entity", () -> TileEntityType.Builder
+		.of(AmphoraTileEntity::new, BlockRegistry.amphora.get()).build(null));
 }

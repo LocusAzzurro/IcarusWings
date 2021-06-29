@@ -18,4 +18,5 @@ public class BlockRegistry {
     public static final RegistryObject<Block> smoothRefinedBeeswaxBlock = BLOCKS.register("smooth_refined_beeswax_block", RefinedBeeswaxBlock::new);
     
     public static final RegistryObject<Block> meadPot = BLOCKS.register("mead_pot", MeadPot::new);
+    public static final RegistryObject<Block> amphora = BLOCKS.register("amphora", Amphora::new);
 }

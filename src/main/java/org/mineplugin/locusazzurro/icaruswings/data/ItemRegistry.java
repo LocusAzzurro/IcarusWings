@@ -59,6 +59,8 @@ public class ItemRegistry {
     
     public static final RegistryObject<Item> meadPot = ITEMS.register("mead_pot",
     		() -> new BlockItem(BlockRegistry.meadPot.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    public static final RegistryObject<Item> amphora = ITEMS.register("amphora",
+    		() -> new BlockItem(BlockRegistry.amphora.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     
     public static final RegistryObject<Item> mead = ITEMS.register("mead", Mead::new);
     public static final RegistryObject<Item> wheatGrains = ITEMS.register("wheat_grains", WheatGrains::new);
