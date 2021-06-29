@@ -1,9 +1,11 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -23,8 +25,13 @@ public class Beeswax extends Item{
 
 	@SubscribeEvent
 	public static void onFuelTime(FurnaceFuelBurnTimeEvent event) {
+		if (event.getItemStack().getItem() == ItemRegistry.beeswax.get())
 		event.setBurnTime(200);
-		event.setResult(Event.Result.ALLOW);
 	}
+	
+	public int getBurnTime(ItemStack stack) {
+		return 200;
+	}
+	
 }
 

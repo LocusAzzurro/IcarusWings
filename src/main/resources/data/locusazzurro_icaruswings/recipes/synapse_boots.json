@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+	"IRI"
+  ],
+  "key": {
+    "R": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_propulsion"
+    },
+    "I": {
+      "item": "locusazzurro_icaruswings:synapse_alloy_ingot"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:synapse_boots",
+    "count": 1
+  }
+}

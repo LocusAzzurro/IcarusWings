@@ -20,8 +20,16 @@
 "item.locusazzurro_icaruswings.magma_mixture":"Raw Magmite Mixture",
 "item.locusazzurro_icaruswings.purpur_mixture":"Raw Chorusite Mixture",
 
+"item.locusazzurro_icaruswings.zephir_essence":"Zephir Essence",
+"item.locusazzurro_icaruswings.nether_essence":"Nether Essence",
+"item.locusazzurro_icaruswings.void_essence":"Void Essence",
+
+"item.locusazzurro_icaruswings.reforged_netherite_ingot":"Reforged Netherite Ingot",
+"item.locusazzurro_icaruswings.synapse_alloy_ingot":"Synapsian Alloy Ingot", 
+
 "item.locusazzurro_icaruswings.beeswax":"Beeswax",
 "item.locusazzurro_icaruswings.refined_beeswax_bar":"Refined Beeswax Bar",
+"item.locusazzurro_icaruswings.glistering_refined_beeswax_bar":"Glistering Refined Beeswax Bar",
 "block.locusazzurro_icaruswings.beeswax_block":"Beeswax Block",
 "block.locusazzurro_icaruswings.refined_beeswax_block":"Refined Beeswax Block",
 "block.locusazzurro_icaruswings.refined_beeswax_slab":"Refined Beeswax Slab",
@@ -32,6 +40,9 @@
 
 "block.locusazzurro_icaruswings.mead_pot":"Mead Pot",
 "item.locusazzurro_icaruswings.mead":"Mead",
+
+"block.locusazzurro_icaruswings.amphora":"Amphora",
+"container.amphora":"Amphora",
 
 "item.locusazzurro_icaruswings.wheat_grains":"Wheat Grains",
 "item.locusazzurro_icaruswings.wheat_string":"Wheat String",
@@ -59,6 +70,7 @@
 "item.locusazzurro_icaruswings.fallen_relic_defensive.tooltip":"Defensive Systems",
 "item.locusazzurro_icaruswings.fallen_relic_propulsion.tooltip":"Propulsion Systems",
 
+"item.locusazzurro_icaruswings.daedalus_manuscript":"Daedalus Manuscript",
 "item.locusazzurro_icaruswings.daedalus_decryptor":"Daedalus Decryptor",
 
 "item.locusazzurro_icaruswings.synapse_helmet":"Synapsian Helmet",
@@ -67,6 +79,8 @@
 "item.locusazzurro_icaruswings.synapse_boots":"Synapsian Boots",
 
 "item.locusazzurro_icaruswings.synapse_repair_kit":"Synapsian Mutadaptive Repairer",
+"item.locusazzurro_icaruswings.synapse_wings_recharger":"Synapsian Wings Recharger",
+"item.locusazzurro_icaruswings.quantum_fuel":"Quantum Fuel",
 
 "item.locusazzurro_icaruswings.ikaros_wings":"Dual Variable Wings",
 

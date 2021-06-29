@@ -18,7 +18,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-//TODO add seed tag
 
 @Mod.EventBusSubscriber()
 public class WheatGrains extends Item{

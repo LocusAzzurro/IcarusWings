@@ -20,10 +20,5 @@ public class QuantumFuel extends Item{
 		return true;
 	}
 	
-	public static void onFuelTime(FurnaceFuelBurnTimeEvent event) {
-		event.setBurnTime(12800);
-		event.setResult(Event.Result.ALLOW);
-	}
-	
 	//TODO: 1 nether star makes 4 fuel, wings recharger needs repair kit + 2 fuel
 }

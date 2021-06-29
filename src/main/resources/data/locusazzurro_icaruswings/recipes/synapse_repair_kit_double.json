@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "locusazzurro_icaruswings:daedalus_decryptor"
+    },
+	[
+      {
+        "tag": "locusazzurro_icaruswings:restored_fallen_relics"
+      },
+      {
+        "item": "locusazzurro_icaruswings:synapse_alloy_ingot"
+      }
+    ],
+    {
+      "tag": "locusazzurro_icaruswings:world_ingots"
+    }
+  ],
+  "result": {
+    "item": "locusazzurro_icaruswings:synapse_repair_kit",
+    "count": 2
+  }
+}
