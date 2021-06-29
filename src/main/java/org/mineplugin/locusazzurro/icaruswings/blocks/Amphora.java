@@ -1,7 +1,5 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.block.AbstractBlock;
@@ -10,26 +8,21 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ContainerBlock;
-import net.minecraft.block.DoublePlantBlock;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.monster.piglin.PiglinTasks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.stats.Stats;
-import net.minecraft.tileentity.BarrelTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -42,7 +35,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ToolType;
 
 public class Amphora extends ContainerBlock{
@@ -53,7 +45,6 @@ public class Amphora extends ContainerBlock{
 
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
-	public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
 
 	public Amphora() {
 		super(AbstractBlock.Properties.of(Material.STONE)
@@ -66,7 +57,7 @@ public class Amphora extends ContainerBlock{
 		this.registerDefaultState(this.stateDefinition.any()
 				.setValue(HALF, DoubleBlockHalf.LOWER)
 				.setValue(FACING, Direction.NORTH)
-				.setValue(OPEN, Boolean.valueOf(false)));
+				);
 	}
 
 	@Override
@@ -88,8 +79,7 @@ public class Amphora extends ContainerBlock{
 		if (blockpos.getY() < 255 && context.getLevel().getBlockState(blockpos.above()).canBeReplaced(context)) {
 			return this.defaultBlockState()
 					.setValue(FACING, context.getHorizontalDirection())
-					.setValue(HALF, DoubleBlockHalf.LOWER)
-					.setValue(OPEN, Boolean.valueOf(false));
+					.setValue(HALF, DoubleBlockHalf.LOWER);
 		} else {
 			return null;
 		}
@@ -97,7 +87,7 @@ public class Amphora extends ContainerBlock{
 	
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateIn) {
-	      stateIn.add(HALF, FACING, OPEN);
+	      stateIn.add(HALF, FACING);
 	}
 	
 	@Override
@@ -123,11 +113,12 @@ public class Amphora extends ContainerBlock{
 		return stateIn.getValue(HALF) == DoubleBlockHalf.LOWER ? blockstate.isFaceSturdy(worldReaderIn, blockpos, Direction.UP) : blockstate.is(this);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public BlockState updateShape(BlockState stateInA, Direction dirIn, BlockState stateInB, IWorld worldIn, BlockPos posInA, BlockPos posInB) {
 		DoubleBlockHalf doubleblockhalf = stateInA.getValue(HALF);
 		if (dirIn.getAxis() == Direction.Axis.Y && doubleblockhalf == DoubleBlockHalf.LOWER == (dirIn == Direction.UP)) {
-			return stateInB.is(this) && stateInB.getValue(HALF) != doubleblockhalf ? stateInA.setValue(FACING, stateInB.getValue(FACING)).setValue(OPEN, stateInB.getValue(OPEN)) : Blocks.AIR.defaultBlockState();
+			return stateInB.is(this) && stateInB.getValue(HALF) != doubleblockhalf ? stateInA.setValue(FACING, stateInB.getValue(FACING)) : Blocks.AIR.defaultBlockState();
 		} 
 		else {
 			return doubleblockhalf == DoubleBlockHalf.LOWER && dirIn == Direction.DOWN && !stateInA.canSurvive(worldIn, posInA) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateInA, dirIn, stateInB, worldIn, posInA, posInB);
@@ -199,13 +190,4 @@ public class Amphora extends ContainerBlock{
 			}
 		}
 	}
-
-	/*
-	public void tick(BlockState p_225534_1_, ServerWorld p_225534_2_, BlockPos p_225534_3_, Random p_225534_4_) {
-	      TileEntity tileentity = p_225534_2_.getBlockEntity(p_225534_3_);
-	      if (tileentity instanceof BarrelTileEntity) {
-	         ((BarrelTileEntity)tileentity).recheckOpen();
-	      }
-	}
-	*/
 }
