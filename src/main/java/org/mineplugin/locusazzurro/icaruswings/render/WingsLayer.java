@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.render;
 
 import org.mineplugin.locusazzurro.icaruswings.data.Utils;
+import org.mineplugin.locusazzurro.icaruswings.data.WingsMaterial;
 import org.mineplugin.locusazzurro.icaruswings.items.FeatherWings;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -38,8 +39,8 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 		if (item instanceof FeatherWings)
 		{
 			FeatherWings wings = (FeatherWings) item;
-			if (wings.getType() == FeatherWings.FeatherWingsType.FEATHER) return WINGS_FEATHER;
-			if (wings.getType() == FeatherWings.FeatherWingsType.FEATHER_COLORED) return WINGS_FEATHER_COLORED;
+			if (wings.getType() == WingsMaterial.FEATHER) return WINGS_FEATHER;
+			if (wings.getType() == WingsMaterial.FEATHER_COLORED) return WINGS_FEATHER_COLORED;
 		}
 		return WINGS_FEATHER;
 	}

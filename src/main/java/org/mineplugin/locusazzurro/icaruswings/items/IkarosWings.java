@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-import org.mineplugin.locusazzurro.icaruswings.items.FeatherWings.FeatherWingsType;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
