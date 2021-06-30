@@ -25,7 +25,7 @@ public class WingsRenderer {
 		MatrixStack stack = event.getMatrixStack();
 		PlayerRenderer renderer = event.getRenderer();
 		stack.pushPose();
-        renderer.addLayer(new FeatherWingsLayer<>(renderer));
+        renderer.addLayer(new WingsLayer<>(renderer));
         stack.popPose();
 		
 	}
