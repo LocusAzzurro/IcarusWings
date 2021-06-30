@@ -25,42 +25,48 @@ import net.minecraftforge.fml.common.Mod;
 
 @SuppressWarnings("unused")
 @Mod.EventBusSubscriber
-public class FeatherWings extends AbstractWings {
+public class AbstractWings extends ElytraItem {
 
-	public FeatherWings(WingsMaterial type) {
-		super(type);
+	protected WingsMaterial type;
+
+	protected AbstractWings(WingsMaterial type) {
+		super(new Properties().tab(ModGroup.itemGroup).durability(type.getDurability()));
+		this.type = type;
 	}
-	
-	@Deprecated
-	public FeatherWings() {
-		this(WingsMaterial.FEATHER);
+
+	protected AbstractWings() {
+		super(new Properties().tab(ModGroup.itemGroup).durability(WingsMaterial.FEATHER.getDurability()));
+		this.type = WingsMaterial.FEATHER;
+	}
+
+	public WingsMaterial getType() {
+		return this.type;
+	}
+
+	@Nullable
+	@Override
+	public EquipmentSlotType getEquipmentSlot(ItemStack stack) {
+		return EquipmentSlotType.CHEST;
 	}
 
 	@Override
 	public boolean canElytraFly(ItemStack stack, net.minecraft.entity.LivingEntity entity) {
-		if (entity.level.dimension() == World.END) return false;
-		return true;
+		return super.canElytraFly(stack, entity);
+	}
+
+	@Override
+	public boolean isValidRepairItem(ItemStack toBeRepaired, ItemStack repairMat) {
+		Item item = toBeRepaired.getItem();
+		if (item instanceof AbstractWings) {
+			if (((AbstractWings) item).getType().getRepairItem() == repairMat.getItem())
+				return true;
+		}
+		return false;
 	}
 
 	@Override
 	public boolean elytraFlightTick(ItemStack stack, net.minecraft.entity.LivingEntity entity, int flightTicks) {
-		if (!entity.level.isClientSide() && (flightTicks + 1) % 20 == 0) {
-			int dmg = 1;
-			if (entity instanceof PlayerEntity) {
-				if (entity.level.dimension() == World.NETHER) {
-					dmg = 5;
-					if(((FeatherWings)stack.getItem()).getType() != WingsMaterial.FEATHER_GOLDEN)
-					entity.setSecondsOnFire(10);
-				}
-				else {
-					int y = (int) entity.getY();
-					dmg = Math.max(y >> 6, 1) + (Math.random() * 64 < (y & 63) ? 1 : 0);
-				}
-			}
-			stack.hurtAndBreak(dmg, entity,	e -> e.broadcastBreakEvent(EquipmentSlotType.CHEST));
-			return true;
-		}
-		return true;
+		return super.elytraFlightTick(stack, entity, flightTicks);
 	}
 
 }

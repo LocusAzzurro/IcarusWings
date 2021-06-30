@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-import org.mineplugin.locusazzurro.icaruswings.items.FeatherWings.FeatherWingsType;
+import org.mineplugin.locusazzurro.icaruswings.data.WingsMaterial;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -18,26 +18,14 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
-public class IkarosWings extends ElytraItem{
+public class IkarosWings extends AbstractWings{
 	public IkarosWings() {
-		super(new Properties().tab(ModGroup.itemGroup).durability(40));
+		super(WingsMaterial.IKAROS);
 	}
-	
-	@Nullable
-	@Override
-    public EquipmentSlotType getEquipmentSlot(ItemStack stack)
-    {
-        return EquipmentSlotType.CHEST;
-    }
 	
 	@Override
 	public boolean canElytraFly(ItemStack stack, net.minecraft.entity.LivingEntity entity) {
 		return stack.getDamageValue() < stack.getMaxDamage() - 10;
-	}
-	
-	@Override
-	public boolean isValidRepairItem(ItemStack toRepair, ItemStack repairItem) {
-		return repairItem.getItem() == ItemRegistry.synapseWingsRecharger.get();
 	}
 	
 	@Override
