@@ -2,6 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.render;
 
 import org.mineplugin.locusazzurro.icaruswings.data.Utils;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsMaterial;
+import org.mineplugin.locusazzurro.icaruswings.items.AbstractWings;
 import org.mineplugin.locusazzurro.icaruswings.items.FeatherWings;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -22,7 +23,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extends ElytraLayer<T, M> {
 	
 	private static final ResourceLocation WINGS_FEATHER = new ResourceLocation(Utils.MOD_ID, "textures/entity/feather_wings.png");
-	private static final ResourceLocation WINGS_FEATHER_COLORED = new ResourceLocation(Utils.MOD_ID, "textures/entity/colored_feather_wings.png");
 
 	public WingsLayer(IEntityRenderer<T, M> renderIn) {
 		super(renderIn);
@@ -30,17 +30,15 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 	
 	@Override
 	public boolean shouldRender(ItemStack stack, T entity) {
-	    return (stack.getItem() instanceof FeatherWings);
+	    return (stack.getItem() instanceof AbstractWings);
 	}
 	
 	@Override
 	public ResourceLocation getElytraTexture(ItemStack stack, T entity) {
 		Item item = stack.getItem();
-		if (item instanceof FeatherWings)
+		if (item instanceof AbstractWings)
 		{
-			FeatherWings wings = (FeatherWings) item;
-			if (wings.getType() == WingsMaterial.FEATHER) return WINGS_FEATHER;
-			if (wings.getType() == WingsMaterial.FEATHER_COLORED) return WINGS_FEATHER_COLORED;
+			return ((AbstractWings) item).getType().getTexture();
 		}
 		return WINGS_FEATHER;
 	}

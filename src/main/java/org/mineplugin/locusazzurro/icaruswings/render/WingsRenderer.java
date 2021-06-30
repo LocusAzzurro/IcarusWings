@@ -21,7 +21,6 @@ public class WingsRenderer {
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent (priority = EventPriority.LOW)
 	public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
-		PlayerEntity player = event.getPlayer();
 		MatrixStack stack = event.getMatrixStack();
 		PlayerRenderer renderer = event.getRenderer();
 		stack.pushPose();
