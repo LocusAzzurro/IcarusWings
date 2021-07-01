@@ -8,7 +8,7 @@ import net.minecraft.block.StairsBlock;
 public class RefinedBeeswaxStairs extends StairsBlock{
 
 	public RefinedBeeswaxStairs() {
-		super(BlockRegistry.refinedBeeswaxBlock.get().defaultBlockState(),
+		super( () -> BlockRegistry.refinedBeeswaxBlock.get().defaultBlockState(), 
 				AbstractBlock.Properties.copy(new RefinedBeeswaxBlock()));
 	}
 }

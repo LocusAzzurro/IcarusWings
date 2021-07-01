@@ -4,8 +4,6 @@ import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber()

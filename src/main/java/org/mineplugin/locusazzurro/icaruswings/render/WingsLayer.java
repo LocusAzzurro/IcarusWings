@@ -1,16 +1,12 @@
 package org.mineplugin.locusazzurro.icaruswings.render;
 
 import org.mineplugin.locusazzurro.icaruswings.data.Utils;
-import org.mineplugin.locusazzurro.icaruswings.data.WingsMaterial;
 import org.mineplugin.locusazzurro.icaruswings.items.AbstractWings;
-import org.mineplugin.locusazzurro.icaruswings.items.FeatherWings;
-
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.ElytraLayer;
-import net.minecraft.client.renderer.entity.model.ElytraModel;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;

@@ -1,16 +1,11 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import javax.annotation.Nullable;
-
 import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsMaterial;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ElytraItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item.Properties;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
