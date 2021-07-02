@@ -7,8 +7,10 @@
 		"MobEntityMixin",
 		"LivingEntityMixin"
 	],
-	"minVersion": "0.8"
-	"injectors" {
+	"client": [],
+	"server": [],
+	"minVersion": "0.8",
+	"injectors": {
 		"defaultRequire": 1
 	}
 }
