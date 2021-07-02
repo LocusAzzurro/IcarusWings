@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 public class MobEntityMixin {
 	
 	@Inject(at = @At ("HEAD"),
-			method = {"getEquipmentSlotForItem(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/inventory/EquipmentSlotType"},
+			method = {"getEquipmentSlotForItem(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/inventory/EquipmentSlotType;"},
 			cancellable = true)
 	private void getEquipmentSlotForItem(ItemStack item, CallbackInfoReturnable<EquipmentSlotType> cir)
 	{

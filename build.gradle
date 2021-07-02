@@ -66,6 +66,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
+            arg "-mixin.config=locusazzurro_icaruswings.mixins.json"
 
             // Recommended logging data for a userdev environment
             // The markers can be changed as needed.
@@ -88,6 +89,7 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
+            arg "-mixin.config=locusazzurro_icaruswings.mixins.json"
 
             // Recommended logging data for a userdev environment
             // The markers can be changed as needed.

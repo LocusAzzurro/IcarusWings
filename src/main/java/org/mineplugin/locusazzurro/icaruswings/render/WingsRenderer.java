@@ -16,14 +16,10 @@ import net.minecraftforge.fml.common.Mod;
 public class WingsRenderer {
 	
 	@OnlyIn(Dist.CLIENT)
-	@SubscribeEvent (priority = EventPriority.LOW)
-	public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
-		MatrixStack stack = event.getMatrixStack();
+	@SubscribeEvent (priority = EventPriority.HIGH)
+	public static void onRenderPlayer(RenderPlayerEvent event) {
 		PlayerRenderer renderer = event.getRenderer();
-		stack.pushPose();
         renderer.addLayer(new WingsLayer<>(renderer));
-        stack.popPose();
-		
 	}
 	
 }
