@@ -16,7 +16,7 @@ public class MobEntityMixin {
 	@Inject(at = @At ("HEAD"),
 			method = {"getEquipmentSlotForItem(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/inventory/EquipmentSlotType;"},
 			cancellable = true)
-	private void getEquipmentSlotForItem(ItemStack item, CallbackInfoReturnable<EquipmentSlotType> cir)
+	private static void getEquipmentSlotForItem(ItemStack item, CallbackInfoReturnable<EquipmentSlotType> cir)
 	{
 		if (item.getItem() == ItemRegistry.featherWings.get()) {
 		cir.setReturnValue(EquipmentSlotType.CHEST);

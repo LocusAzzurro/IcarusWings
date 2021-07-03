@@ -17,7 +17,7 @@ public class WingsRenderer {
 	
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent (priority = EventPriority.HIGH)
-	public static void onRenderPlayer(RenderPlayerEvent event) {
+	public static void onRenderPlayer(RenderPlayerEvent.Post event) {
 		PlayerRenderer renderer = event.getRenderer();
         renderer.addLayer(new WingsLayer<>(renderer));
 	}
