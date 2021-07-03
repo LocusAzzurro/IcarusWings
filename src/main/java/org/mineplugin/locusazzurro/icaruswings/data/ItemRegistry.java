@@ -116,6 +116,9 @@ public class ItemRegistry {
     
     public static final RegistryObject<Item> ikarosWings = ITEMS.register("ikaros_wings", IkarosWings::new);
     
+    public static final RegistryObject<Item> discFallenDown = ITEMS.register("disc_fallen_down",
+    		() -> new SkyMusicDisc(1));
+    
 
 }
 
