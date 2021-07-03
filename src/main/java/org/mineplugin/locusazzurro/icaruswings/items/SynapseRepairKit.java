@@ -10,5 +10,4 @@ public class SynapseRepairKit extends Item{
 		super(new Properties().tab(ModGroup.itemGroup).stacksTo(1).fireResistant());
 	}
 	
-	//TODO; made from restored relic or expensive material, add tag to all restored relics for recipe
 }

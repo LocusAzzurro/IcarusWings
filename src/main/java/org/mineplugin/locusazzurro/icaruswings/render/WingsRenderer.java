@@ -21,5 +21,5 @@ public class WingsRenderer {
 		PlayerRenderer renderer = event.getRenderer();
         renderer.addLayer(new WingsLayer<>(renderer));
 	}
-	
+	//TODO: disable enchantment glow if rendering not fixed
 }

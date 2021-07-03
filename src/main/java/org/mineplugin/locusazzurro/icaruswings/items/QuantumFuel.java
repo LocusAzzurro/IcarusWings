@@ -18,5 +18,4 @@ public class QuantumFuel extends Item{
 		return true;
 	}
 	
-	//TODO: 1 nether star makes 4 fuel, wings recharger needs repair kit + 2 fuel
 }
