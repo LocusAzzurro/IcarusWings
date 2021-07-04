@@ -1,8 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.render;
 
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-
 import net.minecraft.client.renderer.entity.PlayerRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -15,11 +13,17 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(bus= Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class WingsRenderer {
 	
+	private static boolean init = false;
+	
 	@OnlyIn(Dist.CLIENT)
-	@SubscribeEvent (priority = EventPriority.HIGH)
+	@SubscribeEvent (priority = EventPriority.LOW)
 	public static void onRenderPlayer(RenderPlayerEvent.Post event) {
 		PlayerRenderer renderer = event.getRenderer();
-        renderer.addLayer(new WingsLayer<>(renderer));
+		if(!init) {
+		renderer.addLayer(new WingsLayer<>(renderer));
+		init = true;
+		}
+
 	}
 	//TODO: disable enchantment glow if rendering not fixed
 }
