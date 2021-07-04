@@ -87,6 +87,13 @@
 "item.locusazzurro_icaruswings.disc_fallen_down":"Music Disc",
 "item.locusazzurro_icaruswings.disc_fallen_down.desc":"Hayami Saori - Fallen Down",
 
+"advancements.locusazzurro_icaruswings.past.root.title": "Dream",
+"advancements.locusazzurro_icaruswings.past.root.description": "A story about the sky",
+"advancements.locusazzurro_icaruswings.past.obtain_beeswax.title": "Comb the Wax",
+"advancements.locusazzurro_icaruswings.past.obtain_beeswax.description": "Mojang needs to think this more thorough",
+"advancements.locusazzurro_icaruswings.past.refine_beeswax.title": "It'll Bee Fine",
+"advancements.locusazzurro_icaruswings.past.refine_beeswax.description": "Hope this process doesn't sting you too much",
+
 
 "itemGroup.icaruswings_group":"Icarus Wings"
 
