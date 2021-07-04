@@ -3,22 +3,20 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.ParrotEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 
-@Mod.EventBusSubscriber()
 public class WheatGrains extends Item{
 
 	private final static float ACQUIRE_FEATHER_CHANCE = 0.5f;
@@ -33,16 +31,16 @@ public class WheatGrains extends Item{
 			.nutrition(2)
 			.build();
 	
-	@SubscribeEvent
-	public static void onPlayerRightClick(PlayerInteractEvent.EntityInteract event) {
+	@Override
+	public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity player,
+			LivingEntity target, Hand hand) {
+		World world = player.level;
 		
-		PlayerEntity player = event.getPlayer();
-		Entity target = event.getTarget();
-		World world = event.getWorld();
-		if (!world.isClientSide() && player.getItemInHand(Hand.MAIN_HAND).getItem() == ItemRegistry.wheatGrains.get()) {
-			if (target instanceof ParrotEntity)
+		if (stack.getItem() == ItemRegistry.wheatGrains.get() && target instanceof ParrotEntity) {
+			if (!world.isClientSide)
 			{
-				player.getItemInHand(Hand.MAIN_HAND).shrink(1);
+				if (!player.isCreative())
+					stack.shrink(1);
 				target.playSound(SoundEvents.PARROT_EAT, 2.0f, 1.3f);
 				//world.playSound(player, target, SoundEvents.PARROT_EAT, SoundCategory.VOICE, 2.0f, 1.3f);
 				//world.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.PARROT_EAT, SoundCategory.VOICE, 2.0f, 1.3f, false);
@@ -58,11 +56,12 @@ public class WheatGrains extends Item{
 					case 4: feather = new ItemStack(ItemRegistry.grayFeather.get()); break;
 					default: feather = new ItemStack(Items.FEATHER); break;
 					}
-					player.inventory.add(feather);
+					ItemHandlerHelper.giveItemToPlayer(player, feather);
 				}
 			}
+			return ActionResultType.sidedSuccess(world.isClientSide);
 		}
 		
-		
+		return ActionResultType.PASS;
 	}
 }
