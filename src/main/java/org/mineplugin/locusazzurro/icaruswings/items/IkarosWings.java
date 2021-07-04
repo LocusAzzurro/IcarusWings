@@ -2,6 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsMaterial;
+import org.mineplugin.locusazzurro.icaruswings.render.IWingsExpandable;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -13,7 +14,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
-public class IkarosWings extends AbstractWings{
+public class IkarosWings extends AbstractWings implements IWingsExpandable{
 	public IkarosWings() {
 		super(WingsMaterial.IKAROS);
 	}
@@ -42,4 +43,9 @@ public class IkarosWings extends AbstractWings{
         }
 	}
 	//TODO: buff speed
+
+	@Override
+	public float getExpansionFactor() {
+		return 2.0f;
+	}
 }

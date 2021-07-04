@@ -30,8 +30,7 @@ public class WingsModel<T extends LivingEntity> extends ElytraModel<T> {
 		return ImmutableList.of(this.leftWing, this.rightWing);
 	}
 
-	public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_,
-			float p_225597_6_) {
+	public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
 		float f = 0.2617994F;
 		float f1 = -0.2617994F;
 		float f2 = 0.0F;

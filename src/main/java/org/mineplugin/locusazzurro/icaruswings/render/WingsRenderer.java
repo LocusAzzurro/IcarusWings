@@ -25,5 +25,4 @@ public class WingsRenderer {
 		}
 
 	}
-	//TODO: disable enchantment glow if rendering not fixed
 }

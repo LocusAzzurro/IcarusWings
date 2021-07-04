@@ -47,16 +47,16 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 		}
 		return WINGS_FEATHER;
 	}
-	
+
 	@Override
-	public void render(MatrixStack p_225628_1_, IRenderTypeBuffer p_225628_2_, int p_225628_3_, T p_225628_4_,
-			float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_,
-			float p_225628_10_) {
-		ItemStack itemstack = p_225628_4_.getItemBySlot(EquipmentSlotType.CHEST);
-		if (shouldRender(itemstack, p_225628_4_)) {
+	public void render(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packetLightIn, T entityLivingBaseIn,
+			float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw,
+			float headPitch) {
+		ItemStack itemstack = entityLivingBaseIn.getItemBySlot(EquipmentSlotType.CHEST);
+		if (shouldRender(itemstack, entityLivingBaseIn)) {
 			ResourceLocation resourcelocation;
-			if (p_225628_4_ instanceof AbstractClientPlayerEntity) {
-				AbstractClientPlayerEntity abstractclientplayerentity = (AbstractClientPlayerEntity) p_225628_4_;
+			if (entityLivingBaseIn instanceof AbstractClientPlayerEntity) {
+				AbstractClientPlayerEntity abstractclientplayerentity = (AbstractClientPlayerEntity) entityLivingBaseIn;
 				if (abstractclientplayerentity.isElytraLoaded()
 						&& abstractclientplayerentity.getElytraTextureLocation() != null) {
 					resourcelocation = abstractclientplayerentity.getElytraTextureLocation();
@@ -65,19 +65,23 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 						&& abstractclientplayerentity.isModelPartShown(PlayerModelPart.CAPE)) {
 					resourcelocation = abstractclientplayerentity.getCloakTextureLocation();
 				} else {
-					resourcelocation = getElytraTexture(itemstack, p_225628_4_);
+					resourcelocation = getElytraTexture(itemstack, entityLivingBaseIn);
 				}
 			} else {
-				resourcelocation = getElytraTexture(itemstack, p_225628_4_);
+				resourcelocation = getElytraTexture(itemstack, entityLivingBaseIn);
 			}
 
-			p_225628_1_.pushPose();
-			p_225628_1_.translate(0.0D, 0.0D, 0.125D);
+			matrixStackIn.pushPose();
+			matrixStackIn.translate(0.0D, 0.0D, 0.125D);
+			if(itemstack.getItem() instanceof IWingsExpandable && entityLivingBaseIn.isFallFlying()) {
+				float s = ((IWingsExpandable) itemstack.getItem()).getExpansionFactor();
+				matrixStackIn.scale(s, s, 1.0f);
+			}
 			this.getParentModel().copyPropertiesTo(this.elytraModel);
-			this.elytraModel.setupAnim(p_225628_4_, p_225628_5_, p_225628_6_, p_225628_8_, p_225628_9_, p_225628_10_);
-			IVertexBuilder ivertexbuilder = ItemRenderer.getArmorFoilBuffer(p_225628_2_, RenderType.armorCutoutNoCull(resourcelocation), false, itemstack.hasFoil());
-			this.elytraModel.renderToBuffer(p_225628_1_, ivertexbuilder, p_225628_3_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-			p_225628_1_.popPose();
+			this.elytraModel.setupAnim(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+			IVertexBuilder ivertexbuilder = ItemRenderer.getArmorFoilBuffer(bufferIn, RenderType.armorCutoutNoCull(resourcelocation), false, itemstack.hasFoil());
+			this.elytraModel.renderToBuffer(matrixStackIn, ivertexbuilder, packetLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+			matrixStackIn.popPose();
 		}
 	}
 
