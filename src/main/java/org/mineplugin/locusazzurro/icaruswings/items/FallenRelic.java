@@ -71,15 +71,5 @@ public class FallenRelic extends Item{
 			return this.name;
 		}
 	}
-	
-	/*TODO: relic acquiring:
 
-	 core - cat gift
-	 interface - desert temple, jungle temple,armorer_gift
-	 offensive - bastion,stronghold,piglin barter
-	 defensive - dungeon,mineshaft,trader
-	 propulsion - end city,fishing treasure
-	 https://forums.minecraftforge.net/topic/76946-1144-custom-vanilla-block-drops/
-	 https://mcforge.readthedocs.io/en/1.12.x/items/loot_tables/
-	*/
 }
