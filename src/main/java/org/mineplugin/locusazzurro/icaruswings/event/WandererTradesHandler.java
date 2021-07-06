@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.event;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
@@ -24,13 +25,30 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class WandererTradesHandler {
 	
 	private static VillagerTrades.ITrade zephirEssenceTrade = new ItemsForEmeraldsTrade(
-			() -> {return new ItemStack(ItemRegistry.zephirEssence.get());}, 20, 1, 1, 1, 1.0f);
+			() -> {return new ItemStack(ItemRegistry.zephirEssence.get());}, 16, 1, 1, 1, 1.0f);
+	private static VillagerTrades.ITrade amphoraTrade = new ItemsForEmeraldsTrade(
+			() -> {return new ItemStack(ItemRegistry.amphora.get());}, 4, 1, 2, 1, 1.0f);
+	private static VillagerTrades.ITrade goldenFeatherTrade = new ItemsForEmeraldsTrade(
+			() -> {return new ItemStack(ItemRegistry.goldenFeather.get());}, 6, 1, 3, 1, 1.0f);
+	
+	
+	private static VillagerTrades.ITrade redFeatherTrade = new ItemsForEmeraldsTrade(
+			() -> {return new ItemStack(ItemRegistry.redFeather.get());}, 2, 1, 3, 1, 1.0f);
+	private static VillagerTrades.ITrade blueFeatherTrade = new ItemsForEmeraldsTrade(
+			() -> {return new ItemStack(ItemRegistry.blueFeather.get());}, 2, 1, 3, 1, 1.0f);
+	private static VillagerTrades.ITrade cyanFeatherTrade = new ItemsForEmeraldsTrade(
+			() -> {return new ItemStack(ItemRegistry.cyanFeather.get());}, 2, 1, 3, 1, 1.0f);
+	private static VillagerTrades.ITrade greenFeatherTrade = new ItemsForEmeraldsTrade(
+			() -> {return new ItemStack(ItemRegistry.greenFeather.get());}, 2, 1, 3, 1, 1.0f);
+	private static VillagerTrades.ITrade grayFeatherTrade = new ItemsForEmeraldsTrade(
+			() -> {return new ItemStack(ItemRegistry.grayFeather.get());}, 2, 1, 3, 1, 1.0f);
 	
 	@SubscribeEvent
 	public static void onWandererTradesInit(WandererTradesEvent event) {
 		List<ITrade> rareList = event.getRareTrades();
 		List<ITrade> commonList = event.getGenericTrades();
-		rareList.add(zephirEssenceTrade);
+		commonList.addAll(Arrays.asList(redFeatherTrade, blueFeatherTrade, cyanFeatherTrade, greenFeatherTrade, grayFeatherTrade));
+		rareList.addAll(Arrays.asList(zephirEssenceTrade, amphoraTrade, goldenFeatherTrade));
 	}
 	
 	static class ItemsForEmeraldsTrade implements VillagerTrades.ITrade {
