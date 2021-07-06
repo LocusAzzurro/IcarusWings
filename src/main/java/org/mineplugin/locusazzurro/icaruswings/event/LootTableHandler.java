@@ -31,23 +31,20 @@ public class LootTableHandler {
 	private static final BindList<ResourceLocation, ResourceLocation> LOOTREF = new BindList<>();
 	
 	static {
-
+		
+	LOOTREF.setPayload(ModLootTables.RELIC_CORE_CHEST).setInto(LootTables.END_CITY_TREASURE);
+	LOOTREF.setPayload(ModLootTables.RELIC_CORE_ALT).setInto(LootTables.CAT_MORNING_GIFT);
 	LOOTREF.setPayload(ModLootTables.RELIC_INTERFACE_CHEST).setInto(LootTables.DESERT_PYRAMID, LootTables.JUNGLE_TEMPLE);
+	LOOTREF.setPayload(ModLootTables.RELIC_INTERFACE_ALT).setInto(LootTables.ARMORER_GIFT, LootTables.WEAPONSMITH_GIFT);
+	LOOTREF.setPayload(ModLootTables.RELIC_OFFENSIVE_CHEST).setInto(LootTables.BASTION_TREASURE, LootTables.STRONGHOLD_LIBRARY);
+	LOOTREF.setPayload(ModLootTables.RELIC_OFFENSIVE_ALT).setInto(LootTables.PIGLIN_BARTERING);
+	LOOTREF.setPayload(ModLootTables.RELIC_DEFENSIVE_CHEST).setInto(LootTables.WOODLAND_MANSION, LootTables.IGLOO_CHEST);
+	LOOTREF.setPayload(ModLootTables.RELIC_DEFENSIVE_ALT).setInto(LootTables.SIMPLE_DUNGEON, LootTables.ABANDONED_MINESHAFT);
+	LOOTREF.setPayload(ModLootTables.RELIC_PROPULSION_CHEST).setInto(LootTables.SHIPWRECK_TREASURE, LootTables.UNDERWATER_RUIN_BIG);
+	LOOTREF.setPayload(ModLootTables.RELIC_PROPULSION_ALT).setInto(LootTables.FISHERMAN_GIFT);
 
 	}
-	
-	/*TODO: relic acquiring:
 
-	 core - cat gift
-	 interface - desert temple, jungle temple,armorer_gift
-	 offensive - bastion,stronghold,piglin barter
-	 defensive - dungeon,mineshaft,trader
-	 propulsion - end city,fishing treasure
-	 https://forums.minecraftforge.net/topic/76946-1144-custom-vanilla-block-drops/
-	 https://mcforge.readthedocs.io/en/1.12.x/items/loot_tables/
-	*/
-
-	
 	private static class ModLootTables{
 	
 		private static final Set<ResourceLocation> TABLES = Sets.newHashSet();
