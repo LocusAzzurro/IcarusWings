@@ -1,0 +1,46 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:magma_mixture"
+    ]
+  },
+  "criteria": {
+    "has_magma": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:magma_cream"
+          }
+        ]
+      }
+    },
+    "has_gold": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:gold_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:magma_mixture"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_magma",
+      "has_the_recipe"
+    ],
+    [
+      "has_gold",
+      "has_the_recipe"
+    ]
+  ]
+}

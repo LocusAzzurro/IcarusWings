@@ -1,0 +1,46 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:colored_feather_wings"
+    ]
+  },
+  "criteria": {
+    "has_feather_bunch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:colored_feather_bunch"
+          }
+        ]
+      }
+    },
+    "has_wax": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:refined_beeswax_bar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:colored_feather_wings"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_feather_bunch",
+      "has_the_recipe"
+    ],
+    [
+      "has_wax",
+      "has_the_recipe"
+    ]
+  ]
+}

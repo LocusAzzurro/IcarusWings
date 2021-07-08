@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "T T",
+	"TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:terracotta"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:mead_pot",
+    "count": 1
+  }
+}

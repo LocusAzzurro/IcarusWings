@@ -1,0 +1,32 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:golden_feather_bunch"
+    ]
+  },
+  "criteria": {
+    "has_golden_feather": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:golden_feather"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:golden_feather_bunch"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_golden_feather",
+      "has_the_recipe"
+    ]
+  ]
+}

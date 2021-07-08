@@ -1,0 +1,32 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:glistering_refined_beeswax_bar"
+    ]
+  },
+  "criteria": {
+    "has_beeswax_bar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:refined_beeswax_bar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:glistering_refined_beeswax_bar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_beeswax_bar",
+      "has_the_recipe"
+    ]
+  ]
+}

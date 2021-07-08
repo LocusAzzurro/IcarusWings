@@ -1,0 +1,36 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:refined_beeswax_block",
+	  "locusazzurro_icaruswings:refined_beeswax_pillar_from_crafting",
+	  "locusazzurro_icaruswings:refined_beeswax_stairs_from_crafting",
+	  "locusazzurro_icaruswings:refined_beeswax_slab_from_crafting",
+	  "locusazzurro_icaruswings:chiseled_refined_beeswax_block_from_crafting"
+    ]
+  },
+  "criteria": {
+    "has_beeswax_bar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:refined_beeswax_bar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:refined_beeswax_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_beeswax_bar",
+      "has_the_recipe"
+    ]
+  ]
+}
