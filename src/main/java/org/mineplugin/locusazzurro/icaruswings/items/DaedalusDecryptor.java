@@ -21,5 +21,5 @@ public class DaedalusDecryptor extends Item {
 	public boolean hasContainerItem(ItemStack stack) {
 		return true;
 	}
-	//TODO: add daedalus manuscript, transformed into this when using end portal
+	//TODO: manuscript + relic -> decryptor
 }

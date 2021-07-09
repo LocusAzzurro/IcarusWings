@@ -1,0 +1,46 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:fallen_relic_restoration_core"
+    ]
+  },
+  "criteria": {
+    "has_relic": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:fallen_relic_core"
+          }
+        ]
+      }
+    },
+    "has_decryptor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:daedalus_decryptor"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:fallen_relic_restoration_core"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_relic",
+      "has_the_recipe"
+    ],
+    [
+      "has_decryptor",
+      "has_the_recipe"
+    ]
+  ]
+}
