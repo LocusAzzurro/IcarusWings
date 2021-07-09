@@ -10,6 +10,6 @@ public class WingsGroup extends ItemGroup{
 
 	@Override
 	public ItemStack makeIcon() {
-		return new ItemStack(ItemRegistry.blueFeather.get());
+		return new ItemStack(ItemRegistry.featherWings.get());
 	}
 }
