@@ -16,7 +16,6 @@
     "hidden": false
   },
   "criteria": {
-  {
     "amphora": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -26,9 +25,7 @@
           }
         ]
       }
-    }
-  },
-    {
+    },
     "mead_pot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -39,7 +36,6 @@
         ]
       }
     }
-  }
   },
   "requirements": [
     [

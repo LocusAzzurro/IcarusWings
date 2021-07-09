@@ -32,7 +32,9 @@ public class Mead extends Item {
 			.nutrition(5)
 			.alwaysEat()
 			.build();
-
+	
+	//TODO: add elixir made from mead
+	
 	public ItemStack finishUsingItem(ItemStack stackIn, World worldIn, LivingEntity entityIn) {
 		super.finishUsingItem(stackIn, worldIn, entityIn);
 		if (entityIn instanceof ServerPlayerEntity) {

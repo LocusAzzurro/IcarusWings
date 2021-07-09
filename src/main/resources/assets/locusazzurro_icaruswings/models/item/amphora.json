@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "locusazzurro_icaruswings:item/mead_pot"
+    "layer0": "locusazzurro_icaruswings:item/amphora"
   }
 }
