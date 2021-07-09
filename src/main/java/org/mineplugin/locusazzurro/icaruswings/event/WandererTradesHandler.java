@@ -7,15 +7,12 @@ import java.util.function.Supplier;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.merchant.villager.VillagerTrades.ITrade;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.util.LazyValue;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
