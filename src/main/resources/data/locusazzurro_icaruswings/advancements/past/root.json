@@ -25,11 +25,22 @@
           }
         ]
       }
+    },
+    "honeycomb": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:honeycomb"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
-      "feather"
+      "feather",
+	  "honeycomb"
     ]
   ]
 }
