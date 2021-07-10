@@ -87,7 +87,8 @@ public class ItemRegistry {
     public static final RegistryObject<Item> fallenRelicPropulsion = ITEMS.register("fallen_relic_propulsion",
     		() -> new FallenRelic(FallenRelic.RelicType.PROPULSION));
     
-    public static final RegistryObject<Item> daedalusManuscript = ITEMS.register("daedalus_manuscript", DaedalusDecryptor::new);
+    public static final RegistryObject<Item> daedalusManuscript = ITEMS.register("daedalus_manuscript", 
+    		() -> new DaedalusDecryptor(false));
     public static final RegistryObject<Item> daedalusDecryptor = ITEMS.register("daedalus_decryptor", DaedalusDecryptor::new);
     
     public static final RegistryObject<Item> restoredFallenRelicCore = ITEMS.register("restored_fallen_relic_core",
