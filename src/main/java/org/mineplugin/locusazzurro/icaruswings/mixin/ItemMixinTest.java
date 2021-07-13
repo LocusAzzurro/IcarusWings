@@ -19,7 +19,7 @@ public abstract class ItemMixinTest extends Entity{
 
 	@Inject(at = @At("HEAD"), method = "fireImmune()Z", cancellable = true)
 	private void fireInjectTest(CallbackInfoReturnable<Boolean> callback) {
-		System.out.println("inject test");
+		//System.out.println("inject test");
 		callback.setReturnValue(true);
 	}
 }
