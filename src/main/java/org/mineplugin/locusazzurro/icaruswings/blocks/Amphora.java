@@ -16,6 +16,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
@@ -39,9 +40,8 @@ import net.minecraftforge.common.ToolType;
 
 public class Amphora extends ContainerBlock{
 	
-	//TODO: make model and collision box
-	private static final VoxelShape SHAPE_LOWER = box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-	private static final VoxelShape SHAPE_UPPER = box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
+	private static final VoxelShape SHAPE_LOWER = box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
+	private static final VoxelShape SHAPE_UPPER = box(3.0D, 0.0D, 3.0D, 13.0D, 14.0D, 13.0D);
 
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
@@ -51,8 +51,7 @@ public class Amphora extends ContainerBlock{
 				.strength(1.5f, 6.0f)
 				.sound(SoundType.STONE)
 				.noOcclusion()
-				.requiresCorrectToolForDrops()
-				.harvestLevel(1)
+				.harvestLevel(0)
 				.harvestTool(ToolType.PICKAXE));
 		this.registerDefaultState(this.stateDefinition.any()
 				.setValue(HALF, DoubleBlockHalf.LOWER)
@@ -136,6 +135,16 @@ public class Amphora extends ContainerBlock{
 	@Override
 	public PushReaction getPistonPushReaction(BlockState p_149656_1_) {
 		return PushReaction.BLOCK;
+	}
+	
+	@Override
+	public boolean hasAnalogOutputSignal(BlockState stateIn) {
+		return (stateIn.getValue(HALF) == DoubleBlockHalf.LOWER);
+	}
+	
+	@Override
+	public int getAnalogOutputSignal(BlockState p_180641_1_, World p_180641_2_, BlockPos p_180641_3_) {
+		return Container.getRedstoneSignalFromBlockEntity(p_180641_2_.getBlockEntity(p_180641_3_));
 	}
 
 	@Override

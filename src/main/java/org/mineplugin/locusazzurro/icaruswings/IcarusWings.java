@@ -20,6 +20,7 @@ public class IcarusWings {
 	//TODO: wheat string cloth(ancient greek clothing)
 	//TODO: silk clothing? in flight repair items
 	//TODO: beeswax armor, floral armor, feather helmet
+	//TODO: add item rarity
 	
 	}
 }

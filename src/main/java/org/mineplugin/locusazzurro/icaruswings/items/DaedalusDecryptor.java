@@ -32,5 +32,4 @@ public class DaedalusDecryptor extends Item {
 		return true;
 	}
 	
-	//TODO: manuscript + relic -> decryptor
 }
