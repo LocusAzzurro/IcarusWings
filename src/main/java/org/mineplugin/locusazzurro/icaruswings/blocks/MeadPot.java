@@ -18,6 +18,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.IBooleanFunction;
@@ -98,6 +100,7 @@ public class MeadPot extends Block{
             	stackIn.shrink(4);
             	if (!player.inventory.add(stackOut)) player.drop(stackOut, false);
             	meadPotTE.startFermeting();
+            	worldIn.playSound(null, pos, SoundEvents.BREWING_STAND_BREW, SoundCategory.BLOCKS, 2.0f, 1.3f);
             	return ActionResultType.SUCCESS;
             }
             if (stackIn.getItem() == Items.GLASS_BOTTLE && meadPotTE.isComplete()) {
@@ -105,6 +108,7 @@ public class MeadPot extends Block{
             	stackIn.shrink(1);
             	if (!player.inventory.add(stackOut)) player.drop(stackOut, false);
             	meadPotTE.setEmpty();
+            	worldIn.playSound(null, pos, SoundEvents.BREWING_STAND_BREW, SoundCategory.BLOCKS, 2.0f, 1.3f);
             	return ActionResultType.SUCCESS;
             }
             return ActionResultType.PASS;
