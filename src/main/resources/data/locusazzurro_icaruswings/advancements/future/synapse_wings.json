@@ -1,0 +1,35 @@
+{
+  "parent": "locusazzurro_icaruswings:future/restored_relic",
+  "display": {
+    "icon": {
+      "item": "locusazzurro_icaruswings:ikaros_wings"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.future.synapse_wings.title"
+    },
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.future.synapse_wings.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "wings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:ikaros_wings"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "wings"
+    ]
+  ]
+}
