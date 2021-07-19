@@ -4,14 +4,12 @@
 "item.locusazzurro_icaruswings.green_feather":"Green Feather",
 "item.locusazzurro_icaruswings.cyan_feather":"Cyan Feather",
 "item.locusazzurro_icaruswings.gray_feather":"Gray Feather",
-
 "item.locusazzurro_icaruswings.golden_feather":"Golden Feather",
 
 "item.locusazzurro_icaruswings.feather_bunch":"Bunch of Feathers",
 "item.locusazzurro_icaruswings.colored_feather_bunch":"Bunch of Colored Feathers",
 "item.locusazzurro_icaruswings.golden_feather_bunch":"Bunch of Golden Feathers",
 
-"__comment.ingot.translations":"焱髓锭 紫影锭",
 "item.locusazzurro_icaruswings.steel_ingot":"Steel Ingot",
 "item.locusazzurro_icaruswings.magma_ingot":"Magmite Ingot", 
 "item.locusazzurro_icaruswings.purpur_ingot":"Chorusite Ingot",
@@ -40,6 +38,11 @@
 
 "block.locusazzurro_icaruswings.mead_pot":"Mead Pot",
 "item.locusazzurro_icaruswings.mead":"Mead",
+"item.locusazzurro_icaruswings.zephir_infused_mead":"Zephir Infused Mead",
+"item.locusazzurro_icaruswings.nether_infused_mead":"Nether Infused Mead",
+"item.locusazzurro_icaruswings.void_infused_mead":"Void Infused Mead",
+"item.locusazzurro_icaruswings.golden_apple_infused_mead":"Elixir",
+"item.locusazzurro_icaruswings.herbs_infused_mead":"Herbs Infused Mead",
 
 "block.locusazzurro_icaruswings.amphora":"Amphora",
 "container.amphora":"Amphora",
@@ -86,6 +89,8 @@
 
 "item.locusazzurro_icaruswings.disc_fallen_down":"Music Disc",
 "item.locusazzurro_icaruswings.disc_fallen_down.desc":"Hayami Saori - Fallen Down",
+"item.locusazzurro_icaruswings.disc_ring_my_bell":"Music Disc",
+"item.locusazzurro_icaruswings.disc_ring_my_bell.desc":"Blue Drops - Ring My Bell",
 
 "advancements.locusazzurro_icaruswings.past.root.title": "Dream",
 "advancements.locusazzurro_icaruswings.past.root.description": "A story about the sky",
@@ -103,20 +108,21 @@
 "advancements.locusazzurro_icaruswings.past.all_colored_feathers.description": "Tune Up! vs. Italobrothers",
 "advancements.locusazzurro_icaruswings.past.wings_falling_adv.title": "Freedom D↓ve",
 "advancements.locusazzurro_icaruswings.past.wings_falling_adv.description": "Break wings, and hands",
+"advancements.locusazzurro_icaruswings.past.linen_cloth.title": "Cascading Sheet Style",
+"advancements.locusazzurro_icaruswings.past.linen_cloth.description": "Dream Weavers' worst nightmare",
+"advancements.locusazzurro_icaruswings.past.brew_mead.title": "Mead",
+"advancements.locusazzurro_icaruswings.past.brew_mead.description": "The oldest brew",
 
 "advancements.locusazzurro_icaruswings.future.root.title": "Back to Future",
 "advancements.locusazzurro_icaruswings.future.root.description": "Past, present, future",
 "advancements.locusazzurro_icaruswings.future.restored_relic.title": "ΓΛLLΞИ",
 "advancements.locusazzurro_icaruswings.future.restored_relic.description": "Distorted and restored",
-"advancements.locusazzurro_icaruswings.future.synapse_armor.title": "armor title",
-"advancements.locusazzurro_icaruswings.future.synapse_armor.description": "armor desc",
+"advancements.locusazzurro_icaruswings.future.synapse_armor.title": "Battle Suit",
+"advancements.locusazzurro_icaruswings.future.synapse_armor.description": "github.com/komeiji-satori/Dress",
 "advancements.locusazzurro_icaruswings.future.synapse_wings.title": "Fallen Down",
 "advancements.locusazzurro_icaruswings.future.synapse_wings.description": "Uranus System online",
-"advancements.locusazzurro_icaruswings.future.quantum_fuel.title": "q fuel",
-"advancements.locusazzurro_icaruswings.future.quantum_fuel.description": "q fuel desc",
-
-"advancements.locusazzurro_icaruswings.past.linen_cloth.title": "Cascading Sheet Style",
-
+"advancements.locusazzurro_icaruswings.future.quantum_fuel.title": "Quantum Energy Device",
+"advancements.locusazzurro_icaruswings.future.quantum_fuel.description": "When movies explain tecnology",
 
 "itemGroup.icaruswings_group":"Icarus Wings"
 

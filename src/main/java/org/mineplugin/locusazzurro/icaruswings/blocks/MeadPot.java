@@ -1,5 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
+import java.util.Random;
+
 import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 
 import net.minecraft.block.AbstractBlock;
@@ -11,6 +13,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -28,6 +31,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 
 public class MeadPot extends Block{
@@ -39,6 +44,10 @@ public class MeadPot extends Block{
 	protected static final VoxelShape SHAPE = VoxelShapes.join(
 			VoxelShapes.block(), INSIDE, IBooleanFunction.ONLY_FIRST);
 
+	private double particleR = 233D / 255D;
+	private double particleG = 147D / 255D;
+	private double particleB = 38D / 255D;
+	
 	public MeadPot() {
 		super(AbstractBlock
 				.Properties.of(Material.STONE)
@@ -116,6 +125,21 @@ public class MeadPot extends Block{
         return ActionResultType.PASS;
         
     }
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rng) {
+		if(stateIn.getValue(STATE) == MeadPotState.FERMENTING) {
+		for (int i = 0; i < 3; ++i) {
+			int j = rng.nextInt(2) * 2 - 1;
+			int k = rng.nextInt(2) * 2 - 1;
+			double d0 = (double) pos.getX() + 0.5D + 0.25D * (double) j;
+			double d1 = (double) ((float) pos.getY() + 0.5f +rng.nextFloat());
+			double d2 = (double) pos.getZ() + 0.5D + 0.25D * (double) k;
+			worldIn.addParticle(ParticleTypes.ENTITY_EFFECT, d0, d1, d2, particleR, particleG, particleB);
+		}
+		}
+	}
 	
 	//BLOCKSTATES
 	

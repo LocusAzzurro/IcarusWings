@@ -65,6 +65,17 @@ public class ItemRegistry {
     		() -> new BlockItem(BlockRegistry.amphora.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     
     public static final RegistryObject<Item> mead = ITEMS.register("mead", Mead::new);
+    public static final RegistryObject<Item> zephirInfusedMead = ITEMS.register("zephir_infused_mead",
+    		() -> new Mead(Mead.Infusion.ZEPHIR));
+    public static final RegistryObject<Item> netherInfusedMead = ITEMS.register("nether_infused_mead",
+    		() -> new Mead(Mead.Infusion.NETHER));
+    public static final RegistryObject<Item> voidInfusedMead = ITEMS.register("void_infused_mead",
+    		() -> new Mead(Mead.Infusion.VOID));
+    public static final RegistryObject<Item> goldenAppleInfusedMead = ITEMS.register("golden_apple_infused_mead",
+    		() -> new Mead(Mead.Infusion.GOLDEN_APPLE));
+    public static final RegistryObject<Item> herbsInfusedMead = ITEMS.register("herbs_infused_mead",
+    		() -> new Mead(Mead.Infusion.HERBS));
+    
     public static final RegistryObject<Item> wheatGrains = ITEMS.register("wheat_grains", WheatGrains::new);
     public static final RegistryObject<Item> wheatString = ITEMS.register("wheat_string", WheatString::new);
     public static final RegistryObject<Item> goldenString = ITEMS.register("golden_string", GoldenString::new);

@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 public class MeadPotTileEntity extends TileEntity implements ITickableTileEntity{
 	
-	private static final int FERMENTATION_TIME = 10 * 20; //TODO: change to actual time
+	private static final int FERMENTATION_TIME = 3600 * 20; //1h / 3 ingame days
 	private int fermentationProgress = 0;
 	private boolean isFermenting = false;
 	private boolean isComplete = false;

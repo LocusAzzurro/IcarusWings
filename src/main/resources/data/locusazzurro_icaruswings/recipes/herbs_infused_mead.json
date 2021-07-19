@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "locusazzurro_icaruswings:mead"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:herbs"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:herbs"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:herbs"
+    }
+  ],
+  "result": {
+    "item": "locusazzurro_icaruswings:herbs_infused_mead"
+  }
+}

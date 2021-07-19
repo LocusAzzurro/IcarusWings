@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "locusazzurro_icaruswings:mead"
+    },
+    {
+      "item": "minecraft:golden_apple"
+    }
+  ],
+  "result": {
+    "item": "locusazzurro_icaruswings:golden_apple_infused_mead"
+  }
+}
