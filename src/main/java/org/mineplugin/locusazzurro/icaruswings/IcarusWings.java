@@ -17,10 +17,11 @@ public class IcarusWings {
 	TileEntityTypeRegistry.TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
 	SoundRegistry.SOUNDS.register(FMLJavaModLoadingContext.get().getModEventBus());
 	
-	//TODO: wheat string cloth(ancient greek clothing)
+	//TODO: linen cloth(ancient greek clothing)
 	//TODO: silk clothing? in flight repair items
 	//TODO: beeswax armor, floral armor, feather helmet
 	//TODO: add item rarity
+	//TODO: magic wings
 	
 	}
 }

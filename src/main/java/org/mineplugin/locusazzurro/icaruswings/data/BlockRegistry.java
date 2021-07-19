@@ -19,4 +19,6 @@ public class BlockRegistry {
     
     public static final RegistryObject<Block> meadPot = BLOCKS.register("mead_pot", MeadPot::new);
     public static final RegistryObject<Block> amphora = BLOCKS.register("amphora", Amphora::new);
+    
+    public static final RegistryObject<Block> melon = BLOCKS.register("melon", MelonSphere::new);
 }

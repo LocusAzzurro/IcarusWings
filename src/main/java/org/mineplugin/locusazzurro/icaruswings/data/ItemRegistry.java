@@ -63,6 +63,8 @@ public class ItemRegistry {
     		() -> new BlockItem(BlockRegistry.meadPot.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> amphora = ITEMS.register("amphora",
     		() -> new BlockItem(BlockRegistry.amphora.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    public static final RegistryObject<Item> melon = ITEMS.register("melon",
+    		() -> new BlockItem(BlockRegistry.melon.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     
     public static final RegistryObject<Item> mead = ITEMS.register("mead", Mead::new);
     public static final RegistryObject<Item> zephirInfusedMead = ITEMS.register("zephir_infused_mead",

@@ -13,7 +13,7 @@
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false,
-    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    "background": "locusazzurro_icaruswings:textures/gui/advancements/backgrounds/future.png"
   },
   "criteria": {
     "decryptor": {

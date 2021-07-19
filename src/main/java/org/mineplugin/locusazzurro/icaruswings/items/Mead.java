@@ -45,8 +45,6 @@ public class Mead extends Item {
 			.alwaysEat()
 			.build();
 	
-	//TODO: add elixir made from mead
-	
 	public ItemStack finishUsingItem(ItemStack stackIn, World worldIn, LivingEntity entityIn) {
 		Infusion type =((Mead)stackIn.getItem()).infusionType;
 		super.finishUsingItem(stackIn, worldIn, entityIn);

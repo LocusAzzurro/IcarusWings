@@ -1,0 +1,35 @@
+{
+  "parent": "locusazzurro_icaruswings:future/root",
+  "display": {
+    "icon": {
+      "item": "locusazzurro_icaruswings:melon"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.future.melon.title"
+    },
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.future.melon.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "melon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:melon"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "melon"
+    ]
+  ]
+}
