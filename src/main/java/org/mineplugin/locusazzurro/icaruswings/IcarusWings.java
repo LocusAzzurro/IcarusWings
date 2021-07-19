@@ -18,7 +18,6 @@ public class IcarusWings {
 	SoundRegistry.SOUNDS.register(FMLJavaModLoadingContext.get().getModEventBus());
 	
 	//TODO: linen cloth(ancient greek clothing)
-	//TODO: silk clothing? in flight repair items
 	//TODO: beeswax armor, floral armor, feather helmet
 	//TODO: add item rarity
 	//TODO: magic wings

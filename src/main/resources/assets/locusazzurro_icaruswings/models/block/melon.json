@@ -1,5 +1,18 @@
 {
   "__comment": "Created by S2J",
+  "display":{
+	"head":{
+	  "scale":[1.5,1.5,1.5]
+	},
+	"thirdperson_righthand":{
+	  "translation": [-6,2,4],
+	  "rotation":[90,0,0]
+	},
+	"thirdperson_lefthand":{
+	  "translation": [-6,2,4],
+	  "rotation":[90,0,0]
+	}
+  },
   "textures": {
     "green": "locusazzurro_icaruswings:block/melon_green",
     "dark_green": "locusazzurro_icaruswings:block/melon_dark_green",
