@@ -7,7 +7,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.ResourceLocation;
 
-public enum WingsMaterial {
+public enum WingsType {
 
 	FEATHER("feather", 100, () -> {return ItemRegistry.featherBunch.get();},"textures/entity/feather_wings.png"),
 	FEATHER_COLORED("colored_feather", 150, () -> {return ItemRegistry.coloredFeatherBunch.get();},"textures/entity/colored_feather_wings.png"), 
@@ -21,7 +21,7 @@ public enum WingsMaterial {
 	private final LazyValue<Item> repairItem;
 	private final ResourceLocation texture;
 
-	private WingsMaterial(String name, int durability, Supplier<Item> repairItem, String textureDir) {
+	private WingsType(String name, int durability, Supplier<Item> repairItem, String textureDir) {
 		this.name = name;
 		this.durability = durability;
 		this.repairItem = new LazyValue<>(repairItem);

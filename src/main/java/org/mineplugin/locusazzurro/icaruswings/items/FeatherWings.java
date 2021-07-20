@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-import org.mineplugin.locusazzurro.icaruswings.data.WingsMaterial;
+import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,13 +27,13 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber
 public class FeatherWings extends AbstractWings {
 
-	public FeatherWings(WingsMaterial type) {
+	public FeatherWings(WingsType type) {
 		super(type);
 	}
 	
 	@Deprecated
 	public FeatherWings() {
-		this(WingsMaterial.FEATHER);
+		this(WingsType.FEATHER);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class FeatherWings extends AbstractWings {
 			if (entity instanceof PlayerEntity) {
 				if (entity.level.dimension() == World.NETHER) {
 					dmg = 5;
-					if(((FeatherWings)stack.getItem()).getType() != WingsMaterial.FEATHER_GOLDEN)
+					if(((FeatherWings)stack.getItem()).getType() != WingsType.FEATHER_GOLDEN)
 					entity.setSecondsOnFire(10);
 				}
 				else {

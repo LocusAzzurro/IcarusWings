@@ -1,20 +1,20 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-import org.mineplugin.locusazzurro.icaruswings.data.WingsMaterial;
+import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 
 import net.minecraft.item.Item;
 
 public class FeatherBunch extends Item {
 
-	public WingsMaterial type;
+	public WingsType type;
 
-	public FeatherBunch(WingsMaterial type) {
+	public FeatherBunch(WingsType type) {
 		super(new Properties().tab(ModGroup.itemGroup));
 		this.type = type;
 	}
 
-	public WingsMaterial getType() {
+	public WingsType getType() {
 		return this.type;
 	}
 }

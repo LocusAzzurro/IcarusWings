@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-import org.mineplugin.locusazzurro.icaruswings.data.WingsMaterial;
+import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,24 +28,24 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber
 public class AbstractWings extends ElytraItem {
 
-	protected WingsMaterial type;
+	protected WingsType type;
 
-	protected AbstractWings(WingsMaterial type) {
+	protected AbstractWings(WingsType type) {
 		super(new Properties().tab(ModGroup.itemGroup).durability(type.getDurability()));
 		this.type = type;
 	}
 
-	protected AbstractWings(WingsMaterial type, Rarity rarity) {
+	protected AbstractWings(WingsType type, Rarity rarity) {
 		super(new Properties().tab(ModGroup.itemGroup).durability(type.getDurability()).rarity(rarity));
 		this.type = type;
 	}
 
 	protected AbstractWings() {
-		super(new Properties().tab(ModGroup.itemGroup).durability(WingsMaterial.FEATHER.getDurability()));
-		this.type = WingsMaterial.FEATHER;
+		super(new Properties().tab(ModGroup.itemGroup).durability(WingsType.FEATHER.getDurability()));
+		this.type = WingsType.FEATHER;
 	}
 
-	public WingsMaterial getType() {
+	public WingsType getType() {
 		return this.type;
 	}
 

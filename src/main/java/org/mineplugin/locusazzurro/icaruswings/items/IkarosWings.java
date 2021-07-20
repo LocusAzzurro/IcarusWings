@@ -1,7 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
-import org.mineplugin.locusazzurro.icaruswings.data.WingsMaterial;
+import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.render.IWingsExpandable;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber
 public class IkarosWings extends AbstractWings implements IWingsExpandable{
 	public IkarosWings() {
-		super(WingsMaterial.IKAROS, Rarity.RARE);
+		super(WingsType.IKAROS, Rarity.RARE);
 	}
 	
 	@Override

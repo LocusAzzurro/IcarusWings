@@ -20,11 +20,11 @@ public class ItemRegistry {
     public static final RegistryObject<Item> goldenFeather = ITEMS.register("golden_feather", GoldenFeather::new);
     
     public static final RegistryObject<Item> featherBunch = ITEMS.register("feather_bunch", 
-    		() -> new FeatherBunch(WingsMaterial.FEATHER));
+    		() -> new FeatherBunch(WingsType.FEATHER));
     public static final RegistryObject<Item> coloredFeatherBunch = ITEMS.register("colored_feather_bunch", 
-    		() -> new FeatherBunch(WingsMaterial.FEATHER_COLORED));
+    		() -> new FeatherBunch(WingsType.FEATHER_COLORED));
     public static final RegistryObject<Item> goldenFeatherBunch = ITEMS.register("golden_feather_bunch", 
-    		() -> new FeatherBunch(WingsMaterial.FEATHER_GOLDEN));
+    		() -> new FeatherBunch(WingsType.FEATHER_GOLDEN));
     
     public static final RegistryObject<Item> steelIngot = ITEMS.register("steel_ingot", WorldIngot::new);
     public static final RegistryObject<Item> magmaIngot = ITEMS.register("magma_ingot", WorldIngot::new);
@@ -82,14 +82,14 @@ public class ItemRegistry {
     public static final RegistryObject<Item> goldenString = ITEMS.register("golden_string", GoldenString::new);
     
     public static final RegistryObject<Item> featherWings = ITEMS.register("feather_wings",
-    		() -> new FeatherWings(WingsMaterial.FEATHER));
+    		() -> new FeatherWings(WingsType.FEATHER));
     public static final RegistryObject<Item> coloredFeatherWings = ITEMS.register("colored_feather_wings", 
-    		() -> new FeatherWings(WingsMaterial.FEATHER_COLORED));
+    		() -> new FeatherWings(WingsType.FEATHER_COLORED));
     public static final RegistryObject<Item> goldenFeatherWings = ITEMS.register("golden_feather_wings", 
-    		() -> new FeatherWings(WingsMaterial.FEATHER_GOLDEN));
+    		() -> new FeatherWings(WingsType.FEATHER_GOLDEN));
     
     public static final RegistryObject<Item> flandreMagicWings = ITEMS.register("flandre_magic_wings", 
-    		() -> new FeatherWings(WingsMaterial.PHI_STONE));
+    		() -> new FeatherWings(WingsType.PHI_STONE));
     
     public static final RegistryObject<Item> fallenRelicCore = ITEMS.register("fallen_relic_core",
     		() -> new FallenRelic(FallenRelic.RelicType.CORE));
