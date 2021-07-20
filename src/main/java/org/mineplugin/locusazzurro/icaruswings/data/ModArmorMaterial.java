@@ -9,6 +9,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.tags.ItemTags;
 
 public enum ModArmorMaterial implements IArmorMaterial{
 	// name, duraMulti, slotProt[4], enchValue, sound, toughness, KBRes, repIng
@@ -16,8 +17,12 @@ public enum ModArmorMaterial implements IArmorMaterial{
 			0.0F, 0.0F, () -> {return Ingredient.of(ItemRegistry.featherBunch.get());}),
 	GOLDEN_FEATHER("golden_feather", 7, new int[] {1,3,5,2}, 20, SoundEvents.ARMOR_EQUIP_GOLD,
 			0.5F, 0.0F, () -> {return Ingredient.of(ItemRegistry.goldenFeatherBunch.get());}), 
-	WAX("wax", 5, new int[] {1,2,3,1}, 10, SoundEvents.HONEY_BLOCK_SLIDE,
+	BEESWAX("beeswax", 5, new int[] {1,2,3,1}, 10, SoundEvents.HONEY_BLOCK_SLIDE,
 			0.0F, 0.0F, () -> {return Ingredient.of(ItemRegistry.refinedBeeswaxBar.get());}),
+	LINEN("linen", 4, new int[] {1,2,2,1}, 12, SoundEvents.ARMOR_EQUIP_LEATHER,
+			0.0F, 0.0F, () -> {return Ingredient.of(ItemRegistry.linen.get());}),
+	HERBAL("herbal", 1, new int[] {1,1,1,1}, 20, SoundEvents.ARMOR_EQUIP_LEATHER,
+			0.0F, 0.0F, () -> {return Ingredient.of(ItemTags.bind("locusazzurro_icaruswings:herbs"));}),
 	SYNAPSE("synapse_tech", 40, new int[] {3,6,8,3}, 12, SoundEvents.ARMOR_EQUIP_DIAMOND,
 			4.0F, 0.0F, () -> {return Ingredient.of(ItemRegistry.synapseRepairKit.get());}) 
 	;

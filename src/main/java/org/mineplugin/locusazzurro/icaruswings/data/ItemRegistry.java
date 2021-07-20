@@ -81,6 +81,21 @@ public class ItemRegistry {
     public static final RegistryObject<Item> wheatString = ITEMS.register("wheat_string", WheatString::new);
     public static final RegistryObject<Item> goldenString = ITEMS.register("golden_string", GoldenString::new);
     
+    public static final RegistryObject<Item> linen = ITEMS.register("linen", Linen::new);
+    
+    public static final RegistryObject<Item> herbalCrown = ITEMS.register("herbal_crown",
+    		() -> new HerbalAccessory(EquipmentSlotType.HEAD));
+    public static final RegistryObject<Item> featherHelmet = ITEMS.register("feather_helmet",
+    		() -> new FeatherArmor(EquipmentSlotType.HEAD, false));
+    public static final RegistryObject<Item> goldenFeatherHelmet = ITEMS.register("golden_feather_helmet",
+    		() -> new FeatherArmor(EquipmentSlotType.HEAD, true));
+    public static final RegistryObject<Item> linenCloak = ITEMS.register("linen_cloak",
+    		() -> new LinenCloth(EquipmentSlotType.CHEST));
+    public static final RegistryObject<Item> linenUndergarment = ITEMS.register("linen_undergarment",
+    		() -> new LinenCloth(EquipmentSlotType.LEGS));
+    public static final RegistryObject<Item> beeswaxBoots = ITEMS.register("beeswax_boots",
+    		() -> new BeeswaxArmor(EquipmentSlotType.FEET));
+    
     public static final RegistryObject<Item> featherWings = ITEMS.register("feather_wings",
     		() -> new FeatherWings(WingsType.FEATHER));
     public static final RegistryObject<Item> coloredFeatherWings = ITEMS.register("colored_feather_wings", 

@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ModArmorMaterial;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
+import org.mineplugin.locusazzurro.icaruswings.data.Utils;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
@@ -25,11 +26,7 @@ public class SynapseArmor extends ArmorItem implements IArmorVanishable{
 	
 	private static final ModArmorMaterial material = ModArmorMaterial.SYNAPSE;
 	
-	private static final UUID[] ARMOR_MODIFIER_UUID_PER_SLOT = new UUID[]{
-			UUID.fromString("845DB27C-C624-495F-8C9F-6020A9A58B6B"), 
-			UUID.fromString("D8499B04-0E66-4726-AB29-64469D734E0D"), 
-			UUID.fromString("9F3D476D-C118-4544-8365-64846904B48E"), 
-			UUID.fromString("2AD3F246-FEE1-4E67-B886-69FD380BB150")};
+	private static final UUID[] ARMOR_MODIFIER_UUID_PER_SLOT = Utils.ARMOR_MODIFIER_UUID_PER_SLOT;
 	
 	public SynapseArmor(EquipmentSlotType slot) {
 		super(material, slot, 
@@ -61,11 +58,7 @@ public class SynapseArmor extends ArmorItem implements IArmorVanishable{
 	    	builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "knockback_resistance", 0.2f, AttributeModifier.Operation.ADDITION));}
 	    if (slot == EquipmentSlotType.FEET) {
 	    	builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "movement_speed", 0.05f, AttributeModifier.Operation.ADDITION));}
-	    // head - visor - luck
-	    // chest - offense - atk dmg (shared on ikaros wings)
-	    // leg - defense - kb resist
-	    // boots - propulsion - move speed
-		//slot check and attr builder
+
 		return builder.build();
 	}
 	
