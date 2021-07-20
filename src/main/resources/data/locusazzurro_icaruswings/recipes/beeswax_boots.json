@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B B",
+	"B B"
+  ],
+  "key": {
+    "B": {
+      "item": "locusazzurro_icaruswings:refined_beeswax_bar"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:beeswax_boots",
+    "count": 1
+  }
+}
