@@ -8,5 +8,15 @@
         "stream": true
       }
     ]
+  },
+  "track_ring_my_bell": {
+    "subtitle": "track_ring_my_bell",
+    "replace": "true",
+    "sounds": [
+      {
+        "name": "locusazzurro_icaruswings:track_ring_my_bell",
+        "stream": true
+      }
+    ]
   }
 }

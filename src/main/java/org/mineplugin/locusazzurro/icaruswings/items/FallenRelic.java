@@ -7,6 +7,7 @@ import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
@@ -20,7 +21,7 @@ public class FallenRelic extends Item{
 	private boolean isRestored;
 	
 	public FallenRelic(RelicType type, boolean restored){
-		super(new Item.Properties().tab(ModGroup.itemGroup).stacksTo(1).fireResistant());
+		super(new Item.Properties().tab(ModGroup.itemGroup).stacksTo(1).fireResistant().rarity(Rarity.UNCOMMON));
 		this.relicType = type;
 		this.isRestored = restored;
 	}

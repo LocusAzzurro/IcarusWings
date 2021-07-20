@@ -5,6 +5,7 @@ import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 
 public class DaedalusDecryptor extends Item {
 	
@@ -15,7 +16,7 @@ public class DaedalusDecryptor extends Item {
 	}
 	
 	public DaedalusDecryptor(boolean isPersistent) {
-		super(new Properties().tab(ModGroup.itemGroup).stacksTo(1));
+		super(new Properties().tab(ModGroup.itemGroup).stacksTo(1).rarity(Rarity.UNCOMMON));
 		this.isPersistent = isPersistent;
 	}
 

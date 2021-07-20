@@ -11,4 +11,6 @@ public class SoundRegistry {
 	public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Utils.MOD_ID);
     public static final RegistryObject<SoundEvent> trackFallenDown = SOUNDS.register("track_fallen_down",
     		() -> new SoundEvent(new ResourceLocation(Utils.MOD_ID, "track_fallen_down")));
+    public static final RegistryObject<SoundEvent> trackRingMyBell = SOUNDS.register("track_ring_my_bell",
+    		() -> new SoundEvent(new ResourceLocation(Utils.MOD_ID, "track_ring_my_bell")));
 }

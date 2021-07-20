@@ -19,6 +19,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 
 public class SynapseArmor extends ArmorItem implements IArmorVanishable{
 	
@@ -32,7 +33,7 @@ public class SynapseArmor extends ArmorItem implements IArmorVanishable{
 	
 	public SynapseArmor(EquipmentSlotType slot) {
 		super(material, slot, 
-			new Item.Properties().tab(ModGroup.itemGroup).defaultDurability(material.getDurabilityForSlot(slot)));
+			new Item.Properties().tab(ModGroup.itemGroup).defaultDurability(material.getDurabilityForSlot(slot)).rarity(Rarity.RARE));
 	}
 	
 	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType slot) {

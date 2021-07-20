@@ -88,6 +88,9 @@ public class ItemRegistry {
     public static final RegistryObject<Item> goldenFeatherWings = ITEMS.register("golden_feather_wings", 
     		() -> new FeatherWings(WingsMaterial.FEATHER_GOLDEN));
     
+    public static final RegistryObject<Item> flandreMagicWings = ITEMS.register("flandre_magic_wings", 
+    		() -> new FeatherWings(WingsMaterial.PHI_STONE));
+    
     public static final RegistryObject<Item> fallenRelicCore = ITEMS.register("fallen_relic_core",
     		() -> new FallenRelic(FallenRelic.RelicType.CORE));
     public static final RegistryObject<Item> fallenRelicInterface = ITEMS.register("fallen_relic_interface",
@@ -131,6 +134,8 @@ public class ItemRegistry {
     
     public static final RegistryObject<Item> discFallenDown = ITEMS.register("disc_fallen_down",
     		() -> new SkyMusicDisc(SkyMusicDisc.Track.FALLEN_DOWN));
+    public static final RegistryObject<Item> discRingMyBell = ITEMS.register("disc_ring_my_bell",
+    		() -> new SkyMusicDisc(SkyMusicDisc.Track.RING_MY_BELL));
     
 
 }

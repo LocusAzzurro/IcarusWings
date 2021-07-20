@@ -7,6 +7,7 @@ import org.mineplugin.locusazzurro.icaruswings.render.IWingsExpandable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -16,7 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber
 public class IkarosWings extends AbstractWings implements IWingsExpandable{
 	public IkarosWings() {
-		super(WingsMaterial.IKAROS);
+		super(WingsMaterial.IKAROS, Rarity.RARE);
 	}
 	
 	@Override

@@ -1,0 +1,46 @@
+{
+  "parent": "locusazzurro_icaruswings:future/root",
+  "display": {
+    "icon": {
+      "item": "locusazzurro_icaruswings:disc_fallen_down"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.future.music_disc.title"
+    },
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.future.music_disc.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "disc1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:disc_fallen_down"
+          }
+        ]
+      }
+    },
+    "disc2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:disc_ring_my_bell"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "disc1",
+	  "disc2"
+    ]
+  ]
+}

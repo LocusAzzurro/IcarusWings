@@ -13,6 +13,7 @@ import net.minecraft.item.ElytraItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.Rarity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
@@ -31,6 +32,11 @@ public class AbstractWings extends ElytraItem {
 
 	protected AbstractWings(WingsMaterial type) {
 		super(new Properties().tab(ModGroup.itemGroup).durability(type.getDurability()));
+		this.type = type;
+	}
+
+	protected AbstractWings(WingsMaterial type, Rarity rarity) {
+		super(new Properties().tab(ModGroup.itemGroup).durability(type.getDurability()).rarity(rarity));
 		this.type = type;
 	}
 

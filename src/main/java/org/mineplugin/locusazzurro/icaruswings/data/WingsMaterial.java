@@ -13,7 +13,8 @@ public enum WingsMaterial {
 	FEATHER_COLORED("colored_feather", 150, () -> {return ItemRegistry.coloredFeatherBunch.get();},"textures/entity/colored_feather_wings.png"), 
 	FEATHER_GOLDEN("golden_feather", 200, () -> {return ItemRegistry.goldenFeatherBunch.get();},"textures/entity/golden_feather_wings.png"),
 	IKAROS("ikaros", 400, () -> {return ItemRegistry.synapseWingsRecharger.get();},"textures/entity/ikaros_wings.png"),
-	PAPER("paper", 10, () -> {return Items.PAPER;},"textures/entity/paper_wings.png");
+	PAPER("paper", 10, () -> {return Items.PAPER;},"textures/entity/paper_wings.png"),
+	PHI_STONE("philosopher_stone", 450, () -> {return Items.DIAMOND;},"textures/entity/flan_wings.png"); //TODO - to be changed
 	
 	private final String name;
 	private final int durability;

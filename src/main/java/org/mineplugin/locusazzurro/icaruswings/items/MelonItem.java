@@ -9,11 +9,12 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 
 public class MelonItem extends BlockItem{
 	
 	public MelonItem() {
-		super(BlockRegistry.melon.get(), new Item.Properties().tab(ModGroup.itemGroup));
+		super(BlockRegistry.melon.get(), new Item.Properties().tab(ModGroup.itemGroup).rarity(Rarity.RARE));
 	}
 	
 	@Nullable

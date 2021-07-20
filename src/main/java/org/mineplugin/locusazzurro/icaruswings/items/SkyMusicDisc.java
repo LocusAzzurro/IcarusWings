@@ -7,6 +7,7 @@ import org.mineplugin.locusazzurro.icaruswings.data.SoundRegistry;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.MusicDiscItem;
+import net.minecraft.item.Rarity;
 import net.minecraft.util.SoundEvent;
 
 public class SkyMusicDisc extends MusicDiscItem{
@@ -15,7 +16,7 @@ public class SkyMusicDisc extends MusicDiscItem{
 	private Track track;
 	
 	public SkyMusicDisc(Track track){
-		super(track.getTrackNum(), track.getMusic(), new Item.Properties().tab(ModGroup.itemGroup).stacksTo(1));
+		super(track.getTrackNum(), track.getMusic(), new Item.Properties().tab(ModGroup.itemGroup).stacksTo(1).rarity(Rarity.RARE));
 	}
 	
 	public Track getTrack() {
@@ -28,7 +29,8 @@ public class SkyMusicDisc extends MusicDiscItem{
 	
 	@SuppressWarnings("unused")
 	public enum Track{
-		FALLEN_DOWN(1, () -> (SoundRegistry.trackFallenDown.get()), "Fallen Down", "Hayami Saori");
+		FALLEN_DOWN(1, () -> (SoundRegistry.trackFallenDown.get()), "Fallen Down", "Hayami Saori"),
+		RING_MY_BELL(2, () -> (SoundRegistry.trackRingMyBell.get()), "Ring My Bell", "Blue Drops");
 		
 		private int trackNum;
 		private Supplier<SoundEvent> trackMusic;
