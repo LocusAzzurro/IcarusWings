@@ -6,7 +6,15 @@
 	  "locusazzurro_icaruswings:refined_beeswax_pillar_from_crafting",
 	  "locusazzurro_icaruswings:refined_beeswax_stairs_from_crafting",
 	  "locusazzurro_icaruswings:refined_beeswax_slab_from_crafting",
-	  "locusazzurro_icaruswings:chiseled_refined_beeswax_block_from_crafting"
+	  "locusazzurro_icaruswings:chiseled_refined_beeswax_block_from_crafting",
+	  "locusazzurro_icaruswings:refined_beeswax_pillar_from_stonecutting",
+	  "locusazzurro_icaruswings:refined_beeswax_stairs_from_stonecutting",
+	  "locusazzurro_icaruswings:refined_beeswax_slab_from_stonecutting",
+	  "locusazzurro_icaruswings:chiseled_refined_beeswax_block_from_stonecutting",
+	  "locusazzurro_icaruswings:refined_beeswax_bar_recycle_from_stonecutting_two_bars",
+	  "locusazzurro_icaruswings:refined_beeswax_bar_recycle_from_stonecutting_three_bars",
+	  "locusazzurro_icaruswings:refined_beeswax_bar_recycle_from_stonecutting_four_bars",
+	  "locusazzurro_icaruswings:smooth_refined_beeswax_block"
     ]
   },
   "criteria": {
