@@ -16,7 +16,8 @@ public enum WingsType {
 	SYNAPSE_BETA("synapse_beta", 450, () -> {return ItemRegistry.synapseWingsRecharger.get();},"textures/entity/synapse_beta_wings.png"),
 	SYNAPSE_DELTA("synapse_delta", 400, () -> {return ItemRegistry.synapseWingsRecharger.get();},"textures/entity/synapse_delta_wings.png"),
 	PAPER("paper", 10, () -> {return Items.PAPER;},"textures/entity/paper_wings.png"),
-	PHI_STONE("philosopher_stone", 450, () -> {return ItemRegistry.magicMembrane.get();},"textures/entity/phi_stone_wings.png"); 
+	MAGIC("magic", 450, () -> {return ItemRegistry.magicMembrane.get();},"textures/entity/magic_wings.png"),
+	PHI_STONE("philosopher_stone", 450, () -> {return ItemRegistry.magicMembrane.get();},"textures/entity/phi_stone_wings.png");
 	
 	private final String name;
 	private final int durability;

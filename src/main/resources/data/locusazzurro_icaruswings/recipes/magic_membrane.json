@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "E",
+    "M",
+	"P"
+  ],
+  "key": {
+    "E": {
+      "tag": "locusazzurro_icaruswings:world_essences"
+    },
+    "M": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "P": {
+      "item": "locusazzurro_icaruswings:philosopher_stone"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:magic_membrane",
+    "count": 1
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+	"###"
+  ],
+  "key": {
+    "#": {
+      "tag": "locusazzurro_icaruswings:world_essences"
+    },
+    "X": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:philosopher_stone",
+    "count": 1
+  }
+}
