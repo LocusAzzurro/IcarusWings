@@ -41,7 +41,7 @@
 "item.locusazzurro_icaruswings.zephir_infused_mead":"Zephir Infused Mead",
 "item.locusazzurro_icaruswings.nether_infused_mead":"Nether Infused Mead",
 "item.locusazzurro_icaruswings.void_infused_mead":"Void Infused Mead",
-"item.locusazzurro_icaruswings.golden_apple_infused_mead":"Elixir",
+"item.locusazzurro_icaruswings.golden_apple_infused_mead":"Ambrosia",
 "item.locusazzurro_icaruswings.herbs_infused_mead":"Herbs Infused Mead",
 
 "block.locusazzurro_icaruswings.amphora":"Amphora",
@@ -102,6 +102,8 @@
 "item.locusazzurro_icaruswings.quantum_fuel":"Quantum Fuel",
 
 "item.locusazzurro_icaruswings.ikaros_wings":"Dual Variable Wings",
+"item.locusazzurro_icaruswings.nymph_wings":"Eletronic Stealth Wings",
+"item.locusazzurro_icaruswings.astraea_wings":"Hyper Acceleration Wings",
 
 "item.locusazzurro_icaruswings.disc_fallen_down":"Music Disc",
 "item.locusazzurro_icaruswings.disc_fallen_down.desc":"Hayami Saori - Fallen Down",
