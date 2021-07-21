@@ -70,7 +70,6 @@ public class WingsModel<T extends LivingEntity> extends ElytraModel<T> {
 			this.leftWing.zRot = f1;
 			this.leftWing.yRot = f3;
 		}
-
 		this.rightWing.x = -this.leftWing.x;
 		this.rightWing.yRot = -this.leftWing.yRot;
 		this.rightWing.y = this.leftWing.y;

@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.render;
 
+import org.lwjgl.opengl.GL11;
 import org.mineplugin.locusazzurro.icaruswings.data.Utils;
 import org.mineplugin.locusazzurro.icaruswings.items.AbstractWings;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -69,18 +70,21 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 			} else {
 				resourcelocation = getElytraTexture(itemstack, entityLivingBaseIn);
 			}
-
+			GL11.glEnable(GL11.GL_BLEND);
 			matrixStackIn.pushPose();
 			matrixStackIn.translate(0.0D, 0.0D, 0.125D);
 			if(itemstack.getItem() instanceof IWingsExpandable && entityLivingBaseIn.isFallFlying()) {
 				float s = ((IWingsExpandable) itemstack.getItem()).getExpansionFactor();
 				matrixStackIn.scale(s, s, 1.0f);
 			}
+			
 			this.getParentModel().copyPropertiesTo(this.elytraModel);
 			this.elytraModel.setupAnim(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 			IVertexBuilder ivertexbuilder = ItemRenderer.getArmorFoilBuffer(bufferIn, RenderType.armorCutoutNoCull(resourcelocation), false, itemstack.hasFoil());
 			this.elytraModel.renderToBuffer(matrixStackIn, ivertexbuilder, packetLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+			
 			matrixStackIn.popPose();
+			GL11.glDisable(GL11.GL_BLEND);
 		}
 	}
 
