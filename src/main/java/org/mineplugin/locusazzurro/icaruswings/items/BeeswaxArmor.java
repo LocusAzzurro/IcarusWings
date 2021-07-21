@@ -11,12 +11,15 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
 
 import net.minecraft.enchantment.IArmorVanishable;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class BeeswaxArmor extends ArmorItem implements IArmorVanishable {
 	
@@ -43,4 +46,10 @@ public class BeeswaxArmor extends ArmorItem implements IArmorVanishable {
 	    	builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "movement_speed", 0.01f, AttributeModifier.Operation.ADDITION));}
 		return builder.build();
 	}
+	
+	@Override
+    public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer)
+    {
+        return stack.getItem() instanceof BeeswaxArmor && ((ArmorItem) stack.getItem()).getMaterial() == ModArmorMaterial.BEESWAX;
+    }
 }
