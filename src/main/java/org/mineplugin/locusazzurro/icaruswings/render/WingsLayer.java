@@ -70,7 +70,7 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 			} else {
 				resourcelocation = getElytraTexture(itemstack, entityLivingBaseIn);
 			}
-			GL11.glEnable(GL11.GL_BLEND);
+			//GL11.glEnable(GL11.GL_BLEND);
 			matrixStackIn.pushPose();
 			matrixStackIn.translate(0.0D, 0.0D, 0.125D);
 			if(itemstack.getItem() instanceof IWingsExpandable && entityLivingBaseIn.isFallFlying()) {
@@ -80,11 +80,17 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 			
 			this.getParentModel().copyPropertiesTo(this.elytraModel);
 			this.elytraModel.setupAnim(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-			IVertexBuilder ivertexbuilder = ItemRenderer.getArmorFoilBuffer(bufferIn, RenderType.armorCutoutNoCull(resourcelocation), false, itemstack.hasFoil());
+			IVertexBuilder ivertexbuilder;
+			if(itemstack.getItem() instanceof IWingsTranslucent) {
+			ivertexbuilder = ItemRenderer.getArmorFoilBuffer(bufferIn, RenderType.entityTranslucent(resourcelocation), false, false);
+			}
+			else {
+			ivertexbuilder = ItemRenderer.getArmorFoilBuffer(bufferIn, RenderType.armorCutoutNoCull(resourcelocation), false, itemstack.hasFoil());
+			}
 			this.elytraModel.renderToBuffer(matrixStackIn, ivertexbuilder, packetLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 			
 			matrixStackIn.popPose();
-			GL11.glDisable(GL11.GL_BLEND);
+			//GL11.glDisable(GL11.GL_BLEND);
 		}
 	}
 

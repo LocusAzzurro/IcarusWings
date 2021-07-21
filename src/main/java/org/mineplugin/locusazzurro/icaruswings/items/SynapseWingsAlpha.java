@@ -6,6 +6,7 @@ import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.Utils;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.render.IWingsExpandable;
+import org.mineplugin.locusazzurro.icaruswings.render.IWingsTranslucent;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
