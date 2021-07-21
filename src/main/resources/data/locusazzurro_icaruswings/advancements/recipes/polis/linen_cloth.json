@@ -1,0 +1,33 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:linen_cloak",
+	  "locusazzurro_icaruswings:linen_undergarment"
+    ]
+  },
+  "criteria": {
+    "has_linen": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:linen"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:linen_cloak"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_linen",
+      "has_the_recipe"
+    ]
+  ]
+}

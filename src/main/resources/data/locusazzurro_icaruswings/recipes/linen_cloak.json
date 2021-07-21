@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "###",
+	"###"
+  ],
+  "key": {
+    "#": {
+      "item": "locusazzurro_icaruswings:linen"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:linen_cloak",
+    "count": 1
+  }
+}
