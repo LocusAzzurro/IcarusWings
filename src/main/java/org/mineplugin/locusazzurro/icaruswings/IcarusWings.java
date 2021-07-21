@@ -19,7 +19,6 @@ public class IcarusWings {
 	
 	//TODO: linen cloth(ancient greek clothing)
 	//TODO: beeswax armor, floral armor, feather helmet
-	//TODO: add item rarity
 	//TODO: magic wings
 	
 	}

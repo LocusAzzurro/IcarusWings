@@ -25,12 +25,12 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
-public class IkarosWings extends AbstractWings implements IWingsExpandable{
+public class SynapseWingsAlpha extends AbstractWings implements IWingsExpandable{
 	
 	private final UUID MODIFIER_UUID = Utils.ARMOR_MODIFIER_UUID_PER_SLOT[2];
 	
-	public IkarosWings() {
-		super(WingsType.IKAROS, Rarity.RARE);
+	public SynapseWingsAlpha() {
+		super(WingsType.SYNAPSE_ALPHA, Rarity.RARE);
 	}
 	
 	@Override
