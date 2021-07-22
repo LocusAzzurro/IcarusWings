@@ -159,6 +159,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> astraeaWings = ITEMS.register("astraea_wings", SynapseWingsDelta::new);
     public static final RegistryObject<Item> chaosWings = ITEMS.register("chaos_wings", SynapseWingsEpsilon::new);
     public static final RegistryObject<Item> hiyoriWings = ITEMS.register("hiyori_wings", SynapseWingsZeta::new);
+    public static final RegistryObject<Item> melanWings = ITEMS.register("melan_wings", SynapseWingsTheta::new);
     
     public static final RegistryObject<Item> discFallenDown = ITEMS.register("disc_fallen_down",
     		() -> new SkyMusicDisc(SkyMusicDisc.Track.FALLEN_DOWN));

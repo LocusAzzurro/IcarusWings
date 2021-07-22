@@ -1,0 +1,33 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:nymph_wings",
+	  "locusazzurro_icaruswings:astraea_wings"
+    ]
+  },
+  "criteria": {
+    "has_wings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:ikaros_wings"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:nymph_wings"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wings",
+      "has_the_recipe"
+    ]
+  ]
+}

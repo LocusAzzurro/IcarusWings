@@ -17,6 +17,7 @@ public enum WingsType {
 	SYNAPSE_DELTA("synapse_delta", 400, () -> {return ItemRegistry.synapseWingsRecharger.get();},"textures/entity/synapse_delta_wings.png"),
 	SYNAPSE_EPSILON("synapse_epsilon", 420, () -> {return ItemRegistry.synapseWingsRecharger.get();},"textures/entity/synapse_epsilon_wings.png"),
 	SYNAPSE_ZETA("synapse_zeta", 440, () -> {return ItemRegistry.synapseWingsRecharger.get();},"textures/entity/synapse_zeta_wings.png"),
+	SYNAPSE_THETA("synapse_theta", 500, () -> {return ItemRegistry.synapseWingsRecharger.get();},"textures/entity/synapse_theta_wings.png"),
 	PAPER("paper", 10, () -> {return Items.PAPER;},"textures/entity/paper_wings.png"),
 	MAGIC("magic", 450, () -> {return ItemRegistry.magicMembrane.get();},"textures/entity/magic_wings.png"),
 	PHI_STONE("philosopher_stone", 450, () -> {return ItemRegistry.magicMembrane.get();},"textures/entity/phi_stone_wings.png");
