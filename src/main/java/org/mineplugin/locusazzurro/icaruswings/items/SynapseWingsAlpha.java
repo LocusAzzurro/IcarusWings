@@ -6,8 +6,6 @@ import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.Utils;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.render.IWingsExpandable;
-import org.mineplugin.locusazzurro.icaruswings.render.IWingsTranslucent;
-
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
@@ -57,10 +55,7 @@ public class SynapseWingsAlpha extends AbstractWings implements IWingsExpandable
             		lookAngle.z * 0.1D + (lookAngle.z * 1.5D - flyAngle.z) * 0.5D));
         }
 	}
-	//TODO: buff speed
-	/*
-	 * lookAngle.x * 0.1D + (lookAngle.x * 1.5D - flyAngle.x) * 0.5D
-	 * */
+
 	@Override
 	public float getExpansionFactor() {
 		return 2.0f;
@@ -78,6 +73,7 @@ public class SynapseWingsAlpha extends AbstractWings implements IWingsExpandable
 	    builder.put(Attributes.ARMOR, new AttributeModifier(MODIFIER_UUID, "Armor modifier", 5,	AttributeModifier.Operation.ADDITION));
 	    builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(MODIFIER_UUID, "Armor toughness", 3, AttributeModifier.Operation.ADDITION));
 	    builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(MODIFIER_UUID, "attack_damage", 2.0f, AttributeModifier.Operation.ADDITION));
+	    builder.put(Attributes.MAX_HEALTH, new AttributeModifier(MODIFIER_UUID, "max_health", 10.0f, AttributeModifier.Operation.ADDITION));
 	    builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(MODIFIER_UUID, "knockback_resistance", 0.2f, AttributeModifier.Operation.ADDITION));
 	    builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(MODIFIER_UUID, "movement_speed", 0.05f, AttributeModifier.Operation.ADDITION));
 
