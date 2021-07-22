@@ -1,0 +1,61 @@
+{
+  "parent": "locusazzurro_icaruswings:future/synapse_wings",
+  "display": {
+    "icon": {
+      "item": "locusazzurro_icaruswings:synapse_wings_recharger"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.future.all_first_gen_wings.title"
+    },
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.future.all_first_gen_wings.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ikaros": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:ikaros_wings"
+          }
+        ]
+      }
+    },
+    "nymph": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:nymph_wings"
+          }
+        ]
+      }
+    },
+    "astraea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:astraea_wings"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ikaros"
+    ],
+    [
+      "nymph"
+    ],
+    [
+      "astraea"
+    ]
+  ]
+}
