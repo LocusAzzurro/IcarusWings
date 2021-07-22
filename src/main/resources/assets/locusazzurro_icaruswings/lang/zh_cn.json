@@ -23,7 +23,7 @@
 "item.locusazzurro_icaruswings.void_essence":"虚无精髓",
 
 "item.locusazzurro_icaruswings.reforged_netherite_ingot":"重铸的下界合金锭",
-"item.locusazzurro_icaruswings.synapse_alloy_ingot":"空域神殿的合金锭", 
+"item.locusazzurro_icaruswings.synapse_alloy_ingot":"空域神殿合金锭", 
 
 "item.locusazzurro_icaruswings.beeswax":"蜂蜡",
 "item.locusazzurro_icaruswings.refined_beeswax_bar":"精炼蜂蜡锭",
@@ -36,8 +36,8 @@
 "block.locusazzurro_icaruswings.chiseled_refined_beeswax_block":"錾制精炼蜂蜡块",
 "block.locusazzurro_icaruswings.smooth_refined_beeswax_block":"平滑精炼蜂蜡块",
 
-"block.locusazzurro_icaruswings.mead_pot":"陶制蜜蜂酒罐",
-"item.locusazzurro_icaruswings.mead":"蜜蜂酒",
+"block.locusazzurro_icaruswings.mead_pot":"陶制蜜酒罐",
+"item.locusazzurro_icaruswings.mead":"蜜酒",
 "item.locusazzurro_icaruswings.zephir_infused_mead":"灵风蜜酒",
 "item.locusazzurro_icaruswings.nether_infused_mead":"下界蜜酒",
 "item.locusazzurro_icaruswings.void_infused_mead":"虚无蜜酒",
@@ -65,7 +65,7 @@
 "item.locusazzurro_icaruswings.colored_feather_wings":"彩色羽翼",
 "item.locusazzurro_icaruswings.golden_feather_wings":"金色羽翼",
 
-"item.locusazzurro_icaruswings.magic_membrane":"注入魔力的膜",
+"item.locusazzurro_icaruswings.magic_membrane":"注魔膜",
 "item.locusazzurro_icaruswings.philosopher_stone":"贤者之石",
 
 "item.locusazzurro_icaruswings.paper_wings":"纸翼",
@@ -84,7 +84,7 @@
 "item.locusazzurro_icaruswings.restored_fallen_relic_offensive":"修复的坠落遗物",
 "item.locusazzurro_icaruswings.restored_fallen_relic_defensive":"修复的坠落遗物",
 "item.locusazzurro_icaruswings.restored_fallen_relic_propulsion":"修复的坠落遗物",
-"item.locusazzurro_icaruswings.upgraded_fallen_relic_core":"已升级的坠落遗物",
+"item.locusazzurro_icaruswings.upgraded_fallen_relic_core":"升级的坠落遗物",
 
 "item.locusazzurro_icaruswings.fallen_relic_core.tooltip":"核心系统",
 "item.locusazzurro_icaruswings.fallen_relic_interface.tooltip":"潘多拉系统",
@@ -93,8 +93,8 @@
 "item.locusazzurro_icaruswings.fallen_relic_propulsion.tooltip":"动力推进系统",
 "item.locusazzurro_icaruswings.fallen_relic_second_gen_core.tooltip":"第二代核心系统",
 
-"item.locusazzurro_icaruswings.daedalus_manuscript":"代达罗斯的手抄本",
-"item.locusazzurro_icaruswings.daedalus_decryptor":"代达罗斯的解释器",
+"item.locusazzurro_icaruswings.daedalus_manuscript":"代达罗斯手稿",
+"item.locusazzurro_icaruswings.daedalus_decryptor":"代达罗斯解码器",
 
 "item.locusazzurro_icaruswings.synapse_helmet":"空域头盔",
 "item.locusazzurro_icaruswings.synapse_chestplate":"空域胸甲",
@@ -115,9 +115,11 @@
 "item.locusazzurro_icaruswings.synapse_epsilon.tooltip": "第二代, 型号 ε",
 "item.locusazzurro_icaruswings.hiyori_wings":"缓滞时空羽翼",
 "item.locusazzurro_icaruswings.synapse_zeta.tooltip": "第二代, 型号 ζ",
+"item.locusazzurro_icaruswings.melan_wings":"反逆可变翼",
+"item.locusazzurro_icaruswings.synapse_theta.tooltip": "第二代, 型号 θ",
 
 "item.locusazzurro_icaruswings.disc_fallen_down":"音乐唱片",
-"item.locusazzurro_icaruswings.disc_fallen_down.desc":"Hayami Saori - Fallen Down",
+"item.locusazzurro_icaruswings.disc_fallen_down.desc":"早见沙织 - Fallen Down",
 "item.locusazzurro_icaruswings.disc_ring_my_bell":"音乐唱片",
 "item.locusazzurro_icaruswings.disc_ring_my_bell.desc":"Blue Drops - Ring My Bell",
 
@@ -132,17 +134,17 @@
 "advancements.locusazzurro_icaruswings.past.pottery.title": "陶锅",
 "advancements.locusazzurro_icaruswings.past.pottery.description": "现在，这是你的锅了!",
 "advancements.locusazzurro_icaruswings.past.wings_falling.title": "重力加速度",
-"advancements.locusazzurro_icaruswings.past.wings_falling.description": "你现在知道你有多重了吧",
+"advancements.locusazzurro_icaruswings.past.wings_falling.description": "海芋，康乃馨与雏菊",
 "advancements.locusazzurro_icaruswings.past.all_colored_feathers.title": "彩虹的颜色",
 "advancements.locusazzurro_icaruswings.past.all_colored_feathers.description": "飞行时会有音爆吗",
-"advancements.locusazzurro_icaruswings.past.wings_falling_adv.title": "要摔了吗",
-"advancements.locusazzurro_icaruswings.past.wings_falling_adv.description": "心肺骤停",
+"advancements.locusazzurro_icaruswings.past.wings_falling_adv.title": "Freedom D↓ve",
+"advancements.locusazzurro_icaruswings.past.wings_falling_adv.description": "你miss了",
 "advancements.locusazzurro_icaruswings.past.linen_cloth.title": "最炫层叠风",
 "advancements.locusazzurro_icaruswings.past.linen_cloth.description": "你是我心中，最美的亚麻",
-"advancements.locusazzurro_icaruswings.past.brew_mead.title": "蜜蜂酒",
+"advancements.locusazzurro_icaruswings.past.brew_mead.title": "蜜酒",
 "advancements.locusazzurro_icaruswings.past.brew_mead.description": "最古老的饮品",
 "advancements.locusazzurro_icaruswings.past.philosopher_stone.title": "哲学家的空想乌托邦",
-"advancements.locusazzurro_icaruswings.past.philosopher_stone.description": "... 此成就并非由 Vazkii 制作",
+"advancements.locusazzurro_icaruswings.past.philosopher_stone.description": "此成就并非由 Vazkii 制作",
 
 "advancements.locusazzurro_icaruswings.future.root.title": "回到未来",
 "advancements.locusazzurro_icaruswings.future.root.description": "过去，现在，未来",
