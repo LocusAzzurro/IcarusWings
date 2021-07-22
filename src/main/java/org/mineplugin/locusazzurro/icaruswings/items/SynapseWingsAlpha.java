@@ -1,9 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import java.util.UUID;
-
 import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
-import org.mineplugin.locusazzurro.icaruswings.data.Utils;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.render.IWingsExpandable;
 import com.google.common.collect.ImmutableMultimap;
@@ -16,7 +13,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -24,22 +20,15 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
-public class SynapseWingsAlpha extends AbstractWings implements IWingsExpandable{
-	
-	private final UUID MODIFIER_UUID = Utils.ARMOR_MODIFIER_UUID_PER_SLOT[2];
+public class SynapseWingsAlpha extends SynapseWings implements IWingsExpandable{
 	
 	public SynapseWingsAlpha() {
-		super(WingsType.SYNAPSE_ALPHA, Rarity.RARE);
+		super(WingsType.SYNAPSE_ALPHA);
 	}
 	
 	@Override
 	public boolean canElytraFly(ItemStack stack, net.minecraft.entity.LivingEntity entity) {
 		return stack.getDamageValue() < stack.getMaxDamage() - 10;
-	}
-	
-	@Override
-	public float getXpRepairRatio(ItemStack stackIn) {
-		return 0.0f;
 	}
 	
 	@SubscribeEvent (priority = EventPriority.LOW)
@@ -61,13 +50,7 @@ public class SynapseWingsAlpha extends AbstractWings implements IWingsExpandable
 		return 2.0f;
 	}
 	
-	@SuppressWarnings("deprecation")
-	@Override
-	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType slot) {
-		return slot == EquipmentSlotType.CHEST ? this.getModifiers() : super.getDefaultAttributeModifiers(slot);
-	}
-	
-	private Multimap<Attribute, AttributeModifier> getModifiers()
+	protected Multimap<Attribute, AttributeModifier> getModifiers()
 	{
 		Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 	    builder.put(Attributes.ARMOR, new AttributeModifier(MODIFIER_UUID, "Armor modifier", 5,	AttributeModifier.Operation.ADDITION));

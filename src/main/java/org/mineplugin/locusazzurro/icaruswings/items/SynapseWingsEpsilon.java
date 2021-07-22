@@ -10,15 +10,15 @@ import com.google.common.collect.ImmutableMultimap.Builder;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 
-public class SynapseWingsDelta extends SynapseWings implements IWingsExpandable{
+public class SynapseWingsEpsilon extends SynapseWings implements IWingsExpandable{
 	
-	public SynapseWingsDelta() {
-		super(WingsType.SYNAPSE_DELTA);
+	public SynapseWingsEpsilon() {
+		super(WingsType.SYNAPSE_EPSILON);
 	}
 
 	@Override
 	public float getExpansionFactor() {
-		return 1.4f;
+		return 1.8f;
 	}
 
 	@Override

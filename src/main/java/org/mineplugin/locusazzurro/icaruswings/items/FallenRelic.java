@@ -53,6 +53,7 @@ public class FallenRelic extends Item{
 	
 	public static enum RelicType implements IStringSerializable{
 		CORE("core"),
+		SECOND_GEN_CORE("second_gen_core"),
 		INTERFACE("interface"),
 		OFFENSIVE("offensive"),
 		DEFENSIVE("defensive"),

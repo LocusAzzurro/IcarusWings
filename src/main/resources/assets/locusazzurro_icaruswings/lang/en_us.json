@@ -84,12 +84,14 @@
 "item.locusazzurro_icaruswings.restored_fallen_relic_offensive":"Restored Fallen Relic",
 "item.locusazzurro_icaruswings.restored_fallen_relic_defensive":"Restored Fallen Relic",
 "item.locusazzurro_icaruswings.restored_fallen_relic_propulsion":"Restored Fallen Relic",
+"item.locusazzurro_icaruswings.upgraded_fallen_relic_core":"Upgraded Fallen Relic",
 
 "item.locusazzurro_icaruswings.fallen_relic_core.tooltip":"Core Systems",
 "item.locusazzurro_icaruswings.fallen_relic_interface.tooltip":"Interface Systems",
 "item.locusazzurro_icaruswings.fallen_relic_offensive.tooltip":"Offensive Systems",
 "item.locusazzurro_icaruswings.fallen_relic_defensive.tooltip":"Defensive Systems",
 "item.locusazzurro_icaruswings.fallen_relic_propulsion.tooltip":"Propulsion Systems",
+"item.locusazzurro_icaruswings.fallen_relic_second_gen_core.tooltip":"Gen II Core Systems",
 
 "item.locusazzurro_icaruswings.daedalus_manuscript":"Daedalus Manuscript",
 "item.locusazzurro_icaruswings.daedalus_decryptor":"Daedalus Decryptor",
@@ -104,8 +106,15 @@
 "item.locusazzurro_icaruswings.quantum_fuel":"Quantum Fuel",
 
 "item.locusazzurro_icaruswings.ikaros_wings":"Dual Variable Wings",
+"item.locusazzurro_icaruswings.synapse_alpha.tooltip": "Gen I, Type α",
 "item.locusazzurro_icaruswings.nymph_wings":"Eletronic Stealth Wings",
+"item.locusazzurro_icaruswings.synapse_beta.tooltip": "Gen I, Type β",
 "item.locusazzurro_icaruswings.astraea_wings":"Hyper Acceleration Wings",
+"item.locusazzurro_icaruswings.synapse_delta.tooltip": "Gen I, Type δ",
+"item.locusazzurro_icaruswings.chaos_wings":"Chaotic Evolution Wings",
+"item.locusazzurro_icaruswings.synapse_epsilon.tooltip": "Gen II, Type ε",
+"item.locusazzurro_icaruswings.hiyori_wings":"Chrono Spatial Wings",
+"item.locusazzurro_icaruswings.synapse_zeta.tooltip": "Gen II, Type ζ",
 
 "item.locusazzurro_icaruswings.disc_fallen_down":"Music Disc",
 "item.locusazzurro_icaruswings.disc_fallen_down.desc":"Hayami Saori - Fallen Down",
@@ -132,8 +141,8 @@
 "advancements.locusazzurro_icaruswings.past.linen_cloth.description": "Dream Weavers' worst nightmare",
 "advancements.locusazzurro_icaruswings.past.brew_mead.title": "Mead",
 "advancements.locusazzurro_icaruswings.past.brew_mead.description": "The oldest brew",
-"advancements.locusazzurro_icaruswings.past.philosopher_stone.title": "Philosophia",
-"advancements.locusazzurro_icaruswings.past.philosopher_stone.description": "",
+"advancements.locusazzurro_icaruswings.past.philosopher_stone.title": "Philosophiofantasia",
+"advancements.locusazzurro_icaruswings.past.philosopher_stone.description": "... is not an advancement by Vazkii",
 
 "advancements.locusazzurro_icaruswings.future.root.title": "Back to Future",
 "advancements.locusazzurro_icaruswings.future.root.description": "Past, present, future",
@@ -150,7 +159,7 @@
 "advancements.locusazzurro_icaruswings.future.music_disc.title": "Angelic Sound",
 "advancements.locusazzurro_icaruswings.future.music_disc.description": "Literally burning music discs",
 "advancements.locusazzurro_icaruswings.future.paper_wings.title":"Paper Wings",
-"advancements.locusazzurro_icaruswings.future.paper_wings.description": "",
+"advancements.locusazzurro_icaruswings.future.paper_wings.description": "Learn to fly",
 
 "itemGroup.icaruswings_group":"Icarus Wings"
 

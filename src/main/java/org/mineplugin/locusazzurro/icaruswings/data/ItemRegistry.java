@@ -138,6 +138,9 @@ public class ItemRegistry {
     public static final RegistryObject<Item> restoredFallenRelicPropulsion = ITEMS.register("restored_fallen_relic_propulsion",
     		() -> new FallenRelic(FallenRelic.RelicType.PROPULSION, true));
     
+    public static final RegistryObject<Item> upgradedFallenRelicCore = ITEMS.register("upgraded_fallen_relic_core",
+    		() -> new FallenRelic(FallenRelic.RelicType.SECOND_GEN_CORE, true));
+    
     public static final RegistryObject<Item> synapseRepairKit = ITEMS.register("synapse_repair_kit", SynapseRepairKit::new);
     public static final RegistryObject<Item> synapseWingsRecharger = ITEMS.register("synapse_wings_recharger", SynapseWingsRecharger::new);
     public static final RegistryObject<Item> quantumFuel = ITEMS.register("quantum_fuel", QuantumFuel::new);
@@ -154,6 +157,8 @@ public class ItemRegistry {
     public static final RegistryObject<Item> ikarosWings = ITEMS.register("ikaros_wings", SynapseWingsAlpha::new);
     public static final RegistryObject<Item> nymphWings = ITEMS.register("nymph_wings", SynapseWingsBeta::new);
     public static final RegistryObject<Item> astraeaWings = ITEMS.register("astraea_wings", SynapseWingsDelta::new);
+    public static final RegistryObject<Item> chaosWings = ITEMS.register("chaos_wings", SynapseWingsEpsilon::new);
+    public static final RegistryObject<Item> hiyoriWings = ITEMS.register("hiyori_wings", SynapseWingsZeta::new);
     
     public static final RegistryObject<Item> discFallenDown = ITEMS.register("disc_fallen_down",
     		() -> new SkyMusicDisc(SkyMusicDisc.Track.FALLEN_DOWN));
