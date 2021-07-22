@@ -68,6 +68,8 @@
 "item.locusazzurro_icaruswings.magic_membrane":"Magic Inbued Membrane",
 "item.locusazzurro_icaruswings.philosopher_stone":"Philosopher's Stone",
 
+"item.locusazzurro_icaruswings.paper_wings":"Paper Wings",
+
 "item.locusazzurro_icaruswings.magic_wings":"Magical Wings",
 "item.locusazzurro_icaruswings.flandre_magic_wings":"Flandre's Wings",
 
@@ -130,6 +132,8 @@
 "advancements.locusazzurro_icaruswings.past.linen_cloth.description": "Dream Weavers' worst nightmare",
 "advancements.locusazzurro_icaruswings.past.brew_mead.title": "Mead",
 "advancements.locusazzurro_icaruswings.past.brew_mead.description": "The oldest brew",
+"advancements.locusazzurro_icaruswings.past.philosopher_stone.title": "Philosophia",
+"advancements.locusazzurro_icaruswings.past.philosopher_stone.description": "",
 
 "advancements.locusazzurro_icaruswings.future.root.title": "Back to Future",
 "advancements.locusazzurro_icaruswings.future.root.description": "Past, present, future",
@@ -145,6 +149,8 @@
 "advancements.locusazzurro_icaruswings.future.melon.description": "Definetely the most important character",
 "advancements.locusazzurro_icaruswings.future.music_disc.title": "Angelic Sound",
 "advancements.locusazzurro_icaruswings.future.music_disc.description": "Literally burning music discs",
+"advancements.locusazzurro_icaruswings.future.paper_wings.title":"Paper Wings",
+"advancements.locusazzurro_icaruswings.future.paper_wings.description": "",
 
 "itemGroup.icaruswings_group":"Icarus Wings"
 

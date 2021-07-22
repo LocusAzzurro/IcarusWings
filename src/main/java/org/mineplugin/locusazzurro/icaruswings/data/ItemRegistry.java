@@ -102,6 +102,7 @@ public class ItemRegistry {
     		() -> new FeatherWings(WingsType.FEATHER_COLORED));
     public static final RegistryObject<Item> goldenFeatherWings = ITEMS.register("golden_feather_wings", 
     		() -> new FeatherWings(WingsType.FEATHER_GOLDEN));
+    public static final RegistryObject<Item> paperWings = ITEMS.register("paper_wings", PaperWings::new);
     
     public static final RegistryObject<Item> magicMembrane = ITEMS.register("magic_membrane", MagicMembrane::new);
     public static final RegistryObject<Item> philosopherStone = ITEMS.register("philosopher_stone", PhilosopherStone::new);

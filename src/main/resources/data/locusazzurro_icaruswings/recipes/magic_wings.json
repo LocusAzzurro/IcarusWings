@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "E",
+    "X",
+	"P"
+  ],
+  "key": {
+    "E": {
+      "tag": "locusazzurro_icaruswings:world_essences"
+    },
+    "X": {
+      "item": "minecraft:elytra"
+    },
+    "P": {
+      "item": "locusazzurro_icaruswings:philosopher_stone"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:magic_wings",
+    "count": 1
+  }
+}
