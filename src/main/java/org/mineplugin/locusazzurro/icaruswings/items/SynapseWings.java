@@ -19,6 +19,8 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public abstract class SynapseWings extends AbstractWings{
 	
@@ -45,6 +47,7 @@ public abstract class SynapseWings extends AbstractWings{
 	
 	
 	@Override
+	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack itemstack, World world, List<ITextComponent> list, ITooltipFlag flag) {
 		super.appendHoverText(itemstack, world, list, flag);
 		list.add(new TranslationTextComponent("item.locusazzurro_icaruswings." + this.type.getName() + ".tooltip")
