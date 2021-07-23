@@ -1,6 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.mixin;
 
-import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.items.AbstractWings;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,7 +18,7 @@ public class MobEntityMixin {
 			cancellable = true)
 	private static void getEquipmentSlotForItem(ItemStack item, CallbackInfoReturnable<EquipmentSlotType> cir)
 	{
-		if (item.getItem() == ItemRegistry.featherWings.get()) {
+		if (item.getItem() instanceof AbstractWings) {
 		cir.setReturnValue(EquipmentSlotType.CHEST);
 		}
 	}
