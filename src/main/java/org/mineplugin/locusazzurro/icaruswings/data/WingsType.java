@@ -7,7 +7,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.ResourceLocation;
 
-public enum WingsType {
+public enum WingsType implements IWingsType{
 
 	FEATHER("feather", 100, () -> {return ItemRegistry.featherBunch.get();},"textures/entity/feather_wings.png"),
 	FEATHER_COLORED("colored_feather", 150, () -> {return ItemRegistry.coloredFeatherBunch.get();},"textures/entity/colored_feather_wings.png"), 
