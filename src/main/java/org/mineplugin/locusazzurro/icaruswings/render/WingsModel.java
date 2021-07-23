@@ -30,14 +30,14 @@ public class WingsModel<T extends LivingEntity> extends ElytraModel<T> {
 		return ImmutableList.of(this.leftWing, this.rightWing);
 	}
 
-	public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
+	public void setupAnim(T entityLivingBaseIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float f = 0.2617994F;
 		float f1 = -0.2617994F;
 		float f2 = 0.0F;
 		float f3 = 0.0F;
-		if (p_225597_1_.isFallFlying()) {
+		if (entityLivingBaseIn.isFallFlying()) {
 			float f4 = 1.0F;
-			Vector3d vector3d = p_225597_1_.getDeltaMovement();
+			Vector3d vector3d = entityLivingBaseIn.getDeltaMovement();
 			if (vector3d.y < 0.0D) {
 				Vector3d vector3d1 = vector3d.normalize();
 				f4 = 1.0F - (float) Math.pow(-vector3d1.y, 1.5D);
@@ -45,7 +45,7 @@ public class WingsModel<T extends LivingEntity> extends ElytraModel<T> {
 
 			f = f4 * 0.34906584F + (1.0F - f4) * f;
 			f1 = f4 * (-(float) Math.PI / 2F) + (1.0F - f4) * f1;
-		} else if (p_225597_1_.isCrouching()) {
+		} else if (entityLivingBaseIn.isCrouching()) {
 			f = 0.6981317F;
 			f1 = (-(float) Math.PI / 4F);
 			f2 = 3.0F;
@@ -54,8 +54,8 @@ public class WingsModel<T extends LivingEntity> extends ElytraModel<T> {
 
 		this.leftWing.x = 5.0F;
 		this.leftWing.y = f2;
-		if (p_225597_1_ instanceof AbstractClientPlayerEntity) {
-			AbstractClientPlayerEntity abstractclientplayerentity = (AbstractClientPlayerEntity) p_225597_1_;
+		if (entityLivingBaseIn instanceof AbstractClientPlayerEntity) {
+			AbstractClientPlayerEntity abstractclientplayerentity = (AbstractClientPlayerEntity) entityLivingBaseIn;
 			abstractclientplayerentity.elytraRotX = (float) ((double) abstractclientplayerentity.elytraRotX
 					+ (double) (f - abstractclientplayerentity.elytraRotX) * 0.1D);
 			abstractclientplayerentity.elytraRotY = (float) ((double) abstractclientplayerentity.elytraRotY

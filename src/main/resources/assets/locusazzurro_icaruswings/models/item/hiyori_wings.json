@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "locusazzurro_icaruswings:item/hiyori_wings"
+  }
+}
