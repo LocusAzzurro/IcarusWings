@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "F",
+    "L"
+  ],
+  "key": {
+    "F": {
+      "item": "locusazzurro_icaruswings:golden_feather_bunch"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:golden_feather_helmet",
+    "count": 1
+  }
+}
