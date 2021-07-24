@@ -37,6 +37,10 @@ public class ItemRegistry {
     public static final RegistryObject<Item> netherEssence = ITEMS.register("nether_essence", WorldEssence::new);
     public static final RegistryObject<Item> voidEssence = ITEMS.register("void_essence", WorldEssence::new);
     
+    public static final RegistryObject<Item> ultramarineGem = ITEMS.register("ultramarine_gem", WorldGem::new);
+    public static final RegistryObject<Item> sapphireGem = ITEMS.register("sapphire_gem", WorldGem::new);
+    public static final RegistryObject<Item> blueTopazGem = ITEMS.register("blue_topaz_gem", WorldGem::new);
+    
     public static final RegistryObject<Item> reforgedNetheriteIngot = ITEMS.register("reforged_netherite_ingot", WorldIngot::new);
     public static final RegistryObject<Item> synapseAlloyIngot = ITEMS.register("synapse_alloy_ingot", WorldIngot::new);
     
