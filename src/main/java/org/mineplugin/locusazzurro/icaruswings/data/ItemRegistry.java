@@ -63,7 +63,6 @@ public class ItemRegistry {
     		() -> new BlockItem(BlockRegistry.meadPot.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> amphora = ITEMS.register("amphora",
     		() -> new BlockItem(BlockRegistry.amphora.get(), new Item.Properties().tab(ModGroup.itemGroup)));
-    public static final RegistryObject<Item> melon = ITEMS.register("melon", MelonItem::new);
     
     public static final RegistryObject<Item> mead = ITEMS.register("mead", Mead::new);
     public static final RegistryObject<Item> zephirInfusedMead = ITEMS.register("zephir_infused_mead",
@@ -154,6 +153,9 @@ public class ItemRegistry {
     public static final RegistryObject<Item> synapseBoots = ITEMS.register("synapse_boots",
     		() -> new SynapseArmor(EquipmentSlotType.FEET));
     
+    public static final RegistryObject<Item> synapseAlloySword = ITEMS.register("synapse_alloy_sword", SynapseAlloySword::new);
+    public static final RegistryObject<Item> steelPickaxe= ITEMS.register("steel_pickaxe", SteelPickaxe::new);
+    
     public static final RegistryObject<Item> ikarosWings = ITEMS.register("ikaros_wings", SynapseWingsAlpha::new);
     public static final RegistryObject<Item> nymphWings = ITEMS.register("nymph_wings", SynapseWingsBeta::new);
     public static final RegistryObject<Item> astraeaWings = ITEMS.register("astraea_wings", SynapseWingsDelta::new);
@@ -166,6 +168,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> discRingMyBell = ITEMS.register("disc_ring_my_bell",
     		() -> new SkyMusicDisc(SkyMusicDisc.Track.RING_MY_BELL));
     
+    public static final RegistryObject<Item> melon = ITEMS.register("melon", MelonItem::new);
 
 }
 
