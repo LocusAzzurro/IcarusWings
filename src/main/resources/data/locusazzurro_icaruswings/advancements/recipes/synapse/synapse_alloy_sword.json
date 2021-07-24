@@ -1,0 +1,32 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:synapse_alloy_sword"
+    ]
+  },
+  "criteria": {
+    "has_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:synapse_alloy_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:synapse_alloy_sword"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_alloy",
+      "has_the_recipe"
+    ]
+  ]
+}
