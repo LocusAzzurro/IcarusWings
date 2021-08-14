@@ -46,7 +46,7 @@ public class FeatherWings extends AbstractWings {
 	public boolean elytraFlightTick(ItemStack stack, net.minecraft.entity.LivingEntity entity, int flightTicks) {
 		if (!entity.level.isClientSide() && (flightTicks + 1) % 20 == 0) {
 			int dmg = 1;
-			if (entity instanceof PlayerEntity) {
+			if ((entity instanceof PlayerEntity) && (stack.getItem() instanceof FeatherWings)) {
 				if (entity.level.dimension() == World.NETHER) {
 					dmg = 5;
 					if(((FeatherWings)stack.getItem()).getType() != WingsType.FEATHER_GOLDEN)
