@@ -19,6 +19,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.vector.Quaternion;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -75,7 +76,6 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 				float s = ((IWingsExpandable) itemstack.getItem()).getExpansionFactor();
 				matrixStackIn.scale(s, s, 1.0f);
 			}
-			
 			this.getParentModel().copyPropertiesTo(this.elytraModel);
 			this.elytraModel.setupAnim(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 			IVertexBuilder ivertexbuilder;
