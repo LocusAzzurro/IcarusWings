@@ -17,9 +17,5 @@ public class IcarusWings {
 	TileEntityTypeRegistry.TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
 	SoundRegistry.SOUNDS.register(FMLJavaModLoadingContext.get().getModEventBus());
 	
-	//TODO: linen cloth(ancient greek clothing)
-	//TODO: beeswax armor, floral armor, feather helmet
-	//TODO: magic wings
-	
 	}
 }
