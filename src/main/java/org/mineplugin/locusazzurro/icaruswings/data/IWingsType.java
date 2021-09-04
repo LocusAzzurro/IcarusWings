@@ -12,4 +12,6 @@ public interface IWingsType {
 	public Item getRepairItem();
 	
 	public ResourceLocation getTexture();
+	
+	public ResourceLocation getTextureReversed();
 }

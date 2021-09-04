@@ -9,29 +9,33 @@ import net.minecraft.util.ResourceLocation;
 
 public enum WingsType implements IWingsType{
 
-	FEATHER("feather", 100, () -> {return ItemRegistry.featherBunch.get();},"textures/entity/feather_wings.png"),
-	FEATHER_COLORED("colored_feather", 150, () -> {return ItemRegistry.coloredFeatherBunch.get();},"textures/entity/colored_feather_wings.png"), 
-	FEATHER_GOLDEN("golden_feather", 200, () -> {return ItemRegistry.goldenFeatherBunch.get();},"textures/entity/golden_feather_wings.png"),
-	SYNAPSE_ALPHA("synapse_alpha", 500, () -> {return ItemRegistry.synapseWingsRecharger.get();},"textures/entity/synapse_alpha_wings.png"),
-	SYNAPSE_BETA("synapse_beta", 450, () -> {return ItemRegistry.synapseWingsRecharger.get();},"textures/entity/synapse_beta_wings.png"),
-	SYNAPSE_DELTA("synapse_delta", 400, () -> {return ItemRegistry.synapseWingsRecharger.get();},"textures/entity/synapse_delta_wings.png"),
-	SYNAPSE_EPSILON("synapse_epsilon", 420, () -> {return ItemRegistry.synapseWingsRecharger.get();},"textures/entity/synapse_epsilon_wings.png"),
-	SYNAPSE_ZETA("synapse_zeta", 440, () -> {return ItemRegistry.synapseWingsRecharger.get();},"textures/entity/synapse_zeta_wings.png"),
-	SYNAPSE_THETA("synapse_theta", 500, () -> {return ItemRegistry.synapseWingsRecharger.get();},"textures/entity/synapse_theta_wings.png"),
-	PAPER("paper", 10, () -> {return Items.PAPER;},"textures/entity/paper_wings.png"),
-	MAGIC("magic", 450, () -> {return ItemRegistry.magicMembrane.get();},"textures/entity/magic_wings.png"),
-	PHI_STONE("philosopher_stone", 450, () -> {return ItemRegistry.magicMembrane.get();},"textures/entity/phi_stone_wings.png");
+	FEATHER("feather", 100, () -> {return ItemRegistry.featherBunch.get();},false),
+	FEATHER_COLORED("colored_feather", 150, () -> {return ItemRegistry.coloredFeatherBunch.get();},false), 
+	FEATHER_GOLDEN("golden_feather", 200, () -> {return ItemRegistry.goldenFeatherBunch.get();},false),
+	SYNAPSE_ALPHA("synapse_alpha", 500, () -> {return ItemRegistry.synapseWingsRecharger.get();},true),
+	SYNAPSE_BETA("synapse_beta", 450, () -> {return ItemRegistry.synapseWingsRecharger.get();},true),
+	SYNAPSE_DELTA("synapse_delta", 400, () -> {return ItemRegistry.synapseWingsRecharger.get();},true),
+	SYNAPSE_EPSILON("synapse_epsilon", 420, () -> {return ItemRegistry.synapseWingsRecharger.get();},true),
+	SYNAPSE_ZETA("synapse_zeta", 440, () -> {return ItemRegistry.synapseWingsRecharger.get();},true),
+	SYNAPSE_THETA("synapse_theta", 500, () -> {return ItemRegistry.synapseWingsRecharger.get();},true),
+	PAPER("paper", 10, () -> {return Items.PAPER;},false),
+	MAGIC("magic", 450, () -> {return ItemRegistry.magicMembrane.get();},false),
+	PHI_STONE("philosopher_stone", 450, () -> {return ItemRegistry.magicMembrane.get();},false);
 	
 	private final String name;
 	private final int durability;
 	private final LazyValue<Item> repairItem;
+	private final boolean hasReversedTexture;
 	private final ResourceLocation texture;
+	private final ResourceLocation textureReversed;
 
-	private WingsType(String name, int durability, Supplier<Item> repairItem, String textureDir) {
+	private WingsType(String name, int durability, Supplier<Item> repairItem, boolean hasReverse) {
 		this.name = name;
 		this.durability = durability;
 		this.repairItem = new LazyValue<>(repairItem);
-		this.texture = new ResourceLocation(Utils.MOD_ID, textureDir);
+		this.hasReversedTexture = hasReverse;
+		this.texture = new ResourceLocation(Utils.MOD_ID, "textures/entity/" + name + "_wings.png");
+		this.textureReversed = new ResourceLocation(Utils.MOD_ID, "textures/entity/" + name + "_wings_reversed.png");
 		
 	}
 	
@@ -54,5 +58,9 @@ public enum WingsType implements IWingsType{
 	
 	public ResourceLocation getTexture() {
 		return this.texture;
+	}
+	
+	public ResourceLocation getTextureReversed() {
+		return this.hasReversedTexture ? this.textureReversed : this.texture;
 	}
 }

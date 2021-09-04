@@ -58,7 +58,6 @@ public class SynapseWingsBeta extends SynapseWings implements IWingsExpandable, 
 	    builder.put(Attributes.ARMOR, new AttributeModifier(MODIFIER_UUID, "Armor modifier", 2,	AttributeModifier.Operation.ADDITION));
 	    builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(MODIFIER_UUID, "Armor toughness", 1, AttributeModifier.Operation.ADDITION));
 	    builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(MODIFIER_UUID, "attack_damage", 0.2f, AttributeModifier.Operation.MULTIPLY_TOTAL));
-	    builder.put(Attributes.FOLLOW_RANGE, new AttributeModifier(MODIFIER_UUID, "follow_range", -0.7f, AttributeModifier.Operation.MULTIPLY_BASE));
 	    builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(MODIFIER_UUID, "movement_speed", 0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL));
 
 		return builder.build();

@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.render;
 
 import org.mineplugin.locusazzurro.icaruswings.data.Utils;
+import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.items.AbstractWings;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -42,7 +43,11 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 	public ResourceLocation getElytraTexture(ItemStack stack, T entity) {
 		Item item = stack.getItem();
 		if (item instanceof AbstractWings)
-		{
+		{	
+			if(entity.isFallFlying() && (item instanceof IWingsExpandable))
+			{
+				return ((AbstractWings) item).getType().getTextureReversed();
+			}
 			return ((AbstractWings) item).getType().getTexture();
 		}
 		return WINGS_FEATHER;
@@ -75,6 +80,7 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 			if(itemstack.getItem() instanceof IWingsExpandable && entityLivingBaseIn.isFallFlying()) {
 				float s = ((IWingsExpandable) itemstack.getItem()).getExpansionFactor();
 				matrixStackIn.scale(s, s, 1.0f);
+				//matrixStackIn.mulPose(new Quaternion(1f,0f,0f,0f));
 			}
 			this.getParentModel().copyPropertiesTo(this.elytraModel);
 			this.elytraModel.setupAnim(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
