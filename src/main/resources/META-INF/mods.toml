@@ -4,13 +4,13 @@ loaderVersion="[36,)"
 license="GPL-3.0"
 issueTrackerURL="https://github.com/LocusAzzurro/icaruswings_mod/issues"
 [[mods]]
-modId="locusazzurro_icaruswings"
-version="1.16.5-0.1.1"
-displayName="Icarus Wings"
-logoFile="icarus_wings.png"
-authors="LocusAzzurro"
-credits="Contributors on Github and all who supported development."
-description='''A story about bees, feather and the sky. A testament to human ingenuity.'''
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+logoFile="${mod_icon}"
+authors="${mod_author}"
+credits="${mod_credits}"
+description="${mod_description}"
 
 [[dependencies.locusazzurro_icaruswings]]
     modId="forge"
