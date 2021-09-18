@@ -6,7 +6,9 @@
 	"mixins": [
 		"MobEntityMixin"
 	],
-	"client": [],
+	"client": [
+		"CapeLayerMixin"
+	],
 	"server": [],
 	"minVersion": "0.8",
 	"injectors": {
