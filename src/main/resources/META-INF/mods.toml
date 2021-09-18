@@ -4,13 +4,13 @@ loaderVersion="[36,)"
 license="GPL-3.0"
 issueTrackerURL="https://github.com/LocusAzzurro/icaruswings_mod/issues"
 [[mods]]
-modId="${mod_id}"
+modId="locusazzurro_icaruswings"
 version="${mod_version}"
 displayName="${mod_name}"
 logoFile="${mod_icon}"
 authors="${mod_author}"
 credits="${mod_credits}"
-description="${mod_description}"
+description='''${mod_description}'''
 
 [[dependencies.locusazzurro_icaruswings]]
     modId="forge"

@@ -29,7 +29,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-			arg "-mixin.config=locusazzurro_icaruswings.mixins.json"
+			arg "-mixin.config=" + "${mod_id}".toString() + ".mixins.json"
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'info'
@@ -43,7 +43,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            arg "-mixin.config=locusazzurro_icaruswings.mixins.json"
+            arg "-mixin.config=" + "${mod_id}".toString() + ".mixins.json"
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'info'
@@ -57,7 +57,7 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            arg "-mixin.config=locusazzurro_icaruswings.mixins.json"
+            arg "-mixin.config=" + "${mod_id}".toString() + ".mixins.json"
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'info'
