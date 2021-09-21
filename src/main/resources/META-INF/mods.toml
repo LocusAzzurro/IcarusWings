@@ -5,7 +5,7 @@ license="GPL-3.0"
 issueTrackerURL="https://github.com/LocusAzzurro/icaruswings_mod/issues"
 [[mods]]
 modId="locusazzurro_icaruswings"
-version="${mod_version}"
+version="${version}"
 displayName="${mod_name}"
 logoFile="${mod_icon}"
 authors="${mod_author}"

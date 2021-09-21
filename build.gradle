@@ -15,7 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = "${mod_version}"
+version = "${version}"
 group = "${mod_group}"
 archivesBaseName = "${mod_id}"
 
@@ -103,7 +103,7 @@ processResources {
 
     from(sourceSets.main.resources.srcDirs) {
         include 'META-INF/mods.toml'
-        expand 'mod_version': project.version, 'mod_id' : mod_id, 'mod_name': mod_name, 'mod_author': mod_author, 'mod_credits': mod_credits, 'mod_description': mod_description, 'mod_icon': mod_icon
+        expand 'version': project.version, 'mod_id' : mod_id, 'mod_name': mod_name, 'mod_author': mod_author, 'mod_credits': mod_credits, 'mod_description': mod_description, 'mod_icon': mod_icon
     }
 
     from(sourceSets.main.resources.srcDirs) {
