@@ -75,5 +75,10 @@ public class AbstractWings extends ElytraItem {
 	public boolean elytraFlightTick(ItemStack stack, net.minecraft.entity.LivingEntity entity, int flightTicks) {
 		return super.elytraFlightTick(stack, entity, flightTicks);
 	}
+	
+	@Override
+	public int getEnchantmentValue() {
+		return 15;
+	}
 
 }

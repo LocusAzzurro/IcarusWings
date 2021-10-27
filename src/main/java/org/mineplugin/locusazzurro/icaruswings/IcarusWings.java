@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings;
 
 import org.mineplugin.locusazzurro.icaruswings.data.BlockRegistry;
+import org.mineplugin.locusazzurro.icaruswings.data.EnchantmentRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.TileEntityTypeRegistry;
@@ -16,6 +17,7 @@ public class IcarusWings {
 	BlockRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
 	TileEntityTypeRegistry.TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
 	SoundRegistry.SOUNDS.register(FMLJavaModLoadingContext.get().getModEventBus());
+	EnchantmentRegistry.ENCHANTMENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
 	
 	}
 }
