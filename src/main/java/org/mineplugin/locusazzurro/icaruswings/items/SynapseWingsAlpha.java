@@ -19,31 +19,15 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
 public class SynapseWingsAlpha extends SynapseWings implements IWingsExpandable{
 	
 	public SynapseWingsAlpha() {
 		super(WingsType.SYNAPSE_ALPHA);
 	}
-	
-	@Override
-	public boolean canElytraFly(ItemStack stack, net.minecraft.entity.LivingEntity entity) {
-		return stack.getDamageValue() < stack.getMaxDamage() - 10;
-	}
-	
-	@SubscribeEvent (priority = EventPriority.LOW)
-	public static void onPlayerTick(TickEvent.PlayerTickEvent event)
-	{
-		PlayerEntity player = event.player;
-		if (player.isFallFlying() && player.getItemBySlot(EquipmentSlotType.CHEST).getItem() == ItemRegistry.ikarosWings.get()) {
-            Vector3d lookAngle = player.getLookAngle();
-            Vector3d flyAngle = player.getDeltaMovement();
-            player.setDeltaMovement(flyAngle.add(
-            		lookAngle.x * 0.1D + (lookAngle.x * 1.5D - flyAngle.x) * 0.5D,
-            		lookAngle.y * 0.1D + (lookAngle.y * 1.5D - flyAngle.y) * 0.5D,
-            		lookAngle.z * 0.1D + (lookAngle.z * 1.5D - flyAngle.z) * 0.5D));
-        }
-	}
+
+	protected double getDirectSpeedMod(){return 0.1d;}
+	protected double getInertialSpeedMod(){return 1.5d;}
+	protected double getTotalSpeedMod(){return 0.5d;}
 
 	@Override
 	public float getExpansionFactor() {

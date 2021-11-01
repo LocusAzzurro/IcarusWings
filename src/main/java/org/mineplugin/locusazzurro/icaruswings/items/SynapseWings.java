@@ -3,6 +3,14 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 import java.util.List;
 import java.util.UUID;
 
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.Utils;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 
@@ -22,10 +30,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+@Mod.EventBusSubscriber
 public abstract class SynapseWings extends AbstractWings{
 	
 	protected final UUID MODIFIER_UUID = Utils.ARMOR_MODIFIER_UUID_PER_SLOT[2];
-	
+
 	public SynapseWings(WingsType type) {
 		super(type, Rarity.RARE);
 	}
@@ -44,8 +53,35 @@ public abstract class SynapseWings extends AbstractWings{
 	}
 	
 	protected abstract Multimap<Attribute, AttributeModifier> getModifiers();
-	
-	
+
+	@Override
+	public boolean canElytraFly(ItemStack stack, net.minecraft.entity.LivingEntity entity) {
+		return stack.getDamageValue() < stack.getMaxDamage() - 10;
+	}
+
+	//Default: Direct = 0.1, Inertial = 1.5, Total = 0.5
+	protected abstract double getDirectSpeedMod();
+	protected abstract double getInertialSpeedMod();
+	protected abstract double getTotalSpeedMod();
+
+	@SubscribeEvent(priority = EventPriority.LOW)
+	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+		PlayerEntity player = event.player;
+		Item item = player.getItemBySlot(EquipmentSlotType.CHEST).getItem();
+		if (player.isFallFlying() && item instanceof SynapseWings) {
+			Vector3d lookAngle = player.getLookAngle();
+			Vector3d flyAngle = player.getDeltaMovement();
+			SynapseWings wings = (SynapseWings) item;
+			double d = wings.getDirectSpeedMod();
+			double i = wings.getInertialSpeedMod();
+			double t = wings.getTotalSpeedMod();
+			player.setDeltaMovement(flyAngle.add(
+					lookAngle.x * d + (lookAngle.x * i - flyAngle.x) * t,
+					lookAngle.y * d + (lookAngle.y * i - flyAngle.y) * t,
+					lookAngle.z * d + (lookAngle.z * i - flyAngle.z) * t));
+		}
+	}
+
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack itemstack, World world, List<ITextComponent> list, ITooltipFlag flag) {

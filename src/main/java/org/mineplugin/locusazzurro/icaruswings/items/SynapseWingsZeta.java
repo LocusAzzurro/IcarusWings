@@ -26,6 +26,10 @@ public class SynapseWingsZeta extends SynapseWings implements IWingsExpandable{
 		super(WingsType.SYNAPSE_ZETA);
 	}
 
+	protected double getDirectSpeedMod(){return 0.08d;}
+	protected double getInertialSpeedMod(){return 1.1d;}
+	protected double getTotalSpeedMod(){return 0.5d;}
+
 	@Override
 	public float getExpansionFactor() {
 		return 2.0f;
@@ -39,20 +43,6 @@ public class SynapseWingsZeta extends SynapseWings implements IWingsExpandable{
 	    builder.put(Attributes.MAX_HEALTH, new AttributeModifier(MODIFIER_UUID, "max_health", 10.0f, AttributeModifier.Operation.ADDITION));
 	    builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(MODIFIER_UUID, "knockback_resistance", 0.6f, AttributeModifier.Operation.ADDITION));
 		return builder.build();
-	}
-	
-	@SubscribeEvent (priority = EventPriority.LOW)
-	public static void onPlayerTick(TickEvent.PlayerTickEvent event)
-	{
-		PlayerEntity player = event.player;
-		if (player.isFallFlying() && player.getItemBySlot(EquipmentSlotType.CHEST).getItem() == ItemRegistry.hiyoriWings.get()) {
-            Vector3d lookAngle = player.getLookAngle();
-            Vector3d flyAngle = player.getDeltaMovement();
-            player.setDeltaMovement(flyAngle.add(
-            		lookAngle.x * 0.08D + (lookAngle.x * 1.2D - flyAngle.x) * 0.5D,
-            		lookAngle.y * 0.05D + (lookAngle.y * 1.0D - flyAngle.y) * 0.5D,
-            		lookAngle.z * 0.08D + (lookAngle.z * 1.2D - flyAngle.z) * 0.5D));
-        }
 	}
 
 }

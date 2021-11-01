@@ -21,12 +21,15 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
 public class SynapseWingsBeta extends SynapseWings implements IWingsExpandable, IWingsTranslucent{
 	
 	public SynapseWingsBeta() {
 		super(WingsType.SYNAPSE_BETA);
 	}
+
+	protected double getDirectSpeedMod(){return 0.08d;}
+	protected double getInertialSpeedMod(){return 1.2d;}
+	protected double getTotalSpeedMod(){return 0.5d;}
 
 	@Override
 	public float getExpansionFactor() {
@@ -36,20 +39,6 @@ public class SynapseWingsBeta extends SynapseWings implements IWingsExpandable, 
 	@Override
 	public float getXpRepairRatio(ItemStack stackIn) {
 		return 0.2f;
-	}
-	
-	@SubscribeEvent (priority = EventPriority.LOW)
-	public static void onPlayerTick(TickEvent.PlayerTickEvent event)
-	{
-		PlayerEntity player = event.player;
-		if (player.isFallFlying() && player.getItemBySlot(EquipmentSlotType.CHEST).getItem() == ItemRegistry.nymphWings.get()) {
-            Vector3d lookAngle = player.getLookAngle();
-            Vector3d flyAngle = player.getDeltaMovement();
-            player.setDeltaMovement(flyAngle.add(
-            		lookAngle.x * 0.08D + (lookAngle.x * 1.2D - flyAngle.x) * 0.5D,
-            		lookAngle.y * 0.05D + (lookAngle.y * 1.0D - flyAngle.y) * 0.5D,
-            		lookAngle.z * 0.08D + (lookAngle.z * 1.2D - flyAngle.z) * 0.5D));
-        }
 	}
 	
 	protected Multimap<Attribute, AttributeModifier> getModifiers()

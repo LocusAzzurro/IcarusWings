@@ -19,12 +19,15 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
 public class SynapseWingsEpsilon extends SynapseWings implements IWingsExpandable{
 	
 	public SynapseWingsEpsilon() {
 		super(WingsType.SYNAPSE_EPSILON);
 	}
+
+	protected double getDirectSpeedMod(){return 0.04d;}
+	protected double getInertialSpeedMod(){return 1.2d;}
+	protected double getTotalSpeedMod(){return 0.5d;}
 
 	@Override
 	public float getExpansionFactor() {
@@ -40,17 +43,4 @@ public class SynapseWingsEpsilon extends SynapseWings implements IWingsExpandabl
 		return builder.build();
 	}
 
-	@SubscribeEvent (priority = EventPriority.LOW)
-	public static void onPlayerTick(TickEvent.PlayerTickEvent event)
-	{
-		PlayerEntity player = event.player;
-		if (player.isFallFlying() && player.getItemBySlot(EquipmentSlotType.CHEST).getItem() == ItemRegistry.chaosWings.get()) {
-            Vector3d lookAngle = player.getLookAngle();
-            Vector3d flyAngle = player.getDeltaMovement();
-            player.setDeltaMovement(flyAngle.add(
-            		lookAngle.x * 0.04D + (lookAngle.x * 1.2D - flyAngle.x) * 0.5D,
-            		lookAngle.y * 0.04D + (lookAngle.y * 1.2D - flyAngle.y) * 0.5D,
-            		lookAngle.z * 0.04D + (lookAngle.z * 1.2D - flyAngle.z) * 0.5D));
-        }
-	}
 }

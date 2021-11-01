@@ -19,12 +19,15 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
 public class SynapseWingsDelta extends SynapseWings implements IWingsExpandable{
 	
 	public SynapseWingsDelta() {
 		super(WingsType.SYNAPSE_DELTA);
 	}
+
+	protected double getDirectSpeedMod(){return 0.3d;}
+	protected double getInertialSpeedMod(){return 1.6d;}
+	protected double getTotalSpeedMod(){return 0.5d;}
 
 	@Override
 	public float getExpansionFactor() {
@@ -38,20 +41,6 @@ public class SynapseWingsDelta extends SynapseWings implements IWingsExpandable{
 	    builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(MODIFIER_UUID, "Armor toughness", 1, AttributeModifier.Operation.ADDITION));
 	    builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(MODIFIER_UUID, "movement_speed", 0.03f, AttributeModifier.Operation.ADDITION));
 		return builder.build();
-	}
-	
-	@SubscribeEvent (priority = EventPriority.LOW)
-	public static void onPlayerTick(TickEvent.PlayerTickEvent event)
-	{
-		PlayerEntity player = event.player;
-		if (player.isFallFlying() && player.getItemBySlot(EquipmentSlotType.CHEST).getItem() == ItemRegistry.astraeaWings.get()) {
-            Vector3d lookAngle = player.getLookAngle();
-            Vector3d flyAngle = player.getDeltaMovement();
-            player.setDeltaMovement(flyAngle.add(
-            		lookAngle.x * 0.3D + (lookAngle.x * 1.6D - flyAngle.x) * 0.5D,
-            		lookAngle.y * 0.3D + (lookAngle.y * 1.6D - flyAngle.y) * 0.5D,
-            		lookAngle.z * 0.3D + (lookAngle.z * 1.6D - flyAngle.z) * 0.5D));
-        }
 	}
 	
 }
