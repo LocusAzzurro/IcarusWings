@@ -2,6 +2,9 @@ package org.mineplugin.locusazzurro.icaruswings.data;
 
 import java.util.function.Supplier;
 
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.entity.*;
 
 import net.minecraft.entity.Entity;
@@ -22,9 +25,10 @@ public class EntityTypeRegistry {
 					.of(GoldenRamEntity::new, EntityClassification.CREATURE)
 					.sized(0.9F, 1.3F)
 					.clientTrackingRange(10)
-					.build("golden_ram")); 
+					.build("golden_ram"));
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, Supplier<EntityType<T>> type) {
 		return ENTITIES.register(name, type);
 	}
+
 }

@@ -4,16 +4,23 @@ import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -41,17 +48,7 @@ public class GoldenRamEntity extends AnimalEntity{
 		super.defineSynchedData();
 		this.entityData.define(TEST_COUNT, 0);
 	}
-	
-    @Nullable
-    public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
-        p_213386_4_ = super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
-
-        getAttribute(Attributes.MAX_HEALTH).setBaseValue(20f);
-        setHealth(20f);
-        return p_213386_4_;
-    }
-    
-	
+  
 	@Override
 	public void readAdditionalSaveData(CompoundNBT compound) {
 		super.readAdditionalSaveData(compound);
@@ -69,6 +66,19 @@ public class GoldenRamEntity extends AnimalEntity{
 	  return NetworkHooks.getEntitySpawningPacket(this);
 	}
 	
+	public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
+		return LivingEntity.createLivingAttributes()
+				.add(Attributes.MAX_HEALTH, 18.0d)
+				.add(Attributes.MOVEMENT_SPEED, 0.27d)
+				.add(Attributes.FOLLOW_RANGE, 32d);
+	}
+	
+	@Override
+	protected void registerGoals() {
+		super.registerGoals();
+		this.goalSelector.addGoal(0, new PanicGoal(this, 1.0d));
+	}
+	
 	@Override
 	public void tick() {
 		if(level.isClientSide) {
@@ -80,6 +90,15 @@ public class GoldenRamEntity extends AnimalEntity{
 		}
 		super.tick();
 	}
+	
+	@Override
+	protected SoundEvent getAmbientSound() {return SoundEvents.SHEEP_AMBIENT;}
+	
+	@Override
+	protected SoundEvent getHurtSound(DamageSource ds) {return SoundEvents.SHEEP_HURT;}
+	
+	@Override
+	protected SoundEvent getDeathSound() {return SoundEvents.SHEEP_DEATH;}
 	
 	@Nullable
 	@Override
