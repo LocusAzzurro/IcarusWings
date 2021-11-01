@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 public class FallenRelic extends Item{
 	
 	protected RelicType relicType;
-	private boolean isRestored;
+	private final boolean isRestored;
 	
 	public FallenRelic(RelicType type, boolean restored){
 		super(new Item.Properties().tab(ModGroup.itemGroup).stacksTo(1).fireResistant().rarity(Rarity.UNCOMMON));
@@ -51,7 +51,7 @@ public class FallenRelic extends Item{
 				.setStyle(Style.EMPTY.withColor(TextFormatting.GRAY)));
 	}
 	
-	public static enum RelicType implements IStringSerializable{
+	public enum RelicType implements IStringSerializable{
 		CORE("core"),
 		SECOND_GEN_CORE("second_gen_core"),
 		INTERFACE("interface"),
@@ -59,8 +59,8 @@ public class FallenRelic extends Item{
 		DEFENSIVE("defensive"),
 		PROPULSION("propulsion");
 		
-		private String name;
-		private RelicType (String name) {
+		private final String name;
+		RelicType (String name) {
 			this.name = name;
 		}
 		

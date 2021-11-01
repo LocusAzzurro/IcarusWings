@@ -42,8 +42,6 @@ public class WheatGrains extends Item{
 				if (!player.isCreative())
 					stack.shrink(1);
 				target.playSound(SoundEvents.PARROT_EAT, 2.0f, 1.3f);
-				//world.playSound(player, target, SoundEvents.PARROT_EAT, SoundCategory.VOICE, 2.0f, 1.3f);
-				//world.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.PARROT_EAT, SoundCategory.VOICE, 2.0f, 1.3f, false);
 				if (Math.random() > ACQUIRE_FEATHER_CHANCE) {
 					
 					int variant = ((ParrotEntity) target).getVariant();

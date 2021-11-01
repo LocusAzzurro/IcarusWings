@@ -1,11 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.render;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.layers.SheepWoolLayer;
-import net.minecraft.client.renderer.entity.model.SheepModel;
-import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.util.ResourceLocation;
 import org.mineplugin.locusazzurro.icaruswings.entity.GoldenRamEntity;
 

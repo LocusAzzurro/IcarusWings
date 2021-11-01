@@ -5,13 +5,9 @@ import net.minecraft.util.ResourceLocation;
 
 public interface IWingsType {
 
-	public String getName();
-	
-	public int getDurability();
-	
-	public Item getRepairItem();
-	
-	public ResourceLocation getTexture();
-	
-	public ResourceLocation getTextureReversed();
+	String getName();
+	int getDurability();
+	Item getRepairItem();
+	ResourceLocation getTexture();
+	ResourceLocation getTextureReversed();
 }

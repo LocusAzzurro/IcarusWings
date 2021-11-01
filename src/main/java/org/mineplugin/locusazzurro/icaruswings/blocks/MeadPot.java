@@ -44,9 +44,9 @@ public class MeadPot extends Block{
 	protected static final VoxelShape SHAPE = VoxelShapes.join(
 			VoxelShapes.block(), INSIDE, IBooleanFunction.ONLY_FIRST);
 
-	private double particleR = 233D / 255D;
-	private double particleG = 147D / 255D;
-	private double particleB = 38D / 255D;
+	private final double particleR = 233D / 255D;
+	private final double particleG = 147D / 255D;
+	private final double particleB = 38D / 255D;
 	
 	public MeadPot() {
 		super(AbstractBlock
@@ -154,14 +154,14 @@ public class MeadPot extends Block{
 	}
 	
 	
-	public static enum MeadPotState implements IStringSerializable{
+	public enum MeadPotState implements IStringSerializable{
 		EMPTY("empty"), 
 		FERMENTING("fermenting"), 
 		COMPLETE("complete");
 		
 		private final String name;
 		
-		private MeadPotState(String name) {
+		MeadPotState(String name) {
 			this.name = name;
 		}
 		

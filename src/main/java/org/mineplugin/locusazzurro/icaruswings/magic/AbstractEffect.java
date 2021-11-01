@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Utils.MOD_ID)
-public class AbstractEffect extends Effect {
+public abstract class AbstractEffect extends Effect {
 
 	protected ArrayList<ItemStack> CurativeItems = new ArrayList<>();
 
@@ -27,9 +27,7 @@ public class AbstractEffect extends Effect {
 	}
 
 	@Override
-	public void applyEffectTick(LivingEntity entity, int level) {
-
-	}
+	public void applyEffectTick(LivingEntity entity, int level) {}
 
 	@Override
 	public boolean isDurationEffectTick(int tickRemaining, int level) {
@@ -42,14 +40,10 @@ public class AbstractEffect extends Effect {
 	}
 
 	// 被添加
-	public void onAdded(LivingEntity entity, EffectInstance effect, @Nullable EffectInstance oldEffect) {
+	public void onAdded(LivingEntity entity, EffectInstance effect, @Nullable EffectInstance oldEffect) {}
 
-	}
-
-	// 人为移除
-	public void onRemove(LivingEntity entity, EffectInstance effect) {
-		// 不要在这里调用 entity.removeEffect 效果，否则会死循环
-	}
+	// 人为移除 不要在这里调用 entity.removeEffect 效果，否则会死循环
+	public void onRemove(LivingEntity entity, EffectInstance effect) {}
 
 	// 自行消失
 	public void onExpiry(LivingEntity entity, EffectInstance effect) {
@@ -66,11 +60,9 @@ public class AbstractEffect extends Effect {
 				if (l > -1) {
 					entity.addEffect(new EffectInstance(this, this.getDuration(l), l, false, this.visible()));
 				}
-				;
 			}
-			;
 		}
-	};
+	}
 
 	protected boolean setEffect(LivingEntity entity, int level, boolean isAdd, boolean force) {
 		if (entity.isControlledByLocalInstance()) { // 非本地控制
@@ -81,7 +73,6 @@ public class AbstractEffect extends Effect {
 					l = level + (isAdd ? instance.getAmplifier() : 0); // 更新
 					entity.removeEffect(this); // 移除旧效果
 				}
-				;
 				if (level < 0) {
 					return true;
 				} else if (this.canBeAddEffect(entity, level)) {
@@ -89,15 +80,12 @@ public class AbstractEffect extends Effect {
 						this.overflow(entity, l - this.getMaxLevel()); // 通知溢出
 						l = this.getMaxLevel(); // 收敛
 					}
-					;
 					return entity.addEffect(new EffectInstance(this, this.getDuration(l), l, false, this.visible()));
 				}
-				;
 			}
-			;
 		}
 		return false;
-	};
+	}
 
 	// 设置
 	public boolean setEffect(LivingEntity entity, int level) {

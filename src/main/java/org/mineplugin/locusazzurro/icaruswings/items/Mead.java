@@ -134,6 +134,6 @@ public class Mead extends Item {
 	}
 	
 	public enum Infusion{
-		ZEPHIR,NETHER,VOID,GOLDEN_APPLE,HERBS;
+		ZEPHIR,NETHER,VOID,GOLDEN_APPLE,HERBS
 	}
 }

@@ -40,7 +40,7 @@ public enum ModArmorMaterial implements IArmorMaterial{
 	private final float knockbackResistance;
 	private final LazyValue<Ingredient> repairIngredient;
 	
-	private ModArmorMaterial (
+	ModArmorMaterial (
 		String name, 
 		int durabilityMultiplier, 
 		int[] slotProtections, 

@@ -29,7 +29,7 @@ public enum WingsType implements IWingsType{
 	private final ResourceLocation texture;
 	private final ResourceLocation textureReversed;
 
-	private WingsType(String name, int durability, Supplier<Item> repairItem, boolean hasReverse) {
+	WingsType(String name, int durability, Supplier<Item> repairItem, boolean hasReverse) {
 		this.name = name;
 		this.durability = durability;
 		this.repairItem = new LazyValue<>(repairItem);

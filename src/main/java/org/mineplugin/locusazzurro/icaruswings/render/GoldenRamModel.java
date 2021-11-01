@@ -1,12 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.render;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.passive.SheepEntity;
 import org.mineplugin.locusazzurro.icaruswings.entity.GoldenRamEntity;
 
 public class GoldenRamModel<T extends GoldenRamEntity> extends QuadrupedModel<T> {

@@ -9,8 +9,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -22,17 +20,6 @@ public class EffectPoisonImmunity extends AbstractEffect{
 	public EffectPoisonImmunity() {
 		super(EffectType.BENEFICIAL, ((228 << 16) + (251 << 8) + 189));
 	}
-	
-	/*
-	@SubscribeEvent
-	public static void onEntityHurt(LivingHurtEvent e) {
-		if (e.getSource() == DamageSource.MAGIC) {
-			if(e.getEntityLiving().hasEffect(EffectRegistry.poisonImmunity.get())) {
-				e.setCanceled(true);
-			}
-		}
-	}
-	*/
 	
 	@SubscribeEvent
 	public static void onPotionApplication(PotionEvent.PotionApplicableEvent e) {
