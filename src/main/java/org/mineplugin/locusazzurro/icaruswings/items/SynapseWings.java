@@ -11,6 +11,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.data.ModConfig;
 import org.mineplugin.locusazzurro.icaruswings.data.Utils;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 
@@ -34,6 +35,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public abstract class SynapseWings extends AbstractWings{
 	
 	protected final UUID MODIFIER_UUID = Utils.ARMOR_MODIFIER_UUID_PER_SLOT[2];
+	private static final double WINGS_SPEED_MOD_CONFIG = ModConfig.WINGS_SPEED_MOD.get();
 
 	public SynapseWings(WingsType type) {
 		super(type, Rarity.RARE);
@@ -75,10 +77,11 @@ public abstract class SynapseWings extends AbstractWings{
 			double d = wings.getDirectSpeedMod();
 			double i = wings.getInertialSpeedMod();
 			double t = wings.getTotalSpeedMod();
+			double c = WINGS_SPEED_MOD_CONFIG;
 			player.setDeltaMovement(flyAngle.add(
-					lookAngle.x * d + (lookAngle.x * i - flyAngle.x) * t,
-					lookAngle.y * d + (lookAngle.y * i - flyAngle.y) * t,
-					lookAngle.z * d + (lookAngle.z * i - flyAngle.z) * t));
+					(lookAngle.x * d + (lookAngle.x * i - flyAngle.x) * t) * c,
+					(lookAngle.y * d + (lookAngle.y * i - flyAngle.y) * t) * c,
+					(lookAngle.z * d + (lookAngle.z * i - flyAngle.z) * t) * c));
 		}
 	}
 
