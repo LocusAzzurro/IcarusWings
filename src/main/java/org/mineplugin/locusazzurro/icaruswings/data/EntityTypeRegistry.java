@@ -21,6 +21,12 @@ public class EntityTypeRegistry {
 					.clientTrackingRange(10)
 					.build("golden_ram"));
 
+	public static final RegistryObject<EntityType<ArtemisMissileEntity>> artemisMissileEntity =
+			register("artemis_missile", () -> EntityType.Builder
+					.<ArtemisMissileEntity>of(ArtemisMissileEntity::new, EntityClassification.MISC)
+					.sized(0.1F, 0.1F)
+					.build("artemis_missile"));
+
 	private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, Supplier<EntityType<T>> type) {
 		return ENTITIES.register(name, type);
 	}
