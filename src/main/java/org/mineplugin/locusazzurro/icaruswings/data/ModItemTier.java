@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
+import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 public enum ModItemTier implements IItemTier{
 	

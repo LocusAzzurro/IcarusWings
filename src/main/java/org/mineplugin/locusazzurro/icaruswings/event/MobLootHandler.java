@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.mineplugin.locusazzurro.icaruswings.data.BindList;
-import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.utils.BindList;
+import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;

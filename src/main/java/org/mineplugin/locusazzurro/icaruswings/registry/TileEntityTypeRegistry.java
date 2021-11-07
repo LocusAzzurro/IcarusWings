@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.data;
+package org.mineplugin.locusazzurro.icaruswings.registry;
 
 import org.mineplugin.locusazzurro.icaruswings.blocks.*;
 
@@ -6,9 +6,10 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 
 public class TileEntityTypeRegistry {
-	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, Utils.MOD_ID);
+	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, ModData.MOD_ID);
 	
 	public static final RegistryObject<TileEntityType<MeadPotTileEntity>> 
 		meadPotTileEntity = TILE_ENTITIES.register(

@@ -1,6 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
-import org.mineplugin.locusazzurro.icaruswings.data.TileEntityTypeRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.TileEntityTypeRegistry;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;

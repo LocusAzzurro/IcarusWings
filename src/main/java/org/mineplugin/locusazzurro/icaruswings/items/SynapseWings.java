@@ -11,7 +11,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.data.ModConfig;
-import org.mineplugin.locusazzurro.icaruswings.data.Utils;
+import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 
 import com.google.common.collect.Multimap;
@@ -33,7 +33,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @Mod.EventBusSubscriber
 public abstract class SynapseWings extends AbstractWings{
 	
-	protected final UUID MODIFIER_UUID = Utils.ARMOR_MODIFIER_UUID_PER_SLOT[2];
+	protected final UUID MODIFIER_UUID = ModData.ARMOR_MODIFIER_UUID_PER_SLOT[2];
 	private static final double WINGS_SPEED_MOD_CONFIG = ModConfig.WINGS_SPEED_MOD.get();
 
 	public SynapseWings(WingsType type) {

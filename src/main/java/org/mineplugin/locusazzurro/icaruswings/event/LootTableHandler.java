@@ -2,8 +2,8 @@ package org.mineplugin.locusazzurro.icaruswings.event;
 
 import java.util.Set;
 
-import org.mineplugin.locusazzurro.icaruswings.data.BindList;
-import org.mineplugin.locusazzurro.icaruswings.data.Utils;
+import org.mineplugin.locusazzurro.icaruswings.utils.BindList;
+import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 
 import com.google.common.collect.Sets;
 
@@ -62,7 +62,7 @@ public class LootTableHandler {
 		
 		private static ResourceLocation register(String tableName) {
 		
-			ResourceLocation tableEntry = new ResourceLocation(Utils.MOD_ID, tableName);
+			ResourceLocation tableEntry = new ResourceLocation(ModData.MOD_ID, tableName);
 			if (TABLES.add(tableEntry)) { return tableEntry; }
 			else { throw new IllegalArgumentException(tableEntry + " is already registered."); }
 		}

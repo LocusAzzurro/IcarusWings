@@ -5,8 +5,9 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.mineplugin.locusazzurro.icaruswings.data.*;
+import org.mineplugin.locusazzurro.icaruswings.registry.*;
 
-@Mod(Utils.MOD_ID)
+@Mod(ModData.MOD_ID)
 public class IcarusWings {
 	public IcarusWings() {
 		
@@ -18,6 +19,7 @@ public class IcarusWings {
 	EnchantmentRegistry.ENCHANTMENTS.register(bus);
 	EffectRegistry.EFFECTS.register(bus);
 	EntityTypeRegistry.ENTITIES.register(bus);
+	ParticleRegistry.PARTICLES.register(bus);
 
 	ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, ModConfig.CONFIG);
 	}

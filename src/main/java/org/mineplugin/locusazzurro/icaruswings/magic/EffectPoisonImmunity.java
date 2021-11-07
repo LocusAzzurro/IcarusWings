@@ -3,7 +3,7 @@ package org.mineplugin.locusazzurro.icaruswings.magic;
 
 import javax.annotation.Nullable;
 
-import org.mineplugin.locusazzurro.icaruswings.data.EffectRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectInstance;

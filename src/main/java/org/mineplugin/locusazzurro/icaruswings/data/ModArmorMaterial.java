@@ -10,6 +10,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraft.tags.ItemTags;
+import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 public enum ModArmorMaterial implements IArmorMaterial{
 	// name, duraMulti, slotProt[4], enchValue, sound, toughness, KBRes, repIng

@@ -1,6 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
-import org.mineplugin.locusazzurro.icaruswings.data.BlockRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.StairsBlock;

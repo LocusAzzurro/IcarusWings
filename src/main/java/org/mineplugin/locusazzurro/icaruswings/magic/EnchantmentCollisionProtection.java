@@ -1,6 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.magic;
 
-import org.mineplugin.locusazzurro.icaruswings.data.EnchantmentRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.EnchantmentRegistry;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;

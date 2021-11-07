@@ -2,7 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 
 import javax.annotation.Nullable;
 
-import org.mineplugin.locusazzurro.icaruswings.data.BlockRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import net.minecraft.inventory.EquipmentSlotType;

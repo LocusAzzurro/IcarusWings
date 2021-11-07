@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ModArmorMaterial;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-import org.mineplugin.locusazzurro.icaruswings.data.Utils;
+import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
@@ -24,7 +24,7 @@ public class BeeswaxArmor extends ArmorItem implements IArmorVanishable {
 	
 	private static final ModArmorMaterial material = ModArmorMaterial.BEESWAX;
 
-	private static final UUID[] ARMOR_MODIFIER_UUID_PER_SLOT = Utils.ARMOR_MODIFIER_UUID_PER_SLOT;
+	private static final UUID[] ARMOR_MODIFIER_UUID_PER_SLOT = ModData.ARMOR_MODIFIER_UUID_PER_SLOT;
 
 	public BeeswaxArmor(EquipmentSlotType slot) {
 		super(material, slot, new Item.Properties().tab(ModGroup.itemGroup).defaultDurability(material.getDurabilityForSlot(slot)));

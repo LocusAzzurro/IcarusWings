@@ -7,15 +7,13 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3f;
-import org.lwjgl.opengl.GL11;
-import org.mineplugin.locusazzurro.icaruswings.data.Utils;
+import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.entity.ArtemisMissileEntity;
 
 public class ArtemisMissileRenderer extends EntityRenderer<ArtemisMissileEntity> {
 
-    private static final ResourceLocation MISSILE = new ResourceLocation(Utils.MOD_ID, "textures/entity/artemis_missile.png");
+    private static final ResourceLocation MISSILE = new ResourceLocation(ModData.MOD_ID, "textures/entity/artemis_missile.png");
     private final ArtemisMissileModel model = new ArtemisMissileModel();
 
     public ArtemisMissileRenderer(EntityRendererManager p_i46179_1_) {

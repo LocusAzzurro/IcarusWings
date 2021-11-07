@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 
-import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.merchant.villager.VillagerTrades;

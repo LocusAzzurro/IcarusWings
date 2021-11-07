@@ -1,6 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.render;
 
-import org.mineplugin.locusazzurro.icaruswings.data.Utils;
+import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.items.AbstractWings;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -25,7 +25,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extends ElytraLayer<T, M> {
 	
-	private static final ResourceLocation WINGS_FEATHER = new ResourceLocation(Utils.MOD_ID, "textures/entity/feather_wings.png");
+	private static final ResourceLocation WINGS_FEATHER = new ResourceLocation(ModData.MOD_ID, "textures/entity/feather_wings.png");
 	private final WingsModel<T> elytraModel = new WingsModel<>();
 
 	public WingsLayer(IEntityRenderer<T, M> renderIn) {

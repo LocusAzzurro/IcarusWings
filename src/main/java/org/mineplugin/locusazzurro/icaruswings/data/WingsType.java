@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.ResourceLocation;
+import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 public enum WingsType implements IWingsType{
 
@@ -34,8 +35,8 @@ public enum WingsType implements IWingsType{
 		this.durability = durability;
 		this.repairItem = new LazyValue<>(repairItem);
 		this.hasReversedTexture = hasReverse;
-		this.texture = new ResourceLocation(Utils.MOD_ID, "textures/entity/" + name + "_wings.png");
-		this.textureReversed = new ResourceLocation(Utils.MOD_ID, "textures/entity/" + name + "_wings_reversed.png");
+		this.texture = new ResourceLocation(ModData.MOD_ID, "textures/entity/" + name + "_wings.png");
+		this.textureReversed = new ResourceLocation(ModData.MOD_ID, "textures/entity/" + name + "_wings_reversed.png");
 		
 	}
 	

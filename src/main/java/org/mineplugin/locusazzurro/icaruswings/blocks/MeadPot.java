@@ -2,7 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.blocks;
 
 import java.util.Random;
 
-import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;

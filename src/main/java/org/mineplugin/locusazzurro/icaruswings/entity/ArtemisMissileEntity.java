@@ -4,15 +4,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.DamagingProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
-import net.minecraft.entity.projectile.ProjectileItemEntity;
-import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
@@ -22,11 +16,9 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
-import org.mineplugin.locusazzurro.icaruswings.data.EntityTypeRegistry;
-import org.mineplugin.locusazzurro.icaruswings.data.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -91,8 +83,7 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     @Override
     public void tick() {
         if (level.isClientSide()) {
-            //trail effects
-            //level.addParticle(ParticleTypes.ENTITY_EFFECT, this.getX(), getY(), getZ(), 1f, 1f, 1f);
+            level.addParticle(ParticleRegistry.plasmaTrail.get(), getX(), getY(), getZ(), 0d, 0d, 0d);
         }
 
         this.projectileTick();

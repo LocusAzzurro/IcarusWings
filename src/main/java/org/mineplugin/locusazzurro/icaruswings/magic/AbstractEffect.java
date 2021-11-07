@@ -12,12 +12,12 @@ import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
 
-import org.mineplugin.locusazzurro.icaruswings.data.Utils;
+import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Utils.MOD_ID)
+@Mod.EventBusSubscriber(modid = ModData.MOD_ID)
 public abstract class AbstractEffect extends Effect {
 
 	protected ArrayList<ItemStack> CurativeItems = new ArrayList<>();

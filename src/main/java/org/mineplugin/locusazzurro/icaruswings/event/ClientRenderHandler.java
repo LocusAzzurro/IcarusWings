@@ -1,6 +1,5 @@
 package org.mineplugin.locusazzurro.icaruswings.event;
 
-import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -9,8 +8,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import org.mineplugin.locusazzurro.icaruswings.data.EntityTypeRegistry;
-import org.mineplugin.locusazzurro.icaruswings.entity.ArtemisMissileEntity;
+import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.render.ArtemisMissileRenderer;
 import org.mineplugin.locusazzurro.icaruswings.render.GoldenRamRenderer;
 

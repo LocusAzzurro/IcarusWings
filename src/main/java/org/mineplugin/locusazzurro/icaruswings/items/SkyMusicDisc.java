@@ -3,7 +3,7 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 import java.util.function.Supplier;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-import org.mineplugin.locusazzurro.icaruswings.data.SoundRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.MusicDiscItem;
