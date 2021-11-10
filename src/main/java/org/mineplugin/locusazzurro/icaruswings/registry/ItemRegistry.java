@@ -173,6 +173,10 @@ public class ItemRegistry {
     public static final RegistryObject<Item> artemisLauncher = ITEMS.register("artemis_launcher", ArtemisLauncher::new);
 
     public static final RegistryObject<Item> transportCardBase = ITEMS.register("transport_card_base", BaseTransportCard::new);
+    public static final RegistryObject<Item> transportCardArtemisHoming = ITEMS.register("transport_card_artemis_homing",
+            () -> new ArtemisTransportCard(true));
+    public static final RegistryObject<Item> transportCardArtemisScatter = ITEMS.register("transport_card_artemis_scatter",
+            ArtemisTransportCard::new);
 
     public static final RegistryObject<Item> discFallenDown = ITEMS.register("disc_fallen_down",
     		() -> new SkyMusicDisc(SkyMusicDisc.Track.FALLEN_DOWN));

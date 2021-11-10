@@ -10,12 +10,13 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import java.util.List;
 
 
-public abstract class AbstractTransportCard  extends Item {
+public abstract class AbstractTransportCard extends Item {
 
     private CardType type;
 
@@ -37,13 +38,21 @@ public abstract class AbstractTransportCard  extends Item {
                 .setStyle(Style.EMPTY.withColor(TextFormatting.GRAY)));
     }
 
+    @Override
+    public String getDescriptionId(){
+        return "item." + ModData.MOD_ID + ".transport_card";
+    }
+
     public CardType getType(){
         return this.type;
     }
 
     public enum CardType implements IStringSerializable {
         BASE("base"),
-        TELEPORT("teleport");
+        TELEPORT("teleport"),
+        ARTEMIS_HOMING("artemis_homing"),
+        ARTEMIS_SCATTER("artemis_scatter"),
+        CHRONO_EXPLOLSION("chrono_explosion"),;
 
         private final String name;
 
