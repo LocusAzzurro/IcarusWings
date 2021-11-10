@@ -7,6 +7,9 @@ import net.minecraft.entity.projectile.DamagingProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
+import net.minecraft.particles.BasicParticleType;
+import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleType;
 import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
@@ -31,6 +34,8 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     private int explosionPower = 1;
     private static final int DEFAULT_FUEL = 1200; // Default: 1200 (60s)
     private int fuel;
+    private double homingSpeed = 1.1;
+    private static final IParticleData PARTICLE = ParticleRegistry.plasmaTrail.get();
 
     public ArtemisMissileEntity(EntityType<? extends ArtemisMissileEntity> type, World world) {
         super(type, world);
@@ -82,8 +87,24 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
 
     @Override
     public void tick() {
+
+        Vector3d vec = this.getDeltaMovement();
+
         if (level.isClientSide()) {
-            level.addParticle(ParticleRegistry.plasmaTrail.get(), getX(), getY(), getZ(), 0d, 0d, 0d);
+            for (int j = 0; j < 4; j++){
+                for (int i = 0; i < 4; i++){
+                    double xR = level.random.nextDouble() * 0.2d;
+                    double yR = level.random.nextDouble() * 0.2d;
+                    double zR = level.random.nextDouble() * 0.2d;
+                    level.addParticle(PARTICLE,
+                            getX() - (vec.x * 0.25 * j) + xR,
+                            getY() - (vec.y * 0.25 * j) + yR,
+                            getZ() - (vec.z * 0.25 * j) + zR,
+                            - (vec.x * 0.2),
+                            - (vec.y * 0.25),
+                            - (vec.z * 0.2));
+              }
+            }
         }
 
         this.projectileTick();
@@ -95,7 +116,7 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
                     target.getX() - this.getX(),
                     target.getY() - this.getY(),
                     target.getZ() - this.getZ())
-                    .normalize().scale(1.1);
+                    .normalize().scale(homingSpeed);
             this.setDeltaMovement(v3d);
         }
         if (this.fuel <= 0) {
@@ -128,7 +149,7 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
             Entity entity = ray.getEntity();
             Entity owner = this.getOwner();
             entity.hurt(
-                    (new IndirectEntityDamageSource("fireworks", this, owner)).setExplosion()
+                    (new IndirectEntityDamageSource("explosion", this, owner)).setExplosion()
                     , 4.0F);
             if (owner instanceof LivingEntity) {
                 this.doEnchantDamageEffects((LivingEntity)owner, entity);

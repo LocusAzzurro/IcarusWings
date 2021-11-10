@@ -14,14 +14,28 @@ public class PlasmaTrailParticle extends SpriteTexturedParticle {
     protected PlasmaTrailParticle(ClientWorld world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(world, x, y, z, xSpeed, ySpeed, zSpeed);
         this.setColor(1f,1f,1f);
-        this.setSize(0.05f, 0.05f);
-        this.scale(1f);
-        this.xd = 0.00f;
-        this.yd = 0.02f;
-        this.zd = 0.00f;
-        this.lifetime = 40;
+        this.setSize(0.03f, 0.03f);
+        this.scale(0.9f);
+        this.xd = xSpeed + (Math.random() * 2.0d - 1.0d) * 0.02d;
+        this.yd = ySpeed + (Math.random() * 2.0d - 1.0d) * 0.02d;
+        this.zd = zSpeed + (Math.random() * 2.0d - 1.0d) * 0.02d;
+        this.lifetime = (int)(20 / Math.random() * 1.2f);
         this.hasPhysics = true;
     }
+
+    public void tick(){
+        this.xo = this.x;
+        this.yo = this.y;
+        this.zo = this.z;
+        if (this.age++ >= this.lifetime) this.remove();
+        else {
+            this.move(xd, yd, zd);
+            this.xd *= 1.0d;
+            this.yd *= 1.0d;
+            this.zd *= 1.0d;
+        }
+    }
+
 
     @Override
     public IParticleRenderType getRenderType() {
