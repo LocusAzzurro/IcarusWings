@@ -2,6 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 
 import java.util.List;
 
+import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -19,6 +20,7 @@ public class FallenRelic extends Item{
 	
 	protected RelicType relicType;
 	private final boolean isRestored;
+	private final boolean isUpgraded = false;
 	
 	public FallenRelic(RelicType type, boolean restored){
 		super(new Item.Properties().tab(ModGroup.itemGroup).stacksTo(1).fireResistant().rarity(Rarity.UNCOMMON));
@@ -50,18 +52,25 @@ public class FallenRelic extends Item{
 		list.add(new TranslationTextComponent("item.locusazzurro_icaruswings.fallen_relic_"+ type +".tooltip")
 				.setStyle(Style.EMPTY.withColor(TextFormatting.GRAY)));
 	}
+
+	@Override
+	public String getDescriptionId(){
+		return "item." + ModData.MOD_ID + "." + (this.getType().isUpgraded() ? "upgraded_" : (this.isRestored ? "restored_" : "")) + "fallen_relic";
+	}
 	
 	public enum RelicType implements IStringSerializable{
-		CORE("core"),
-		SECOND_GEN_CORE("second_gen_core"),
-		INTERFACE("interface"),
-		OFFENSIVE("offensive"),
-		DEFENSIVE("defensive"),
-		PROPULSION("propulsion");
+		CORE("core", false),
+		SECOND_GEN_CORE("second_gen_core", true),
+		INTERFACE("interface", false),
+		OFFENSIVE("offensive", false),
+		DEFENSIVE("defensive", false),
+		PROPULSION("propulsion", false);
 		
 		private final String name;
-		RelicType (String name) {
+		private final boolean upgraded;
+		RelicType (String name, boolean upgraded) {
 			this.name = name;
+			this.upgraded = upgraded;
 		}
 		
 		@Override
@@ -72,6 +81,11 @@ public class FallenRelic extends Item{
 		public String getSerializedName() {
 			return this.name;
 		}
+
+		public boolean isUpgraded(){
+			return this.upgraded;
+		}
+
 	}
 
 }

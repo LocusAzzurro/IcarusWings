@@ -77,18 +77,9 @@
 "item.locusazzurro_icaruswings.magic_wings":"Magical Wings",
 "item.locusazzurro_icaruswings.flandre_magic_wings":"Flandre's Wings",
 
-"item.locusazzurro_icaruswings.fallen_relic_core":"Fallen Relic",
-"item.locusazzurro_icaruswings.fallen_relic_interface":"Fallen Relic",
-"item.locusazzurro_icaruswings.fallen_relic_offensive":"Fallen Relic",
-"item.locusazzurro_icaruswings.fallen_relic_defensive":"Fallen Relic",
-"item.locusazzurro_icaruswings.fallen_relic_propulsion":"Fallen Relic",
-
-"item.locusazzurro_icaruswings.restored_fallen_relic_core":"Restored Fallen Relic",
-"item.locusazzurro_icaruswings.restored_fallen_relic_interface":"Restored Fallen Relic",
-"item.locusazzurro_icaruswings.restored_fallen_relic_offensive":"Restored Fallen Relic",
-"item.locusazzurro_icaruswings.restored_fallen_relic_defensive":"Restored Fallen Relic",
-"item.locusazzurro_icaruswings.restored_fallen_relic_propulsion":"Restored Fallen Relic",
-"item.locusazzurro_icaruswings.upgraded_fallen_relic_core":"Upgraded Fallen Relic",
+"item.locusazzurro_icaruswings.fallen_relic":"Fallen Relic",
+"item.locusazzurro_icaruswings.restored_fallen_relic":"Restored Fallen Relic",
+"item.locusazzurro_icaruswings.upgraded_fallen_relic":"Upgraded Fallen Relic",
 
 "item.locusazzurro_icaruswings.fallen_relic_core.tooltip":"Core Systems",
 "item.locusazzurro_icaruswings.fallen_relic_interface.tooltip":"Interface Systems",

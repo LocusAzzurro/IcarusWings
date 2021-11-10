@@ -77,18 +77,9 @@
 "item.locusazzurro_icaruswings.magic_wings":"魔法之翼",
 "item.locusazzurro_icaruswings.flandre_magic_wings":"芙兰朵露的魔法之翼",
 
-"item.locusazzurro_icaruswings.fallen_relic_core":"坠落遗物",
-"item.locusazzurro_icaruswings.fallen_relic_interface":"坠落遗物",
-"item.locusazzurro_icaruswings.fallen_relic_offensive":"坠落遗物",
-"item.locusazzurro_icaruswings.fallen_relic_defensive":"坠落遗物",
-"item.locusazzurro_icaruswings.fallen_relic_propulsion":"坠落遗物",
-
-"item.locusazzurro_icaruswings.restored_fallen_relic_core":"修复的坠落遗物",
-"item.locusazzurro_icaruswings.restored_fallen_relic_interface":"修复的坠落遗物",
-"item.locusazzurro_icaruswings.restored_fallen_relic_offensive":"修复的坠落遗物",
-"item.locusazzurro_icaruswings.restored_fallen_relic_defensive":"修复的坠落遗物",
-"item.locusazzurro_icaruswings.restored_fallen_relic_propulsion":"修复的坠落遗物",
-"item.locusazzurro_icaruswings.upgraded_fallen_relic_core":"升级的坠落遗物",
+"item.locusazzurro_icaruswings.fallen_relic":"坠落遗物",
+"item.locusazzurro_icaruswings.restored_fallen_relic":"修复的坠落遗物",
+"item.locusazzurro_icaruswings.upgraded_fallen_relic":"升级的坠落遗物",
 
 "item.locusazzurro_icaruswings.fallen_relic_core.tooltip":"核心系统",
 "item.locusazzurro_icaruswings.fallen_relic_interface.tooltip":"潘多拉系统",
