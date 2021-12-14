@@ -43,6 +43,9 @@ public class ArtemisTransportCard extends AbstractTransportCard{
         };
         Vector3d vectorBias = Vector3d.ZERO;
         AbstractTransportCard.CardType type = ((AbstractTransportCard) item).getType();
+
+        super.use(worldIn, playerIn, handIn);
+
         if (type == CardType.ARTEMIS_HOMING){
             LivingEntity target = ProjectileUtils.rayTraceTarget(playerIn, 0.1d, 300, 0.2);
             if (target == null){ return ActionResult.pass(itemStack); }

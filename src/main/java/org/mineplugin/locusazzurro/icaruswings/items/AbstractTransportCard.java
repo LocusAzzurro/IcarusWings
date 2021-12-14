@@ -1,9 +1,12 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
@@ -23,6 +26,12 @@ public abstract class AbstractTransportCard extends Item {
     public AbstractTransportCard(CardType type){
         super(new Properties().tab(ModGroup.itemGroup).rarity(Rarity.UNCOMMON));
         this.type = type;
+    }
+
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn){
+        ItemStack itemstack = playerIn.getItemInHand(handIn);
+        //TODO: add coonfig to disable
+        return ActionResult.pass(itemstack);
     }
 
     @Override
