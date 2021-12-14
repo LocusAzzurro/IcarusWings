@@ -16,10 +16,10 @@ public class PlasmaTrailParticle extends SpriteTexturedParticle {
         this.setColor(1f,1f,1f);
         this.setSize(0.03f, 0.03f);
         this.scale(0.9f);
-        this.xd = xSpeed + (Math.random() * 2.0d - 1.0d) * 0.02d;
-        this.yd = ySpeed + (Math.random() * 2.0d - 1.0d) * 0.02d;
-        this.zd = zSpeed + (Math.random() * 2.0d - 1.0d) * 0.02d;
-        this.lifetime = (int)(20 / Math.random() * 1.2f);
+        this.xd = xSpeed + (Math.random() * 2.0d - 1.0d) * 0.005d;
+        this.yd = ySpeed + (Math.random() * 2.0d - 1.0d) * 0.005d;
+        this.zd = zSpeed + (Math.random() * 2.0d - 1.0d) * 0.005d;
+        this.lifetime = (int)(10 / Math.random() * 1.5f);
         this.hasPhysics = true;
     }
 

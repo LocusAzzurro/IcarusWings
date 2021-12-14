@@ -91,19 +91,22 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
         Vector3d vec = this.getDeltaMovement();
 
         if (level.isClientSide()) {
-            for (int j = 0; j < 4; j++){
-                for (int i = 0; i < 4; i++){
-                    double xR = level.random.nextDouble() * 0.2d;
-                    double yR = level.random.nextDouble() * 0.2d;
-                    double zR = level.random.nextDouble() * 0.2d;
-                    level.addParticle(PARTICLE,
-                            getX() - (vec.x * 0.25 * j) + xR,
-                            getY() - (vec.y * 0.25 * j) + yR,
-                            getZ() - (vec.z * 0.25 * j) + zR,
-                            - (vec.x * 0.2),
-                            - (vec.y * 0.25),
-                            - (vec.z * 0.2));
-              }
+
+            if (vec.length() > 0.05) {
+                for (int j = 0; j < 4; j++) {
+                    for (int i = 0; i < 4; i++) {
+                        double xR = level.random.nextDouble() * 0.2d;
+                        double yR = level.random.nextDouble() * 0.2d;
+                        double zR = level.random.nextDouble() * 0.2d;
+                        level.addParticle(PARTICLE,
+                                this.getX() - (vec.x * 0.25 * j) + xR,
+                                this.getY() - (vec.y * 0.25 * j) + yR,
+                                this.getZ() - (vec.z * 0.25 * j) + zR,
+                                -(vec.x * 0.1),
+                                -(vec.y * 0.15),
+                                -(vec.z * 0.1));
+                    }
+                }
             }
         }
 
@@ -199,6 +202,11 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     @Override
     protected boolean shouldBurn(){
         return false;
+    }
+
+    @Override
+    public boolean isPickable(){
+        return true;
     }
 
     @Override
