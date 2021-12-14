@@ -8,7 +8,7 @@ import javax.annotation.Nullable;
 public class DamageTimeRift extends EntityDamageSource {
 
     public DamageTimeRift(@Nullable Entity source){
-        super("time_rift", source);
+        super("timeRift", source);
     }
 
     public boolean isBypassArmor(){
