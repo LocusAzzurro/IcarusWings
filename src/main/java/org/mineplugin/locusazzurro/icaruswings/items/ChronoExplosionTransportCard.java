@@ -7,6 +7,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import org.mineplugin.locusazzurro.icaruswings.entity.TimeBombEntity;
 import org.mineplugin.locusazzurro.icaruswings.magic.DamageTimeRift;
 
 import java.util.List;
@@ -23,6 +24,10 @@ public class ChronoExplosionTransportCard extends AbstractTransportCard{
     public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn){
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         super.use(worldIn, playerIn, handIn);
+
+        TimeBombEntity bomb = new TimeBombEntity(worldIn, playerIn, DAMAGE, RANGE, 60);
+        worldIn.addFreshEntity(bomb);
+        /*
         float r = RANGE;
         AxisAlignedBB aabb = new AxisAlignedBB(r,r,r,-r,-r,-r).move(playerIn.position());
         List<LivingEntity> entities = worldIn.getEntitiesOfClass(LivingEntity.class, aabb);
@@ -30,6 +35,8 @@ public class ChronoExplosionTransportCard extends AbstractTransportCard{
         for(LivingEntity entity : entities){
             entity.hurt(new DamageTimeRift(playerIn), DAMAGE);
         }
+
+         */
 
         return ActionResult.consume(itemstack);
     }

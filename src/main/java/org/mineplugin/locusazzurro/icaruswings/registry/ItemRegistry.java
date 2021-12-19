@@ -177,7 +177,7 @@ public class ItemRegistry {
             () -> new ArtemisTransportCard(true));
     public static final RegistryObject<Item> transportCardArtemisScatter = ITEMS.register("transport_card_artemis_scatter",
             ArtemisTransportCard::new);
-    public static final RegistryObject<Item> chronoExplosionTransportCard = ITEMS.register("transport_card_chrono_explosion",
+    public static final RegistryObject<Item> transportCardChronoExplosion = ITEMS.register("transport_card_chrono_explosion",
             ChronoExplosionTransportCard::new);
 
     public static final RegistryObject<Item> discFallenDown = ITEMS.register("disc_fallen_down",

@@ -28,6 +28,12 @@ public class EntityTypeRegistry {
 					.sized(0.1F, 0.1F)
 					.build("artemis_missile"));
 
+	public static final RegistryObject<EntityType<TimeBombEntity>> timeBombEntity =
+			register("time_bomb", () -> EntityType.Builder
+					.<TimeBombEntity>of(TimeBombEntity::new, EntityClassification.MISC)
+					.sized(0.1F, 0.1F)
+					.build("time_bomb"));
+
 	private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, Supplier<EntityType<T>> type) {
 		return ENTITIES.register(name, type);
 	}
