@@ -25,4 +25,10 @@ public class ProjectileUtils {
         }
         return null;
     }
+
+    @Nullable
+    public static LivingEntity rayTraceTargetFixedDistance(LivingEntity targeter, double step, int distance, double size){
+        return rayTraceTarget(targeter, step, (int)Math.ceil(distance/step), size);
+    }
+
 }
