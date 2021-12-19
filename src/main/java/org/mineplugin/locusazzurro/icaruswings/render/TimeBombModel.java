@@ -11,7 +11,12 @@ public class TimeBombModel extends EntityModel<TimeBombEntity> {
     private final ModelRenderer bomb;
 
     public TimeBombModel() {
-        this.bomb = new ModelRenderer(this);
+        texWidth = 16;
+        texHeight = 8;
+
+        bomb = new ModelRenderer(this);
+        bomb.setPos(0.0F, 24.0F, 0.0F);
+        bomb.texOffs(0, 0).addBox(-2.0F, -2.0F, -2.0F, 4.0F, 4.0F, 4.0F, 0.0F, false);
 
     }
 

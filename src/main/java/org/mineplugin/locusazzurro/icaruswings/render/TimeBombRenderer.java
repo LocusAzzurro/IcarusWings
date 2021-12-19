@@ -13,7 +13,7 @@ import org.mineplugin.locusazzurro.icaruswings.entity.TimeBombEntity;
 
 public class TimeBombRenderer extends EntityRenderer<TimeBombEntity> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/time_bomb");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/time_bomb.png");
     private final TimeBombModel model = new TimeBombModel();
 
     public TimeBombRenderer(EntityRendererManager p_i46179_1_) {
@@ -24,6 +24,7 @@ public class TimeBombRenderer extends EntityRenderer<TimeBombEntity> {
     public void render(TimeBombEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn){
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
         matrixStackIn.pushPose();
+        matrixStackIn.scale(0.1f,0.1f, 0.1f);
         IVertexBuilder ivertexbuilder = bufferIn.getBuffer(model.renderType(TEXTURE));
         this.model.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         matrixStackIn.popPose();
