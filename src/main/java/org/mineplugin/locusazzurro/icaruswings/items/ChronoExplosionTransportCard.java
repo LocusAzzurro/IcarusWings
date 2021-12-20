@@ -27,16 +27,8 @@ public class ChronoExplosionTransportCard extends AbstractTransportCard{
 
         TimeBombEntity bomb = new TimeBombEntity(worldIn, playerIn, DAMAGE, RANGE, 60);
         worldIn.addFreshEntity(bomb);
-        /*
-        float r = RANGE;
-        AxisAlignedBB aabb = new AxisAlignedBB(r,r,r,-r,-r,-r).move(playerIn.position());
-        List<LivingEntity> entities = worldIn.getEntitiesOfClass(LivingEntity.class, aabb);
-        if(!playerIn.isCreative()) {itemstack.shrink(1);}
-        for(LivingEntity entity : entities){
-            entity.hurt(new DamageTimeRift(playerIn), DAMAGE);
-        }
 
-         */
+        if(!playerIn.isCreative()) {itemstack.shrink(1);}
 
         return ActionResult.consume(itemstack);
     }

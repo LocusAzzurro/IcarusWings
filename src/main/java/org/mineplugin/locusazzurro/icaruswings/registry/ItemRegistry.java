@@ -1,7 +1,9 @@
 package org.mineplugin.locusazzurro.icaruswings.registry;
 
+import net.minecraft.item.ItemTier;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
+import org.mineplugin.locusazzurro.icaruswings.data.ModItemTier;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.items.*;
 
@@ -161,8 +163,17 @@ public class ItemRegistry {
     		() -> new SynapseArmor(EquipmentSlotType.FEET));
     
     public static final RegistryObject<Item> synapseAlloySword = ITEMS.register("synapse_alloy_sword", SynapseAlloySword::new);
-    public static final RegistryObject<Item> steelPickaxe= ITEMS.register("steel_pickaxe", SteelPickaxe::new);
-    
+    public static final RegistryObject<Item> steelPickaxe = ITEMS.register("steel_pickaxe", SteelPickaxe::new);
+
+    public static final RegistryObject<Item> woodenSpear = ITEMS.register("wooden_spear", () -> new SpearItem(ItemTier.WOOD));
+    public static final RegistryObject<Item> stoneSpear = ITEMS.register("stone_spear", () -> new SpearItem(ItemTier.STONE));
+    public static final RegistryObject<Item> ironSpear = ITEMS.register("iron_spear", () -> new SpearItem(ItemTier.IRON));
+    public static final RegistryObject<Item> steelSpear = ITEMS.register("steel_spear", () -> new SpearItem(ModItemTier.STEEL));
+    public static final RegistryObject<Item> goldenSpear = ITEMS.register("golden_spear", () -> new SpearItem(ItemTier.GOLD));
+    public static final RegistryObject<Item> diamondSpear = ITEMS.register("diamond_spear", () -> new SpearItem(ItemTier.DIAMOND));
+    public static final RegistryObject<Item> netheriteSpear = ITEMS.register("netherite_spear", () -> new SpearItem(ItemTier.NETHERITE));
+    public static final RegistryObject<Item> synapseAlloySpear = ITEMS.register("synapse_alloy_spear", () -> new SpearItem(ModItemTier.SYNAPSE_ALLOY));
+
     public static final RegistryObject<Item> ikarosWings = ITEMS.register("ikaros_wings", SynapseWingsAlpha::new);
     public static final RegistryObject<Item> nymphWings = ITEMS.register("nymph_wings", SynapseWingsBeta::new);
     public static final RegistryObject<Item> astraeaWings = ITEMS.register("astraea_wings", SynapseWingsDelta::new);
