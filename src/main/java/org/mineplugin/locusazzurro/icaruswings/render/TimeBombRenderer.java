@@ -8,9 +8,12 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.entity.TimeBombEntity;
 
+@OnlyIn(Dist.CLIENT)
 public class TimeBombRenderer extends EntityRenderer<TimeBombEntity> {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/time_bomb.png");

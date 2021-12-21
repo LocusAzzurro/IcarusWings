@@ -2,8 +2,11 @@ package org.mineplugin.locusazzurro.icaruswings.render;
 
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.entity.GoldenRamEntity;
 
+@OnlyIn(Dist.CLIENT)
 public class GoldenRamModel<T extends GoldenRamEntity> extends QuadrupedModel<T> {
 
     private float headXRot;

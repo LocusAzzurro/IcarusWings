@@ -3,8 +3,11 @@ package org.mineplugin.locusazzurro.icaruswings.render;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.entity.GoldenRamEntity;
 
+@OnlyIn(Dist.CLIENT)
 public class GoldenRamRenderer extends MobRenderer<GoldenRamEntity, GoldenRamModel<GoldenRamEntity>>{
     private static final ResourceLocation RAM = new ResourceLocation("textures/entity/ram.png");//texture to be added
     private GoldenRamEntity p_110775_1_;

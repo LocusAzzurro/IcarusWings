@@ -4,8 +4,11 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.entity.TimeBombEntity;
 
+@OnlyIn(Dist.CLIENT)
 public class TimeBombModel extends EntityModel<TimeBombEntity> {
 
     private final ModelRenderer bomb;
