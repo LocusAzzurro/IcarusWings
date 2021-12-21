@@ -11,6 +11,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.render.ArtemisMissileRenderer;
 import org.mineplugin.locusazzurro.icaruswings.render.GoldenRamRenderer;
+import org.mineplugin.locusazzurro.icaruswings.render.SpearRenderer;
 import org.mineplugin.locusazzurro.icaruswings.render.TimeBombRenderer;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -21,6 +22,7 @@ public class ClientRenderHandler {
         register(EntityTypeRegistry.goldenRamEntity.get(), GoldenRamRenderer::new);
         register(EntityTypeRegistry.artemisMissileEntity.get(), ArtemisMissileRenderer::new);
         register(EntityTypeRegistry.timeBombEntity.get(), TimeBombRenderer::new);
+        register(EntityTypeRegistry.spearEntity.get(), SpearRenderer::new);
     }
 
     private static void register(EntityType<? extends Entity> type, IRenderFactory renderer){

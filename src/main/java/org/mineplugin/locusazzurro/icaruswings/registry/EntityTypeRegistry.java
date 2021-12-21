@@ -34,6 +34,12 @@ public class EntityTypeRegistry {
 					.sized(0.1F, 0.1F)
 					.build("time_bomb"));
 
+	public static final RegistryObject<EntityType<SpearEntity>> spearEntity =
+			register("spear", () -> EntityType.Builder
+					.<SpearEntity>of(SpearEntity::new, EntityClassification.MISC)
+					.sized(0.5F,0.5F)
+					.build("spear"));
+
 	private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, Supplier<EntityType<T>> type) {
 		return ENTITIES.register(name, type);
 	}
