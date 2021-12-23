@@ -19,7 +19,6 @@ import org.mineplugin.locusazzurro.icaruswings.entity.SpearEntity;
 @OnlyIn(Dist.CLIENT)
 public class SpearRenderer extends EntityRenderer<SpearEntity> {
 
-    public static final ResourceLocation SPEAR_TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/trident.png");
     private final SpearModel model = new SpearModel();
 
     public SpearRenderer(EntityRendererManager p_i48828_1_) {
@@ -38,6 +37,6 @@ public class SpearRenderer extends EntityRenderer<SpearEntity> {
 
     //todo add texture variants
     public ResourceLocation getTextureLocation(SpearEntity p_110775_1_) {
-        return SPEAR_TEXTURE;
+        return SpearModel.SPEAR_TEXTURE;
     }
 }

@@ -8,12 +8,15 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.Direction;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
+@OnlyIn(Dist.CLIENT)
 public class SpearBakedModel implements IBakedModel {
 
     private IBakedModel existingModel;
@@ -34,7 +37,7 @@ public class SpearBakedModel implements IBakedModel {
 
     @Override
     public boolean isGui3d() {
-        return this.existingModel.isGui3d();
+        return false;
     }
 
     @Override
@@ -59,7 +62,10 @@ public class SpearBakedModel implements IBakedModel {
 
     @Override
     public IBakedModel handlePerspective(ItemCameraTransforms.TransformType cameraTransformType, MatrixStack mat) {
-        if (cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND) {
+        if (cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND ||
+                cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND ||
+                cameraTransformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND ||
+                cameraTransformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND) {
             return this;
         }
         return this.existingModel.handlePerspective(cameraTransformType, mat);

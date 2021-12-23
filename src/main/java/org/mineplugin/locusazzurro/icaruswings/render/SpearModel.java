@@ -16,20 +16,20 @@ import org.mineplugin.locusazzurro.icaruswings.entity.SpearEntity;
 @OnlyIn(Dist.CLIENT)
 public class SpearModel extends EntityModel<SpearEntity> {
 
-    public static final ResourceLocation TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/trident.png");
+    protected static final ResourceLocation SPEAR_TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/stone_spear.png");
     private final ModelRenderer bone;
 
     public SpearModel() {
         super(RenderType::entitySolid);
         texWidth = 16;
-        texHeight = 16;
+        texHeight = 32;
 
         bone = new ModelRenderer(this);
         bone.setPos(0.0F, 18.0F, 0.0F);
         setRotationAngle(bone, 0.0F, 0.0F, 0.0F);
-        bone.texOffs(0, 0).addBox(-0.5F, -14.0F, -0.5F, 1.0F, 26.0F, 1.0F, 0.0F, false);
-        bone.texOffs(0, 0).addBox(-1.5F, -17.0F, -0.5F, 3.0F, 3.0F, 1.0F, 0.0F, false);
-        bone.texOffs(0, 0).addBox(-0.5F, -19.0F, -0.5F, 1.0F, 2.0F, 1.0F, 0.0F, false);
+        bone.texOffs(1, 2).addBox(-0.5F, -14.0F, -0.5F, 1.0F, 26.0F, 1.0F, 0.0F, false);
+        bone.texOffs(6, 2).addBox(-1.5F, -17.0F, -0.5F, 3.0F, 3.0F, 1.0F, 0.0F, false);
+        bone.texOffs(6, 7).addBox(-0.5F, -19.0F, -0.5F, 1.0F, 2.0F, 1.0F, 0.0F, false);
 
     }
 
