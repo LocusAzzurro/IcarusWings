@@ -28,8 +28,18 @@ public class SpearItemStackTileEntityRenderer extends ItemStackTileEntityRendere
             matrixStack.pushPose();
             //todo process texture diff
             IVertexBuilder vertexBuilder = ItemRenderer.getFoilBuffer(buffer, RenderType.entitySolid(SpearModel.SPEAR_TEXTURE), false, stack.hasFoil());
-            matrixStack.translate(0.5F, 1.5F, 0.6F);
-            matrixStack.scale(1.0F, -1.0F, -1.0F);
+            if (!transformType.firstPerson()) {
+                matrixStack.translate(0.5F, 1.5F, 0.6F);
+                matrixStack.scale(1.0F, -1.0F, -1.0F);
+                if (((SpearItem) stack.getItem()).isUsing()) {
+                    matrixStack.scale(1.0F, -1.0F, -1.0F);
+                    matrixStack.translate(0.0F, -2.0F, 0.0F);
+                }
+            }
+            else {
+                matrixStack.translate(0.5F, 1.5F, 0.6F);
+                matrixStack.scale(1.0F, -1.0F, -1.0F);
+            }
             //model.renderToBuffer(matrixStack, buffer.getBuffer(RenderType.solid()), combinedLight, combinedOverlay, 1,1,1,1);
             model.renderToBuffer(matrixStack, vertexBuilder, combinedLight, combinedOverlay, 1,1,1,1);
             matrixStack.popPose();
