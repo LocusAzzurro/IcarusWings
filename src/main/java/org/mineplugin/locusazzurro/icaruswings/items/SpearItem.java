@@ -5,6 +5,7 @@ import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.IVanishable;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -38,7 +39,6 @@ public class SpearItem extends TieredItem implements IVanishable {
     private static final float BASE_DAMAGE = 1.0f;
     private static final float BASE_ATTACK_SPEED = -1.0f;
     private static final float BASE_ATTACK_RANGE = 6.0f;
-    private boolean isUsing = false;
 
     public SpearItem(IItemTier tier) {
         super(tier, new Properties().tab(ModGroup.itemGroup).setISTER(() -> SpearItemStackTileEntityRenderer::new));
@@ -127,7 +127,7 @@ public class SpearItem extends TieredItem implements IVanishable {
             return ActionResult.fail(itemstack);
         } else {
             playerIn.startUsingItem(handIn);
-            this.isUsing = true;
+            itemstack.getOrCreateTag().putBoolean("isUsing", true);
             return ActionResult.consume(itemstack);
         }
     }
@@ -143,7 +143,7 @@ public class SpearItem extends TieredItem implements IVanishable {
                         player.broadcastBreakEvent(livingIn.getUsedItemHand());
                     });
                 }
-                this.isUsing = false;
+                itemStack.getOrCreateTag().putBoolean("isUsing", false);
                 SpearEntity spearEntity = new SpearEntity(worldIn, playerIn, itemStack);
                 spearEntity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 2.5F, 1.0F);
                 if (playerIn.abilities.instabuild) {
@@ -161,9 +161,6 @@ public class SpearItem extends TieredItem implements IVanishable {
 
         }
     }
-
-    public boolean isUsing() {return this.isUsing;}
-
 
 }
 
