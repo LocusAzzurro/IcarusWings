@@ -13,6 +13,7 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import org.mineplugin.locusazzurro.icaruswings.data.ModConfig;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
@@ -22,6 +23,7 @@ import java.util.List;
 public abstract class AbstractTransportCard extends Item {
 
     private CardType type;
+    private static int PERM_LEVEL = ModConfig.TRANSPORT_CARD_PERMISSION_LEVEL.get();
 
     public AbstractTransportCard(CardType type){
         super(new Properties().tab(ModGroup.itemGroup).rarity(Rarity.UNCOMMON));
@@ -30,7 +32,12 @@ public abstract class AbstractTransportCard extends Item {
 
     public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn){
         ItemStack itemstack = playerIn.getItemInHand(handIn);
-        //TODO: add coonfig to disable
+        switch (PERM_LEVEL) {
+            case 0: return ActionResult.fail(itemstack);
+            case 1: return playerIn.hasPermissions(4) ? ActionResult.pass(itemstack) : ActionResult.fail(itemstack);
+            case 2: return playerIn.isCreative() ? ActionResult.pass(itemstack) : ActionResult.fail(itemstack);
+            case 3: return ActionResult.pass(itemstack);
+        }
         return ActionResult.pass(itemstack);
     }
 
