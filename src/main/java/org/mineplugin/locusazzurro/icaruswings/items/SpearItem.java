@@ -37,7 +37,7 @@ public class SpearItem extends TieredItem implements IVanishable {
     private final float attackSpeed;
     private final float attackRange;
     private static final float BASE_DAMAGE = 1.0f;
-    private static final float BASE_ATTACK_SPEED = -1.0f;
+    private static final float BASE_ATTACK_SPEED = 1.0f;
     private static final float BASE_ATTACK_RANGE = 6.0f;
 
     public SpearItem(IItemTier tier) {
@@ -72,7 +72,7 @@ public class SpearItem extends TieredItem implements IVanishable {
 
     @Override
     public int getEnchantmentValue() {
-        return 1;
+        return this.getTier().getEnchantmentValue();
     }
 
     @Override
@@ -127,7 +127,6 @@ public class SpearItem extends TieredItem implements IVanishable {
             return ActionResult.fail(itemstack);
         } else {
             playerIn.startUsingItem(handIn);
-            itemstack.getOrCreateTag().putBoolean("isUsing", true);
             return ActionResult.consume(itemstack);
         }
     }
@@ -143,7 +142,6 @@ public class SpearItem extends TieredItem implements IVanishable {
                         player.broadcastBreakEvent(livingIn.getUsedItemHand());
                     });
                 }
-                itemStack.getOrCreateTag().putBoolean("isUsing", false);
                 SpearEntity spearEntity = new SpearEntity(worldIn, playerIn, itemStack);
                 spearEntity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 2.5F, 1.0F);
                 if (playerIn.abilities.instabuild) {
@@ -161,6 +159,17 @@ public class SpearItem extends TieredItem implements IVanishable {
 
         }
     }
+
+    @Override
+    public void inventoryTick(ItemStack itemStack, World worldIn, Entity entityIn, int inventorySlot, boolean isSelected){
+        if (entityIn instanceof LivingEntity && isSelected){
+            if (((LivingEntity) entityIn).isUsingItem()){
+                itemStack.getOrCreateTag().putBoolean("Throwing", true);
+            }
+            else {itemStack.getOrCreateTag().putBoolean("Throwing", false);}
+        }
+    }
+
 
 }
 

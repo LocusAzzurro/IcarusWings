@@ -67,7 +67,7 @@ public class SpearEntity extends AbstractArrowEntity {
     @Override
     protected void onHitEntity(EntityRayTraceResult ray) {
         Entity target = ray.getEntity();
-        float f = SpearItem.getBaseAttackDamage();
+        float f = ((SpearItem)this.spearItem.getItem()).getAttackDamage();
         if (target instanceof LivingEntity) {
             LivingEntity livingentity = (LivingEntity)target;
             f += EnchantmentHelper.getDamageBonus(this.spearItem, livingentity.getMobType());

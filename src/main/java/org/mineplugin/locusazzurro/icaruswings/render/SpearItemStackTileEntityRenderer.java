@@ -20,13 +20,23 @@ public class SpearItemStackTileEntityRenderer extends ItemStackTileEntityRendere
     @Override
     public void renderByItem(ItemStack stack, ItemCameraTransforms.TransformType transformType, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay){
         if (stack.getItem() instanceof SpearItem) {
+            boolean throwing = false;
+            if (stack.getOrCreateTag().contains("Throwing")){
+                throwing = stack.getTag().getBoolean("Throwing");
+            }
             matrixStack.pushPose();
-            //todo process texture diff
             IVertexBuilder vertexBuilder = ItemRenderer.getFoilBuffer(buffer, RenderType.entitySolid(SpearModel.getTexture(((SpearItem) stack.getItem()).getTier())), false, stack.hasFoil());
-            matrixStack.translate(0.5F, 1.5F, 0.6F);
-            matrixStack.scale(1.0F, -1.0F, -1.0F);
-            if (stack.getOrCreateTag().contains("isUsing")){
-                if(stack.getTag().getBoolean("isUsing")) System.out.println("Using Spear!");
+            if (transformType.firstPerson()) {
+                matrixStack.translate(0.5F, 1.4F, 0.6F);
+                matrixStack.scale(1.0F, -1.0F, -1.0F);
+            }
+            else{
+                matrixStack.translate(0.5F, 1.5F, 0.6F);
+                matrixStack.scale(1.0F, -1.0F, -1.0F);
+                if (throwing){
+                    matrixStack.scale(1.0F, -1.0F, -1.0F);
+                    matrixStack.translate(0.0F, -2.0F, 0.0F);
+                }
             }
             model.renderToBuffer(matrixStack, vertexBuilder, combinedLight, combinedOverlay, 1,1,1,1);
             matrixStack.popPose();
