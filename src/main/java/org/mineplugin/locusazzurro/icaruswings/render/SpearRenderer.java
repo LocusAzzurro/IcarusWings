@@ -5,9 +5,8 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.model.TridentModel;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.entity.projectile.TridentEntity;
+import net.minecraft.item.IItemTier;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3f;
@@ -15,11 +14,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.entity.SpearEntity;
+import org.mineplugin.locusazzurro.icaruswings.items.SpearItem;
 
 @OnlyIn(Dist.CLIENT)
 public class SpearRenderer extends EntityRenderer<SpearEntity> {
 
-    public static final ResourceLocation SPEAR_TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/trident.png");
     private final SpearModel model = new SpearModel();
 
     public SpearRenderer(EntityRendererManager p_i48828_1_) {
@@ -37,7 +36,9 @@ public class SpearRenderer extends EntityRenderer<SpearEntity> {
     }
 
     //todo add texture variants
-    public ResourceLocation getTextureLocation(SpearEntity p_110775_1_) {
-        return SPEAR_TEXTURE;
+    public ResourceLocation getTextureLocation(SpearEntity entity) {
+        IItemTier tier = ((SpearItem) entity.getPickupItem().getItem()).getTier();
+        return SpearModel.getTexture(tier);
     }
+
 }

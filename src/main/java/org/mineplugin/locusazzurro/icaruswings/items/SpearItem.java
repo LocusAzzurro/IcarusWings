@@ -4,16 +4,14 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.IVanishable;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MoverType;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
@@ -21,15 +19,17 @@ import net.minecraft.item.TieredItem;
 import net.minecraft.item.UseAction;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeMod;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.entity.SpearEntity;
+import org.mineplugin.locusazzurro.icaruswings.render.SpearItemStackTileEntityRenderer;
 
 public class SpearItem extends TieredItem implements IVanishable {
 
@@ -37,11 +37,11 @@ public class SpearItem extends TieredItem implements IVanishable {
     private final float attackSpeed;
     private final float attackRange;
     private static final float BASE_DAMAGE = 1.0f;
-    private static final float BASE_ATTACK_SPEED = -1.0f;
+    private static final float BASE_ATTACK_SPEED = 1.0f;
     private static final float BASE_ATTACK_RANGE = 6.0f;
 
     public SpearItem(IItemTier tier) {
-        super(tier, new Properties().tab(ModGroup.itemGroup));
+        super(tier, new Properties().tab(ModGroup.itemGroup).setISTER(() -> SpearItemStackTileEntityRenderer::new));
         this.attackDamage = BASE_DAMAGE + tier.getAttackDamageBonus();
         this.attackSpeed = BASE_ATTACK_SPEED;
         this.attackRange = BASE_ATTACK_RANGE;
@@ -72,7 +72,7 @@ public class SpearItem extends TieredItem implements IVanishable {
 
     @Override
     public int getEnchantmentValue() {
-        return 1;
+        return this.getTier().getEnchantmentValue();
     }
 
     @Override
@@ -138,8 +138,8 @@ public class SpearItem extends TieredItem implements IVanishable {
             int i = this.getUseDuration(itemStack) - charge;
             if (i >= 10) {
                 if (!worldIn.isClientSide){
-                    itemStack.hurtAndBreak(1, playerIn, (item) -> {
-                        item.broadcastBreakEvent(livingIn.getUsedItemHand());
+                    itemStack.hurtAndBreak(1, playerIn, (player) -> {
+                        player.broadcastBreakEvent(livingIn.getUsedItemHand());
                     });
                 }
                 SpearEntity spearEntity = new SpearEntity(worldIn, playerIn, itemStack);
@@ -157,6 +157,16 @@ public class SpearItem extends TieredItem implements IVanishable {
             }
             playerIn.awardStat(Stats.ITEM_USED.get(this));
 
+        }
+    }
+
+    @Override
+    public void inventoryTick(ItemStack itemStack, World worldIn, Entity entityIn, int inventorySlot, boolean isSelected){
+        if (entityIn instanceof LivingEntity && isSelected){
+            if (((LivingEntity) entityIn).isUsingItem()){
+                itemStack.getOrCreateTag().putBoolean("Throwing", true);
+            }
+            else {itemStack.getOrCreateTag().putBoolean("Throwing", false);}
         }
     }
 
