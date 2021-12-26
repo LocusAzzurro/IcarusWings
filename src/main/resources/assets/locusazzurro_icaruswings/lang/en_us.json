@@ -99,6 +99,15 @@
   "item.locusazzurro_icaruswings.steel_pickaxe": "Steel Pickaxe",
   "item.locusazzurro_icaruswings.synapse_alloy_sword": "Synapsian Alloy Sword",
 
+  "item.locusazzurro_icaruswings.wooden_spear": "Wooden Spear",
+  "item.locusazzurro_icaruswings.stone_spear": "Stone Spear",
+  "item.locusazzurro_icaruswings.iron_spear": "Iron Spear",
+  "item.locusazzurro_icaruswings.steel_spear": "Steel Spear",
+  "item.locusazzurro_icaruswings.golden_spear": "Golden Spear",
+  "item.locusazzurro_icaruswings.diamond_spear": "Diamond Spear",
+  "item.locusazzurro_icaruswings.netherite_spear": "Netherite Spear",
+  "item.locusazzurro_icaruswings.synapse_alloy_spear": "Synapse Alloy Spear",
+
   "item.locusazzurro_icaruswings.synapse_repair_kit": "Synapsian Mutadaptive Repairer",
   "item.locusazzurro_icaruswings.synapse_wings_recharger": "Synapsian Wings Recharger",
   "item.locusazzurro_icaruswings.quantum_fuel": "Quantum Fuel",
@@ -135,6 +144,8 @@
 
   "death.attack.timeRift": "%1$s got stuck in a time paradox",
   "death.attack.timeRift.player": "%1$s got thrown into a time paradox by %2$s",
+  "death.attack.spear": "%1$s was speared by %2$s",
+  "death.attack.spear.item": "%1$s was speared by %2$s with %3$s",
 
   "advancements.locusazzurro_icaruswings.past.root.title": "Dream",
   "advancements.locusazzurro_icaruswings.past.root.description": "A story about the sky",

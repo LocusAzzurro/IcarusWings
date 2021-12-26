@@ -4,6 +4,9 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.IVanishable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -88,8 +91,8 @@ public class SpearItem extends TieredItem implements IVanishable {
 
     @Override
     public boolean hurtEnemy(ItemStack itemStack, LivingEntity target, LivingEntity attacker) {
-        itemStack.hurtAndBreak(1, attacker, (item) -> {
-            item.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
+        itemStack.hurtAndBreak(1, attacker, (player) -> {
+            player.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
         });
         return true;
     }
@@ -108,6 +111,15 @@ public class SpearItem extends TieredItem implements IVanishable {
     @Override
     public boolean isCorrectToolForDrops(BlockState blockState) {
         return false;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        return ((enchantment.category == EnchantmentType.WEAPON
+                && enchantment != Enchantments.SWEEPING_EDGE
+                && enchantment != Enchantments.MOB_LOOTING
+                && enchantment != Enchantments.FIRE_ASPECT)||
+                super.canApplyAtEnchantingTable(stack, enchantment));
     }
 
     @Override

@@ -99,6 +99,15 @@
   "item.locusazzurro_icaruswings.steel_pickaxe": "钢镐",
   "item.locusazzurro_icaruswings.synapse_alloy_sword": "空域合金剑",
 
+  "item.locusazzurro_icaruswings.wooden_spear": "木枪",
+  "item.locusazzurro_icaruswings.stone_spear": "石枪",
+  "item.locusazzurro_icaruswings.iron_spear": "铁枪",
+  "item.locusazzurro_icaruswings.steel_spear": "钢枪",
+  "item.locusazzurro_icaruswings.golden_spear": "金枪",
+  "item.locusazzurro_icaruswings.diamond_spear": "钻石枪",
+  "item.locusazzurro_icaruswings.netherite_spear": "下界合金枪",
+  "item.locusazzurro_icaruswings.synapse_alloy_spear": "空域合金枪",
+
   "item.locusazzurro_icaruswings.synapse_repair_kit": "空域装甲维修器",
   "item.locusazzurro_icaruswings.synapse_wings_recharger": "空域之翼充能器",
   "item.locusazzurro_icaruswings.quantum_fuel": "量子燃料",
@@ -135,6 +144,8 @@
 
   "death.attack.timeRift": "%1$s got stuck in a time paradox",
   "death.attack.timeRift.player": "%1$s got thrown into a time paradox by %2$s",
+  "death.attack.spear": "%1$s was speared by %2$s",
+  "death.attack.spear.item": "%1$s was speared by %2$s with %3$s",
 
   "advancements.locusazzurro_icaruswings.past.root.title": "梦",
   "advancements.locusazzurro_icaruswings.past.root.description": "这是一个关于天空的故事",
