@@ -72,7 +72,9 @@ public class ItemRegistry {
     		() -> new BlockItem(BlockRegistry.meadPot.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> amphora = ITEMS.register("amphora",
     		() -> new BlockItem(BlockRegistry.amphora.get(), new Item.Properties().tab(ModGroup.itemGroup)));
-    
+
+    public static final RegistryObject<Item> glassJar = ITEMS.register("glass_jar", GlassJar::new);
+
     public static final RegistryObject<Item> mead = ITEMS.register("mead", Mead::new);
     public static final RegistryObject<Item> zephirInfusedMead = ITEMS.register("zephir_infused_mead",
     		() -> new Mead(Mead.Infusion.ZEPHIR));
@@ -84,6 +86,13 @@ public class ItemRegistry {
     		() -> new Mead(Mead.Infusion.GOLDEN_APPLE));
     public static final RegistryObject<Item> herbsInfusedMead = ITEMS.register("herbs_infused_mead",
     		() -> new Mead(Mead.Infusion.HERBS));
+
+    public static final RegistryObject<Item> zephirAirJar = ITEMS.register("zephir_air_jar",
+            () -> new AirJar(AirJar.AirType.ZEPHIR));
+    public static final RegistryObject<Item> netherAirJar = ITEMS.register("nether_air_jar",
+            () -> new AirJar(AirJar.AirType.NETHER));
+    public static final RegistryObject<Item> voidAirJar = ITEMS.register("void_air_jar",
+            () -> new AirJar(AirJar.AirType.VOID));
     
     public static final RegistryObject<Item> wheatGrains = ITEMS.register("wheat_grains", WheatGrains::new);
     public static final RegistryObject<Item> wheatString = ITEMS.register("wheat_string", WheatString::new);

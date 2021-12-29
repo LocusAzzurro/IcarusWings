@@ -141,6 +141,7 @@
 
   "effect.locusazzurro_icaruswings.poison_immunity": "Poison Immunity",
   "effect.locusazzurro_icaruswings.sensory_masking": "Sensory Masking",
+  "effect.locusazzurro_icaruswings.inevitability": "Inevitability",
 
   "death.attack.timeRift": "%1$s got stuck in a time paradox",
   "death.attack.timeRift.player": "%1$s got thrown into a time paradox by %2$s",
