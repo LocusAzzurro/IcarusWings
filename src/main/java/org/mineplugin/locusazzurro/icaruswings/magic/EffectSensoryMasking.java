@@ -21,7 +21,7 @@ public class EffectSensoryMasking extends AbstractEffect{
 	public static void onSetTarget(LivingSetAttackTargetEvent e) {
 		if (e.getTarget() != null) {
 			LivingEntity targeter = e.getEntityLiving();
-			if (e.getTarget().hasEffect(EffectRegistry.ionicField.get()) && targeter instanceof MobEntity) {
+			if (e.getTarget().hasEffect(EffectRegistry.sensoryMasking.get()) && targeter instanceof MobEntity) {
 				((MobEntity) targeter).setTarget(null);
 			}
 		}

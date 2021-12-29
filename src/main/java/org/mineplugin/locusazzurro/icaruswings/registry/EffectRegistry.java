@@ -12,5 +12,6 @@ public class EffectRegistry {
 	public static final DeferredRegister<Effect> EFFECTS = DeferredRegister.create(ForgeRegistries.POTIONS, ModData.MOD_ID);
 	
 	public static final RegistryObject<Effect> poisonImmunity = EFFECTS.register("poison_immunity", EffectPoisonImmunity::new);
-	public static final RegistryObject<Effect> ionicField = EFFECTS.register("sensory_masking", EffectSensoryMasking::new);
+	public static final RegistryObject<Effect> sensoryMasking = EFFECTS.register("sensory_masking", EffectSensoryMasking::new);
+	public static final RegistryObject<Effect> inevitability = EFFECTS.register("inevitability", EffectInevitability::new);
 }
