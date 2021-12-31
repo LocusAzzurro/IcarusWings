@@ -59,71 +59,55 @@ public class AbstractEffect extends Effect {
 		// entity.removeEffect( this ) ;
 	}
 
-	public boolean newSetEffect(LivingEntity entity, int levelVar, boolean isAdd, boolean force){
-		if (!entity.level.isClientSide){
-			boolean hasEffect = entity.hasEffect(this);
-			int newLevel = levelVar;
-			int overflowLevel = -1;
-			if (force || isAdd){
-				if (hasEffect) {
-					int oldLevel = entity.getEffect(this).getAmplifier();
-					newLevel = isAdd ? oldLevel + levelVar + 1: levelVar;
-				}
+	/** 设置一个效果
+	 *
+	 * @param entity   实体
+	 * @param expectationLevel   期望的等级
+	 * @param isAdd   是添加吗
+	 * @param force   强制应用吗
+	 * @return   添加的成功与否
+	 */
+	protected boolean setEffect( LivingEntity entity, int expectationLevel, boolean isAdd, boolean force ) {
+		EffectInstance instance = entity.getEffect(this); // 获得实例
+		int baseLevel, newLevel;
+		boolean isUpdate = false ;
+		if ( instance != null ) { // 存在效果
+			baseLevel = instance.getAmplifier( ) ; // 初始
+			if ( force || ( isAdd && expectationLevel < 0 ) ) { // 强制或减少
+				entity.removeEffect( this ) ; // 移除旧效果
+				isUpdate = true ;
 			}
-			if (newLevel > this.getMaxLevel()){
-				overflowLevel = newLevel - this.getMaxLevel();
-				newLevel = this.getMaxLevel();
-			}
-			if (this.canBeAddEffect(entity, newLevel)){
-				entity.removeEffect(this);
-				entity.addEffect(new EffectInstance(this, this.getDuration(newLevel), newLevel, false, this.visible()));
-				if (overflowLevel >= 0) this.overflow(entity, overflowLevel);
-				return true;
-			}
-			else return false;
+		} else { // 不存在效果
+			baseLevel = -1 ; // 初始
 		}
-		return false;
-	}
-
-	protected boolean setEffect( LivingEntity entity, int levelVar, boolean isAdd, boolean force ) {
-		if ( !entity.level.isClientSide( ) ) { // 服务器控制
-			EffectInstance instance = entity.getEffect( this ) ; // 获得实例
-			if ( force || isAdd || instance == null || levelVar > instance.getAmplifier( ) ) {
-				int newLevel = -1 ;
-				if ( instance != null ) { // 存在效果
-					newLevel = isAdd ? levelVar +instance.getAmplifier( ) : levelVar ; // 追加或设置
-					entity.removeEffect( this ) ; // 移除旧效果
-				} else { // 不存在效果
-					newLevel += levelVar ; // 追加
-				} ;
-				;
-				if ( newLevel < 0 ) {
-					return true ;
-				} else if ( this.canBeAddEffect( entity, levelVar ) ) {
-					if ( newLevel > this.getMaxLevel( ) ) { // 超过上限
-						this.overflow( entity, newLevel - this.getMaxLevel( ) ); // 通知溢出
-						newLevel = this.getMaxLevel( ) ; // 限定
-					}
-					return entity.addEffect( new EffectInstance( this, this.getDuration( newLevel ), newLevel, false, this.visible( ) ) ) ;
-				}
+		;
+		newLevel = isAdd ? baseLevel + expectationLevel : expectationLevel ;
+		if ( newLevel >= 0 ) {
+			if ( newLevel > this.getMaxLevel( ) ) { // 超过上限
+				this.overflow( entity, newLevel - this.getMaxLevel( ) ); // 通知溢出
+				newLevel = this.getMaxLevel( ); // 限定
+				isUpdate = true ; // 溢出默认视为更新
 			}
-		}
-		return false ;
+			if ( entity.addEffect( new EffectInstance(this, this.getDuration(newLevel), newLevel, false, this.visible( ) ) ) ) {
+				isUpdate = true ;
+			} ;
+		} ;
+		return isUpdate ;
 	} ;
 
-	// 设置
+	// 设置（强制设置一个效果，无论生物是否又更强的效果）
 	public boolean setEffect( LivingEntity entity, int level ) {
 		return this.setEffect( entity, level, false, true ) ;
 	}
-	// 叠加
+	// 叠加期望的等级
 	public boolean addEffect( LivingEntity entity, int level ) {
-		return this.setEffect( entity, level, true, true ) ;
+		return this.setEffect( entity, level, true, false ) ;
 	}
-	// 减少
+	// 减少期望的等级
 	public boolean shrinkEffect ( LivingEntity entity, int level ) {
-		return this.setEffect( entity, -level, true, true ) ;
+		return this.setEffect( entity, -level, true, false ) ;
 	} ;
-	// 应用
+	// 应用（应用一个效果，如果已有更强的效果，则不会生效）
 	public boolean applyEffect( LivingEntity entity, int level ) {
 		return this.setEffect( entity, level, false, false ) ;
 	}

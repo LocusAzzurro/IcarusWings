@@ -29,7 +29,7 @@ public class ChronoExplosionTransportCard extends AbstractTransportCard{
         super.use(worldIn, playerIn, handIn);
 
         //playerIn.addEffect(new EffectInstance(EffectRegistry.inevitability.get(), 400, 0));
-        ((EffectInevitability)EffectRegistry.inevitability.get()).newSetEffect(playerIn, 0, true, true);
+        ((EffectInevitability)EffectRegistry.inevitability.get()).addEffect(playerIn, 1);
 
 
         TimeBombEntity bomb = new TimeBombEntity(worldIn, playerIn, DAMAGE, RANGE, 60);
