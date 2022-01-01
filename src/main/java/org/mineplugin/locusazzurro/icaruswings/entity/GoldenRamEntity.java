@@ -30,25 +30,19 @@ public class GoldenRamEntity extends AnimalEntity{
 		super(entityType, worldIn);
 	}
 	
-	private Logger logger = LogManager.getLogger();
-	private static final DataParameter<Integer> TEST_COUNT = EntityDataManager.defineId(GoldenRamEntity.class, DataSerializers.INT);
-	
 	@Override
 	public void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(TEST_COUNT, 0);
 	}
   
 	@Override
 	public void readAdditionalSaveData(CompoundNBT compound) {
 		super.readAdditionalSaveData(compound);
-        this.entityData.set(TEST_COUNT, compound.getInt("count"));
     }
 	
 	@Override
 	public void addAdditionalSaveData(CompoundNBT compound) {
 		super.addAdditionalSaveData(compound);
-        compound.putInt("count", this.entityData.get(TEST_COUNT));
     }
 	
 	@Override
@@ -71,13 +65,6 @@ public class GoldenRamEntity extends AnimalEntity{
 	
 	@Override
 	public void tick() {
-		if(level.isClientSide) {
-			logger.info(this.entityData.get(TEST_COUNT));
-		}
-		if(!level.isClientSide) {
-			logger.info(this.entityData.get(TEST_COUNT));
-			this.entityData.set(TEST_COUNT, this.entityData.get(TEST_COUNT)+ 1);
-		}
 		super.tick();
 	}
 	
