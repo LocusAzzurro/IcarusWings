@@ -127,9 +127,9 @@ public class ItemRegistry {
     public static final RegistryObject<Item> philosopherStone = ITEMS.register("philosopher_stone", PhilosopherStone::new);
     
     public static final RegistryObject<Item> magicWings = ITEMS.register("magic_wings", 
-    		() -> new FeatherWings(WingsType.MAGIC));
+    		() -> new MagicWings(WingsType.MAGIC));
     public static final RegistryObject<Item> flandreMagicWings = ITEMS.register("flandre_magic_wings", 
-    		() -> new FeatherWings(WingsType.PHI_STONE));
+    		() -> new MagicWings(WingsType.PHI_STONE));
     
     public static final RegistryObject<Item> fallenRelicCore = ITEMS.register("fallen_relic_core",
     		() -> new FallenRelic(FallenRelic.RelicType.CORE));
