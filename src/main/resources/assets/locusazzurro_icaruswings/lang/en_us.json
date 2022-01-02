@@ -41,12 +41,20 @@
   "block.locusazzurro_icaruswings.smooth_refined_beeswax_block": "Smooth Refined Beeswax Block",
 
   "block.locusazzurro_icaruswings.mead_pot": "Mead Pot",
+
+  "item.locusazzurro_icaruswings.glass_jar": "Glass Jar",
   "item.locusazzurro_icaruswings.mead": "Mead",
   "item.locusazzurro_icaruswings.zephir_infused_mead": "Zephir Infused Mead",
   "item.locusazzurro_icaruswings.nether_infused_mead": "Nether Infused Mead",
   "item.locusazzurro_icaruswings.void_infused_mead": "Void Infused Mead",
   "item.locusazzurro_icaruswings.golden_apple_infused_mead": "Ambrosia",
   "item.locusazzurro_icaruswings.herbs_infused_mead": "Herbs Infused Mead",
+
+  "item.locusazzurro_icaruswings.zephir_air_jar": "Zephir Air Jar",
+  "item.locusazzurro_icaruswings.nether_air_jar": "Nether Air Jar",
+  "item.locusazzurro_icaruswings.void_air_jar": "Void Air Jar",
+
+  "item.locusazzurro_icaruswings.wind_wand": "Wand of the Anemoi",
 
   "block.locusazzurro_icaruswings.amphora": "Amphora",
   "container.amphora": "Amphora",

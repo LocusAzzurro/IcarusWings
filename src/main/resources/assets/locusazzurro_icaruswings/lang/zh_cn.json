@@ -41,12 +41,20 @@
   "block.locusazzurro_icaruswings.smooth_refined_beeswax_block": "平滑精炼蜂蜡块",
 
   "block.locusazzurro_icaruswings.mead_pot": "陶制蜜酒罐",
+
+  "item.locusazzurro_icaruswings.glass_jar": "玻璃罐",
   "item.locusazzurro_icaruswings.mead": "蜜酒",
   "item.locusazzurro_icaruswings.zephir_infused_mead": "灵风蜜酒",
   "item.locusazzurro_icaruswings.nether_infused_mead": "下界蜜酒",
   "item.locusazzurro_icaruswings.void_infused_mead": "虚无蜜酒",
   "item.locusazzurro_icaruswings.golden_apple_infused_mead": "金果圣酒",
   "item.locusazzurro_icaruswings.herbs_infused_mead": "草药蜜酒",
+
+  "item.locusazzurro_icaruswings.zephir_air_jar": "灵风瓶",
+  "item.locusazzurro_icaruswings.nether_air_jar": "炎风瓶",
+  "item.locusazzurro_icaruswings.void_air_jar": "虚风瓶",
+
+  "item.locusazzurro_icaruswings.wind_wand": "阿涅摩伊之杖",
 
   "block.locusazzurro_icaruswings.amphora": "双耳细颈瓶",
   "container.amphora": "双耳细颈瓶",
