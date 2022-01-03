@@ -31,22 +31,26 @@ import javax.annotation.Nullable;
 public class SpearEntity extends AbstractArrowEntity {
 
     private static final DataParameter<Boolean> ID_FOIL = EntityDataManager.defineId(SpearEntity.class, DataSerializers.BOOLEAN);
-    private ItemStack spearItem = new ItemStack(ItemRegistry.stoneSpear.get());
+    private static final DataParameter<ItemStack> SPEAR_ITEM = EntityDataManager.defineId(SpearEntity.class, DataSerializers.ITEM_STACK);
+    private ItemStack spearItem;
     private boolean dealtDamage;
 
     public SpearEntity(EntityType<? extends SpearEntity> type, World world) {
         super(type, world);
+        this.spearItem = new ItemStack(ItemRegistry.woodenSpear.get());
     }
 
     public SpearEntity(World worldIn, LivingEntity owner, ItemStack spear){
         super(EntityTypeRegistry.spearEntity.get(), owner, worldIn);
         this.spearItem = spear.copy();
         this.entityData.set(ID_FOIL, spear.hasFoil());
+        this.entityData.set(SPEAR_ITEM, spear);
     }
 
     @OnlyIn(Dist.CLIENT)
     public SpearEntity(World p_i48791_1_, double p_i48791_2_, double p_i48791_4_, double p_i48791_6_) {
         super(EntityTypeRegistry.spearEntity.get(), p_i48791_2_, p_i48791_4_, p_i48791_6_, p_i48791_1_);
+        this.spearItem = new ItemStack(ItemRegistry.woodenSpear.get());
     }
 
     @Override
@@ -127,6 +131,7 @@ public class SpearEntity extends AbstractArrowEntity {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(ID_FOIL, false);
+        this.entityData.define(SPEAR_ITEM, new ItemStack(ItemRegistry.woodenSpear.get()));
     }
 
     @Override
@@ -144,6 +149,14 @@ public class SpearEntity extends AbstractArrowEntity {
         super.addAdditionalSaveData(nbt);
         nbt.put("Spear", this.spearItem.save(new CompoundNBT()));
         nbt.putBoolean("DealtDamage", this.dealtDamage);
+    }
+
+    public void setSpearItemData(ItemStack stackIn){
+        this.entityData.set(SPEAR_ITEM, stackIn);
+    }
+
+    public ItemStack getSpearItemData(){
+        return this.entityData.get(SPEAR_ITEM);
     }
 
     @OnlyIn(Dist.CLIENT)

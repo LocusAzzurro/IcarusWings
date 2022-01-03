@@ -37,7 +37,7 @@ public class SpearRenderer extends EntityRenderer<SpearEntity> {
 
     //todo add texture variants
     public ResourceLocation getTextureLocation(SpearEntity entity) {
-        IItemTier tier = ((SpearItem) entity.getPickupItem().getItem()).getTier();
+        IItemTier tier = ((SpearItem)entity.getSpearItemData().getItem()).getTier();
         return SpearModel.getTexture(tier);
     }
 

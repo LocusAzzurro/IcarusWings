@@ -30,7 +30,7 @@ public class SpearModel extends EntityModel<SpearEntity> {
             .add(ItemTier.NETHERITE, new ResourceLocation(ModData.MOD_ID, "textures/entity/netherite_spear.png"))
             .add(ModItemTier.SYNAPSE_ALLOY, new ResourceLocation(ModData.MOD_ID, "textures/entity/synapse_alloy_spear.png"));
 
-    protected static final ResourceLocation FALLBACK_SPEAR_TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/stone_spear.png");
+    protected static final ResourceLocation FALLBACK_SPEAR_TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/wooden_spear.png");
 
     private final ModelRenderer spear;
 
