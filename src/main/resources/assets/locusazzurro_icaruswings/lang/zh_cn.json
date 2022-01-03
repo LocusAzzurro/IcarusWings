@@ -133,6 +133,8 @@
   "item.locusazzurro_icaruswings.melan_wings": "反逆可变翼",
   "item.locusazzurro_icaruswings.synapse_theta.tooltip": "第二代, 型号 θ",
 
+  "item.locusazzurro_icaruswings.artemis_launcher": "Artemis Missile Launcher",
+
   "item.locusazzurro_icaruswings.transport_card": "愿望之卡",
   "item.locusazzurro_icaruswings.transport_card_base.tooltip": "Basic",
   "item.locusazzurro_icaruswings.transport_card_artemis_homing.tooltip": "Artemis - Homing",
@@ -144,6 +146,11 @@
   "item.locusazzurro_icaruswings.disc_fallen_down.desc": "早见沙织 - Fallen Down",
   "item.locusazzurro_icaruswings.disc_ring_my_bell": "音乐唱片",
   "item.locusazzurro_icaruswings.disc_ring_my_bell.desc": "Blue Drops - Ring My Bell",
+
+  "entity.locusazzurro_icaruswings.artemis_missile": "Artemis Missile",
+  "entity.locusazzurro_icaruswings.time_bomb": "Time Singularity",
+  "entity.locusazzurro_icaruswings.spear": "Spear",
+  "entity.locusazzurro_icaruswings.golden_ram": "Golden Ram",
 
   "enchantment.locusazzurro_icaruswings.collision_protection": "撞击保护",
   "enchantment.locusazzurro_icaruswings.pyrotechnic_affinity": "Pyrotechnic Affinity",
