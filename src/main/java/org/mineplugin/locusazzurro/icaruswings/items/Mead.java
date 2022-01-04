@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.minecraftforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import net.minecraft.advancements.CriteriaTriggers;
@@ -25,6 +26,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
+import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 public class Mead extends Item {
 	
@@ -87,21 +89,20 @@ public class Mead extends Item {
 					break;
 				}
 				
-				extraEffect.forEach(e -> entityIn.addEffect(e));
+				extraEffect.forEach(entityIn::addEffect);
 
 			}
 
 		}
 
 		if (stackIn.isEmpty()) {
-			return new ItemStack(Items.GLASS_BOTTLE);
+			return new ItemStack(ItemRegistry.glassJar.get());
 		} else {
 			if (entityIn instanceof PlayerEntity && !((PlayerEntity) entityIn).abilities.instabuild) {
-				ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
+				ItemStack itemstack = new ItemStack(ItemRegistry.glassJar.get());
 				PlayerEntity playerentity = (PlayerEntity) entityIn;
-				if (!playerentity.inventory.add(itemstack)) {
-					playerentity.drop(itemstack, false);
-				}
+				ItemHandlerHelper.giveItemToPlayer(playerentity, itemstack);
+				//if (!playerentity.inventory.add(itemstack)) {playerentity.drop(itemstack, false);}
 			}
 
 			return stackIn;

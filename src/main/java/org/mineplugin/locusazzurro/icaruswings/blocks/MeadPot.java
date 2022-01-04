@@ -2,6 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.blocks;
 
 import java.util.Random;
 
+import net.minecraftforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 import net.minecraft.block.AbstractBlock;
@@ -100,22 +101,22 @@ public class MeadPot extends Block{
 	
 	@Override
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (!worldIn.isClientSide && handIn == Hand.MAIN_HAND) {
+        if (!worldIn.isClientSide && handIn == Hand.MAIN_HAND && worldIn.getBlockEntity(pos) != null) {
             MeadPotTileEntity meadPotTE = (MeadPotTileEntity) worldIn.getBlockEntity(pos);
             ItemStack stackIn = player.getItemInHand(handIn);
             if (stackIn.getItem() == Items.HONEY_BOTTLE && stackIn.getCount() >= 4
             		&& !meadPotTE.isFermenting() && !meadPotTE.isComplete()) {
             	ItemStack stackOut = new ItemStack(Items.GLASS_BOTTLE, 4);
             	stackIn.shrink(4);
-            	if (!player.inventory.add(stackOut)) player.drop(stackOut, false);
-            	meadPotTE.startFermeting();
+				ItemHandlerHelper.giveItemToPlayer(player, stackOut);
+            	meadPotTE.startFermenting();
             	worldIn.playSound(null, pos, SoundEvents.BREWING_STAND_BREW, SoundCategory.BLOCKS, 2.0f, 1.3f);
             	return ActionResultType.SUCCESS;
             }
-            if (stackIn.getItem() == Items.GLASS_BOTTLE && meadPotTE.isComplete()) {
+            if (stackIn.getItem() == ItemRegistry.glassJar.get() && meadPotTE.isComplete()) {
             	ItemStack stackOut = new ItemStack(ItemRegistry.mead.get());
             	stackIn.shrink(1);
-            	if (!player.inventory.add(stackOut)) player.drop(stackOut, false);
+				ItemHandlerHelper.giveItemToPlayer(player, stackOut);
             	meadPotTE.setEmpty();
             	worldIn.playSound(null, pos, SoundEvents.BREWING_STAND_BREW, SoundCategory.BLOCKS, 2.0f, 1.3f);
             	return ActionResultType.SUCCESS;
@@ -134,14 +135,14 @@ public class MeadPot extends Block{
 			int j = rng.nextInt(2) * 2 - 1;
 			int k = rng.nextInt(2) * 2 - 1;
 			double d0 = (double) pos.getX() + 0.5D + 0.25D * (double) j;
-			double d1 = (double) ((float) pos.getY() + 0.5f +rng.nextFloat());
+			double d1 = (float) pos.getY() + 0.5f +rng.nextFloat();
 			double d2 = (double) pos.getZ() + 0.5D + 0.25D * (double) k;
 			worldIn.addParticle(ParticleTypes.ENTITY_EFFECT, d0, d1, d2, particleR, particleG, particleB);
 		}
 		}
 	}
 	
-	//BLOCKSTATES
+	//BLOCK STATES
 	
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> state) {

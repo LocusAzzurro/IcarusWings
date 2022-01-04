@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 public class MeadPotTileEntity extends TileEntity implements ITickableTileEntity{
 	
-	private static final int FERMENTATION_TIME = 3600 * 20; //1h / 3 ingame days
+	private static final int FERMENTATION_TIME = 3600 * 20; //1h / 3 in-game days
 	private int fermentationProgress = 0;
 	private boolean isFermenting = false;
 	private boolean isComplete = false;
@@ -20,7 +20,7 @@ public class MeadPotTileEntity extends TileEntity implements ITickableTileEntity
 		super(TileEntityTypeRegistry.meadPotTileEntity.get());
 	}
 	
-	public void startFermeting() {
+	public void startFermenting() {
 		this.fermentationProgress = 0;
 		this.isFermenting = true;
 		this.isComplete = false;
@@ -45,7 +45,7 @@ public class MeadPotTileEntity extends TileEntity implements ITickableTileEntity
 		this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(MeadPot.STATE, state), 3);
 		this.setChanged();
 	}
-	
+
 	public boolean isFermenting() {
 		return this.isFermenting;
 	}
@@ -83,17 +83,17 @@ public class MeadPotTileEntity extends TileEntity implements ITickableTileEntity
 	
 	 @Override
 	 public void load(BlockState state, CompoundNBT nbt) {
-		 this.fermentationProgress = nbt.getInt("fermentation_progress");
-		 this.isFermenting = nbt.getBoolean("fermeting");
-		 this.isComplete = nbt.getBoolean("complete");
+		 this.fermentationProgress = nbt.getInt("FermentationProgress");
+		 this.isFermenting = nbt.getBoolean("Fermenting");
+		 this.isComplete = nbt.getBoolean("Complete");
 	     super.load(state, nbt);
 	 }
 	 
 	 @Override
 	 public CompoundNBT save(CompoundNBT compound) {
-		 compound.putInt("fermentation_progress", this.fermentationProgress);
-		 compound.putBoolean("fermeting", this.isFermenting);
-		 compound.putBoolean("complete", this.isComplete);
+		 compound.putInt("FermentationProgress", this.fermentationProgress);
+		 compound.putBoolean("Fermenting", this.isFermenting);
+		 compound.putBoolean("Complete", this.isComplete);
 	     return super.save(compound);
 	 }
 }
