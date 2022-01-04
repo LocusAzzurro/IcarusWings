@@ -26,7 +26,7 @@ public class ChronoExplosionTransportCard extends AbstractTransportCard{
 
     public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn){
         ItemStack itemstack = playerIn.getItemInHand(handIn);
-        super.use(worldIn, playerIn, handIn);
+        if (!canUseCard(playerIn)) return ActionResult.fail(itemstack);
 
         //playerIn.addEffect(new EffectInstance(EffectRegistry.inevitability.get(), 400, 0));
         ((EffectInevitability)EffectRegistry.inevitability.get()).addEffect(playerIn, 1);

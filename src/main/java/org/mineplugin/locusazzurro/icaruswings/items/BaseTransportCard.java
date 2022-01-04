@@ -6,4 +6,6 @@ public class BaseTransportCard extends AbstractTransportCard{
         super(CardType.BASE);
     }
 
+
+
 }

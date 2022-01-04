@@ -29,6 +29,7 @@ public class ArtemisTransportCard extends AbstractTransportCard{
 
     public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn){
         ItemStack itemStack = playerIn.getItemInHand(handIn);
+        if (!canUseCard(playerIn)) return ActionResult.fail(itemStack);
         Item item = itemStack.getItem();
         Vector3d pos = playerIn.getPosition(1f);
         Vector3d look = playerIn.getViewVector(1f);

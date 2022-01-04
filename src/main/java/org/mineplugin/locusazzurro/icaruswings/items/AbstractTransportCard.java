@@ -32,13 +32,17 @@ public abstract class AbstractTransportCard extends Item {
 
     public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn){
         ItemStack itemstack = playerIn.getItemInHand(handIn);
-        switch (PERM_LEVEL) {
-            case 0: return ActionResult.fail(itemstack);
-            case 1: return playerIn.hasPermissions(4) ? ActionResult.pass(itemstack) : ActionResult.fail(itemstack);
-            case 2: return playerIn.isCreative() ? ActionResult.pass(itemstack) : ActionResult.fail(itemstack);
-            case 3: return ActionResult.pass(itemstack);
-        }
         return ActionResult.pass(itemstack);
+    }
+
+    protected static boolean canUseCard(PlayerEntity playerIn){
+        switch (PERM_LEVEL) {
+            case 0: return false;
+            case 1: return playerIn.hasPermissions(4);
+            case 2: return playerIn.isCreative();
+            case 3: return true;
+        }
+        return false;
     }
 
     @Override
