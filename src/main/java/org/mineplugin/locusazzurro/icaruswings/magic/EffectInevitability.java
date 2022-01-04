@@ -23,6 +23,4 @@ public class EffectInevitability extends AbstractEffect{
     public void overflow(LivingEntity entity, int overflowLevel) {
         entity.hurt(new DamageTimeRift(entity), overflowLevel * 50);
     };
-
-    //todo fix stack overflow
 }

@@ -10,7 +10,7 @@ import org.mineplugin.locusazzurro.icaruswings.entity.GoldenRamEntity;
 
 @OnlyIn(Dist.CLIENT)
 public class GoldenRamRenderer extends MobRenderer<GoldenRamEntity, GoldenRamModel<GoldenRamEntity>>{
-    private static final ResourceLocation GOLDEN_RAM_TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/golden_ram.png");//todo model and fleece texture to be added
+    private static final ResourceLocation GOLDEN_RAM_TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/golden_ram.png");
     private GoldenRamEntity p_110775_1_;
 
     public GoldenRamRenderer(EntityRendererManager p_i47195_1_) {

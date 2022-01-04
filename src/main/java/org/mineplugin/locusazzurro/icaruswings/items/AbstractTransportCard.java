@@ -58,7 +58,6 @@ public abstract class AbstractTransportCard extends Item {
     public String getDescriptionId(){
         return "item." + ModData.MOD_ID + ".transport_card";
     }
-    //TODO add keys in lang file
 
     public CardType getType(){
         return this.type;
