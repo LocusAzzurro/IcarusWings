@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = ModData.MOD_ID)
-public class AbstractEffect extends Effect {
+public abstract class AbstractEffect extends Effect {
 
 	protected ArrayList<ItemStack> CurativeItems = new ArrayList<>() ;
 
