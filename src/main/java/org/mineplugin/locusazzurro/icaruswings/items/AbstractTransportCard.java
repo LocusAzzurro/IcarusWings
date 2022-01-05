@@ -38,8 +38,8 @@ public abstract class AbstractTransportCard extends Item {
     protected static boolean canUseCard(PlayerEntity playerIn){
         switch (PERM_LEVEL) {
             case 0: return false;
-            case 1: return playerIn.hasPermissions(4);
-            case 2: return playerIn.isCreative();
+            case 1: return playerIn.hasPermissions(2);
+            case 2: return playerIn.isCreative() || playerIn.hasPermissions(2);
             case 3: return true;
         }
         return false;
