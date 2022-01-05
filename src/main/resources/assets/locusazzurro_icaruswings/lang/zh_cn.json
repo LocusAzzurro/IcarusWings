@@ -158,6 +158,7 @@
   "effect.locusazzurro_icaruswings.poison_immunity": "毒素抗性",
   "effect.locusazzurro_icaruswings.sensory_masking": "感知隐匿",
   "effect.locusazzurro_icaruswings.inevitability": "宿命",
+  "effect.locusazzurro_icaruswings.interdiction": "飞行阻扰",
 
   "death.attack.timeRift": "%1$s got stuck in a time paradox",
   "death.attack.timeRift.player": "%1$s got thrown into a time paradox by %2$s",
