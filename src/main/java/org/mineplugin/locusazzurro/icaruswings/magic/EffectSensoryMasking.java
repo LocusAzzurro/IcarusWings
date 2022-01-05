@@ -9,11 +9,15 @@ import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+import java.awt.*;
+
 @EventBusSubscriber
 public class EffectSensoryMasking extends AbstractEffect{
 
+	private static final Color color = new Color(240, 240, 255);
+
 	public EffectSensoryMasking() {
-		super(EffectType.BENEFICIAL, ((240 << 16) + (240 << 8) + 255));
+		super(EffectType.BENEFICIAL, color.getRGB());
 
 	}
 	
