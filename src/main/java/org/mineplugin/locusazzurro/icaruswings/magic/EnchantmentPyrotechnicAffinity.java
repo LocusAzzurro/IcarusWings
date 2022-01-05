@@ -1,28 +1,20 @@
 package org.mineplugin.locusazzurro.icaruswings.magic;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ElytraItem;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.registry.EnchantmentRegistry;
 
 @Mod.EventBusSubscriber
-public class EnchantmentPyrotechnicAffinity extends Enchantment {
+public class EnchantmentPyrotechnicAffinity extends WingsEnchantment {
 
     public EnchantmentPyrotechnicAffinity() {
-        super(Rarity.RARE, EnchantmentType.WEARABLE, new EquipmentSlotType[] {EquipmentSlotType.CHEST});
-    }
-
-    @Override
-    public boolean canEnchant(ItemStack stack) {
-        return stack.getItem() instanceof ElytraItem;
+        super(Rarity.RARE);
     }
 
     @Override
