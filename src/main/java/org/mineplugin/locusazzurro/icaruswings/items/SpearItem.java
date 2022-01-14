@@ -32,6 +32,7 @@ import net.minecraftforge.common.ForgeMod;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.entity.SpearEntity;
+import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.render.SpearItemStackTileEntityRenderer;
 
 public class SpearItem extends TieredItem implements IVanishable {
@@ -162,7 +163,7 @@ public class SpearItem extends TieredItem implements IVanishable {
 
                 worldIn.addFreshEntity(spearEntity);
                 //todo sound effect
-                worldIn.playSound((PlayerEntity) null, spearEntity, SoundEvents.TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                worldIn.playSound((PlayerEntity) null, spearEntity, SoundRegistry.spearThrow.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
                 if (!playerIn.abilities.instabuild) {
                     playerIn.inventory.removeItem(itemStack);
                 }

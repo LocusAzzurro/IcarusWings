@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.entity;
 
+import net.minecraft.client.audio.Sound;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -25,11 +26,13 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import org.mineplugin.locusazzurro.icaruswings.items.SpearItem;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import javax.annotation.Nullable;
 
 public class SpearEntity extends AbstractArrowEntity {
 
+    //todo get foil data directly from item
     private static final DataParameter<Boolean> ID_FOIL = EntityDataManager.defineId(SpearEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<ItemStack> SPEAR_ITEM = EntityDataManager.defineId(SpearEntity.class, DataSerializers.ITEM_STACK);
     private ItemStack spearItem;
@@ -80,7 +83,7 @@ public class SpearEntity extends AbstractArrowEntity {
         Entity owner = this.getOwner();
         DamageSource damageSource = new IndirectEntityDamageSource("spear", this, (owner == null ? this : owner)).setProjectile();
         this.dealtDamage = true;
-        //SoundEvent soundevent = SoundEvents.TRIDENT_HIT;
+        SoundEvent soundevent = SoundRegistry.spearHit.get();
         if (target.hurt(damageSource, f)) {
             if (target.getType() == EntityType.ENDERMAN) {
                 return;
@@ -99,13 +102,13 @@ public class SpearEntity extends AbstractArrowEntity {
 
         this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01D, -0.1D, -0.01D));
 
-        //this.playSound(soundevent, f1, 1.0F);
+        this.playSound(soundevent, 1.0F, 1.0F);
     }
 
     //TODO: custom sounds
     @Override
     protected SoundEvent getDefaultHitGroundSoundEvent() {
-        return SoundEvents.TRIDENT_HIT_GROUND;
+        return SoundRegistry.spearHitGround.get();
     }
 
     public void playerTouch(PlayerEntity playerIn) {

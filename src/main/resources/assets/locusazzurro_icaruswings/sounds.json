@@ -1,7 +1,6 @@
 {
-  "track_fallen_down": {
-    "subtitle": "track_fallen_down",
-    "replace": "true",
+  "track.fallen_down": {
+    "replace": true,
     "sounds": [
       {
         "name": "locusazzurro_icaruswings:track_fallen_down",
@@ -9,13 +8,51 @@
       }
     ]
   },
-  "track_ring_my_bell": {
-    "subtitle": "track_ring_my_bell",
-    "replace": "true",
+  "track.ring_my_bell": {
+    "replace": true,
     "sounds": [
       {
         "name": "locusazzurro_icaruswings:track_ring_my_bell",
         "stream": true
+      }
+    ]
+  },
+  "item.spear.throw": {
+    "subtitle": "subtitles.item.spear.throw",
+    "replace": true,
+    "sounds": [
+      "minecraft:item/trident/throw1",
+      "minecraft:item/trident/throw2"
+    ]
+  },
+  "item.spear.hit": {
+    "subtitle": "subtitles.item.spear.hit",
+    "replace": true,
+    "sounds": [
+      "minecraft:item/trident/pierce1",
+      "minecraft:item/trident/pierce2",
+      "minecraft:item/trident/pierce3"
+    ]
+  },
+  "item.spear.hit_ground": {
+    "subtitle": "subtitles.item.spear.hit_ground",
+    "replace": true,
+    "sounds": [
+      {
+        "name": "minecraft:item/trident/ground_impact1",
+        "volume": 0.9
+      },
+      {
+        "name": "minecraft:item/trident/ground_impact2",
+        "volume": 0.9
+      },
+      {
+        "name": "minecraft:item/trident/ground_impact3",
+        "volume": 0.9
+      },
+      {
+        "name": "minecraft:item/trident/ground_impact4",
+        "volume": 0.9
       }
     ]
   }

@@ -10,8 +10,15 @@ import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 public class SoundRegistry {
 	
 	public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, ModData.MOD_ID);
-    public static final RegistryObject<SoundEvent> trackFallenDown = SOUNDS.register("track_fallen_down",
-    		() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID, "track_fallen_down")));
-    public static final RegistryObject<SoundEvent> trackRingMyBell = SOUNDS.register("track_ring_my_bell",
-    		() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID, "track_ring_my_bell")));
+    public static final RegistryObject<SoundEvent> trackFallenDown = SOUNDS.register("track.fallen_down",
+    		() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID, "track.fallen_down")));
+    public static final RegistryObject<SoundEvent> trackRingMyBell = SOUNDS.register("track.ring_my_bell",
+    		() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID, "track.ring_my_bell")));
+	public static final RegistryObject<SoundEvent> spearThrow = SOUNDS.register("item.spear.throw",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.spear.throw")));
+	public static final RegistryObject<SoundEvent> spearHit = SOUNDS.register("item.spear.hit",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.spear.hit")));
+	public static final RegistryObject<SoundEvent> spearHitGround = SOUNDS.register("item.spear.hit_ground",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.spear.hit_ground")));
+
 }
