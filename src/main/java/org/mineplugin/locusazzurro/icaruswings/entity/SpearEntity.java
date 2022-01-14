@@ -1,6 +1,5 @@
 package org.mineplugin.locusazzurro.icaruswings.entity;
 
-import net.minecraft.client.audio.Sound;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -16,7 +15,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -32,8 +30,6 @@ import javax.annotation.Nullable;
 
 public class SpearEntity extends AbstractArrowEntity {
 
-    //todo get foil data directly from item
-    private static final DataParameter<Boolean> ID_FOIL = EntityDataManager.defineId(SpearEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<ItemStack> SPEAR_ITEM = EntityDataManager.defineId(SpearEntity.class, DataSerializers.ITEM_STACK);
     private ItemStack spearItem;
     private boolean dealtDamage;
@@ -46,7 +42,6 @@ public class SpearEntity extends AbstractArrowEntity {
     public SpearEntity(World worldIn, LivingEntity owner, ItemStack spear){
         super(EntityTypeRegistry.spearEntity.get(), owner, worldIn);
         this.spearItem = spear.copy();
-        this.entityData.set(ID_FOIL, spear.hasFoil());
         this.entityData.set(SPEAR_ITEM, spear);
     }
 
@@ -133,7 +128,6 @@ public class SpearEntity extends AbstractArrowEntity {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(ID_FOIL, false);
         this.entityData.define(SPEAR_ITEM, new ItemStack(ItemRegistry.woodenSpear.get()));
     }
 
@@ -164,7 +158,7 @@ public class SpearEntity extends AbstractArrowEntity {
 
     @OnlyIn(Dist.CLIENT)
     public boolean isFoil() {
-        return this.entityData.get(ID_FOIL);
+        return this.entityData.get(SPEAR_ITEM).hasFoil();
     }
 
     @Override

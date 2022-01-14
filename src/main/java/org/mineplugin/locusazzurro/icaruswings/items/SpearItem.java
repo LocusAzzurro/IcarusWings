@@ -179,7 +179,7 @@ public class SpearItem extends TieredItem implements IVanishable {
             if (((LivingEntity) entityIn).isUsingItem()){
                 itemStack.getOrCreateTag().putBoolean("Throwing", true);
             }
-            else {itemStack.getOrCreateTag().putBoolean("Throwing", false);}
+            else {itemStack.getOrCreateTag().remove("Throwing");}
         }
     }
 
