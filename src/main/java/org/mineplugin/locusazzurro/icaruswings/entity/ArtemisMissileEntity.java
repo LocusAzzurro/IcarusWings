@@ -109,7 +109,9 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
                 }
             }
         }
+        //todo make low speed particle rendering
 
+        //todo use AT for better compatibility
         this.projectileTick();
 
         if (this.targetUUID != null)
