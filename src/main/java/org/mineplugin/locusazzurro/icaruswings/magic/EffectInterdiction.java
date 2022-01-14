@@ -5,14 +5,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.math.vector.Vector3d;
 
-import java.awt.*;
-
 public class EffectInterdiction extends AbstractEffect{
 
-    private static final Color color = new Color(104, 130, 130);
-
     public EffectInterdiction() {
-        super(EffectType.HARMFUL, color.getRGB());
+        super(EffectType.HARMFUL, 0x688282);
     }
 
     @Override

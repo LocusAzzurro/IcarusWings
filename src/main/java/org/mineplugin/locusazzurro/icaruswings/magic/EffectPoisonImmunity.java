@@ -14,15 +14,11 @@ import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-import java.awt.*;
-
 @EventBusSubscriber
 public class EffectPoisonImmunity extends AbstractEffect{
 
-	private static final Color color = new Color(228, 251, 189);
-
 	public EffectPoisonImmunity() {
-		super(EffectType.BENEFICIAL, color.getRGB());
+		super(EffectType.BENEFICIAL, 0xe4fbbd);
 	}
 	
 	@SubscribeEvent
