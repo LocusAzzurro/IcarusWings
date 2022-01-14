@@ -54,6 +54,8 @@
   "item.locusazzurro_icaruswings.nether_air_jar": "炎风瓶",
   "item.locusazzurro_icaruswings.void_air_jar": "虚风瓶",
 
+  "item.locusazzurro_icaruswings.anemone": "银莲花",
+  "item.locusazzurro_icaruswings.anemone.tooltip": "速度：",
   "item.locusazzurro_icaruswings.wind_wand": "阿涅摩伊之杖",
 
   "block.locusazzurro_icaruswings.amphora": "双耳细颈瓶",
@@ -153,17 +155,20 @@
   "entity.locusazzurro_icaruswings.golden_ram": "Golden Ram",
 
   "enchantment.locusazzurro_icaruswings.collision_protection": "撞击保护",
-  "enchantment.locusazzurro_icaruswings.pyrotechnic_affinity": "Pyrotechnic Affinity",
-
+  "enchantment.locusazzurro_icaruswings.pyrotechnic_affinity": "烟火亲和",
   "effect.locusazzurro_icaruswings.poison_immunity": "毒素抗性",
   "effect.locusazzurro_icaruswings.sensory_masking": "感知隐匿",
   "effect.locusazzurro_icaruswings.inevitability": "宿命",
-  "effect.locusazzurro_icaruswings.interdiction": "飞行阻扰",
+  "effect.locusazzurro_icaruswings.interdiction": "阻扰",
 
   "death.attack.timeRift": "%1$s got stuck in a time paradox",
   "death.attack.timeRift.player": "%1$s got thrown into a time paradox by %2$s",
   "death.attack.spear": "%1$s was speared by %2$s",
   "death.attack.spear.item": "%1$s was speared by %2$s with %3$s",
+
+  "subtitles.item.spear.throw": "枪：被抛出",
+  "subtitles.item.spear.hit": "枪：击中",
+  "subtitles.item.spear.hit_ground": "枪：落地",
 
   "advancements.locusazzurro_icaruswings.past.root.title": "梦",
   "advancements.locusazzurro_icaruswings.past.root.description": "这是一个关于天空的故事",

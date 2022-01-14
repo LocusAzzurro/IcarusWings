@@ -93,6 +93,7 @@ public class ItemRegistry {
             () -> new AirJar(AirJar.AirType.NETHER));
     public static final RegistryObject<Item> voidAirJar = ITEMS.register("void_air_jar",
             () -> new AirJar(AirJar.AirType.VOID));
+    public static final RegistryObject<Item> anemone = ITEMS.register("anemone", Anemone::new);
 
     public static final RegistryObject<Item> windWand = ITEMS.register("wind_wand", WindWand::new);
     
