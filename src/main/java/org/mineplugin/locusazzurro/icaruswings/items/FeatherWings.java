@@ -8,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.Random;
+
 @SuppressWarnings("unused")
 @Mod.EventBusSubscriber
 public class FeatherWings extends AbstractWings {
@@ -38,7 +40,7 @@ public class FeatherWings extends AbstractWings {
 				}
 				else {
 					int y = (int) entity.getY();
-					dmg = Math.max(y >> 6, 1) + (Math.random() * 64 < (y & 63) ? 1 : 0);
+					dmg = randomRound(Math.max(1, y / 64.0), entity.level.getRandom());
 				}
 			}
 			stack.hurtAndBreak(dmg, entity,	e -> e.broadcastBreakEvent(EquipmentSlotType.CHEST));
@@ -46,5 +48,12 @@ public class FeatherWings extends AbstractWings {
 		}
 		return true;
 	}
+
+	int randomRound(double value, Random random) {
+		int intValue = (int)Math.floor(value);
+		if (random.nextDouble() < value - intValue) intValue++;
+		return intValue;
+	}
+
 
 }
