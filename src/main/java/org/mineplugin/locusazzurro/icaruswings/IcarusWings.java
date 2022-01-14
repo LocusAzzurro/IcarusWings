@@ -14,6 +14,7 @@ public class IcarusWings {
 	IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 	ItemRegistry.ITEMS.register(bus);
 	BlockRegistry.BLOCKS.register(bus);
+	FluidRegistry.FLUIDS.register(bus);
 	TileEntityTypeRegistry.TILE_ENTITIES.register(bus);
 	SoundRegistry.SOUNDS.register(bus);
 	EnchantmentRegistry.ENCHANTMENTS.register(bus);

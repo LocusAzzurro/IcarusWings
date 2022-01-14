@@ -1,6 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.registry;
 
-import net.minecraft.item.ItemTier;
+import net.minecraft.item.*;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.data.ModItemTier;
@@ -8,8 +8,6 @@ import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.items.*;
 
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -72,6 +70,7 @@ public class ItemRegistry {
     		() -> new BlockItem(BlockRegistry.meadPot.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> amphora = ITEMS.register("amphora",
     		() -> new BlockItem(BlockRegistry.amphora.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    public static final RegistryObject<Item> greekFireBucket = ITEMS.register("greek_fire_bucket", GreekFireBucket::new);
 
     public static final RegistryObject<Item> glassJar = ITEMS.register("glass_jar", GlassJar::new);
 

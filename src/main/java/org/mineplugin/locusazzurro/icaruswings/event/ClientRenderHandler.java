@@ -1,5 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.event;
 
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
@@ -15,6 +17,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.render.*;
 
@@ -29,6 +32,11 @@ public class ClientRenderHandler {
         register(EntityTypeRegistry.artemisMissileEntity.get(), ArtemisMissileRenderer::new);
         register(EntityTypeRegistry.timeBombEntity.get(), TimeBombRenderer::new);
         register(EntityTypeRegistry.spearEntity.get(), SpearRenderer::new);
+
+        e.enqueueWork(() -> {
+            RenderTypeLookup.setRenderLayer(FluidRegistry.greekFire.get(), RenderType.translucent());
+            RenderTypeLookup.setRenderLayer(FluidRegistry.greekFireFlowing.get(), RenderType.translucent());
+        });
     }
 
     @SubscribeEvent
