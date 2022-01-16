@@ -1,7 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.registry;
 
 import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.block.material.Material;
 import org.mineplugin.locusazzurro.icaruswings.blocks.*;
 
 import net.minecraft.block.Block;
@@ -22,7 +21,7 @@ public class BlockRegistry {
     
     public static final RegistryObject<Block> meadPot = BLOCKS.register("mead_pot", MeadPot::new);
     public static final RegistryObject<Block> amphora = BLOCKS.register("amphora", Amphora::new);
-    public static final RegistryObject<FlowingFluidBlock> greekFire = BLOCKS.register("greek_fire", GreekFire::new);
+    public static final RegistryObject<FlowingFluidBlock> greekFire = BLOCKS.register("greek_fire", GreekFireBlock::new);
 
     public static final RegistryObject<Block> melon = BLOCKS.register("melon", MelonSphere::new);
 }

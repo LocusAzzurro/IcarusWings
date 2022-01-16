@@ -31,7 +31,7 @@ minecraft {
         client {
             workingDirectory project.file('run')
 			arg "-mixin.config=" + "${mod_id}".toString() + ".mixins.json"
-
+            args '--username', 'Dev###'
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'info'
 
