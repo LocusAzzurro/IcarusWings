@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -32,7 +33,8 @@ public abstract class AbstractTransportCard extends Item {
 
     public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn){
         ItemStack itemstack = playerIn.getItemInHand(handIn);
-        return ActionResult.pass(itemstack);
+        if (!canUseCard(playerIn)) {return ActionResult.fail(itemstack);}
+        else return ActionResult.consume(itemstack);
     }
 
     protected static boolean canUseCard(PlayerEntity playerIn){

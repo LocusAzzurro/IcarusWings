@@ -17,7 +17,8 @@ import org.mineplugin.locusazzurro.icaruswings.utils.ProjectileUtils;
 
 public class ArtemisTransportCard extends AbstractTransportCard{
 
-    private static final double POWER = 1.1;
+    private static final float HALF_PI = (float) Math.PI / 2;
+    private static final float POWER = 2.1f;
 
     public ArtemisTransportCard(boolean homing){
         super(CardType.ARTEMIS_HOMING);
@@ -27,51 +28,53 @@ public class ArtemisTransportCard extends AbstractTransportCard{
         super(CardType.ARTEMIS_SCATTER);
     }
 
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn){
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemStack = playerIn.getItemInHand(handIn);
         if (!canUseCard(playerIn)) return ActionResult.fail(itemStack);
         Item item = itemStack.getItem();
+        AbstractTransportCard.CardType type = ((AbstractTransportCard) item).getType();
+        LivingEntity target = null;
+        boolean homing = (type == CardType.ARTEMIS_HOMING);
+        if (homing) {
+            target = ProjectileUtils.rayTraceTarget(playerIn, 0.1d, 300, 0.2);
+            if (target == null) {
+                return ActionResult.fail(itemStack);
+            }
+        }
+
         Vector3d pos = playerIn.getPosition(1f);
         Vector3d look = playerIn.getViewVector(1f);
-        float halfPI = (float) Math.PI/2;
-        Vector3d[] dPos = new Vector3d[]{
-            pos.add(look.yRot(halfPI)).add(0,0,0),
-            pos.add(look.yRot(halfPI)).add(0,1,0),
-            pos.add(look.yRot(halfPI)).add(0,2,0),
-            pos.add(look.yRot(-halfPI)).add(0,0,0),
-            pos.add(look.yRot(-halfPI)).add(0,1,0),
-            pos.add(look.yRot(-halfPI)).add(0,2,0),
-        };
+        Vector3d[] dPos = arrangePoints(pos, look);
         Vector3d vectorBias = Vector3d.ZERO;
-        AbstractTransportCard.CardType type = ((AbstractTransportCard) item).getType();
 
-        super.use(worldIn, playerIn, handIn);
+        for (int i = 0; i < 6; i++){
+            ArtemisMissileEntity missile;
+            if (homing) {
+                missile = new ArtemisMissileEntity(worldIn, playerIn, target);
+                missile.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0f, 0.5f, 1.0f);
+            }
+            else {
+                missile = new ArtemisMissileEntity(worldIn, playerIn);
+                missile.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0f, POWER, 3.0f);
+            }
+            missile.moveTo(dPos[i]);
+            worldIn.addFreshEntity(missile);
+        }
 
-        if (type == CardType.ARTEMIS_HOMING){
-            LivingEntity target = ProjectileUtils.rayTraceTarget(playerIn, 0.1d, 300, 0.2);
-            if (target == null){ return ActionResult.pass(itemStack); }
-            for (int i = 0; i < 6; i++){
-                ArtemisMissileEntity homingMissile = new ArtemisMissileEntity(worldIn, playerIn, target);
-                homingMissile.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0f, 0.5f, 1.0f);
-                homingMissile.moveTo(dPos[i]);
-                worldIn.addFreshEntity(homingMissile);
-            }
-            if (!playerIn.isCreative()){ itemStack.shrink(1); }
-            return ActionResult.success(itemStack);
-        }
-        else if (type == CardType.ARTEMIS_SCATTER){
-            double p = POWER;
-            for (int i = 0; i < 6; i++){
-                if (!worldIn.isClientSide){ vectorBias = randomVector(worldIn); }
-                ArtemisMissileEntity missile = new ArtemisMissileEntity(worldIn, playerIn);
-                missile.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0f, 2.0f, 3.0f);
-                missile.moveTo(dPos[i]);
-                worldIn.addFreshEntity(missile);
-            }
-            if (!playerIn.isCreative()){ itemStack.shrink(1);}
-            return ActionResult.success(itemStack);
-        }
-        return ActionResult.pass(itemStack);
+        if (!playerIn.isCreative()){ itemStack.shrink(1); }
+        playerIn.getCooldowns().addCooldown(this, 40);
+        return ActionResult.success(itemStack);
+    }
+
+    private Vector3d[] arrangePoints(Vector3d pos, Vector3d look){
+        return new Vector3d[]{
+                pos.add(look.yRot(HALF_PI)).add(0,0,0),
+                pos.add(look.yRot(HALF_PI)).add(0,1,0),
+                pos.add(look.yRot(HALF_PI)).add(0,2,0),
+                pos.add(look.yRot(-HALF_PI)).add(0,0,0),
+                pos.add(look.yRot(-HALF_PI)).add(0,1,0),
+                pos.add(look.yRot(-HALF_PI)).add(0,2,0),
+        };
     }
 
     private Vector3d randomVector(World worldIn){

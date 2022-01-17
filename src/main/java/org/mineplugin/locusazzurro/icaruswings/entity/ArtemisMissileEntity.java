@@ -114,7 +114,7 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
         //todo use AT for better compatibility
         this.projectileTick();
 
-        if (this.targetUUID != null)
+        if (this.getTarget() != null)
         {
             LivingEntity target = (LivingEntity) this.getTarget();
             Vector3d v3d = new Vector3d(
