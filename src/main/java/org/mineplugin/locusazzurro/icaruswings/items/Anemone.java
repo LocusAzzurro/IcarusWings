@@ -34,4 +34,5 @@ public class Anemone extends Item{
             itemStack.getOrCreateTag().putDouble("Speed", entityIn.getDeltaMovement().length());
         }
     }
+    //todo change color depending on speed
 }

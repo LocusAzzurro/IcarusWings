@@ -141,8 +141,11 @@
   "item.locusazzurro_icaruswings.transport_card_base.tooltip": "Basic",
   "item.locusazzurro_icaruswings.transport_card_artemis_homing.tooltip": "Artemis - Homing",
   "item.locusazzurro_icaruswings.transport_card_artemis_scatter.tooltip": "Artemis - Scatter",
+  "item.locusazzurro_icaruswings.transport_card_masking_field.tooltip": "Masking Field",
+  "item.locusazzurro_icaruswings.transport_card_interdiction_field.tooltip": "Interdiction Field",
   "item.locusazzurro_icaruswings.transport_card_chrono_explosion.tooltip": "Chrono Explosion",
   "item.locusazzurro_icaruswings.transport_card_teleport.tooltip": "Teleportation",
+  "item.locusazzurro_icaruswings.transport_card_treasure.tooltip": "Treasure",
 
   "item.locusazzurro_icaruswings.disc_fallen_down": "Music Disc",
   "item.locusazzurro_icaruswings.disc_fallen_down.desc": "Hayami Saori - Fallen Down",
