@@ -71,10 +71,13 @@ public abstract class AbstractTransportCard extends Item {
 
     public enum CardType implements IStringSerializable {
         BASE("base"),
-        TELEPORT("teleport"),
         ARTEMIS_HOMING("artemis_homing"),
         ARTEMIS_SCATTER("artemis_scatter"),
-        CHRONO_EXPLOLSION("chrono_explosion"),;
+        CHRONO_EXPLOLSION("chrono_explosion"),
+        TELEPORT("teleport"),
+        MASKING_FIELD("masking_field"),
+        INTERDICTION_FIELD("interdiction_field"),
+        TREASURE("treasure"),;
 
         private final String name;
 

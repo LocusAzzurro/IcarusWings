@@ -201,6 +201,14 @@ public class ItemRegistry {
             ArtemisTransportCard::new);
     public static final RegistryObject<Item> transportCardChronoExplosion = ITEMS.register("transport_card_chrono_explosion",
             ChronoExplosionTransportCard::new);
+    public static final RegistryObject<Item> transportCardTeleport = ITEMS.register("transport_card_chrono_teleport",
+            TeleportTransportCard::new);
+    public static final RegistryObject<Item> transportCardMaskingField = ITEMS.register("transport_card_masking_field",
+            MaskingFieldTransportCard::new);
+    public static final RegistryObject<Item> transportCardInterdictionField = ITEMS.register("transport_card_interdiction_field",
+            InterdictionFieldTransportCard::new);
+    public static final RegistryObject<Item> transportCardTreasure = ITEMS.register("transport_card_chrono_treasure",
+            TreasureTransportCard::new);
 
     public static final RegistryObject<Item> discFallenDown = ITEMS.register("disc_fallen_down",
     		() -> new SkyMusicDisc(SkyMusicDisc.Track.FALLEN_DOWN));
