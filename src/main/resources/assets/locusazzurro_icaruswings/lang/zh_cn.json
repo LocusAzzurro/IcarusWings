@@ -50,9 +50,9 @@
   "item.locusazzurro_icaruswings.golden_apple_infused_mead": "金果圣酒",
   "item.locusazzurro_icaruswings.herbs_infused_mead": "草药蜜酒",
 
-  "item.locusazzurro_icaruswings.zephir_air_jar": "灵风瓶",
-  "item.locusazzurro_icaruswings.nether_air_jar": "炎风瓶",
-  "item.locusazzurro_icaruswings.void_air_jar": "虚风瓶",
+  "item.locusazzurro_icaruswings.zephir_air_jar": "灵风罐",
+  "item.locusazzurro_icaruswings.nether_air_jar": "炎风罐",
+  "item.locusazzurro_icaruswings.void_air_jar": "虚风罐",
 
   "item.locusazzurro_icaruswings.anemone": "银莲花",
   "item.locusazzurro_icaruswings.magical_anemone": "魔法银莲花",
@@ -161,6 +161,7 @@
 
   "enchantment.locusazzurro_icaruswings.collision_protection": "撞击保护",
   "enchantment.locusazzurro_icaruswings.pyrotechnic_affinity": "烟火亲和",
+  "enchantment.locusazzurro_icaruswings.blessing_of_the_sky": "天之护佑",
   "effect.locusazzurro_icaruswings.poison_immunity": "毒素抗性",
   "effect.locusazzurro_icaruswings.sensory_masking": "感知隐匿",
   "effect.locusazzurro_icaruswings.inevitability": "宿命",
@@ -221,5 +222,5 @@
   "advancements.locusazzurro_icaruswings.future.hiyori_wings.title": "时空停滞",
   "advancements.locusazzurro_icaruswings.future.hiyori_wings.description": "穿越时空的爱恋",
 
-  "itemGroup.icaruswings_group": "伊卡洛斯之翼",
+  "itemGroup.icaruswings_group": "伊卡洛斯之翼"
 }

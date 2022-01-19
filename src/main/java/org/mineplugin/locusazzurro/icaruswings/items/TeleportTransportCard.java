@@ -11,9 +11,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 
 public class TeleportTransportCard extends AbstractTransportCard{
 
@@ -21,6 +19,7 @@ public class TeleportTransportCard extends AbstractTransportCard{
         super(CardType.TELEPORT);
     }
 
+    @Override
     public int getUseDuration(ItemStack itemStack) {
         return 40;
     }
@@ -47,10 +46,12 @@ public class TeleportTransportCard extends AbstractTransportCard{
         return ActionResult.consume(itemstack);
     }
 
+    @Override
     public void onUseTick(World p_219972_1_, LivingEntity p_219972_2_, ItemStack p_219972_3_, int p_219972_4_) {
         //todo add charging effect here
     }
 
+    @Override
     public ItemStack finishUsingItem(ItemStack itemStack, World worldIn, LivingEntity entityIn) {
         if (!worldIn.isClientSide() && entityIn instanceof ServerPlayerEntity){
             ServerPlayerEntity playerIn = (ServerPlayerEntity) entityIn;
@@ -72,6 +73,7 @@ public class TeleportTransportCard extends AbstractTransportCard{
         return itemStack;
     }
 
+    @Override
     public UseAction getUseAnimation(ItemStack p_77661_1_) {
         return UseAction.BOW;
     }
