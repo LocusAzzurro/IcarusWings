@@ -93,7 +93,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> voidAirJar = ITEMS.register("void_air_jar",
             () -> new AirJar(AirJar.AirType.VOID));
     public static final RegistryObject<Item> anemone = ITEMS.register("anemone", Anemone::new);
-
+    public static final RegistryObject<Item> magicalAnemone = ITEMS.register("magical_anemone", MagicalAnemone::new);
     public static final RegistryObject<Item> windWand = ITEMS.register("wind_wand", WindWand::new);
     
     public static final RegistryObject<Item> wheatGrains = ITEMS.register("wheat_grains", WheatGrains::new);

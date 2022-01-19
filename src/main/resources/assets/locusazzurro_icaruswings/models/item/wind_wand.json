@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "locusazzurro_icaruswings:item/wind_wand"
+  }
+}

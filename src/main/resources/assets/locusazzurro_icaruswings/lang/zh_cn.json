@@ -55,7 +55,8 @@
   "item.locusazzurro_icaruswings.void_air_jar": "虚风瓶",
 
   "item.locusazzurro_icaruswings.anemone": "银莲花",
-  "item.locusazzurro_icaruswings.anemone.tooltip": "速度：",
+  "item.locusazzurro_icaruswings.magical_anemone": "魔法银莲花",
+  "item.locusazzurro_icaruswings.magical_anemone.tooltip": "速度：",
   "item.locusazzurro_icaruswings.wind_wand": "阿涅摩伊之杖",
 
   "block.locusazzurro_icaruswings.amphora": "双耳细颈瓶",
@@ -219,6 +220,5 @@
   "advancements.locusazzurro_icaruswings.future.hiyori_wings.title": "时空停滞",
   "advancements.locusazzurro_icaruswings.future.hiyori_wings.description": "穿越时空的爱恋",
 
-  "itemGroup.icaruswings_group": "伊卡洛斯之翼"
-
+  "itemGroup.icaruswings_group": "伊卡洛斯之翼",
 }
