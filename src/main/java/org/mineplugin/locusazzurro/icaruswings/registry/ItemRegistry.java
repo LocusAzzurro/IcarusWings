@@ -193,6 +193,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> melanWings = ITEMS.register("melan_wings", SynapseWingsTheta::new);
 
     public static final RegistryObject<Item> artemisLauncher = ITEMS.register("artemis_launcher", ArtemisLauncher::new);
+    public static final RegistryObject<Item> artemisMissile = ITEMS.register("artemis_missile", ArtemisMissile::new);
 
     public static final RegistryObject<Item> transportCardBase = ITEMS.register("transport_card_base", BaseTransportCard::new);
     public static final RegistryObject<Item> transportCardArtemisHoming = ITEMS.register("transport_card_artemis_homing",
