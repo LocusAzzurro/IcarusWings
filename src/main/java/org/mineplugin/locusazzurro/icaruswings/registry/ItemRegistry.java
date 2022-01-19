@@ -208,7 +208,7 @@ public class ItemRegistry {
             MaskingFieldTransportCard::new);
     public static final RegistryObject<Item> transportCardInterdictionField = ITEMS.register("transport_card_interdiction_field",
             InterdictionFieldTransportCard::new);
-    public static final RegistryObject<Item> transportCardTreasure = ITEMS.register("transport_card_chrono_treasure",
+    public static final RegistryObject<Item> transportCardTreasure = ITEMS.register("transport_card_treasure",
             TreasureTransportCard::new);
 
     public static final RegistryObject<Item> discFallenDown = ITEMS.register("disc_fallen_down",

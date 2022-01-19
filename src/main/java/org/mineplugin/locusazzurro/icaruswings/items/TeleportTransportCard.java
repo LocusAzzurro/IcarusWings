@@ -2,11 +2,18 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class TeleportTransportCard extends AbstractTransportCard{
 
@@ -14,7 +21,7 @@ public class TeleportTransportCard extends AbstractTransportCard{
         super(CardType.TELEPORT);
     }
 
-    public int getUseDuration(ItemStack p_77626_1_) {
+    public int getUseDuration(ItemStack itemStack) {
         return 40;
     }
 
@@ -23,21 +30,58 @@ public class TeleportTransportCard extends AbstractTransportCard{
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         if (!canUseCard(playerIn)) {
             return ActionResult.fail(itemstack);
-        } else {
-            playerIn.startUsingItem(handIn);
-            return ActionResult.consume(itemstack);
         }
+        CompoundNBT nbt = itemstack.getOrCreateTag();
+        if (!nbt.contains("Destination")){
+            if (playerIn.isCrouching()) {
+                CompoundNBT dest = new CompoundNBT();
+                this.saveDestination(dest, playerIn, worldIn);
+                nbt.put("Destination", dest);
+                return ActionResult.consume(itemstack);
+            }
+            else return ActionResult.pass(itemstack);
+        }
+        else {
+            playerIn.startUsingItem(handIn);
+        }
+        return ActionResult.consume(itemstack);
     }
 
     public void onUseTick(World p_219972_1_, LivingEntity p_219972_2_, ItemStack p_219972_3_, int p_219972_4_) {
-        System.out.println("Using Card");
+        //todo add charging effect here
     }
 
-    public ItemStack finishUsingItem(ItemStack p_77654_1_, World p_77654_2_, LivingEntity p_77654_3_) {
-        return p_77654_1_;
+    public ItemStack finishUsingItem(ItemStack itemStack, World worldIn, LivingEntity entityIn) {
+        if (!worldIn.isClientSide() && entityIn instanceof ServerPlayerEntity){
+            ServerPlayerEntity playerIn = (ServerPlayerEntity) entityIn;
+            if (playerIn.connection.getConnection().isConnected() && !playerIn.isSleeping()) {
+                CompoundNBT dest = itemStack.getOrCreateTag().getCompound("Destination");
+                String dim = dest.getString("Dimension");
+                RegistryKey<World> dimension = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(dim));
+                if (worldIn.dimension().equals(dimension)) {
+                    double x = dest.getDouble("X");
+                    double y = dest.getDouble("Y");
+                    double z = dest.getDouble("Z");
+                    if (!playerIn.isCreative()) itemStack.shrink(1);
+                    if (playerIn.isPassenger()) playerIn.stopRiding();
+                    playerIn.fallDistance = 0.0F;
+                    playerIn.teleportTo(x, y, z);
+                }
+            }
+        }
+        return itemStack;
     }
 
     public UseAction getUseAnimation(ItemStack p_77661_1_) {
-        return UseAction.NONE;
+        return UseAction.BOW;
     }
+
+    private CompoundNBT saveDestination(CompoundNBT nbt, PlayerEntity playerIn, World worldIn){
+        nbt.putDouble("X", playerIn.getX());
+        nbt.putDouble("Y", playerIn.getY());
+        nbt.putDouble("Z", playerIn.getZ());
+        nbt.putString("Dimension", worldIn.dimension().location().getPath());
+        return nbt;
+    }
+
 }
