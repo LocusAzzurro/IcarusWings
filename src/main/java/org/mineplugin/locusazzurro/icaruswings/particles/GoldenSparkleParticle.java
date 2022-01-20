@@ -9,18 +9,18 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
-public class PlasmaTrailParticle extends SpriteTexturedParticle {
+public class GoldenSparkleParticle extends SpriteTexturedParticle {
 
-    public PlasmaTrailParticle(ClientWorld world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+    public GoldenSparkleParticle(ClientWorld world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(world, x, y, z, xSpeed, ySpeed, zSpeed);
         this.setColor(1f,1f,1f);
-        this.setSize(0.03f, 0.03f);
-        this.scale(0.9f);
-        this.xd = xSpeed + (Math.random() * 2.0d - 1.0d) * 0.005d;
-        this.yd = ySpeed + (Math.random() * 2.0d - 1.0d) * 0.005d;
-        this.zd = zSpeed + (Math.random() * 2.0d - 1.0d) * 0.005d;
-        this.lifetime = (int)(10 / Math.random() * 1.5f);
-        this.hasPhysics = true;
+        this.setSize(0.02f, 0.02f);
+        this.scale(world.random.nextFloat()/0.5f);
+        this.xd = xSpeed;
+        this.yd = ySpeed;
+        this.zd = zSpeed;
+        this.lifetime = 10;
+        this.hasPhysics = false;
     }
 
     @Override
@@ -31,12 +31,11 @@ public class PlasmaTrailParticle extends SpriteTexturedParticle {
         if (this.age++ >= this.lifetime) this.remove();
         else {
             this.move(xd, yd, zd);
-            this.xd *= 1.0d;
-            this.yd *= 1.0d;
-            this.zd *= 1.0d;
+            this.xd *= 0.95d;
+            this.yd *= 0.95d;
+            this.zd *= 0.95d;
         }
     }
-
 
     @Override
     public IParticleRenderType getRenderType() {
@@ -55,7 +54,7 @@ public class PlasmaTrailParticle extends SpriteTexturedParticle {
         @Nullable
         @Override
         public Particle createParticle(BasicParticleType dataIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            PlasmaTrailParticle particle = new PlasmaTrailParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
+            GoldenSparkleParticle particle = new GoldenSparkleParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
             particle.setColor(1f,1f,1f);
             particle.pickSprite(sprites);
             return particle;

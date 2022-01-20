@@ -13,6 +13,8 @@ public class ParticleRegistry {
 
     public static RegistryObject<BasicParticleType> plasmaTrail = PARTICLES.register("plasma_trail",
             () -> new BasicParticleType(true));
+    public static RegistryObject<BasicParticleType> goldenSparkle = PARTICLES.register("golden_sparkle",
+            () -> new BasicParticleType(true));
 
 
 }
