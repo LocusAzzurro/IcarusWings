@@ -11,10 +11,13 @@ public class ParticleRegistry {
 
     public static DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, ModData.MOD_ID);
 
+    public static RegistryObject<BasicParticleType> nullity = PARTICLES.register("nullity",
+            () -> new BasicParticleType(true));
     public static RegistryObject<BasicParticleType> plasmaTrail = PARTICLES.register("plasma_trail",
             () -> new BasicParticleType(true));
     public static RegistryObject<BasicParticleType> goldenSparkle = PARTICLES.register("golden_sparkle",
             () -> new BasicParticleType(true));
+
 
 
 }

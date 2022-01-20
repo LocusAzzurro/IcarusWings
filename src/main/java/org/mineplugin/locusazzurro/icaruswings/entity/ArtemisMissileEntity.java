@@ -10,6 +10,7 @@ import net.minecraft.network.IPacket;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
@@ -111,8 +112,7 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
         }
         //todo make low speed particle rendering
 
-        //todo use AT for better compatibility
-        this.projectileTick();
+        super.tick();
 
         if (this.getTarget() != null)
         {
@@ -206,6 +206,10 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
         return false;
     }
 
+    protected IParticleData getTrailParticle() {
+        return ParticleRegistry.nullity.get();
+    }
+
     @Override
     public boolean isPickable(){
         return true;
@@ -217,11 +221,6 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
             nbt.putUUID("Target", this.targetUUID);
         }
         nbt.putInt("Fuel", this.fuel);
-
-        // inherited
-        if (this.leftOwner) {
-            nbt.putBoolean("LeftOwner", true);
-        }
     }
 
     @Override
@@ -230,9 +229,6 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
             this.targetUUID = nbt.getUUID("Owner");
         }
         this.fuel = nbt.getInt("Fuel");
-
-        // inherited
-        this.leftOwner = nbt.getBoolean("LeftOwner");
     }
 
     @Override
@@ -244,88 +240,5 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
-
-    // START INHERITED TICK CALL -> this#tick -> DamagingProjectileEntity#tick -> ProjectileEntity#tick -> Entity#tick -> Entity#baseTick
-    // This whole chain and related methods needed to be inherited to modify particle behavior.
-
-    private boolean leftOwner;
-
-    // DamagingProjectileEntity#tick
-    private void projectileTick(){
-        Entity entity = this.getOwner();
-        if (this.level.isClientSide || (entity == null || !entity.removed) && this.level.hasChunkAt(this.blockPosition())) {
-
-            // START ProjectileEntity#tick
-            if (!this.leftOwner) {
-                this.leftOwner = this.checkLeftOwner();
-            }
-                // START Entity#tick
-                if (!this.level.isClientSide) {
-                    this.setSharedFlag(6, this.isGlowing());
-                }
-
-                this.baseTick();
-
-                // END Entity#tick
-
-            // END ProjectileEntity#tick
-            /*
-
-            // removed burn check
-
-            if (this.shouldBurn()) {
-                this.setSecondsOnFire(1);
-            }
-            */
-
-            RayTraceResult raytraceresult = ProjectileHelper.getHitResult(this, this::canHitEntity);
-            if (raytraceresult.getType() != RayTraceResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
-                this.onHit(raytraceresult);
-            }
-
-            this.checkInsideBlocks();
-            Vector3d vector3d = this.getDeltaMovement();
-            double d0 = this.getX() + vector3d.x;
-            double d1 = this.getY() + vector3d.y;
-            double d2 = this.getZ() + vector3d.z;
-            ProjectileHelper.rotateTowardsMovement(this, 0.2F);
-            float f = this.getInertia();
-
-
-            // removed bubble particle
-            /*
-            if (this.isInWater()) {
-                for(int i = 0; i < 4; ++i) {
-                    float f1 = 0.25F;
-                    this.level.addParticle(ParticleTypes.BUBBLE, d0 - vector3d.x * 0.25D, d1 - vector3d.y * 0.25D, d2 - vector3d.z * 0.25D, vector3d.x, vector3d.y, vector3d.z);
-                }
-
-                f = 0.8F;
-            } */
-
-            this.setDeltaMovement(vector3d.add(this.xPower, this.yPower, this.zPower).scale((double)f));
-            //this.level.addParticle(this.getTrailParticle(), d0, d1 + 0.5D, d2, 0.0D, 0.0D, 0.0D); // particle disabled
-            this.setPos(d0, d1, d2);
-        } else {
-            this.remove();
-        }
-    }
-
-    private boolean checkLeftOwner() {
-        Entity entity = this.getOwner();
-        if (entity != null) {
-            for(Entity entity1 : this.level.getEntities(this, this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(1.0D), (p_234613_0_) -> {
-                return !p_234613_0_.isSpectator() && p_234613_0_.isPickable();
-            })) {
-                if (entity1.getRootVehicle() == entity.getRootVehicle()) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    // END INHERITED TICK CALL
 
 }
