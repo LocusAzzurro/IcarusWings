@@ -23,6 +23,8 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
+import net.minecraft.block.Blocks;
+import net.minecraft.particles.BlockParticleData;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -37,6 +39,9 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     private int fuel;
     private double homingSpeed = 1.1;
     private static final IParticleData PARTICLE = ParticleRegistry.plasmaTrail.get();
+    
+    // 空白粒子
+    public static final IParticleData PARTICLE_EMPTY = new BlockParticleData( ParticleTypes.BLOCK, Blocks.AIR.defaultBlockState( ) ) ;
 
     public ArtemisMissileEntity(EntityType<? extends ArtemisMissileEntity> type, World world) {
         super(type, world);
@@ -207,7 +212,7 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     }
 
     protected IParticleData getTrailParticle() {
-        return ParticleRegistry.nullity.get();
+        return PARTICLE_EMPTY ;
     }
 
     @Override
