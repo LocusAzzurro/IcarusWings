@@ -162,8 +162,7 @@ public class SpearItem extends TieredItem implements IVanishable {
                 }
 
                 worldIn.addFreshEntity(spearEntity);
-                //todo sound effect
-                worldIn.playSound((PlayerEntity) null, spearEntity, SoundRegistry.spearThrow.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
+                worldIn.playSound(null, spearEntity, SoundRegistry.spearThrow.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
                 if (!playerIn.abilities.instabuild) {
                     playerIn.inventory.removeItem(itemStack);
                 }

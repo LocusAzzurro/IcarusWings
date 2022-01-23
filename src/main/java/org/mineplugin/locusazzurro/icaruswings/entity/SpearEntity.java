@@ -100,7 +100,6 @@ public class SpearEntity extends AbstractArrowEntity {
         this.playSound(soundevent, 1.0F, 1.0F);
     }
 
-    //TODO: custom sounds
     @Override
     protected SoundEvent getDefaultHitGroundSoundEvent() {
         return SoundRegistry.spearHitGround.get();

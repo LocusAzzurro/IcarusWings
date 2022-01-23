@@ -21,8 +21,9 @@
     "subtitle": "subtitles.item.spear.throw",
     "replace": true,
     "sounds": [
-      "minecraft:item/trident/throw1",
-      "minecraft:item/trident/throw2"
+      "locusazzurro_icaruswings:spear_throw_1",
+      "locusazzurro_icaruswings:spear_throw_2",
+      "locusazzurro_icaruswings:spear_throw_3"
     ]
   },
   "item.spear.hit": {
@@ -39,21 +40,30 @@
     "replace": true,
     "sounds": [
       {
-        "name": "minecraft:item/trident/ground_impact1",
+        "name": "locusazzurro_icaruswings:spear_impact_1",
         "volume": 0.9
       },
       {
-        "name": "minecraft:item/trident/ground_impact2",
+        "name": "locusazzurro_icaruswings:spear_impact_2",
         "volume": 0.9
       },
       {
-        "name": "minecraft:item/trident/ground_impact3",
+        "name": "locusazzurro_icaruswings:spear_impact_3",
         "volume": 0.9
       },
       {
-        "name": "minecraft:item/trident/ground_impact4",
+        "name": "locusazzurro_icaruswings:spear_impact_4",
         "volume": 0.9
       }
+    ]
+  },
+  "entity.artemis_missile_launch": {
+    "subtitle": "subtitles.entity.artemis_missile_launch",
+    "replace": true,
+    "sounds": [
+      "locusazzurro_icaruswings:artemis_missile_launch_1",
+      "locusazzurro_icaruswings:artemis_missile_launch_2",
+      "locusazzurro_icaruswings:artemis_missile_launch_3"
     ]
   }
 }
