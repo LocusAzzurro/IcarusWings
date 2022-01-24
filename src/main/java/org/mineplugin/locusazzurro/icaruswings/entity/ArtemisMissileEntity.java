@@ -23,13 +23,14 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
+import net.minecraft.block.Blocks;
+import net.minecraft.particles.BlockParticleData;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class ArtemisMissileEntity extends DamagingProjectileEntity {
 
-    private LivingEntity target = null;
     private UUID targetUUID;
     private int targetNetworkId;
     private int explosionPower = 1;
@@ -37,6 +38,9 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     private int fuel;
     private double homingSpeed = 1.1;
     private static final IParticleData PARTICLE = ParticleRegistry.plasmaTrail.get();
+    
+    // 空白粒子
+    public static final IParticleData PARTICLE_EMPTY = new BlockParticleData(ParticleTypes.BLOCK, Blocks.AIR.defaultBlockState()) ;
 
     public ArtemisMissileEntity(EntityType<? extends ArtemisMissileEntity> type, World world) {
         super(type, world);
@@ -90,10 +94,11 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     public void tick() {
 
         Vector3d vec = this.getDeltaMovement();
+        Vector3d facing = this.getLookAngle();
 
         if (level.isClientSide()) {
 
-            if (vec.length() > 0.05) {
+            if (vec.length() > 0.1) {
                 for (int j = 0; j < 4; j++) {
                     for (int i = 0; i < 4; i++) {
                         double xR = level.random.nextDouble() * 0.2d;
@@ -101,16 +106,29 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
                         double zR = level.random.nextDouble() * 0.2d;
                         level.addParticle(PARTICLE,
                                 this.getX() - (vec.x * 0.25 * j) + xR,
-                                this.getY() - (vec.y * 0.25 * j) + yR,
+                                this.getY() - (vec.y * 0.25 * j) + yR + 0.1,
                                 this.getZ() - (vec.z * 0.25 * j) + zR,
                                 -(vec.x * 0.1),
-                                -(vec.y * 0.15),
+                                -(vec.y * 0.1),
                                 -(vec.z * 0.1));
                     }
                 }
             }
+            else {
+                for (int i = 0; i < 2; i++){
+                    double xR = level.random.nextDouble() * 0.1d;
+                    double yR = level.random.nextDouble() * 0.1d;
+                    double zR = level.random.nextDouble() * 0.1d;
+                    level.addParticle(PARTICLE,
+                            this.getX() + (facing.x * 0.1) + xR,
+                            this.getY() + (facing.y * 0.1) + yR + 0.1,
+                            this.getZ() + (facing.z * 0.1) + zR,
+                            (facing.x * 0.03),
+                            (facing.y * 0.03),
+                            (facing.z * 0.03));
+                }
+            }
         }
-        //todo make low speed particle rendering
 
         super.tick();
 
@@ -207,7 +225,7 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     }
 
     protected IParticleData getTrailParticle() {
-        return ParticleRegistry.nullity.get();
+        return PARTICLE_EMPTY ;
     }
 
     @Override

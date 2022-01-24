@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  M",
+    " P ",
+    "P  "
+  ],
+  "key": {
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "M": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:netherite_spear",
+    "count": 1
+  }
+}
