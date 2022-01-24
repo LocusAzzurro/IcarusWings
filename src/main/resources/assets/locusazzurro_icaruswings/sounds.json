@@ -57,6 +57,21 @@
       }
     ]
   },
+  "item.air_jar.fill": {
+    "subtitle": "subtitles.item.air_jar.fill",
+    "replace": true,
+    "sounds": [
+      "item/bottle/fill_dragonbreath1",
+      "item/bottle/fill_dragonbreath2"
+    ]
+  },
+  "item.air_jar.empty": {
+    "subtitle": "subtitles.item.air_jar.empty",
+    "replace": true,
+    "sounds": [
+      "mob/chicken/plop"
+    ]
+  },
   "entity.artemis_missile_launch": {
     "subtitle": "subtitles.entity.artemis_missile_launch",
     "replace": true,

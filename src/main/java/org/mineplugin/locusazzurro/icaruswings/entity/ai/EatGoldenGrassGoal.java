@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 
 public class EatGoldenGrassGoal extends Goal {
 
+    //todo add golden variant for grass
     private static final Predicate<BlockState> IS_TALL_GRASS = BlockStateMatcher.forBlock(Blocks.GRASS);
     private final MobEntity mob;
     private final World level;

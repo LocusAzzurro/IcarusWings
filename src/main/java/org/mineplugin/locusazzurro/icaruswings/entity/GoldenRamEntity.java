@@ -104,7 +104,8 @@ public class GoldenRamEntity extends AnimalEntity implements IForgeShearable {
 	public void tick() {
 		super.tick();
 	}
-	
+	//todo add golden particle
+
 	@Override
 	protected SoundEvent getAmbientSound() {return SoundEvents.SHEEP_AMBIENT;}
 	
@@ -114,7 +115,8 @@ public class GoldenRamEntity extends AnimalEntity implements IForgeShearable {
 	
 	@Override
 	protected SoundEvent getDeathSound() {return SoundEvents.SHEEP_DEATH;}
-	
+	//todo make custom sound events
+
 	@Nullable
 	@Override
 	@ParametersAreNonnullByDefault

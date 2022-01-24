@@ -4,6 +4,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.RegistryKey;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 @Mod.EventBusSubscriber
 public class GlassJar extends Item{
@@ -42,6 +44,7 @@ public class GlassJar extends Item{
                 if (rand <= chance) {
                     targetStack.shrink(1);
                     ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(getResultItem(dim).get()));
+                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundRegistry.airJarFill.get(), SoundCategory.NEUTRAL, 0.9f, 0.8f);
                 }
             }
         }

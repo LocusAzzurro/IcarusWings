@@ -20,6 +20,10 @@ public class SoundRegistry {
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.spear.hit")));
 	public static final RegistryObject<SoundEvent> spearHitGround = SOUNDS.register("item.spear.hit_ground",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.spear.hit_ground")));
+	public static final RegistryObject<SoundEvent> airJarFill = SOUNDS.register("item.air_jar.fill",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.air_jar.fill")));
+	public static final RegistryObject<SoundEvent> airJarEmpty = SOUNDS.register("item.air_jar.empty",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.air_jar.empty")));
 	public static final RegistryObject<SoundEvent> artemisMissileLaunch = SOUNDS.register("entity.artemis_missile_launch",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"entity.artemis_missile_launch")));
 
