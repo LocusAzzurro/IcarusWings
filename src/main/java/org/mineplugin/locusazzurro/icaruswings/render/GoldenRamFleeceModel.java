@@ -6,8 +6,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.entity.GoldenRamEntity;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 @OnlyIn(Dist.CLIENT)
 public class GoldenRamFleeceModel<T extends GoldenRamEntity> extends QuadrupedModel<T> {
+    private float headXRot;
 
     public GoldenRamFleeceModel() {
         super(12, 0.0F, false, 8.0F, 4.0F, 2.0F, 2.0F, 24);
@@ -32,11 +35,16 @@ public class GoldenRamFleeceModel<T extends GoldenRamEntity> extends QuadrupedMo
         this.leg3.setPos(3.0F, 12.0F, -5.0F);
     }
 
-    public void prepareMobModel(T p_212843_1_, float p_212843_2_, float p_212843_3_, float p_212843_4_) {
-        super.prepareMobModel(p_212843_1_, p_212843_2_, p_212843_3_, p_212843_4_);
+    @ParametersAreNonnullByDefault
+    public void prepareMobModel(T entity, float x, float y, float z) {
+        super.prepareMobModel(entity, x, y, z);
+        this.head.y = 6.0F + entity.getHeadEatPositionScale(z) * 9.0F;
+        this.headXRot = entity.getHeadEatAngleScale(z);
     }
 
-    public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
-        super.setupAnim(p_225597_1_, p_225597_2_, p_225597_3_, p_225597_4_, p_225597_5_, p_225597_6_);
+    @ParametersAreNonnullByDefault
+    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        this.head.xRot = this.headXRot;
     }
 }
