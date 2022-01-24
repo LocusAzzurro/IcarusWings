@@ -19,10 +19,10 @@ public class PhilosopherStone extends Item{
 			.saturationMod(10)
 			.nutrition(10)
 			.alwaysEat()
-			.effect(() -> {return new EffectInstance(Effects.REGENERATION, 400, 1);}, 1)
-			.effect(() -> {return new EffectInstance(Effects.DAMAGE_RESISTANCE, 1200, 1);}, 1)
-			.effect(() -> {return new EffectInstance(Effects.FIRE_RESISTANCE, 1200, 0);}, 1)
-			.effect(() -> {return new EffectInstance(Effects.HEALTH_BOOST, 1200, 2);}, 1)
+			.effect(() -> new EffectInstance(Effects.REGENERATION, 400, 1), 1)
+			.effect(() -> new EffectInstance(Effects.DAMAGE_RESISTANCE, 1200, 1), 1)
+			.effect(() -> new EffectInstance(Effects.FIRE_RESISTANCE, 1200, 0), 1)
+			.effect(() -> new EffectInstance(Effects.HEALTH_BOOST, 1200, 2), 1)
 			.build();
 	
 	@Override

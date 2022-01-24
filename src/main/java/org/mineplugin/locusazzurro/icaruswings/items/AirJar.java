@@ -9,9 +9,15 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
+
+/**
+ * For glass jar filling mechanic:
+ * @see org.mineplugin.locusazzurro.icaruswings.items.GlassJar#collectAir
+ */
 
 public class AirJar extends Item {
 
@@ -46,6 +52,16 @@ public class AirJar extends Item {
         return ActionResult.consume(itemStack);
     }
 
+    @Override
+    public ItemStack getContainerItem(ItemStack itemStack) {
+        return new ItemStack(ItemRegistry.glassJar.get());
+    }
+
+    @Override
+    public boolean hasContainerItem(ItemStack stack) {
+        return true;
+    }
+
     public AirType getType(){
         return this.type;
     }
@@ -53,5 +69,7 @@ public class AirJar extends Item {
     public enum AirType{
         ZEPHIR, NETHER, VOID;
     }
+
+
 
 }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " J ",
+    "JEJ",
+    " J "
+  ],
+  "key": {
+    "J": {
+      "item": "locusazzurro_icaruswings:glass_jar"
+    },
+    "E": {
+      "item": "locusazzurro_icaruswings:zephir_essence"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:zephir_air_jar",
+    "count": 4
+  }
+}

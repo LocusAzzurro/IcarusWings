@@ -1,6 +1,5 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

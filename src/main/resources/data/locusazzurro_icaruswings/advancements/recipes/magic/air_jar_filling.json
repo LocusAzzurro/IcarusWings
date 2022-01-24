@@ -1,0 +1,48 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:zephir_air_jar",
+      "locusazzurro_icaruswings:nether_air_jar",
+      "locusazzurro_icaruswings:void_air_jar"
+    ]
+  },
+  "criteria": {
+    "has_jar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:glass_jar"
+          }
+        ]
+      }
+    },
+    "has_essence": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "locusazzurro_icaruswings:world_essences"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:zephir_air_jar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_jar",
+      "has_the_recipe"
+    ],
+    [
+      "has_essence",
+      "has_the_recipe"
+    ]
+  ]
+}
