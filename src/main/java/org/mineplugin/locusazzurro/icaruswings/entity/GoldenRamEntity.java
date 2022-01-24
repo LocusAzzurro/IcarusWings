@@ -149,7 +149,7 @@ public class GoldenRamEntity extends AnimalEntity implements IForgeShearable {
 
 			java.util.List<ItemStack> items = new java.util.ArrayList<>();
 			for (int j = 0; j < i; ++j) {
-				items.add(new ItemStack(ItemRegistry.goldenFeather.get()));
+				items.add(new ItemStack(ItemRegistry.goldenFleece.get()));
 			}
 			return items;
 		}
