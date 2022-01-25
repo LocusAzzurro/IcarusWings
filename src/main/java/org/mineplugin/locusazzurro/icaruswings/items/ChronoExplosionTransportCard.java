@@ -1,19 +1,13 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import org.mineplugin.locusazzurro.icaruswings.entity.TimeBombEntity;
-import org.mineplugin.locusazzurro.icaruswings.magic.DamageTimeRift;
-import org.mineplugin.locusazzurro.icaruswings.magic.EffectInevitability;
+import org.mineplugin.locusazzurro.icaruswings.effect.EffectInevitability;
 import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
-
-import java.util.List;
 
 public class ChronoExplosionTransportCard extends AbstractTransportCard{
 

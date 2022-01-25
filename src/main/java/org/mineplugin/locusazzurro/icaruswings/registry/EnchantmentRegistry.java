@@ -1,7 +1,9 @@
 package org.mineplugin.locusazzurro.icaruswings.registry;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.magic.*;
+import org.mineplugin.locusazzurro.icaruswings.ench.EnchantmentBlessingOfTheSky;
+import org.mineplugin.locusazzurro.icaruswings.ench.EnchantmentCollisionProtection;
+import org.mineplugin.locusazzurro.icaruswings.ench.EnchantmentPyrotechnicAffinity;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.fml.RegistryObject;

@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.magic;
+package org.mineplugin.locusazzurro.icaruswings.ench;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;

@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.magic;
+package org.mineplugin.locusazzurro.icaruswings.damage;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EntityDamageSource;

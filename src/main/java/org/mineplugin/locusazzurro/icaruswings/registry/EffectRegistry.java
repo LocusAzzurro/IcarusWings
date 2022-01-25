@@ -1,7 +1,10 @@
 package org.mineplugin.locusazzurro.icaruswings.registry;
 
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.magic.*;
+import org.mineplugin.locusazzurro.icaruswings.effect.EffectInevitability;
+import org.mineplugin.locusazzurro.icaruswings.effect.EffectInterdiction;
+import org.mineplugin.locusazzurro.icaruswings.effect.EffectPoisonImmunity;
+import org.mineplugin.locusazzurro.icaruswings.effect.EffectSensoryMasking;
 
 import net.minecraft.potion.Effect;
 import net.minecraftforge.fml.RegistryObject;

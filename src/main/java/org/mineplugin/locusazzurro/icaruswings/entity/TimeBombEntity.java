@@ -10,7 +10,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
-import org.mineplugin.locusazzurro.icaruswings.magic.DamageTimeRift;
+import org.mineplugin.locusazzurro.icaruswings.damage.DamageTimeRift;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 
 import javax.annotation.Nullable;

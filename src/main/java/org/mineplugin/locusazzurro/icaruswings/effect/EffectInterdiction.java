@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.magic;
+package org.mineplugin.locusazzurro.icaruswings.effect;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
