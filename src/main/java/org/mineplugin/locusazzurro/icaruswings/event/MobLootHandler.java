@@ -44,12 +44,12 @@ public class MobLootHandler {
 	
 	static {
 		
-		LOOTREF.setPayload(Pair.of(() -> {return new ItemStack(ItemRegistry.zephirEssence.get());}, 0.1f)).setInto(BatEntity.class);
-		LOOTREF.setPayload(Pair.of(() -> {return new ItemStack(ItemRegistry.zephirEssence.get());}, 0.1f)).setInto(PhantomEntity.class);
-		LOOTREF.setPayload(Pair.of(() -> {return new ItemStack(ItemRegistry.netherEssence.get());}, 0.1f)).setInto(WitherSkeletonEntity.class);
-		LOOTREF.setPayload(Pair.of(() -> {return new ItemStack(ItemRegistry.netherEssence.get());}, 0.05f)).setInto(BlazeEntity.class);
-		LOOTREF.setPayload(Pair.of(() -> {return new ItemStack(ItemRegistry.voidEssence.get());}, 0.2f)).setInto(ShulkerEntity.class);
-		LOOTREF.setPayload(Pair.of(() -> {return new ItemStack(ItemRegistry.voidEssence.get());}, 0.05f)).setInto(EndermanEntity.class);
+		LOOTREF.setPayload(Pair.of(() -> new ItemStack(ItemRegistry.zephirEssence.get()), 0.1f)).setInto(BatEntity.class);
+		LOOTREF.setPayload(Pair.of(() -> new ItemStack(ItemRegistry.zephirEssence.get()), 0.1f)).setInto(PhantomEntity.class);
+		LOOTREF.setPayload(Pair.of(() -> new ItemStack(ItemRegistry.netherEssence.get()), 0.1f)).setInto(WitherSkeletonEntity.class);
+		LOOTREF.setPayload(Pair.of(() -> new ItemStack(ItemRegistry.netherEssence.get()), 0.05f)).setInto(BlazeEntity.class);
+		LOOTREF.setPayload(Pair.of(() -> new ItemStack(ItemRegistry.voidEssence.get()), 0.2f)).setInto(ShulkerEntity.class);
+		LOOTREF.setPayload(Pair.of(() -> new ItemStack(ItemRegistry.voidEssence.get()), 0.05f)).setInto(EndermanEntity.class);
 	}
 	
 }

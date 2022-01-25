@@ -72,6 +72,13 @@
       "mob/chicken/plop"
     ]
   },
+  "item.wind_wand.burst": {
+    "subtitle": "subtitles.item.wind_wand.burst",
+    "replace": true,
+    "sounds": [
+      "mob/ghast/fireball4"
+    ]
+  },
   "entity.artemis_missile_launch": {
     "subtitle": "subtitles.entity.artemis_missile_launch",
     "replace": true,

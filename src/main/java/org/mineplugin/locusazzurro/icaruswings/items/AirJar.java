@@ -8,6 +8,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.particles.RedstoneParticleData;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -55,6 +56,7 @@ public class AirJar extends Item {
             itemStack.shrink(1);
             ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegistry.glassJar.get()));
         }
+        playerIn.awardStat(Stats.ITEM_USED.get(this));
         return ActionResult.consume(itemStack);
     }
 

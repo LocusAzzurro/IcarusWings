@@ -5,6 +5,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -16,6 +17,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.entity.SpearEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 public class WindWand extends Item {
 
@@ -61,6 +63,7 @@ public class WindWand extends Item {
                     offhandStack.shrink(1);
                     ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegistry.glassJar.get()));
                 }
+                worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundRegistry.airJarEmpty.get(), SoundCategory.NEUTRAL, 0.5f, 0.6f);
                 itemStack.setDamageValue(Math.max(itemStack.getDamageValue() - repairAmount, 0));
             }
             else {
@@ -71,11 +74,21 @@ public class WindWand extends Item {
                 if (i >= 5) playerIn.setDeltaMovement(moveVec.add(lookVec.reverse().scale(1.5)).add(yBonus));
                 else playerIn.setDeltaMovement(moveVec.add(lookVec.scale(2.0)).add(yBonus));
                 playerIn.fallDistance = 0;
-                if (!worldIn.isClientSide) {
+                if (!worldIn.isClientSide()) {
                     itemStack.hurtAndBreak(1, playerIn, (player) -> {
                         player.broadcastBreakEvent(playerIn.getUsedItemHand());
                     });
                 }
+                else {
+                    for(int j = 0; j < 10; j++){
+                        double xR = worldIn.random.nextGaussian() * 0.1;
+                        double yR = worldIn.random.nextGaussian() * 0.05;
+                        double zR = worldIn.random.nextGaussian() * 0.1;
+                        worldIn.addParticle(ParticleTypes.CLOUD, playerIn.getX(), playerIn.getY(), playerIn.getZ(), xR, yR, zR);
+                    }
+                }
+                worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(),
+                        SoundRegistry.windWandBurst.get(), SoundCategory.PLAYERS, 1.0f, 1.0f);
                 playerIn.awardStat(Stats.ITEM_USED.get(this));
             }
         }

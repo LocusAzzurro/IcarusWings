@@ -180,6 +180,7 @@
   "subtitles.item.spear.hit_ground": "枪：落地",
   "subtitles.item.air_jar.fill": "玻璃罐：充气",
   "subtitles.item.air_jar.empty": "玻璃罐：放气",
+  "subtitles.item.wind_wand.burst": "法杖：喷射",
   "subtitles.entity.artemis_missile_launch": "Artemis Missile launched",
 
   "advancements.locusazzurro_icaruswings.past.root.title": "梦",
@@ -204,6 +205,8 @@
   "advancements.locusazzurro_icaruswings.past.brew_mead.description": "最古老的饮品",
   "advancements.locusazzurro_icaruswings.past.philosopher_stone.title": "哲学家的空想乌托邦",
   "advancements.locusazzurro_icaruswings.past.philosopher_stone.description": "此成就并非由 Vazkii 制作",
+  "advancements.locusazzurro_icaruswings.past.wind_wand.title": "幻化成风",
+  "advancements.locusazzurro_icaruswings.past.wind_wand.description": "可能需要猫一般的反应速度才能驾驭",
 
   "advancements.locusazzurro_icaruswings.future.root.title": "回到未来",
   "advancements.locusazzurro_icaruswings.future.root.description": "过去，现在，未来",

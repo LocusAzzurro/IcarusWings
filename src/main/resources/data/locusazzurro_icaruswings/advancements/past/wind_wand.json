@@ -1,0 +1,35 @@
+{
+  "parent": "locusazzurro_icaruswings:past/philosopher_stone",
+  "display": {
+    "icon": {
+      "item": "locusazzurro_icaruswings:wind_wand"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.past.wind_wand.title"
+    },
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.past.wind_wand.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "wind_wand": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:wind_wand"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "wind_wand"
+    ]
+  ]
+}

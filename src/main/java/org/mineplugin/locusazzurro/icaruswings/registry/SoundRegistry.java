@@ -24,6 +24,8 @@ public class SoundRegistry {
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.air_jar.fill")));
 	public static final RegistryObject<SoundEvent> airJarEmpty = SOUNDS.register("item.air_jar.empty",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.air_jar.empty")));
+	public static final RegistryObject<SoundEvent> windWandBurst = SOUNDS.register("item.wind_wand.burst",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.wind_wand.burst")));
 	public static final RegistryObject<SoundEvent> artemisMissileLaunch = SOUNDS.register("entity.artemis_missile_launch",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"entity.artemis_missile_launch")));
 

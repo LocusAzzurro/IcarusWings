@@ -181,6 +181,7 @@
   "subtitles.item.spear.hit_ground": "Spear hits ground",
   "subtitles.item.air_jar.fill": "Jar fills with air",
   "subtitles.item.air_jar.empty": "Jar empties air",
+  "subtitles.item.wind_wand.burst": "Wand bursts",
   "subtitles.entity.artemis_missile_launch": "Artemis Missile launched",
 
   "advancements.locusazzurro_icaruswings.past.root.title": "Dream",
@@ -205,6 +206,8 @@
   "advancements.locusazzurro_icaruswings.past.brew_mead.description": "The oldest brew",
   "advancements.locusazzurro_icaruswings.past.philosopher_stone.title": "Philosophiofantasia",
   "advancements.locusazzurro_icaruswings.past.philosopher_stone.description": "... is not an advancement by Vazkii",
+  "advancements.locusazzurro_icaruswings.past.wind_wand.title": "To Be the Wind",
+  "advancements.locusazzurro_icaruswings.past.wind_wand.description": "You might need some cat reflexes",
 
   "advancements.locusazzurro_icaruswings.future.root.title": "Back to Future",
   "advancements.locusazzurro_icaruswings.future.root.description": "Past, present, future",

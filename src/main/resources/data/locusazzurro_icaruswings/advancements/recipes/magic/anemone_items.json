@@ -1,0 +1,47 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:magical_anemone",
+      "locusazzurro_icaruswings:wind_wand"
+    ]
+  },
+  "criteria": {
+    "has_anemone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:anemone"
+          }
+        ]
+      }
+    },
+    "has_essence": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "locusazzurro_icaruswings:world_essences"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:wind_wand"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_anemone",
+      "has_the_recipe"
+    ],
+    [
+      "has_essence",
+      "has_the_recipe"
+    ]
+  ]
+}

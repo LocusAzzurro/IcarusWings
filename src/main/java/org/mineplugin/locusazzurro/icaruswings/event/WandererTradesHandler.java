@@ -21,23 +21,25 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 @EventBusSubscriber
 public class WandererTradesHandler {
 	
-	private static VillagerTrades.ITrade zephirEssenceTrade = new ItemsForEmeraldsTrade(
+	private final static VillagerTrades.ITrade zephirEssenceTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.zephirEssence.get()), 16, 1, 1, 1, 1.0f);
-	private static VillagerTrades.ITrade amphoraTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ITrade amphoraTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.amphora.get()), 4, 1, 2, 1, 1.0f);
-	private static VillagerTrades.ITrade goldenFeatherTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ITrade goldenFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.goldenFeather.get()), 6, 1, 3, 1, 1.0f);
+	private static final VillagerTrades.ITrade anemoneTrade = new ItemsForEmeraldsTrade(
+			() -> new ItemStack(ItemRegistry.anemone.get()), 8, 1, 2, 1, 1.0f);
 	
 	
-	private static VillagerTrades.ITrade redFeatherTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ITrade redFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.redFeather.get()), 2, 1, 3, 1, 1.0f);
-	private static VillagerTrades.ITrade blueFeatherTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ITrade blueFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.blueFeather.get()), 2, 1, 3, 1, 1.0f);
-	private static VillagerTrades.ITrade cyanFeatherTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ITrade cyanFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.cyanFeather.get()), 2, 1, 3, 1, 1.0f);
-	private static VillagerTrades.ITrade greenFeatherTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ITrade greenFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.greenFeather.get()), 2, 1, 3, 1, 1.0f);
-	private static VillagerTrades.ITrade grayFeatherTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ITrade grayFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.grayFeather.get()), 2, 1, 3, 1, 1.0f);
 	
 	@SubscribeEvent
@@ -45,7 +47,7 @@ public class WandererTradesHandler {
 		List<ITrade> rareList = event.getRareTrades();
 		List<ITrade> commonList = event.getGenericTrades();
 		commonList.addAll(Arrays.asList(redFeatherTrade, blueFeatherTrade, cyanFeatherTrade, greenFeatherTrade, grayFeatherTrade));
-		rareList.addAll(Arrays.asList(zephirEssenceTrade, amphoraTrade, goldenFeatherTrade));
+		rareList.addAll(Arrays.asList(zephirEssenceTrade, amphoraTrade, goldenFeatherTrade, anemoneTrade));
 	}
 	
 	static class ItemsForEmeraldsTrade implements VillagerTrades.ITrade {

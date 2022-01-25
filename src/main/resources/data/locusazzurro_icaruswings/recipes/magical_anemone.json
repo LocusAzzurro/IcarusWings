@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "locusazzurro_icaruswings:world_essences"
+    },
+    {
+      "item": "locusazzurro_icaruswings:anemone"
+    }
+  ],
+  "result": {
+    "item": "locusazzurro_icaruswings:magical_anemone",
+    "count": 1
+  }
+}
