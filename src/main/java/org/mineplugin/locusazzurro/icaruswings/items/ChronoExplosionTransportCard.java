@@ -23,11 +23,11 @@ public class ChronoExplosionTransportCard extends AbstractTransportCard{
         if (!canUseCard(playerIn)) return ActionResult.fail(itemstack);
 
         //playerIn.addEffect(new EffectInstance(EffectRegistry.inevitability.get(), 400, 0));
-        ((EffectInevitability)EffectRegistry.inevitability.get()).addEffect(playerIn, 1);
+        //((EffectInevitability)EffectRegistry.inevitability.get()).addEffect(playerIn, 1);
         //todo change back to bomb
 
         TimeBombEntity bomb = new TimeBombEntity(worldIn, playerIn, DAMAGE, RANGE, 60);
-        //worldIn.addFreshEntity(bomb);
+        worldIn.addFreshEntity(bomb);
 
         if(!playerIn.isCreative()) {itemstack.shrink(1);}
 

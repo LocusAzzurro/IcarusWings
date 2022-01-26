@@ -26,7 +26,9 @@ public class SoundRegistry {
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.air_jar.empty")));
 	public static final RegistryObject<SoundEvent> windWandBurst = SOUNDS.register("item.wind_wand.burst",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.wind_wand.burst")));
-	public static final RegistryObject<SoundEvent> artemisMissileLaunch = SOUNDS.register("entity.artemis_missile_launch",
-			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"entity.artemis_missile_launch")));
+	public static final RegistryObject<SoundEvent> artemisMissileLaunch = SOUNDS.register("entity.artemis_missile.launch",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"entity.artemis_missile.launch")));
+	public static final RegistryObject<SoundEvent> timeRiftCollapse = SOUNDS.register("entity.time_rift.collapse",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"entity.time_rift.collapse")));
 
 }

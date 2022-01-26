@@ -18,6 +18,7 @@ public class ClientParticleFactoryHandler {
         particleEngine.register(ParticleRegistry.nullity.get(), NullityParticle.Factory::new);
         particleEngine.register(ParticleRegistry.plasmaTrail.get(), PlasmaTrailParticle.Factory::new);
         particleEngine.register(ParticleRegistry.goldenSparkle.get(), GoldenSparkleParticle.Factory::new);
+        particleEngine.register(ParticleRegistry.timeRiftExplosion.get(), TimeRiftExplosionParticle.Factory::new);
     }
 
 }

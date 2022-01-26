@@ -181,7 +181,8 @@
   "subtitles.item.air_jar.fill": "玻璃罐：充气",
   "subtitles.item.air_jar.empty": "玻璃罐：放气",
   "subtitles.item.wind_wand.burst": "法杖：喷射",
-  "subtitles.entity.artemis_missile_launch": "Artemis Missile launched",
+  "subtitles.entity.artemis_missile.launch": "Artemis Missile launched",
+  "subtitles.entity.time_rift.collapse": "Time Rift collapses",
 
   "advancements.locusazzurro_icaruswings.past.root.title": "梦",
   "advancements.locusazzurro_icaruswings.past.root.description": "这是一个关于天空的故事",

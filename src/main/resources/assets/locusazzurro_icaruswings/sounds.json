@@ -79,13 +79,23 @@
       "mob/ghast/fireball4"
     ]
   },
-  "entity.artemis_missile_launch": {
-    "subtitle": "subtitles.entity.artemis_missile_launch",
+  "entity.artemis_missile.launch": {
+    "subtitle": "subtitles.entity.artemis_missile.launch",
     "replace": true,
     "sounds": [
       "locusazzurro_icaruswings:artemis_missile_launch_1",
       "locusazzurro_icaruswings:artemis_missile_launch_2",
       "locusazzurro_icaruswings:artemis_missile_launch_3"
+    ]
+  },
+  "entity.time_rift.collapse": {
+    "subtitle": "subtitles.entity.time_rift.collapse",
+    "replace": true,
+    "sounds": [
+      {
+        "name": "locusazzurro_icaruswings:time_rift_collapse",
+        "stream": true
+      }
     ]
   }
 }

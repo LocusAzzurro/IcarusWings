@@ -182,7 +182,8 @@
   "subtitles.item.air_jar.fill": "Jar fills with air",
   "subtitles.item.air_jar.empty": "Jar empties air",
   "subtitles.item.wind_wand.burst": "Wand bursts",
-  "subtitles.entity.artemis_missile_launch": "Artemis Missile launched",
+  "subtitles.entity.artemis_missile.launch": "Artemis Missile launched",
+  "subtitles.entity.time_rift.collapse": "Time Rift collapses",
 
   "advancements.locusazzurro_icaruswings.past.root.title": "Dream",
   "advancements.locusazzurro_icaruswings.past.root.description": "A story about the sky",

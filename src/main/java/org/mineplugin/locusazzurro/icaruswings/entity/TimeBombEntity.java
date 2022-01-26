@@ -5,24 +5,34 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.mineplugin.locusazzurro.icaruswings.damage.DamageTimeRift;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.UUID;
 
 public class TimeBombEntity extends Entity {
 
-    private float damage = 100f;
-    private float range = 4.0f;
+    private static final DataParameter<Integer> LIFE = EntityDataManager.defineId(TimeBombEntity.class, DataSerializers.INT);
+    private static final DataParameter<Integer> MAX_LIFE = EntityDataManager.defineId(TimeBombEntity.class, DataSerializers.INT);
+    private static final DataParameter<OptionalInt> ATTACHED_TO_TARGET = EntityDataManager.defineId(TimeBombEntity.class, DataSerializers.OPTIONAL_UNSIGNED_INT);
+    private float damage;
+    private float range;
     private int life = 0;
-    private int maxLife = 100;
+    private int maxLife;
     private UUID attachedUUID;
     private int attachedNetworkId;
 
@@ -31,33 +41,39 @@ public class TimeBombEntity extends Entity {
         super(type, world);
     }
 
-    public TimeBombEntity(World worldIn, Entity victim, float damage, float range, int maxLife){
+    public TimeBombEntity(World worldIn, Entity holder, float damage, float range, int maxLife){
         this(EntityTypeRegistry.timeBombEntity.get(), worldIn);
         this.damage = damage;
         this.range = range;
         this.maxLife = maxLife;
-        this.setAttachedTo(victim);
-        this.moveToVictim(victim);
+        this.entityData.set(MAX_LIFE, maxLife);
+        this.setAttachedTo(holder);
+        this.moveToAttached();
     }
 
     @Override
     public void tick(){
         super.tick();
-        this.moveToVictim(this.getAttachedTo());
+        this.moveToAttached();
+        this.tickLife();
 
         if(level.isClientSide()){
-            level.addParticle(ParticleTypes.SMOKE,this.getX(), this.getY(), this.getZ(), 0,0,0);
+            level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0,0,0);
+            if (this.life >= this.maxLife){
+                level.addParticle(ParticleRegistry.timeRiftExplosion.get(), this.getX(), this.getY(), this.getZ(), 0,0,0);
+            }
         }
 
         if (this.life >= this.maxLife){
+            level.playSound(null, this.getX(), this.getY(),this.getZ(),
+                    SoundRegistry.timeRiftCollapse.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
             this.explode();
         }
-        this.life++;
-
     }
 
 
     private void explode(){
+
         float r = this.range;
         if (this.getAttachedTo() != null) {
             Entity attachedTo = this.getAttachedTo();
@@ -70,16 +86,26 @@ public class TimeBombEntity extends Entity {
         this.remove();
     }
 
-    private void moveToVictim(Entity victim){
-        if (victim != null){
-            this.setPos(victim.getX(), victim.getY(), victim.getZ());
-        }
+    private void tickLife(){
+        this.life = entityData.get(LIFE);
+        this.maxLife = this.entityData.get(MAX_LIFE);
+        this.life++;
+        this.entityData.set(LIFE, life);
+    }
+
+    private void moveToAttached(){
+        this.entityData.get(ATTACHED_TO_TARGET).ifPresent((e) -> {
+            Entity attachedTo = this.level.getEntity(e);
+            if (attachedTo != null)
+            this.setPos(attachedTo.getX(), attachedTo.getY(), attachedTo.getZ());
+        });
     }
 
     private void setAttachedTo(@Nullable Entity attachedTo){
         if (attachedTo != null) {
             this.attachedUUID = attachedTo.getUUID();
             this.attachedNetworkId = attachedTo.getId();
+            this.entityData.set(ATTACHED_TO_TARGET, OptionalInt.of(attachedTo.getId()));
         }
     }
 
@@ -98,8 +124,10 @@ public class TimeBombEntity extends Entity {
     }
 
     @Override
-    protected void defineSynchedData() {
-
+    public void defineSynchedData() {
+        this.entityData.define(LIFE, 0);
+        this.entityData.define(MAX_LIFE, 0);
+        this.entityData.define(ATTACHED_TO_TARGET, OptionalInt.empty());
     }
 
     @Override
