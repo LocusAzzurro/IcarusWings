@@ -34,6 +34,12 @@ public class EntityTypeRegistry {
 					.sized(0.1F, 0.1F)
 					.build("time_bomb"));
 
+	public static final RegistryObject<EntityType<TimeRiftParticleEntity>> timeRiftParticleEntity =
+			register("time_rift_particle", () -> EntityType.Builder
+					.<TimeRiftParticleEntity>of(TimeRiftParticleEntity::new, EntityClassification.MISC)
+					.sized(0.1F, 0.1F)
+					.build("time_rift_particle"));
+
 	public static final RegistryObject<EntityType<SpearEntity>> spearEntity =
 			register("spear", () -> EntityType.Builder
 					.<SpearEntity>of(SpearEntity::new, EntityClassification.MISC)

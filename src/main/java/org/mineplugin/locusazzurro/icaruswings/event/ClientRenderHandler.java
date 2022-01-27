@@ -1,7 +1,9 @@
 package org.mineplugin.locusazzurro.icaruswings.event;
 
+import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
@@ -16,6 +18,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import org.mineplugin.locusazzurro.icaruswings.entity.TimeRiftParticleEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
@@ -28,9 +31,14 @@ public class ClientRenderHandler {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent e){
+
+        ItemRenderer itemRenderer = e.getMinecraftSupplier().get().getItemRenderer();
+
         register(EntityTypeRegistry.goldenRamEntity.get(), GoldenRamRenderer::new);
         register(EntityTypeRegistry.artemisMissileEntity.get(), ArtemisMissileRenderer::new);
         register(EntityTypeRegistry.timeBombEntity.get(), TimeBombRenderer::new);
+        register(EntityTypeRegistry.timeRiftParticleEntity.get(),
+                (rendererManager) -> new SpriteRenderer<TimeRiftParticleEntity>(rendererManager, itemRenderer));
         register(EntityTypeRegistry.spearEntity.get(), SpearRenderer::new);
 
         e.enqueueWork(() -> {

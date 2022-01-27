@@ -12,6 +12,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.entity.ArtemisMissileEntity;
+import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.utils.ProjectileUtils;
 
@@ -21,7 +22,7 @@ import java.util.List;
 public class ArtemisLauncher extends Item {
 
     public ArtemisLauncher(){
-        super(new Properties().tab(ModGroup.itemGroup));
+        super(new Properties().tab(ModGroup.itemGroup).durability(400));
     }
 
     @Override
@@ -41,5 +42,8 @@ public class ArtemisLauncher extends Item {
         return ActionResult.success(item);
     }
 
-
+    @Override
+    public boolean isValidRepairItem(ItemStack thisItem, ItemStack repairItem) {
+        return repairItem.getItem() == ItemRegistry.synapseRepairKit.get() || super.isValidRepairItem(thisItem, repairItem);
+    }
 }

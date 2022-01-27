@@ -10,18 +10,18 @@ import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 public enum WingsType implements IWingsType{
 
-	FEATHER("feather", 100, () -> ItemRegistry.featherBunch.get(),false),
-	FEATHER_COLORED("colored_feather", 150, () -> ItemRegistry.coloredFeatherBunch.get(),false),
-	FEATHER_GOLDEN("golden_feather", 200, () -> ItemRegistry.goldenFeatherBunch.get(),false),
-	SYNAPSE_ALPHA("synapse_alpha", 500, () -> ItemRegistry.synapseWingsRecharger.get(),true),
-	SYNAPSE_BETA("synapse_beta", 450, () -> ItemRegistry.synapseWingsRecharger.get(),true),
-	SYNAPSE_DELTA("synapse_delta", 400, () -> ItemRegistry.synapseWingsRecharger.get(),true),
-	SYNAPSE_EPSILON("synapse_epsilon", 420, () -> ItemRegistry.synapseWingsRecharger.get(),true),
-	SYNAPSE_ZETA("synapse_zeta", 440, () -> ItemRegistry.synapseWingsRecharger.get(),true),
-	SYNAPSE_THETA("synapse_theta", 500, () -> ItemRegistry.synapseWingsRecharger.get(),true),
+	FEATHER("feather", 100, ItemRegistry.featherBunch,false),
+	FEATHER_COLORED("colored_feather", 150, ItemRegistry.coloredFeatherBunch,false),
+	FEATHER_GOLDEN("golden_feather", 200, ItemRegistry.goldenFeatherBunch,false),
+	SYNAPSE_ALPHA("synapse_alpha", 500, ItemRegistry.synapseWingsRecharger,true),
+	SYNAPSE_BETA("synapse_beta", 450, ItemRegistry.synapseWingsRecharger,true),
+	SYNAPSE_DELTA("synapse_delta", 400, ItemRegistry.synapseWingsRecharger,true),
+	SYNAPSE_EPSILON("synapse_epsilon", 420, ItemRegistry.synapseWingsRecharger,true),
+	SYNAPSE_ZETA("synapse_zeta", 440, ItemRegistry.synapseWingsRecharger,true),
+	SYNAPSE_THETA("synapse_theta", 500, ItemRegistry.synapseWingsRecharger,true),
 	PAPER("paper", 10, () -> Items.PAPER,false),
-	MAGIC("magic", 450, () -> ItemRegistry.magicMembrane.get(),false),
-	PHI_STONE("philosopher_stone", 450, () -> ItemRegistry.magicMembrane.get(),false);
+	MAGIC("magic", 450, ItemRegistry.magicMembrane,false),
+	PHI_STONE("philosopher_stone", 450, ItemRegistry.magicMembrane,false);
 	
 	private final String name;
 	private final int durability;

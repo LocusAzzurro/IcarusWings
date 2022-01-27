@@ -141,6 +141,8 @@
 
   "item.locusazzurro_icaruswings.artemis_launcher": "Artemis Missile Launcher",
   "item.locusazzurro_icaruswings.artemis_missile": "Artemis Missile",
+  "item.locusazzurro_icaruswings.time_rift_generator": "Time Rift Generator",
+  "item.locusazzurro_icaruswings.time_rift_charge": "Time Rift Charge",
 
   "item.locusazzurro_icaruswings.transport_card": "Transport Card",
   "item.locusazzurro_icaruswings.transport_card_base.tooltip": "Basic",
@@ -159,6 +161,7 @@
 
   "entity.locusazzurro_icaruswings.artemis_missile": "Artemis Missile",
   "entity.locusazzurro_icaruswings.time_bomb": "Time Singularity",
+  "entity.locusazzurro_icaruswings.time_rift_particle": "Time Rift Particle",
   "entity.locusazzurro_icaruswings.spear": "Spear",
   "entity.locusazzurro_icaruswings.golden_ram": "Golden Ram",
 

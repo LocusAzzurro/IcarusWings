@@ -33,6 +33,8 @@ public class TimeBombEntity extends Entity {
     private float range;
     private int life = 0;
     private int maxLife;
+    private float initialAngle = 0;
+    private boolean pulsing;
     private UUID attachedUUID;
     private int attachedNetworkId;
 
@@ -47,6 +49,7 @@ public class TimeBombEntity extends Entity {
         this.range = range;
         this.maxLife = maxLife;
         this.entityData.set(MAX_LIFE, maxLife);
+        this.initialAngle = holder.yRot;
         this.setAttachedTo(holder);
         this.moveToAttached();
     }
@@ -68,6 +71,21 @@ public class TimeBombEntity extends Entity {
             level.playSound(null, this.getX(), this.getY(),this.getZ(),
                     SoundRegistry.timeRiftCollapse.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
             this.explode();
+        }
+
+        if (pulsing && this.life % 2 == 0){
+            Entity source = this.getAttachedTo();
+            TimeRiftParticleEntity particle;
+            for (int i = 0; i < 16; i++) {
+                if (source instanceof LivingEntity) {
+                    particle = new TimeRiftParticleEntity((LivingEntity) source, level);
+                } else {
+                    particle = new TimeRiftParticleEntity(this.getX(), this.getY(), this.getZ(), level);
+                }
+                particle.setNoGravity(true);
+                particle.shootFromRotation(this, 0f, (float)(this.initialAngle + 22.5 * i + life * 2),  0.0f, 0.5f, 0.0f);
+                level.addFreshEntity(particle);
+            }
         }
     }
 
@@ -116,6 +134,10 @@ public class TimeBombEntity extends Entity {
         } else {
             return this.attachedNetworkId != 0 ? this.level.getEntity(this.attachedNetworkId) : null;
         }
+    }
+
+    public void setPulsing(){
+        this.pulsing = true;
     }
 
     @Override
