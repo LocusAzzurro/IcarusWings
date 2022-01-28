@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SQS",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "locusazzurro_icaruswings:purpur_ingot"
+    },
+    "Q": {
+      "item": "locusazzurro_icaruswings:quantum_fuel"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:time_rift_charge",
+    "count": 4
+  }
+}

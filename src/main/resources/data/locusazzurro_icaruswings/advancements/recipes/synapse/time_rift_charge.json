@@ -1,0 +1,46 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:time_rift_charge"
+    ]
+  },
+  "criteria": {
+    "has_generator": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:time_rift_generator"
+          }
+        ]
+      }
+    },
+    "has_fuel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:quantum_fuel"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:time_rift_charge"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_generator",
+      "has_the_recipe"
+    ],
+    [
+      "has_fuel",
+      "has_the_recipe"
+    ]
+  ]
+}
