@@ -173,7 +173,7 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
             Entity owner = this.getOwner();
             entity.hurt(
                     (new IndirectEntityDamageSource("explosion", this, owner)).setExplosion()
-                    , 4.0F);
+                    , 8.0F);
             if (owner instanceof LivingEntity) {
                 this.doEnchantDamageEffects((LivingEntity)owner, entity);
             }

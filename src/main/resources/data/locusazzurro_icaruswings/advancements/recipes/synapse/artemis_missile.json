@@ -1,0 +1,46 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:artemis_missile"
+    ]
+  },
+  "criteria": {
+    "has_launcher": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:artemis_launcher"
+          }
+        ]
+      }
+    },
+    "has_tnt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:tnt"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:artemis_missile"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_launcher",
+      "has_the_recipe"
+    ],
+    [
+      "has_tnt",
+      "has_the_recipe"
+    ]
+  ]
+}

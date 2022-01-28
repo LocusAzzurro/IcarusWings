@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "STS",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "locusazzurro_icaruswings:steel_ingot"
+    },
+    "T": {
+      "item": "minecraft:tnt"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:artemis_missile",
+    "count": 4
+  }
+}

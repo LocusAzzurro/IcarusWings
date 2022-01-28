@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    "SCS",
+    " D "
+  ],
+  "key": {
+    "R": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_offensive"
+    },
+    "S": {
+      "item": "locusazzurro_icaruswings:steel_ingot"
+    },
+    "C": {
+      "item": "minecraft:crossbow"
+    },
+    "D": {
+      "item": "locusazzurro_icaruswings:daedalus_decryptor"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:artemis_launcher",
+    "count": 1
+  }
+}

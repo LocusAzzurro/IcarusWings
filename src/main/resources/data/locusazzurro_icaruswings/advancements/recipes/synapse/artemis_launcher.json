@@ -1,0 +1,46 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:artemis_launcher"
+    ]
+  },
+  "criteria": {
+    "has_steel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:steel_ingot"
+          }
+        ]
+      }
+    },
+    "has_relic": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:restored_fallen_relic_offensive"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:artemis_launcher"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_steel",
+      "has_the_recipe"
+    ],
+    [
+      "has_relic",
+      "has_the_recipe"
+    ]
+  ]
+}
