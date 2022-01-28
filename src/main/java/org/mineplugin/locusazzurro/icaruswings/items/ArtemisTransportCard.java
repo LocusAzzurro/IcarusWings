@@ -8,8 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -40,7 +42,9 @@ public class ArtemisTransportCard extends AbstractTransportCard{
         if (homing) {
             target = ProjectileUtils.rayTraceTarget(playerIn, 0.1d, 300, 0.2);
             if (target == null) {
-                return ActionResult.fail(itemStack);
+                worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundCategory.PLAYERS, 1.0F, 0.5F);
+                playerIn.getCooldowns().addCooldown(this, 10);
+                return ActionResult.pass(itemStack);
             }
         }
 
@@ -62,6 +66,7 @@ public class ArtemisTransportCard extends AbstractTransportCard{
             worldIn.addFreshEntity(missile);
             worldIn.playSound(null, missile, SoundRegistry.artemisMissileLaunch.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
+        worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationArtemis.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
 
         if (!playerIn.isCreative()){ itemStack.shrink(1); }
         playerIn.getCooldowns().addCooldown(this, 40);

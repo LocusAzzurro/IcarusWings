@@ -4,10 +4,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import org.mineplugin.locusazzurro.icaruswings.entity.TimeBombEntity;
 import org.mineplugin.locusazzurro.icaruswings.effect.EffectInevitability;
 import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 public class ChronoExplosionTransportCard extends AbstractTransportCard{
 
@@ -25,8 +27,10 @@ public class ChronoExplosionTransportCard extends AbstractTransportCard{
         TimeBombEntity bomb = new TimeBombEntity(worldIn, playerIn, DAMAGE, RANGE, 120);
         bomb.setPulsing();
         worldIn.addFreshEntity(bomb);
+        worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationChrono.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
 
         if(!playerIn.isCreative()) {itemstack.shrink(1);}
+        playerIn.getCooldowns().addCooldown(this, 80);
 
         return ActionResult.consume(itemstack);
     }

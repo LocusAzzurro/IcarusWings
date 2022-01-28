@@ -32,5 +32,15 @@ public class SoundRegistry {
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"entity.time_rift.collapse")));
 	public static final RegistryObject<SoundEvent> timeRiftGeneratorFire = SOUNDS.register("item.time_rift_generator.fire",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.time_rift_generator.fire")));
+	public static final RegistryObject<SoundEvent> transportCardActivationGeneric = SOUNDS.register("item.transport_card.activation.generic",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.transport_card.activation.generic")));
+	public static final RegistryObject<SoundEvent> transportCardActivationArtemis = SOUNDS.register("item.transport_card.activation.artemis",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.transport_card.activation.artemis")));
+	public static final RegistryObject<SoundEvent> transportCardActivationElectronic = SOUNDS.register("item.transport_card.activation.electronic",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.transport_card.activation.electronic")));
+	public static final RegistryObject<SoundEvent> transportCardActivationChrono = SOUNDS.register("item.transport_card.activation.chrono",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.transport_card.activation.chrono")));
+	public static final RegistryObject<SoundEvent> transportCardFail = SOUNDS.register("item.transport_card.fail",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.transport_card.activation.fail")));
 
 }

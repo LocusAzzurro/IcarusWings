@@ -154,6 +154,10 @@
   "item.locusazzurro_icaruswings.transport_card_teleport.tooltip": "Teleportation",
   "item.locusazzurro_icaruswings.transport_card_treasure.tooltip": "Treasure",
 
+  "item.locusazzurro_icaruswings.transport_card_artemis.error1": "No target found.",
+  "item.locusazzurro_icaruswings.transport_card_treasure.error1": "No LootTable available on this card.",
+  "item.locusazzurro_icaruswings.transport_card_treasure.error2": "This card has an invalid LootTable.",
+
   "item.locusazzurro_icaruswings.disc_fallen_down": "Music Disc",
   "item.locusazzurro_icaruswings.disc_fallen_down.desc": "Hayami Saori - Fallen Down",
   "item.locusazzurro_icaruswings.disc_ring_my_bell": "Music Disc",
@@ -188,6 +192,8 @@
   "subtitles.entity.artemis_missile.launch": "Artemis Missile launched",
   "subtitles.entity.time_rift.collapse": "Time Rift collapses",
   "subtitles.item.time_rift_generator.fire": "Time Rift Generator fires",
+  "subtitles.item.transport_card.activation": "Transport Card activates",
+  "subtitles.item.transport_card.fail": "Transport Card failed",
 
   "advancements.locusazzurro_icaruswings.past.root.title": "Dream",
   "advancements.locusazzurro_icaruswings.past.root.description": "A story about the sky",

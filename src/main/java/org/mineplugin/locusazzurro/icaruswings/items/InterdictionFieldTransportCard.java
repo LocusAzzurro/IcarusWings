@@ -8,12 +8,14 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.World;
 import org.mineplugin.locusazzurro.icaruswings.damage.DamageTimeRift;
 import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.utils.MathUtils;
 
 import java.util.List;
@@ -47,6 +49,7 @@ public class InterdictionFieldTransportCard extends AbstractTransportCard{
                 }
             });
         }
+        worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationElectronic.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
 
         float r = RANGE;
         AxisAlignedBB aabb = new AxisAlignedBB(r, r, r, -r, -r, -r).move(playerIn.position());
@@ -57,7 +60,7 @@ public class InterdictionFieldTransportCard extends AbstractTransportCard{
         }
 
         if(!playerIn.isCreative()) {itemstack.shrink(1);}
-
+        playerIn.getCooldowns().addCooldown(this, 200);
         return ActionResult.consume(itemstack);
     }
 }

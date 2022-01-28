@@ -104,5 +104,40 @@
     "sounds": [
         "locusazzurro_icaruswings:time_rift_generator_fire"
     ]
+  },
+  "item.transport_card.activation.generic": {
+    "subtitle": "subtitles.item.transport_card.activation",
+    "replace": true,
+    "sounds": [
+      "locusazzurro_icaruswings:transport_card_activation_generic"
+    ]
+  },
+  "item.transport_card.activation.artemis": {
+    "subtitle": "subtitles.item.transport_card.activation",
+    "replace": true,
+    "sounds": [
+      "locusazzurro_icaruswings:transport_card_activation_artemis"
+    ]
+  },
+  "item.transport_card.activation.electronic": {
+    "subtitle": "subtitles.item.transport_card.activation",
+    "replace": true,
+    "sounds": [
+      "locusazzurro_icaruswings:transport_card_activation_electronic"
+    ]
+  },
+  "item.transport_card.activation.chrono": {
+    "subtitle": "subtitles.item.transport_card.activation",
+    "replace": true,
+    "sounds": [
+      "locusazzurro_icaruswings:transport_card_activation_chrono"
+    ]
+  },
+  "item.transport_card.activation.fail": {
+    "subtitle": "subtitles.item.transport_card.fail",
+    "replace": true,
+    "sounds": [
+      "random/fizz"
+    ]
   }
 }
