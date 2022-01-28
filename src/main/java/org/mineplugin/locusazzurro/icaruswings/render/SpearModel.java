@@ -13,14 +13,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModItemTier;
 import org.mineplugin.locusazzurro.icaruswings.entity.SpearEntity;
-import org.mineplugin.locusazzurro.icaruswings.utils.MapUtil;
+import org.mineplugin.locusazzurro.icaruswings.utils.MapUtils;
 
 import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
 public class SpearModel extends EntityModel<SpearEntity> {
 
-    protected static final Map<? extends IItemTier, ResourceLocation> MATERIALS = MapUtil.Builder
+    protected static final Map<? extends IItemTier, ResourceLocation> MATERIALS = MapUtils.Builder
             .<IItemTier, ResourceLocation>add(ItemTier.WOOD, new ResourceLocation(ModData.MOD_ID, "textures/entity/wooden_spear.png"))
             .add(ItemTier.STONE, new ResourceLocation(ModData.MOD_ID, "textures/entity/stone_spear.png"))
             .add(ItemTier.IRON, new ResourceLocation(ModData.MOD_ID, "textures/entity/iron_spear.png"))

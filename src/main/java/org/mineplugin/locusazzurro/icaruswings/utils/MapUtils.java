@@ -2,7 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.utils;
 
 import java.util.HashMap;
 
-public class MapUtil {
+public class MapUtils {
 
     public static class Builder {
         public static class PigeonMap<K,V> extends HashMap<K,V> {
