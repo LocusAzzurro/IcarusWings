@@ -97,5 +97,12 @@
         "stream": true
       }
     ]
+  },
+  "item.time_rift_generator.fire": {
+    "subtitle": "subtitles.item.time_rift_generator.fire",
+    "replace": true,
+    "sounds": [
+        "locusazzurro_icaruswings:time_rift_generator_fire"
+    ]
   }
 }

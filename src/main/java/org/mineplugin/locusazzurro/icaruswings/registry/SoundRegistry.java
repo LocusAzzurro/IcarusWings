@@ -30,5 +30,7 @@ public class SoundRegistry {
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"entity.artemis_missile.launch")));
 	public static final RegistryObject<SoundEvent> timeRiftCollapse = SOUNDS.register("entity.time_rift.collapse",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"entity.time_rift.collapse")));
+	public static final RegistryObject<SoundEvent> timeRiftGeneratorFire = SOUNDS.register("item.time_rift_generator.fire",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.time_rift_generator.fire")));
 
 }

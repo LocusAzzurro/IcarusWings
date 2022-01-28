@@ -101,9 +101,9 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
             if (vec.length() > 0.1) {
                 for (int j = 0; j < 4; j++) {
                     for (int i = 0; i < 4; i++) {
-                        double xR = level.random.nextDouble() * 0.2d;
-                        double yR = level.random.nextDouble() * 0.2d;
-                        double zR = level.random.nextDouble() * 0.2d;
+                        double xR = level.random.nextDouble() * 0.2d - 0.1d;
+                        double yR = level.random.nextDouble() * 0.2d - 0.1d;
+                        double zR = level.random.nextDouble() * 0.2d - 0.1d;
                         level.addParticle(PARTICLE,
                                 this.getX() - (vec.x * 0.25 * j) + xR,
                                 this.getY() - (vec.y * 0.25 * j) + yR + 0.1,
@@ -116,9 +116,9 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
             }
             else {
                 for (int i = 0; i < 2; i++){
-                    double xR = level.random.nextDouble() * 0.1d;
-                    double yR = level.random.nextDouble() * 0.1d;
-                    double zR = level.random.nextDouble() * 0.1d;
+                    double xR = level.random.nextDouble() * 0.1d - 0.05d;
+                    double yR = level.random.nextDouble() * 0.1d - 0.05d;
+                    double zR = level.random.nextDouble() * 0.1d - 0.05d;
                     level.addParticle(PARTICLE,
                             this.getX() + (facing.x * 0.1) + xR,
                             this.getY() + (facing.y * 0.1) + yR + 0.1,

@@ -8,6 +8,7 @@ import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
@@ -41,12 +42,26 @@ public class TimeRiftParticleEntity extends ProjectileItemEntity implements IRen
         super.tick();
         if (life >= maxLife) this.remove();
         life++;
+
+        if (level.isClientSide()){
+            double xR = level.random.nextDouble() * 0.1d - 0.05d;
+            double yR = level.random.nextDouble() * 0.1d - 0.05d;
+            double zR = level.random.nextDouble() * 0.1d - 0.05d;
+            level.addParticle(ParticleTypes.DRAGON_BREATH, this.getX(), this.getY(), this.getZ(), xR,yR,zR);
+        }
     }
-    //todo particle
 
     @Override
     protected void onHit(RayTraceResult ray){
         super.onHit(ray);
+        if (level.isClientSide()){
+            for (int i = 0; i < 10; i++) {
+                double xR = level.random.nextDouble() * 0.1d - 0.05d;
+                double yR = level.random.nextDouble() * 0.1d - 0.05d;
+                double zR = level.random.nextDouble() * 0.1d - 0.05d;
+                level.addParticle(ParticleTypes.DRAGON_BREATH, this.getX(), this.getY(), this.getZ(), xR, yR, zR);
+            }
+        }
         this.remove();
     }
 

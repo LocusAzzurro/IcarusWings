@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "locusazzurro_icaruswings:item/time_rift_generator"
+  }
+}

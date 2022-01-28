@@ -73,17 +73,17 @@ public class TimeBombEntity extends Entity {
             this.explode();
         }
 
-        if (pulsing && this.life % 2 == 0){
+        if (pulsing && this.life % 5 == 0){
             Entity source = this.getAttachedTo();
             TimeRiftParticleEntity particle;
-            for (int i = 0; i < 16; i++) {
+            for (int i = 0; i < 8; i++) {
                 if (source instanceof LivingEntity) {
                     particle = new TimeRiftParticleEntity((LivingEntity) source, level);
                 } else {
                     particle = new TimeRiftParticleEntity(this.getX(), this.getY(), this.getZ(), level);
                 }
                 particle.setNoGravity(true);
-                particle.shootFromRotation(this, 0f, (float)(this.initialAngle + 22.5 * i + life * 2),  0.0f, 0.5f, 0.0f);
+                particle.shootFromRotation(this, 0f, this.initialAngle + 45 * i + life * 2,  0.0f, 0.5f, 0.0f);
                 level.addFreshEntity(particle);
             }
         }
