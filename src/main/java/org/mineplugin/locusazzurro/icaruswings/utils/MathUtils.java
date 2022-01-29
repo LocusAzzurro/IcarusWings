@@ -8,7 +8,6 @@ import java.util.List;
 
 public class MathUtils {
 
-
 /*
 Fibonacci Sphere
 https://stackoverflow.com/a/26127012
@@ -34,6 +33,52 @@ https://stackoverflow.com/a/26127012
         List<Vector3f> pointsFloat = new ArrayList<>();
         pointsDouble.forEach((p) -> pointsFloat.add(new Vector3f(p)));
         return pointsFloat;
+    }
+
+    public static List<Vector3d> cubeMatrixFrame(int subDivisions){
+        List<Vector3d> points = new ArrayList<>();
+        double x,y,z,s;
+        s = 2d / subDivisions;
+        y = -1;
+        for (int i = 0; i <= subDivisions; i++){
+            z = -1 + s * i;
+            for (int j = 0; j <= subDivisions; j++){
+                x = -1 + s * j;
+                points.add(new Vector3d(x,y,z));
+            }
+        }
+        for (int i = 1; i < subDivisions; i++){
+            y = -1 + s * i;
+            x = -1;
+            for (int j = 0; j <= subDivisions; j++){
+                z = -1 + s * j;
+                points.add(new Vector3d(x,y,z));
+            }
+            z = -1;
+            for (int j = 1; j < subDivisions; j++){
+                x = -1 + s * j;
+                points.add(new Vector3d(x,y,z));
+            }
+            z = 1;
+            for (int j = 1; j < subDivisions; j++){
+                x = -1 + s * j;
+                points.add(new Vector3d(x,y,z));
+            }
+            x = 1;
+            for (int j = 0; j <= subDivisions; j++){
+                z = -1 + s * j;
+                points.add(new Vector3d(x,y,z));
+            }
+        }
+        y = 1;
+        for (int i = 0; i <= subDivisions; i++){
+            z = -1 + s * i;
+            for (int j = 0; j <= subDivisions; j++){
+                x = -1 + s * j;
+                points.add(new Vector3d(x,y,z));
+            }
+        }
+        return points;
     }
 
 }

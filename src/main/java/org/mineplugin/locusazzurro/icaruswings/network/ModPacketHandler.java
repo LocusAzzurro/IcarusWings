@@ -18,7 +18,7 @@ public class ModPacketHandler {
     public static void register() {
 
         int index = 0;
-        INSTANCE.registerMessage(index++, FlagPacket.class, FlagPacket::encode, FlagPacket::new, FlagPacket::handle);
+        INSTANCE.registerMessage(index++, SparklePacket.class, SparklePacket::encode, SparklePacket::new, SparklePacket::handle);
     }
 
 }

@@ -23,6 +23,7 @@ import java.util.List;
 public class InterdictionFieldTransportCard extends AbstractTransportCard{
 
     private static final List<Vector3d> PARTICLE_POINTS = MathUtils.fibonacciSphere(500);
+    private static final List<Vector3d> LINE_ANCHORS = MathUtils.fibonacciSphere(50);
     private static final float RANGE = 10;
 
     public InterdictionFieldTransportCard() {
@@ -36,16 +37,27 @@ public class InterdictionFieldTransportCard extends AbstractTransportCard{
         if (worldIn.isClientSide()) {
             PARTICLE_POINTS.forEach((point) -> {
                 Vector3f rPoint = new Vector3f(point.scale(2));
-                Vector3f[] expand = {
-                        new Vector3f(point.scale(0.3)),
-                        new Vector3f(point.scale(0.6)),
-                        new Vector3f(point.scale(0.9)),};
-                for (int i = 0; i < expand.length; i++) {
+                Vector3f[] expand = {new Vector3f(point.scale(0.3)), new Vector3f(point.scale(0.6)), new Vector3f(point.scale(0.9))};
+                for (Vector3f vec : expand) {
                     worldIn.addParticle(ParticleTypes.END_ROD,
                             playerIn.getX() + rPoint.x(),
                             playerIn.getY() + rPoint.y(),
                             playerIn.getZ() + rPoint.z(),
-                            expand[i].x(), expand[i].y(), expand[i].z());
+                            vec.x(), vec.y(), vec.z());
+                }
+            });
+            LINE_ANCHORS.forEach((point) -> {
+                Vector3f rPoint = new Vector3f(point.scale(2));
+                Vector3f[] expand = new Vector3f[10];
+                for (int i = 0; i < expand.length; i++){
+                    expand[i] = new Vector3f(point.scale(0.1 * i));
+                }
+                for (Vector3f vec : expand) {
+                    worldIn.addParticle(ParticleTypes.END_ROD,
+                            playerIn.getX() + rPoint.x(),
+                            playerIn.getY() + rPoint.y(),
+                            playerIn.getZ() + rPoint.z(),
+                            vec.x(), vec.y(), vec.z());
                 }
             });
         }
