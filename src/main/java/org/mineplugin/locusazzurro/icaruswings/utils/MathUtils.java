@@ -5,13 +5,16 @@ import net.minecraft.util.math.vector.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MathUtils {
 
-/*
-Fibonacci Sphere
-https://stackoverflow.com/a/26127012
- */
+    /**
+     * Generates a set of equidistant points on unit sphere using fibonacci sphere algorithm
+     * @link https://stackoverflow.com/a/26127012
+     * @param samples number of points
+     * @return ArrayList of points in Vector3d
+     */
     public static List<Vector3d> fibonacciSphere(int samples){
 
         List<Vector3d> points = new ArrayList<>();
@@ -35,6 +38,73 @@ https://stackoverflow.com/a/26127012
         return pointsFloat;
     }
 
+    public static List<Vector3d> circlePoints(int numPoints){
+        List<Vector3d> points = new ArrayList<>();
+        double t = Math.PI * 2 / (numPoints + 1);
+        double x,y=0,z;
+        for (int i = 0; i < numPoints; i++){
+            x = Math.cos(t);
+            z = Math.sin(t);
+            points.add(new Vector3d(x,y,z));
+        }
+        return points;
+    }
+
+    /**
+     * Generates a set of equidistant points on unit sphere using fibonacci sphere algorithm
+     * @link https://stackoverflow.com/a/50746409
+     * @param numPoints number of points
+     * @param radius radius of the circle to sample points
+     * @param random instance of RNG provider
+     * @return ArrayList of points in Vector3d with zero y value
+     */
+    public static List<Vector3d> randomPointsInCircle(int numPoints, double radius, Random random){
+        List<Vector3d> points = new ArrayList<>();
+        double r,theta,x,y=0,z;
+        for (int i = 0; i < numPoints; i++) {
+            r = radius * Math.sqrt(random.nextDouble());
+            theta = random.nextDouble() * Math.PI * 2;
+            x = r * Math.cos(theta);
+            z = r * Math.sin(theta);
+            points.add(new Vector3d(x,y,z));
+        }
+        return points;
+    }
+
+    public static List<Vector3d> squareMatrixFrame(int subDivisions){
+        List<Vector3d> points = new ArrayList<>();
+        double s = 2d/subDivisions;
+        double x,y=0,z;
+        for (int i = 1; i < subDivisions; i++){
+            x = -1;
+            for (int j = 0; j <= subDivisions; j++){
+                z = -1 + s * j;
+                points.add(new Vector3d(x,y,z));
+            }
+            z = -1;
+            for (int j = 1; j < subDivisions; j++){
+                x = -1 + s * j;
+                points.add(new Vector3d(x,y,z));
+            }
+            z = 1;
+            for (int j = 1; j < subDivisions; j++){
+                x = -1 + s * j;
+                points.add(new Vector3d(x,y,z));
+            }
+            x = 1;
+            for (int j = 0; j <= subDivisions; j++){
+                z = -1 + s * j;
+                points.add(new Vector3d(x,y,z));
+            }
+        }
+        return points;
+    }
+
+    /**
+     * Generates a set of points on faces unit cube equally divided
+     * @param subDivisions number of subdivisions (segments) for each side
+     * @return ArrayList of points in Vector3d
+     */
     public static List<Vector3d> cubeMatrixFrame(int subDivisions){
         List<Vector3d> points = new ArrayList<>();
         double x,y,z,s;

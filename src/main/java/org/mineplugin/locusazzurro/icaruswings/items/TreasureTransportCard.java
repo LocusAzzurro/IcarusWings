@@ -1,10 +1,13 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.*;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.ParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -13,6 +16,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
+import org.mineplugin.locusazzurro.icaruswings.utils.MathUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,22 +60,37 @@ public class TreasureTransportCard extends AbstractTransportCard{
             }
             else errorCode = 1; //no loot table
         }
+
         if (readLootTableSuccess){
             worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationGeneric.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
-            if (worldIn.isClientSide()){
-                for (int i = 0; i < 15; i++){
-                    //todo resolve packet handling
-                    double xR = worldIn.random.nextDouble() - 0.5;
-                    double yR = worldIn.random.nextDouble() - 0.5;
-                    double zR = worldIn.random.nextDouble() - 0.5;
-                    worldIn.addParticle(ParticleRegistry.goldenSparkle.get(), playerIn.getX(), playerIn.getY(), playerIn.getZ(), xR,yR,zR);
+            if (!worldIn.isClientSide()) {
+                if (playerIn.isCrouching()){
+                    ((ServerWorld) worldIn).sendParticles(ParticleRegistry.goldenSparkle.get(), playerIn.getX(), playerIn.getY(), playerIn.getZ(),
+                            30, 0.5d, 0.5d, 0.5d, 0.0d);
+                    for (ItemStack item : lootItems){
+                        ItemHandlerHelper.giveItemToPlayer(playerIn, item);
+                    }
+                }
+                else {
+                    Vector3d[] dropPoints = MathUtils.randomPointsInCircle(lootItems.size(), 5, worldIn.random)
+                            .toArray(new Vector3d[lootItems.size()]);
+                    int pI = 0;
+                    for (ItemStack item : lootItems){
+                        double yR = worldIn.random.nextDouble() * 0.5 - 0.25;
+                        double yP = playerIn.getY() + 3 + yR;
+                        ItemEntity itemEntity = new ItemEntity(worldIn,
+                                playerIn.getX() + dropPoints[pI].x, yP,
+                                playerIn.getZ() + dropPoints[pI].z, item);
+                        worldIn.addFreshEntity(itemEntity);
+                        ((ServerWorld) worldIn).sendParticles(ParticleRegistry.goldenSparkle.get(),
+                                playerIn.getX() + dropPoints[pI].x,
+                                yP, playerIn.getZ() + dropPoints[pI].z,
+                                3, 0.1d, 0.1d, 0.1d, 0.0d);
+                        pI++;
+                    }
                 }
             }
-            else {
-                for (ItemStack item : lootItems){
-                    ItemHandlerHelper.giveItemToPlayer(playerIn, item);
-                }
-            }
+
             if (!playerIn.isCreative()){itemstack.shrink(1);}
             playerIn.getCooldowns().addCooldown(this, 20);
             return ActionResult.consume(itemstack);
@@ -80,10 +99,8 @@ public class TreasureTransportCard extends AbstractTransportCard{
             worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
             if (errorCode == 1) playerIn.sendMessage(new TranslationTextComponent("item.locusazzurro_icaruswings.transport_card_treasure.error1"), Util.NIL_UUID);
             if (errorCode == 2) playerIn.sendMessage(new TranslationTextComponent("item.locusazzurro_icaruswings.transport_card_treasure.error2"), Util.NIL_UUID);
+            playerIn.getCooldowns().addCooldown(this, 20);
             return ActionResult.pass(itemstack);
         }
     }
-
-    //todo add sound, particle and error message
-
 }

@@ -16,10 +16,10 @@ public class GoldenSparkleParticle extends SpriteTexturedParticle {
         this.setColor(1f,1f,1f);
         this.setSize(0.02f, 0.02f);
         this.scale(world.random.nextFloat()/0.5f);
-        this.xd = xSpeed;
-        this.yd = ySpeed;
-        this.zd = zSpeed;
-        this.lifetime = 10;
+        this.xd = world.random.nextDouble() - 0.5;
+        this.yd = world.random.nextDouble() - 0.5;
+        this.zd = world.random.nextDouble() - 0.5;
+        this.lifetime = 20;
         this.hasPhysics = false;
     }
 
@@ -31,9 +31,9 @@ public class GoldenSparkleParticle extends SpriteTexturedParticle {
         if (this.age++ >= this.lifetime) this.remove();
         else {
             this.move(xd, yd, zd);
-            this.xd *= 0.95d;
-            this.yd *= 0.95d;
-            this.zd *= 0.95d;
+            this.xd *= 0.8d;
+            this.yd *= 0.8d;
+            this.zd *= 0.8d;
         }
     }
 
