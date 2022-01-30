@@ -26,20 +26,20 @@ public abstract class GreekFireFluid extends ForgeFlowingFluid{
 
     public static final ResourceLocation GREEK_FIRE_STILL = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_still");
     public static final ResourceLocation GREEK_FIRE_FLOWING = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_flow");
-    private static final LazyValue<SoundEvent> FILL_SOUND = new LazyValue<>(SoundRegistry.bucketFillGreekFire);
-    private static final LazyValue<SoundEvent> EMPTY_SOUND = new LazyValue<>(SoundRegistry.bucketEmptyGreekFire);
 
-
-    public static ForgeFlowingFluid.Properties fluidProperties = new ForgeFlowingFluid.Properties(greekFire, greekFireFlowing,
-            Attributes.builder(GREEK_FIRE_STILL, GREEK_FIRE_FLOWING)
-                    .color(0xfff79059).density(4000).viscosity(7000).luminosity(15).temperature(1500)
-                    .translationKey("block.locusazzurro_icaruswings.greek_fire")
-                    .sound(SoundEvents.BUCKET_FILL_LAVA, SoundEvents.BUCKET_EMPTY_LAVA))
-                    .bucket(ItemRegistry.greekFireBucket).block(BlockRegistry.greekFire)
-                    .slopeFindDistance(1).explosionResistance(100F);
+    public static ForgeFlowingFluid.Properties fluidProperties = new ForgeFlowingFluid.Properties(greekFire, greekFireFlowing,null)
+            .bucket(ItemRegistry.greekFireBucket).block(BlockRegistry.greekFire).slopeFindDistance(1).explosionResistance(100F);
 
     public GreekFireFluid(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    protected FluidAttributes createAttributes() {
+        return FluidAttributes.builder(GREEK_FIRE_STILL, GREEK_FIRE_FLOWING)
+                .color(0xfff79059).density(4000).viscosity(7000).luminosity(15).temperature(1500)
+                .translationKey("block.locusazzurro_icaruswings.greek_fire")
+                .sound(SoundRegistry.bucketFillGreekFire.get(), SoundRegistry.bucketEmptyGreekFire.get()).build(this);
     }
 
     @Override
@@ -64,23 +64,6 @@ public abstract class GreekFireFluid extends ForgeFlowingFluid{
                 worldIn.addParticle(ParticleTypes.LAVA, d0, d1, d2, 0.0D, 0.0D, 0.0D);
             }
         }
-    }
-
-    public class Attributes extends FluidAttributes{
-
-        protected Attributes(Builder builder, Fluid fluid) {
-            super(builder, fluid);
-        }
-
-        @Override
-        public SoundEvent getFillSound() {
-            return FILL_SOUND.get();
-        }
-        @Override
-        public SoundEvent getEmptySound(){
-            return EMPTY_SOUND.get();
-        }
-
     }
 
     public static class Source extends GreekFireFluid{

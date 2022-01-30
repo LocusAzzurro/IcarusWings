@@ -57,6 +57,46 @@
       }
     ]
   },
+  "block.mead_pot.brew": {
+    "subtitle": "subtitles.block.mead_pot.brew",
+    "replace": true,
+    "sounds": [
+      "block/brewing_stand/brew1",
+      "block/brewing_stand/brew2"
+    ]
+  },
+  "block.greek_fire.ambient": {
+    "subtitle": "subtitles.block.greek_fire.ambient",
+    "replace": true,
+    "sounds": [
+      "liquid/lava"
+    ]
+  },
+  "block.greek_fire.pop": {
+    "subtitle": "subtitles.block.greek_fire.pop",
+    "replace": true,
+    "sounds": [
+      "liquid/lavapop"
+    ]
+  },
+  "item.bucket.fill_greek_fire": {
+    "subtitle": "item.bucket.fill_greek_fire",
+    "replace": true,
+    "sounds": [
+      "item/bucket/fill_lava1",
+      "item/bucket/fill_lava2",
+      "item/bucket/fill_lava3"
+    ]
+  },
+  "item.bucket.empty_greek_fire": {
+    "subtitle": "item.bucket.empty_greek_fire",
+    "replace": true,
+    "sounds": [
+      "item/bucket/empty_lava1",
+      "item/bucket/empty_lava2",
+      "item/bucket/empty_lava3"
+    ]
+  },
   "item.armor.equip_feather": {
     "subtitle": "subtitles.item.armor.equip_feather",
     "replace": true,
