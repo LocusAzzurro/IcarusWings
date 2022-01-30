@@ -69,6 +69,8 @@ public class ItemRegistry {
             () -> new BlockItem(BlockRegistry.elysianGrassBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> elysianSoil = ITEMS.register("elysian_soil",
             () -> new BlockItem(BlockRegistry.elysianSoil.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    public static final RegistryObject<Item> elysianGrass = ITEMS.register("elysian_grass",
+            () -> new BlockItem(BlockRegistry.elysianGrass.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     
     public static final RegistryObject<Item> meadPot = ITEMS.register("mead_pot",
     		() -> new BlockItem(BlockRegistry.meadPot.get(), new Item.Properties().tab(ModGroup.itemGroup)));

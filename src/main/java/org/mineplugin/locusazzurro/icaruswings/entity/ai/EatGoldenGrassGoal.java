@@ -8,14 +8,14 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
 public class EatGoldenGrassGoal extends Goal {
 
-    //todo add golden variant for grass
-    private static final Predicate<BlockState> IS_TALL_GRASS = BlockStateMatcher.forBlock(Blocks.GRASS);
+    private static final Predicate<BlockState> IS_GOLDEN_GRASS = BlockStateMatcher.forBlock(BlockRegistry.elysianGrass.get());
     private final MobEntity mob;
     private final World level;
     private Block eatBlock;
@@ -25,8 +25,8 @@ public class EatGoldenGrassGoal extends Goal {
     public EatGoldenGrassGoal(MobEntity entity) {
         this.mob = entity;
         this.level = entity.level;
-        this.eatBlock = Blocks.GRASS_BLOCK;
-        this.eatenBlock = Blocks.DIRT;
+        this.eatBlock = BlockRegistry.elysianGrassBlock.get();
+        this.eatenBlock = BlockRegistry.elysianSoil.get();
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.JUMP));
     }
 
@@ -35,7 +35,7 @@ public class EatGoldenGrassGoal extends Goal {
             return false;
         } else {
             BlockPos blockpos = this.mob.blockPosition();
-            if (IS_TALL_GRASS.test(this.level.getBlockState(blockpos))) {
+            if (IS_GOLDEN_GRASS.test(this.level.getBlockState(blockpos))) {
                 return true;
             } else {
                 return this.level.getBlockState(blockpos.below()).is(this.eatBlock);
@@ -65,7 +65,7 @@ public class EatGoldenGrassGoal extends Goal {
         this.eatAnimationTick = Math.max(0, this.eatAnimationTick - 1);
         if (this.eatAnimationTick == 4) {
             BlockPos blockpos = this.mob.blockPosition();
-            if (IS_TALL_GRASS.test(this.level.getBlockState(blockpos))) {
+            if (IS_GOLDEN_GRASS.test(this.level.getBlockState(blockpos))) {
                 if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
                     this.level.destroyBlock(blockpos, false);
                 }

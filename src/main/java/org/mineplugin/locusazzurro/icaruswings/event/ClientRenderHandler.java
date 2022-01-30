@@ -19,6 +19,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.mineplugin.locusazzurro.icaruswings.entity.TimeRiftParticleEntity;
+import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
@@ -44,6 +45,7 @@ public class ClientRenderHandler {
         e.enqueueWork(() -> {
             RenderTypeLookup.setRenderLayer(FluidRegistry.greekFire.get(), RenderType.translucent());
             RenderTypeLookup.setRenderLayer(FluidRegistry.greekFireFlowing.get(), RenderType.translucent());
+            RenderTypeLookup.setRenderLayer(BlockRegistry.elysianGrass.get(), RenderType.cutoutMipped());
         });
     }
 

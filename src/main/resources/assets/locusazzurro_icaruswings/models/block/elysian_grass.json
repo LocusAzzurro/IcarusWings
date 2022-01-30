@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "locusazzurro_icaruswings:block/elysian_grass"
+  }
+}

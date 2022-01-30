@@ -20,6 +20,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block> smoothRefinedBeeswaxBlock = BLOCKS.register("smooth_refined_beeswax_block", RefinedBeeswaxBlock::new);
     public static final RegistryObject<Block> elysianGrassBlock = BLOCKS.register("elysian_grass_block", ElysianGrassBlock::new);
     public static final RegistryObject<Block> elysianSoil = BLOCKS.register("elysian_soil", ElysianSoil::new);
+    public static final RegistryObject<Block> elysianGrass = BLOCKS.register("elysian_grass", ElysianGrass::new);
 
     public static final RegistryObject<Block> meadPot = BLOCKS.register("mead_pot", MeadPot::new);
     public static final RegistryObject<Block> amphora = BLOCKS.register("amphora", Amphora::new);

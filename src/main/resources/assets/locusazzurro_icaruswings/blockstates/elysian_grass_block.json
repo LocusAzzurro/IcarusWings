@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "locusazzurro_icaruswings:block/elysian_grass_block"
+      },
+      {
+        "model": "locusazzurro_icaruswings:block/elysian_grass_block",
+        "y": 90
+      },
+      {
+        "model": "locusazzurro_icaruswings:block/elysian_grass_block",
+        "y": 180
+      },
+      {
+        "model": "locusazzurro_icaruswings:block/elysian_grass_block",
+        "y": 270
+      }
+    ]
+  }
+}
