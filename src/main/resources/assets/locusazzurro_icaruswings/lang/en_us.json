@@ -161,7 +161,6 @@
   "item.locusazzurro_icaruswings.transport_card_treasure.error1": "No LootTable available on this card.",
   "item.locusazzurro_icaruswings.transport_card_treasure.error2": "This card has an invalid LootTable.",
 
-
   "item.locusazzurro_icaruswings.disc_fallen_down": "Music Disc",
   "item.locusazzurro_icaruswings.disc_fallen_down.desc": "Hayami Saori - Fallen Down",
   "item.locusazzurro_icaruswings.disc_ring_my_bell": "Music Disc",
@@ -190,6 +189,15 @@
   "subtitles.item.spear.throw": "Spear thrown",
   "subtitles.item.spear.hit": "Spear hits",
   "subtitles.item.spear.hit_ground": "Spear hits ground",
+  "subtitles.item.armor.equip_feather": "Feather armor rustles",
+  "subtitles.item.armor.equip_beeswax": "Beeswax armor slides",
+  "subtitles.item.armor.equip_linen": "Linen armor rustles",
+  "subtitles.item.armor.equip_herbal": "Herbal armor rustles",
+  "subtitles.item.armor.equip_synapse": "Synapse armor clanks",
+  "subtitles.item.wings.equip_feather": "Feather wings rustles",
+  "subtitles.item.wings.equip_synapse": "Synapse wings clanks",
+  "subtitles.item.wings.equip_paper": "Paper wings rustles",
+  "subtitles.item.wings.equip_magic": "Magic wings vibrates",
   "subtitles.item.air_jar.fill": "Jar fills with air",
   "subtitles.item.air_jar.empty": "Jar empties air",
   "subtitles.item.wind_wand.burst": "Wand bursts",
