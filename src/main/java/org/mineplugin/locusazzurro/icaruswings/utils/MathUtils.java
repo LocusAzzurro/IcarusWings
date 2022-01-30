@@ -38,20 +38,25 @@ public class MathUtils {
         return pointsFloat;
     }
 
-    public static List<Vector3d> circlePoints(int numPoints){
+    public static List<Vector3d> circlePoints(int numPoints, double offset){
         List<Vector3d> points = new ArrayList<>();
-        double t = Math.PI * 2 / (numPoints + 1);
-        double x,y=0,z;
+        double t = Math.PI * 2 / numPoints;
+        double x,y=0,z,cA;
         for (int i = 0; i < numPoints; i++){
-            x = Math.cos(t);
-            z = Math.sin(t);
+            cA = offset + i * t;
+            x = Math.cos(cA);
+            z = Math.sin(cA);
             points.add(new Vector3d(x,y,z));
         }
         return points;
     }
 
+    public static List<Vector3d> circlePoints(int numPoints){
+        return circlePoints(numPoints, 0);
+    }
+
     /**
-     * Generates a set of equidistant points on unit sphere using fibonacci sphere algorithm
+     * Generates a list of randomly sampled points in given radius
      * @link https://stackoverflow.com/a/50746409
      * @param numPoints number of points
      * @param radius radius of the circle to sample points

@@ -42,6 +42,8 @@ public class ArtemisTransportCard extends AbstractTransportCard{
         if (homing) {
             target = ProjectileUtils.rayTraceTarget(playerIn, 0.1d, 300, 0.2);
             if (target == null) {
+                if (!worldIn.isClientSide())
+                    playerIn.sendMessage(new TranslationTextComponent("item.locusazzurro_icaruswings.transport_card_artemis.error1"), Util.NIL_UUID);
                 worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundCategory.PLAYERS, 1.0F, 0.5F);
                 playerIn.getCooldowns().addCooldown(this, 10);
                 return ActionResult.pass(itemStack);

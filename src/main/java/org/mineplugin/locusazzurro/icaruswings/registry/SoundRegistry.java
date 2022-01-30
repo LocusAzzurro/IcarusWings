@@ -40,6 +40,10 @@ public class SoundRegistry {
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.transport_card.activation.electronic")));
 	public static final RegistryObject<SoundEvent> transportCardActivationChrono = SOUNDS.register("item.transport_card.activation.chrono",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.transport_card.activation.chrono")));
+	public static final RegistryObject<SoundEvent> transportCardTeleportAnchor = SOUNDS.register("item.transport_card.teleport_anchor",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.transport_card.teleport_anchor")));
+	public static final RegistryObject<SoundEvent> transportCardTeleport = SOUNDS.register("item.transport_card.teleport",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.transport_card.teleport")));
 	public static final RegistryObject<SoundEvent> transportCardFail = SOUNDS.register("item.transport_card.fail",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.transport_card.activation.fail")));
 
