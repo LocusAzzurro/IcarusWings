@@ -80,7 +80,7 @@
     ]
   },
   "item.bucket.fill_greek_fire": {
-    "subtitle": "item.bucket.fill_greek_fire",
+    "subtitle": "subtitles.item.bucket.fill_greek_fire",
     "replace": true,
     "sounds": [
       "item/bucket/fill_lava1",
@@ -89,12 +89,57 @@
     ]
   },
   "item.bucket.empty_greek_fire": {
-    "subtitle": "item.bucket.empty_greek_fire",
+    "subtitle": "subtitles.item.bucket.empty_greek_fire",
     "replace": true,
     "sounds": [
       "item/bucket/empty_lava1",
       "item/bucket/empty_lava2",
       "item/bucket/empty_lava3"
+    ]
+  },
+  "entity.golden_ram.ambient": {
+    "subtitle": "subtitles.entity.golden_ram.ambient",
+    "replace": true,
+    "sounds": [
+      "mob/sheep/say1",
+      "mob/sheep/say2",
+      "mob/sheep/say3"
+    ]
+  },
+  "entity.golden_ram.death": {
+    "subtitle": "subtitles.entity.golden_ram.death",
+    "replace": true,
+    "sounds": [
+      "mob/sheep/say1",
+      "mob/sheep/say2",
+      "mob/sheep/say3"
+    ]
+  },
+  "entity.golden_ram.hurt": {
+    "subtitle": "subtitles.entity.golden_ram.hurt",
+    "replace": true,
+    "sounds": [
+      "mob/sheep/say1",
+      "mob/sheep/say2",
+      "mob/sheep/say3"
+    ]
+  },
+  "entity.golden_ram.shear": {
+    "subtitle": "subtitles.entity.golden_ram.shear",
+    "replace": true,
+    "sounds": [
+      "mob/sheep/shear"
+    ]
+  },
+  "entity.golden_ram.step": {
+    "subtitle": "subtitles.entity.golden_ram.step",
+    "replace": true,
+    "sounds": [
+      "mob/sheep/step1",
+      "mob/sheep/step2",
+      "mob/sheep/step3",
+      "mob/sheep/step4",
+      "mob/sheep/step5"
     ]
   },
   "item.armor.equip_feather": {

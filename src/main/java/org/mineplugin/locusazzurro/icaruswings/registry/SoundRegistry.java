@@ -34,6 +34,17 @@ public class SoundRegistry {
 	public static final RegistryObject<SoundEvent> bucketEmptyGreekFire = SOUNDS.register("item.bucket.empty_greek_fire",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.bucket.empty_greek_fire")));
 
+	public static final RegistryObject<SoundEvent> goldenRamAmbient = SOUNDS.register("entity.golden_ram.ambient",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"entity.golden_ram.ambient")));
+	public static final RegistryObject<SoundEvent> goldenRamDeath = SOUNDS.register("entity.golden_ram.death",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"entity.golden_ram.death")));
+	public static final RegistryObject<SoundEvent> goldenRamHurt = SOUNDS.register("entity.golden_ram.hurt",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"entity.golden_ram.hurt")));
+	public static final RegistryObject<SoundEvent> goldenRamShear = SOUNDS.register("entity.golden_ram.shear",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"entity.golden_ram.shear")));
+	public static final RegistryObject<SoundEvent> goldenRamStep = SOUNDS.register("entity.golden_ram.step",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"entity.golden_ram.step")));
+
 	public static final RegistryObject<SoundEvent> armorEquipFeather = SOUNDS.register("item.armor.equip_feather",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.armor.equip_feather")));
 	public static final RegistryObject<SoundEvent> armorEquipBeeswax = SOUNDS.register("item.armor.equip_beeswax",

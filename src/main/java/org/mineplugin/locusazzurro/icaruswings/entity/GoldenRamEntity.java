@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.entity;
 
 import mcp.MethodsReturnNonnullByDefault;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -39,6 +40,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mineplugin.locusazzurro.icaruswings.entity.ai.EatGoldenGrassGoal;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import java.util.Collections;
 import java.util.List;
@@ -91,31 +94,36 @@ public class GoldenRamEntity extends AnimalEntity implements IForgeShearable {
 		this.eatBlockGoal = new EatGoldenGrassGoal(this);
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.0D));
-		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.of(Items.WHEAT), false));
-		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
-		this.goalSelector.addGoal(5, this.eatBlockGoal);
-		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(2, new TemptGoal(this, 1.1D, Ingredient.of(Items.WHEAT), false)); //todo special item
+		this.goalSelector.addGoal(3, this.eatBlockGoal);
+		this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
 	}
 	
 	@Override
 	public void tick() {
 		super.tick();
+		if (level.isClientSide() && ((this.tickCount >> 1 & 1) != 0)){
+			level.addParticle(ParticleRegistry.goldenSparkle.get(), this.getX(), this.getY(), this.getZ(), 0,0,0);
+		}
 	}
 	//todo add golden particle
 
 	@Override
-	protected SoundEvent getAmbientSound() {return SoundEvents.SHEEP_AMBIENT;}
+	protected SoundEvent getAmbientSound() {return SoundRegistry.goldenRamAmbient.get();}
 	
 	@Override
 	@ParametersAreNonnullByDefault
-	protected SoundEvent getHurtSound(DamageSource ds) {return SoundEvents.SHEEP_HURT;}
+	protected SoundEvent getHurtSound(DamageSource ds) {return SoundRegistry.goldenRamHurt.get();}
 	
 	@Override
-	protected SoundEvent getDeathSound() {return SoundEvents.SHEEP_DEATH;}
-	//todo make custom sound events
+	protected SoundEvent getDeathSound() {return SoundRegistry.goldenRamDeath.get();}
+
+	@Override
+	protected void playStepSound(BlockPos pos, BlockState state) {
+		this.playSound(SoundRegistry.goldenRamStep.get(), 0.15F, 1.0F);
+	}
 
 	@Nullable
 	@Override
@@ -144,7 +152,7 @@ public class GoldenRamEntity extends AnimalEntity implements IForgeShearable {
 	@Nonnull
 	@Override
 	public List<ItemStack> onSheared(@Nullable PlayerEntity player, @Nonnull ItemStack item, World world, BlockPos pos, int fortune) {
-		world.playSound(null, this, SoundEvents.SHEEP_SHEAR, player == null ? SoundCategory.BLOCKS : SoundCategory.PLAYERS, 1.0F, 1.0F);
+		world.playSound(null, this, SoundRegistry.goldenRamShear.get(), player == null ? SoundCategory.BLOCKS : SoundCategory.PLAYERS, 1.0F, 1.0F);
 		if (!world.isClientSide) {
 			this.setSheared(true);
 			int i = 1 + this.random.nextInt(3);
