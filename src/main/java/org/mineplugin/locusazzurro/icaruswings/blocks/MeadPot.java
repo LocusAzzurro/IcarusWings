@@ -35,6 +35,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
+import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 public class MeadPot extends Block{
 	
@@ -110,7 +111,7 @@ public class MeadPot extends Block{
             	stackIn.shrink(4);
 				ItemHandlerHelper.giveItemToPlayer(player, stackOut);
             	meadPotTE.startFermenting();
-            	worldIn.playSound(null, pos, SoundEvents.BREWING_STAND_BREW, SoundCategory.BLOCKS, 2.0f, 1.3f);
+            	worldIn.playSound(null, pos, SoundRegistry.meadPotBrew.get(), SoundCategory.BLOCKS, 2.0f, 1.3f);
             	return ActionResultType.SUCCESS;
             }
             if (stackIn.getItem() == ItemRegistry.glassJar.get() && meadPotTE.isComplete()) {
@@ -118,7 +119,7 @@ public class MeadPot extends Block{
             	stackIn.shrink(1);
 				ItemHandlerHelper.giveItemToPlayer(player, stackOut);
             	meadPotTE.setEmpty();
-            	worldIn.playSound(null, pos, SoundEvents.BREWING_STAND_BREW, SoundCategory.BLOCKS, 2.0f, 1.3f);
+            	worldIn.playSound(null, pos, SoundRegistry.meadPotBrew.get(), SoundCategory.BLOCKS, 2.0f, 1.3f);
             	return ActionResultType.SUCCESS;
             }
             return ActionResultType.PASS;

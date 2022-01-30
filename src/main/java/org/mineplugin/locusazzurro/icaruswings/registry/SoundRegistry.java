@@ -24,6 +24,15 @@ public class SoundRegistry {
 
 	public static final RegistryObject<SoundEvent> meadPotBrew = SOUNDS.register("block.mead_pot.brew",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"block.mead_pot.brew")));
+	public static final RegistryObject<SoundEvent> greekFireAmbient = SOUNDS.register("block.greek_fire.ambient",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"block.greek_fire.ambient")));
+	public static final RegistryObject<SoundEvent> greekFirePop = SOUNDS.register("block.greek_fire.pop",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"block.greek_fire.pop")));
+
+	public static final RegistryObject<SoundEvent> bucketFillGreekFire = SOUNDS.register("item.bucket.fill_greek_fire",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.bucket.fill_greek_fire")));
+	public static final RegistryObject<SoundEvent> bucketEmptyGreekFire = SOUNDS.register("item.bucket.empty_greek_fire",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.bucket.empty_greek_fire")));
 
 	public static final RegistryObject<SoundEvent> armorEquipFeather = SOUNDS.register("item.armor.equip_feather",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.armor.equip_feather")));
