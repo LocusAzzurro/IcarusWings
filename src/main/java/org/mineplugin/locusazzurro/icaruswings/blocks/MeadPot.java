@@ -99,7 +99,6 @@ public class MeadPot extends Block{
 	public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {
 		return false;
 	}
-	//todo custom sound events
 	@Override
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (!worldIn.isClientSide && handIn == Hand.MAIN_HAND && worldIn.getBlockEntity(pos) != null) {

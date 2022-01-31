@@ -51,7 +51,6 @@ public class TimeRiftGenerator extends ShootableItem {
         playerIn.awardStat(Stats.ITEM_USED.get(this));
         return ActionResult.success(itemStack);
     }
-    //todo sound effects + particle
 
     @Override
     public boolean isValidRepairItem(ItemStack thisItem, ItemStack repairItem) {

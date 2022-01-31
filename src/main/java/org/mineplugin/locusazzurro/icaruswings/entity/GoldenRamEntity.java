@@ -108,7 +108,6 @@ public class GoldenRamEntity extends AnimalEntity implements IForgeShearable {
 			level.addParticle(ParticleRegistry.goldenSparkle.get(), this.getX(), this.getY(), this.getZ(), 0,0,0);
 		}
 	}
-	//todo add golden particle
 
 	@Override
 	protected SoundEvent getAmbientSound() {return SoundRegistry.goldenRamAmbient.get();}
