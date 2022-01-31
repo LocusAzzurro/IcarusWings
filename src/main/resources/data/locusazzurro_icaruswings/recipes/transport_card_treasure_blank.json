@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "GCG",
+    " X "
+  ],
+  "key": {
+    "C": {
+      "item": "locusazzurro_icaruswings:transport_card_base"
+    },
+    "X": {
+      "item": "minecraft:chest"
+    },
+    "G": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:transport_card_treasure",
+    "count": 1
+  }
+}

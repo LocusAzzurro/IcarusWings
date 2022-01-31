@@ -1,0 +1,46 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:transport_card_interdiction_field"
+    ]
+  },
+  "criteria": {
+    "has_base_card": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "locusazzurro_icaruswings:transport_card_base"
+          }
+        ]
+      }
+    },
+    "has_web": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:cobweb"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:transport_card_interdiction_field"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_base_card",
+      "has_the_recipe"
+    ],
+    [
+      "has_web",
+      "has_the_recipe"
+    ]
+  ]
+}

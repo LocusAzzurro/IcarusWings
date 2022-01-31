@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AMA",
+    "ACA",
+    "ATA"
+  ],
+  "key": {
+    "C": {
+      "item": "locusazzurro_icaruswings:transport_card_base"
+    },
+    "A": {
+      "item": "locusazzurro_icaruswings:artemis_missile"
+    },
+    "T": {
+      "item": "minecraft:redstone_torch"
+    },
+    "M": {
+      "item": "minecraft:repeater"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:transport_card_artemis_homing",
+    "count": 1
+  }
+}
