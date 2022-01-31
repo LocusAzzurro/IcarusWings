@@ -161,8 +161,8 @@
   "item.locusazzurro_icaruswings.transport_card_teleport.error1": "No destination available.",
   "item.locusazzurro_icaruswings.transport_card_teleport.error2": "Destination out of reach.",
   "item.locusazzurro_icaruswings.transport_card_teleport.error3": "Unable to activate at this moment.",
-  "item.locusazzurro_icaruswings.transport_card_treasure.error1": "No LootTable available on this card.",
-  "item.locusazzurro_icaruswings.transport_card_treasure.error2": "This card has an invalid LootTable.",
+  "item.locusazzurro_icaruswings.transport_card_treasure.error1": "No loot table available on this card.",
+  "item.locusazzurro_icaruswings.transport_card_treasure.error2": "This card has an invalid loot table.",
 
   "item.locusazzurro_icaruswings.disc_fallen_down": "Music Disc",
   "item.locusazzurro_icaruswings.disc_fallen_down.desc": "Hayami Saori - Fallen Down",
@@ -271,5 +271,4 @@
   "advancements.locusazzurro_icaruswings.future.hiyori_wings.description": "Love transcends time and space",
 
   "itemGroup.icaruswings_group": "Icarus Wings"
-
 }
