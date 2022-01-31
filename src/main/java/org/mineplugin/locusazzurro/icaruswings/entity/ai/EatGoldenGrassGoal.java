@@ -2,7 +2,6 @@ package org.mineplugin.locusazzurro.icaruswings.entity.ai;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.pattern.BlockStateMatcher;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.Goal;
@@ -18,8 +17,8 @@ public class EatGoldenGrassGoal extends Goal {
     private static final Predicate<BlockState> IS_GOLDEN_GRASS = BlockStateMatcher.forBlock(BlockRegistry.elysianGrass.get());
     private final MobEntity mob;
     private final World level;
-    private Block eatBlock;
-    private Block eatenBlock;
+    private final Block eatBlock;
+    private final Block eatenBlock;
     private int eatAnimationTick;
 
     public EatGoldenGrassGoal(MobEntity entity) {
