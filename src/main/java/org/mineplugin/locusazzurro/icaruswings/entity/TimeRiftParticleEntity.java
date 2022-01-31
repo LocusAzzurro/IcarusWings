@@ -13,6 +13,8 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.mineplugin.locusazzurro.icaruswings.data.ModDamageSources;
 import org.mineplugin.locusazzurro.icaruswings.effect.EffectInevitability;
@@ -20,6 +22,7 @@ import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
+@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
 public class TimeRiftParticleEntity extends ProjectileItemEntity implements IRendersAsItem {
 
     private final int maxLife = 600;
