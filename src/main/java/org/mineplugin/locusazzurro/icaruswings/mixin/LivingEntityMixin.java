@@ -21,7 +21,6 @@ public class LivingEntityMixin {
         Item item = itemStack.getItem();
         if (item instanceof AbstractWings){
             ((Entity)(Object) this).playSound(((AbstractWings)item).getType().getEquipSound(), 1.0F, 1.0F);
-            System.out.println("Injection for Entity:" + this);
             ci.cancel();
         }
     }
