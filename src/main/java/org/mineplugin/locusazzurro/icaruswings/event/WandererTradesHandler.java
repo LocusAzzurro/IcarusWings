@@ -29,7 +29,8 @@ public class WandererTradesHandler {
 			() -> new ItemStack(ItemRegistry.goldenFeather.get()), 6, 1, 3, 1, 1.0f);
 	private static final VillagerTrades.ITrade anemoneTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.anemone.get()), 8, 1, 2, 1, 1.0f);
-	
+	private static final VillagerTrades.ITrade greekFireTrade = new ItemsForEmeraldsTrade(
+			() -> new ItemStack(ItemRegistry.greekFireBucket.get()), 18, 1, 1, 1, 1.0f);
 	
 	private static final VillagerTrades.ITrade redFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.redFeather.get()), 2, 1, 3, 1, 1.0f);
@@ -41,13 +42,13 @@ public class WandererTradesHandler {
 			() -> new ItemStack(ItemRegistry.greenFeather.get()), 2, 1, 3, 1, 1.0f);
 	private static final VillagerTrades.ITrade grayFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.grayFeather.get()), 2, 1, 3, 1, 1.0f);
-	
+
 	@SubscribeEvent
 	public static void onWandererTradesInit(WandererTradesEvent event) {
 		List<ITrade> rareList = event.getRareTrades();
 		List<ITrade> commonList = event.getGenericTrades();
 		commonList.addAll(Arrays.asList(redFeatherTrade, blueFeatherTrade, cyanFeatherTrade, greenFeatherTrade, grayFeatherTrade));
-		rareList.addAll(Arrays.asList(zephirEssenceTrade, amphoraTrade, goldenFeatherTrade, anemoneTrade));
+		rareList.addAll(Arrays.asList(zephirEssenceTrade, amphoraTrade, goldenFeatherTrade, anemoneTrade, greekFireTrade));
 	}
 	
 	static class ItemsForEmeraldsTrade implements VillagerTrades.ITrade {
