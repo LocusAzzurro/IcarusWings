@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings;
 
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -23,6 +24,19 @@ public class IcarusWings {
 	ParticleRegistry.PARTICLES.register(bus);
 
 	ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, ModConfig.CONFIG);
+
+	if (ModList.get().isLoaded("curios")) isCuriosLoaded = true;
+	}
+
+	public static boolean isOptifineLoaded;
+	public static boolean isCuriosLoaded;
+
+	static {
+		try {
+			Class<?> OFClass = Class.forName("optifine.Installer");
+			isOptifineLoaded = true;
+		}
+		catch (ClassNotFoundException ignored) {}
 	}
 	
 }

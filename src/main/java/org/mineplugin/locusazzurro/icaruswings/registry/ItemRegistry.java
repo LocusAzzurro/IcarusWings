@@ -106,6 +106,8 @@ public class ItemRegistry {
     
     public static final RegistryObject<Item> wheatGrains = ITEMS.register("wheat_grains", WheatGrains::new);
     public static final RegistryObject<Item> wheatString = ITEMS.register("wheat_string", WheatString::new);
+    public static final RegistryObject<Item> flaxSeeds = ITEMS.register("flax_seeds", FlaxSeeds::new);
+    public static final RegistryObject<Item> linenString = ITEMS.register("linen_string", LinenString::new);
     public static final RegistryObject<Item> goldenString = ITEMS.register("golden_string", GoldenString::new);
     public static final RegistryObject<Item> goldenFleece = ITEMS.register("golden_fleece", GoldenString::new);
     
