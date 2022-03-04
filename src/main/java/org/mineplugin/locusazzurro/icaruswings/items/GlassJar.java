@@ -29,7 +29,7 @@ public class GlassJar extends Item{
         PlayerEntity player = e.player;
         World world = player.level;
         if (player.isFallFlying() && player.tickCount % 20 == 0 && !world.isClientSide() && e.phase == TickEvent.Phase.END){
-            int slot = player.inventory.findSlotMatchingItem(new ItemStack(ItemRegistry.glassJar.get()));
+            int slot = player.inventory.findSlotMatchingUnusedItem(new ItemStack(ItemRegistry.glassJar.get()));
             if (slot != -1){
                 float rand = world.random.nextFloat();
                 int altitude = (int)Math.round(MathHelper.clamp(player.getY(), 0, 255));
