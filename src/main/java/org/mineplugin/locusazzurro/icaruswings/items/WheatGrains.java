@@ -1,5 +1,9 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
@@ -16,7 +20,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-
+@Mod.EventBusSubscriber
 public class WheatGrains extends Item{
 
 	private final static float ACQUIRE_FEATHER_CHANCE = 0.5f;
@@ -62,4 +66,19 @@ public class WheatGrains extends Item{
 		
 		return ActionResultType.PASS;
 	}
+
+	@SubscribeEvent
+	public static void tamedParrotHandler(PlayerInteractEvent.EntityInteractSpecific evt){
+		if (evt.getTarget() instanceof ParrotEntity
+				&& evt.getPlayer().getItemInHand(evt.getHand()).getItem() instanceof WheatGrains){
+			ParrotEntity parrot = (ParrotEntity) evt.getTarget();
+			ItemStack grains = evt.getPlayer().getItemInHand(evt.getHand());
+			if (!parrot.isFlying() && parrot.isTame() && !evt.getWorld().isClientSide()) {
+				grains.interactLivingEntity(evt.getPlayer(), parrot, evt.getHand());
+				parrot.setOrderedToSit(!parrot.isOrderedToSit());
+			}
+			evt.setResult(Event.Result.ALLOW);
+		}
+	}
+
 }
