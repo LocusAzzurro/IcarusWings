@@ -12,11 +12,16 @@ import net.minecraft.item.ItemStack;
 public abstract class WingsEnchantment extends Enchantment {
 
     protected WingsEnchantment(Rarity rarity) {
-        super(rarity, EnchantmentType.WEARABLE, new EquipmentSlotType[] {EquipmentSlotType.CHEST});
+        super(rarity, EnchantmentType.ARMOR_CHEST, new EquipmentSlotType[] {EquipmentSlotType.CHEST});
     }
 
     @Override
     public boolean canEnchant(ItemStack stack) {
+        return stack.getItem() instanceof ElytraItem;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
         return stack.getItem() instanceof ElytraItem;
     }
 
