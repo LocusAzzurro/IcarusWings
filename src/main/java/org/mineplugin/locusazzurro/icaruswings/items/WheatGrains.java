@@ -1,24 +1,23 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Parrot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.ParrotEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
+import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
+import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 @Mod.EventBusSubscriber
 public class WheatGrains extends Item{
@@ -30,49 +29,50 @@ public class WheatGrains extends Item{
 		
 	}
 	
-	private static final Food food = (new Food.Builder())
+	private static final FoodProperties food = (new FoodProperties.Builder())
 			.saturationMod(0)
 			.nutrition(2)
 			.build();
 	
 	@Override
-	public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity player,
-			LivingEntity target, Hand hand) {
-		World world = player.level;
+	public InteractionResult interactLivingEntity(net.minecraft.world.item.ItemStack stack, Player player,
+                                                  LivingEntity target, InteractionHand hand) {
+		Level world = player.level;
 		
-		if (stack.getItem() == ItemRegistry.wheatGrains.get() && target instanceof ParrotEntity) {
+		if (stack.getItem() == ItemRegistry.wheatGrains.get() && target instanceof Parrot) {
 			if (!world.isClientSide)
 			{
-				if (!player.isCreative())
+				if (!player.isCreative()) {
 					stack.shrink(1);
+				}
 				target.playSound(SoundEvents.PARROT_EAT, 2.0f, 1.3f);
 				if (Math.random() > ACQUIRE_FEATHER_CHANCE) {
 					
-					int variant = ((ParrotEntity) target).getVariant();
-					ItemStack feather = new ItemStack(Items.FEATHER);
-					switch (variant) {
-					case 0:	feather = new ItemStack(ItemRegistry.redFeather.get()); break;
-					case 1:	feather = new ItemStack(ItemRegistry.blueFeather.get()); break;
-					case 2: feather = new ItemStack(ItemRegistry.greenFeather.get()); break;
-					case 3: feather = new ItemStack(ItemRegistry.cyanFeather.get()); break;
-					case 4: feather = new ItemStack(ItemRegistry.grayFeather.get()); break;
-					default: feather = new ItemStack(Items.FEATHER); break;
-					}
+					int variant = ((Parrot) target).getVariant();
+					new ItemStack(Items.FEATHER);
+					ItemStack feather = switch (variant) {
+						case 0 -> new ItemStack(ItemRegistry.redFeather.get());
+						case 1 -> new ItemStack(ItemRegistry.blueFeather.get());
+						case 2 -> new ItemStack(ItemRegistry.greenFeather.get());
+						case 3 -> new ItemStack(ItemRegistry.cyanFeather.get());
+						case 4 -> new ItemStack(ItemRegistry.grayFeather.get());
+						default -> new ItemStack(Items.FEATHER);
+					};
 					ItemHandlerHelper.giveItemToPlayer(player, feather);
 				}
 			}
-			return ActionResultType.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide);
 		}
 		
-		return ActionResultType.PASS;
+		return InteractionResult.PASS;
 	}
 
 	@SubscribeEvent
 	public static void tamedParrotHandler(PlayerInteractEvent.EntityInteractSpecific evt){
-		if (evt.getTarget() instanceof ParrotEntity
+		if (evt.getTarget() instanceof Parrot
 				&& evt.getPlayer().getItemInHand(evt.getHand()).getItem() instanceof WheatGrains){
-			ParrotEntity parrot = (ParrotEntity) evt.getTarget();
-			ItemStack grains = evt.getPlayer().getItemInHand(evt.getHand());
+			Parrot parrot = (Parrot) evt.getTarget();
+			net.minecraft.world.item.ItemStack grains = evt.getPlayer().getItemInHand(evt.getHand());
 			if (!parrot.isFlying() && parrot.isTame() && !evt.getWorld().isClientSide()) {
 				grains.interactLivingEntity(evt.getPlayer(), parrot, evt.getHand());
 				parrot.setOrderedToSit(!parrot.isOrderedToSit());

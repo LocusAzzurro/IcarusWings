@@ -1,8 +1,8 @@
 package org.mineplugin.locusazzurro.icaruswings.particles;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 @OnlyIn(Dist.CLIENT)
 public class GoldenSparkleParticle extends SpriteTexturedParticle {
 
-    public GoldenSparkleParticle(ClientWorld world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+    public GoldenSparkleParticle(ClientLevel world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(world, x, y, z, xSpeed, ySpeed, zSpeed);
         this.setColor(1f,1f,1f);
         this.setSize(0.02f, 0.02f);
@@ -43,7 +43,7 @@ public class GoldenSparkleParticle extends SpriteTexturedParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
+    public static class Factory implements IParticleFactory<SimpleParticleType> {
 
         private final IAnimatedSprite sprites;
 
@@ -53,7 +53,7 @@ public class GoldenSparkleParticle extends SpriteTexturedParticle {
 
         @Nullable
         @Override
-        public Particle createParticle(BasicParticleType dataIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(SimpleParticleType dataIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             GoldenSparkleParticle particle = new GoldenSparkleParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
             particle.setColor(1f,1f,1f);
             particle.pickSprite(sprites);

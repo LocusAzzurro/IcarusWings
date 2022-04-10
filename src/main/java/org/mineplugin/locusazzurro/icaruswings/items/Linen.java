@@ -1,11 +1,10 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.world.item.Item;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
-import net.minecraft.item.Item;
-
-public class Linen extends Item{
+public class Linen extends Item {
 	public Linen() {
-		super(new Item.Properties().tab(ModGroup.itemGroup));
+		super(new net.minecraft.world.item.Item.Properties().tab(ModGroup.itemGroup));
 	}
 }

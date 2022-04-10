@@ -1,8 +1,8 @@
 package org.mineplugin.locusazzurro.icaruswings.data;
 
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.Item;
 
 public interface IWingsType {
 

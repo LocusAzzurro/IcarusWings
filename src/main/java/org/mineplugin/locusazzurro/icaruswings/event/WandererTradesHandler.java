@@ -1,58 +1,56 @@
 package org.mineplugin.locusazzurro.icaruswings.event;
 
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraftforge.common.util.Lazy;
+import net.minecraftforge.event.village.WandererTradesEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 
-import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.merchant.villager.VillagerTrades;
-import net.minecraft.entity.merchant.villager.VillagerTrades.ITrade;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.util.LazyValue;
-import net.minecraftforge.event.village.WandererTradesEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-
 @EventBusSubscriber
 public class WandererTradesHandler {
 	
-	private final static VillagerTrades.ITrade zephirEssenceTrade = new ItemsForEmeraldsTrade(
+	private final static VillagerTrades.ItemListing zephirEssenceTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.zephirEssence.get()), 16, 1, 1, 1, 1.0f);
-	private static final VillagerTrades.ITrade amphoraTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ItemListing amphoraTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.amphora.get()), 4, 1, 2, 1, 1.0f);
-	private static final VillagerTrades.ITrade goldenFeatherTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ItemListing goldenFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.goldenFeather.get()), 6, 1, 3, 1, 1.0f);
-	private static final VillagerTrades.ITrade anemoneTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.anemone.get()), 8, 1, 2, 1, 1.0f);
-	private static final VillagerTrades.ITrade greekFireTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ItemListing anemoneTrade = new ItemsForEmeraldsTrade(
+			() -> new net.minecraft.world.item.ItemStack(ItemRegistry.anemone.get()), 8, 1, 2, 1, 1.0f);
+	private static final VillagerTrades.ItemListing greekFireTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.greekFireBucket.get()), 18, 1, 1, 1, 1.0f);
 	
-	private static final VillagerTrades.ITrade redFeatherTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ItemListing redFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.redFeather.get()), 2, 1, 3, 1, 1.0f);
-	private static final VillagerTrades.ITrade blueFeatherTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ItemListing blueFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.blueFeather.get()), 2, 1, 3, 1, 1.0f);
-	private static final VillagerTrades.ITrade cyanFeatherTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ItemListing cyanFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.cyanFeather.get()), 2, 1, 3, 1, 1.0f);
-	private static final VillagerTrades.ITrade greenFeatherTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ItemListing greenFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.greenFeather.get()), 2, 1, 3, 1, 1.0f);
-	private static final VillagerTrades.ITrade grayFeatherTrade = new ItemsForEmeraldsTrade(
+	private static final VillagerTrades.ItemListing grayFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.grayFeather.get()), 2, 1, 3, 1, 1.0f);
 
 	@SubscribeEvent
 	public static void onWandererTradesInit(WandererTradesEvent event) {
-		List<ITrade> rareList = event.getRareTrades();
-		List<ITrade> commonList = event.getGenericTrades();
+		List<VillagerTrades.ItemListing> rareList = event.getRareTrades();
+		List<VillagerTrades.ItemListing> commonList = event.getGenericTrades();
 		commonList.addAll(Arrays.asList(redFeatherTrade, blueFeatherTrade, cyanFeatherTrade, greenFeatherTrade, grayFeatherTrade));
 		rareList.addAll(Arrays.asList(zephirEssenceTrade, amphoraTrade, goldenFeatherTrade, anemoneTrade, greekFireTrade));
 	}
 	
-	static class ItemsForEmeraldsTrade implements VillagerTrades.ITrade {
-		private final LazyValue<ItemStack> itemStack;
+	static class ItemsForEmeraldsTrade implements VillagerTrades.ItemListing {
+		private final Lazy<ItemStack> itemStack;
 		private final int emeraldCost;
 		private final int numberOfItems;
 		private final int maxUses;
@@ -61,7 +59,7 @@ public class WandererTradesHandler {
 
 		public ItemsForEmeraldsTrade(Supplier<ItemStack> p_i50532_1_, int p_i50532_2_, int p_i50532_3_, int p_i50532_4_,
 				int p_i50532_5_, float p_i50532_6_) {
-			this.itemStack = new LazyValue<>(p_i50532_1_);
+			this.itemStack = Lazy.of(p_i50532_1_);
 			this.emeraldCost = p_i50532_2_;
 			this.numberOfItems = p_i50532_3_;
 			this.maxUses = p_i50532_4_;
@@ -69,6 +67,7 @@ public class WandererTradesHandler {
 			this.priceMultiplier = p_i50532_6_;
 		}
 
+		@Override
 		public MerchantOffer getOffer(Entity p_221182_1_, Random p_221182_2_) {
 			return new MerchantOffer(
 					new ItemStack(Items.EMERALD, this.emeraldCost),

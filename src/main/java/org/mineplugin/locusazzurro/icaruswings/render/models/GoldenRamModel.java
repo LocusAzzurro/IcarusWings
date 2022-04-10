@@ -1,7 +1,6 @@
-package org.mineplugin.locusazzurro.icaruswings.render;
+package org.mineplugin.locusazzurro.icaruswings.render.models;
 
-import net.minecraft.client.renderer.entity.model.QuadrupedModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.model.QuadrupedModel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.entity.GoldenRamEntity;

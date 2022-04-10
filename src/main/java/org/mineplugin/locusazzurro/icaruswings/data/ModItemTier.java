@@ -1,13 +1,13 @@
 package org.mineplugin.locusazzurro.icaruswings.data;
 
-import java.util.function.Supplier;
-
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
+import cpw.mods.util.Lazy;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
-public enum ModItemTier implements IItemTier{
+import java.util.function.Supplier;
+
+public enum ModItemTier implements Tier {
 	
 	STEEL(2, 300, 7.0F, 2.5F, 9, () -> {return Ingredient.of(ItemRegistry.steelIngot.get());}),
 	SYNAPSE_ALLOY(4, 2400, 10.0F, 5.0F, 16, () -> {return Ingredient.of(ItemRegistry.synapseAlloyIngot.get());});
@@ -17,7 +17,7 @@ public enum ModItemTier implements IItemTier{
 	private final float efficiency;
 	private final float attackDamage;
 	private final int enchantability;
-	private final LazyValue<Ingredient> repairIngredient;
+	private final Lazy<Ingredient> repairIngredient;
 
 	ModItemTier(int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability, Supplier<Ingredient> repairMaterial) {
 		this.harvestLevel = harvestLevel;
@@ -25,7 +25,7 @@ public enum ModItemTier implements IItemTier{
 		this.efficiency = efficiency;
 		this.attackDamage = attackDamage;
 		this.enchantability = enchantability;
-		this.repairIngredient = new LazyValue<>(repairMaterial);
+		this.repairIngredient = Lazy.of(repairMaterial);
 	}
 	
 	@Override

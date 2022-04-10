@@ -1,19 +1,18 @@
 package org.mineplugin.locusazzurro.icaruswings.effect;
 
-import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
-
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
 
 @EventBusSubscriber
 public class EffectSensoryMasking extends AbstractEffect{
 
 	public EffectSensoryMasking() {
-		super(EffectType.BENEFICIAL, 0xf0f0ff);
+		super(MobEffectCategory.BENEFICIAL, 0xf0f0ff);
 
 	}
 	
@@ -21,8 +20,8 @@ public class EffectSensoryMasking extends AbstractEffect{
 	public static void onSetTarget(LivingSetAttackTargetEvent e) {
 		if (e.getTarget() != null) {
 			LivingEntity targeter = e.getEntityLiving();
-			if (e.getTarget().hasEffect(EffectRegistry.sensoryMasking.get()) && targeter instanceof MobEntity) {
-				((MobEntity) targeter).setTarget(null);
+			if (e.getTarget().hasEffect(EffectRegistry.sensoryMasking.get()) && targeter instanceof Mob) {
+				((Mob) targeter).setTarget(null);
 			}
 		}
 	}

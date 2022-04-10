@@ -1,20 +1,20 @@
 package org.mineplugin.locusazzurro.icaruswings.data;
 
-import java.util.function.Supplier;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.util.Lazy;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
-public enum ModArmorMaterial implements IArmorMaterial{
+import java.util.function.Supplier;
+
+public enum ModArmorMaterial implements ArmorMaterial {
 	// name, duraMulti, slotProt[4], enchValue, sound, toughness, KBRes, repIng
 	FEATHER("feather", 4, new int[] {1,2,3,1}, 15, SoundRegistry.armorEquipFeather, //chain
 			0.0F, 0.0F, () -> Ingredient.of(ItemRegistry.featherBunch.get())),
@@ -25,7 +25,7 @@ public enum ModArmorMaterial implements IArmorMaterial{
 	LINEN("linen", 4, new int[] {1,2,2,1}, 12, SoundRegistry.armorEquipLinen, //leather
 			0.0F, 0.0F, () -> Ingredient.of(ItemRegistry.linen.get())),
 	HERBAL("herbal", 1, new int[] {1,1,1,1}, 20, SoundRegistry.armorEquipHerbal, //leather
-			0.0F, 0.0F, () -> Ingredient.of(ItemTags.bind("locusazzurro_icaruswings:herbs"))),
+			0.0F, 0.0F, () -> Ingredient.of(ItemTags.create(new ResourceLocation("locusazzurro_icaruswings:herbs")))),
 	SYNAPSE("synapse_tech", 40, new int[] {3,6,8,3}, 12, SoundRegistry.armorEquipSynapse, //diamond
 			4.0F, 0.0F, () -> Ingredient.of(ItemRegistry.synapseRepairKit.get()))
 	;
@@ -38,17 +38,17 @@ public enum ModArmorMaterial implements IArmorMaterial{
 	private final int durabilityMultiplier;
 	private final int[] slotProtections;
 	private final int enchantmentValue;
-	private final LazyValue<SoundEvent> sound;
+	private final Lazy<SoundEvent> sound;
 	private final float toughness;
 	private final float knockbackResistance;
-	private final LazyValue<Ingredient> repairIngredient;
+	private final Lazy<Ingredient> repairIngredient;
 	
 	ModArmorMaterial (
 		String name, 
 		int durabilityMultiplier, 
 		int[] slotProtections, 
 		int enchantmentValue,
-		Supplier<SoundEvent> sound,
+		Supplier<net.minecraft.sounds.SoundEvent> sound,
 		float toughness,
 		float knockbackResistance,
 		Supplier<Ingredient> repairIngredient
@@ -58,41 +58,49 @@ public enum ModArmorMaterial implements IArmorMaterial{
 		this.durabilityMultiplier = durabilityMultiplier;
 		this.slotProtections = slotProtections;
 		this.enchantmentValue = enchantmentValue;
-		this.sound = new LazyValue<>(sound);
+		this.sound = Lazy.of(sound);
 		this.toughness = toughness;
 		this.knockbackResistance = knockbackResistance;
-		this.repairIngredient = new LazyValue<>(repairIngredient);
+		this.repairIngredient = Lazy.of(repairIngredient);
 	}
 	
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public String getName() {
 		return this.name;
 	}
 	
-	public int getDurabilityForSlot(EquipmentSlotType slot) {
+	@Override
+	public int getDurabilityForSlot(EquipmentSlot slot) {
 	    return HEALTH_PER_SLOT[slot.getIndex()] * this.durabilityMultiplier;
 	}
 	
-	public int getDefenseForSlot(EquipmentSlotType slot) {
+	@Override
+	public int getDefenseForSlot(EquipmentSlot slot) {
 	    return this.slotProtections[slot.getIndex()];
 	}
 	
+	@Override
 	public int getEnchantmentValue() {
 		return this.enchantmentValue;
 	}
 	
+	@Override
 	public SoundEvent getEquipSound() {
 		return this.sound.get();
 	}
 	
+	@Override
 	public float getToughness() {
 		return this.toughness;
 	}
 	
+	@Override
 	public float getKnockbackResistance() {
 		return this.knockbackResistance;
 	}
 
+	@Override
 	public Ingredient getRepairIngredient() {
 	    return this.repairIngredient.get();
 	} 

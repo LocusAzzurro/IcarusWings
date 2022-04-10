@@ -1,14 +1,15 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShootableItem;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ProjectileWeaponItem;
+import net.minecraft.world.level.Level;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.entity.ArtemisMissileEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
@@ -17,32 +18,32 @@ import org.mineplugin.locusazzurro.icaruswings.utils.ProjectileUtils;
 
 import java.util.function.Predicate;
 
-public class ArtemisLauncher extends ShootableItem {
+public class ArtemisLauncher extends ProjectileWeaponItem {
 
     public ArtemisLauncher(){
-        super(new Properties().tab(ModGroup.itemGroup).durability(400));
+        super(new Item.Properties().tab(ModGroup.itemGroup).durability(400));
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn){
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn){
         ItemStack item = playerIn.getItemInHand(handIn);
         ItemStack projectile = playerIn.getProjectile(item);
 
-        if (!playerIn.abilities.instabuild && projectile.isEmpty()){
-            return ActionResult.pass(item);
+        if (!playerIn.getAbilities().instabuild && projectile.isEmpty()){
+            return InteractionResultHolder.pass(item);
         }
 
         LivingEntity entity = ProjectileUtils.rayTraceTarget(playerIn, 0.1f, 300, 1);
         ArtemisMissileEntity missile;
         if (entity != null) {
             missile = new ArtemisMissileEntity(worldIn, playerIn, entity);
-            missile.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0f, 0.5f, 1.0f);
+            missile.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, 0.5f, 1.0f);
         } else {
             missile = new ArtemisMissileEntity(worldIn, playerIn);
-            missile.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0f, 2.0f, 1.0f);
+            missile.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, 2.0f, 1.0f);
         }
         worldIn.addFreshEntity(missile);
-        worldIn.playSound(null, missile, SoundRegistry.artemisMissileLaunch.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
+        worldIn.playSound(null, missile, SoundRegistry.artemisMissileLaunch.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
         if (!worldIn.isClientSide()) {
             item.hurtAndBreak(1, playerIn, (player) -> {
@@ -50,14 +51,14 @@ public class ArtemisLauncher extends ShootableItem {
             });
         }
 
-        if (!playerIn.abilities.instabuild) {
+        if (!playerIn.getAbilities().instabuild) {
             projectile.shrink(1);
             if (projectile.isEmpty()) {
-                playerIn.inventory.removeItem(projectile);
+                playerIn.getInventory().removeItem(projectile);
             }
         }
         playerIn.awardStat(Stats.ITEM_USED.get(this));
-        return ActionResult.success(item);
+        return InteractionResultHolder.success(item);
     }
 
     @Override
@@ -65,7 +66,7 @@ public class ArtemisLauncher extends ShootableItem {
         return repairItem.getItem() == ItemRegistry.synapseRepairKit.get() || super.isValidRepairItem(thisItem, repairItem);
     }
 
-    public static final Predicate<ItemStack> ARTEMIS_MISSILE = (item) -> item.getItem().equals(ItemRegistry.artemisMissile.get());
+    public static final Predicate<net.minecraft.world.item.ItemStack> ARTEMIS_MISSILE = (item) -> item.getItem().equals(ItemRegistry.artemisMissile.get());
 
     @Override
     public Predicate<ItemStack> getAllSupportedProjectiles() {

@@ -1,8 +1,8 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
-
-import net.minecraft.item.ItemStack;
 
 public class PaperWings extends AbstractWings{
 	
@@ -11,7 +11,7 @@ public class PaperWings extends AbstractWings{
 	}
 	
 	@Override
-	public boolean canElytraFly(ItemStack stack, net.minecraft.entity.LivingEntity entity) {
+	public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
 		return true;
 	}
 }

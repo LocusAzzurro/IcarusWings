@@ -1,11 +1,11 @@
 package org.mineplugin.locusazzurro.icaruswings.ench;
 
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ElytraItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ElytraItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -42,9 +42,9 @@ public class EnchantmentBlessingOfTheSky extends WingsEnchantment {
 
     @SubscribeEvent
     public static void onEntityHurt(LivingHurtEvent e) {
-        if (e.getEntity() instanceof LivingEntity){
-            LivingEntity livingEntity = (LivingEntity) e.getEntity();
-            ItemStack armor = livingEntity.getItemBySlot(EquipmentSlotType.CHEST);
+        if (e.getEntity() instanceof net.minecraft.world.entity.LivingEntity){
+            net.minecraft.world.entity.LivingEntity livingEntity = (LivingEntity) e.getEntity();
+            ItemStack armor = livingEntity.getItemBySlot(EquipmentSlot.CHEST);
             if (livingEntity.isFallFlying() && armor.getItem() instanceof ElytraItem
                 && EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistry.blessingOfTheSky.get(), livingEntity) > 0
                 && isValidDamageType(e.getSource())){

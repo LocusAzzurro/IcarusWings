@@ -1,19 +1,19 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 import org.mineplugin.locusazzurro.icaruswings.data.ModConfig;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
@@ -27,17 +27,17 @@ public abstract class AbstractTransportCard extends Item {
     private static int PERM_LEVEL = ModConfig.TRANSPORT_CARD_PERMISSION_LEVEL.get();
 
     public AbstractTransportCard(CardType type){
-        super(new Properties().tab(ModGroup.itemGroup).rarity(Rarity.UNCOMMON));
+        super(new Item.Properties().tab(ModGroup.itemGroup).rarity(Rarity.UNCOMMON));
         this.type = type;
     }
 
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn){
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn){
         ItemStack itemstack = playerIn.getItemInHand(handIn);
-        if (!canUseCard(playerIn)) {return ActionResult.fail(itemstack);}
-        else return ActionResult.consume(itemstack);
+        if (!canUseCard(playerIn)) {return InteractionResultHolder.fail(itemstack);}
+        else return InteractionResultHolder.consume(itemstack);
     }
 
-    protected static boolean canUseCard(PlayerEntity playerIn){
+    protected static boolean canUseCard(Player playerIn){
         switch (PERM_LEVEL) {
             case 0: return false;
             case 1: return playerIn.hasPermissions(2);
@@ -48,16 +48,16 @@ public abstract class AbstractTransportCard extends Item {
     }
 
     @Override
-    public boolean isFoil(ItemStack stack){
+    public boolean isFoil(net.minecraft.world.item.ItemStack stack){
         return true;
     }
 
     @Override
-    public void appendHoverText(ItemStack itemstack, World world, List<ITextComponent> list, ITooltipFlag flag) {
-        super.appendHoverText(itemstack, world, list, flag);
-        CardType type = ((AbstractTransportCard)itemstack.getItem()).getType();
-        list.add(new TranslationTextComponent("item.locusazzurro_icaruswings.transport_card_"+ type +".tooltip")
-                .setStyle(Style.EMPTY.withColor(TextFormatting.GRAY)));
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        CardType type = ((AbstractTransportCard)pStack.getItem()).getType();
+        pTooltipComponents.add(new TranslatableComponent("item.locusazzurro_icaruswings.transport_card_"+ type +".tooltip")
+                .setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
     }
 
     @Override
@@ -69,7 +69,7 @@ public abstract class AbstractTransportCard extends Item {
         return this.type;
     }
 
-    public enum CardType implements IStringSerializable {
+    public enum CardType implements StringRepresentable {
         BASE("base"),
         ARTEMIS_HOMING("artemis_homing"),
         ARTEMIS_SCATTER("artemis_scatter"),

@@ -1,20 +1,11 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
-import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.material.Material;
 import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
-import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
-import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.*;
-
-public class GreekFireBlock extends FlowingFluidBlock {
+public class GreekFireBlock extends LiquidBlock {
 
     public GreekFireBlock(){
         super(FluidRegistry.greekFire, Block.Properties.of(Material.LAVA).noCollission().strength(100.0F).noDrops());

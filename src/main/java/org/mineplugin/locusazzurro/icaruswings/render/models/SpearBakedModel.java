@@ -1,13 +1,13 @@
-package org.mineplugin.locusazzurro.icaruswings.render;
+package org.mineplugin.locusazzurro.icaruswings.render.models;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.model.BakedQuad;
-import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.model.ItemOverrideList;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.util.Direction;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -17,11 +17,11 @@ import java.util.Random;
 
 @SuppressWarnings("deprecation")
 @OnlyIn(Dist.CLIENT)
-public class SpearBakedModel implements IBakedModel {
+public class SpearBakedModel implements BakedModel {
 
-    private IBakedModel existingModel;
+    private BakedModel existingModel;
 
-    public SpearBakedModel(IBakedModel existingModel) {
+    public SpearBakedModel(BakedModel existingModel) {
         this.existingModel = existingModel;
     }
 
@@ -56,23 +56,23 @@ public class SpearBakedModel implements IBakedModel {
     }
 
     @Override
-    public ItemCameraTransforms getTransforms() {
+    public ItemTransforms getTransforms() {
         return this.existingModel.getTransforms();
     }
 
     @Override
-    public IBakedModel handlePerspective(ItemCameraTransforms.TransformType cameraTransformType, MatrixStack mat) {
-        if (cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND ||
-                cameraTransformType == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND ||
-                cameraTransformType == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND ||
-                cameraTransformType == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND) {
+    public BakedModel handlePerspective(ItemTransforms.TransformType cameraTransformType, PoseStack mat) {
+        if (cameraTransformType == ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND ||
+                cameraTransformType == ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND ||
+                cameraTransformType == ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND ||
+                cameraTransformType == ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND) {
             return this;
         }
         return this.existingModel.handlePerspective(cameraTransformType, mat);
     }
 
     @Override
-    public ItemOverrideList getOverrides() {
+    public ItemOverrides getOverrides() {
         return this.existingModel.getOverrides();
     }
 }

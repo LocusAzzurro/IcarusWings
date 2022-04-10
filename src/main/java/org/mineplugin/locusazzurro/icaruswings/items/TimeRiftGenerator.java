@@ -1,14 +1,14 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShootableItem;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ProjectileWeaponItem;
+import net.minecraft.world.level.Level;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.entity.TimeRiftParticleEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
@@ -16,25 +16,25 @@ import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import java.util.function.Predicate;
 
-public class TimeRiftGenerator extends ShootableItem {
+public class TimeRiftGenerator extends ProjectileWeaponItem {
 
     public TimeRiftGenerator(){
         super(new Item.Properties().tab(ModGroup.itemGroup).durability(400));
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemStack = playerIn.getItemInHand(handIn);
         ItemStack projectile = playerIn.getProjectile(itemStack);
-        if (!playerIn.abilities.instabuild && projectile.isEmpty()){
-            return ActionResult.pass(itemStack);
+        if (!playerIn.getAbilities().instabuild && projectile.isEmpty()){
+            return InteractionResultHolder.pass(itemStack);
         }
 
         TimeRiftParticleEntity particle = new TimeRiftParticleEntity(playerIn, worldIn);
-        particle.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0f, 2.0f, 0.5f);
+        particle.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, 2.0f, 0.5f);
         particle.setNoGravity(true);
         worldIn.addFreshEntity(particle);
-        worldIn.playSound(null, playerIn, SoundRegistry.timeRiftGeneratorFire.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
+        worldIn.playSound(null, playerIn, SoundRegistry.timeRiftGeneratorFire.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
         if (!worldIn.isClientSide()) {
             itemStack.hurtAndBreak(1, playerIn, (player) -> {
@@ -42,14 +42,14 @@ public class TimeRiftGenerator extends ShootableItem {
             });
         }
 
-        if (!playerIn.abilities.instabuild) {
+        if (!playerIn.getAbilities().instabuild) {
             projectile.shrink(1);
             if (projectile.isEmpty()) {
-                playerIn.inventory.removeItem(projectile);
+                playerIn.getInventory().removeItem(projectile);
             }
         }
         playerIn.awardStat(Stats.ITEM_USED.get(this));
-        return ActionResult.success(itemStack);
+        return InteractionResultHolder.success(itemStack);
     }
 
     @Override

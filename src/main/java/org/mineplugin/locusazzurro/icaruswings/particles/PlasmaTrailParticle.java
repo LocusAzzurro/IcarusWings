@@ -1,17 +1,17 @@
 package org.mineplugin.locusazzurro.icaruswings.particles;
 
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
-public class PlasmaTrailParticle extends SpriteTexturedParticle {
+public class PlasmaTrailParticle extends TextureSheetParticle {
 
-    public PlasmaTrailParticle(ClientWorld world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+    public PlasmaTrailParticle(ClientLevel world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(world, x, y, z, xSpeed, ySpeed, zSpeed);
         this.setColor(1f,1f,1f);
         this.setSize(0.03f, 0.03f);
@@ -39,22 +39,22 @@ public class PlasmaTrailParticle extends SpriteTexturedParticle {
 
 
     @Override
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
+    public static class Factory implements ParticleProvider<SimpleParticleType> {
 
-        private final IAnimatedSprite sprites;
+        private final SpriteSet sprites;
 
-        public Factory(IAnimatedSprite sprite) {
+        public Factory(SpriteSet sprite) {
             this.sprites = sprite;
         }
 
         @Nullable
         @Override
-        public Particle createParticle(BasicParticleType dataIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(SimpleParticleType dataIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             PlasmaTrailParticle particle = new PlasmaTrailParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
             particle.setColor(1f,1f,1f);
             particle.pickSprite(sprites);

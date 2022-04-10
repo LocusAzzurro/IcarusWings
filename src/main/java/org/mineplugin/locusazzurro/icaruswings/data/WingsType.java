@@ -1,14 +1,14 @@
 package org.mineplugin.locusazzurro.icaruswings.data;
 
-import java.util.function.Supplier;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.util.LazyValue;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.common.util.Lazy;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
+
+import java.util.function.Supplier;
 
 public enum WingsType implements IWingsType{
 
@@ -27,20 +27,20 @@ public enum WingsType implements IWingsType{
 	
 	private final String name;
 	private final int durability;
-	private final LazyValue<Item> repairItem;
+	private final Lazy<Item> repairItem;
 	private final boolean hasReversedTexture;
 	private final ResourceLocation texture;
 	private final ResourceLocation textureReversed;
-	private final LazyValue<SoundEvent> equipSound;
+	private final Lazy<SoundEvent> equipSound;
 
-	WingsType(String name, int durability, Supplier<Item> repairItem, boolean hasReverse, Supplier<SoundEvent> equipSound) {
+	WingsType(String name, int durability, Supplier<Item> repairItem, boolean hasReverse, Supplier<net.minecraft.sounds.SoundEvent> equipSound) {
 		this.name = name;
 		this.durability = durability;
-		this.repairItem = new LazyValue<>(repairItem);
+		this.repairItem = Lazy.of(repairItem);
 		this.hasReversedTexture = hasReverse;
 		this.texture = new ResourceLocation(ModData.MOD_ID, "textures/entity/" + name + "_wings.png");
 		this.textureReversed = new ResourceLocation(ModData.MOD_ID, "textures/entity/" + name + "_wings_reversed.png");
-		this.equipSound = new LazyValue<>(equipSound);
+		this.equipSound = Lazy.of(equipSound);
 	}
 
 	@Override
@@ -69,12 +69,12 @@ public enum WingsType implements IWingsType{
 	}
 
 	@Override
-	public ResourceLocation getTextureReversed() {
+	public net.minecraft.resources.ResourceLocation getTextureReversed() {
 		return this.hasReversedTexture ? this.textureReversed : this.texture;
 	}
 
 	@Override
-	public SoundEvent getEquipSound() {
+	public net.minecraft.sounds.SoundEvent getEquipSound() {
 		return this.equipSound.get();
 	}
 }

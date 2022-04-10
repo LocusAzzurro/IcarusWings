@@ -1,26 +1,26 @@
 package org.mineplugin.locusazzurro.icaruswings.entity;
 
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.IndirectEntityDamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.IndirectEntityDamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
 import org.mineplugin.locusazzurro.icaruswings.items.SpearItem;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
@@ -28,27 +28,27 @@ import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import javax.annotation.Nullable;
 
-public class SpearEntity extends AbstractArrowEntity {
+public class SpearEntity extends AbstractArrow {
 
-    private static final DataParameter<ItemStack> SPEAR_ITEM = EntityDataManager.defineId(SpearEntity.class, DataSerializers.ITEM_STACK);
+    private static final EntityDataAccessor<ItemStack> SPEAR_ITEM = SynchedEntityData.defineId(SpearEntity.class, EntityDataSerializers.ITEM_STACK);
     private ItemStack spearItem;
     private boolean dealtDamage;
 
-    public SpearEntity(EntityType<? extends SpearEntity> type, World world) {
+    public SpearEntity(EntityType<? extends SpearEntity> type, Level world) {
         super(type, world);
-        this.spearItem = new ItemStack(ItemRegistry.woodenSpear.get());
+        this.spearItem = new net.minecraft.world.item.ItemStack(ItemRegistry.woodenSpear.get());
     }
 
-    public SpearEntity(World worldIn, LivingEntity owner, ItemStack spear){
+    public SpearEntity(Level worldIn, LivingEntity owner, ItemStack spear){
         super(EntityTypeRegistry.spearEntity.get(), owner, worldIn);
         this.spearItem = spear.copy();
         this.entityData.set(SPEAR_ITEM, spear);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public SpearEntity(World p_i48791_1_, double p_i48791_2_, double p_i48791_4_, double p_i48791_6_) {
+    public SpearEntity(Level p_i48791_1_, double p_i48791_2_, double p_i48791_4_, double p_i48791_6_) {
         super(EntityTypeRegistry.spearEntity.get(), p_i48791_2_, p_i48791_4_, p_i48791_6_, p_i48791_1_);
-        this.spearItem = new ItemStack(ItemRegistry.woodenSpear.get());
+        this.spearItem = new net.minecraft.world.item.ItemStack(ItemRegistry.woodenSpear.get());
     }
 
     @Override
@@ -62,14 +62,14 @@ public class SpearEntity extends AbstractArrowEntity {
 
     @Override
     @Nullable
-    protected EntityRayTraceResult findHitEntity(Vector3d p_213866_1_, Vector3d p_213866_2_) {
+    protected EntityHitResult findHitEntity(Vec3 p_213866_1_, Vec3 p_213866_2_) {
         return this.dealtDamage ? null : super.findHitEntity(p_213866_1_, p_213866_2_);
     }
 
     @Override
-    protected void onHitEntity(EntityRayTraceResult ray) {
+    protected void onHitEntity(EntityHitResult ray) {
         Entity target = ray.getEntity();
-        float f = ((SpearItem)this.spearItem.getItem()).getAttackDamage();
+        float f = ((SpearItem) this.spearItem.getItem()).getAttackDamage();
         if (target instanceof LivingEntity) {
             LivingEntity livingentity = (LivingEntity)target;
             f += EnchantmentHelper.getDamageBonus(this.spearItem, livingentity.getMobType());
@@ -78,7 +78,7 @@ public class SpearEntity extends AbstractArrowEntity {
         Entity owner = this.getOwner();
         DamageSource damageSource = new IndirectEntityDamageSource("spear", this, (owner == null ? this : owner)).setProjectile();
         this.dealtDamage = true;
-        SoundEvent soundevent = SoundRegistry.spearHit.get();
+        net.minecraft.sounds.SoundEvent soundevent = SoundRegistry.spearHit.get();
         if (target.hurt(damageSource, f)) {
             if (target.getType() == EntityType.ENDERMAN) {
                 return;
@@ -105,7 +105,8 @@ public class SpearEntity extends AbstractArrowEntity {
         return SoundRegistry.spearHitGround.get();
     }
 
-    public void playerTouch(PlayerEntity playerIn) {
+    @Override
+    public void playerTouch(Player playerIn) {
         Entity owner = this.getOwner();
         if (owner == null || owner.getUUID() == playerIn.getUUID()) {
             super.playerTouch(playerIn);
@@ -113,13 +114,13 @@ public class SpearEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public ItemStack getPickupItem() {
+    public net.minecraft.world.item.ItemStack getPickupItem() {
         return this.spearItem.copy();
     }
 
     @Override
     public void tickDespawn() {
-        if (this.pickup != AbstractArrowEntity.PickupStatus.ALLOWED) {
+        if (this.pickup != AbstractArrow.Pickup.ALLOWED) {
             super.tickDespawn();
         }
     }
@@ -131,27 +132,27 @@ public class SpearEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT nbt) {
+    public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
         if (nbt.contains("Spear", 10)) {
-            this.spearItem = ItemStack.of(nbt.getCompound("Spear"));
+            this.spearItem = net.minecraft.world.item.ItemStack.of(nbt.getCompound("Spear"));
         }
 
         this.dealtDamage = nbt.getBoolean("DealtDamage");
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT nbt) {
+    public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
-        nbt.put("Spear", this.spearItem.save(new CompoundNBT()));
+        nbt.put("Spear", this.spearItem.save(new CompoundTag()));
         nbt.putBoolean("DealtDamage", this.dealtDamage);
     }
 
-    public void setSpearItemData(ItemStack stackIn){
+    public void setSpearItemData(net.minecraft.world.item.ItemStack stackIn){
         this.entityData.set(SPEAR_ITEM, stackIn);
     }
 
-    public ItemStack getSpearItemData(){
+    public net.minecraft.world.item.ItemStack getSpearItemData(){
         return this.entityData.get(SPEAR_ITEM);
     }
 
@@ -167,7 +168,7 @@ public class SpearEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

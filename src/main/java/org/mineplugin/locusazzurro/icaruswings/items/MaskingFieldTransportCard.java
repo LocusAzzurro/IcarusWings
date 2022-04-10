@@ -1,17 +1,15 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
-import net.minecraft.world.World;
+import com.mojang.math.Vector3f;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
@@ -19,18 +17,22 @@ import org.mineplugin.locusazzurro.icaruswings.utils.MathUtils;
 
 import java.util.List;
 
+
 public class MaskingFieldTransportCard extends AbstractTransportCard{
 
-    private static final List<Vector3d> PARTICLE_POINTS = MathUtils.cubeMatrixFrame(20);
+    private static final List<Vec3> PARTICLE_POINTS = MathUtils.cubeMatrixFrame(20);
     private static final float RANGE = 4;
 
     public MaskingFieldTransportCard() {
         super(CardType.MASKING_FIELD);
     }
 
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack itemstack = playerIn.getItemInHand(handIn);
-        if (!canUseCard(playerIn)) return ActionResult.fail(itemstack);
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
+        net.minecraft.world.item.ItemStack itemstack = playerIn.getItemInHand(handIn);
+        if (!canUseCard(playerIn)) {
+            return InteractionResultHolder.fail(itemstack);
+        }
 
         if (worldIn.isClientSide()) {
             PARTICLE_POINTS.forEach((point) -> {
@@ -47,18 +49,18 @@ public class MaskingFieldTransportCard extends AbstractTransportCard{
             }
         }
 
-        worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationElectronic.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
+        worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationElectronic.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
         float r = RANGE;
-        AxisAlignedBB aabb = new AxisAlignedBB(r, r, r, -r, -r, -r).move(playerIn.position());
-        List<PlayerEntity> players = playerIn.level.getEntitiesOfClass(PlayerEntity.class, aabb);
-        for (PlayerEntity player : players) {
-            player.addEffect(new EffectInstance(EffectRegistry.sensoryMasking.get(), 2400, 0));
+        AABB aabb = new AABB(r, r, r, -r, -r, -r).move(playerIn.position());
+        List<Player> players = playerIn.level.getEntitiesOfClass(Player.class, aabb);
+        for (Player player : players) {
+            player.addEffect(new MobEffectInstance(EffectRegistry.sensoryMasking.get(), 2400, 0));
         }
 
         if(!playerIn.isCreative()) {itemstack.shrink(1);}
         playerIn.getCooldowns().addCooldown(this, 200);
-        return ActionResult.consume(itemstack);
+        return InteractionResultHolder.consume(itemstack);
     }
 
 }

@@ -1,18 +1,18 @@
 package org.mineplugin.locusazzurro.icaruswings.ench;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ElytraItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ElytraItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
-public abstract class WingsEnchantment extends Enchantment {
+public abstract class WingsEnchantment extends net.minecraft.world.item.enchantment.Enchantment {
 
     protected WingsEnchantment(Rarity rarity) {
-        super(rarity, EnchantmentType.ARMOR_CHEST, new EquipmentSlotType[] {EquipmentSlotType.CHEST});
+        super(rarity, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[] {EquipmentSlot.CHEST});
     }
 
     @Override
@@ -28,7 +28,7 @@ public abstract class WingsEnchantment extends Enchantment {
     protected static int getWingsEnchantmentLevel(Entity entityIn, Enchantment enchantment){
         if (entityIn instanceof LivingEntity && enchantment instanceof WingsEnchantment){
             LivingEntity livingEntity = (LivingEntity) entityIn;
-            if (livingEntity.getItemBySlot(EquipmentSlotType.CHEST).getItem() instanceof ElytraItem){
+            if (livingEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ElytraItem){
                 return EnchantmentHelper.getEnchantmentLevel(enchantment, livingEntity);
             }
         }

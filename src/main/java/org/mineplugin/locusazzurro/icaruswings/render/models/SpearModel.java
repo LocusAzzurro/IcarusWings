@@ -1,13 +1,12 @@
-package org.mineplugin.locusazzurro.icaruswings.render;
+package org.mineplugin.locusazzurro.icaruswings.render.models;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemTier;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
@@ -20,17 +19,17 @@ import java.util.Map;
 @OnlyIn(Dist.CLIENT)
 public class SpearModel extends EntityModel<SpearEntity> {
 
-    protected static final Map<? extends IItemTier, ResourceLocation> MATERIALS = MapUtils.Builder
-            .<IItemTier, ResourceLocation>add(ItemTier.WOOD, new ResourceLocation(ModData.MOD_ID, "textures/entity/wooden_spear.png"))
-            .add(ItemTier.STONE, new ResourceLocation(ModData.MOD_ID, "textures/entity/stone_spear.png"))
-            .add(ItemTier.IRON, new ResourceLocation(ModData.MOD_ID, "textures/entity/iron_spear.png"))
+    protected static final Map<? extends Tier, ResourceLocation> MATERIALS = MapUtils.Builder
+            .<Tier, net.minecraft.resources.ResourceLocation>add(Tiers.WOOD, new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "textures/entity/wooden_spear.png"))
+            .add(Tiers.STONE, new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "textures/entity/stone_spear.png"))
+            .add(Tiers.IRON, new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "textures/entity/iron_spear.png"))
             .add(ModItemTier.STEEL, new ResourceLocation(ModData.MOD_ID, "textures/entity/steel_spear.png"))
-            .add(ItemTier.GOLD, new ResourceLocation(ModData.MOD_ID, "textures/entity/golden_spear.png"))
-            .add(ItemTier.DIAMOND, new ResourceLocation(ModData.MOD_ID, "textures/entity/diamond_spear.png"))
-            .add(ItemTier.NETHERITE, new ResourceLocation(ModData.MOD_ID, "textures/entity/netherite_spear.png"))
+            .add(Tiers.GOLD, new ResourceLocation(ModData.MOD_ID, "textures/entity/golden_spear.png"))
+            .add(Tiers.DIAMOND, new ResourceLocation(ModData.MOD_ID, "textures/entity/diamond_spear.png"))
+            .add(Tiers.NETHERITE, new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "textures/entity/netherite_spear.png"))
             .add(ModItemTier.SYNAPSE_ALLOY, new ResourceLocation(ModData.MOD_ID, "textures/entity/synapse_alloy_spear.png"));
 
-    protected static final ResourceLocation FALLBACK_SPEAR_TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/wooden_spear.png");
+    protected static final ResourceLocation FALLBACK_SPEAR_TEXTURE = new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "textures/entity/wooden_spear.png");
 
     private final ModelRenderer spear;
 
@@ -54,7 +53,7 @@ public class SpearModel extends EntityModel<SpearEntity> {
     }
 
     @Override
-    public void renderToBuffer(MatrixStack p_225598_1_, IVertexBuilder p_225598_2_, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_) {
+    public void renderToBuffer(PoseStack p_225598_1_, VertexConsumer p_225598_2_, int p_225598_3_, int p_225598_4_, float p_225598_5_, float p_225598_6_, float p_225598_7_, float p_225598_8_) {
         this.spear.render(p_225598_1_, p_225598_2_, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
     }
 

@@ -1,7 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.damage;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.EntityDamageSource;
+import net.minecraft.world.damagesource.EntityDamageSource;
+import net.minecraft.world.entity.Entity;
 
 import javax.annotation.Nullable;
 
@@ -11,6 +11,7 @@ public class DamageTimeRift extends EntityDamageSource {
         super("timeRift", source);
     }
 
+    @Override
     public boolean isBypassArmor(){
         return true;
     }

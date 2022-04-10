@@ -1,35 +1,32 @@
 package org.mineplugin.locusazzurro.icaruswings.entity;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.DamagingProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileHelper;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ParticleType;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.IndirectEntityDamageSource;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.IndirectEntityDamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.network.NetworkHooks;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
-import net.minecraft.block.Blocks;
-import net.minecraft.particles.BlockParticleData;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class ArtemisMissileEntity extends DamagingProjectileEntity {
+public class ArtemisMissileEntity extends AbstractHurtingProjectile {
 
     private UUID targetUUID;
     private int targetNetworkId;
@@ -37,21 +34,21 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     private static final int DEFAULT_FUEL = 1200; // Default: 1200 (60s)
     private int fuel;
     private double homingSpeed = 1.1;
-    private static final IParticleData PARTICLE = ParticleRegistry.plasmaTrail.get();
+    private static final ParticleOptions PARTICLE = ParticleRegistry.plasmaTrail.get();
     
     // 空白粒子
-    public static final IParticleData PARTICLE_EMPTY = new BlockParticleData(ParticleTypes.BLOCK, Blocks.AIR.defaultBlockState()) ;
+    public static final ParticleOptions PARTICLE_EMPTY = new BlockParticleOption(ParticleTypes.BLOCK, Blocks.AIR.defaultBlockState()) ;
 
-    public ArtemisMissileEntity(EntityType<? extends ArtemisMissileEntity> type, World world) {
+    public ArtemisMissileEntity(EntityType<? extends ArtemisMissileEntity> type, Level world) {
         super(type, world);
         this.fuel = DEFAULT_FUEL;
     }
 
-    public ArtemisMissileEntity(double x, double y, double z, double accelX, double accelY, double accelZ, World world){
+    public ArtemisMissileEntity(double x, double y, double z, double accelX, double accelY, double accelZ, Level world){
         this(EntityTypeRegistry.artemisMissileEntity.get(), world);
-        this.moveTo(x, y, z, this.yRot, this.xRot);
+        this.moveTo(x, y, z, this.getYRot(), this.getXRot());
         this.reapplyPosition();
-        double v = MathHelper.sqrt(accelX * accelX + accelY * accelY + accelZ * accelZ);
+        double v = Mth.sqrt((float) (accelX * accelX + accelY * accelY + accelZ * accelZ));
         if (v != 0.0D) {
             this.xPower = accelX / v * 0.1D;
             this.yPower = accelY / v * 0.1D;
@@ -59,15 +56,15 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
         }
     }
 
-    public ArtemisMissileEntity(LivingEntity shooter, double accelX, double accelY, double accelZ, World world){
+    public ArtemisMissileEntity(net.minecraft.world.entity.LivingEntity shooter, double accelX, double accelY, double accelZ, Level world){
         this(shooter.getX(), shooter.getY(), shooter.getZ(), accelX, accelY, accelZ, world);
         this.setOwner(shooter);
-        this.setRot(shooter.yRot, shooter.xRot);
+        this.setRot(shooter.getYRot(), shooter.getXRot());
     }
 
-    public ArtemisMissileEntity(World world, LivingEntity shooter, double powerX, double powerY, double powerZ){
+    public ArtemisMissileEntity(Level world, net.minecraft.world.entity.LivingEntity shooter, double powerX, double powerY, double powerZ){
         this(EntityTypeRegistry.artemisMissileEntity.get(), world);
-        this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.yRot, shooter.xRot);
+        this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
         this.reapplyPosition();
         this.setOwner(shooter);
         this.xPower = powerX;
@@ -75,17 +72,17 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
         this.zPower = powerZ;
     }
 
-    public ArtemisMissileEntity(World world, LivingEntity shooter){
+    public ArtemisMissileEntity(Level world, net.minecraft.world.entity.LivingEntity shooter){
         this(EntityTypeRegistry.artemisMissileEntity.get(), world);
         this.setOwner(shooter);
-        this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.yRot, shooter.xRot);
+        this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
         this.reapplyPosition();
     }
 
-    public ArtemisMissileEntity(World world, LivingEntity shooter, LivingEntity target){
+    public ArtemisMissileEntity(Level world, net.minecraft.world.entity.LivingEntity shooter, net.minecraft.world.entity.LivingEntity target){
         this(EntityTypeRegistry.artemisMissileEntity.get(), world);
         this.setOwner(shooter);
-        this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.yRot, shooter.xRot);
+        this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
         this.reapplyPosition();
         this.setTarget(target);
     }
@@ -93,8 +90,8 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     @Override
     public void tick() {
 
-        Vector3d vec = this.getDeltaMovement();
-        Vector3d facing = this.getLookAngle();
+        Vec3 vec = this.getDeltaMovement();
+        Vec3 facing = this.getLookAngle();
 
         if (level.isClientSide()) {
 
@@ -134,8 +131,8 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
 
         if (this.getTarget() != null)
         {
-            LivingEntity target = (LivingEntity) this.getTarget();
-            Vector3d v3d = new Vector3d(
+            LivingEntity target = (net.minecraft.world.entity.LivingEntity) this.getTarget();
+            Vec3 v3d = new Vec3(
                     target.getX() - this.getX(),
                     target.getY() - this.getY(),
                     target.getZ() - this.getZ())
@@ -151,30 +148,31 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     }
 
     @Override
-    protected void onHit(RayTraceResult ray){
+    protected void onHit(HitResult ray){
         super.onHit(ray);
         if(!this.level.isClientSide){
             boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
-            this.level.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower, flag, Explosion.Mode.NONE);
+            this.level.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower, flag, Explosion.BlockInteraction.NONE);
         }
-        this.remove();
+        //todo 加了新参数，可能需要改
+        this.remove(RemovalReason.DISCARDED);
     }
 
     @Override
-    protected void onHitBlock(BlockRayTraceResult ray){
+    protected void onHitBlock(BlockHitResult ray){
         super.onHitBlock(ray);
     }
 
     @Override
-    protected void onHitEntity(EntityRayTraceResult ray){
+    protected void onHitEntity(EntityHitResult ray){
         super.onHitEntity(ray);
         if (!this.level.isClientSide) {
-            Entity entity = ray.getEntity();
-            Entity owner = this.getOwner();
+            net.minecraft.world.entity.Entity entity = ray.getEntity();
+            net.minecraft.world.entity.Entity owner = this.getOwner();
             entity.hurt(
                     (new IndirectEntityDamageSource("explosion", this, owner)).setExplosion()
                     , 8.0F);
-            if (owner instanceof LivingEntity) {
+            if (owner instanceof net.minecraft.world.entity.LivingEntity) {
                 this.doEnchantDamageEffects((LivingEntity)owner, entity);
             }
 
@@ -184,9 +182,10 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     protected void onEmptyFuel(){
         if(!this.level.isClientSide){
             boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
-            this.level.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower + 0.5f, flag, Explosion.Mode.NONE);
+            this.level.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower + 0.5f, flag, Explosion.BlockInteraction.NONE);
         }
-        this.remove();
+        //todo 加了新参数，可能需要改
+        this.remove(RemovalReason.DISCARDED);
     }
 
     @Override
@@ -194,7 +193,7 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
         return super.canHitEntity(entity);
     }
 
-    public void setTarget(@Nullable Entity target) {
+    public void setTarget(@Nullable net.minecraft.world.entity.Entity target) {
         if (target != null) {
             this.targetUUID = target.getUUID();
             this.targetNetworkId = target.getId();
@@ -203,9 +202,9 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     }
 
     @Nullable
-    public Entity getTarget() {
-        if (this.targetUUID != null && this.level instanceof ServerWorld) {
-            return ((ServerWorld)this.level).getEntity(this.targetUUID);
+    public net.minecraft.world.entity.Entity getTarget() {
+        if (this.targetUUID != null && this.level instanceof ServerLevel) {
+            return ((ServerLevel)this.level).getEntity(this.targetUUID);
         } else {
             return this.targetNetworkId != 0 ? this.level.getEntity(this.targetNetworkId) : null;
         }
@@ -224,7 +223,8 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
         return false;
     }
 
-    protected IParticleData getTrailParticle() {
+    @Override
+    protected ParticleOptions getTrailParticle() {
         return PARTICLE_EMPTY ;
     }
 
@@ -234,7 +234,7 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT nbt) {
+    public void addAdditionalSaveData(CompoundTag nbt) {
         if (this.targetUUID != null) {
             nbt.putUUID("Target", this.targetUUID);
         }
@@ -242,7 +242,7 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT nbt) {
+    public void readAdditionalSaveData(CompoundTag nbt) {
         if (nbt.hasUUID("Target")) {
             this.targetUUID = nbt.getUUID("Owner");
         }
@@ -255,7 +255,7 @@ public class ArtemisMissileEntity extends DamagingProjectileEntity {
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
