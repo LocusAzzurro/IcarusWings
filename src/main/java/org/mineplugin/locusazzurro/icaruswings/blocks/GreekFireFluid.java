@@ -1,12 +1,13 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.StateContainer;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidAttributes;
@@ -17,15 +18,14 @@ import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import java.util.Random;
-import java.util.function.Supplier;
 
 import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.greekFire;
 import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.greekFireFlowing;
 
 public abstract class GreekFireFluid extends ForgeFlowingFluid{
 
-    public static final ResourceLocation GREEK_FIRE_STILL = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_still");
-    public static final ResourceLocation GREEK_FIRE_FLOWING = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_flow");
+    public static final net.minecraft.resources.ResourceLocation GREEK_FIRE_STILL = new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "block/greek_fire_still");
+    public static final net.minecraft.resources.ResourceLocation GREEK_FIRE_FLOWING = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_flow");
 
     public static ForgeFlowingFluid.Properties fluidProperties = new ForgeFlowingFluid.Properties(greekFire, greekFireFlowing,null)
             .bucket(ItemRegistry.greekFireBucket).block(BlockRegistry.greekFire).slopeFindDistance(1).explosionResistance(100F);
@@ -44,18 +44,18 @@ public abstract class GreekFireFluid extends ForgeFlowingFluid{
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(World worldIn, BlockPos blockPos, FluidState fluidState, Random random) {
-        BlockPos blockpos = blockPos.above();
+    public void animateTick(Level worldIn, BlockPos blockPos, FluidState fluidState, Random random) {
+        net.minecraft.core.BlockPos blockpos = blockPos.above();
         if (worldIn.getBlockState(blockpos).isAir() && !worldIn.getBlockState(blockpos).isSolidRender(worldIn, blockpos)) {
             int seed = random.nextInt(200);
             if (seed == 0) {
-                worldIn.playLocalSound((double)blockPos.getX(), (double)blockPos.getY(), (double)blockPos.getZ(), SoundRegistry.greekFireAmbient.get(), SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+                worldIn.playLocalSound((double)blockPos.getX(), (double)blockPos.getY(), (double)blockPos.getZ(), SoundRegistry.greekFireAmbient.get(), SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
             }
             if (seed % 100 == 0){
                 double d0 = (double)blockPos.getX() + random.nextDouble();
                 double d1 = (double)blockPos.getY() + 1.0D;
                 double d2 = (double)blockPos.getZ() + random.nextDouble();
-                worldIn.playLocalSound(d0, d1, d2, SoundRegistry.greekFirePop.get(), SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+                worldIn.playLocalSound(d0, d1, d2, SoundRegistry.greekFirePop.get(), SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
             }
             if (seed % 50 == 0) {
                 double d0 = (double)blockPos.getX() + random.nextDouble();
@@ -99,7 +99,7 @@ public abstract class GreekFireFluid extends ForgeFlowingFluid{
         }
 
         @Override
-        protected void createFluidStateDefinition(StateContainer.Builder<Fluid, FluidState> builder) {
+        protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder) {
             super.createFluidStateDefinition(builder);
             builder.add(LEVEL);
         }

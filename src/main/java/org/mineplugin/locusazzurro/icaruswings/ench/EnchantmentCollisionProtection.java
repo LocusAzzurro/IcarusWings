@@ -1,10 +1,10 @@
 package org.mineplugin.locusazzurro.icaruswings.ench;
 
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.EnchantmentRegistry;
 
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -41,8 +41,8 @@ public class EnchantmentCollisionProtection extends WingsEnchantment {
 			int lvl = getWingsEnchantmentLevel(e.getEntity(), EnchantmentRegistry.collisionProtection.get());
 			int dmg = (int) (e.getAmount() * 0.1 * lvl);
 			if (e.getEntity() instanceof LivingEntity){
-				LivingEntity livingIn = (LivingEntity) e.getEntity();
-				livingIn.getItemBySlot(EquipmentSlotType.CHEST).hurtAndBreak(dmg, livingIn, e1 -> e1.broadcastBreakEvent((EquipmentSlotType.CHEST)));
+				net.minecraft.world.entity.LivingEntity livingIn = (net.minecraft.world.entity.LivingEntity) e.getEntity();
+				livingIn.getItemBySlot(EquipmentSlot.CHEST).hurtAndBreak(dmg, livingIn, e1 -> e1.broadcastBreakEvent((EquipmentSlot.CHEST)));
 			}
 		}
 		/*

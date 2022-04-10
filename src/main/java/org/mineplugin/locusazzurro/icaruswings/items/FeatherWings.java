@@ -1,11 +1,12 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
@@ -24,16 +25,16 @@ public class FeatherWings extends AbstractWings {
 	}
 
 	@Override
-	public boolean canElytraFly(ItemStack stack, net.minecraft.entity.LivingEntity entity) {
-		return entity.level.dimension() != World.END;
+	public boolean canElytraFly(net.minecraft.world.item.ItemStack stack, LivingEntity entity) {
+		return entity.level.dimension() != Level.END;
 	}
 
 	@Override
-	public boolean elytraFlightTick(ItemStack stack, net.minecraft.entity.LivingEntity entity, int flightTicks) {
+	public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
 		if (!entity.level.isClientSide() && (flightTicks + 1) % 20 == 0) {
 			int dmg = 1;
-			if ((entity instanceof PlayerEntity) && (stack.getItem() instanceof FeatherWings)) {
-				if (entity.level.dimension() == World.NETHER) {
+			if ((entity instanceof Player) && (stack.getItem() instanceof FeatherWings)) {
+				if (entity.level.dimension() == Level.NETHER) {
 					dmg = 5;
 					if(((FeatherWings)stack.getItem()).getType() != WingsType.FEATHER_GOLDEN)
 					entity.setSecondsOnFire(10);
@@ -43,7 +44,7 @@ public class FeatherWings extends AbstractWings {
 					dmg = randomRound(Math.max(1, y / 64.0), entity.level.getRandom());
 				}
 			}
-			stack.hurtAndBreak(dmg, entity,	e -> e.broadcastBreakEvent(EquipmentSlotType.CHEST));
+			stack.hurtAndBreak(dmg, entity,	e -> e.broadcastBreakEvent(EquipmentSlot.CHEST));
 			return true;
 		}
 		return true;

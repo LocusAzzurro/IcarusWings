@@ -1,19 +1,18 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.material.Material;
 
-public class BeeswaxBlock extends Block{
+public class BeeswaxBlock extends Block {
 
 	public BeeswaxBlock() {
-		super(AbstractBlock
-				.Properties.of(Material.CLAY)
+		super(net.minecraft.world.level.block.state.BlockBehaviour.Properties.of(Material.CLAY)
 				.strength(0.5f)
 				.speedFactor(1.1f)
 				.friction(0.9f)
@@ -23,7 +22,7 @@ public class BeeswaxBlock extends Block{
 	}
 	
 	@Override
-	public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face)
+	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face)
 	{
 		return 200;
 	}

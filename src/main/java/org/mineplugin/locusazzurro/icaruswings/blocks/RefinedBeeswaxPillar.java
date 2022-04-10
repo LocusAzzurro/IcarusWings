@@ -1,11 +1,10 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 
-public class RefinedBeeswaxPillar extends RotatedPillarBlock{
+public class RefinedBeeswaxPillar extends RotatedPillarBlock {
 	
 	public RefinedBeeswaxPillar() {
-		super(AbstractBlock.Properties.copy(new RefinedBeeswaxBlock()));
+		super(net.minecraft.world.level.block.state.BlockBehaviour.Properties.copy(new RefinedBeeswaxBlock()));
 	}
 }

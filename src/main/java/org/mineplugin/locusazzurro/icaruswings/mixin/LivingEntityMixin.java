@@ -1,10 +1,9 @@
 package org.mineplugin.locusazzurro.icaruswings.mixin;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import org.mineplugin.locusazzurro.icaruswings.items.AbstractWings;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class LivingEntityMixin {
 
     @Inject(at = @At ("HEAD"),
-            method = {"playEquipSound(Lnet/minecraft/item/ItemStack;)V"},
+            method = {"equipEventAndSound"},
             cancellable = true)
     private void playEquipSound(ItemStack itemStack, CallbackInfo ci){
         Item item = itemStack.getItem();

@@ -1,28 +1,28 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 
-public class PhilosopherStone extends Item{
+public class PhilosopherStone extends net.minecraft.world.item.Item {
 
 	public PhilosopherStone() {
 		super(new Item.Properties().tab(ModGroup.itemGroup).stacksTo(1).food(food));
 	}
 	
-	private static final Food food = (new Food.Builder())
+	private static final FoodProperties food = (new FoodProperties.Builder())
 			.saturationMod(10)
 			.nutrition(10)
 			.alwaysEat()
-			.effect(() -> new EffectInstance(Effects.REGENERATION, 400, 1), 1)
-			.effect(() -> new EffectInstance(Effects.DAMAGE_RESISTANCE, 1200, 1), 1)
-			.effect(() -> new EffectInstance(Effects.FIRE_RESISTANCE, 1200, 0), 1)
-			.effect(() -> new EffectInstance(Effects.HEALTH_BOOST, 1200, 2), 1)
+			.effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 400, 1), 1)
+			.effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 1), 1)
+			.effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1200, 0), 1)
+			.effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 1200, 2), 1)
 			.build();
 	
 	@Override
@@ -31,12 +31,12 @@ public class PhilosopherStone extends Item{
 	}
 
 	@Override
-	public ItemStack getContainerItem(ItemStack itemStack) {
-		return new ItemStack(ItemRegistry.philosopherStone.get());
+	public net.minecraft.world.item.ItemStack getContainerItem(net.minecraft.world.item.ItemStack itemStack) {
+		return new net.minecraft.world.item.ItemStack(ItemRegistry.philosopherStone.get());
 	}
 
 	@Override
-	public boolean hasContainerItem(ItemStack stack) {
+	public boolean hasContainerItem(net.minecraft.world.item.ItemStack stack) {
 		return true;
 	}
 }

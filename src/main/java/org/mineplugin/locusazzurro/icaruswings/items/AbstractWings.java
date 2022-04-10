@@ -1,17 +1,17 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import javax.annotation.Nullable;
-
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ElytraItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraftforge.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.data.IWingsType;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ElytraItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
-import net.minecraftforge.fml.common.Mod;
+import javax.annotation.Nullable;
 
 @SuppressWarnings("unused")
 @Mod.EventBusSubscriber
@@ -40,12 +40,12 @@ public class AbstractWings extends ElytraItem {
 
 	@Nullable
 	@Override
-	public EquipmentSlotType getEquipmentSlot(ItemStack stack) {
-		return EquipmentSlotType.CHEST;
+	public EquipmentSlot getEquipmentSlot(net.minecraft.world.item.ItemStack stack) {
+		return EquipmentSlot.CHEST;
 	}
 
 	@Override
-	public boolean canElytraFly(ItemStack stack, net.minecraft.entity.LivingEntity entity) {
+	public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
 		return super.canElytraFly(stack, entity);
 	}
 
@@ -59,7 +59,7 @@ public class AbstractWings extends ElytraItem {
 	}
 
 	@Override
-	public boolean elytraFlightTick(ItemStack stack, net.minecraft.entity.LivingEntity entity, int flightTicks) {
+	public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
 		return super.elytraFlightTick(stack, entity, flightTicks);
 	}
 	

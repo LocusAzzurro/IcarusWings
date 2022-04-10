@@ -1,16 +1,16 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import java.util.function.Supplier;
-
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.RecordItem;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.MusicDiscItem;
-import net.minecraft.item.Rarity;
-import net.minecraft.util.SoundEvent;
+import java.util.function.Supplier;
 
-public class SkyMusicDisc extends MusicDiscItem{
+
+public class SkyMusicDisc extends RecordItem {
 	
 	private Track track;
 	
@@ -22,6 +22,7 @@ public class SkyMusicDisc extends MusicDiscItem{
 		return this.track;
 	}
 	
+	@Override
 	public int getAnalogOutput() {
 		return this.getTrack().getTrackNum();
 	}
@@ -32,11 +33,11 @@ public class SkyMusicDisc extends MusicDiscItem{
 		RING_MY_BELL(2, () -> (SoundRegistry.trackRingMyBell.get()), "Ring My Bell", "Blue Drops");
 		
 		private int trackNum;
-		private Supplier<SoundEvent> trackMusic;
+		private Supplier<net.minecraft.sounds.SoundEvent> trackMusic;
 		private String trackName;
 		private String author;
 		
-		private Track(int trackNum, Supplier<SoundEvent> trackMusic, String trackName, String author) {
+		private Track(int trackNum, Supplier<net.minecraft.sounds.SoundEvent> trackMusic, String trackName, String author) {
 			this.trackNum = trackNum;
 			this.trackMusic = trackMusic;
 			this.trackName = trackName;

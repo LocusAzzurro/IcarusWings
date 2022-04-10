@@ -1,32 +1,28 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.UseAction;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DrinkHelper;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.world.World;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Mead extends Item {
 	
@@ -41,49 +37,50 @@ public class Mead extends Item {
 		this.infusionType = type;
 	}
 
-	private static final Food food = (new Food.Builder())
+	private static final FoodProperties food = (new FoodProperties.Builder())
 			.saturationMod(1)
 			.nutrition(5)
 			.alwaysEat()
 			.build();
 	
-	public ItemStack finishUsingItem(ItemStack stackIn, World worldIn, LivingEntity entityIn) {
+	@Override
+	public ItemStack finishUsingItem(ItemStack stackIn, Level worldIn, LivingEntity entityIn) {
 		Infusion type =((Mead)stackIn.getItem()).infusionType;
 		super.finishUsingItem(stackIn, worldIn, entityIn);
-		if (entityIn instanceof ServerPlayerEntity) {
-			ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) entityIn;
+		if (entityIn instanceof ServerPlayer) {
+			ServerPlayer serverplayerentity = (ServerPlayer) entityIn;
 			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, stackIn);
 			serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
 		}
 
 		if (!worldIn.isClientSide) {
-			entityIn.removeEffect(Effects.POISON);
-			entityIn.removeEffect(Effects.WITHER);
-			entityIn.removeEffect(Effects.WEAKNESS);
-			entityIn.addEffect(new EffectInstance(Effects.CONFUSION, 400, 0));
-			entityIn.addEffect(new EffectInstance(Effects.REGENERATION, 20, 0));
-			List<EffectInstance> extraEffect = new ArrayList<>();
+			entityIn.removeEffect(MobEffects.POISON);
+			entityIn.removeEffect(MobEffects.WITHER);
+			entityIn.removeEffect(MobEffects.WEAKNESS);
+			entityIn.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 400, 0));
+			entityIn.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20, 0));
+			List<MobEffectInstance> extraEffect = new ArrayList<>();
 			if(type != null) {
 				switch(type) {
 				case ZEPHIR: 
-					extraEffect.add(new EffectInstance(Effects.MOVEMENT_SPEED, 1200, 2)); 
-					extraEffect.add(new EffectInstance(Effects.REGENERATION, 200, 0));
+					extraEffect.add(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 2));
+					extraEffect.add(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
 					break;
 				case NETHER:
-					extraEffect.add(new EffectInstance(Effects.FIRE_RESISTANCE, 1200, 0));
-					extraEffect.add(new EffectInstance(Effects.DAMAGE_BOOST, 1200, 0));
+					extraEffect.add(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1200, 0));
+					extraEffect.add(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1200, 0));
 					break;
 				case VOID:
-					extraEffect.add(new EffectInstance(Effects.SLOW_FALLING, 1200, 1));
-					extraEffect.add(new EffectInstance(Effects.INVISIBILITY, 1200, 0));
+					extraEffect.add(new MobEffectInstance(MobEffects.SLOW_FALLING, 1200, 1));
+					extraEffect.add(new MobEffectInstance(MobEffects.INVISIBILITY, 1200, 0));
 					break;
 				case GOLDEN_APPLE:
-					extraEffect.add(new EffectInstance(Effects.DAMAGE_RESISTANCE, 1200, 1));
-					extraEffect.add(new EffectInstance(Effects.HEALTH_BOOST, 1200, 1));
+					extraEffect.add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 1));
+					extraEffect.add(new MobEffectInstance(MobEffects.HEALTH_BOOST, 1200, 1));
 					break;
 				case HERBS:
-					extraEffect.add(new EffectInstance(Effects.REGENERATION, 200, 0));
-					extraEffect.add(new EffectInstance(Effects.LUCK, 1200, 0));
+					extraEffect.add(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
+					extraEffect.add(new MobEffectInstance(MobEffects.LUCK, 1200, 0));
 					break;
 				default:
 					break;
@@ -98,9 +95,9 @@ public class Mead extends Item {
 		if (stackIn.isEmpty()) {
 			return new ItemStack(ItemRegistry.glassJar.get());
 		} else {
-			if (entityIn instanceof PlayerEntity && !((PlayerEntity) entityIn).abilities.instabuild) {
+			if (entityIn instanceof Player && !((Player) entityIn).getAbilities().instabuild) {
 				ItemStack itemstack = new ItemStack(ItemRegistry.glassJar.get());
-				PlayerEntity playerentity = (PlayerEntity) entityIn;
+				Player playerentity = (Player) entityIn;
 				ItemHandlerHelper.giveItemToPlayer(playerentity, itemstack);
 				//if (!playerentity.inventory.add(itemstack)) {playerentity.drop(itemstack, false);}
 			}
@@ -109,24 +106,30 @@ public class Mead extends Item {
 		}
 	}
 
+	@Override
 	public int getUseDuration(ItemStack p_77626_1_) {
 		return 60;
 	}
 
-	public UseAction getUseAnimation(ItemStack p_77661_1_) {
-		return UseAction.DRINK;
+	@Override
+	public UseAnim getUseAnimation(ItemStack p_77661_1_) {
+		return UseAnim.DRINK;
 	}
 
+	@Override
 	public SoundEvent getDrinkingSound() {
 		return SoundEvents.GENERIC_DRINK;
 	}
 
+	@Override
 	public SoundEvent getEatingSound() {
 		return SoundEvents.GENERIC_DRINK;
 	}
 
-	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		return DrinkHelper.useDrink(worldIn, playerIn, handIn);
+	@Override
+	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
+		//todo 无了 return DrinkHelper.useDrink(worldIn, playerIn, handIn);
+		return InteractionResultHolder.success(playerIn.getItemInHand(handIn));
 	}
 	
 	@Nullable

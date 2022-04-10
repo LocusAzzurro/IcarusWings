@@ -1,19 +1,19 @@
 package org.mineplugin.locusazzurro.icaruswings.entity;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraftforge.network.NetworkHooks;
 import org.mineplugin.locusazzurro.icaruswings.damage.DamageTimeRift;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
@@ -26,9 +26,9 @@ import java.util.UUID;
 
 public class TimeBombEntity extends Entity {
 
-    private static final DataParameter<Integer> LIFE = EntityDataManager.defineId(TimeBombEntity.class, DataSerializers.INT);
-    private static final DataParameter<Integer> MAX_LIFE = EntityDataManager.defineId(TimeBombEntity.class, DataSerializers.INT);
-    private static final DataParameter<OptionalInt> ATTACHED_TO_TARGET = EntityDataManager.defineId(TimeBombEntity.class, DataSerializers.OPTIONAL_UNSIGNED_INT);
+    private static final EntityDataAccessor<Integer> LIFE = SynchedEntityData.defineId(TimeBombEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> MAX_LIFE = SynchedEntityData.defineId(TimeBombEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<OptionalInt> ATTACHED_TO_TARGET = SynchedEntityData.defineId(TimeBombEntity.class, EntityDataSerializers.OPTIONAL_UNSIGNED_INT);
     private float damage;
     private float range;
     private int life = 0;
@@ -39,11 +39,11 @@ public class TimeBombEntity extends Entity {
     private int attachedNetworkId;
 
 
-    public TimeBombEntity(EntityType<? extends TimeBombEntity> type, World world) {
+    public TimeBombEntity(EntityType<? extends TimeBombEntity> type, Level world) {
         super(type, world);
     }
 
-    public TimeBombEntity(World worldIn, Entity holder, float damage, float range, int maxLife){
+    public TimeBombEntity(Level worldIn, Entity holder, float damage, float range, int maxLife){
         this(EntityTypeRegistry.timeBombEntity.get(), worldIn);
         this.damage = damage;
         this.range = range;
@@ -69,7 +69,7 @@ public class TimeBombEntity extends Entity {
 
         if (this.life >= this.maxLife){
             level.playSound(null, this.getX(), this.getY(),this.getZ(),
-                    SoundRegistry.timeRiftCollapse.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                    SoundRegistry.timeRiftCollapse.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
             this.explode();
         }
 
@@ -77,8 +77,8 @@ public class TimeBombEntity extends Entity {
             Entity source = this.getAttachedTo();
             TimeRiftParticleEntity particle;
             for (int i = 0; i < 8; i++) {
-                if (source instanceof LivingEntity) {
-                    particle = new TimeRiftParticleEntity((LivingEntity) source, level);
+                if (source instanceof net.minecraft.world.entity.LivingEntity) {
+                    particle = new TimeRiftParticleEntity((net.minecraft.world.entity.LivingEntity) source, level);
                 } else {
                     particle = new TimeRiftParticleEntity(this.getX(), this.getY(), this.getZ(), level);
                 }
@@ -95,9 +95,9 @@ public class TimeBombEntity extends Entity {
         float r = this.range;
         if (this.getAttachedTo() != null) {
             Entity attachedTo = this.getAttachedTo();
-            AxisAlignedBB aabb = new AxisAlignedBB(r, r, r, -r, -r, -r).move(attachedTo.position());
-            List<LivingEntity> entities = attachedTo.level.getEntitiesOfClass(LivingEntity.class, aabb);
-            for (LivingEntity entity : entities) {
+            AABB aabb = new AABB(r, r, r, -r, -r, -r).move(attachedTo.position());
+            List<LivingEntity> entities = attachedTo.level.getEntitiesOfClass(net.minecraft.world.entity.LivingEntity.class, aabb);
+            for (net.minecraft.world.entity.LivingEntity entity : entities) {
                 entity.hurt(new DamageTimeRift(attachedTo), this.damage);
             }
         }
@@ -119,7 +119,7 @@ public class TimeBombEntity extends Entity {
         });
     }
 
-    private void setAttachedTo(@Nullable Entity attachedTo){
+    private void setAttachedTo(@Nullable net.minecraft.world.entity.Entity attachedTo){
         if (attachedTo != null) {
             this.attachedUUID = attachedTo.getUUID();
             this.attachedNetworkId = attachedTo.getId();
@@ -128,9 +128,9 @@ public class TimeBombEntity extends Entity {
     }
 
     @Nullable
-    public Entity getAttachedTo() {
-        if (this.attachedUUID != null && this.level instanceof ServerWorld) {
-            return ((ServerWorld)this.level).getEntity(this.attachedUUID);
+    public net.minecraft.world.entity.Entity getAttachedTo() {
+        if (this.attachedUUID != null && this.level instanceof ServerLevel) {
+            return ((ServerLevel)this.level).getEntity(this.attachedUUID);
         } else {
             return this.attachedNetworkId != 0 ? this.level.getEntity(this.attachedNetworkId) : null;
         }
@@ -153,7 +153,7 @@ public class TimeBombEntity extends Entity {
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundNBT nbt) {
+    protected void readAdditionalSaveData(CompoundTag nbt) {
         if(nbt.hasUUID("Victim")){
             this.attachedUUID = nbt.getUUID("Victim");
         }
@@ -164,7 +164,7 @@ public class TimeBombEntity extends Entity {
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundNBT nbt) {
+    protected void addAdditionalSaveData(CompoundTag nbt) {
         if(this.attachedUUID != null){
             nbt.putUUID("Victim", this.attachedUUID);
         }
@@ -175,7 +175,7 @@ public class TimeBombEntity extends Entity {
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

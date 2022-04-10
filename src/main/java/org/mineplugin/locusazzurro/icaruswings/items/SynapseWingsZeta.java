@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.render.IWingsExpandable;
 
@@ -7,9 +8,8 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
 
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
@@ -30,11 +30,11 @@ public class SynapseWingsZeta extends SynapseWings implements IWingsExpandable{
 
 	@Override
 	protected Multimap<Attribute, AttributeModifier> getModifiers() {
-		Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+		Builder<net.minecraft.world.entity.ai.attributes.Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier> builder = ImmutableMultimap.builder();
 	    builder.put(Attributes.ARMOR, new AttributeModifier(MODIFIER_UUID, "Armor modifier", 8,	AttributeModifier.Operation.ADDITION));
-	    builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(MODIFIER_UUID, "Armor toughness", 6, AttributeModifier.Operation.ADDITION));
-	    builder.put(Attributes.MAX_HEALTH, new AttributeModifier(MODIFIER_UUID, "max_health", 10.0f, AttributeModifier.Operation.ADDITION));
-	    builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(MODIFIER_UUID, "knockback_resistance", 0.6f, AttributeModifier.Operation.ADDITION));
+	    builder.put(net.minecraft.world.entity.ai.attributes.Attributes.ARMOR_TOUGHNESS, new net.minecraft.world.entity.ai.attributes.AttributeModifier(MODIFIER_UUID, "Armor toughness", 6, net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION));
+	    builder.put(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH, new net.minecraft.world.entity.ai.attributes.AttributeModifier(MODIFIER_UUID, "max_health", 10.0f, net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION));
+	    builder.put(Attributes.KNOCKBACK_RESISTANCE, new net.minecraft.world.entity.ai.attributes.AttributeModifier(MODIFIER_UUID, "knockback_resistance", 0.6f, net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION));
 		return builder.build();
 	}
 

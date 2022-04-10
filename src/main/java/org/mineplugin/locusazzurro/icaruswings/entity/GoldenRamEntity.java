@@ -1,61 +1,60 @@
 package org.mineplugin.locusazzurro.icaruswings.entity;
 
-import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IForgeShearable;
-import net.minecraftforge.fml.network.NetworkHooks;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import net.minecraftforge.network.NetworkHooks;
 import org.mineplugin.locusazzurro.icaruswings.entity.ai.EatGoldenGrassGoal;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collections;
 import java.util.List;
 
-public class GoldenRamEntity extends AnimalEntity implements IForgeShearable {
+public class GoldenRamEntity extends Animal implements IForgeShearable {
 
-	private static final DataParameter<Boolean> IS_SHEARED = EntityDataManager.defineId(GoldenRamEntity.class, DataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> IS_SHEARED = SynchedEntityData.defineId(GoldenRamEntity.class, EntityDataSerializers.BOOLEAN);
 	private EatGoldenGrassGoal eatBlockGoal;
 	private int eatAnimationTick;
 
-	public GoldenRamEntity(EntityType<GoldenRamEntity> entityType, World worldIn) {
+	public GoldenRamEntity(EntityType<GoldenRamEntity> entityType, Level worldIn) {
 		super(entityType, worldIn);
 	}
-	
+
+	@org.jetbrains.annotations.Nullable
+	@Override
+	public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
+		return null;
+	}
+
 	@Override
 	public void defineSynchedData() {
 		super.defineSynchedData();
@@ -64,24 +63,24 @@ public class GoldenRamEntity extends AnimalEntity implements IForgeShearable {
   
 	@Override
 	@ParametersAreNonnullByDefault
-	public void readAdditionalSaveData(CompoundNBT compound) {
+	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		this.setSheared(compound.getBoolean("Sheared"));
     }
 	
 	@Override
 	@ParametersAreNonnullByDefault
-	public void addAdditionalSaveData(CompoundNBT compound) {
+	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("Sheared", this.isSheared());
     }
 	
 	@Override
-	public IPacket<?> getAddEntityPacket() {
+	public Packet<?> getAddEntityPacket() {
 	  return NetworkHooks.getEntitySpawningPacket(this);
 	}
-	
-	public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
+
+	public static AttributeSupplier.Builder setCustomAttributes(){
 		return LivingEntity.createLivingAttributes()
 				.add(Attributes.MAX_HEALTH, 18.0d)
 				.add(Attributes.MOVEMENT_SPEED, 0.27d)
@@ -92,13 +91,13 @@ public class GoldenRamEntity extends AnimalEntity implements IForgeShearable {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.eatBlockGoal = new EatGoldenGrassGoal(this);
-		this.goalSelector.addGoal(0, new SwimGoal(this));
+		this.goalSelector.addGoal(0, new RandomSwimmingGoal(this, 1, 10));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.0D));
 		this.goalSelector.addGoal(2, new TemptGoal(this, 1.1D, Ingredient.of(Items.WHEAT), false)); //todo special item
 		this.goalSelector.addGoal(3, this.eatBlockGoal);
-		this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
 	}
 	
 	@Override
@@ -120,15 +119,8 @@ public class GoldenRamEntity extends AnimalEntity implements IForgeShearable {
 	protected SoundEvent getDeathSound() {return SoundRegistry.goldenRamDeath.get();}
 
 	@Override
-	protected void playStepSound(BlockPos pos, BlockState state) {
+	protected void playStepSound(net.minecraft.core.BlockPos pos, BlockState state) {
 		this.playSound(SoundRegistry.goldenRamStep.get(), 0.15F, 1.0F);
-	}
-
-	@Nullable
-	@Override
-	@ParametersAreNonnullByDefault
-	public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity ageableEntity) {
-		return null;
 	}
 
 	public void setSheared(boolean isSheared) {
@@ -139,26 +131,27 @@ public class GoldenRamEntity extends AnimalEntity implements IForgeShearable {
 		return this.entityData.get(IS_SHEARED);
 	}
 
+	@Override
 	public void ate() {
 		this.setSheared(false);
 	}
 
 	@Override
-	public boolean isShearable(@Nonnull ItemStack item, World world, BlockPos pos) {
+	public boolean isShearable(@Nonnull net.minecraft.world.item.ItemStack item, Level world, net.minecraft.core.BlockPos pos) {
 		return this.isAlive() && !this.isSheared();
 	}
 
 	@Nonnull
 	@Override
-	public List<ItemStack> onSheared(@Nullable PlayerEntity player, @Nonnull ItemStack item, World world, BlockPos pos, int fortune) {
-		world.playSound(null, this, SoundRegistry.goldenRamShear.get(), player == null ? SoundCategory.BLOCKS : SoundCategory.PLAYERS, 1.0F, 1.0F);
+	public List<net.minecraft.world.item.ItemStack> onSheared(@Nullable Player player, @Nonnull ItemStack item, Level world, BlockPos pos, int fortune) {
+		world.playSound(null, this, SoundRegistry.goldenRamShear.get(), player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
 		if (!world.isClientSide) {
 			this.setSheared(true);
 			int i = 1 + this.random.nextInt(3);
 
-			java.util.List<ItemStack> items = new java.util.ArrayList<>();
+			java.util.List<net.minecraft.world.item.ItemStack> items = new java.util.ArrayList<>();
 			for (int j = 0; j < i; ++j) {
-				items.add(new ItemStack(ItemRegistry.goldenFleece.get()));
+				items.add(new net.minecraft.world.item.ItemStack(ItemRegistry.goldenFleece.get()));
 			}
 			return items;
 		}
@@ -205,9 +198,9 @@ public class GoldenRamEntity extends AnimalEntity implements IForgeShearable {
 	public float getHeadEatAngleScale(float z) {
 		if (this.eatAnimationTick > 4 && this.eatAnimationTick <= 36) {
 			float f = ((float)(this.eatAnimationTick - 4) - z) / 32.0F;
-			return ((float)Math.PI / 5F) + 0.21991149F * MathHelper.sin(f * 28.7F);
+			return ((float)Math.PI / 5F) + 0.21991149F * Mth.sin(f * 28.7F);
 		} else {
-			return this.eatAnimationTick > 0 ? ((float)Math.PI / 5F) : this.xRot * ((float)Math.PI / 180F);
+			return this.eatAnimationTick > 0 ? ((float)Math.PI / 5F) : this.getXRot() * ((float)Math.PI / 180F);
 		}
 	}
 	

@@ -1,17 +1,16 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
+import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
+
 import javax.annotation.Nullable;
 
-import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
-
-public class MelonItem extends BlockItem{
+public class MelonItem extends BlockItem {
 	
 	public MelonItem() {
 		super(BlockRegistry.melon.get(), new Item.Properties().tab(ModGroup.itemGroup).rarity(Rarity.RARE));
@@ -19,7 +18,7 @@ public class MelonItem extends BlockItem{
 	
 	@Nullable
 	@Override
-	public EquipmentSlotType getEquipmentSlot(ItemStack stack) {
-		return EquipmentSlotType.HEAD;
+	public EquipmentSlot getEquipmentSlot(ItemStack stack) {
+		return EquipmentSlot.HEAD;
 	}
 }

@@ -1,21 +1,19 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particles.ParticleTypes;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-import org.mineplugin.locusazzurro.icaruswings.entity.SpearEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
@@ -26,27 +24,27 @@ public class WindWand extends Item {
     }
 
     @Override
-    public int getUseDuration(ItemStack p_77626_1_) {
+    public int getUseDuration(net.minecraft.world.item.ItemStack p_77626_1_) {
         return 72000;
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         if (itemstack.getDamageValue() >= itemstack.getMaxDamage() - 1) {
-            return ActionResult.fail(itemstack);
+            return InteractionResultHolder.fail(itemstack);
         } else {
             playerIn.startUsingItem(handIn);
-            return ActionResult.consume(itemstack);
+            return InteractionResultHolder.consume(itemstack);
         }
     }
 
     @Override
-    public void releaseUsing(ItemStack itemStack, World worldIn, LivingEntity livingIn, int charge) {
-        if (livingIn instanceof PlayerEntity) {
-            PlayerEntity playerIn = (PlayerEntity) livingIn;
-            if (playerIn.getItemInHand(Hand.OFF_HAND).getItem() instanceof AirJar && itemStack.getDamageValue() > 0) {
-                ItemStack offhandStack = playerIn.getItemInHand(Hand.OFF_HAND);
+    public void releaseUsing(net.minecraft.world.item.ItemStack itemStack, Level worldIn, LivingEntity livingIn, int charge) {
+        if (livingIn instanceof Player) {
+            Player playerIn = (Player) livingIn;
+            if (playerIn.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof AirJar && itemStack.getDamageValue() > 0) {
+                net.minecraft.world.item.ItemStack offhandStack = playerIn.getItemInHand(InteractionHand.OFF_HAND);
                 int repairAmount = 0;
                 switch (((AirJar) offhandStack.getItem()).getType()) {
                     case ZEPHIR:
@@ -61,15 +59,15 @@ public class WindWand extends Item {
                 }
                 if (!playerIn.abilities.instabuild) {
                     offhandStack.shrink(1);
-                    ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegistry.glassJar.get()));
+                    ItemHandlerHelper.giveItemToPlayer(playerIn, new net.minecraft.world.item.ItemStack(ItemRegistry.glassJar.get()));
                 }
-                worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundRegistry.airJarEmpty.get(), SoundCategory.NEUTRAL, 0.5f, 0.6f);
+                worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundRegistry.airJarEmpty.get(), SoundSource.NEUTRAL, 0.5f, 0.6f);
                 itemStack.setDamageValue(Math.max(itemStack.getDamageValue() - repairAmount, 0));
             }
             else {
-                Vector3d lookVec = playerIn.getLookAngle();
-                Vector3d moveVec = playerIn.getDeltaMovement();
-                Vector3d yBonus = new Vector3d(0f, 0.5f, 0f);
+                Vec3 lookVec = playerIn.getLookAngle();
+                Vec3 moveVec = playerIn.getDeltaMovement();
+                Vec3 yBonus = new Vec3(0f, 0.5f, 0f);
                 int i = this.getUseDuration(itemStack) - charge;
                 if (i >= 5) playerIn.setDeltaMovement(moveVec.add(lookVec.reverse().scale(1.5)).add(yBonus));
                 else playerIn.setDeltaMovement(moveVec.add(lookVec.scale(2.0)).add(yBonus));
@@ -88,7 +86,7 @@ public class WindWand extends Item {
                     }
                 }
                 worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(),
-                        SoundRegistry.windWandBurst.get(), SoundCategory.PLAYERS, 1.0f, 1.0f);
+                        SoundRegistry.windWandBurst.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
                 playerIn.awardStat(Stats.ITEM_USED.get(this));
             }
         }

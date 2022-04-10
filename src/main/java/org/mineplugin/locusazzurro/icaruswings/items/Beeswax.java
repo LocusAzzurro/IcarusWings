@@ -1,23 +1,22 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
+import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 @Mod.EventBusSubscriber()
-public class Beeswax extends Item{
+public class Beeswax extends Item {
 
 	public Beeswax() {
 		super(new Properties().tab(ModGroup.itemGroup).food(food));
 	}
 	
-	private static final Food food = (new Food.Builder())
+	private static final FoodProperties food = (new FoodProperties.Builder())
 		.saturationMod(0)
 		.nutrition(1)
 		.build();

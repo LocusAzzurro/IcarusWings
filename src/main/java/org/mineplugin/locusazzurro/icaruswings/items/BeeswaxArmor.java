@@ -1,54 +1,53 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.ImmutableMultimap.Builder;
+import com.google.common.collect.Multimap;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Vanishable;
+import org.mineplugin.locusazzurro.icaruswings.data.ModArmorMaterial;
+import org.mineplugin.locusazzurro.icaruswings.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
+
 import java.util.UUID;
 
-import org.mineplugin.locusazzurro.icaruswings.data.ModArmorMaterial;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.ImmutableMultimap.Builder;
-
-import net.minecraft.enchantment.IArmorVanishable;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-public class BeeswaxArmor extends ArmorItem implements IArmorVanishable {
+public class BeeswaxArmor extends ArmorItem implements Vanishable {
 	
 	private static final ModArmorMaterial material = ModArmorMaterial.BEESWAX;
 
 	private static final UUID[] ARMOR_MODIFIER_UUID_PER_SLOT = ModData.ARMOR_MODIFIER_UUID_PER_SLOT;
 
-	public BeeswaxArmor(EquipmentSlotType slot) {
+	public BeeswaxArmor(EquipmentSlot slot) {
 		super(material, slot, new Item.Properties().tab(ModGroup.itemGroup).defaultDurability(material.getDurabilityForSlot(slot)));
 	}
 
-	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType slot) {
+	@Override
+	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
 		return slot == this.slot ? this.getModifiersPerSlot(slot) : super.getDefaultAttributeModifiers(slot);
 	}
 
-	private Multimap<Attribute, AttributeModifier> getModifiersPerSlot(EquipmentSlotType slot) {
+	private Multimap<Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier> getModifiersPerSlot(EquipmentSlot slot) {
 		Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		UUID uuid = ARMOR_MODIFIER_UUID_PER_SLOT[slot.getIndex()];
-		builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier",
+		builder.put(Attributes.ARMOR, new net.minecraft.world.entity.ai.attributes.AttributeModifier(uuid, "Armor modifier",
 				(double) material.getDefenseForSlot(slot), AttributeModifier.Operation.ADDITION));
-		builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness",
+		builder.put(net.minecraft.world.entity.ai.attributes.Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness",
 				(double) material.getToughness(), AttributeModifier.Operation.ADDITION));
-		if (slot == EquipmentSlotType.FEET) {
-	    	builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "movement_speed", 0.01f, AttributeModifier.Operation.ADDITION));}
+		if (slot == EquipmentSlot.FEET) {
+	    	builder.put(net.minecraft.world.entity.ai.attributes.Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "movement_speed", 0.01f, AttributeModifier.Operation.ADDITION));}
 		return builder.build();
 	}
 	
 	@Override
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer)
     {
-        return stack.getItem() instanceof BeeswaxArmor && ((ArmorItem) stack.getItem()).getMaterial() == ModArmorMaterial.BEESWAX;
+        return stack.getItem() instanceof BeeswaxArmor && ((net.minecraft.world.item.ArmorItem) stack.getItem()).getMaterial() == ModArmorMaterial.BEESWAX;
     }
 }

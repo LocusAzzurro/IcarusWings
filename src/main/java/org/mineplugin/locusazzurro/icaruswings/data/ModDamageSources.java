@@ -1,7 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.data;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import org.mineplugin.locusazzurro.icaruswings.damage.DamageTimeRift;
 
 public class ModDamageSources {

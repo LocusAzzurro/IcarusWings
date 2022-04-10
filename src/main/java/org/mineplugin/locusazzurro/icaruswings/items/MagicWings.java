@@ -1,8 +1,8 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.world.item.Rarity;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 
-import net.minecraft.item.Rarity;
 
 
 public class MagicWings extends AbstractWings{

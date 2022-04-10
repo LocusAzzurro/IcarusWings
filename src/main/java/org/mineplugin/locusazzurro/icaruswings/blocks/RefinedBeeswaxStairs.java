@@ -1,14 +1,12 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
+import net.minecraft.world.level.block.StairBlock;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.StairsBlock;
-
-public class RefinedBeeswaxStairs extends StairsBlock{
+public class RefinedBeeswaxStairs extends StairBlock {
 
 	public RefinedBeeswaxStairs() {
 		super( () -> BlockRegistry.refinedBeeswaxBlock.get().defaultBlockState(), 
-				AbstractBlock.Properties.copy(new RefinedBeeswaxBlock()));
+				net.minecraft.world.level.block.state.BlockBehaviour.Properties.copy(new RefinedBeeswaxBlock()));
 	}
 }

@@ -1,14 +1,12 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
 import org.mineplugin.locusazzurro.icaruswings.entity.TimeBombEntity;
-import org.mineplugin.locusazzurro.icaruswings.effect.EffectInevitability;
-import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 public class ChronoExplosionTransportCard extends AbstractTransportCard{
@@ -20,19 +18,19 @@ public class ChronoExplosionTransportCard extends AbstractTransportCard{
         super(CardType.CHRONO_EXPLOLSION);
     }
 
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn){
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn){
         ItemStack itemstack = playerIn.getItemInHand(handIn);
-        if (!canUseCard(playerIn)) return ActionResult.fail(itemstack);
+        if (!canUseCard(playerIn)) return InteractionResultHolder.fail(itemstack);
 
         TimeBombEntity bomb = new TimeBombEntity(worldIn, playerIn, DAMAGE, RANGE, 120);
         bomb.setPulsing();
         worldIn.addFreshEntity(bomb);
-        worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationChrono.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
+        worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationChrono.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
         if(!playerIn.isCreative()) {itemstack.shrink(1);}
         playerIn.getCooldowns().addCooldown(this, 80);
 
-        return ActionResult.consume(itemstack);
+        return InteractionResultHolder.consume(itemstack);
     }
 
 }

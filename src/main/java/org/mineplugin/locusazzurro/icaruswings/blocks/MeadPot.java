@@ -1,135 +1,139 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
-import java.util.Random;
-
-import net.minecraftforge.items.ItemHandlerHelper;
-import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
-
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ToolType;
+import net.minecraftforge.items.ItemHandlerHelper;
+import org.jetbrains.annotations.Nullable;
+import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.MeadPotTileEntity;
+import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.ITickableBlockEntity;
+import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.TileEntityTypeRegistry;
 
-public class MeadPot extends Block{
+import java.util.Random;
+
+public class MeadPot extends BaseEntityBlock {
 	
-	public static final EnumProperty<MeadPotState> MEAD_POT_STATE = EnumProperty.create("state", MeadPotState.class);
+	public static final EnumProperty<MeadPotState> MEAD_POT_STATE = net.minecraft.world.level.block.state.properties.EnumProperty.create("state", MeadPotState.class);
 	public static final EnumProperty<MeadPotState> STATE = MEAD_POT_STATE;
 	
 	private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-	protected static final VoxelShape SHAPE = VoxelShapes.join(
-			VoxelShapes.block(), INSIDE, IBooleanFunction.ONLY_FIRST);
+	protected static final VoxelShape SHAPE = Shapes.join(
+			Shapes.block(), INSIDE, BooleanOp.ONLY_FIRST);
 
 	private final double particleR = 233D / 255D;
 	private final double particleG = 147D / 255D;
 	private final double particleB = 38D / 255D;
 	
 	public MeadPot() {
-		super(AbstractBlock
-				.Properties.of(Material.STONE)
+		super(net.minecraft.world.level.block.state.BlockBehaviour.Properties.of(Material.STONE)
 				.strength(1.5f, 6.0f)
 				.sound(SoundType.STONE)
 				.requiresCorrectToolForDrops()
-				.harvestLevel(2)
-				.harvestTool(ToolType.PICKAXE)
+				//todo tag .harvestLevel(2)
+				//.harvestTool(ToolType.PICKAXE)
 				);
 		this.registerDefaultState(this.stateDefinition.any().setValue(STATE, MeadPotState.EMPTY));
 	}
-	
+
+	@Nullable
 	@Override
-	public boolean hasTileEntity (BlockState state) {
-		return true;
+	public <T extends BlockEntity> BlockEntityTicker getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+		return ITickableBlockEntity.getTicker(pLevel, TileEntityTypeRegistry.meadPotTileEntity.get(), pBlockEntityType);
+	}
+
+	@Nullable
+	@Override
+	public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+		return new MeadPotTileEntity(pPos, pState);
 	}
 	
 	@Override
-	public TileEntity createTileEntity (BlockState state, IBlockReader world) {
-		return new MeadPotTileEntity();
-	}
-	
-	@Override
-	public VoxelShape getShape(BlockState p_220053_1_, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
+	public net.minecraft.world.phys.shapes.VoxelShape getShape(BlockState p_220053_1_, BlockGetter p_220053_2_, net.minecraft.core.BlockPos p_220053_3_, CollisionContext p_220053_4_) {
 		return SHAPE;
 	}
 	
 	@Override
-	public VoxelShape getInteractionShape(BlockState p_199600_1_, IBlockReader p_199600_2_, BlockPos p_199600_3_) {
+	public VoxelShape getInteractionShape(BlockState p_199600_1_, BlockGetter p_199600_2_, net.minecraft.core.BlockPos p_199600_3_) {
 		return INSIDE;
 	}
 	
 	@Override
-	public boolean hasAnalogOutputSignal(BlockState p_149740_1_) {
+	public boolean hasAnalogOutputSignal(net.minecraft.world.level.block.state.BlockState p_149740_1_) {
 		return true;
 	}
 	
 	@Override
-	public int getAnalogOutputSignal(BlockState stateIn_, World worldIn, BlockPos pos) {
+	public int getAnalogOutputSignal(net.minecraft.world.level.block.state.BlockState stateIn_, Level worldIn, net.minecraft.core.BlockPos pos) {
 		float progress = ((MeadPotTileEntity) worldIn.getBlockEntity(pos)).getFermentationProgress();
 		float fermTime = MeadPotTileEntity.getFermentationTime();
 		float progressPerc = progress / fermTime;
 		return (int) (progressPerc * 15);
 	}
-	
+
 	@Override
-	public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {
+	public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
 		return false;
 	}
 	@Override
-	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (!worldIn.isClientSide && handIn == Hand.MAIN_HAND && worldIn.getBlockEntity(pos) != null) {
+	public InteractionResult use(net.minecraft.world.level.block.state.BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+        if (!worldIn.isClientSide && handIn == InteractionHand.MAIN_HAND && worldIn.getBlockEntity(pos) != null) {
             MeadPotTileEntity meadPotTE = (MeadPotTileEntity) worldIn.getBlockEntity(pos);
-            ItemStack stackIn = player.getItemInHand(handIn);
-            if (stackIn.getItem() == Items.HONEY_BOTTLE && stackIn.getCount() >= 4
+            net.minecraft.world.item.ItemStack stackIn = player.getItemInHand(handIn);
+            if (stackIn.getItem() == net.minecraft.world.item.Items.HONEY_BOTTLE && stackIn.getCount() >= 4
             		&& !meadPotTE.isFermenting() && !meadPotTE.isComplete()) {
-            	ItemStack stackOut = new ItemStack(Items.GLASS_BOTTLE, 4);
+            	net.minecraft.world.item.ItemStack stackOut = new net.minecraft.world.item.ItemStack(Items.GLASS_BOTTLE, 4);
             	stackIn.shrink(4);
 				ItemHandlerHelper.giveItemToPlayer(player, stackOut);
             	meadPotTE.startFermenting();
-            	worldIn.playSound(null, pos, SoundRegistry.meadPotBrew.get(), SoundCategory.BLOCKS, 2.0f, 1.3f);
-            	return ActionResultType.SUCCESS;
+            	worldIn.playSound(null, pos, SoundRegistry.meadPotBrew.get(), SoundSource.BLOCKS, 2.0f, 1.3f);
+            	return InteractionResult.SUCCESS;
             }
             if (stackIn.getItem() == ItemRegistry.glassJar.get() && meadPotTE.isComplete()) {
-            	ItemStack stackOut = new ItemStack(ItemRegistry.mead.get());
+            	ItemStack stackOut = new net.minecraft.world.item.ItemStack(ItemRegistry.mead.get());
             	stackIn.shrink(1);
 				ItemHandlerHelper.giveItemToPlayer(player, stackOut);
             	meadPotTE.setEmpty();
-            	worldIn.playSound(null, pos, SoundRegistry.meadPotBrew.get(), SoundCategory.BLOCKS, 2.0f, 1.3f);
-            	return ActionResultType.SUCCESS;
+            	worldIn.playSound(null, pos, SoundRegistry.meadPotBrew.get(), SoundSource.BLOCKS, 2.0f, 1.3f);
+            	return InteractionResult.SUCCESS;
             }
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         }
-        return ActionResultType.PASS;
+        return InteractionResult.PASS;
         
     }
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rng) {
+	public void animateTick(net.minecraft.world.level.block.state.BlockState stateIn, Level worldIn, net.minecraft.core.BlockPos pos, Random rng) {
 		if(stateIn.getValue(STATE) == MeadPotState.FERMENTING) {
 		for (int i = 0; i < 3; ++i) {
 			int j = rng.nextInt(2) * 2 - 1;
@@ -145,17 +149,17 @@ public class MeadPot extends Block{
 	//BLOCK STATES
 	
 	@Override
-	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> state) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, net.minecraft.world.level.block.state.BlockState> state) {
 		state.add(STATE);
 	}
 	
 	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext blockUse) {
+	public net.minecraft.world.level.block.state.BlockState getStateForPlacement(BlockPlaceContext blockUse) {
 		return this.defaultBlockState().setValue(STATE, MeadPotState.EMPTY);
 	}
 	
 	
-	public enum MeadPotState implements IStringSerializable{
+	public enum MeadPotState implements StringRepresentable {
 		EMPTY("empty"), 
 		FERMENTING("fermenting"), 
 		COMPLETE("complete");
@@ -171,6 +175,7 @@ public class MeadPot extends Block{
 			return this.name;
 		}
 		
+		@Override
 		public String getSerializedName() {
 			return this.name;
 		}

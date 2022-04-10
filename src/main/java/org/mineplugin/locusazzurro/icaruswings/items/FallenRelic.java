@@ -1,20 +1,19 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import java.util.List;
-
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import java.util.List;
 
 public class FallenRelic extends Item{
 	
@@ -41,16 +40,16 @@ public class FallenRelic extends Item{
 	}
 	
 	@Override
-	public boolean isFoil(ItemStack stackIn) {
+	public boolean isFoil(net.minecraft.world.item.ItemStack stackIn) {
 		return this.isRestored;
 	}
-	
+
 	@Override
-	public void appendHoverText(ItemStack itemstack, World world, List<ITextComponent> list, ITooltipFlag flag) {
+	public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(itemstack, world, list, flag);
 		RelicType type = ((FallenRelic)itemstack.getItem()).getType();
-		list.add(new TranslationTextComponent("item.locusazzurro_icaruswings.fallen_relic_"+ type +".tooltip")
-				.setStyle(Style.EMPTY.withColor(TextFormatting.GRAY)));
+		list.add(new TranslatableComponent("item.locusazzurro_icaruswings.fallen_relic_"+ type +".tooltip")
+				.setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
 	}
 
 	@Override
@@ -58,7 +57,7 @@ public class FallenRelic extends Item{
 		return "item." + ModData.MOD_ID + "." + (this.getType().isUpgraded() ? "upgraded_" : (this.isRestored ? "restored_" : "")) + "fallen_relic";
 	}
 	
-	public enum RelicType implements IStringSerializable{
+	public enum RelicType implements StringRepresentable {
 		CORE("core", false),
 		SECOND_GEN_CORE("second_gen_core", true),
 		INTERFACE("interface", false),

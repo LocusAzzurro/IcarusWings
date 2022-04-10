@@ -1,7 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.Items;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 
