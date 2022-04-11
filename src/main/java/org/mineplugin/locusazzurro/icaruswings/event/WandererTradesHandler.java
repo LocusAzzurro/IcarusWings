@@ -5,11 +5,11 @@ import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.utils.IWLazy;
 
 import java.util.Arrays;
 import java.util.List;
@@ -50,7 +50,7 @@ public class WandererTradesHandler {
 	}
 	
 	static class ItemsForEmeraldsTrade implements VillagerTrades.ItemListing {
-		private final Lazy<ItemStack> itemStack;
+		private final IWLazy<ItemStack> itemStack;
 		private final int emeraldCost;
 		private final int numberOfItems;
 		private final int maxUses;
@@ -59,7 +59,7 @@ public class WandererTradesHandler {
 
 		public ItemsForEmeraldsTrade(Supplier<ItemStack> p_i50532_1_, int p_i50532_2_, int p_i50532_3_, int p_i50532_4_,
 				int p_i50532_5_, float p_i50532_6_) {
-			this.itemStack = Lazy.of(p_i50532_1_);
+			this.itemStack = IWLazy.of(p_i50532_1_);
 			this.emeraldCost = p_i50532_2_;
 			this.numberOfItems = p_i50532_3_;
 			this.maxUses = p_i50532_4_;

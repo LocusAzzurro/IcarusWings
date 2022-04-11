@@ -16,15 +16,15 @@ public class BlockRegistry {
     public static final RegistryObject<Block> refinedBeeswaxPillar = BLOCKS.register("refined_beeswax_pillar", RefinedBeeswaxPillar::new);
     public static final RegistryObject<Block> refinedBeeswaxStairs = BLOCKS.register("refined_beeswax_stairs", RefinedBeeswaxStairs::new);
     public static final RegistryObject<Block> refinedBeeswaxBlockChiseled = BLOCKS.register("chiseled_refined_beeswax_block", RefinedBeeswaxBlock::new);
-    public static final net.minecraftforge.registries.RegistryObject<Block> smoothRefinedBeeswaxBlock = BLOCKS.register("smooth_refined_beeswax_block", RefinedBeeswaxBlock::new);
+    public static final RegistryObject<Block> smoothRefinedBeeswaxBlock = BLOCKS.register("smooth_refined_beeswax_block", RefinedBeeswaxBlock::new);
     public static final RegistryObject<net.minecraft.world.level.block.Block> flaxCrop = BLOCKS.register("flax", FlaxCrop::new);
     public static final RegistryObject<net.minecraft.world.level.block.Block> elysianGrassBlock = BLOCKS.register("elysian_grass_block", ElysianGrassBlock::new);
-    public static final net.minecraftforge.registries.RegistryObject<Block> elysianSoil = BLOCKS.register("elysian_soil", ElysianSoil::new);
-    public static final net.minecraftforge.registries.RegistryObject<Block> elysianGrass = BLOCKS.register("elysian_grass", ElysianGrass::new);
+    public static final RegistryObject<Block> elysianSoil = BLOCKS.register("elysian_soil", ElysianSoil::new);
+    public static final RegistryObject<Block> elysianGrass = BLOCKS.register("elysian_grass", ElysianGrass::new);
 
-    public static final net.minecraftforge.registries.RegistryObject<Block> meadPot = BLOCKS.register("mead_pot", MeadPot::new);
-    public static final net.minecraftforge.registries.RegistryObject<Block> amphora = BLOCKS.register("amphora", Amphora::new);
-    public static final net.minecraftforge.registries.RegistryObject<LiquidBlock> greekFire = BLOCKS.register("greek_fire", GreekFireBlock::new);
+    public static final RegistryObject<Block> meadPot = BLOCKS.register("mead_pot", MeadPot::new);
+    public static final RegistryObject<Block> amphora = BLOCKS.register("amphora", Amphora::new);
+    public static final RegistryObject<LiquidBlock> greekFire = BLOCKS.register("greek_fire", GreekFireBlock::new);
 
-    public static final net.minecraftforge.registries.RegistryObject<Block> melon = BLOCKS.register("melon", MelonSphere::new);
+    public static final RegistryObject<Block> melon = BLOCKS.register("melon", MelonSphere::new);
 }

@@ -8,9 +8,9 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.Lazy;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
+import org.mineplugin.locusazzurro.icaruswings.utils.IWLazy;
 
 import java.util.function.Supplier;
 
@@ -38,10 +38,10 @@ public enum ModArmorMaterial implements ArmorMaterial {
 	private final int durabilityMultiplier;
 	private final int[] slotProtections;
 	private final int enchantmentValue;
-	private final Lazy<SoundEvent> sound;
+	private final IWLazy<SoundEvent> sound;
 	private final float toughness;
 	private final float knockbackResistance;
-	private final Lazy<Ingredient> repairIngredient;
+	private final IWLazy<Ingredient> repairIngredient;
 	
 	ModArmorMaterial (
 		String name, 
@@ -58,10 +58,10 @@ public enum ModArmorMaterial implements ArmorMaterial {
 		this.durabilityMultiplier = durabilityMultiplier;
 		this.slotProtections = slotProtections;
 		this.enchantmentValue = enchantmentValue;
-		this.sound = Lazy.of(sound);
+		this.sound = IWLazy.of(sound);
 		this.toughness = toughness;
 		this.knockbackResistance = knockbackResistance;
-		this.repairIngredient = Lazy.of(repairIngredient);
+		this.repairIngredient = IWLazy.of(repairIngredient);
 	}
 	
 	@Override
