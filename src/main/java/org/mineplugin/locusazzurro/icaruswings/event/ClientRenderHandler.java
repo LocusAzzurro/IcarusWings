@@ -23,6 +23,7 @@ import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.render.models.SpearBakedModel;
 import org.mineplugin.locusazzurro.icaruswings.render.renderers.ArtemisMissileRenderer;
 import org.mineplugin.locusazzurro.icaruswings.render.renderers.GoldenRamRenderer;
 import org.mineplugin.locusazzurro.icaruswings.render.renderers.SpearRenderer;
@@ -59,15 +60,16 @@ public class ClientRenderHandler {
         for (RegistryObject<Item> spear : SPEARS){
             location = new ModelResourceLocation(spear.get().getRegistryName(), "inventory");
             BakedModel existingModel = modelRegistry.get(location);
-            //todo
-            //if (existingModel == null) {
-            //    throw new RuntimeException("Did not find original model in registry");
-            //} else if (existingModel instanceof SpearBakedModel) {
-            //    throw new RuntimeException("Tried to replace model twice");
-            //} else {
-            //    SpearBakedModel spearBakedModel = new SpearBakedModel(existingModel);
-            //    e.getModelRegistry().put(location, spearBakedModel);
-            //}
+            if (existingModel == null) {
+                throw new RuntimeException("Did not find original model in registry");
+            }
+            else if (existingModel instanceof SpearBakedModel) {
+                throw new RuntimeException("Tried to replace model twice");
+            }
+            else {
+                SpearBakedModel spearBakedModel = new SpearBakedModel(existingModel);
+                e.getModelRegistry().put(location, spearBakedModel);
+            }
         }
 
     }

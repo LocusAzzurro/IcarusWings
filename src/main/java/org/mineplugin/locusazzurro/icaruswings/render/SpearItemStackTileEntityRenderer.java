@@ -2,6 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.render;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -24,6 +25,10 @@ public class SpearItemStackTileEntityRenderer extends BlockEntityWithoutLevelRen
     public SpearItemStackTileEntityRenderer(BlockEntityRenderDispatcher pBlockEntityRenderDispatcher, EntityModelSet pEntityModelSet) {
         super(pBlockEntityRenderDispatcher, pEntityModelSet);
         model = new SpearModel(pEntityModelSet.bakeLayer(SpearModel.LAYER_LOCATION));
+    }
+
+    public SpearItemStackTileEntityRenderer(){
+        this(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
     }
 
     @Override

@@ -2,6 +2,9 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -23,11 +26,15 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraftforge.client.IItemRenderProperties;
 import net.minecraftforge.common.ForgeMod;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.entity.SpearEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
+import org.mineplugin.locusazzurro.icaruswings.render.SpearItemStackTileEntityRenderer;
+
+import java.util.function.Consumer;
 
 public class SpearItem extends TieredItem implements Vanishable {
 
@@ -123,6 +130,17 @@ public class SpearItem extends TieredItem implements Vanishable {
     @Override
     public UseAnim getUseAnimation(ItemStack itemStack) {
         return UseAnim.SPEAR;
+    }
+
+    @Override
+    public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+        consumer.accept(new IItemRenderProperties() {
+            public BlockEntityWithoutLevelRenderer getItemStackRenderer()
+            {
+                //todo add ister here
+                return new SpearItemStackTileEntityRenderer();
+            }
+        });
     }
 
     @Override
