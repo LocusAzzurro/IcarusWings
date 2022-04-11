@@ -1,18 +1,19 @@
 {
-	"required": true,
-	"package": "org.mineplugin.locusazzurro.icaruswings.mixin",
-	"compatibilityLevel": "JAVA_8",
-	"refmap": "locusazzurro_icaruswings.refmap.json",
-	"mixins": [
-		"MobEntityMixin",
-		"LivingEntityMixin"
-	],
-	"client": [
-		"CapeLayerMixin"
-	],
-	"server": [],
-	"minVersion": "0.8",
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "org.mineplugin.locusazzurro.icaruswings.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "locusazzurro_icaruswings.refmap.json",
+  "mixins": [
+    "LivingEntityMixin",
+    "MobEntityMixin"
+  ],
+  "client": [
+    "CapeLayerMixin",
+    "MixinEntityRenderer"
+  ],
+  "server": [],
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

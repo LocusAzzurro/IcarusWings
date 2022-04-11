@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.render;
+package org.mineplugin.locusazzurro.icaruswings.render.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -17,13 +17,15 @@ import org.mineplugin.locusazzurro.icaruswings.render.models.TimeBombModel;
 public class TimeBombRenderer extends EntityRenderer<TimeBombEntity> {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/time_bomb.png");
-    private final TimeBombModel model = new TimeBombModel();
+    private final TimeBombModel<TimeBombEntity> model;
 
-    public TimeBombRenderer(Context p_i46179_1_) {
-        super(p_i46179_1_);
+    public TimeBombRenderer(Context context) {
+        super(context);
+        model = new TimeBombModel<>(context.bakeLayer(TimeBombModel.LAYER_LOCATION));
     }
 
 
+    @Override
     public void render(TimeBombEntity entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn){
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
         matrixStackIn.pushPose();

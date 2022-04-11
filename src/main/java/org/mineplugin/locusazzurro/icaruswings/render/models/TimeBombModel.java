@@ -1,35 +1,43 @@
-package org.mineplugin.locusazzurro.icaruswings.render.models;
+package org.mineplugin.locusazzurro.icaruswings.render.models;// Made with Blockbench 4.2.1
+// Exported for Minecraft version 1.17 with Mojang mappings
+// Paste this class into your mod and generate all required imports
+
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import org.mineplugin.locusazzurro.icaruswings.entity.TimeBombEntity;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 
-@OnlyIn(Dist.CLIENT)
-public class TimeBombModel extends EntityModel<TimeBombEntity> {
+public class TimeBombModel<T extends Entity> extends EntityModel<T> {
+	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "timebombmodel"), "main");
+	private final ModelPart bone;
 
-    private final ModelRenderer bomb;
+	public TimeBombModel(ModelPart root) {
+		this.bone = root.getChild("bone");
+	}
 
-    public TimeBombModel() {
-        texWidth = 16;
-        texHeight = 8;
+	public static LayerDefinition createBodyLayer() {
+		MeshDefinition meshdefinition = new MeshDefinition();
+		PartDefinition partdefinition = meshdefinition.getRoot();
 
-        bomb = new ModelRenderer(this);
-        bomb.setPos(0.0F, 24.0F, 0.0F);
-        bomb.texOffs(0, 0).addBox(-2.0F, -2.0F, -2.0F, 4.0F, 4.0F, 4.0F, 0.0F, false);
+		PartDefinition bone = partdefinition.addOrReplaceChild("bone", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -2.0F, -2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-    }
+		return LayerDefinition.create(meshdefinition, 16, 8);
+	}
 
-    @Override
-    public void setupAnim(TimeBombEntity bomb, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	@Override
+	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
-    }
+	}
 
-    @Override
-    public void renderToBuffer(PoseStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        this.bomb.render(matrixStack, buffer, packedLight, packedOverlay);
-    }
+	@Override
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+		bone.render(poseStack, buffer, packedLight, packedOverlay);
+	}
 }

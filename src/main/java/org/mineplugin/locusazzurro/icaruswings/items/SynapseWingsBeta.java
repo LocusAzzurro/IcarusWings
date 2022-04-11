@@ -19,8 +19,11 @@ public class SynapseWingsBeta extends SynapseWings implements IWingsExpandable, 
 		super(WingsType.SYNAPSE_BETA);
 	}
 
+	@Override
 	protected double getDirectSpeedMod(){return 0.08d;}
+	@Override
 	protected double getInertialSpeedMod(){return 1.2d;}
+	@Override
 	protected double getTotalSpeedMod(){return 0.5d;}
 
 	@Override
@@ -33,6 +36,7 @@ public class SynapseWingsBeta extends SynapseWings implements IWingsExpandable, 
 		return 0.2f;
 	}
 	
+	@Override
 	protected Multimap<Attribute, AttributeModifier> getModifiers()
 	{
 		Builder<net.minecraft.world.entity.ai.attributes.Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier> builder = ImmutableMultimap.builder();
