@@ -154,8 +154,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
             boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
             this.level.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower, flag, Explosion.BlockInteraction.NONE);
         }
-        //todo 加了新参数，可能需要改
-        this.remove(RemovalReason.DISCARDED);
+        this.discard();
     }
 
     @Override
@@ -184,8 +183,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
             boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
             this.level.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower + 0.5f, flag, Explosion.BlockInteraction.NONE);
         }
-        //todo 加了新参数，可能需要改
-        this.remove(RemovalReason.DISCARDED);
+        this.discard();
     }
 
     @Override

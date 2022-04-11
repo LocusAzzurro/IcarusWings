@@ -39,9 +39,8 @@ public class TimeRiftParticleEntity extends ThrowableItemProjectile {
     @Override
     public void tick(){
         super.tick();
-        //todo
         if (life >= maxLife) {
-            this.remove(RemovalReason.DISCARDED);
+            this.discard();
         }
         life++;
 
@@ -64,8 +63,7 @@ public class TimeRiftParticleEntity extends ThrowableItemProjectile {
                 level.addParticle(ParticleTypes.DRAGON_BREATH, this.getX(), this.getY(), this.getZ(), xR, yR, zR);
             }
         }
-        //todo
-        this.remove(RemovalReason.DISCARDED);
+        this.discard();
     }
 
     @Override

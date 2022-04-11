@@ -46,9 +46,7 @@ public class SpearItem extends TieredItem implements Vanishable {
     private static final float BASE_ATTACK_RANGE = 6.0f;
 
     public SpearItem(Tier tier) {
-        super(tier, new Properties().tab(ModGroup.itemGroup)
-                //todo 不知道ister去哪了 .setISTER(() -> SpearItemStackTileEntityRenderer::new)
-        );
+        super(tier, new Properties().tab(ModGroup.itemGroup));
         this.attackDamage = BASE_DAMAGE + tier.getAttackDamageBonus();
         this.attackSpeed = BASE_ATTACK_SPEED;
         this.attackRange = BASE_ATTACK_RANGE;

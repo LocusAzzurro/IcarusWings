@@ -101,8 +101,7 @@ public class TimeBombEntity extends Entity {
                 entity.hurt(new DamageTimeRift(attachedTo), this.damage);
             }
         }
-        //todo
-        this.remove(RemovalReason.DISCARDED);
+        this.discard();
     }
 
     private void tickLife(){
