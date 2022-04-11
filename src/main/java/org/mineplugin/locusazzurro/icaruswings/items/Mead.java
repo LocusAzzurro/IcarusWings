@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -128,7 +129,7 @@ public class Mead extends Item {
 
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
-		//todo 无了 return DrinkHelper.useDrink(worldIn, playerIn, handIn);
+		ItemUtils.startUsingInstantly(worldIn, playerIn, handIn);
 		return InteractionResultHolder.success(playerIn.getItemInHand(handIn));
 	}
 	

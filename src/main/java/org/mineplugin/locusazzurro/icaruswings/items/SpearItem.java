@@ -88,8 +88,8 @@ public class SpearItem extends TieredItem implements Vanishable {
     @Override
     public float getDestroySpeed(ItemStack itemStack, BlockState blockState) {
         Material material = blockState.getMaterial();
-        // todo 珊瑚的Material改成了STONE了，你看看用不用调
-        return material != net.minecraft.world.level.material.Material.PLANT && material != Material.REPLACEABLE_PLANT && material != Material.STONE && !blockState.is(BlockTags.LEAVES) && material != net.minecraft.world.level.material.Material.VEGETABLE ? 1.0F : 1.5F;
+        return material != Material.PLANT && material != Material.REPLACEABLE_PLANT
+                && !blockState.is(BlockTags.LEAVES) && material != Material.VEGETABLE ? 1.0F : 1.5F;
     }
 
     @Override
@@ -135,7 +135,6 @@ public class SpearItem extends TieredItem implements Vanishable {
         consumer.accept(new IItemRenderProperties() {
             public BlockEntityWithoutLevelRenderer getItemStackRenderer()
             {
-                //todo add ister here
                 return new SpearItemStackTileEntityRenderer();
             }
         });
