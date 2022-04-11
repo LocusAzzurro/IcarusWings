@@ -14,14 +14,16 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.items.SpearItem;
 import org.mineplugin.locusazzurro.icaruswings.render.models.SpearModel;
+import org.mineplugin.locusazzurro.icaruswings.render.renderers.SpearRenderer;
 
 @OnlyIn(Dist.CLIENT)
 public class SpearItemStackTileEntityRenderer extends BlockEntityWithoutLevelRenderer {
 
-    private final SpearModel model = new SpearModel();
+    private final SpearModel model;
 
     public SpearItemStackTileEntityRenderer(BlockEntityRenderDispatcher pBlockEntityRenderDispatcher, EntityModelSet pEntityModelSet) {
         super(pBlockEntityRenderDispatcher, pEntityModelSet);
+        model = new SpearModel(pEntityModelSet.bakeLayer(SpearModel.LAYER_LOCATION));
     }
 
     @Override
@@ -32,7 +34,7 @@ public class SpearItemStackTileEntityRenderer extends BlockEntityWithoutLevelRen
                 throwing = stack.getTag().getBoolean("Throwing");
             }
             matrixStack.pushPose();
-            VertexConsumer vertexBuilder = ItemRenderer.getFoilBuffer(buffer, RenderType.entitySolid(SpearModel.getTexture(((SpearItem) stack.getItem()).getTier())), false, stack.hasFoil());
+            VertexConsumer vertexBuilder = ItemRenderer.getFoilBuffer(buffer, RenderType.entitySolid(SpearRenderer.getTexture(((SpearItem) stack.getItem()).getTier())), false, stack.hasFoil());
             if (transformType.firstPerson()) {
                 matrixStack.translate(0.5F, 1.4F, 0.6F);
                 matrixStack.scale(1.0F, -1.0F, -1.0F);

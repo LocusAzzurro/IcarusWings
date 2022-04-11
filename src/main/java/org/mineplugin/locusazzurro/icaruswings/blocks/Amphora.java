@@ -50,7 +50,7 @@ public class Amphora extends BaseEntityBlock{
 		this.registerDefaultState(this.stateDefinition.any()
 				.setValue(HALF, DoubleBlockHalf.LOWER)
 				.setValue(FACING, net.minecraft.core.Direction.NORTH)
-				);
+		);
 	}
 
 	@Override

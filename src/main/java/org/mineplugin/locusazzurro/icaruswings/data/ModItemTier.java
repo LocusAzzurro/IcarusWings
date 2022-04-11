@@ -1,9 +1,9 @@
 package org.mineplugin.locusazzurro.icaruswings.data;
 
-import cpw.mods.util.Lazy;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.utils.IWLazy;
 
 import java.util.function.Supplier;
 
@@ -17,7 +17,7 @@ public enum ModItemTier implements Tier {
 	private final float efficiency;
 	private final float attackDamage;
 	private final int enchantability;
-	private final Lazy<Ingredient> repairIngredient;
+	private final IWLazy<Ingredient> repairIngredient;
 
 	ModItemTier(int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability, Supplier<Ingredient> repairMaterial) {
 		this.harvestLevel = harvestLevel;
@@ -25,7 +25,7 @@ public enum ModItemTier implements Tier {
 		this.efficiency = efficiency;
 		this.attackDamage = attackDamage;
 		this.enchantability = enchantability;
-		this.repairIngredient = Lazy.of(repairMaterial);
+		this.repairIngredient = IWLazy.of(repairMaterial);
 	}
 	
 	@Override

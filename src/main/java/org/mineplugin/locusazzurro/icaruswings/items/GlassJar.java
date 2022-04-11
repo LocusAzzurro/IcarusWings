@@ -29,14 +29,14 @@ public class GlassJar extends net.minecraft.world.item.Item {
         Player player = e.player;
         Level world = player.level;
         if (player.isFallFlying() && player.tickCount % 20 == 0 && !world.isClientSide() && e.phase == TickEvent.Phase.END){
-            int slot = player.inventory.findSlotMatchingUnusedItem(new ItemStack(ItemRegistry.glassJar.get()));
+            int slot = player.getInventory().findSlotMatchingUnusedItem(new ItemStack(ItemRegistry.glassJar.get()));
             if (slot != -1){
                 float rand = world.random.nextFloat();
                 int altitude = (int)Math.round(Mth.clamp(player.getY(), 0, 255));
                 float speedFactor = (float) Mth.clamp(player.getDeltaMovement().length() / 2.0, 1.0, 1.25);
                 int dim = getDimNum(world.dimension());
                 float chance = 0.0f;
-                ItemStack targetStack = player.inventory.getItem(slot);
+                ItemStack targetStack = player.getInventory().getItem(slot);
                 if (dim != -1){
                     int distance = Mth.clamp(Mth.abs(OPTIMALS[dim] - altitude), 0, 127);
                     chance = CT[dim][distance] * speedFactor;

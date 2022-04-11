@@ -42,8 +42,7 @@ import java.util.Random;
 
 public class MeadPot extends BaseEntityBlock {
 	
-	public static final EnumProperty<MeadPotState> MEAD_POT_STATE = net.minecraft.world.level.block.state.properties.EnumProperty.create("state", MeadPotState.class);
-	public static final EnumProperty<MeadPotState> STATE = MEAD_POT_STATE;
+	public static final EnumProperty<MeadPotState> STATE = EnumProperty.create("state", MeadPotState.class);
 	
 	private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	protected static final VoxelShape SHAPE = Shapes.join(

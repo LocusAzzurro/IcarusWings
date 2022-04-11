@@ -49,7 +49,7 @@ public class TimeBombEntity extends Entity {
         this.range = range;
         this.maxLife = maxLife;
         this.entityData.set(MAX_LIFE, maxLife);
-        this.initialAngle = holder.yRot;
+        this.initialAngle = holder.getYRot();
         this.setAttachedTo(holder);
         this.moveToAttached();
     }
@@ -101,7 +101,8 @@ public class TimeBombEntity extends Entity {
                 entity.hurt(new DamageTimeRift(attachedTo), this.damage);
             }
         }
-        this.remove();
+        //todo
+        this.remove(RemovalReason.DISCARDED);
     }
 
     private void tickLife(){

@@ -16,16 +16,8 @@ public class WingsModel<T extends LivingEntity> extends ElytraModel<T> {
 
 	public WingsModel(ModelPart pRoot) {
 		super(pRoot);
-		leftWing = new ModelPart(this, 22, 0);
-		this.leftWing.addBox(-10.0F, 0.0F, 0.0F, 10.0F, 20.0F, 2.0F, 1.0F);
-		this.rightWing = new ModelPart(this, 22, 0);
-		this.rightWing.mirror = true;
-		this.rightWing.addBox(0.0F, 0.0F, 0.0F, 10.0F, 20.0F, 2.0F, 1.0F);
-	}
-
-	@Override
-	protected Iterable<ModelPart> headParts() {
-		return ImmutableList.of();
+		this.leftWing = pRoot.getChild("left_wing");
+		this.rightWing = pRoot.getChild("right_wing");
 	}
 
 	@Override

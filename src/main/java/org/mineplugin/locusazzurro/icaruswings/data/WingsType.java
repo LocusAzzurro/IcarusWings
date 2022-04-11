@@ -4,9 +4,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.common.util.Lazy;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
+import org.mineplugin.locusazzurro.icaruswings.utils.IWLazy;
 
 import java.util.function.Supplier;
 
@@ -27,20 +27,20 @@ public enum WingsType implements IWingsType{
 	
 	private final String name;
 	private final int durability;
-	private final Lazy<Item> repairItem;
+	private final IWLazy<Item> repairItem;
 	private final boolean hasReversedTexture;
 	private final ResourceLocation texture;
 	private final ResourceLocation textureReversed;
-	private final Lazy<SoundEvent> equipSound;
+	private final IWLazy<SoundEvent> equipSound;
 
 	WingsType(String name, int durability, Supplier<Item> repairItem, boolean hasReverse, Supplier<net.minecraft.sounds.SoundEvent> equipSound) {
 		this.name = name;
 		this.durability = durability;
-		this.repairItem = Lazy.of(repairItem);
+		this.repairItem = IWLazy.of(repairItem);
 		this.hasReversedTexture = hasReverse;
 		this.texture = new ResourceLocation(ModData.MOD_ID, "textures/entity/" + name + "_wings.png");
 		this.textureReversed = new ResourceLocation(ModData.MOD_ID, "textures/entity/" + name + "_wings_reversed.png");
-		this.equipSound = Lazy.of(equipSound);
+		this.equipSound = IWLazy.of(equipSound);
 	}
 
 	@Override

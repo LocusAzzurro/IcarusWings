@@ -19,7 +19,8 @@ public class ProjectileUtils {
             AABB aabb = new AABB(hS,hS,hS,-hS,-hS,-hS).move(checkPos);
             List<LivingEntity> entities = targeter.level.getEntitiesOfClass(LivingEntity.class, aabb);
             for (net.minecraft.world.entity.LivingEntity entity : entities){
-                if (targeter.canSee(entity) && entity != targeter) return entity;
+                //todo targeter.canSee(entity) 没了，你看看替代品
+                if (entity != targeter) return entity;
             }
             checkPos = checkPos.add(lookVec.scale(step));
         }
