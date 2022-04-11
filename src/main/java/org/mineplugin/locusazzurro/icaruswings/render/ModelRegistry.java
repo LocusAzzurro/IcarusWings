@@ -6,7 +6,6 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.render.models.ArtemisMissileModel;
-import org.mineplugin.locusazzurro.icaruswings.render.models.GoldenRamModel;
 import org.mineplugin.locusazzurro.icaruswings.render.models.SpearModel;
 import org.mineplugin.locusazzurro.icaruswings.render.models.TimeBombModel;
 
@@ -20,6 +19,6 @@ public class ModelRegistry {
         ForgeHooksClient.registerLayerDefinition(ArtemisMissileModel.LAYER_LOCATION, ArtemisMissileModel::createBodyLayer);
         ForgeHooksClient.registerLayerDefinition(SpearModel.LAYER_LOCATION, SpearModel::createBodyLayer);
         ForgeHooksClient.registerLayerDefinition(TimeBombModel.LAYER_LOCATION, TimeBombModel::createBodyLayer);
-        ForgeHooksClient.registerLayerDefinition(GoldenRamModel.LAYER_LOCATION, GoldenRamModel::createBodyLayer);
+        //ForgeHooksClient.registerLayerDefinition(GoldenRamModel.LAYER_LOCATION, GoldenRamModel::createBodyLayer);
     }
 }
