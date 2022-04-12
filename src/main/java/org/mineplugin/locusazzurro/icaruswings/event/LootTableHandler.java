@@ -54,13 +54,13 @@ public class LootTableHandler {
 		private static final ResourceLocation RELIC_OFFENSIVE_CHEST = register("relics/relic_offensive_chest"); 
 		private static final ResourceLocation RELIC_OFFENSIVE_ALT = register("relics/relic_offensive_alt"); 
 		private static final ResourceLocation RELIC_DEFENSIVE_CHEST = register("relics/relic_defensive_chest"); 
-		private static final net.minecraft.resources.ResourceLocation RELIC_DEFENSIVE_ALT = register("relics/relic_defensive_alt");
-		private static final net.minecraft.resources.ResourceLocation RELIC_PROPULSION_CHEST = register("relics/relic_propulsion_chest");
+		private static final ResourceLocation RELIC_DEFENSIVE_ALT = register("relics/relic_defensive_alt");
+		private static final ResourceLocation RELIC_PROPULSION_CHEST = register("relics/relic_propulsion_chest");
 		private static final ResourceLocation RELIC_PROPULSION_ALT = register("relics/relic_propulsion_alt"); 
 		
 		private static ResourceLocation register(String tableName) {
 		
-			net.minecraft.resources.ResourceLocation tableEntry = new ResourceLocation(ModData.MOD_ID, tableName);
+			ResourceLocation tableEntry = new ResourceLocation(ModData.MOD_ID, tableName);
 			if (TABLES.add(tableEntry)) { return tableEntry; }
 			else { throw new IllegalArgumentException(tableEntry + " is already registered."); }
 		}
