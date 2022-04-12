@@ -3,35 +3,33 @@ package org.mineplugin.locusazzurro.icaruswings.render.layers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.SheepFurModel;
+import net.minecraft.client.model.SheepModel;
 import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.animal.Sheep;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.entity.GoldenRamEntity;
+import org.mineplugin.locusazzurro.icaruswings.render.models.GoldenRamFleeceModel;
+import org.mineplugin.locusazzurro.icaruswings.render.models.GoldenRamModel;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class GoldenRamFleeceLayer extends RenderLayer<GoldenRamEntity, EntityModel<GoldenRamEntity>> {
+@OnlyIn(Dist.CLIENT)
+public class GoldenRamFleeceLayer extends RenderLayer<GoldenRamEntity, GoldenRamModel<GoldenRamEntity>> {
 
     private static final ResourceLocation FLEECE_TEXTURE = new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "textures/entity/golden_ram_fleece.png");
-    private final EntityModel<GoldenRamEntity> model;
+    private final GoldenRamFleeceModel<GoldenRamEntity> model;
 
-    public GoldenRamFleeceLayer(EntityModelSet set, RenderLayerParent<GoldenRamEntity, EntityModel<GoldenRamEntity>> renderer) {
+    public GoldenRamFleeceLayer(RenderLayerParent<GoldenRamEntity, GoldenRamModel<GoldenRamEntity>> renderer, EntityModelSet set) {
         super(renderer);
-        model = new EntityModel<GoldenRamEntity>() {
-            @Override
-            public void setupAnim(GoldenRamEntity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-
-            }
-
-            @Override
-            public void renderToBuffer(PoseStack pPoseStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
-
-            }
-        };
-        //model = new GoldenRamFleeceModel<>(set.bakeLayer(GoldenRamModel.LAYER_LOCATION));
+        this.model = new GoldenRamFleeceModel<>(set.bakeLayer(GoldenRamFleeceModel.LAYER_LOCATION));
     }
 
     @Override
