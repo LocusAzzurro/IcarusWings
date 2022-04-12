@@ -7,9 +7,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 /**
  * @author DustW
  **/
-public class TutBlockStates extends BlockStateProvider {
+public class BlockStatesGenerator extends BlockStateProvider {
 
-    public TutBlockStates(DataGenerator gen, ExistingFileHelper helper) {
+    public BlockStatesGenerator(DataGenerator gen, ExistingFileHelper helper) {
         super(gen, DataGenerators.MOD_ID, helper);
     }
 

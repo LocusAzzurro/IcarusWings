@@ -14,6 +14,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -83,6 +84,11 @@ public class MeadPot extends BaseEntityBlock {
 	@Override
 	public VoxelShape getInteractionShape(BlockState p_199600_1_, BlockGetter p_199600_2_, net.minecraft.core.BlockPos p_199600_3_) {
 		return INSIDE;
+	}
+
+	@Override
+	public RenderShape getRenderShape(BlockState p_149645_1_) {
+		return RenderShape.MODEL;
 	}
 	
 	@Override

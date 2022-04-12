@@ -9,9 +9,9 @@ import java.util.function.Consumer;
 /**
  * @author DustW
  **/
-public class TutRecipes extends RecipeProvider {
+public class RecipesGenerator extends RecipeProvider {
 
-    public TutRecipes(DataGenerator generatorIn) {
+    public RecipesGenerator(DataGenerator generatorIn) {
         super(generatorIn);
     }
 

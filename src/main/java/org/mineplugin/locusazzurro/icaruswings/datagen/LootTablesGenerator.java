@@ -5,9 +5,9 @@ import net.minecraft.data.DataGenerator;
 /**
  * @author DustW
  **/
-public class TutLootTables extends BaseLootTableProvider {
+public class LootTablesGenerator extends BaseLootTableProvider {
 
-    public TutLootTables(DataGenerator dataGeneratorIn) {
+    public LootTablesGenerator(DataGenerator dataGeneratorIn) {
         super(dataGeneratorIn);
     }
 

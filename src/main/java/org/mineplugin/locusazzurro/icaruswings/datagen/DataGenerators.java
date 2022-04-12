@@ -17,15 +17,15 @@ public class DataGenerators {
     public static void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
         if (event.includeServer()) {
-            generator.addProvider(new TutRecipes(generator));
-            generator.addProvider(new TutLootTables(generator));
-            TutBlockTags blockTags = new TutBlockTags(generator, event.getExistingFileHelper());
+            generator.addProvider(new RecipesGenerator(generator));
+            generator.addProvider(new LootTablesGenerator(generator));
+            BlockTagsGenerator blockTags = new BlockTagsGenerator(generator, event.getExistingFileHelper());
             generator.addProvider(blockTags);
-            generator.addProvider(new TutItemTags(generator, blockTags, event.getExistingFileHelper()));
+            generator.addProvider(new ItemTagsGenerator(generator, blockTags, event.getExistingFileHelper()));
         }
         if (event.includeClient()) {
-            generator.addProvider(new TutBlockStates(generator, event.getExistingFileHelper()));
-            generator.addProvider(new TutItemModels(generator, event.getExistingFileHelper()));
+            generator.addProvider(new BlockStatesGenerator(generator, event.getExistingFileHelper()));
+            generator.addProvider(new ItemModelsGenerator(generator, event.getExistingFileHelper()));
         }
     }
 }

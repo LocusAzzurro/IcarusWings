@@ -7,9 +7,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 /**
  * @author DustW
  **/
-public class TutItemModels extends ItemModelProvider {
+public class ItemModelsGenerator extends ItemModelProvider {
 
-    public TutItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+    public ItemModelsGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, DataGenerators.MOD_ID, existingFileHelper);
     }
 
