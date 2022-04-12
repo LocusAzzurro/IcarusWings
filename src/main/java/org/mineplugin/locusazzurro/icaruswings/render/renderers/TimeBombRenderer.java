@@ -9,8 +9,10 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.entity.TimeBombEntity;
+import org.mineplugin.locusazzurro.icaruswings.registry.ModelLayerRegistry;
 import org.mineplugin.locusazzurro.icaruswings.render.models.TimeBombModel;
 
 @OnlyIn(Dist.CLIENT)
@@ -21,7 +23,7 @@ public class TimeBombRenderer extends EntityRenderer<TimeBombEntity> {
 
     public TimeBombRenderer(Context context) {
         super(context);
-        model = new TimeBombModel<>(context.bakeLayer(TimeBombModel.LAYER_LOCATION));
+        model = new TimeBombModel<>(context.bakeLayer(ModelLayerRegistry.TIME_BOMB));
     }
 
 
@@ -36,7 +38,7 @@ public class TimeBombRenderer extends EntityRenderer<TimeBombEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(TimeBombEntity p_110775_1_) {
+    public ResourceLocation getTextureLocation(TimeBombEntity entity) {
         return TEXTURE;
     }
 }

@@ -12,6 +12,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.entity.ArtemisMissileEntity;
+import org.mineplugin.locusazzurro.icaruswings.registry.ModelLayerRegistry;
 import org.mineplugin.locusazzurro.icaruswings.render.models.ArtemisMissileModel;
 
 @OnlyIn(Dist.CLIENT)
@@ -20,9 +21,9 @@ public class ArtemisMissileRenderer extends EntityRenderer<ArtemisMissileEntity>
     private static final ResourceLocation MISSILE = new ResourceLocation(ModData.MOD_ID, "textures/entity/artemis_missile.png");
     private final ArtemisMissileModel model;
 
-    public ArtemisMissileRenderer(Context p_i46179_1_) {
-        super(p_i46179_1_);
-        model = new ArtemisMissileModel(p_i46179_1_.bakeLayer(ArtemisMissileModel.LAYER_LOCATION));
+    public ArtemisMissileRenderer(Context context) {
+        super(context);
+        model = new ArtemisMissileModel(context.bakeLayer(ModelLayerRegistry.ARTEMIS_MISSILE));
     }
 
     @Override

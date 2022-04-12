@@ -1,6 +1,8 @@
 package org.mineplugin.locusazzurro.icaruswings.event;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -14,15 +16,14 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.RegistryObject;
-import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
-import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
-import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
-import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.*;
 import org.mineplugin.locusazzurro.icaruswings.render.models.SpearBakedModel;
 import org.mineplugin.locusazzurro.icaruswings.render.renderers.ArtemisMissileRenderer;
 import org.mineplugin.locusazzurro.icaruswings.render.renderers.GoldenRamRenderer;
@@ -72,6 +73,15 @@ public class ClientRenderHandler {
             }
         }
 
+    }
+
+    /**
+     * @author DustW
+     */
+    @SubscribeEvent
+    public static void registerRenderer(EntityRenderersEvent.RegisterRenderers event) {
+        Map<ModelLayerLocation, LayerDefinition> layers = ModelLayerRegistry.createLayerDefinitions();
+        layers.forEach((location, definition) -> ForgeHooksClient.registerLayerDefinition(location, () -> definition));
     }
 
     private static <ENTITY extends Entity> void register(EntityType<ENTITY> type, EntityRendererProvider<ENTITY> renderer){

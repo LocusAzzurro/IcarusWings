@@ -8,6 +8,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.entity.GoldenRamEntity;
+import org.mineplugin.locusazzurro.icaruswings.registry.ModelLayerRegistry;
 import org.mineplugin.locusazzurro.icaruswings.render.layers.GoldenRamFleeceLayer;
 import org.mineplugin.locusazzurro.icaruswings.render.models.GoldenRamModel;
 
@@ -18,13 +19,13 @@ public class GoldenRamRenderer extends MobRenderer<GoldenRamEntity, GoldenRamMod
     private static final net.minecraft.resources.ResourceLocation GOLDEN_RAM_TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/golden_ram.png");
 
     public GoldenRamRenderer(EntityRendererProvider.Context context) {
-        super(context, new GoldenRamModel<>(context.bakeLayer(GoldenRamModel.LAYER_LOCATION)), 0.7F);
+        super(context, new GoldenRamModel<>(context.bakeLayer(ModelLayerRegistry.GOLDEN_RAM)), 0.7F);
         this.addLayer(new GoldenRamFleeceLayer(this, context.getModelSet()));
     }
 
     @Override
     @ParametersAreNonnullByDefault
-    public net.minecraft.resources.@NotNull ResourceLocation getTextureLocation(GoldenRamEntity entity) {
+    public ResourceLocation getTextureLocation(GoldenRamEntity entity) {
         return GOLDEN_RAM_TEXTURE;
     }
 }

@@ -16,6 +16,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.entity.GoldenRamEntity;
+import org.mineplugin.locusazzurro.icaruswings.registry.ModelLayerRegistry;
 import org.mineplugin.locusazzurro.icaruswings.render.models.GoldenRamFleeceModel;
 import org.mineplugin.locusazzurro.icaruswings.render.models.GoldenRamModel;
 
@@ -29,7 +30,7 @@ public class GoldenRamFleeceLayer extends RenderLayer<GoldenRamEntity, GoldenRam
 
     public GoldenRamFleeceLayer(RenderLayerParent<GoldenRamEntity, GoldenRamModel<GoldenRamEntity>> renderer, EntityModelSet set) {
         super(renderer);
-        this.model = new GoldenRamFleeceModel<>(set.bakeLayer(GoldenRamFleeceModel.LAYER_LOCATION));
+        this.model = new GoldenRamFleeceModel<>(set.bakeLayer(ModelLayerRegistry.GOLDEN_RAM_FLEECE));
     }
 
     @Override

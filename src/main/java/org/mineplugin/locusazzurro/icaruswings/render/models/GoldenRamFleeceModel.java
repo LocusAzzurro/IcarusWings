@@ -14,7 +14,6 @@ import org.mineplugin.locusazzurro.icaruswings.entity.GoldenRamEntity;
 public class GoldenRamFleeceModel <T extends GoldenRamEntity> extends QuadrupedModel<T> {
 
     private float headXRot;
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "goldenramfleecemodel"), "main");
 
     public GoldenRamFleeceModel(ModelPart pRoot) {
         super(pRoot, false, 8.0F, 4.0F, 2.0F, 2.0F, 24);

@@ -2,9 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
-import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -32,7 +30,7 @@ import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.entity.SpearEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
-import org.mineplugin.locusazzurro.icaruswings.render.SpearItemStackTileEntityRenderer;
+import org.mineplugin.locusazzurro.icaruswings.render.renderers.SpearItemStackTileEntityRenderer;
 
 import java.util.function.Consumer;
 

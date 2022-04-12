@@ -18,6 +18,7 @@ import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModItemTier;
 import org.mineplugin.locusazzurro.icaruswings.entity.SpearEntity;
 import org.mineplugin.locusazzurro.icaruswings.items.SpearItem;
+import org.mineplugin.locusazzurro.icaruswings.registry.ModelLayerRegistry;
 import org.mineplugin.locusazzurro.icaruswings.render.models.SpearModel;
 import org.mineplugin.locusazzurro.icaruswings.utils.MapUtils;
 
@@ -28,9 +29,9 @@ public class SpearRenderer extends EntityRenderer<SpearEntity> {
 
     private final SpearModel<SpearEntity> model;
 
-    public SpearRenderer(Context p_i48828_1_) {
-        super(p_i48828_1_);
-        model = new SpearModel<>(p_i48828_1_.bakeLayer(SpearModel.LAYER_LOCATION));
+    public SpearRenderer(Context context) {
+        super(context);
+        model = new SpearModel<>(context.bakeLayer(ModelLayerRegistry.SPEAR));
     }
 
     @Override
