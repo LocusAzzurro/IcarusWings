@@ -91,7 +91,8 @@ public class ModClientRenderEventHandler {
         particleEngine.register(ParticleRegistry.nullity.get(), NullityParticle.Factory::new);
         particleEngine.register(ParticleRegistry.plasmaTrail.get(), PlasmaTrailParticle.Factory::new);
         particleEngine.register(ParticleRegistry.electronicBit.get(), ElectronicBitParticle.Factory::new);
-        particleEngine.register(ParticleRegistry.goldenSparkle.get(), GoldenSparkleParticle.Factory::new);
+        particleEngine.register(ParticleRegistry.goldenSparkleBase.get(), GoldenSparkleParticle.BaseFactory::new);
+        particleEngine.register(ParticleRegistry.goldenSparkle.get(), GoldenSparkleParticle.AdvFactory::new);
         particleEngine.register(ParticleRegistry.timeRiftExplosion.get(), TimeRiftExplosionParticle.Factory::new);
     }
 

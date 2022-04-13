@@ -37,7 +37,7 @@ public class SparklePacket {
         ctx.get().enqueueWork(() -> {
             Level world = ctx.get().getSender().level;
             DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-                world.addParticle(ParticleRegistry.goldenSparkle.get(), x, y, z, 0, 0, 0);
+                world.addParticle(ParticleRegistry.goldenSparkleBase.get(), x, y, z, 0, 0, 0);
             });
         });
     }

@@ -38,6 +38,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class GoldenRamEntity extends Animal implements IForgeShearable {
 
@@ -93,7 +94,7 @@ public class GoldenRamEntity extends Animal implements IForgeShearable {
 		this.eatBlockGoal = new EatGoldenGrassGoal(this);
 		this.goalSelector.addGoal(0, new RandomSwimmingGoal(this, 1, 10));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.0D));
-		this.goalSelector.addGoal(2, new TemptGoal(this, 1.1D, Ingredient.of(Items.WHEAT), false)); //todo special item
+		this.goalSelector.addGoal(2, new TemptGoal(this, 1.1D, Ingredient.of(Items.WHEAT), false));
 		this.goalSelector.addGoal(3, this.eatBlockGoal);
 		this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -103,8 +104,13 @@ public class GoldenRamEntity extends Animal implements IForgeShearable {
 	@Override
 	public void tick() {
 		super.tick();
-		if (level.isClientSide() && ((this.tickCount >> 1 & 1) != 0)){
-			level.addParticle(ParticleRegistry.goldenSparkle.get(), this.getX(), this.getY(), this.getZ(), 0,0,0);
+		if (level.isClientSide() && (this.tickCount % 4 == 0)){
+			Random rnd = level.getRandom();
+			level.addParticle(ParticleRegistry.goldenSparkle.get(),
+					this.getX(), this.getY()+0.8, this.getZ(),
+					(rnd.nextFloat() - 0.5) / 4 ,
+					(rnd.nextFloat() - 0.4) / 4 ,
+					(rnd.nextFloat() - 0.5) / 4 );
 		}
 	}
 

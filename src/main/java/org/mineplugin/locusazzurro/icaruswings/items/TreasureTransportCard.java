@@ -76,7 +76,7 @@ public class TreasureTransportCard extends AbstractTransportCard{
             worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationGeneric.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
             if (!worldIn.isClientSide()) {
                 if (playerIn.isCrouching()){
-                    ((ServerLevel) worldIn).sendParticles(ParticleRegistry.goldenSparkle.get(), playerIn.getX(), playerIn.getY(), playerIn.getZ(),
+                    ((ServerLevel) worldIn).sendParticles(ParticleRegistry.goldenSparkleBase.get(), playerIn.getX(), playerIn.getY(), playerIn.getZ(),
                             30, 0.5d, 0.5d, 0.5d, 0.0d);
                     for (net.minecraft.world.item.ItemStack item : lootItems){
                         ItemHandlerHelper.giveItemToPlayer(playerIn, item);
@@ -93,7 +93,7 @@ public class TreasureTransportCard extends AbstractTransportCard{
                                 playerIn.getX() + dropPoints[pI].x, yP,
                                 playerIn.getZ() + dropPoints[pI].z, item);
                         worldIn.addFreshEntity(itemEntity);
-                        ((ServerLevel) worldIn).sendParticles(ParticleRegistry.goldenSparkle.get(),
+                        ((ServerLevel) worldIn).sendParticles(ParticleRegistry.goldenSparkleBase.get(),
                                 playerIn.getX() + dropPoints[pI].x,
                                 yP, playerIn.getZ() + dropPoints[pI].z,
                                 3, 0.1d, 0.1d, 0.1d, 0.0d);

@@ -17,6 +17,8 @@ public class ParticleRegistry {
             () -> new SimpleParticleType(true));
     public static RegistryObject<SimpleParticleType> electronicBit = PARTICLES.register("electronic_bit",
             () -> new SimpleParticleType(true));
+    public static RegistryObject<SimpleParticleType> goldenSparkleBase = PARTICLES.register("golden_sparkle_base",
+            () -> new SimpleParticleType(true));
     public static RegistryObject<SimpleParticleType> goldenSparkle = PARTICLES.register("golden_sparkle",
             () -> new SimpleParticleType(true));
     public static RegistryObject<SimpleParticleType> timeRiftExplosion = PARTICLES.register("time_rift_explosion",
