@@ -15,7 +15,6 @@ public class ItemModelsGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        // todo 你自己看看需要不需要吧
         //ForgeRegistries.ITEMS.forEach(item -> {
         //    if (item.getRegistryName().getNamespace().equals(DataGenerators.MOD_ID) && item instanceof BlockItem) {
         //        withExistingParent(item.getRegistryName().getPath(), modLoc("block/" + item.getRegistryName().getPath()));

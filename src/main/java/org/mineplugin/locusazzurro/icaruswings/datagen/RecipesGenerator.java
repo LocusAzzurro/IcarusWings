@@ -17,7 +17,7 @@ public class RecipesGenerator extends RecipeProvider {
 
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
-        // todo 合成表，你自己看看，unlockedBy 是必填项
+        //合成表，你自己看看，unlockedBy 是必填项
         //ShapedRecipeBuilder
         //        .shaped(result item)
         //        .define('R', )

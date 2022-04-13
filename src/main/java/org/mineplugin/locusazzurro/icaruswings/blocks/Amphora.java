@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.Container;
@@ -19,10 +20,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
@@ -31,44 +29,38 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.AmphoraTileEntity;
 
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
+@SuppressWarnings("deprecation")
 public class Amphora extends BaseEntityBlock{
 	
 	private static final VoxelShape SHAPE_LOWER = box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 	private static final VoxelShape SHAPE_UPPER = box(3.0D, 0.0D, 3.0D, 13.0D, 14.0D, 13.0D);
 
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+	public static final EnumProperty<ChestType> TYPE = BlockStateProperties.CHEST_TYPE;
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
 	public Amphora() {
-		super(net.minecraft.world.level.block.state.BlockBehaviour.Properties.of(Material.STONE)
+		super(Properties.of(Material.STONE)
 				.strength(1.5f, 6.0f)
 				.sound(SoundType.STONE)
 				.noOcclusion());
-				//todo tag .harvestLevel(0)
-				//.harvestTool(ToolType.PICKAXE));
 		this.registerDefaultState(this.stateDefinition.any()
 				.setValue(HALF, DoubleBlockHalf.LOWER)
-				.setValue(FACING, net.minecraft.core.Direction.NORTH)
+				.setValue(FACING, Direction.NORTH)
+				.setValue(TYPE, ChestType.SINGLE)
 		);
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState stateIn, BlockGetter p_220053_2_, BlockPos p_220053_3_, CollisionContext p_220053_4_) {
-		if (stateIn.getValue(HALF) == DoubleBlockHalf.UPPER) {
-			return SHAPE_UPPER;
-		}
-
-		return SHAPE_LOWER;
+	public VoxelShape getShape(BlockState stateIn, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+		return (stateIn.getValue(HALF) == DoubleBlockHalf.UPPER) ? SHAPE_UPPER : SHAPE_LOWER;
 	}
 
 	@Override
-	public VoxelShape getInteractionShape(BlockState stateIn, BlockGetter p_199600_2_, net.minecraft.core.BlockPos p_199600_3_) {
-		if (stateIn.getValue(HALF) == DoubleBlockHalf.UPPER) {
-			return SHAPE_UPPER;
-		}
-
-		return SHAPE_LOWER;
+	public VoxelShape getInteractionShape(BlockState stateIn, BlockGetter pLevel, BlockPos pPos) {
+		return (stateIn.getValue(HALF) == DoubleBlockHalf.UPPER) ? SHAPE_UPPER : SHAPE_LOWER;
 	}
 
 	@Nullable
@@ -86,7 +78,7 @@ public class Amphora extends BaseEntityBlock{
 	
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateIn) {
-	      stateIn.add(HALF, FACING);
+	      stateIn.add(HALF, FACING, TYPE);
 	}
 	
 	@Override
@@ -107,32 +99,32 @@ public class Amphora extends BaseEntityBlock{
 
 	@Override
 	public boolean canSurvive(BlockState stateIn, LevelReader worldReaderIn, BlockPos posIn) {
-		net.minecraft.core.BlockPos blockpos = posIn.below();
-		BlockState blockstate = worldReaderIn.getBlockState(blockpos);
-		return stateIn.getValue(HALF) == DoubleBlockHalf.LOWER ? blockstate.isFaceSturdy(worldReaderIn, blockpos, net.minecraft.core.Direction.UP) : blockstate.is(this);
+		BlockPos below = posIn.below();
+		BlockState blockstate = worldReaderIn.getBlockState(below);
+		return stateIn.getValue(HALF) == DoubleBlockHalf.LOWER ? blockstate.isFaceSturdy(worldReaderIn, below, Direction.UP) : blockstate.is(this);
 	}
 
 	@Override
-	public BlockState updateShape(BlockState stateInA, Direction dirIn, BlockState stateInB, LevelAccessor worldIn, BlockPos posInA, BlockPos posInB) {
-		DoubleBlockHalf doubleblockhalf = stateInA.getValue(HALF);
+	public BlockState updateShape(BlockState pState, Direction dirIn, BlockState pNeighborState, LevelAccessor worldIn, BlockPos pCurrentPos, BlockPos pNeighborPos) {
+		DoubleBlockHalf doubleblockhalf = pState.getValue(HALF);
 		if (dirIn.getAxis() == Direction.Axis.Y && doubleblockhalf == DoubleBlockHalf.LOWER == (dirIn == Direction.UP)) {
-			return stateInB.is(this) && stateInB.getValue(HALF) != doubleblockhalf ? stateInA.setValue(FACING, stateInB.getValue(FACING)) : net.minecraft.world.level.block.Blocks.AIR.defaultBlockState();
+			return pNeighborState.is(this) && pNeighborState.getValue(HALF) != doubleblockhalf ? pState.setValue(FACING, pNeighborState.getValue(FACING)) : net.minecraft.world.level.block.Blocks.AIR.defaultBlockState();
 		} 
 		else {
-			return doubleblockhalf == DoubleBlockHalf.LOWER && dirIn == net.minecraft.core.Direction.DOWN && !stateInA.canSurvive(worldIn, posInA) ? net.minecraft.world.level.block.Blocks.AIR.defaultBlockState() : super.updateShape(stateInA, dirIn, stateInB, worldIn, posInA, posInB);
+			return doubleblockhalf == DoubleBlockHalf.LOWER && dirIn == net.minecraft.core.Direction.DOWN && !pState.canSurvive(worldIn, pCurrentPos) ? net.minecraft.world.level.block.Blocks.AIR.defaultBlockState() : super.updateShape(pState, dirIn, pNeighborState, worldIn, pCurrentPos, pNeighborPos);
 		}
 	}
 	
 	@Override
-	public void playerWillDestroy(Level p_176208_1_, BlockPos p_176208_2_, BlockState p_176208_3_, Player p_176208_4_) {
-		if (!p_176208_1_.isClientSide && p_176208_4_.isCreative()) {
-			preventCreativeDropFromBottomPart(p_176208_1_, p_176208_2_, p_176208_3_, p_176208_4_);
+	public void playerWillDestroy(Level pLevel, BlockPos pPos, BlockState pState, Player pPlayer) {
+		if (!pLevel.isClientSide && pPlayer.isCreative()) {
+			preventCreativeDropFromBottomPart(pLevel, pPos, pState, pPlayer);
 		}
-		super.playerWillDestroy(p_176208_1_, p_176208_2_, p_176208_3_, p_176208_4_);
+		super.playerWillDestroy(pLevel, pPos, pState, pPlayer);
 	}
 	
 	@Override
-	public PushReaction getPistonPushReaction(BlockState p_149656_1_) {
+	public PushReaction getPistonPushReaction(BlockState pState) {
 		return PushReaction.BLOCK;
 	}
 	
@@ -142,11 +134,11 @@ public class Amphora extends BaseEntityBlock{
 	}
 	
 	@Override
-	public int getAnalogOutputSignal(BlockState p_180641_1_, Level p_180641_2_, BlockPos p_180641_3_) {
-		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(p_180641_2_.getBlockEntity(p_180641_3_));
+	public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
+		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(pLevel.getBlockEntity(pPos));
 	}
 
-	@org.jetbrains.annotations.Nullable
+	@Nullable
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pPos, BlockState state) {
 		if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
@@ -157,7 +149,7 @@ public class Amphora extends BaseEntityBlock{
 	}
 	
 	@Override
-	public InteractionResult use(BlockState stateIn, Level worldIn, net.minecraft.core.BlockPos posIn, Player playerIn, InteractionHand handIn, BlockHitResult rayIn) {
+	public InteractionResult use(BlockState stateIn, Level worldIn, BlockPos posIn, Player playerIn, InteractionHand handIn, BlockHitResult rayIn) {
 		if (worldIn.isClientSide) {
 			return InteractionResult.SUCCESS;
 		} 
@@ -172,29 +164,28 @@ public class Amphora extends BaseEntityBlock{
 			return InteractionResult.CONSUME;
 		}
 	}
-	
-	@SuppressWarnings("deprecation")
+
 	@Override
-	public void onRemove(BlockState p_196243_1_, Level p_196243_2_, net.minecraft.core.BlockPos p_196243_3_, BlockState p_196243_4_, boolean p_196243_5_) {
-		if (!p_196243_1_.is(p_196243_4_.getBlock())) {
-			BlockEntity tileentity = p_196243_2_.getBlockEntity(p_196243_3_);
+	public void onRemove(BlockState pState, Level levelIn, BlockPos pos, BlockState pNewState, boolean pIsMoving) {
+		if (!pState.is(pNewState.getBlock())) {
+			BlockEntity tileentity = levelIn.getBlockEntity(pos);
 			if (tileentity instanceof Container) {
-				Containers.dropContents(p_196243_2_, p_196243_3_, (Container) tileentity);
-				p_196243_2_.updateNeighbourForOutputSignal(p_196243_3_, this);
+				Containers.dropContents(levelIn, pos, (Container) tileentity);
+				levelIn.updateNeighbourForOutputSignal(pos, this);
 			}
 
-			super.onRemove(p_196243_1_, p_196243_2_, p_196243_3_, p_196243_4_, p_196243_5_);
+			super.onRemove(pState, levelIn, pos, pNewState, pIsMoving);
 		}
 	}
 	
-	protected static void preventCreativeDropFromBottomPart(Level p_241471_0_, BlockPos p_241471_1_, BlockState p_241471_2_, Player p_241471_3_) {
-		DoubleBlockHalf doubleblockhalf = p_241471_2_.getValue(HALF);
+	protected static void preventCreativeDropFromBottomPart(Level pLevel, BlockPos pos, BlockState pState, Player player) {
+		DoubleBlockHalf doubleblockhalf = pState.getValue(HALF);
 		if (doubleblockhalf == DoubleBlockHalf.UPPER) {
-			net.minecraft.core.BlockPos blockpos = p_241471_1_.below();
-			BlockState blockstate = p_241471_0_.getBlockState(blockpos);
-			if (blockstate.getBlock() == p_241471_2_.getBlock() && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER) {
-				p_241471_0_.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
-				p_241471_0_.levelEvent(p_241471_3_, 2001, blockpos, net.minecraft.world.level.block.Block.getId(blockstate));
+			net.minecraft.core.BlockPos blockpos = pos.below();
+			BlockState blockstate = pLevel.getBlockState(blockpos);
+			if (blockstate.getBlock() == pState.getBlock() && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER) {
+				pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
+				pLevel.levelEvent(player, 2001, blockpos, Block.getId(blockstate));
 			}
 		}
 	}

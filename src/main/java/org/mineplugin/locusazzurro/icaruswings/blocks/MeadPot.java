@@ -58,8 +58,6 @@ public class MeadPot extends BaseEntityBlock {
 				.strength(1.5f, 6.0f)
 				.sound(SoundType.STONE)
 				.requiresCorrectToolForDrops()
-				//todo tag .harvestLevel(2)
-				//.harvestTool(ToolType.PICKAXE)
 				);
 		this.registerDefaultState(this.stateDefinition.any().setValue(STATE, MeadPotState.EMPTY));
 	}

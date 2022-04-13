@@ -13,8 +13,6 @@ public class RefinedBeeswaxBlock extends Block{
 				.friction(0.8f)
 				.sound(SoundType.STONE)
 				.requiresCorrectToolForDrops()
-				//todo tag .harvestLevel(1)
-				//.harvestTool(ToolType.PICKAXE)
 				);
 		
 	}
