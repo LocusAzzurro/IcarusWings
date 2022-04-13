@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:small_flowers",
+    "#minecraft:tall_flowers",
+    "#minecraft:saplings",
+    "minecraft:fern",
+    "minecraft:sea_pickle",
+    "minecraft:sweet_berries"
+  ],
+  "remove": [
+    "minecraft:wither_rose"
+  ]
+}

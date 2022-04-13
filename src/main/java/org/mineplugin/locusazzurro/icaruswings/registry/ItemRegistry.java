@@ -42,9 +42,9 @@ public class ItemRegistry {
     public static final RegistryObject<net.minecraft.world.item.Item> netherEssence = ITEMS.register("nether_essence", WorldEssence::new);
     public static final RegistryObject<net.minecraft.world.item.Item> voidEssence = ITEMS.register("void_essence", WorldEssence::new);
     
-    public static final RegistryObject<net.minecraft.world.item.Item> ultramarineGem = ITEMS.register("ultramarine_gem", WorldGem::new);
-    public static final RegistryObject<net.minecraft.world.item.Item> sapphireGem = ITEMS.register("sapphire_gem", WorldGem::new);
-    public static final RegistryObject<net.minecraft.world.item.Item> blueTopazGem = ITEMS.register("blue_topaz_gem", WorldGem::new);
+    public static final RegistryObject<net.minecraft.world.item.Item> ultramarineGem = ITEMS.register("ultramarine_gem", GemCurrency::new);
+    public static final RegistryObject<net.minecraft.world.item.Item> sapphireGem = ITEMS.register("sapphire_gem", GemCurrency::new);
+    public static final RegistryObject<net.minecraft.world.item.Item> blueTopazGem = ITEMS.register("blue_topaz_gem", GemCurrency::new);
     
     public static final RegistryObject<net.minecraft.world.item.Item> reforgedNetheriteIngot = ITEMS.register("reforged_netherite_ingot", WorldIngot::new);
     public static final RegistryObject<net.minecraft.world.item.Item> synapseAlloyIngot = ITEMS.register("synapse_alloy_ingot", WorldIngot::new);

@@ -17,23 +17,28 @@ public class BlockTagsGenerator extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
-        // todo 方块的 tag 在这里加
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(BlockRegistry.refinedBeeswaxBlock.get());
-        //tag(BlockTags.MINEABLE_WITH_SHOVEL)
-        //        .add(AvarusBlocks.RED_DIRT.get())
-        //        .add(AvarusBlocks.GREEN_DIRT.get())
-        //        .add(AvarusBlocks.YELLOW_DIRT.get())
-        //        .add(AvarusBlocks.BLUE_DIRT.get());
-        //tag(BlockTags.NEEDS_IRON_TOOL)
-        //        .add(AvarusBlocks.RED_DIRT.get())
-        //        .add(AvarusBlocks.GREEN_DIRT.get())
-        //        .add(AvarusBlocks.YELLOW_DIRT.get())
-        //        .add(AvarusBlocks.BLUE_DIRT.get());
+                .add(BlockRegistry.refinedBeeswaxBlock.get())
+                .add(BlockRegistry.refinedBeeswaxPillar.get())
+                .add(BlockRegistry.refinedBeeswaxBlockChiseled.get())
+                .add(BlockRegistry.refinedBeeswaxStairs.get())
+                .add(BlockRegistry.refinedBeeswaxSlab.get())
+                .add(BlockRegistry.smoothRefinedBeeswaxBlock.get())
+                .add(BlockRegistry.amphora.get())
+                .add(BlockRegistry.meadPot.get());
+        tag(BlockTags.NEEDS_STONE_TOOL)
+                .add(BlockRegistry.refinedBeeswaxBlock.get())
+                .add(BlockRegistry.refinedBeeswaxPillar.get())
+                .add(BlockRegistry.refinedBeeswaxBlockChiseled.get())
+                .add(BlockRegistry.refinedBeeswaxStairs.get())
+                .add(BlockRegistry.refinedBeeswaxSlab.get())
+                .add(BlockRegistry.smoothRefinedBeeswaxBlock.get());
+        tag(BlockTags.NEEDS_IRON_TOOL)
+                .add(BlockRegistry.meadPot.get());
     }
 
     @Override
     public String getName() {
-        return DataGenerators.MOD_ID + " Tags";
+        return DataGenerators.MOD_NAME + "Block Tags";
     }
 }

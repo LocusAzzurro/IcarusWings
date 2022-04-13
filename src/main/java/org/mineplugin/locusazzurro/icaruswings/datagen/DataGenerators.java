@@ -12,6 +12,7 @@ import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 @Mod.EventBusSubscriber(modid = DataGenerators.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
     public static final String MOD_ID = ModData.MOD_ID;
+    public static final String MOD_NAME = "Icarus Wings";
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
