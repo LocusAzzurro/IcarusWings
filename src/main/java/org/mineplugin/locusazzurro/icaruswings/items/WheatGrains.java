@@ -68,11 +68,10 @@ public class WheatGrains extends Item{
 	}
 
 	@SubscribeEvent
-	public static void tamedParrotHandler(PlayerInteractEvent.EntityInteractSpecific evt){
-		if (evt.getTarget() instanceof Parrot
+	public static void tamedParrotHandler(PlayerInteractEvent.EntityInteract evt){
+		if (evt.getTarget() instanceof Parrot parrot
 				&& evt.getPlayer().getItemInHand(evt.getHand()).getItem() instanceof WheatGrains){
-			Parrot parrot = (Parrot) evt.getTarget();
-			net.minecraft.world.item.ItemStack grains = evt.getPlayer().getItemInHand(evt.getHand());
+			ItemStack grains = evt.getPlayer().getItemInHand(evt.getHand());
 			if (!parrot.isFlying() && parrot.isTame() && !evt.getWorld().isClientSide()) {
 				grains.interactLivingEntity(evt.getPlayer(), parrot, evt.getHand());
 				parrot.setOrderedToSit(!parrot.isOrderedToSit());
