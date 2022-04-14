@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:linen_cloak"
+            "items": ["locusazzurro_icaruswings:linen_cloak"]
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:linen_undergarment"
+            "items": ["locusazzurro_icaruswings:linen_undergarment"]
           }
         ]
       }

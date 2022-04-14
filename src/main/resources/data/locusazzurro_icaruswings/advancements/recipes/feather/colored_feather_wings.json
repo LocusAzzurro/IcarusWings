@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:colored_feather_bunch"
+            "items": ["locusazzurro_icaruswings:colored_feather_bunch"]
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:refined_beeswax_bar"
+            "items": ["locusazzurro_icaruswings:refined_beeswax_bar"]
           }
         ]
       }

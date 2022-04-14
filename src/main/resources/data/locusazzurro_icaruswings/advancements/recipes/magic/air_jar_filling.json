@@ -13,7 +13,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:glass_jar"
+            "items": ["locusazzurro_icaruswings:glass_jar"]
           }
         ]
       }

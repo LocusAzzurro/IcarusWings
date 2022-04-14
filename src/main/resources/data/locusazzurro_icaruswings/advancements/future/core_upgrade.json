@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:upgraded_fallen_relic_core"
+            "items": ["locusazzurro_icaruswings:upgraded_fallen_relic_core"]
           }
         ]
       }

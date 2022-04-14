@@ -399,7 +399,7 @@
     ]
   },
   "item.transport_card.teleport": {
-    "subtitle": "subtitles.iitem.transport_card.teleport",
+    "subtitle": "subtitles.item.transport_card.teleport",
     "replace": true,
     "sounds": [
       "mob/endermen/portal",

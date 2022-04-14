@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:artemis_launcher"
+            "items": ["locusazzurro_icaruswings:artemis_launcher"]
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:tnt"
+            "items": ["minecraft:tnt"]
           }
         ]
       }

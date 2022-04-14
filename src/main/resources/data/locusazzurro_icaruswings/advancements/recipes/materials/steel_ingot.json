@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:steel_mixture"
+            "items": ["locusazzurro_icaruswings:steel_mixture"]
           }
         ]
       }

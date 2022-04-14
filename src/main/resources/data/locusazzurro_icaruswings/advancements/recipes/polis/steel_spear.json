@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:steel_ingot"
+            "items": ["locusazzurro_icaruswings:steel_ingot"]
           }
         ]
       }

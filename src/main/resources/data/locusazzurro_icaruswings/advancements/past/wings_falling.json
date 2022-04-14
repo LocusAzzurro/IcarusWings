@@ -20,7 +20,7 @@
       "trigger": "minecraft:item_durability_changed",
       "conditions": {
         "item": {
-          "item": "locusazzurro_icaruswings:colored_feather_wings"
+          "items": ["locusazzurro_icaruswings:colored_feather_wings"]
         },
         "durability": 
 		{
@@ -34,13 +34,13 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:oxeye_daisy"
+            "items": ["minecraft:oxeye_daisy"]
           },
 		  {
-            "item": "minecraft:lily_of_the_valley"
+            "items": ["minecraft:lily_of_the_valley"]
           },
 		  {
-            "item": "minecraft:peony"
+            "items": ["minecraft:peony"]
           }
         ]
       }

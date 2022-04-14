@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:feather"
+            "items": ["minecraft:feather"]
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:honeycomb"
+            "items": ["minecraft:honeycomb"]
           }
         ]
       }

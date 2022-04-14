@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:restored_fallen_relic_propulsion"
+            "items": ["locusazzurro_icaruswings:restored_fallen_relic_propulsion"]
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:synapse_alloy_ingot"
+            "items": ["locusazzurro_icaruswings:synapse_alloy_ingot"]
           }
         ]
       }

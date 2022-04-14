@@ -12,7 +12,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:synapse_helmet"
+            "items": ["locusazzurro_icaruswings:synapse_helmet"]
           }
         ]
       }
@@ -22,7 +22,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:synapse_chestplate"
+            "items": ["locusazzurro_icaruswings:synapse_chestplate"]
           }
         ]
       }
@@ -32,7 +32,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:synapse_leggings"
+            "items": ["locusazzurro_icaruswings:synapse_leggings"]
           }
         ]
       }
@@ -42,7 +42,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:synapse_boots"
+            "items": ["locusazzurro_icaruswings:synapse_boots"]
           }
         ]
       }

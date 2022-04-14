@@ -12,7 +12,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:transport_card_base"
+            "items": ["locusazzurro_icaruswings:transport_card_base"]
           }
         ]
       }
@@ -22,7 +22,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:synapse_alloy_ingot"
+            "items": ["locusazzurro_icaruswings:synapse_alloy_ingot"]
           }
         ]
       }
@@ -32,7 +32,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:gold_ingot"
+            "items": ["minecraft:gold_ingot"]
           }
         ]
       }

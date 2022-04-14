@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:disc_fallen_down"
+            "items": ["locusazzurro_icaruswings:disc_fallen_down"]
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:disc_ring_my_bell"
+            "items": ["locusazzurro_icaruswings:disc_ring_my_bell"]
           }
         ]
       }

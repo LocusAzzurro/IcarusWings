@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:restored_fallen_relic_core"
+            "items": ["locusazzurro_icaruswings:restored_fallen_relic_core"]
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:elytra"
+            "items": ["minecraft:elytra"]
           }
         ]
       }

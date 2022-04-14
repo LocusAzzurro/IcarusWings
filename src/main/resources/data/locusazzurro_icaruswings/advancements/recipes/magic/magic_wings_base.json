@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:philosopher_stone"
+            "items": ["locusazzurro_icaruswings:philosopher_stone"]
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:elytra"
+            "items": ["minecraft:elytra"]
           }
         ]
       }

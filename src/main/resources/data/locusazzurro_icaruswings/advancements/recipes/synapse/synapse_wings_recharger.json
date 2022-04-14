@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:synapse_repair_kit"
+            "items": ["locusazzurro_icaruswings:synapse_repair_kit"]
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:quantum_fuel"
+            "items": ["locusazzurro_icaruswings:quantum_fuel"]
           }
         ]
       }

@@ -13,7 +13,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:zephir_air_jar"
+            "items": ["locusazzurro_icaruswings:zephir_air_jar"]
           }
         ]
       }
@@ -23,7 +23,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:nether_air_jar"
+            "items": ["locusazzurro_icaruswings:nether_air_jar"]
           }
         ]
       }
@@ -33,7 +33,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:void_air_jar"
+            "items": ["locusazzurro_icaruswings:void_air_jar"]
           }
         ]
       }
@@ -43,7 +43,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:philosopher_stone"
+            "items": ["locusazzurro_icaruswings:philosopher_stone"]
           }
         ]
       }

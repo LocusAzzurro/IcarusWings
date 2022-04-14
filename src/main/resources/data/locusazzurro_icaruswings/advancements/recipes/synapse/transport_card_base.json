@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:paper"
+            "items": ["minecraft:paper"]
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:quantum_fuel"
+            "items": ["locusazzurro_icaruswings:quantum_fuel"]
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:daedalus_decryptor"
+            "items": ["locusazzurro_icaruswings:daedalus_decryptor"]
           }
         ]
       }

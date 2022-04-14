@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:quantum_fuel"
+            "items": ["locusazzurro_icaruswings:quantum_fuel"]
           }
         ]
       }

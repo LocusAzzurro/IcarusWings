@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:amphora"
+            "items": ["locusazzurro_icaruswings:amphora"]
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:mead_pot"
+            "items": ["locusazzurro_icaruswings:mead_pot"]
           }
         ]
       }

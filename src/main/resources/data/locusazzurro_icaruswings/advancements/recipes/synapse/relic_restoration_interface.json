@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:fallen_relic_interface"
+            "items": ["locusazzurro_icaruswings:fallen_relic_interface"]
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:daedalus_decryptor"
+            "items": ["locusazzurro_icaruswings:daedalus_decryptor"]
           }
         ]
       }

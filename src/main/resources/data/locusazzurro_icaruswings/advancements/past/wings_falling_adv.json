@@ -20,7 +20,7 @@
       "trigger": "minecraft:item_durability_changed",
       "conditions": {
         "item": {
-          "item": "locusazzurro_icaruswings:golden_feather_wings"
+          "items": ["locusazzurro_icaruswings:golden_feather_wings"]
         },
         "durability": 
 		{

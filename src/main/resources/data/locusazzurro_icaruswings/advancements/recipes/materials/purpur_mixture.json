@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:popped_chorus_fruit"
+            "items": ["minecraft:popped_chorus_fruit"]
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:ender_pearl"
+            "items": ["minecraft:ender_pearl"]
           }
         ]
       }

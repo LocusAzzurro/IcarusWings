@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:ikaros_wings"
+            "items": ["locusazzurro_icaruswings:ikaros_wings"]
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:nymph_wings"
+            "items": ["locusazzurro_icaruswings:nymph_wings"]
           }
         ]
       }
@@ -41,7 +41,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:astraea_wings"
+            "items": ["locusazzurro_icaruswings:astraea_wings"]
           }
         ]
       }

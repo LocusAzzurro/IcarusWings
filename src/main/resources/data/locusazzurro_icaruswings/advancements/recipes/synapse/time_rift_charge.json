@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:time_rift_generator"
+            "items": ["locusazzurro_icaruswings:time_rift_generator"]
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:quantum_fuel"
+            "items": ["locusazzurro_icaruswings:quantum_fuel"]
           }
         ]
       }

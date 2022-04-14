@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:beeswax_block"
+            "items": ["locusazzurro_icaruswings:beeswax_block"]
           }
         ]
       }

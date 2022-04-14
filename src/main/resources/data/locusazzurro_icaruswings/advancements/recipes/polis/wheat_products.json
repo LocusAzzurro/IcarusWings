@@ -12,7 +12,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:wheat"
+            "items": ["minecraft:wheat"]
           }
         ]
       }

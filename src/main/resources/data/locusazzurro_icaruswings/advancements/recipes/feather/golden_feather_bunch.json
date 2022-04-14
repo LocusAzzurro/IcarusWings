@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:golden_feather"
+            "items": ["locusazzurro_icaruswings:golden_feather"]
           }
         ]
       }

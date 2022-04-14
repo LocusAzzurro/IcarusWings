@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:reforged_netherite_ingot"
+            "items": ["locusazzurro_icaruswings:reforged_netherite_ingot"]
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:daedalus_decryptor"
+            "items": ["locusazzurro_icaruswings:daedalus_decryptor"]
           }
         ]
       }

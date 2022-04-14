@@ -12,7 +12,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:linen"
+            "items": ["locusazzurro_icaruswings:linen"]
           }
         ]
       }

@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:red_feather"
+            "items": ["locusazzurro_icaruswings:red_feather"]
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:blue_feather"
+            "items": ["locusazzurro_icaruswings:blue_feather"]
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:green_feather"
+            "items": ["locusazzurro_icaruswings:green_feather"]
           }
         ]
       }
@@ -41,7 +41,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:cyan_feather"
+            "items": ["locusazzurro_icaruswings:cyan_feather"]
           }
         ]
       }
@@ -51,7 +51,7 @@
       "conditions": {
         "items": [
           {
-            "item": "locusazzurro_icaruswings:gray_feather"
+            "items": ["locusazzurro_icaruswings:gray_feather"]
           }
         ]
       }
