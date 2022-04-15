@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "locusazzurro_icaruswings:block/flax_stage7"
+  }
+}

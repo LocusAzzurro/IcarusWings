@@ -24,7 +24,7 @@ public class Beeswax extends Item {
 	@SubscribeEvent
 	public static void onFuelTime(FurnaceFuelBurnTimeEvent event) {
 		if (event.getItemStack().getItem() == ItemRegistry.beeswax.get())
-		event.setBurnTime(200);
+			event.setBurnTime(200);
 	}
 	
 	public int getBurnTime(ItemStack stack) {

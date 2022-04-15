@@ -17,8 +17,8 @@ public class BlockRegistry {
     public static final RegistryObject<Block> refinedBeeswaxStairs = BLOCKS.register("refined_beeswax_stairs", RefinedBeeswaxStairs::new);
     public static final RegistryObject<Block> refinedBeeswaxBlockChiseled = BLOCKS.register("chiseled_refined_beeswax_block", RefinedBeeswaxBlock::new);
     public static final RegistryObject<Block> smoothRefinedBeeswaxBlock = BLOCKS.register("smooth_refined_beeswax_block", RefinedBeeswaxBlock::new);
-    public static final RegistryObject<net.minecraft.world.level.block.Block> flaxCrop = BLOCKS.register("flax", FlaxCrop::new);
-    public static final RegistryObject<net.minecraft.world.level.block.Block> elysianGrassBlock = BLOCKS.register("elysian_grass_block", ElysianGrassBlock::new);
+    public static final RegistryObject<Block> flaxCrop = BLOCKS.register("flax", FlaxCrop::new);
+    public static final RegistryObject<Block> elysianGrassBlock = BLOCKS.register("elysian_grass_block", ElysianGrassBlock::new);
     public static final RegistryObject<Block> elysianSoil = BLOCKS.register("elysian_soil", ElysianSoil::new);
     public static final RegistryObject<Block> elysianGrass = BLOCKS.register("elysian_grass", ElysianGrass::new);
 
