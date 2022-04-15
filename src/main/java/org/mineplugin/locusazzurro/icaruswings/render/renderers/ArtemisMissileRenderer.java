@@ -39,8 +39,8 @@ public class ArtemisMissileRenderer extends EntityRenderer<ArtemisMissileEntity>
         matrixStackIn.translate(0f, -0.25f, 0f);
         matrixStackIn.mulPose(Vector3f.YN.rotationDegrees(entityYaw));
         matrixStackIn.mulPose(com.mojang.math.Vector3f.XN.rotationDegrees(entityIn.getXRot()));
-        VertexConsumer ivertexbuilder = bufferIn.getBuffer(model.renderType(MISSILE));
-        this.model.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        VertexConsumer vertexBuilder = bufferIn.getBuffer(model.renderType(MISSILE));
+        this.model.renderToBuffer(matrixStackIn, vertexBuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         matrixStackIn.popPose();
     }
 }
