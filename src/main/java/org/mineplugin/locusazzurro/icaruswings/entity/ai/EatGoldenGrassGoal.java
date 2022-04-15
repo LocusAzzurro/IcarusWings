@@ -68,19 +68,19 @@ public class EatGoldenGrassGoal extends net.minecraft.world.entity.ai.goal.Goal 
     public void tick() {
         this.eatAnimationTick = Math.max(0, this.eatAnimationTick - 1);
         if (this.eatAnimationTick == 4) {
-            BlockPos blockpos = this.mob.blockPosition();
-            if (IS_GOLDEN_GRASS.test(this.level.getBlockState(blockpos))) {
+            BlockPos mobPos = this.mob.blockPosition();
+            if (IS_GOLDEN_GRASS.test(this.level.getBlockState(mobPos))) {
                 if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
-                    this.level.destroyBlock(blockpos, false);
+                    this.level.destroyBlock(mobPos, false);
                 }
 
                 this.mob.ate();
             } else {
-                BlockPos blockpos1 = blockpos.below();
-                if (this.level.getBlockState(blockpos1).is(this.eatBlock)) {
+                BlockPos mobPosBelow = mobPos.below();
+                if (this.level.getBlockState(mobPosBelow).is(this.eatBlock)) {
                     if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
-                        this.level.levelEvent(2001, blockpos1, net.minecraft.world.level.block.Block.getId(this.eatBlock.defaultBlockState()));
-                        this.level.setBlock(blockpos1, this.eatenBlock.defaultBlockState(), 2);
+                        this.level.levelEvent(2001, mobPosBelow, net.minecraft.world.level.block.Block.getId(this.eatBlock.defaultBlockState()));
+                        this.level.setBlock(mobPosBelow, this.eatenBlock.defaultBlockState(), 2);
                     }
 
                     this.mob.ate();

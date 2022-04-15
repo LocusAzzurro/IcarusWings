@@ -62,39 +62,38 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
                        float headPitch) {
 		ItemStack itemstack = entityLivingBaseIn.getItemBySlot(EquipmentSlot.CHEST);
 		if (shouldRender(itemstack, entityLivingBaseIn)) {
-			net.minecraft.resources.ResourceLocation resourcelocation;
-			if (entityLivingBaseIn instanceof AbstractClientPlayer) {
-				AbstractClientPlayer abstractclientplayerentity = (AbstractClientPlayer) entityLivingBaseIn;
-				if (abstractclientplayerentity.isElytraLoaded()
-						&& abstractclientplayerentity.getElytraTextureLocation() != null) {
-					resourcelocation = abstractclientplayerentity.getElytraTextureLocation();
-				} else if (abstractclientplayerentity.isCapeLoaded()
-						&& abstractclientplayerentity.getCloakTextureLocation() != null
-						&& abstractclientplayerentity.isModelPartShown(PlayerModelPart.CAPE)) {
-					resourcelocation = abstractclientplayerentity.getCloakTextureLocation();
+			net.minecraft.resources.ResourceLocation resourceLocation;
+			if (entityLivingBaseIn instanceof AbstractClientPlayer player) {
+				if (player.isElytraLoaded()
+						&& player.getElytraTextureLocation() != null) {
+					resourceLocation = player.getElytraTextureLocation();
+				} else if (player.isCapeLoaded()
+						&& player.getCloakTextureLocation() != null
+						&& player.isModelPartShown(PlayerModelPart.CAPE)) {
+					resourceLocation = player.getCloakTextureLocation();
 				} else {
-					resourcelocation = getElytraTexture(itemstack, entityLivingBaseIn);
+					resourceLocation = getElytraTexture(itemstack, entityLivingBaseIn);
 				}
 			} else {
-				resourcelocation = getElytraTexture(itemstack, entityLivingBaseIn);
+				resourceLocation = getElytraTexture(itemstack, entityLivingBaseIn);
 			}
 			matrixStackIn.pushPose();
 			matrixStackIn.translate(0.0D, 0.0D, 0.125D);
-			if(itemstack.getItem() instanceof IWingsExpandable && entityLivingBaseIn.isFallFlying()) {
-				float s = ((IWingsExpandable) itemstack.getItem()).getExpansionFactor();
-				matrixStackIn.scale(s, s, 1.0f);
+			if(itemstack.getItem() instanceof IWingsExpandable wingsExpandable && entityLivingBaseIn.isFallFlying()) {
+				float scale = wingsExpandable.getExpansionFactor();
+				matrixStackIn.scale(scale, scale, 1.0f);
 				//matrixStackIn.mulPose(new Quaternion(1f,0f,0f,0f));
 			}
 			this.getParentModel().copyPropertiesTo(this.elytraModel);
 			this.elytraModel.setupAnim(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-			VertexConsumer ivertexbuilder;
-			if(itemstack.getItem() instanceof IWingsTranslucent) {
-			ivertexbuilder = ItemRenderer.getArmorFoilBuffer(bufferIn, RenderType.entityTranslucent(resourcelocation), false, false);
-			}
-			else {
-			ivertexbuilder = ItemRenderer.getArmorFoilBuffer(bufferIn, RenderType.armorCutoutNoCull(resourcelocation), false, itemstack.hasFoil());
-			}
-			this.elytraModel.renderToBuffer(matrixStackIn, ivertexbuilder, packetLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+			boolean isWingsTranslucent = itemstack.getItem() instanceof IWingsTranslucent;
+			VertexConsumer vertexBuilder = ItemRenderer.getArmorFoilBuffer(bufferIn,
+					isWingsTranslucent ? RenderType.entityTranslucent(resourceLocation) : RenderType.armorCutoutNoCull(resourceLocation),
+					false,
+					!isWingsTranslucent && itemstack.hasFoil()
+			);
+
+			this.elytraModel.renderToBuffer(matrixStackIn, vertexBuilder, packetLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 			
 			matrixStackIn.popPose();
 		}

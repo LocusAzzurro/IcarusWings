@@ -35,14 +35,14 @@ public class SpearRenderer extends EntityRenderer<SpearEntity> {
     }
 
     @Override
-    public void render(SpearEntity spearEntity, float p_225623_2_, float p_225623_3_, PoseStack stack, MultiBufferSource buffer, int p_225623_6_) {
+    public void render(SpearEntity spearEntity, float entityYaw, float partialTicks, PoseStack stack, MultiBufferSource buffer, int packedLight) {
         stack.pushPose();
-        stack.mulPose(com.mojang.math.Vector3f.YP.rotationDegrees(Mth.lerp(p_225623_3_, spearEntity.yRotO, spearEntity.getYRot()) - 90.0F));
-        stack.mulPose(Vector3f.ZP.rotationDegrees(Mth.lerp(p_225623_3_, spearEntity.xRotO, spearEntity.getXRot()) + 90.0F));
-        VertexConsumer ivertexbuilder = ItemRenderer.getFoilBufferDirect(buffer, this.model.renderType(this.getTextureLocation(spearEntity)), false, spearEntity.isFoil());
-        this.model.renderToBuffer(stack, ivertexbuilder, p_225623_6_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        stack.mulPose(com.mojang.math.Vector3f.YP.rotationDegrees(Mth.lerp(partialTicks, spearEntity.yRotO, spearEntity.getYRot()) - 90.0F));
+        stack.mulPose(Vector3f.ZP.rotationDegrees(Mth.lerp(partialTicks, spearEntity.xRotO, spearEntity.getXRot()) + 90.0F));
+        VertexConsumer vertexBuilder = ItemRenderer.getFoilBufferDirect(buffer, this.model.renderType(this.getTextureLocation(spearEntity)), false, spearEntity.isFoil());
+        this.model.renderToBuffer(stack, vertexBuilder, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         stack.popPose();
-        super.render(spearEntity, p_225623_2_, p_225623_3_, stack, buffer, p_225623_6_);
+        super.render(spearEntity, entityYaw, partialTicks, stack, buffer, packedLight);
     }
 
     @Override
