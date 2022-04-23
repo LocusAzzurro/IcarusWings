@@ -43,11 +43,11 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 	}
 	
 	@Override
-	public ResourceLocation getElytraTexture(net.minecraft.world.item.ItemStack stack, T entity) {
+	public ResourceLocation getElytraTexture(ItemStack stack, T entity) {
 		Item item = stack.getItem();
 		if (item instanceof AbstractWings)
 		{	
-			if(entity.isFallFlying() && (item instanceof IWingsExpandable))
+			if((entity.isFallFlying() && (item instanceof IWingsExpandable)) || AbstractWings.isEntityFloating(entity))
 			{
 				return ((AbstractWings) item).getType().getTextureReversed();
 			}
@@ -79,10 +79,9 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 			}
 			matrixStackIn.pushPose();
 			matrixStackIn.translate(0.0D, 0.0D, 0.125D);
-			if(itemstack.getItem() instanceof IWingsExpandable wingsExpandable && entityLivingBaseIn.isFallFlying()) {
+			if((itemstack.getItem() instanceof IWingsExpandable wingsExpandable && entityLivingBaseIn.isFallFlying())) {
 				float scale = wingsExpandable.getExpansionFactor();
 				matrixStackIn.scale(scale, scale, 1.0f);
-				//matrixStackIn.mulPose(new Quaternion(1f,0f,0f,0f));
 			}
 			this.getParentModel().copyPropertiesTo(this.elytraModel);
 			this.elytraModel.setupAnim(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);

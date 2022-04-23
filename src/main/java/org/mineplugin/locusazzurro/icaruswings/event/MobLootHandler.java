@@ -26,8 +26,8 @@ public class MobLootHandler {
 		Entity entity = event.getEntity();
 		int looting = event.getLootingLevel();
 		
-		List<Pair<Supplier<net.minecraft.world.item.ItemStack>, Float>> tables = new ArrayList<>();
-		List<net.minecraft.world.item.ItemStack> stacks = new ArrayList<>();
+		List<Pair<Supplier<ItemStack>, Float>> tables = new ArrayList<>();
+		List<ItemStack> stacks = new ArrayList<>();
 		
 		if (event.getSource().getEntity() instanceof Player) {
 		LOOTREF.find(entity.getClass()).forEach((key, val) -> tables.add(val));
@@ -39,16 +39,16 @@ public class MobLootHandler {
 		}
     }
 	
-	private static final BindList<Class<? extends net.minecraft.world.entity.Entity>, Pair<Supplier<net.minecraft.world.item.ItemStack>, Float>> LOOTREF = new BindList<>();
+	private static final BindList<Class<? extends Entity>, Pair<Supplier<ItemStack>, Float>> LOOTREF = new BindList<>();
 	
 	static {
 		
-		LOOTREF.setPayload(Pair.of(() -> new net.minecraft.world.item.ItemStack(ItemRegistry.zephirEssence.get()), 0.1f)).setInto(Bat.class);
-		LOOTREF.setPayload(Pair.of(() -> new net.minecraft.world.item.ItemStack(ItemRegistry.zephirEssence.get()), 0.1f)).setInto(Phantom.class);
-		LOOTREF.setPayload(Pair.of(() -> new net.minecraft.world.item.ItemStack(ItemRegistry.netherEssence.get()), 0.1f)).setInto(WitherSkeleton.class);
-		LOOTREF.setPayload(Pair.of(() -> new net.minecraft.world.item.ItemStack(ItemRegistry.netherEssence.get()), 0.05f)).setInto(Blaze.class);
-		LOOTREF.setPayload(Pair.of(() -> new net.minecraft.world.item.ItemStack(ItemRegistry.voidEssence.get()), 0.2f)).setInto(Shulker.class);
-		LOOTREF.setPayload(Pair.of(() -> new net.minecraft.world.item.ItemStack(ItemRegistry.voidEssence.get()), 0.05f)).setInto(EnderMan.class);
+		LOOTREF.setPayload(Pair.of(() -> new ItemStack(ItemRegistry.zephirEssence.get()), 0.1f)).setInto(Bat.class);
+		LOOTREF.setPayload(Pair.of(() -> new ItemStack(ItemRegistry.zephirEssence.get()), 0.1f)).setInto(Phantom.class);
+		LOOTREF.setPayload(Pair.of(() -> new ItemStack(ItemRegistry.netherEssence.get()), 0.1f)).setInto(WitherSkeleton.class);
+		LOOTREF.setPayload(Pair.of(() -> new ItemStack(ItemRegistry.netherEssence.get()), 0.05f)).setInto(Blaze.class);
+		LOOTREF.setPayload(Pair.of(() -> new ItemStack(ItemRegistry.voidEssence.get()), 0.2f)).setInto(Shulker.class);
+		LOOTREF.setPayload(Pair.of(() -> new ItemStack(ItemRegistry.voidEssence.get()), 0.05f)).setInto(EnderMan.class);
 	}
 	
 }

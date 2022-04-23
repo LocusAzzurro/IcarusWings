@@ -4,15 +4,18 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.ElytraModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.mineplugin.locusazzurro.icaruswings.items.AbstractWings;
 
 @OnlyIn(Dist.CLIENT)
 public class WingsModel<T extends LivingEntity> extends ElytraModel<T> {
 	private final ModelPart rightWing;
 	private final ModelPart leftWing;
+	private final float PI = (float) Math.PI;
 
 	public WingsModel(ModelPart pRoot) {
 		super(pRoot);
@@ -26,45 +29,45 @@ public class WingsModel<T extends LivingEntity> extends ElytraModel<T> {
 	}
 
 	@Override
-	public void setupAnim(T entityLivingBaseIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		float f = 0.2617994F;
-		float f1 = -0.2617994F;
-		float f2 = 0.0F;
-		float f3 = 0.0F;
-		if (entityLivingBaseIn.isFallFlying()) {
-			float f4 = 1.0F;
-			Vec3 vector3d = entityLivingBaseIn.getDeltaMovement();
-			if (vector3d.y < 0.0D) {
-				Vec3 vector3d1 = vector3d.normalize();
-				f4 = 1.0F - (float) Math.pow(-vector3d1.y, 1.5D);
+	public void setupAnim(T pEntity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		float xRot = PI / 12; //15 deg
+		float zRot = - PI / 12;
+		float yPos = 0.0F;
+		float yRot = 0.0F;
+		if (pEntity.isFallFlying()) {
+			float fallMod = 1.0F;
+			Vec3 mov = pEntity.getDeltaMovement();
+			if (mov.y < 0.0D) {
+				Vec3 movN = mov.normalize();
+				fallMod = 1.0F - (float) Math.pow(-movN.y, 1.5D);
 			}
 
-			f = f4 * 0.34906584F + (1.0F - f4) * f;
-			f1 = f4 * (-(float) Math.PI / 2F) + (1.0F - f4) * f1;
-		} else if (entityLivingBaseIn.isCrouching()) {
-			f = 0.6981317F;
-			f1 = (-(float) Math.PI / 4F);
-			f2 = 3.0F;
-			f3 = 0.08726646F;
+			xRot = fallMod * 0.3491F + (1.0F - fallMod) * xRot; //20 deg
+			zRot = fallMod * (- PI / 2F) + (1.0F - fallMod) * zRot;
+		} else if (pEntity.isCrouching()) {
+			xRot = 0.6981F; //40 deg
+			zRot = (- PI / 4F);
+			yPos = 3.0F;
+			yRot = 0.0873F; //50 deg
+		}
+		else if (AbstractWings.isEntityFloating(pEntity)){
+			xRot = 0.3491F; //20 deg
+			zRot = - PI / 1.95F;
 		}
 
 		this.leftWing.x = 5.0F;
-		this.leftWing.y = f2;
-		if (entityLivingBaseIn instanceof AbstractClientPlayer) {
-			AbstractClientPlayer abstractclientplayerentity = (AbstractClientPlayer) entityLivingBaseIn;
-			abstractclientplayerentity.elytraRotX = (float) ((double) abstractclientplayerentity.elytraRotX
-					+ (double) (f - abstractclientplayerentity.elytraRotX) * 0.1D);
-			abstractclientplayerentity.elytraRotY = (float) ((double) abstractclientplayerentity.elytraRotY
-					+ (double) (f3 - abstractclientplayerentity.elytraRotY) * 0.1D);
-			abstractclientplayerentity.elytraRotZ = (float) ((double) abstractclientplayerentity.elytraRotZ
-					+ (double) (f1 - abstractclientplayerentity.elytraRotZ) * 0.1D);
-			this.leftWing.xRot = abstractclientplayerentity.elytraRotX;
-			this.leftWing.yRot = abstractclientplayerentity.elytraRotY;
-			this.leftWing.zRot = abstractclientplayerentity.elytraRotZ;
+		this.leftWing.y = yPos;
+		if (pEntity instanceof AbstractClientPlayer player) {
+			player.elytraRotX += (xRot - player.elytraRotX) * 0.1f;
+			player.elytraRotY += (yRot - player.elytraRotY) * 0.1f;
+			player.elytraRotZ += (zRot - player.elytraRotZ) * 0.1f;
+			this.leftWing.xRot = player.elytraRotX;
+			this.leftWing.yRot = player.elytraRotY;
+			this.leftWing.zRot = player.elytraRotZ;
 		} else {
-			this.leftWing.xRot = f;
-			this.leftWing.zRot = f1;
-			this.leftWing.yRot = f3;
+			this.leftWing.xRot = xRot;
+			this.leftWing.yRot = yRot;
+			this.leftWing.zRot = zRot;
 		}
 		this.rightWing.x = -this.leftWing.x;
 		this.rightWing.yRot = -this.leftWing.yRot;

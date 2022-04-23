@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ElytraItem;
@@ -66,6 +67,10 @@ public class AbstractWings extends ElytraItem {
 	@Override
 	public int getEnchantmentValue() {
 		return 15;
+	}
+
+	public static boolean isEntityFloating (LivingEntity entity){
+		return entity.hasEffect(MobEffects.SLOW_FALLING) || entity.hasEffect(MobEffects.LEVITATION);
 	}
 
 }
