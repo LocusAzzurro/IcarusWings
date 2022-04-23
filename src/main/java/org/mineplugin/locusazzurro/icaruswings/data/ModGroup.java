@@ -14,7 +14,7 @@ public class ModGroup {
 
 		@Override
 		public net.minecraft.world.item.ItemStack makeIcon() {
-			return new ItemStack(ItemRegistry.featherWings.get());
+			return new ItemStack(ItemRegistry.iconBadge.get());
 		}
 	}
 }

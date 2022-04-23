@@ -228,6 +228,7 @@ public class ItemRegistry {
     		() -> new SkyMusicDisc(SkyMusicDisc.Track.RING_MY_BELL));
     
     public static final RegistryObject<Item> melon = ITEMS.register("melon", MelonItem::new);
+    public static final RegistryObject<Item> iconBadge = ITEMS.register("icon_badge", IconBadge::new);
 
 }
 
