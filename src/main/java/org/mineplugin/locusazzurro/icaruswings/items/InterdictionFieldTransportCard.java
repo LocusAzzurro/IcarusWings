@@ -52,7 +52,7 @@ public class InterdictionFieldTransportCard extends AbstractTransportCard{
                     expand[i] = new Vector3f(point.scale(0.1 * i));
                 }
                 for (Vector3f vec : expand) {
-                    worldIn.addParticle(net.minecraft.core.particles.ParticleTypes.END_ROD,
+                    worldIn.addParticle(ParticleTypes.END_ROD,
                             playerIn.getX() + rPoint.x(),
                             playerIn.getY() + rPoint.y(),
                             playerIn.getZ() + rPoint.z(),
@@ -64,7 +64,7 @@ public class InterdictionFieldTransportCard extends AbstractTransportCard{
 
         float r = RANGE;
         AABB aabb = new AABB(r, r, r, -r, -r, -r).move(playerIn.position());
-        List<net.minecraft.world.entity.LivingEntity> entities = playerIn.level.getEntitiesOfClass(net.minecraft.world.entity.LivingEntity.class, aabb);
+        List<LivingEntity> entities = playerIn.level.getEntitiesOfClass(LivingEntity.class, aabb);
         entities.remove(playerIn);
         for (LivingEntity entity : entities) {
             entity.addEffect(new MobEffectInstance(EffectRegistry.interdiction.get(), 1200, 0));

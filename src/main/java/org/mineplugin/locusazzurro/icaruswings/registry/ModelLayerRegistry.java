@@ -4,13 +4,14 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.resources.ResourceLocation;
+import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.render.models.*;
 
 import java.util.Map;
 
 public class ModelLayerRegistry {
 
-    private static final String MOD_ID = org.mineplugin.locusazzurro.icaruswings.data.ModData.MOD_ID;
+    private static final String MOD_ID = ModData.MOD_ID;
 
     public static final ModelLayerLocation ARTEMIS_MISSILE = register("artemis_missile");
     public static final ModelLayerLocation SPEAR = register("spear");

@@ -37,7 +37,7 @@ public class SpearRenderer extends EntityRenderer<SpearEntity> {
     @Override
     public void render(SpearEntity spearEntity, float entityYaw, float partialTicks, PoseStack stack, MultiBufferSource buffer, int packedLight) {
         stack.pushPose();
-        stack.mulPose(com.mojang.math.Vector3f.YP.rotationDegrees(Mth.lerp(partialTicks, spearEntity.yRotO, spearEntity.getYRot()) - 90.0F));
+        stack.mulPose(Vector3f.YP.rotationDegrees(Mth.lerp(partialTicks, spearEntity.yRotO, spearEntity.getYRot()) - 90.0F));
         stack.mulPose(Vector3f.ZP.rotationDegrees(Mth.lerp(partialTicks, spearEntity.xRotO, spearEntity.getXRot()) + 90.0F));
         VertexConsumer vertexBuilder = ItemRenderer.getFoilBufferDirect(buffer, this.model.renderType(this.getTextureLocation(spearEntity)), false, spearEntity.isFoil());
         this.model.renderToBuffer(stack, vertexBuilder, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
@@ -52,16 +52,16 @@ public class SpearRenderer extends EntityRenderer<SpearEntity> {
     }
 
     protected static final Map<? extends Tier, ResourceLocation> MATERIALS = MapUtils.Builder
-            .<Tier, net.minecraft.resources.ResourceLocation>add(Tiers.WOOD, new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "textures/entity/wooden_spear.png"))
-            .add(Tiers.STONE, new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "textures/entity/stone_spear.png"))
-            .add(Tiers.IRON, new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "textures/entity/iron_spear.png"))
+            .<Tier, ResourceLocation>add(Tiers.WOOD, new ResourceLocation(ModData.MOD_ID, "textures/entity/wooden_spear.png"))
+            .add(Tiers.STONE, new ResourceLocation(ModData.MOD_ID, "textures/entity/stone_spear.png"))
+            .add(Tiers.IRON, new ResourceLocation(ModData.MOD_ID, "textures/entity/iron_spear.png"))
             .add(ModItemTier.STEEL, new ResourceLocation(ModData.MOD_ID, "textures/entity/steel_spear.png"))
             .add(Tiers.GOLD, new ResourceLocation(ModData.MOD_ID, "textures/entity/golden_spear.png"))
             .add(Tiers.DIAMOND, new ResourceLocation(ModData.MOD_ID, "textures/entity/diamond_spear.png"))
-            .add(Tiers.NETHERITE, new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "textures/entity/netherite_spear.png"))
+            .add(Tiers.NETHERITE, new ResourceLocation(ModData.MOD_ID, "textures/entity/netherite_spear.png"))
             .add(ModItemTier.SYNAPSE_ALLOY, new ResourceLocation(ModData.MOD_ID, "textures/entity/synapse_alloy_spear.png"));
 
-    protected static final ResourceLocation FALLBACK_SPEAR_TEXTURE = new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "textures/entity/wooden_spear.png");
+    protected static final ResourceLocation FALLBACK_SPEAR_TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/wooden_spear.png");
 
     public static ResourceLocation getTexture(Tier tier) {
         return MATERIALS.getOrDefault(tier, FALLBACK_SPEAR_TEXTURE);

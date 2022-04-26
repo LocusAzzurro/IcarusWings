@@ -48,7 +48,7 @@ public enum ModArmorMaterial implements ArmorMaterial {
 		int durabilityMultiplier, 
 		int[] slotProtections, 
 		int enchantmentValue,
-		Supplier<net.minecraft.sounds.SoundEvent> sound,
+		Supplier<SoundEvent> sound,
 		float toughness,
 		float knockbackResistance,
 		Supplier<Ingredient> repairIngredient

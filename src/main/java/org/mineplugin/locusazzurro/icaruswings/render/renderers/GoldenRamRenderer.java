@@ -16,7 +16,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @OnlyIn(Dist.CLIENT)
 public class GoldenRamRenderer extends MobRenderer<GoldenRamEntity, GoldenRamModel<GoldenRamEntity>>{
-    private static final net.minecraft.resources.ResourceLocation GOLDEN_RAM_TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/golden_ram.png");
+    private static final ResourceLocation GOLDEN_RAM_TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/golden_ram.png");
 
     public GoldenRamRenderer(EntityRendererProvider.Context context) {
         super(context, new GoldenRamModel<>(context.bakeLayer(ModelLayerRegistry.GOLDEN_RAM)), 0.7F);

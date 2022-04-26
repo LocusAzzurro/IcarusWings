@@ -42,8 +42,8 @@ public class EnchantmentBlessingOfTheSky extends WingsEnchantment {
 
     @SubscribeEvent
     public static void onEntityHurt(LivingHurtEvent e) {
-        if (e.getEntity() instanceof net.minecraft.world.entity.LivingEntity){
-            net.minecraft.world.entity.LivingEntity livingEntity = (LivingEntity) e.getEntity();
+        if (e.getEntity() instanceof LivingEntity){
+            LivingEntity livingEntity = (LivingEntity) e.getEntity();
             ItemStack armor = livingEntity.getItemBySlot(EquipmentSlot.CHEST);
             if (livingEntity.isFallFlying() && armor.getItem() instanceof ElytraItem
                 && EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistry.blessingOfTheSky.get(), livingEntity) > 0

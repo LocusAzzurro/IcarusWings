@@ -7,18 +7,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
+import net.minecraftforge.event.ForgeEventFactory;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
-public class EatGoldenGrassGoal extends net.minecraft.world.entity.ai.goal.Goal {
+public class EatGoldenGrassGoal extends Goal {
 
     private static final Predicate<BlockState> IS_GOLDEN_GRASS = BlockStatePredicate.forBlock(BlockRegistry.elysianGrass.get());
     private final Mob mob;
     private final Level level;
     private final Block eatBlock;
-    private final net.minecraft.world.level.block.Block eatenBlock;
+    private final Block eatenBlock;
     private int eatAnimationTick;
 
     public EatGoldenGrassGoal(Mob entity) {
@@ -26,7 +27,7 @@ public class EatGoldenGrassGoal extends net.minecraft.world.entity.ai.goal.Goal 
         this.level = entity.level;
         this.eatBlock = BlockRegistry.elysianGrassBlock.get();
         this.eatenBlock = BlockRegistry.elysianSoil.get();
-        this.setFlags(EnumSet.of(net.minecraft.world.entity.ai.goal.Goal.Flag.MOVE, Goal.Flag.LOOK, net.minecraft.world.entity.ai.goal.Goal.Flag.JUMP));
+        this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.JUMP));
     }
 
     @Override
@@ -70,7 +71,7 @@ public class EatGoldenGrassGoal extends net.minecraft.world.entity.ai.goal.Goal 
         if (this.eatAnimationTick == 4) {
             BlockPos mobPos = this.mob.blockPosition();
             if (IS_GOLDEN_GRASS.test(this.level.getBlockState(mobPos))) {
-                if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
+                if (ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
                     this.level.destroyBlock(mobPos, false);
                 }
 
@@ -78,8 +79,8 @@ public class EatGoldenGrassGoal extends net.minecraft.world.entity.ai.goal.Goal 
             } else {
                 BlockPos mobPosBelow = mobPos.below();
                 if (this.level.getBlockState(mobPosBelow).is(this.eatBlock)) {
-                    if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
-                        this.level.levelEvent(2001, mobPosBelow, net.minecraft.world.level.block.Block.getId(this.eatBlock.defaultBlockState()));
+                    if (ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
+                        this.level.levelEvent(2001, mobPosBelow, Block.getId(this.eatBlock.defaultBlockState()));
                         this.level.setBlock(mobPosBelow, this.eatenBlock.defaultBlockState(), 2);
                     }
 

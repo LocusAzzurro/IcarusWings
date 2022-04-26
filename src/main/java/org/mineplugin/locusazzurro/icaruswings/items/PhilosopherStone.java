@@ -9,7 +9,7 @@ import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 
-public class PhilosopherStone extends net.minecraft.world.item.Item {
+public class PhilosopherStone extends Item {
 
 	public PhilosopherStone() {
 		super(new Item.Properties().tab(ModGroup.itemGroup).stacksTo(1).food(food));
@@ -31,12 +31,12 @@ public class PhilosopherStone extends net.minecraft.world.item.Item {
 	}
 
 	@Override
-	public net.minecraft.world.item.ItemStack getContainerItem(net.minecraft.world.item.ItemStack itemStack) {
-		return new net.minecraft.world.item.ItemStack(ItemRegistry.philosopherStone.get());
+	public ItemStack getContainerItem(ItemStack itemStack) {
+		return new ItemStack(ItemRegistry.philosopherStone.get());
 	}
 
 	@Override
-	public boolean hasContainerItem(net.minecraft.world.item.ItemStack stack) {
+	public boolean hasContainerItem(ItemStack stack) {
 		return true;
 	}
 }

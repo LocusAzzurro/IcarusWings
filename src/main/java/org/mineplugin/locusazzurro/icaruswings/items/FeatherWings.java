@@ -25,7 +25,7 @@ public class FeatherWings extends AbstractWings {
 	}
 
 	@Override
-	public boolean canElytraFly(net.minecraft.world.item.ItemStack stack, LivingEntity entity) {
+	public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
 		return entity.level.dimension() != Level.END;
 	}
 

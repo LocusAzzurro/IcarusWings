@@ -25,7 +25,7 @@ import org.mineplugin.locusazzurro.icaruswings.registry.TileEntityTypeRegistry;
 
 public class AmphoraTileEntity extends RandomizableContainerBlockEntity {
 	
-	private NonNullList<net.minecraft.world.item.ItemStack> items = NonNullList.withSize(45, net.minecraft.world.item.ItemStack.EMPTY);
+	private NonNullList<ItemStack> items = NonNullList.withSize(45, ItemStack.EMPTY);
 
 
 	public AmphoraTileEntity(BlockPos a, BlockState b) {
@@ -43,7 +43,7 @@ public class AmphoraTileEntity extends RandomizableContainerBlockEntity {
 	}
 
 	@Override
-	protected void setItems(NonNullList<net.minecraft.world.item.ItemStack> listIn) {
+	protected void setItems(NonNullList<ItemStack> listIn) {
 		this.items = listIn;
 	}
 
@@ -68,7 +68,7 @@ public class AmphoraTileEntity extends RandomizableContainerBlockEntity {
 	@Override
 	public void load(CompoundTag nbt) {
 		super.load(nbt);
-		this.items = NonNullList.withSize(this.getContainerSize(), net.minecraft.world.item.ItemStack.EMPTY);
+		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		if (!this.tryLoadLootTable(nbt)) {
 			ContainerHelper.loadAllItems(nbt, this.items);
 		}

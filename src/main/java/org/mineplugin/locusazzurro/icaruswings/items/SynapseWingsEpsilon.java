@@ -27,11 +27,11 @@ public class SynapseWingsEpsilon extends SynapseWings implements IWingsExpandabl
 	}
 
 	@Override
-	protected Multimap<net.minecraft.world.entity.ai.attributes.Attribute, AttributeModifier> getModifiers() {
-		Builder<Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier> builder = ImmutableMultimap.builder();
-	    builder.put(net.minecraft.world.entity.ai.attributes.Attributes.ARMOR, new net.minecraft.world.entity.ai.attributes.AttributeModifier(MODIFIER_UUID, "Armor modifier", 2,	net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION));
-	    builder.put(Attributes.ATTACK_DAMAGE, new net.minecraft.world.entity.ai.attributes.AttributeModifier(MODIFIER_UUID, "attack_damage", 2.0f, net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_TOTAL));
-	    builder.put(Attributes.MOVEMENT_SPEED, new net.minecraft.world.entity.ai.attributes.AttributeModifier(MODIFIER_UUID, "movement_speed", 0.02f, AttributeModifier.Operation.ADDITION));
+	protected Multimap<Attribute, AttributeModifier> getModifiers() {
+		Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+	    builder.put(Attributes.ARMOR, new AttributeModifier(MODIFIER_UUID, "Armor modifier", 2,	AttributeModifier.Operation.ADDITION));
+	    builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(MODIFIER_UUID, "attack_damage", 2.0f, AttributeModifier.Operation.MULTIPLY_TOTAL));
+	    builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(MODIFIER_UUID, "movement_speed", 0.02f, AttributeModifier.Operation.ADDITION));
 		return builder.build();
 	}
 

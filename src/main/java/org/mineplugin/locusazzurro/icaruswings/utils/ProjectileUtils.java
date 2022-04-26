@@ -18,7 +18,7 @@ public class ProjectileUtils {
         for (int i = 0 ; i < depth; i++){
             AABB aabb = new AABB(hS,hS,hS,-hS,-hS,-hS).move(checkPos);
             List<LivingEntity> entities = targeter.level.getEntitiesOfClass(LivingEntity.class, aabb);
-            for (net.minecraft.world.entity.LivingEntity entity : entities){
+            for (LivingEntity entity : entities){
                 if (entity != targeter && targeter.hasLineOfSight(entity)) return entity;
             }
             checkPos = checkPos.add(lookVec.scale(step));
@@ -27,7 +27,7 @@ public class ProjectileUtils {
     }
 
     @Nullable
-    public static net.minecraft.world.entity.LivingEntity rayTraceTargetFixedDistance(LivingEntity targeter, double step, int distance, double size){
+    public static LivingEntity rayTraceTargetFixedDistance(LivingEntity targeter, double step, int distance, double size){
         return rayTraceTarget(targeter, step, (int)Math.ceil(distance/step), size);
     }
 

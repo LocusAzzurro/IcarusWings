@@ -36,6 +36,7 @@ import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -125,7 +126,7 @@ public class GoldenRamEntity extends Animal implements IForgeShearable {
 	protected SoundEvent getDeathSound() {return SoundRegistry.goldenRamDeath.get();}
 
 	@Override
-	protected void playStepSound(net.minecraft.core.BlockPos pos, BlockState state) {
+	protected void playStepSound(BlockPos pos, BlockState state) {
 		this.playSound(SoundRegistry.goldenRamStep.get(), 0.15F, 1.0F);
 	}
 
@@ -143,21 +144,21 @@ public class GoldenRamEntity extends Animal implements IForgeShearable {
 	}
 
 	@Override
-	public boolean isShearable(@Nonnull net.minecraft.world.item.ItemStack item, Level world, net.minecraft.core.BlockPos pos) {
+	public boolean isShearable(@Nonnull ItemStack item, Level world, BlockPos pos) {
 		return this.isAlive() && !this.isSheared();
 	}
 
 	@Nonnull
 	@Override
-	public List<net.minecraft.world.item.ItemStack> onSheared(@Nullable Player player, @Nonnull ItemStack item, Level world, BlockPos pos, int fortune) {
+	public List<ItemStack> onSheared(@Nullable Player player, @Nonnull ItemStack item, Level world, BlockPos pos, int fortune) {
 		world.playSound(null, this, SoundRegistry.goldenRamShear.get(), player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
 		if (!world.isClientSide) {
 			this.setSheared(true);
 			int i = 1 + this.random.nextInt(3);
 
-			java.util.List<net.minecraft.world.item.ItemStack> items = new java.util.ArrayList<>();
+			List<ItemStack> items = new ArrayList<>();
 			for (int j = 0; j < i; ++j) {
-				items.add(new net.minecraft.world.item.ItemStack(ItemRegistry.goldenFleece.get()));
+				items.add(new ItemStack(ItemRegistry.goldenFleece.get()));
 			}
 			return items;
 		}

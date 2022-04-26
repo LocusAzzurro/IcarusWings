@@ -41,7 +41,7 @@ public class AbstractWings extends ElytraItem {
 
 	@Nullable
 	@Override
-	public EquipmentSlot getEquipmentSlot(net.minecraft.world.item.ItemStack stack) {
+	public EquipmentSlot getEquipmentSlot(ItemStack stack) {
 		return EquipmentSlot.CHEST;
 	}
 

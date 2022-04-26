@@ -40,7 +40,7 @@ public class FallenRelic extends Item{
 	}
 	
 	@Override
-	public boolean isFoil(net.minecraft.world.item.ItemStack stackIn) {
+	public boolean isFoil(ItemStack stackIn) {
 		return this.isRestored;
 	}
 

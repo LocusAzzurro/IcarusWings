@@ -41,7 +41,7 @@ public class EnchantmentCollisionProtection extends WingsEnchantment {
 			int lvl = getWingsEnchantmentLevel(e.getEntity(), EnchantmentRegistry.collisionProtection.get());
 			int dmg = (int) (e.getAmount() * 0.1 * lvl);
 			if (e.getEntity() instanceof LivingEntity){
-				net.minecraft.world.entity.LivingEntity livingIn = (net.minecraft.world.entity.LivingEntity) e.getEntity();
+				LivingEntity livingIn = (LivingEntity) e.getEntity();
 				livingIn.getItemBySlot(EquipmentSlot.CHEST).hurtAndBreak(dmg, livingIn, e1 -> e1.broadcastBreakEvent((EquipmentSlot.CHEST)));
 			}
 		}

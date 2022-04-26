@@ -48,7 +48,7 @@ public class TimeRiftParticleEntity extends ThrowableItemProjectile {
             double xR = level.random.nextDouble() * 0.1d - 0.05d;
             double yR = level.random.nextDouble() * 0.1d - 0.05d;
             double zR = level.random.nextDouble() * 0.1d - 0.05d;
-            level.addParticle(net.minecraft.core.particles.ParticleTypes.DRAGON_BREATH, this.getX(), this.getY(), this.getZ(), xR,yR,zR);
+            level.addParticle(ParticleTypes.DRAGON_BREATH, this.getX(), this.getY(), this.getZ(), xR,yR,zR);
         }
     }
 
@@ -75,7 +75,7 @@ public class TimeRiftParticleEntity extends ThrowableItemProjectile {
     protected void onHitEntity(EntityHitResult ray){
         super.onHitEntity(ray);
         if (!this.level.isClientSide) {
-            net.minecraft.world.entity.Entity entity = ray.getEntity();
+            Entity entity = ray.getEntity();
             Entity owner = this.getOwner();
             entity.hurt(ModDamageSources.timeRift(owner), 2.0f);
             if (entity instanceof LivingEntity) {

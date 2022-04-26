@@ -33,11 +33,11 @@ public class SkyMusicDisc extends RecordItem {
 		RING_MY_BELL(2, () -> (SoundRegistry.trackRingMyBell.get()), "Ring My Bell", "Blue Drops");
 		
 		private int trackNum;
-		private Supplier<net.minecraft.sounds.SoundEvent> trackMusic;
+		private Supplier<SoundEvent> trackMusic;
 		private String trackName;
 		private String author;
 		
-		private Track(int trackNum, Supplier<net.minecraft.sounds.SoundEvent> trackMusic, String trackName, String author) {
+		private Track(int trackNum, Supplier<SoundEvent> trackMusic, String trackName, String author) {
 			this.trackNum = trackNum;
 			this.trackMusic = trackMusic;
 			this.trackName = trackName;

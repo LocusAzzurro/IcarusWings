@@ -48,11 +48,11 @@ public abstract class SynapseWings extends AbstractWings{
 	
 	@SuppressWarnings("deprecation")
 	@Override
-	public Multimap<Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
+	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
 		return slot == EquipmentSlot.CHEST ? this.getModifiers() : super.getDefaultAttributeModifiers(slot);
 	}
 	
-	protected abstract Multimap<net.minecraft.world.entity.ai.attributes.Attribute, AttributeModifier> getModifiers();
+	protected abstract Multimap<Attribute, AttributeModifier> getModifiers();
 
 	@Override
 	public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
@@ -85,7 +85,7 @@ public abstract class SynapseWings extends AbstractWings{
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void appendHoverText(net.minecraft.world.item.ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
+	public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(itemstack, world, list, flag);
 		list.add(new TranslatableComponent("item.locusazzurro_icaruswings." + this.type.getName() + ".tooltip")
 				.setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));

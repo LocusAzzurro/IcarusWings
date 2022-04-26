@@ -29,7 +29,7 @@ public class MaskingFieldTransportCard extends AbstractTransportCard{
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
-        net.minecraft.world.item.ItemStack itemstack = playerIn.getItemInHand(handIn);
+        ItemStack itemstack = playerIn.getItemInHand(handIn);
         if (!canUseCard(playerIn)) {
             return InteractionResultHolder.fail(itemstack);
         }

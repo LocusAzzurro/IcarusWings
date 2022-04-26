@@ -24,8 +24,8 @@ import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.gre
 
 public abstract class GreekFireFluid extends ForgeFlowingFluid{
 
-    public static final net.minecraft.resources.ResourceLocation GREEK_FIRE_STILL = new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "block/greek_fire_still");
-    public static final net.minecraft.resources.ResourceLocation GREEK_FIRE_FLOWING = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_flow");
+    public static final ResourceLocation GREEK_FIRE_STILL = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_still");
+    public static final ResourceLocation GREEK_FIRE_FLOWING = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_flow");
 
     public static ForgeFlowingFluid.Properties fluidProperties = new ForgeFlowingFluid.Properties(greekFire, greekFireFlowing,null)
             .bucket(ItemRegistry.greekFireBucket).block(BlockRegistry.greekFire).slopeFindDistance(1).explosionResistance(100F);
@@ -45,7 +45,7 @@ public abstract class GreekFireFluid extends ForgeFlowingFluid{
     @Override
     @OnlyIn(Dist.CLIENT)
     public void animateTick(Level worldIn, BlockPos blockPos, FluidState fluidState, Random random) {
-        net.minecraft.core.BlockPos blockpos = blockPos.above();
+        BlockPos blockpos = blockPos.above();
         if (worldIn.getBlockState(blockpos).isAir() && !worldIn.getBlockState(blockpos).isSolidRender(worldIn, blockpos)) {
             int seed = random.nextInt(200);
             if (seed == 0) {

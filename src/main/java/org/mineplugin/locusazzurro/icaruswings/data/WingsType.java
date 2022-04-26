@@ -33,7 +33,7 @@ public enum WingsType implements IWingsType{
 	private final ResourceLocation textureReversed;
 	private final IWLazy<SoundEvent> equipSound;
 
-	WingsType(String name, int durability, Supplier<Item> repairItem, boolean hasReverse, Supplier<net.minecraft.sounds.SoundEvent> equipSound) {
+	WingsType(String name, int durability, Supplier<Item> repairItem, boolean hasReverse, Supplier<SoundEvent> equipSound) {
 		this.name = name;
 		this.durability = durability;
 		this.repairItem = IWLazy.of(repairItem);
@@ -69,12 +69,12 @@ public enum WingsType implements IWingsType{
 	}
 
 	@Override
-	public net.minecraft.resources.ResourceLocation getTextureReversed() {
+	public ResourceLocation getTextureReversed() {
 		return this.hasReversedTexture ? this.textureReversed : this.texture;
 	}
 
 	@Override
-	public net.minecraft.sounds.SoundEvent getEquipSound() {
+	public SoundEvent getEquipSound() {
 		return this.equipSound.get();
 	}
 }

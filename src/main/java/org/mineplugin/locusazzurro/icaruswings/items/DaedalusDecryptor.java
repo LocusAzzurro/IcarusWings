@@ -20,8 +20,8 @@ public class DaedalusDecryptor extends Item {
 	}
 
 	@Override
-	public ItemStack getContainerItem(net.minecraft.world.item.ItemStack itemStack) {
-		return new net.minecraft.world.item.ItemStack(ItemRegistry.daedalusDecryptor.get());
+	public ItemStack getContainerItem(ItemStack itemStack) {
+		return new ItemStack(ItemRegistry.daedalusDecryptor.get());
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
-public abstract class WingsEnchantment extends net.minecraft.world.item.enchantment.Enchantment {
+public abstract class WingsEnchantment extends Enchantment {
 
     protected WingsEnchantment(Rarity rarity) {
         super(rarity, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[] {EquipmentSlot.CHEST});

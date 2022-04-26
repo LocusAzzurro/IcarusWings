@@ -35,7 +35,7 @@ public class TreasureTransportCard extends AbstractTransportCard{
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
-        net.minecraft.world.item.ItemStack itemstack = playerIn.getItemInHand(handIn);
+        ItemStack itemstack = playerIn.getItemInHand(handIn);
         if (!canUseCard(playerIn)) return InteractionResultHolder.fail(itemstack);
 
         List<ItemStack> lootItems = new ArrayList<>();
@@ -45,13 +45,13 @@ public class TreasureTransportCard extends AbstractTransportCard{
         if (!worldIn.isClientSide()){
             CompoundTag nbt = itemstack.getOrCreateTag();
             if (nbt.contains("LootTable")){
-                net.minecraft.resources.ResourceLocation lootTableResource = ResourceLocation.tryParse(nbt.getString("LootTable"));
+                ResourceLocation lootTableResource = ResourceLocation.tryParse(nbt.getString("LootTable"));
                 if (lootTableResource != null){
                     try {Objects.requireNonNull(worldIn.getServer());}
                     catch (NullPointerException e) {return InteractionResultHolder.fail(itemstack);}
                     LootTable lootTable = worldIn.getServer().getLootTables().get(lootTableResource);
                     long lootSeed = worldIn.random.nextLong();
-                    LootContext lootContext = (new net.minecraft.world.level.storage.loot.LootContext.Builder((ServerLevel)worldIn))
+                    LootContext lootContext = (new LootContext.Builder((ServerLevel)worldIn))
                             .withParameter(LootContextParams.ORIGIN, playerIn.position())
                             .withOptionalRandomSeed(lootSeed).withLuck(playerIn.getLuck())
                             .withParameter(LootContextParams.THIS_ENTITY, playerIn)
@@ -78,7 +78,7 @@ public class TreasureTransportCard extends AbstractTransportCard{
                 if (playerIn.isCrouching()){
                     ((ServerLevel) worldIn).sendParticles(ParticleRegistry.goldenSparkleBase.get(), playerIn.getX(), playerIn.getY(), playerIn.getZ(),
                             30, 0.5d, 0.5d, 0.5d, 0.0d);
-                    for (net.minecraft.world.item.ItemStack item : lootItems){
+                    for (ItemStack item : lootItems){
                         ItemHandlerHelper.giveItemToPlayer(playerIn, item);
                     }
                 }
@@ -86,10 +86,10 @@ public class TreasureTransportCard extends AbstractTransportCard{
                     Vec3[] dropPoints = MathUtils.randomPointsInCircle(lootItems.size(), 5, worldIn.random)
                             .toArray(new Vec3[lootItems.size()]);
                     int pI = 0;
-                    for (net.minecraft.world.item.ItemStack item : lootItems){
+                    for (ItemStack item : lootItems){
                         double yR = worldIn.random.nextDouble() * 0.5 - 0.25;
                         double yP = playerIn.getY() + 3 + yR;
-                        net.minecraft.world.entity.item.ItemEntity itemEntity = new ItemEntity(worldIn,
+                        ItemEntity itemEntity = new ItemEntity(worldIn,
                                 playerIn.getX() + dropPoints[pI].x, yP,
                                 playerIn.getZ() + dropPoints[pI].z, item);
                         worldIn.addFreshEntity(itemEntity);

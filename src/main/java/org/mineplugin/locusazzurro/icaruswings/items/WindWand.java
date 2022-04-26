@@ -23,7 +23,7 @@ public class WindWand extends Item {
     }
 
     @Override
-    public int getUseDuration(net.minecraft.world.item.ItemStack p_77626_1_) {
+    public int getUseDuration(ItemStack p_77626_1_) {
         return 72000;
     }
 
@@ -39,11 +39,11 @@ public class WindWand extends Item {
     }
 
     @Override
-    public void releaseUsing(net.minecraft.world.item.ItemStack itemStack, Level worldIn, LivingEntity livingIn, int charge) {
+    public void releaseUsing(ItemStack itemStack, Level worldIn, LivingEntity livingIn, int charge) {
         if (livingIn instanceof Player) {
             Player playerIn = (Player) livingIn;
             if (playerIn.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof AirJar && itemStack.getDamageValue() > 0) {
-                net.minecraft.world.item.ItemStack offhandStack = playerIn.getItemInHand(InteractionHand.OFF_HAND);
+                ItemStack offhandStack = playerIn.getItemInHand(InteractionHand.OFF_HAND);
                 int repairAmount = 0;
                 switch (((AirJar) offhandStack.getItem()).getType()) {
                     case ZEPHIR:
@@ -58,7 +58,7 @@ public class WindWand extends Item {
                 }
                 if (!playerIn.getAbilities().instabuild) {
                     offhandStack.shrink(1);
-                    ItemHandlerHelper.giveItemToPlayer(playerIn, new net.minecraft.world.item.ItemStack(ItemRegistry.glassJar.get()));
+                    ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegistry.glassJar.get()));
                 }
                 worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundRegistry.airJarEmpty.get(), SoundSource.NEUTRAL, 0.5f, 0.6f);
                 itemStack.setDamageValue(Math.max(itemStack.getDamageValue() - repairAmount, 0));

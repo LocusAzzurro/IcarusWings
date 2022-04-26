@@ -36,7 +36,7 @@ public class SpearEntity extends AbstractArrow {
 
     public SpearEntity(EntityType<? extends SpearEntity> type, Level world) {
         super(type, world);
-        this.spearItem = new net.minecraft.world.item.ItemStack(ItemRegistry.woodenSpear.get());
+        this.spearItem = new ItemStack(ItemRegistry.woodenSpear.get());
     }
 
     public SpearEntity(Level worldIn, LivingEntity owner, ItemStack spear){
@@ -48,7 +48,7 @@ public class SpearEntity extends AbstractArrow {
     @OnlyIn(Dist.CLIENT)
     public SpearEntity(Level p_i48791_1_, double p_i48791_2_, double p_i48791_4_, double p_i48791_6_) {
         super(EntityTypeRegistry.spearEntity.get(), p_i48791_2_, p_i48791_4_, p_i48791_6_, p_i48791_1_);
-        this.spearItem = new net.minecraft.world.item.ItemStack(ItemRegistry.woodenSpear.get());
+        this.spearItem = new ItemStack(ItemRegistry.woodenSpear.get());
     }
 
     @Override
@@ -78,7 +78,7 @@ public class SpearEntity extends AbstractArrow {
         Entity owner = this.getOwner();
         DamageSource damageSource = new IndirectEntityDamageSource("spear", this, (owner == null ? this : owner)).setProjectile();
         this.dealtDamage = true;
-        net.minecraft.sounds.SoundEvent soundevent = SoundRegistry.spearHit.get();
+        SoundEvent soundevent = SoundRegistry.spearHit.get();
         if (target.hurt(damageSource, f)) {
             if (target.getType() == EntityType.ENDERMAN) {
                 return;
@@ -114,7 +114,7 @@ public class SpearEntity extends AbstractArrow {
     }
 
     @Override
-    public net.minecraft.world.item.ItemStack getPickupItem() {
+    public ItemStack getPickupItem() {
         return this.spearItem.copy();
     }
 
@@ -135,7 +135,7 @@ public class SpearEntity extends AbstractArrow {
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
         if (nbt.contains("Spear", 10)) {
-            this.spearItem = net.minecraft.world.item.ItemStack.of(nbt.getCompound("Spear"));
+            this.spearItem = ItemStack.of(nbt.getCompound("Spear"));
         }
 
         this.dealtDamage = nbt.getBoolean("DealtDamage");
@@ -148,11 +148,11 @@ public class SpearEntity extends AbstractArrow {
         nbt.putBoolean("DealtDamage", this.dealtDamage);
     }
 
-    public void setSpearItemData(net.minecraft.world.item.ItemStack stackIn){
+    public void setSpearItemData(ItemStack stackIn){
         this.entityData.set(SPEAR_ITEM, stackIn);
     }
 
-    public net.minecraft.world.item.ItemStack getSpearItemData(){
+    public ItemStack getSpearItemData(){
         return this.entityData.get(SPEAR_ITEM);
     }
 

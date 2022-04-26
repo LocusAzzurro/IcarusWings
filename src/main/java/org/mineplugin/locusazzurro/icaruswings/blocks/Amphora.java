@@ -87,7 +87,7 @@ public class Amphora extends BaseEntityBlock{
 	}
 	
 	@Override
-	public void setPlacedBy(Level worldIn, net.minecraft.core.BlockPos posIn, BlockState stateIn, LivingEntity entityIn, ItemStack stackIn) {
+	public void setPlacedBy(Level worldIn, BlockPos posIn, BlockState stateIn, LivingEntity entityIn, ItemStack stackIn) {
 	    worldIn.setBlock(posIn.above(), stateIn.setValue(HALF, DoubleBlockHalf.UPPER), 3);
 		if (stackIn.hasCustomHoverName()) {
 			BlockEntity tileentity = worldIn.getBlockEntity(posIn);
@@ -108,10 +108,10 @@ public class Amphora extends BaseEntityBlock{
 	public BlockState updateShape(BlockState pState, Direction dirIn, BlockState pNeighborState, LevelAccessor worldIn, BlockPos pCurrentPos, BlockPos pNeighborPos) {
 		DoubleBlockHalf doubleblockhalf = pState.getValue(HALF);
 		if (dirIn.getAxis() == Direction.Axis.Y && doubleblockhalf == DoubleBlockHalf.LOWER == (dirIn == Direction.UP)) {
-			return pNeighborState.is(this) && pNeighborState.getValue(HALF) != doubleblockhalf ? pState.setValue(FACING, pNeighborState.getValue(FACING)) : net.minecraft.world.level.block.Blocks.AIR.defaultBlockState();
+			return pNeighborState.is(this) && pNeighborState.getValue(HALF) != doubleblockhalf ? pState.setValue(FACING, pNeighborState.getValue(FACING)) : Blocks.AIR.defaultBlockState();
 		} 
 		else {
-			return doubleblockhalf == DoubleBlockHalf.LOWER && dirIn == net.minecraft.core.Direction.DOWN && !pState.canSurvive(worldIn, pCurrentPos) ? net.minecraft.world.level.block.Blocks.AIR.defaultBlockState() : super.updateShape(pState, dirIn, pNeighborState, worldIn, pCurrentPos, pNeighborPos);
+			return doubleblockhalf == DoubleBlockHalf.LOWER && dirIn == Direction.DOWN && !pState.canSurvive(worldIn, pCurrentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(pState, dirIn, pNeighborState, worldIn, pCurrentPos, pNeighborPos);
 		}
 	}
 	
@@ -181,7 +181,7 @@ public class Amphora extends BaseEntityBlock{
 	protected static void preventCreativeDropFromBottomPart(Level pLevel, BlockPos pos, BlockState pState, Player player) {
 		DoubleBlockHalf doubleblockhalf = pState.getValue(HALF);
 		if (doubleblockhalf == DoubleBlockHalf.UPPER) {
-			net.minecraft.core.BlockPos blockpos = pos.below();
+			BlockPos blockpos = pos.below();
 			BlockState blockstate = pLevel.getBlockState(blockpos);
 			if (blockstate.getBlock() == pState.getBlock() && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER) {
 				pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);

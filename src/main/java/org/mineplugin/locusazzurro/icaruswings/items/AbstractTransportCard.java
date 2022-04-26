@@ -48,7 +48,7 @@ public abstract class AbstractTransportCard extends Item {
     }
 
     @Override
-    public boolean isFoil(net.minecraft.world.item.ItemStack stack){
+    public boolean isFoil(ItemStack stack){
         return true;
     }
 

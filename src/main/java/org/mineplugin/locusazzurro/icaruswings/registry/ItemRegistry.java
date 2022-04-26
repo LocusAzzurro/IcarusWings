@@ -48,33 +48,33 @@ public class ItemRegistry {
     
     public static final RegistryObject<Item> beeswax = ITEMS.register("beeswax", Beeswax::new);
     public static final RegistryObject<Item> beeswaxBlock = ITEMS.register("beeswax_block",
-    		() -> new net.minecraft.world.item.BlockItem(BlockRegistry.beeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.beeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> refinedBeeswaxBar = ITEMS.register("refined_beeswax_bar", RefinedBeeswaxBar::new);
     public static final RegistryObject<Item> glisteringRefinedBeeswaxBar = ITEMS.register("glistering_refined_beeswax_bar",
     		() -> new RefinedBeeswaxBar(true));
     public static final RegistryObject<Item> refinedBeeswaxBlock = ITEMS.register("refined_beeswax_block",
-    		() -> new net.minecraft.world.item.BlockItem(BlockRegistry.refinedBeeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.refinedBeeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> refinedBeeswaxSlab = ITEMS.register("refined_beeswax_slab",
-    		() -> new net.minecraft.world.item.BlockItem(BlockRegistry.refinedBeeswaxSlab.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.refinedBeeswaxSlab.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> refinedBeeswaxPillar = ITEMS.register("refined_beeswax_pillar",
-    		() -> new net.minecraft.world.item.BlockItem(BlockRegistry.refinedBeeswaxPillar.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.refinedBeeswaxPillar.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> refinedBeeswaxStairs = ITEMS.register("refined_beeswax_stairs",
-    		() -> new net.minecraft.world.item.BlockItem(BlockRegistry.refinedBeeswaxStairs.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.refinedBeeswaxStairs.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> refinedBeeswaxBlockChiseled = ITEMS.register("chiseled_refined_beeswax_block",
     		() -> new BlockItem(BlockRegistry.refinedBeeswaxBlockChiseled.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> smoothRefinedBeeswaxBlock = ITEMS.register("smooth_refined_beeswax_block",
-    		() -> new net.minecraft.world.item.BlockItem(BlockRegistry.smoothRefinedBeeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.smoothRefinedBeeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> elysianGrassBlock = ITEMS.register("elysian_grass_block",
-            () -> new net.minecraft.world.item.BlockItem(BlockRegistry.elysianGrassBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+            () -> new BlockItem(BlockRegistry.elysianGrassBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> elysianSoil = ITEMS.register("elysian_soil",
-            () -> new net.minecraft.world.item.BlockItem(BlockRegistry.elysianSoil.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+            () -> new BlockItem(BlockRegistry.elysianSoil.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> elysianGrass = ITEMS.register("elysian_grass",
-            () -> new net.minecraft.world.item.BlockItem(BlockRegistry.elysianGrass.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+            () -> new BlockItem(BlockRegistry.elysianGrass.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     
-    public static final net.minecraftforge.registries.RegistryObject<Item> meadPot = ITEMS.register("mead_pot",
-    		() -> new net.minecraft.world.item.BlockItem(BlockRegistry.meadPot.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    public static final RegistryObject<Item> meadPot = ITEMS.register("mead_pot",
+    		() -> new BlockItem(BlockRegistry.meadPot.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> amphora = ITEMS.register("amphora",
-    		() -> new net.minecraft.world.item.BlockItem(BlockRegistry.amphora.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.amphora.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> greekFireBucket = ITEMS.register("greek_fire_bucket", GreekFireBucket::new);
 
     public static final RegistryObject<Item> glassJar = ITEMS.register("glass_jar", GlassJar::new);

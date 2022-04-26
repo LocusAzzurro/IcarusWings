@@ -28,25 +28,25 @@ public class EntityTypeRegistry {
 					.sized(0.1F, 0.1F)
 					.build("artemis_missile"));
 
-	public static final RegistryObject<net.minecraft.world.entity.EntityType<TimeBombEntity>> timeBombEntity =
+	public static final RegistryObject<EntityType<TimeBombEntity>> timeBombEntity =
 			register("time_bomb", () -> EntityType.Builder
 					.<TimeBombEntity>of(TimeBombEntity::new, MobCategory.MISC)
 					.sized(0.1F, 0.1F)
 					.build("time_bomb"));
 
-	public static final net.minecraftforge.registries.RegistryObject<EntityType<TimeRiftParticleEntity>> timeRiftParticleEntity =
-			register("time_rift_particle", () -> net.minecraft.world.entity.EntityType.Builder
+	public static final RegistryObject<EntityType<TimeRiftParticleEntity>> timeRiftParticleEntity =
+			register("time_rift_particle", () -> EntityType.Builder
 					.<TimeRiftParticleEntity>of(TimeRiftParticleEntity::new, MobCategory.MISC)
 					.sized(0.1F, 0.1F)
 					.build("time_rift_particle"));
 
-	public static final RegistryObject<net.minecraft.world.entity.EntityType<SpearEntity>> spearEntity =
+	public static final RegistryObject<EntityType<SpearEntity>> spearEntity =
 			register("spear", () -> EntityType.Builder
 					.<SpearEntity>of(SpearEntity::new, MobCategory.MISC)
 					.sized(0.5F,0.5F)
 					.build("spear"));
 
-	private static <T extends Entity> RegistryObject<net.minecraft.world.entity.EntityType<T>> register(String name, Supplier<EntityType<T>> type) {
+	private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, Supplier<EntityType<T>> type) {
 		return ENTITIES.register(name, type);
 	}
 

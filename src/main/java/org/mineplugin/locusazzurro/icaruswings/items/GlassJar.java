@@ -18,10 +18,10 @@ import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 @Mod.EventBusSubscriber
-public class GlassJar extends net.minecraft.world.item.Item {
+public class GlassJar extends Item {
 
     public GlassJar(){
-        super(new net.minecraft.world.item.Item.Properties().tab(ModGroup.itemGroup).stacksTo(16));
+        super(new Item.Properties().tab(ModGroup.itemGroup).stacksTo(16));
     }
 
     @SubscribeEvent

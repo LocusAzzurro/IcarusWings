@@ -51,10 +51,10 @@ public class SpearItem extends TieredItem implements Vanishable {
     }
 
     protected Multimap<Attribute, AttributeModifier> getModifiers(){
-        ImmutableMultimap.Builder<net.minecraft.world.entity.ai.attributes.Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier> builder = ImmutableMultimap.builder();
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ModData.WEAPON_ATTACK_DAMAGE_UUID,
                 "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new net.minecraft.world.entity.ai.attributes.AttributeModifier(ModData.WEAPON_ATTACK_SPEED_UUID,
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ModData.WEAPON_ATTACK_SPEED_UUID,
                 "Weapon modifier", this.attackSpeed, AttributeModifier.Operation.ADDITION));
         builder.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(ModData.WEAPON_ATTACK_RANGE_UUID,
                 "Weapon modifier", this.attackRange, AttributeModifier.Operation.ADDITION));
@@ -79,7 +79,7 @@ public class SpearItem extends TieredItem implements Vanishable {
     }
 
     @Override
-    public boolean canAttackBlock(net.minecraft.world.level.block.state.BlockState p_195938_1_, Level p_195938_2_, BlockPos p_195938_3_, Player p_195938_4_) {
+    public boolean canAttackBlock(BlockState p_195938_1_, Level p_195938_2_, BlockPos p_195938_3_, Player p_195938_4_) {
         return !p_195938_4_.isCreative();
     }
 
@@ -99,7 +99,7 @@ public class SpearItem extends TieredItem implements Vanishable {
     }
 
     @Override
-    public boolean mineBlock(ItemStack itemStack, Level worldIn, net.minecraft.world.level.block.state.BlockState blockState, net.minecraft.core.BlockPos pos, LivingEntity user) {
+    public boolean mineBlock(ItemStack itemStack, Level worldIn, BlockState blockState, BlockPos pos, LivingEntity user) {
         if (blockState.getDestroySpeed(worldIn, pos) != 0.0F) {
             itemStack.hurtAndBreak(2, user, (item) -> {
                 item.broadcastBreakEvent(EquipmentSlot.MAINHAND);
@@ -110,7 +110,7 @@ public class SpearItem extends TieredItem implements Vanishable {
     }
 
     @Override
-    public boolean isCorrectToolForDrops(net.minecraft.world.level.block.state.BlockState blockState) {
+    public boolean isCorrectToolForDrops(BlockState blockState) {
         return false;
     }
 
@@ -118,8 +118,8 @@ public class SpearItem extends TieredItem implements Vanishable {
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         return ((enchantment.category == EnchantmentCategory.WEAPON
                 && enchantment != Enchantments.SWEEPING_EDGE
-                && enchantment != net.minecraft.world.item.enchantment.Enchantments.MOB_LOOTING
-                && enchantment != net.minecraft.world.item.enchantment.Enchantments.FIRE_ASPECT)||
+                && enchantment != Enchantments.MOB_LOOTING
+                && enchantment != Enchantments.FIRE_ASPECT)||
                 super.canApplyAtEnchantingTable(stack, enchantment));
     }
 
@@ -139,13 +139,13 @@ public class SpearItem extends TieredItem implements Vanishable {
     }
 
     @Override
-    public int getUseDuration(net.minecraft.world.item.ItemStack p_77626_1_) {
+    public int getUseDuration(ItemStack p_77626_1_) {
         return 72000;
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
-        net.minecraft.world.item.ItemStack itemstack = playerIn.getItemInHand(handIn);
+        ItemStack itemstack = playerIn.getItemInHand(handIn);
         if (itemstack.getDamageValue() >= itemstack.getMaxDamage() - 1) {
             return InteractionResultHolder.fail(itemstack);
         } else {
@@ -183,7 +183,7 @@ public class SpearItem extends TieredItem implements Vanishable {
     }
 
     @Override
-    public void inventoryTick(net.minecraft.world.item.ItemStack itemStack, Level worldIn, Entity entityIn, int inventorySlot, boolean isSelected){
+    public void inventoryTick(ItemStack itemStack, Level worldIn, Entity entityIn, int inventorySlot, boolean isSelected){
         if (entityIn instanceof LivingEntity && isSelected){
             if (((LivingEntity) entityIn).isUsingItem()){
                 itemStack.getOrCreateTag().putBoolean("Throwing", true);

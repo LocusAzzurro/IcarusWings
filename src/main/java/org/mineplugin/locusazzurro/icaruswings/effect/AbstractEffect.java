@@ -19,7 +19,7 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = ModData.MOD_ID)
 public abstract class AbstractEffect extends MobEffect {
 
-	protected ArrayList<net.minecraft.world.item.ItemStack> CurativeItems = new ArrayList<>() ;
+	protected ArrayList<ItemStack> CurativeItems = new ArrayList<>() ;
 
 	public AbstractEffect(MobEffectCategory a, int b ) {
 		super( a, b ) ;
@@ -35,21 +35,21 @@ public abstract class AbstractEffect extends MobEffect {
 	} ;
 
 	@Override
-	public void applyInstantenousEffect(@Nullable Entity p_180793_1_, @Nullable Entity p_180793_2_, net.minecraft.world.entity.LivingEntity p_180793_3_, int p_180793_4_, double p_180793_5_ ) {
+	public void applyInstantenousEffect(@Nullable Entity p_180793_1_, @Nullable Entity p_180793_2_, LivingEntity p_180793_3_, int p_180793_4_, double p_180793_5_ ) {
 
 	}
 
 	// 被初次添加
-	public void onFirstAdded(net.minecraft.world.entity.LivingEntity entity, MobEffectInstance effect, @Nullable MobEffectInstance oldEffect ) {
+	public void onFirstAdded(LivingEntity entity, MobEffectInstance effect, @Nullable MobEffectInstance oldEffect ) {
 		this.onAdded( entity, effect, oldEffect ) ;
 	}
 
 	// 被添加
-	public void onAdded(net.minecraft.world.entity.LivingEntity entity, MobEffectInstance effect, @Nullable MobEffectInstance oldEffect ) {
+	public void onAdded(LivingEntity entity, MobEffectInstance effect, @Nullable MobEffectInstance oldEffect ) {
 
 	}
 	// 人为移除
-	public void onRemove(net.minecraft.world.entity.LivingEntity entity, MobEffectInstance effect ) {
+	public void onRemove(LivingEntity entity, MobEffectInstance effect ) {
 		// 不要在这里调用 entity.removeEffect 效果，否则会死循环
 	}
 	// 自行消失
@@ -65,7 +65,7 @@ public abstract class AbstractEffect extends MobEffect {
 	 * @param force   强制应用吗
 	 * @return   添加的成功与否
 	 */
-	protected boolean setEffect(net.minecraft.world.entity.LivingEntity entity, int expectationLevel, boolean isAdd, boolean force ) {
+	protected boolean setEffect(LivingEntity entity, int expectationLevel, boolean isAdd, boolean force ) {
 		MobEffectInstance instance = entity.getEffect(this); // 获得实例
 		int baseLevel, newLevel;
 		boolean isUpdate = false ;
@@ -102,15 +102,15 @@ public abstract class AbstractEffect extends MobEffect {
 		return this.setEffect( entity, level, true, false ) ;
 	}
 	// 减少期望的等级
-	public boolean shrinkEffect (net.minecraft.world.entity.LivingEntity entity, int level ) {
+	public boolean shrinkEffect (LivingEntity entity, int level ) {
 		return this.setEffect( entity, -level, true, false ) ;
 	} ;
 	// 应用（应用一个效果，如果已有更强的效果，则不会生效）
-	public boolean applyEffect(net.minecraft.world.entity.LivingEntity entity, int level ) {
+	public boolean applyEffect(LivingEntity entity, int level ) {
 		return this.setEffect( entity, level, false, false ) ;
 	}
 	// 等级溢出时，传入的参数是溢出部分的值
-	public void overflow (net.minecraft.world.entity.LivingEntity entity, int overflowLevel ) {
+	public void overflow (LivingEntity entity, int overflowLevel ) {
 	} ;
 
 	// 持续时间
@@ -138,7 +138,7 @@ public abstract class AbstractEffect extends MobEffect {
 	}
 
 	// 放入治疗物品
-	public void setCurativeItems( net.minecraft.world.item.ItemStack stack ) {
+	public void setCurativeItems( ItemStack stack ) {
 		if ( this.getCurativeItems( ).stream( ).noneMatch( stackIn -> stackIn.sameItem( stack ) ) ) {
 			this.getCurativeItems( ).add( stack ) ;
 		} ;

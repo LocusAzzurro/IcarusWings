@@ -29,7 +29,7 @@ import org.mineplugin.locusazzurro.icaruswings.render.models.WingsModel;
 @OnlyIn(Dist.CLIENT)
 public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extends ElytraLayer<T, M> {
 	
-	private static final net.minecraft.resources.ResourceLocation WINGS_FEATHER = new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "textures/entity/feather_wings.png");
+	private static final ResourceLocation WINGS_FEATHER = new ResourceLocation(ModData.MOD_ID, "textures/entity/feather_wings.png");
 	private final WingsModel<T> elytraModel;
 
 	public WingsLayer(RenderLayerParent<T, M> renderIn, EntityModelSet root) {
@@ -62,7 +62,7 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
                        float headPitch) {
 		ItemStack itemstack = entityLivingBaseIn.getItemBySlot(EquipmentSlot.CHEST);
 		if (shouldRender(itemstack, entityLivingBaseIn)) {
-			net.minecraft.resources.ResourceLocation resourceLocation;
+			ResourceLocation resourceLocation;
 			if (entityLivingBaseIn instanceof AbstractClientPlayer player) {
 				if (player.isElytraLoaded()
 						&& player.getElytraTextureLocation() != null) {

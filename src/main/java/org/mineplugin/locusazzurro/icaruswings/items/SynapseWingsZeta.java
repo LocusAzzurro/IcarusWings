@@ -30,11 +30,11 @@ public class SynapseWingsZeta extends SynapseWings implements IWingsExpandable{
 
 	@Override
 	protected Multimap<Attribute, AttributeModifier> getModifiers() {
-		Builder<net.minecraft.world.entity.ai.attributes.Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier> builder = ImmutableMultimap.builder();
+		Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 	    builder.put(Attributes.ARMOR, new AttributeModifier(MODIFIER_UUID, "Armor modifier", 8,	AttributeModifier.Operation.ADDITION));
-	    builder.put(net.minecraft.world.entity.ai.attributes.Attributes.ARMOR_TOUGHNESS, new net.minecraft.world.entity.ai.attributes.AttributeModifier(MODIFIER_UUID, "Armor toughness", 6, net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION));
-	    builder.put(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH, new net.minecraft.world.entity.ai.attributes.AttributeModifier(MODIFIER_UUID, "max_health", 10.0f, net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION));
-	    builder.put(Attributes.KNOCKBACK_RESISTANCE, new net.minecraft.world.entity.ai.attributes.AttributeModifier(MODIFIER_UUID, "knockback_resistance", 0.6f, net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION));
+	    builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(MODIFIER_UUID, "Armor toughness", 6, AttributeModifier.Operation.ADDITION));
+	    builder.put(Attributes.MAX_HEALTH, new AttributeModifier(MODIFIER_UUID, "max_health", 10.0f, AttributeModifier.Operation.ADDITION));
+	    builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(MODIFIER_UUID, "knockback_resistance", 0.6f, AttributeModifier.Operation.ADDITION));
 		return builder.build();
 	}
 

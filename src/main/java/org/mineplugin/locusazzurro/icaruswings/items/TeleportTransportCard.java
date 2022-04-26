@@ -31,13 +31,13 @@ public class TeleportTransportCard extends AbstractTransportCard{
     }
 
     @Override
-    public int getUseDuration(net.minecraft.world.item.ItemStack itemStack) {
+    public int getUseDuration(ItemStack itemStack) {
         return 40;
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
-        net.minecraft.world.item.ItemStack itemstack = playerIn.getItemInHand(handIn);
+        ItemStack itemstack = playerIn.getItemInHand(handIn);
         if (!canUseCard(playerIn)) {
             return InteractionResultHolder.fail(itemstack);
         }
@@ -52,7 +52,7 @@ public class TeleportTransportCard extends AbstractTransportCard{
                     List<Vec3> points = MathUtils.squareMatrixFrame(5);
                     for (Vec3 point : points){
                         for (int i = 1; i <= 4; i++){
-                            worldIn.addParticle(net.minecraft.core.particles.ParticleTypes.SOUL_FIRE_FLAME,
+                            worldIn.addParticle(ParticleTypes.SOUL_FIRE_FLAME,
                                     playerIn.getX() + point.x, playerIn.getY(), playerIn.getZ() + point.z,
                                     0, 0.03 * i, 0);
                         }
@@ -78,17 +78,17 @@ public class TeleportTransportCard extends AbstractTransportCard{
     }
 
     @Override
-    public void onUseTick(Level worldIn, LivingEntity livingIn, net.minecraft.world.item.ItemStack itemStack, int useTicks) {
+    public void onUseTick(Level worldIn, LivingEntity livingIn, ItemStack itemStack, int useTicks) {
         List<Vec3> points = MathUtils.circlePoints(10);
         if (useTicks % 3 == 0 && worldIn.isClientSide()) {
             for (Vec3 point : points) {
-                worldIn.addParticle(net.minecraft.core.particles.ParticleTypes.FALLING_OBSIDIAN_TEAR, livingIn.getX() + point.x, livingIn.getY() + 2, livingIn.getZ() + point.z, 0, -0.1, 0);
+                worldIn.addParticle(ParticleTypes.FALLING_OBSIDIAN_TEAR, livingIn.getX() + point.x, livingIn.getY() + 2, livingIn.getZ() + point.z, 0, -0.1, 0);
             }
         }
     }
 
     @Override
-    public net.minecraft.world.item.ItemStack finishUsingItem(net.minecraft.world.item.ItemStack itemStack, Level worldIn, LivingEntity entityIn) {
+    public ItemStack finishUsingItem(ItemStack itemStack, Level worldIn, LivingEntity entityIn) {
         if (!worldIn.isClientSide() && entityIn instanceof ServerPlayer){
             ServerPlayer playerIn = (ServerPlayer) entityIn;
             if (playerIn.connection.getConnection().isConnected() && !playerIn.isSleeping()) {
@@ -109,13 +109,13 @@ public class TeleportTransportCard extends AbstractTransportCard{
                     playerIn.teleportTo(x, y, z);
 
                     worldIn.playSound(null, playerIn, SoundRegistry.transportCardTeleport.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                    ((ServerLevel)worldIn).sendParticles(net.minecraft.core.particles.ParticleTypes.PORTAL, playerIn.getX(), playerIn.getY(), playerIn.getZ(),
+                    ((ServerLevel)worldIn).sendParticles(ParticleTypes.PORTAL, playerIn.getX(), playerIn.getY(), playerIn.getZ(),
                             20, 1d, 0.5d, 1d, 0.0d);
 
                     playerIn.getCooldowns().addCooldown(this, 40);
                     if (!playerIn.isCreative()) {
                         itemStack.shrink(1);
-                        if (itemStack.isEmpty()) itemStack = new net.minecraft.world.item.ItemStack(Items.AIR);
+                        if (itemStack.isEmpty()) itemStack = new ItemStack(Items.AIR);
                     }
                     return itemStack;
                 }

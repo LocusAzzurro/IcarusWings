@@ -22,7 +22,7 @@ import java.util.function.BiConsumer;
 
 /**
  * For glass jar filling mechanic:
- * @see org.mineplugin.locusazzurro.icaruswings.items.GlassJar#collectAir
+ * @see GlassJar#collectAir
  */
 
 public class AirJar extends Item {
@@ -60,7 +60,7 @@ public class AirJar extends Item {
     }
 
     @Override
-    public ItemStack getContainerItem(net.minecraft.world.item.ItemStack itemStack) {
+    public ItemStack getContainerItem(ItemStack itemStack) {
         return new ItemStack(ItemRegistry.glassJar.get());
     }
 

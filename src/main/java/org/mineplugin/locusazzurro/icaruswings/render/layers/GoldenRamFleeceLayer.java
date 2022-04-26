@@ -25,7 +25,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @OnlyIn(Dist.CLIENT)
 public class GoldenRamFleeceLayer extends RenderLayer<GoldenRamEntity, GoldenRamModel<GoldenRamEntity>> {
 
-    private static final ResourceLocation FLEECE_TEXTURE = new net.minecraft.resources.ResourceLocation(ModData.MOD_ID, "textures/entity/golden_ram_fleece.png");
+    private static final ResourceLocation FLEECE_TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/golden_ram_fleece.png");
     private final GoldenRamFleeceModel<GoldenRamEntity> model;
 
     public GoldenRamFleeceLayer(RenderLayerParent<GoldenRamEntity, GoldenRamModel<GoldenRamEntity>> renderer, EntityModelSet set) {

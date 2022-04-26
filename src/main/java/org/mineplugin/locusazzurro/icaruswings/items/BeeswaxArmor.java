@@ -33,21 +33,21 @@ public class BeeswaxArmor extends ArmorItem implements Vanishable {
 		return slot == this.slot ? this.getModifiersPerSlot(slot) : super.getDefaultAttributeModifiers(slot);
 	}
 
-	private Multimap<Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier> getModifiersPerSlot(EquipmentSlot slot) {
+	private Multimap<Attribute, AttributeModifier> getModifiersPerSlot(EquipmentSlot slot) {
 		Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		UUID uuid = ARMOR_MODIFIER_UUID_PER_SLOT[slot.getIndex()];
-		builder.put(Attributes.ARMOR, new net.minecraft.world.entity.ai.attributes.AttributeModifier(uuid, "Armor modifier",
+		builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier",
 				(double) material.getDefenseForSlot(slot), AttributeModifier.Operation.ADDITION));
-		builder.put(net.minecraft.world.entity.ai.attributes.Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness",
+		builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness",
 				(double) material.getToughness(), AttributeModifier.Operation.ADDITION));
 		if (slot == EquipmentSlot.FEET) {
-	    	builder.put(net.minecraft.world.entity.ai.attributes.Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "movement_speed", 0.01f, AttributeModifier.Operation.ADDITION));}
+	    	builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "movement_speed", 0.01f, AttributeModifier.Operation.ADDITION));}
 		return builder.build();
 	}
 	
 	@Override
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer)
     {
-        return stack.getItem() instanceof BeeswaxArmor && ((net.minecraft.world.item.ArmorItem) stack.getItem()).getMaterial() == ModArmorMaterial.BEESWAX;
+        return stack.getItem() instanceof BeeswaxArmor && ((ArmorItem) stack.getItem()).getMaterial() == ModArmorMaterial.BEESWAX;
     }
 }

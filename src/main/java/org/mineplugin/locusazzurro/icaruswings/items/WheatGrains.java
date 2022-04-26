@@ -35,7 +35,7 @@ public class WheatGrains extends Item{
 			.build();
 	
 	@Override
-	public InteractionResult interactLivingEntity(net.minecraft.world.item.ItemStack stack, Player player,
+	public InteractionResult interactLivingEntity(ItemStack stack, Player player,
                                                   LivingEntity target, InteractionHand hand) {
 		Level world = player.level;
 		

@@ -5,6 +5,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.TallGrassBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
@@ -14,7 +15,7 @@ import java.util.Random;
 public class ElysianGrass extends TallGrassBlock {
 
     public ElysianGrass() {
-        super(net.minecraft.world.level.block.state.BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT)
+        super(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT)
                 .noCollission()
                 .instabreak()
                 .sound(SoundType.GRASS)
@@ -22,7 +23,7 @@ public class ElysianGrass extends TallGrassBlock {
     }
 
     @Override
-    protected boolean mayPlaceOn(net.minecraft.world.level.block.state.BlockState stateIn, BlockGetter iBlockReader, BlockPos blockPos) {
+    protected boolean mayPlaceOn(BlockState stateIn, BlockGetter iBlockReader, BlockPos blockPos) {
         return stateIn.is(BlockRegistry.elysianGrassBlock.get()) || stateIn.is(BlockRegistry.elysianSoil.get());
     }
 
@@ -32,7 +33,7 @@ public class ElysianGrass extends TallGrassBlock {
     }
 
     @Override
-    public boolean isBonemealSuccess(Level p_180670_1_, Random p_180670_2_, net.minecraft.core.BlockPos p_180670_3_, net.minecraft.world.level.block.state.BlockState p_180670_4_) {
+    public boolean isBonemealSuccess(Level p_180670_1_, Random p_180670_2_, BlockPos p_180670_3_, BlockState p_180670_4_) {
         return false;
     }
 }

@@ -26,7 +26,7 @@ public class WandererTradesHandler {
 	private static final VillagerTrades.ItemListing goldenFeatherTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.goldenFeather.get()), 6, 1, 3, 1, 1.0f);
 	private static final VillagerTrades.ItemListing anemoneTrade = new ItemsForEmeraldsTrade(
-			() -> new net.minecraft.world.item.ItemStack(ItemRegistry.anemone.get()), 8, 1, 2, 1, 1.0f);
+			() -> new ItemStack(ItemRegistry.anemone.get()), 8, 1, 2, 1, 1.0f);
 	private static final VillagerTrades.ItemListing greekFireTrade = new ItemsForEmeraldsTrade(
 			() -> new ItemStack(ItemRegistry.greekFireBucket.get()), 18, 1, 1, 1, 1.0f);
 	

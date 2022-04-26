@@ -12,6 +12,6 @@ public class FluidRegistry {
 
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, ModData.MOD_ID);
     public static RegistryObject<FlowingFluid> greekFire = FLUIDS.register("greek_fire", GreekFireFluid.Source::new);
-    public static net.minecraftforge.registries.RegistryObject<FlowingFluid> greekFireFlowing = FLUIDS.register("greek_fire_flowing", GreekFireFluid.Flowing::new);
+    public static RegistryObject<FlowingFluid> greekFireFlowing = FLUIDS.register("greek_fire_flowing", GreekFireFluid.Flowing::new);
 
 }

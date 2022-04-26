@@ -19,6 +19,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.network.NetworkHooks;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
@@ -56,13 +57,13 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
         }
     }
 
-    public ArtemisMissileEntity(net.minecraft.world.entity.LivingEntity shooter, double accelX, double accelY, double accelZ, Level world){
+    public ArtemisMissileEntity(LivingEntity shooter, double accelX, double accelY, double accelZ, Level world){
         this(shooter.getX(), shooter.getY(), shooter.getZ(), accelX, accelY, accelZ, world);
         this.setOwner(shooter);
         this.setRot(shooter.getYRot(), shooter.getXRot());
     }
 
-    public ArtemisMissileEntity(Level world, net.minecraft.world.entity.LivingEntity shooter, double powerX, double powerY, double powerZ){
+    public ArtemisMissileEntity(Level world, LivingEntity shooter, double powerX, double powerY, double powerZ){
         this(EntityTypeRegistry.artemisMissileEntity.get(), world);
         this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
         this.reapplyPosition();
@@ -72,14 +73,14 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
         this.zPower = powerZ;
     }
 
-    public ArtemisMissileEntity(Level world, net.minecraft.world.entity.LivingEntity shooter){
+    public ArtemisMissileEntity(Level world, LivingEntity shooter){
         this(EntityTypeRegistry.artemisMissileEntity.get(), world);
         this.setOwner(shooter);
         this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
         this.reapplyPosition();
     }
 
-    public ArtemisMissileEntity(Level world, net.minecraft.world.entity.LivingEntity shooter, net.minecraft.world.entity.LivingEntity target){
+    public ArtemisMissileEntity(Level world, LivingEntity shooter, LivingEntity target){
         this(EntityTypeRegistry.artemisMissileEntity.get(), world);
         this.setOwner(shooter);
         this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
@@ -131,7 +132,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
 
         if (this.getTarget() != null)
         {
-            LivingEntity target = (net.minecraft.world.entity.LivingEntity) this.getTarget();
+            LivingEntity target = (LivingEntity) this.getTarget();
             Vec3 v3d = new Vec3(
                     target.getX() - this.getX(),
                     target.getY() - this.getY(),
@@ -151,7 +152,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     protected void onHit(HitResult ray){
         super.onHit(ray);
         if(!this.level.isClientSide){
-            boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
+            boolean flag = ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
             this.level.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower, flag, Explosion.BlockInteraction.NONE);
         }
         this.discard();
@@ -166,12 +167,12 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     protected void onHitEntity(EntityHitResult ray){
         super.onHitEntity(ray);
         if (!this.level.isClientSide) {
-            net.minecraft.world.entity.Entity entity = ray.getEntity();
-            net.minecraft.world.entity.Entity owner = this.getOwner();
+            Entity entity = ray.getEntity();
+            Entity owner = this.getOwner();
             entity.hurt(
                     (new IndirectEntityDamageSource("explosion", this, owner)).setExplosion()
                     , 8.0F);
-            if (owner instanceof net.minecraft.world.entity.LivingEntity) {
+            if (owner instanceof LivingEntity) {
                 this.doEnchantDamageEffects((LivingEntity)owner, entity);
             }
 
@@ -180,7 +181,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
 
     protected void onEmptyFuel(){
         if(!this.level.isClientSide){
-            boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
+            boolean flag = ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
             this.level.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower + 0.5f, flag, Explosion.BlockInteraction.NONE);
         }
         this.discard();
@@ -191,7 +192,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
         return super.canHitEntity(entity);
     }
 
-    public void setTarget(@Nullable net.minecraft.world.entity.Entity target) {
+    public void setTarget(@Nullable Entity target) {
         if (target != null) {
             this.targetUUID = target.getUUID();
             this.targetNetworkId = target.getId();
@@ -200,7 +201,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     }
 
     @Nullable
-    public net.minecraft.world.entity.Entity getTarget() {
+    public Entity getTarget() {
         if (this.targetUUID != null && this.level instanceof ServerLevel) {
             return ((ServerLevel)this.level).getEntity(this.targetUUID);
         } else {

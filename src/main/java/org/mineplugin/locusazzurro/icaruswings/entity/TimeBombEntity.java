@@ -77,8 +77,8 @@ public class TimeBombEntity extends Entity {
             Entity source = this.getAttachedTo();
             TimeRiftParticleEntity particle;
             for (int i = 0; i < 8; i++) {
-                if (source instanceof net.minecraft.world.entity.LivingEntity) {
-                    particle = new TimeRiftParticleEntity((net.minecraft.world.entity.LivingEntity) source, level);
+                if (source instanceof LivingEntity) {
+                    particle = new TimeRiftParticleEntity((LivingEntity) source, level);
                 } else {
                     particle = new TimeRiftParticleEntity(this.getX(), this.getY(), this.getZ(), level);
                 }
@@ -96,8 +96,8 @@ public class TimeBombEntity extends Entity {
         if (this.getAttachedTo() != null) {
             Entity attachedTo = this.getAttachedTo();
             AABB aabb = new AABB(r, r, r, -r, -r, -r).move(attachedTo.position());
-            List<LivingEntity> entities = attachedTo.level.getEntitiesOfClass(net.minecraft.world.entity.LivingEntity.class, aabb);
-            for (net.minecraft.world.entity.LivingEntity entity : entities) {
+            List<LivingEntity> entities = attachedTo.level.getEntitiesOfClass(LivingEntity.class, aabb);
+            for (LivingEntity entity : entities) {
                 entity.hurt(new DamageTimeRift(attachedTo), this.damage);
             }
         }
@@ -119,7 +119,7 @@ public class TimeBombEntity extends Entity {
         });
     }
 
-    private void setAttachedTo(@Nullable net.minecraft.world.entity.Entity attachedTo){
+    private void setAttachedTo(@Nullable Entity attachedTo){
         if (attachedTo != null) {
             this.attachedUUID = attachedTo.getUUID();
             this.attachedNetworkId = attachedTo.getId();
@@ -128,7 +128,7 @@ public class TimeBombEntity extends Entity {
     }
 
     @Nullable
-    public net.minecraft.world.entity.Entity getAttachedTo() {
+    public Entity getAttachedTo() {
         if (this.attachedUUID != null && this.level instanceof ServerLevel) {
             return ((ServerLevel)this.level).getEntity(this.attachedUUID);
         } else {

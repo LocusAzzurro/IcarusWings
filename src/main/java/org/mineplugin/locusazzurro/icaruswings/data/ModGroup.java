@@ -13,7 +13,7 @@ public class ModGroup {
 		}
 
 		@Override
-		public net.minecraft.world.item.ItemStack makeIcon() {
+		public ItemStack makeIcon() {
 			return new ItemStack(ItemRegistry.iconBadge.get());
 		}
 	}

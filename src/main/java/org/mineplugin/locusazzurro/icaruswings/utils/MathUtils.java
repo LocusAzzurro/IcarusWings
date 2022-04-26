@@ -31,10 +31,10 @@ public class MathUtils {
         return points;
     }
 
-    public static List<com.mojang.math.Vector3f> fibonacciSphereFloat(int samples){
+    public static List<Vector3f> fibonacciSphereFloat(int samples){
         List<Vec3> pointsDouble = fibonacciSphere(samples);
         List<Vector3f> pointsFloat = new ArrayList<>();
-        pointsDouble.forEach((p) -> pointsFloat.add(new com.mojang.math.Vector3f(p)));
+        pointsDouble.forEach((p) -> pointsFloat.add(new Vector3f(p)));
         return pointsFloat;
     }
 

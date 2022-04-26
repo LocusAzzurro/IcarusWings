@@ -66,7 +66,7 @@ public class ArtemisLauncher extends ProjectileWeaponItem {
         return repairItem.getItem() == ItemRegistry.synapseRepairKit.get() || super.isValidRepairItem(thisItem, repairItem);
     }
 
-    public static final Predicate<net.minecraft.world.item.ItemStack> ARTEMIS_MISSILE = (item) -> item.getItem().equals(ItemRegistry.artemisMissile.get());
+    public static final Predicate<ItemStack> ARTEMIS_MISSILE = (item) -> item.getItem().equals(ItemRegistry.artemisMissile.get());
 
     @Override
     public Predicate<ItemStack> getAllSupportedProjectiles() {
