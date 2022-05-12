@@ -9,6 +9,8 @@ public class ModTags {
 
     public static final TagKey<Item> COLORED_FEATHERS = createItemTag("colored_feathers");
     public static final TagKey<Item> HERBS = createItemTag("herbs");
+    public static final TagKey<Item> CROP_STRINGS = createItemTag("crop_strings");
+    public static final TagKey<Item> CROP_GRAINS = createItemTag("crop_grains");
     public static final TagKey<Item> FALLEN_RELICS = createItemTag("fallen_relics");
     public static final TagKey<Item> RESTORED_FALLEN_RELICS = createItemTag("restored_fallen_relics");
     public static final TagKey<Item> WORLD_ESSENCES = createItemTag("world_essences");

@@ -35,6 +35,12 @@ public class ItemTagsGenerator extends ItemTagsProvider {
                 .add(Items.FERN)
                 .add(Items.SEA_PICKLE)
                 .add(Items.SWEET_BERRIES);
+        tag(ModTags.CROP_STRINGS)
+                .add(ItemRegistry.wheatString.get())
+                .add(ItemRegistry.linenString.get());
+        tag(ModTags.CROP_STRINGS)
+                .add(ItemRegistry.wheatGrains.get())
+                .add(ItemRegistry.flaxSeeds.get());
         tag(ModTags.WORLD_ESSENCES)
                 .add(ItemRegistry.zephirEssence.get())
                 .add(ItemRegistry.netherEssence.get())
