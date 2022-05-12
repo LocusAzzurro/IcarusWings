@@ -1,11 +1,13 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -16,14 +18,21 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemHandlerHelper;
+import org.mineplugin.locusazzurro.icaruswings.blocks.ElysianGrassBlock;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
+import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Mead extends Item {
 	
@@ -132,7 +141,59 @@ public class Mead extends Item {
 		ItemUtils.startUsingInstantly(worldIn, playerIn, handIn);
 		return InteractionResultHolder.success(playerIn.getItemInHand(handIn));
 	}
-	
+
+	@Override
+	public InteractionResult useOn(UseOnContext context) {
+		Level level = context.getLevel();
+		BlockPos pos = context.getClickedPos();
+		BlockState block = level.getBlockState(pos);
+
+		if (block.is(Blocks.DIRT) || block.is(Blocks.GRASS_BLOCK)){
+			ItemStack item = context.getItemInHand();
+			Player player = context.getPlayer();
+			if (player != null && item.getItem() instanceof Mead mead && mead.infusionType == Infusion.GOLDEN_APPLE) {
+
+				boolean clientSide = level.isClientSide();
+
+				if (!clientSide){
+					BlockPos.withinManhattan(pos,1,1,1).forEach(p -> {
+						BlockState block1 = level.getBlockState(p);
+						BlockState blockUp = level.getBlockState(p.above());
+						if ((block1.is(Blocks.DIRT) || block1.is(Blocks.GRASS_BLOCK)) && blockUp.isAir() && level.random.nextFloat() < 0.4) {
+							level.setBlock(p.above(), BlockRegistry.elysianGrass.get().defaultBlockState(), 3);
+						}
+						if (block1.is(Blocks.DIRT)) {
+							level.setBlock(p, BlockRegistry.elysianSoil.get().defaultBlockState(), 3);
+						}
+						if (block1.is(Blocks.GRASS_BLOCK)) {
+							level.setBlock(p, BlockRegistry.elysianGrassBlock.get().defaultBlockState(), 3);
+						}
+					});
+
+					if (!player.getAbilities().instabuild) {
+						item.shrink(1);
+						ItemStack itemstack = new ItemStack(ItemRegistry.glassJar.get());
+						ItemHandlerHelper.giveItemToPlayer(player, itemstack);
+					}
+				}
+				else {
+					Random rnd = level.getRandom();
+					for (int i = 0; i < 10; i++) {
+						level.addParticle(ParticleRegistry.goldenSparkle.get(),
+								pos.getX() + 0.5 + (rnd.nextFloat() - 0.5),
+								pos.getY() + 1.5 + (rnd.nextFloat() - 0.5) / 3,
+								pos.getZ() + 0.5 + (rnd.nextFloat() - 0.5),
+								(rnd.nextFloat() - 0.5) / 4,
+								(rnd.nextFloat() - 0.4) / 4,
+								(rnd.nextFloat() - 0.5) / 4);
+					}
+				}
+				return InteractionResult.sidedSuccess(clientSide);
+			}
+		}
+		return InteractionResult.PASS;
+	}
+
 	@Nullable
 	public Infusion getInfusionType() {
 		return this.infusionType;
