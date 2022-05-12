@@ -3,6 +3,7 @@ package org.mineplugin.locusazzurro.icaruswings.datagen;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
@@ -26,6 +27,9 @@ public class BlockTagsGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.smoothRefinedBeeswaxBlock.get())
                 .add(BlockRegistry.amphora.get())
                 .add(BlockRegistry.meadPot.get());
+        tag(BlockTags.MINEABLE_WITH_SHOVEL)
+                .add(BlockRegistry.elysianSoil.get())
+                .add(BlockRegistry.elysianGrassBlock.get());
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(BlockRegistry.refinedBeeswaxBlock.get())
                 .add(BlockRegistry.refinedBeeswaxPillar.get())
