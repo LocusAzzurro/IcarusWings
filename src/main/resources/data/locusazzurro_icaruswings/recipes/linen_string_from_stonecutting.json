@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "locusazzurro_icaruswings:flax"
+  },
+  "result": "locusazzurro_icaruswings:linen_string",
+  "count": 1
+}

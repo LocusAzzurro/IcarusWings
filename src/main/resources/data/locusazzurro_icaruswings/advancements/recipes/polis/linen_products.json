@@ -1,0 +1,33 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:linen_string_from_stonecutting",
+      "locusazzurro_icaruswings:flax_seeds_from_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_flax": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["locusazzurro_icaruswings:flax"]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:linen_string_from_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_flax",
+      "has_the_recipe"
+    ]
+  ]
+}
