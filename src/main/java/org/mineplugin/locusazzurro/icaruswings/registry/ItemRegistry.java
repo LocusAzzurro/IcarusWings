@@ -88,6 +88,8 @@ public class ItemRegistry {
     		() -> new Mead(Mead.Infusion.VOID));
     public static final RegistryObject<Item> goldenAppleInfusedMead = ITEMS.register("golden_apple_infused_mead",
     		() -> new Mead(Mead.Infusion.GOLDEN_APPLE));
+    public static final RegistryObject<Item> goldenAppleInfusedGrowthMead = ITEMS.register("golden_apple_growth_infused_mead",
+            () -> new Mead(Mead.Infusion.GOLDEN_APPLE_GROWTH));
     public static final RegistryObject<Item> herbsInfusedMead = ITEMS.register("herbs_infused_mead",
     		() -> new Mead(Mead.Infusion.HERBS));
 
@@ -121,8 +123,12 @@ public class ItemRegistry {
     		() -> new LinenCloth(EquipmentSlot.CHEST));
     public static final RegistryObject<Item> linenUndergarment = ITEMS.register("linen_undergarment",
     		() -> new LinenCloth(EquipmentSlot.LEGS));
+    public static final RegistryObject<Item> goldenFleeceMantle = ITEMS.register("golden_fleece_mantle",
+            () -> new GoldenFleeceArmor(EquipmentSlot.CHEST));
     public static final RegistryObject<Item> beeswaxBoots = ITEMS.register("beeswax_boots",
     		() -> new BeeswaxArmor(EquipmentSlot.FEET));
+
+    public static final RegistryObject<Item> goldemRamSpawmEgg = ITEMS.register("golden_ram_spawn_egg", GoldenRamSpawnEgg::new);
     
     public static final RegistryObject<Item> featherWings = ITEMS.register("feather_wings",
     		() -> new FeatherWings(WingsType.FEATHER));

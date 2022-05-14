@@ -51,6 +51,7 @@
   "item.locusazzurro_icaruswings.nether_infused_mead": "下界蜜酒",
   "item.locusazzurro_icaruswings.void_infused_mead": "虚无蜜酒",
   "item.locusazzurro_icaruswings.golden_apple_infused_mead": "金果圣酒",
+  "item.locusazzurro_icaruswings.golden_apple_growth_infused_mead": "生长之金果圣酒",
   "item.locusazzurro_icaruswings.herbs_infused_mead": "草药蜜酒",
 
   "item.locusazzurro_icaruswings.zephir_air_jar": "灵风罐",
@@ -83,7 +84,10 @@
   "item.locusazzurro_icaruswings.golden_feather_helmet": "金色羽毛头盔",
   "item.locusazzurro_icaruswings.linen_cloak": "亚麻长衫",
   "item.locusazzurro_icaruswings.linen_undergarment": "亚麻长袍",
+  "item.locusazzurro_icaruswings.golden_fleece_mantle": "金羊毛斗篷",
   "item.locusazzurro_icaruswings.beeswax_boots": "蜂蜡靴子",
+
+  "item.locusazzurro_icaruswings.golden_ram_spawn_egg": "金羊刷怪蛋",
 
   "item.locusazzurro_icaruswings.feather_wings": "羽翼",
   "item.locusazzurro_icaruswings.colored_feather_wings": "彩色羽翼",
@@ -209,6 +213,7 @@
   "subtitles.item.armor.equip_feather": "羽毛服装：摩擦",
   "subtitles.item.armor.equip_beeswax": "蜂蜡护甲：滑动",
   "subtitles.item.armor.equip_linen": "亚麻服装：摩擦",
+  "subtitles.item.armor.equip_golden_fleece": "金羊毛服装：摩擦",
   "subtitles.item.armor.equip_herbal": "花草饰品：沙沙作响",
   "subtitles.item.armor.equip_synapse": "天域护甲：碰擦",
   "subtitles.item.wings.equip_feather": "羽翼：沙沙作响",

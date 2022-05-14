@@ -33,16 +33,8 @@ public class SynapseArmor extends ArmorItem implements Vanishable {
 	
 	private Multimap<Attribute, AttributeModifier> getModifiersPerSlot(EquipmentSlot slot)
 	{
-		Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+		Builder<Attribute, AttributeModifier> builder = ModData.createArmorModifierBuilder(slot, material);
 	    UUID uuid = ARMOR_MODIFIER_UUID_PER_SLOT[slot.getIndex()];
-	    builder.put(Attributes.ARMOR, new AttributeModifier(
-	    		uuid, "Armor modifier", 
-	    		(double)material.getDefenseForSlot(slot), 
-	    		AttributeModifier.Operation.ADDITION));
-	    builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(
-	    		uuid, "Armor toughness", 
-	    		(double)material.getToughness(), 
-	    		AttributeModifier.Operation.ADDITION));
 		
 	    if (slot == EquipmentSlot.HEAD) {
 	    	builder.put(Attributes.LUCK, new AttributeModifier(uuid, "luck", 2.0f, AttributeModifier.Operation.ADDITION));}

@@ -51,6 +51,7 @@
   "item.locusazzurro_icaruswings.nether_infused_mead": "Nether Infused Mead",
   "item.locusazzurro_icaruswings.void_infused_mead": "Void Infused Mead",
   "item.locusazzurro_icaruswings.golden_apple_infused_mead": "Ambrosia",
+  "item.locusazzurro_icaruswings.golden_apple_growth_infused_mead": "Ambrosia of Growth",
   "item.locusazzurro_icaruswings.herbs_infused_mead": "Herbs Infused Mead",
 
   "item.locusazzurro_icaruswings.zephir_air_jar": "Zephir Air Jar",
@@ -83,7 +84,10 @@
   "item.locusazzurro_icaruswings.golden_feather_helmet": "Golden Feather Helmet",
   "item.locusazzurro_icaruswings.linen_cloak": "Linen Himation",
   "item.locusazzurro_icaruswings.linen_undergarment": "Linen Chiton",
+  "item.locusazzurro_icaruswings.golden_fleece_mantle": "Golden Fleece Mantle",
   "item.locusazzurro_icaruswings.beeswax_boots": "Beeswax Boots",
+
+  "item.locusazzurro_icaruswings.golden_ram_spawn_egg": "Golden Ram Spawn Egg",
 
   "item.locusazzurro_icaruswings.feather_wings": "Feather Wings",
   "item.locusazzurro_icaruswings.colored_feather_wings": "Colored Feather Wings",
@@ -210,6 +214,7 @@
   "subtitles.item.armor.equip_feather": "Feather armor rustles",
   "subtitles.item.armor.equip_beeswax": "Beeswax armor slides",
   "subtitles.item.armor.equip_linen": "Linen armor rustles",
+  "subtitles.item.armor.equip_golden_fleece": "Golden fleece armor rustles",
   "subtitles.item.armor.equip_herbal": "Herbal armor rustles",
   "subtitles.item.armor.equip_synapse": "Synapse armor clanks",
   "subtitles.item.wings.equip_feather": "Feather wings rustles",

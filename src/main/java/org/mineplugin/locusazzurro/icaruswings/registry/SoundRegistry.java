@@ -51,6 +51,9 @@ public class SoundRegistry {
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.armor.equip_beeswax")));
 	public static final RegistryObject<SoundEvent> armorEquipLinen = SOUNDS.register("item.armor.equip_linen",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.armor.equip_linen")));
+
+	public static final RegistryObject<SoundEvent> armorEquipGoldenFleece = SOUNDS.register("item.armor.equip_golden_fleece",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.armor.equip_golden_fleece")));
 	public static final RegistryObject<SoundEvent> armorEquipHerbal = SOUNDS.register("item.armor.equip_herbal",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.armor.equip_herbal")));
 	public static final RegistryObject<SoundEvent> armorEquipSynapse = SOUNDS.register("item.armor.equip_synapse",

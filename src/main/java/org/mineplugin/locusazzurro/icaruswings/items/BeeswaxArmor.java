@@ -8,17 +8,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Vanishable;
+import net.minecraft.world.item.*;
 import org.mineplugin.locusazzurro.icaruswings.data.ModArmorMaterial;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import java.util.UUID;
 
-public class BeeswaxArmor extends ArmorItem implements Vanishable {
+public class BeeswaxArmor extends ArmorItem implements Wearable {
 	
 	private static final ModArmorMaterial material = ModArmorMaterial.BEESWAX;
 
@@ -34,14 +31,19 @@ public class BeeswaxArmor extends ArmorItem implements Vanishable {
 	}
 
 	private Multimap<Attribute, AttributeModifier> getModifiersPerSlot(EquipmentSlot slot) {
+
+		/*
 		Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		UUID uuid = ARMOR_MODIFIER_UUID_PER_SLOT[slot.getIndex()];
 		builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier",
 				(double) material.getDefenseForSlot(slot), AttributeModifier.Operation.ADDITION));
 		builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness",
 				(double) material.getToughness(), AttributeModifier.Operation.ADDITION));
+
+		 */
+		Builder<Attribute, AttributeModifier> builder = ModData.createArmorModifierBuilder(slot, material);
 		if (slot == EquipmentSlot.FEET) {
-	    	builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "movement_speed", 0.01f, AttributeModifier.Operation.ADDITION));}
+	    	builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(ARMOR_MODIFIER_UUID_PER_SLOT[slot.getIndex()], "movement_speed", 0.01f, AttributeModifier.Operation.ADDITION));}
 		return builder.build();
 	}
 	

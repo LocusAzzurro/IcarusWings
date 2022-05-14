@@ -71,30 +71,30 @@ public class Mead extends Item {
 			entityIn.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20, 0));
 			List<MobEffectInstance> extraEffect = new ArrayList<>();
 			if(type != null) {
-				switch(type) {
-				case ZEPHIR: 
-					extraEffect.add(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 2));
-					extraEffect.add(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
-					break;
-				case NETHER:
-					extraEffect.add(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1200, 0));
-					extraEffect.add(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1200, 0));
-					break;
-				case VOID:
-					extraEffect.add(new MobEffectInstance(MobEffects.SLOW_FALLING, 1200, 1));
-					extraEffect.add(new MobEffectInstance(MobEffects.INVISIBILITY, 1200, 0));
-					break;
-				case GOLDEN_APPLE:
-					extraEffect.add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 1));
-					extraEffect.add(new MobEffectInstance(MobEffects.HEALTH_BOOST, 1200, 1));
-					break;
-				case HERBS:
-					extraEffect.add(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
-					extraEffect.add(new MobEffectInstance(MobEffects.LUCK, 1200, 0));
-					break;
-				default:
-					break;
-				}
+                switch (type) {
+                    case ZEPHIR -> {
+                        extraEffect.add(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 2));
+                        extraEffect.add(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
+                    }
+                    case NETHER -> {
+                        extraEffect.add(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1200, 0));
+                        extraEffect.add(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1200, 0));
+                    }
+                    case VOID -> {
+                        extraEffect.add(new MobEffectInstance(MobEffects.SLOW_FALLING, 1200, 1));
+                        extraEffect.add(new MobEffectInstance(MobEffects.INVISIBILITY, 1200, 0));
+                    }
+                    case GOLDEN_APPLE -> {
+                        extraEffect.add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 1));
+                        extraEffect.add(new MobEffectInstance(MobEffects.HEALTH_BOOST, 1200, 1));
+                    }
+                    case HERBS -> {
+                        extraEffect.add(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
+                        extraEffect.add(new MobEffectInstance(MobEffects.LUCK, 1200, 0));
+                    }
+                    default -> {
+                    }
+                }
 				
 				extraEffect.forEach(entityIn::addEffect);
 
@@ -105,11 +105,9 @@ public class Mead extends Item {
 		if (stackIn.isEmpty()) {
 			return new ItemStack(ItemRegistry.glassJar.get());
 		} else {
-			if (entityIn instanceof Player && !((Player) entityIn).getAbilities().instabuild) {
+			if (entityIn instanceof Player player && !((Player) entityIn).getAbilities().instabuild) {
 				ItemStack itemstack = new ItemStack(ItemRegistry.glassJar.get());
-				Player playerentity = (Player) entityIn;
-				ItemHandlerHelper.giveItemToPlayer(playerentity, itemstack);
-				//if (!playerentity.inventory.add(itemstack)) {playerentity.drop(itemstack, false);}
+                ItemHandlerHelper.giveItemToPlayer(player, itemstack);
 			}
 
 			return stackIn;
@@ -151,7 +149,7 @@ public class Mead extends Item {
 		if (block.is(Blocks.DIRT) || block.is(Blocks.GRASS_BLOCK)){
 			ItemStack item = context.getItemInHand();
 			Player player = context.getPlayer();
-			if (player != null && item.getItem() instanceof Mead mead && mead.infusionType == Infusion.GOLDEN_APPLE) {
+			if (player != null && item.getItem() instanceof Mead mead && mead.infusionType == Infusion.GOLDEN_APPLE_GROWTH) {
 
 				boolean clientSide = level.isClientSide();
 
@@ -200,6 +198,6 @@ public class Mead extends Item {
 	}
 	
 	public enum Infusion{
-		ZEPHIR,NETHER,VOID,GOLDEN_APPLE,HERBS
+		ZEPHIR,NETHER,VOID,GOLDEN_APPLE,GOLDEN_APPLE_GROWTH,HERBS
 	}
 }

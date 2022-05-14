@@ -24,6 +24,8 @@ public enum ModArmorMaterial implements ArmorMaterial {
 			0.0F, 0.0F, () -> Ingredient.of(ItemRegistry.refinedBeeswaxBar.get())),
 	LINEN("linen", 4, new int[] {1,2,2,1}, 12, SoundRegistry.armorEquipLinen, //leather
 			0.0F, 0.0F, () -> Ingredient.of(ItemRegistry.linen.get())),
+	GOLDEN_FLEECE("golden_fleece", 7, new int[] {1,3,5,2}, 20, SoundRegistry.armorEquipGoldenFleece,
+			0.5F, 0.0F, () -> Ingredient.of(ItemRegistry.goldenFleece.get())),
 	HERBAL("herbal", 1, new int[] {1,1,1,1}, 20, SoundRegistry.armorEquipHerbal, //leather
 			0.0F, 0.0F, () -> Ingredient.of(ItemTags.create(new ResourceLocation("locusazzurro_icaruswings:herbs")))),
 	SYNAPSE("synapse_tech", 40, new int[] {3,6,8,3}, 12, SoundRegistry.armorEquipSynapse, //diamond
