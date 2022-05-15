@@ -12,6 +12,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -22,10 +23,12 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.blocks.ElysianGrassBlock;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 
@@ -84,11 +87,11 @@ public class Mead extends Item {
                         extraEffect.add(new MobEffectInstance(MobEffects.SLOW_FALLING, 1200, 1));
                         extraEffect.add(new MobEffectInstance(MobEffects.INVISIBILITY, 1200, 0));
                     }
-                    case GOLDEN_APPLE -> {
+                    case GOLDEN_APPLE, GOLDEN_APPLE_GROWTH -> {
                         extraEffect.add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 1));
                         extraEffect.add(new MobEffectInstance(MobEffects.HEALTH_BOOST, 1200, 1));
                     }
-                    case HERBS -> {
+					case HERBS -> {
                         extraEffect.add(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
                         extraEffect.add(new MobEffectInstance(MobEffects.LUCK, 1200, 0));
                     }
@@ -167,6 +170,13 @@ public class Mead extends Item {
 							level.setBlock(p, BlockRegistry.elysianGrassBlock.get().defaultBlockState(), 3);
 						}
 					});
+
+					AABB aabb = new AABB(pos).inflate(1);
+					List<Sheep> sheep = level.getEntitiesOfClass(Sheep.class, aabb);
+					if (!sheep.isEmpty()){
+						Sheep sheep1 = sheep.get(level.random.nextInt(sheep.size()));
+						sheep1.convertTo(EntityTypeRegistry.goldenRamEntity.get(), true);
+					}
 
 					if (!player.getAbilities().instabuild) {
 						item.shrink(1);
