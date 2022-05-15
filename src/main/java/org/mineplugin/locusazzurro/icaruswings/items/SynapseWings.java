@@ -14,6 +14,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
@@ -43,9 +45,18 @@ public abstract class SynapseWings extends AbstractWings{
 	
 	@Override
 	public float getXpRepairRatio(ItemStack stackIn) {
-		return 0.0f;
+		return 1.0f;
 	}
-	
+
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		return enchantment == Enchantments.MENDING && !this.acceptsMending() ? false : super.canApplyAtEnchantingTable(stack, enchantment);
+	}
+
+	public boolean acceptsMending(){
+		return false;
+	}
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
