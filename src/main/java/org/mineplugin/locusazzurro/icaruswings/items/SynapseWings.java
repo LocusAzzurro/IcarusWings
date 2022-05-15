@@ -14,6 +14,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
@@ -43,16 +45,25 @@ public abstract class SynapseWings extends AbstractWings{
 	
 	@Override
 	public float getXpRepairRatio(ItemStack stackIn) {
-		return 0.0f;
+		return 1.0f;
 	}
-	
+
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		return enchantment == Enchantments.MENDING && !this.acceptsMending() ? false : super.canApplyAtEnchantingTable(stack, enchantment);
+	}
+
+	public boolean acceptsMending(){
+		return false;
+	}
+
 	@SuppressWarnings("deprecation")
 	@Override
-	public Multimap<Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
+	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
 		return slot == EquipmentSlot.CHEST ? this.getModifiers() : super.getDefaultAttributeModifiers(slot);
 	}
 	
-	protected abstract Multimap<net.minecraft.world.entity.ai.attributes.Attribute, AttributeModifier> getModifiers();
+	protected abstract Multimap<Attribute, AttributeModifier> getModifiers();
 
 	@Override
 	public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
@@ -85,7 +96,7 @@ public abstract class SynapseWings extends AbstractWings{
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void appendHoverText(net.minecraft.world.item.ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
+	public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(itemstack, world, list, flag);
 		list.add(new TranslatableComponent("item.locusazzurro_icaruswings." + this.type.getName() + ".tooltip")
 				.setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));

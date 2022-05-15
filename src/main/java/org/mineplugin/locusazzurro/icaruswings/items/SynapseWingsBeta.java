@@ -33,9 +33,13 @@ public class SynapseWingsBeta extends SynapseWings implements IWingsExpandable, 
 	
 	@Override
 	public float getXpRepairRatio(ItemStack stackIn) {
-		return 0.2f;
+		return 1.5f;
 	}
-	
+	@Override
+	public boolean acceptsMending() {
+		return true;
+	}
+
 	@Override
 	protected Multimap<Attribute, AttributeModifier> getModifiers()
 	{
