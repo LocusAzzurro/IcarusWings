@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "F F",
+    "SFS"
+  ],
+  "key": {
+    "F": {
+      "item": "locusazzurro_icaruswings:golden_fleece"
+    },
+    "S": {
+      "item": "locusazzurro_icaruswings:golden_string"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:golden_fleece_mantle",
+    "count": 1
+  }
+}

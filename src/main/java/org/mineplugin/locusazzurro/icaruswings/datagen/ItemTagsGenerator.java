@@ -38,7 +38,7 @@ public class ItemTagsGenerator extends ItemTagsProvider {
         tag(ModTags.CROP_STRINGS)
                 .add(ItemRegistry.wheatString.get())
                 .add(ItemRegistry.linenString.get());
-        tag(ModTags.CROP_STRINGS)
+        tag(ModTags.CROP_GRAINS)
                 .add(ItemRegistry.wheatGrains.get())
                 .add(ItemRegistry.flaxSeeds.get());
         tag(ModTags.WORLD_ESSENCES)
