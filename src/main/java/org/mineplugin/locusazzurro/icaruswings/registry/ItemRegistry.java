@@ -211,6 +211,8 @@ public class ItemRegistry {
     public static final RegistryObject<Item> artemisMissile = ITEMS.register("artemis_missile", ArtemisMissile::new);
     public static final RegistryObject<Item> timeRiftGenerator = ITEMS.register("time_rift_generator", TimeRiftGenerator::new);
     public static final RegistryObject<Item> timeRiftCharge = ITEMS.register("time_rift_charge", TimeRiftCharge::new);
+    public static final RegistryObject<Item> demeter = ITEMS.register("demeter", Demeter::new);
+    public static final RegistryObject<Item> demeterCharge = ITEMS.register("demeter_charge", TimeRiftCharge::new);
 
     public static final RegistryObject<Item> transportCardBase = ITEMS.register("transport_card_base", BaseTransportCard::new);
     public static final RegistryObject<Item> transportCardArtemisHoming = ITEMS.register("transport_card_artemis_homing",

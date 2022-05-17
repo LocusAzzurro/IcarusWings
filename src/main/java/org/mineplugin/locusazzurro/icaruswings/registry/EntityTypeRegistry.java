@@ -40,6 +40,12 @@ public class EntityTypeRegistry {
 					.sized(0.1F, 0.1F)
 					.build("time_rift_particle"));
 
+	public static final RegistryObject<EntityType<KayrosBlastEntity>> kayrosBlastEntity =
+			register("kayros_energy_blast", () -> EntityType.Builder
+					.<KayrosBlastEntity>of(KayrosBlastEntity::new, MobCategory.MISC)
+					.sized(0.1F, 0.1F)
+					.build("kayros_energy_blast"));
+
 	public static final RegistryObject<EntityType<SpearEntity>> spearEntity =
 			register("spear", () -> EntityType.Builder
 					.<SpearEntity>of(SpearEntity::new, MobCategory.MISC)

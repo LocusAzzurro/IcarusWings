@@ -1,6 +1,5 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -11,17 +10,15 @@ import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.entity.KayrosBlastEntity;
-import org.mineplugin.locusazzurro.icaruswings.entity.TimeRiftParticleEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
-import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.utils.KayrosGenUtils;
 
 import java.util.function.Predicate;
 
-public class TimeRiftGenerator extends ProjectileWeaponItem {
+public class Demeter extends ProjectileWeaponItem {
 
-    public TimeRiftGenerator(){
-        super(new Item.Properties().tab(ModGroup.itemGroup).durability(400));
+    public Demeter(){
+        super(new Item.Properties().tab(ModGroup.itemGroup).durability(600));
     }
 
     @Override
@@ -31,18 +28,17 @@ public class TimeRiftGenerator extends ProjectileWeaponItem {
         if (!playerIn.getAbilities().instabuild && charge.isEmpty()){
             return InteractionResultHolder.pass(itemStack);
         }
-
-        TimeRiftParticleEntity particle = new TimeRiftParticleEntity(playerIn, worldIn);
-        particle.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, 2.0f, 0.5f);
-        particle.setNoGravity(true);
-        worldIn.addFreshEntity(particle);
-        worldIn.playSound(null, playerIn, SoundRegistry.timeRiftGeneratorFire.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-
         if (!worldIn.isClientSide()) {
-            itemStack.hurtAndBreak(1, playerIn, (player) -> {
-                player.broadcastBreakEvent(playerIn.getUsedItemHand());
-            });
+            KayrosBlastEntity particle = new KayrosBlastEntity(playerIn, worldIn,
+                    KayrosGenUtils.generateTerrainTagWithJitter(playerIn.getX(), playerIn.getZ(), worldIn.random, 32f));
+            particle.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, 1.0f, 0.5f);
+            particle.setNoGravity(true);
+            worldIn.addFreshEntity(particle);
+            //todo sound effect
+            //worldIn.playSound(null, playerIn, SoundRegistry.timeRiftGeneratorFire.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+            itemStack.hurtAndBreak(1, playerIn, (player) -> player.broadcastBreakEvent(playerIn.getUsedItemHand()));
         }
+
 
         if (!playerIn.getAbilities().instabuild) {
             charge.shrink(1);
@@ -59,15 +55,16 @@ public class TimeRiftGenerator extends ProjectileWeaponItem {
         return repairItem.getItem() == ItemRegistry.synapseRepairKit.get() || super.isValidRepairItem(thisItem, repairItem);
     }
 
-    public static final Predicate<ItemStack> TIME_RIFT_CHARGE = (item) -> item.getItem().equals(ItemRegistry.timeRiftCharge.get());
+    public static final Predicate<ItemStack> DEMETER_CHARGE = (item) -> item.getItem().equals(ItemRegistry.demeterCharge.get());
 
     @Override
     public Predicate<ItemStack> getAllSupportedProjectiles() {
-        return TIME_RIFT_CHARGE;
+        return DEMETER_CHARGE;
     }
 
     @Override
     public int getDefaultProjectileRange() {
         return 32;
     }
+
 }

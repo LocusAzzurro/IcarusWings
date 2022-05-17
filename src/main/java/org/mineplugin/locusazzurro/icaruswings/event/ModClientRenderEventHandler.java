@@ -46,6 +46,7 @@ public class ModClientRenderEventHandler {
         registerEntityRenderer(EntityTypeRegistry.artemisMissileEntity.get(), ArtemisMissileRenderer::new);
         registerEntityRenderer(EntityTypeRegistry.timeBombEntity.get(), TimeBombRenderer::new);
         registerEntityRenderer(EntityTypeRegistry.timeRiftParticleEntity.get(), ThrownItemRenderer::new);
+        registerEntityRenderer(EntityTypeRegistry.kayrosBlastEntity.get(), ThrownItemRenderer::new);
         registerEntityRenderer(EntityTypeRegistry.spearEntity.get(), SpearRenderer::new);
 
         e.enqueueWork(() -> {
