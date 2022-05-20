@@ -1,11 +1,14 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -36,23 +39,30 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Nullable;
 import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.MeadPotTileEntity;
 import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.ITickableBlockEntity;
+import org.mineplugin.locusazzurro.icaruswings.items.Mead;
+import org.mineplugin.locusazzurro.icaruswings.items.WorldEssence;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.TileEntityTypeRegistry;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
+@SuppressWarnings("deprecation")
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class MeadPot extends BaseEntityBlock {
 	
 	public static final EnumProperty<MeadPotState> STATE = EnumProperty.create("state", MeadPotState.class);
+	public static final EnumProperty<Mead.Infusion> INFUSION = EnumProperty.create("infusion", Mead.Infusion.class);
 	
 	private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	protected static final VoxelShape SHAPE = Shapes.join(
 			Shapes.block(), INSIDE, BooleanOp.ONLY_FIRST);
 
-	private final double particleR = 233D / 255D;
-	private final double particleG = 147D / 255D;
-	private final double particleB = 38D / 255D;
+	private static final double particleR = 233D / 255D;
+	private static final double particleG = 147D / 255D;
+	private static final double particleB = 38D / 255D;
 	
 	public MeadPot() {
 		super(BlockBehaviour.Properties.of(Material.STONE)
@@ -60,7 +70,9 @@ public class MeadPot extends BaseEntityBlock {
 				.sound(SoundType.STONE)
 				.requiresCorrectToolForDrops()
 				);
-		this.registerDefaultState(this.stateDefinition.any().setValue(STATE, MeadPotState.EMPTY));
+		this.registerDefaultState(this.stateDefinition.any()
+				.setValue(STATE, MeadPotState.EMPTY)
+				.setValue(INFUSION, Mead.Infusion.NONE));
 	}
 
 	@Nullable
@@ -76,31 +88,33 @@ public class MeadPot extends BaseEntityBlock {
 	}
 	
 	@Override
-	public VoxelShape getShape(BlockState p_220053_1_, BlockGetter p_220053_2_, BlockPos p_220053_3_, CollisionContext p_220053_4_) {
+	public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
 		return SHAPE;
 	}
 	
 	@Override
-	public VoxelShape getInteractionShape(BlockState p_199600_1_, BlockGetter p_199600_2_, BlockPos p_199600_3_) {
+	public VoxelShape getInteractionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
 		return INSIDE;
 	}
 
 	@Override
-	public RenderShape getRenderShape(BlockState p_149645_1_) {
+	public RenderShape getRenderShape(BlockState pState) {
 		return RenderShape.MODEL;
 	}
 	
 	@Override
-	public boolean hasAnalogOutputSignal(BlockState p_149740_1_) {
+	public boolean hasAnalogOutputSignal(BlockState pState) {
 		return true;
 	}
 	
 	@Override
-	public int getAnalogOutputSignal(BlockState stateIn_, Level worldIn, BlockPos pos) {
-		float progress = ((MeadPotTileEntity) worldIn.getBlockEntity(pos)).getFermentationProgress();
-		float fermTime = MeadPotTileEntity.getFermentationTime();
-		float progressPerc = progress / fermTime;
-		return (int) (progressPerc * 15);
+	public int getAnalogOutputSignal(BlockState stateIn, Level worldIn, BlockPos pos) {
+		if (worldIn.getBlockEntity(pos) != null && worldIn.getBlockEntity(pos) instanceof MeadPotTileEntity meadPotTE){
+			float progress = meadPotTE.getFermentationProgress();
+			float fermentationTime = MeadPotTileEntity.getFermentationTime();
+			return (int) ((progress / fermentationTime) * 15);
+		}
+		return 0;
 	}
 
 	@Override
@@ -109,8 +123,7 @@ public class MeadPot extends BaseEntityBlock {
 	}
 	@Override
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if (!worldIn.isClientSide && handIn == InteractionHand.MAIN_HAND && worldIn.getBlockEntity(pos) != null) {
-            MeadPotTileEntity meadPotTE = (MeadPotTileEntity) worldIn.getBlockEntity(pos);
+        if (!worldIn.isClientSide && handIn == InteractionHand.MAIN_HAND && worldIn.getBlockEntity(pos) instanceof MeadPotTileEntity meadPotTE) {
             ItemStack stackIn = player.getItemInHand(handIn);
             if (stackIn.getItem() == Items.HONEY_BOTTLE && stackIn.getCount() >= 4
             		&& !meadPotTE.isFermenting() && !meadPotTE.isComplete()) {
@@ -135,6 +148,18 @@ public class MeadPot extends BaseEntityBlock {
         
     }
 
+	@Override
+	public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
+		if (pEntity instanceof ItemEntity itemEntity
+				&& itemEntity.getItem().getItem() instanceof WorldEssence essence
+				&& pState.getValue(STATE) == MeadPotState.FERMENTING && pState.getValue(INFUSION) == Mead.Infusion.NONE){
+			ItemStack stack = itemEntity.getItem();
+			stack.shrink(1);
+//todo
+		}
+		super.entityInside(pState, pLevel, pPos, pEntity);
+	}
+
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rng) {
@@ -155,11 +180,14 @@ public class MeadPot extends BaseEntityBlock {
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> state) {
 		state.add(STATE);
+		state.add(INFUSION);
 	}
 	
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext blockUse) {
-		return this.defaultBlockState().setValue(STATE, MeadPotState.EMPTY);
+		return this.defaultBlockState()
+				.setValue(STATE, MeadPotState.EMPTY)
+				.setValue(INFUSION, Mead.Infusion.NONE);
 	}
 	
 	

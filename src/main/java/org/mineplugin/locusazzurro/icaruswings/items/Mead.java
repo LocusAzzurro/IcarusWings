@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -207,7 +208,16 @@ public class Mead extends Item {
 		return this.infusionType;
 	}
 	
-	public enum Infusion{
-		ZEPHIR,NETHER,VOID,GOLDEN_APPLE,GOLDEN_APPLE_GROWTH,HERBS
+	public enum Infusion implements StringRepresentable {
+		NONE("none"),ZEPHIR("zephir"),NETHER("nether"),VOID("void"),
+		GOLDEN_APPLE("golden_apple"),GOLDEN_APPLE_GROWTH("golden_apple_growth"),HERBS("herbs");
+
+		private String name;
+
+		Infusion(String name) {this.name = name;}
+		@Override
+		public String getSerializedName() {
+			return name;
+		}
 	}
 }
