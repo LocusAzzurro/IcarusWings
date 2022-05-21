@@ -10,6 +10,8 @@
   "item.locusazzurro_icaruswings.colored_feather_bunch": "彩色羽毛扎",
   "item.locusazzurro_icaruswings.golden_feather_bunch": "金色羽毛扎",
 
+  "item.locusazzurro_icaruswings.herb_bunch": "草药捆",
+
   "item.locusazzurro_icaruswings.steel_ingot": "碳素钢锭",
   "item.locusazzurro_icaruswings.magma_ingot": "狱岩锭",
   "item.locusazzurro_icaruswings.purpur_ingot": "紫珀锭",
@@ -153,6 +155,8 @@
   "item.locusazzurro_icaruswings.artemis_missile": "阿尔忒弥斯导弹",
   "item.locusazzurro_icaruswings.time_rift_generator": "时间裂缝发生器",
   "item.locusazzurro_icaruswings.time_rift_charge": "时间裂缝粒子",
+  "item.locusazzurro_icaruswings.demeter": "德墨忒尔",
+  "item.locusazzurro_icaruswings.demeter_charge": "德墨忒尔能量粒子",
 
   "item.locusazzurro_icaruswings.transport_card": "愿望之卡",
   "item.locusazzurro_icaruswings.transport_card_base.tooltip": "基础",
@@ -181,6 +185,7 @@
   "entity.locusazzurro_icaruswings.artemis_missile": "阿尔忒弥斯导弹",
   "entity.locusazzurro_icaruswings.time_bomb": "时空奇点",
   "entity.locusazzurro_icaruswings.time_rift_particle": "时空裂缝粒子",
+  "entity.locusazzurro_icaruswings.kayros_energy_blast": "时空干扰能量粒子",
   "entity.locusazzurro_icaruswings.spear": "枪",
   "entity.locusazzurro_icaruswings.golden_ram": "金羊",
 
@@ -226,6 +231,7 @@
   "subtitles.entity.artemis_missile.launch": "阿尔忒弥斯导弹：发射",
   "subtitles.entity.time_rift.collapse": "时空奇点：坍缩",
   "subtitles.item.time_rift_generator.fire": "时间裂缝发生器：发射",
+  "subtitles.item.demeter.blast": "德墨忒尔：攻击",
   "subtitles.item.transport_card.activation": "愿望之卡：激活",
   "subtitles.item.transport_card.fail": "愿望之卡：使用失败",
   "subtitles.item.transport_card.teleport_anchor": "愿望之卡：记录目标点",

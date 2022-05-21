@@ -373,6 +373,16 @@
         "locusazzurro_icaruswings:time_rift_generator_fire"
     ]
   },
+  "item.demeter.blast": {
+    "subtitle": "subtitles.item.demeter.blast",
+    "replace": true,
+    "sounds": [
+      {
+        "name": "locusazzurro_icaruswings:time_rift_generator_fire",
+        "volume": 1.2
+      }
+    ]
+  },
   "item.transport_card.activation.generic": {
     "subtitle": "subtitles.item.transport_card.activation",
     "replace": true,

@@ -10,6 +10,8 @@
   "item.locusazzurro_icaruswings.colored_feather_bunch": "Bunch of Colored Feathers",
   "item.locusazzurro_icaruswings.golden_feather_bunch": "Bunch of Golden Feathers",
 
+  "item.locusazzurro_icaruswings.herb_bunch": "Bunch of Herbs",
+
   "item.locusazzurro_icaruswings.steel_ingot": "Steel Ingot",
   "item.locusazzurro_icaruswings.magma_ingot": "Magmite Ingot",
   "item.locusazzurro_icaruswings.purpur_ingot": "Chorusite Ingot",
@@ -153,6 +155,8 @@
   "item.locusazzurro_icaruswings.artemis_missile": "Artemis Missile",
   "item.locusazzurro_icaruswings.time_rift_generator": "Time Rift Generator",
   "item.locusazzurro_icaruswings.time_rift_charge": "Time Rift Charge",
+  "item.locusazzurro_icaruswings.demeter": "Demeter",
+  "item.locusazzurro_icaruswings.demeter_charge": "Demeter Charge",
 
   "item.locusazzurro_icaruswings.transport_card": "Transport Card",
   "item.locusazzurro_icaruswings.transport_card_base.tooltip": "Basic",
@@ -181,6 +185,7 @@
   "entity.locusazzurro_icaruswings.artemis_missile": "Artemis Missile",
   "entity.locusazzurro_icaruswings.time_bomb": "Time Singularity",
   "entity.locusazzurro_icaruswings.time_rift_particle": "Time Rift Particle",
+  "entity.locusazzurro_icaruswings.kayros_energy_blast": "Kayros Energy Blast",
   "entity.locusazzurro_icaruswings.spear": "Spear",
   "entity.locusazzurro_icaruswings.golden_ram": "Golden Ram",
 
@@ -227,6 +232,7 @@
   "subtitles.entity.artemis_missile.launch": "Artemis Missile launched",
   "subtitles.entity.time_rift.collapse": "Time Rift collapses",
   "subtitles.item.time_rift_generator.fire": "Time Rift Generator fires",
+  "subtitles.item.demeter.blast": "Demeter blasts",
   "subtitles.item.transport_card.activation": "Transport Card activates",
   "subtitles.item.transport_card.fail": "Transport Card failed",
   "subtitles.item.transport_card.teleport_anchor": "Transport Card registers anchor",

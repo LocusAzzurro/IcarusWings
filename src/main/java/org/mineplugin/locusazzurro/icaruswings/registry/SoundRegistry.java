@@ -82,6 +82,9 @@ public class SoundRegistry {
 	public static final RegistryObject<SoundEvent> timeRiftGeneratorFire = SOUNDS.register("item.time_rift_generator.fire",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.time_rift_generator.fire")));
 
+	public static final RegistryObject<SoundEvent> demeterBlast = SOUNDS.register("item.demeter.blast",
+			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.demeter.blast")));
+
 	public static final RegistryObject<SoundEvent> transportCardActivationGeneric = SOUNDS.register("item.transport_card.activation.generic",
 			() -> new SoundEvent(new ResourceLocation(ModData.MOD_ID,"item.transport_card.activation.generic")));
 	public static final RegistryObject<SoundEvent> transportCardActivationArtemis = SOUNDS.register("item.transport_card.activation.artemis",
