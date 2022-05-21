@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -39,14 +40,19 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Nullable;
 import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.MeadPotTileEntity;
 import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.ITickableBlockEntity;
+import org.mineplugin.locusazzurro.icaruswings.data.ModTags;
 import org.mineplugin.locusazzurro.icaruswings.items.Mead;
 import org.mineplugin.locusazzurro.icaruswings.items.WorldEssence;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.TileEntityTypeRegistry;
+import org.mineplugin.locusazzurro.icaruswings.utils.IWLazy;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.function.Predicate;
 
 @SuppressWarnings("deprecation")
 @ParametersAreNonnullByDefault
@@ -127,18 +133,27 @@ public class MeadPot extends BaseEntityBlock {
             ItemStack stackIn = player.getItemInHand(handIn);
             if (stackIn.getItem() == Items.HONEY_BOTTLE && stackIn.getCount() >= 4
             		&& !meadPotTE.isFermenting() && !meadPotTE.isComplete()) {
-            	ItemStack stackOut = new ItemStack(Items.GLASS_BOTTLE, 4);
-            	stackIn.shrink(4);
-				ItemHandlerHelper.giveItemToPlayer(player, stackOut);
+				if (!player.getAbilities().instabuild) {
+					ItemStack stackOut = new ItemStack(Items.GLASS_BOTTLE, 4);
+					stackIn.shrink(4);
+					ItemHandlerHelper.giveItemToPlayer(player, stackOut);
+				}
             	meadPotTE.startFermenting();
             	worldIn.playSound(null, pos, SoundRegistry.meadPotBrew.get(), SoundSource.BLOCKS, 2.0f, 1.3f);
             	return InteractionResult.SUCCESS;
             }
             if (stackIn.getItem() == ItemRegistry.glassJar.get() && meadPotTE.isComplete()) {
-            	ItemStack stackOut = new ItemStack(ItemRegistry.mead.get());
-            	stackIn.shrink(1);
-				ItemHandlerHelper.giveItemToPlayer(player, stackOut);
+				Item itemOut = ItemRegistry.mead.get();
+				if (!player.getAbilities().instabuild) stackIn.shrink(1);
+				for (Map.Entry<Mead.Infusion, IWLazy<Item>> entry : infusionMapOut.entrySet()) {
+					if (state.getValue(INFUSION) == entry.getKey()) {
+						itemOut = entry.getValue().get();
+						break;
+					}
+				}
+				ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(itemOut));
             	meadPotTE.setEmpty();
+				worldIn.setBlock(pos, worldIn.getBlockState(pos).setValue(INFUSION, Mead.Infusion.NONE), 3);
             	worldIn.playSound(null, pos, SoundRegistry.meadPotBrew.get(), SoundSource.BLOCKS, 2.0f, 1.3f);
             	return InteractionResult.SUCCESS;
             }
@@ -151,13 +166,16 @@ public class MeadPot extends BaseEntityBlock {
 	@Override
 	public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
 		if (pEntity instanceof ItemEntity itemEntity
-				&& itemEntity.getItem().getItem() instanceof WorldEssence essence
+				&& validInfusionItems.test(itemEntity.getItem())
 				&& pState.getValue(STATE) == MeadPotState.FERMENTING && pState.getValue(INFUSION) == Mead.Infusion.NONE){
 			ItemStack stack = itemEntity.getItem();
+			infusionMapIn.forEach((item, infusion) -> {
+				if (stack.is(item.get())) {
+					pLevel.setBlock(pPos, pLevel.getBlockState(pPos).setValue(INFUSION, infusion), 3);
+				}});
 			stack.shrink(1);
-//todo
+			pLevel.blockEntityChanged(pPos);
 		}
-		super.entityInside(pState, pLevel, pPos, pEntity);
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -174,9 +192,7 @@ public class MeadPot extends BaseEntityBlock {
 		}
 		}
 	}
-	
-	//BLOCK STATES
-	
+
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> state) {
 		state.add(STATE);
@@ -190,7 +206,29 @@ public class MeadPot extends BaseEntityBlock {
 				.setValue(INFUSION, Mead.Infusion.NONE);
 	}
 	
-	
+	public static final Predicate<ItemStack> validInfusionItems = (itemStack) ->
+			itemStack.getItem() instanceof WorldEssence
+			|| itemStack.is(Items.GOLDEN_APPLE)
+			|| itemStack.is(ItemRegistry.herbBunch.get());
+
+	private static final Map<IWLazy<Item>, Mead.Infusion> infusionMapIn = new HashMap<>();
+	private static final Map<Mead.Infusion, IWLazy<Item> > infusionMapOut = new HashMap<>();
+
+	static {
+		infusionMapIn.put(IWLazy.of(ItemRegistry.zephirEssence), Mead.Infusion.ZEPHIR);
+		infusionMapIn.put(IWLazy.of(ItemRegistry.netherEssence), Mead.Infusion.NETHER);
+		infusionMapIn.put(IWLazy.of(ItemRegistry.voidEssence), Mead.Infusion.VOID);
+		infusionMapIn.put(IWLazy.of(ItemRegistry.herbBunch), Mead.Infusion.HERBS);
+		infusionMapIn.put(IWLazy.of(() -> Items.GOLDEN_APPLE), Mead.Infusion.GOLDEN_APPLE);
+		infusionMapOut.put(Mead.Infusion.NONE, IWLazy.of(ItemRegistry.mead));
+		infusionMapOut.put(Mead.Infusion.ZEPHIR, IWLazy.of(ItemRegistry.zephirInfusedMead));
+		infusionMapOut.put(Mead.Infusion.NETHER, IWLazy.of(ItemRegistry.netherInfusedMead));
+		infusionMapOut.put(Mead.Infusion.VOID, IWLazy.of(ItemRegistry.voidInfusedMead));
+		infusionMapOut.put(Mead.Infusion.HERBS, IWLazy.of(ItemRegistry.herbsInfusedMead));
+		infusionMapOut.put(Mead.Infusion.GOLDEN_APPLE, IWLazy.of(ItemRegistry.goldenAppleInfusedMead));
+	}
+
+
 	public enum MeadPotState implements StringRepresentable {
 		EMPTY("empty"), 
 		FERMENTING("fermenting"), 

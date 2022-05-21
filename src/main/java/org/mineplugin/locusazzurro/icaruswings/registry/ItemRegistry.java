@@ -27,6 +27,7 @@ public class ItemRegistry {
     		() -> new FeatherBunch(WingsType.FEATHER_COLORED));
     public static final RegistryObject<Item> goldenFeatherBunch = ITEMS.register("golden_feather_bunch",
     		() -> new FeatherBunch(WingsType.FEATHER_GOLDEN));
+    public static final RegistryObject<Item> herbBunch = ITEMS.register("herb_bunch", HerbBunch::new);
     
     public static final RegistryObject<Item> steelIngot = ITEMS.register("steel_ingot", WorldIngot::new);
     public static final RegistryObject<Item> magmaIngot = ITEMS.register("magma_ingot", WorldIngot::new);
