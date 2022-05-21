@@ -11,7 +11,7 @@ import org.mineplugin.locusazzurro.icaruswings.registry.TileEntityTypeRegistry;
 
 public class MeadPotTileEntity extends BlockEntity implements ITickableBlockEntity<MeadPotTileEntity> {
 	
-	private static final int FERMENTATION_TIME = 60; //3600 * 20; //1h / 3 in-game days
+	private static final int FERMENTATION_TIME = 3600 * 20; //1h / 3 in-game days
 	private int fermentationProgress = 0;
 	private boolean isFermenting = false;
 	private boolean isComplete = false;

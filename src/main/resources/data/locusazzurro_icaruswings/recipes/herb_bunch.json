@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "locusazzurro_icaruswings:herbs"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:herbs"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:herbs"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:herbs"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:crop_strings"
+    }
+  ],
+  "result": {
+    "item": "locusazzurro_icaruswings:herb_bunch"
+  }
+}

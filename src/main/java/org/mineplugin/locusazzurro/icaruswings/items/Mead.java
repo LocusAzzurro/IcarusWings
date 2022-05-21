@@ -28,10 +28,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.blocks.ElysianGrassBlock;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
-import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
-import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
-import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.*;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -95,6 +92,7 @@ public class Mead extends Item {
 					case HERBS -> {
                         extraEffect.add(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
                         extraEffect.add(new MobEffectInstance(MobEffects.LUCK, 1200, 0));
+						extraEffect.add(new MobEffectInstance(EffectRegistry.poisonImmunity.get(), 1200, 0));
                     }
                     default -> {
                     }
