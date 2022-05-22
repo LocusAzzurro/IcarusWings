@@ -117,7 +117,8 @@ public class ItemRegistry {
     public static final RegistryObject<Item> goldenFleece = ITEMS.register("golden_fleece", GoldenString::new);
     
     public static final RegistryObject<Item> linen = ITEMS.register("linen", Linen::new);
-    
+    public static final RegistryObject<Item> grainsMeal = ITEMS.register("grains_meal", GrainsMeal::new);
+
     public static final RegistryObject<Item> herbalCrown = ITEMS.register("herbal_crown",
     		() -> new HerbalAccessory(EquipmentSlot.HEAD));
     public static final RegistryObject<Item> featherHelmet = ITEMS.register("feather_helmet",

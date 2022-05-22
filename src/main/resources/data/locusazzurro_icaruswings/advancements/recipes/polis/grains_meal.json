@@ -1,0 +1,46 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:grains_meal"
+    ]
+  },
+  "criteria": {
+    "has_grains": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "locusazzurro_icaruswings:crop_grains"
+          }
+        ]
+      }
+    },
+    "has_bowl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["minecraft:bowl"]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:grains_meal"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_grains",
+      "has_the_recipe"
+    ],
+    [
+      "has_bowl",
+      "has_the_recipe"
+    ]
+  ]
+}
