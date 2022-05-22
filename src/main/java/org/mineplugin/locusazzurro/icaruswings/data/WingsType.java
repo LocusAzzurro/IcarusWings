@@ -23,7 +23,7 @@ public enum WingsType implements IWingsType{
 	SYNAPSE_THETA("synapse_theta", 500, ItemRegistry.synapseWingsRecharger,true, SoundRegistry.wingsEquipSynapse),
 	PAPER("paper", 10, () -> Items.PAPER,false, SoundRegistry.wingsEquipPaper),
 	MAGIC("magic", 450, ItemRegistry.magicMembrane,false, SoundRegistry.wingsEquipMagic),
-	PHI_STONE("philosopher_stone", 450, ItemRegistry.magicMembrane,false, SoundRegistry.wingsEquipMagic);
+	PHI_STONE("philosopher_stone", 495, ItemRegistry.magicMembrane,false, SoundRegistry.wingsEquipMagic);
 	
 	private final String name;
 	private final int durability;
