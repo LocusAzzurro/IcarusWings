@@ -75,6 +75,8 @@ public class ItemRegistry {
             () -> new BlockItem(BlockRegistry.goldenWoolBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     public static final RegistryObject<Item> goldenWoolCarpet = ITEMS.register("golden_wool_carpet",
             () -> new BlockItem(BlockRegistry.goldenWoolCarpet.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    public static final RegistryObject<Item> honeyCake = ITEMS.register("honey_cake",
+            () -> new BlockItem(BlockRegistry.honeyCake.get(), new Item.Properties().tab(ModGroup.itemGroup)));
     
     public static final RegistryObject<Item> meadPot = ITEMS.register("mead_pot",
     		() -> new BlockItem(BlockRegistry.meadPot.get(), new Item.Properties().tab(ModGroup.itemGroup)));

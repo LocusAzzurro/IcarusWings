@@ -23,6 +23,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block> elysianGrass = BLOCKS.register("elysian_grass", ElysianGrass::new);
     public static final RegistryObject<Block> goldenWoolBlock = BLOCKS.register("golden_wool_block", GoldenWoolBlock::new);
     public static final RegistryObject<Block> goldenWoolCarpet = BLOCKS.register("golden_wool_carpet", GoldenWoolCarpet::new);
+    public static final RegistryObject<Block> honeyCake = BLOCKS.register("honey_cake", HoneyCake::new);
 
     public static final RegistryObject<Block> meadPot = BLOCKS.register("mead_pot", MeadPot::new);
     public static final RegistryObject<Block> amphora = BLOCKS.register("amphora", Amphora::new);
