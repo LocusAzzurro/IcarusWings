@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "locusazzurro_icaruswings:block/golden_wool_block"
+  }
+}

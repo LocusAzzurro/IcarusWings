@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "wool": "locusazzurro_icaruswings:block/golden_wool_block"
+  }
+}
