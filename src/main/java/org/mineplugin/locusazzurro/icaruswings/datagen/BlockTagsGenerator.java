@@ -30,6 +30,10 @@ public class BlockTagsGenerator extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(BlockRegistry.elysianSoil.get())
                 .add(BlockRegistry.elysianGrassBlock.get());
+        tag(BlockTags.WOOL)
+                .add(BlockRegistry.goldenWoolBlock.get());
+        tag(BlockTags.CARPETS)
+                .add(BlockRegistry.goldenWoolCarpet.get());
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(BlockRegistry.refinedBeeswaxBlock.get())
                 .add(BlockRegistry.refinedBeeswaxPillar.get())
