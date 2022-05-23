@@ -3,6 +3,7 @@ package org.mineplugin.locusazzurro.icaruswings.blocks;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
@@ -44,6 +45,7 @@ import org.mineplugin.locusazzurro.icaruswings.data.ModTags;
 import org.mineplugin.locusazzurro.icaruswings.items.Mead;
 import org.mineplugin.locusazzurro.icaruswings.items.WorldEssence;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.TileEntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.utils.IWLazy;
@@ -173,6 +175,14 @@ public class MeadPot extends BaseEntityBlock {
 				if (stack.is(item.get())) {
 					pLevel.setBlock(pPos, pLevel.getBlockState(pPos).setValue(INFUSION, infusion), 3);
 				}});
+			pLevel.playSound(null, pPos, SoundRegistry.meadPotBrew.get(), SoundSource.BLOCKS, 2.0f, 1.0f);
+			if (pLevel instanceof ServerLevel server){
+				server.sendParticles(ParticleTypes.POOF,
+						pPos.getX() + 0.5,
+						pPos.getY() + 0.8,
+						pPos.getZ() + 0.5,
+						30, 0.2, 0.2, 0.2, 0.01);
+			}
 			stack.shrink(1);
 			pLevel.blockEntityChanged(pPos);
 		}
