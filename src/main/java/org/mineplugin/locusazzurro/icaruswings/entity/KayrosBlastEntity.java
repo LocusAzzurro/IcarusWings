@@ -128,7 +128,7 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
 
     @Override
     protected Item getDefaultItem() {
-        return ItemRegistry.timeRiftCharge.get();
+        return ItemRegistry.demeterCharge.get();
     }
 
     @Override

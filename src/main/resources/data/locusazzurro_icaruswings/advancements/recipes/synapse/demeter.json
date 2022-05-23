@@ -1,0 +1,46 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:demeter"
+    ]
+  },
+  "criteria": {
+    "has_generator": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["locusazzurro_icaruswings:time_rift_generator"]
+          }
+        ]
+      }
+    },
+    "has_wings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["locusazzurro_icaruswings:hiyori_wings"]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:demeter"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_generator",
+      "has_the_recipe"
+    ],
+    [
+      "has_wings",
+      "has_the_recipe"
+    ]
+  ]
+}
