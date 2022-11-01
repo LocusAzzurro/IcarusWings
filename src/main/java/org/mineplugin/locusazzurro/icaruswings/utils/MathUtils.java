@@ -1,11 +1,11 @@
 package org.mineplugin.locusazzurro.icaruswings.utils;
 
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
 import com.mojang.math.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class MathUtils {
 
@@ -63,7 +63,7 @@ public class MathUtils {
      * @param random instance of RNG provider
      * @return ArrayList of points in Vector3d with zero y value
      */
-    public static List<Vec3> randomPointsInCircle(int numPoints, double radius, Random random){
+    public static List<Vec3> randomPointsInCircle(int numPoints, double radius, RandomSource random){
         List<Vec3> points = new ArrayList<>();
         double r,theta,x,y=0,z;
         for (int i = 0; i < numPoints; i++) {

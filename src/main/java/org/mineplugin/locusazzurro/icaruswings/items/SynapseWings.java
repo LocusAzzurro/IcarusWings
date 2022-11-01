@@ -4,7 +4,6 @@ import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -98,7 +97,7 @@ public abstract class SynapseWings extends AbstractWings{
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(itemstack, world, list, flag);
-		list.add(new TranslatableComponent("item.locusazzurro_icaruswings." + this.type.getName() + ".tooltip")
+		list.add(Component.translatable("item.locusazzurro_icaruswings." + this.type.getName() + ".tooltip")
 				.setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
 	}
 }

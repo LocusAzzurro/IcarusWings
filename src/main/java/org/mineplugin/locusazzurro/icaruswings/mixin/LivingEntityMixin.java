@@ -13,8 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
 
+    //todo pending removal for API change
     @Inject(at = @At ("HEAD"),
-            method = {"equipEventAndSound"},
+            method = {"playEquipSound"},
             cancellable = true)
     private void playEquipSound(ItemStack itemStack, CallbackInfo ci){
         Item item = itemStack.getItem();

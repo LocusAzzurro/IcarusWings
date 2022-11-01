@@ -3,8 +3,6 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -26,8 +24,8 @@ public class MagicalAnemone extends Item {
     public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
         if (itemstack.getOrCreateTag().contains("Speed")){
-            list.add(new TranslatableComponent("item.locusazzurro_icaruswings.magical_anemone.tooltip")
-                    .append(new TextComponent(String.format("%.2f", itemstack.getOrCreateTag().getDouble("Speed"))))
+            list.add(Component.translatable("item.locusazzurro_icaruswings.magical_anemone.tooltip")
+                    .append(Component.literal(String.format("%.2f", itemstack.getOrCreateTag().getDouble("Speed"))))
                     .setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
         }
 

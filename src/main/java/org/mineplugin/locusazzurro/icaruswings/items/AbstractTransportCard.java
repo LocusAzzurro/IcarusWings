@@ -3,7 +3,6 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -56,7 +55,7 @@ public abstract class AbstractTransportCard extends Item {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         CardType type = ((AbstractTransportCard)pStack.getItem()).getType();
-        pTooltipComponents.add(new TranslatableComponent("item.locusazzurro_icaruswings.transport_card_"+ type +".tooltip")
+        pTooltipComponents.add(Component.translatable("item.locusazzurro_icaruswings.transport_card_"+ type +".tooltip")
                 .setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
     }
 

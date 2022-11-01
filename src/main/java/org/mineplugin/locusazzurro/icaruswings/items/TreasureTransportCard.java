@@ -2,7 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -109,10 +109,10 @@ public class TreasureTransportCard extends AbstractTransportCard{
         else {
             worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
             if (errorCode == 1) {
-                playerIn.sendMessage(new TranslatableComponent("item.locusazzurro_icaruswings.transport_card_treasure.error1"), Util.NIL_UUID);
+                playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_treasure.error1"));
             }
             if (errorCode == 2) {
-                playerIn.sendMessage(new TranslatableComponent("item.locusazzurro_icaruswings.transport_card_treasure.error2"), Util.NIL_UUID);
+                playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_treasure.error2"));
             }
             playerIn.getCooldowns().addCooldown(this, 20);
             return InteractionResultHolder.pass(itemstack);
