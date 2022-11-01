@@ -3,7 +3,6 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -48,7 +47,7 @@ public class FallenRelic extends Item{
 	public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(itemstack, world, list, flag);
 		RelicType type = ((FallenRelic)itemstack.getItem()).getType();
-		list.add(new TranslatableComponent("item.locusazzurro_icaruswings.fallen_relic_"+ type +".tooltip")
+		list.add(Component.translatable("item.locusazzurro_icaruswings.fallen_relic_"+ type +".tooltip")
 				.setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
 	}
 

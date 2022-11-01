@@ -1,7 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.Util;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -42,7 +41,7 @@ public class ArtemisTransportCard extends AbstractTransportCard{
             target = ProjectileUtils.rayTraceTarget(playerIn, 0.1d, 300, 0.2);
             if (target == null) {
                 if (!worldIn.isClientSide()) {
-                    playerIn.sendMessage(new TranslatableComponent("item.locusazzurro_icaruswings.transport_card_artemis.error1"), Util.NIL_UUID);
+                    playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_artemis.error1"));
                 }
                 worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundSource.PLAYERS, 1.0F, 0.5F);
                 playerIn.getCooldowns().addCooldown(this, 10);

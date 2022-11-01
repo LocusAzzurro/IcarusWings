@@ -3,22 +3,13 @@ package org.mineplugin.locusazzurro.icaruswings.blocks.blockentities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.CompoundContainer;
-import net.minecraft.world.Container;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.ChestBlockEntity;
-import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.mineplugin.locusazzurro.icaruswings.registry.TileEntityTypeRegistry;
@@ -48,8 +39,8 @@ public class AmphoraTileEntity extends RandomizableContainerBlockEntity {
 	}
 
 	@Override
-	protected TextComponent getDefaultName() {
-		return new TextComponent(new TranslatableComponent("container.amphora").getString());
+	protected Component getDefaultName() {
+		return Component.translatable("container.amphora");
 	}
 
 	@Override

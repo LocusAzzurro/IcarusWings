@@ -4,7 +4,7 @@ import net.minecraft.Util;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -65,7 +65,7 @@ public class TeleportTransportCard extends AbstractTransportCard{
             else {
                 worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 if (!worldIn.isClientSide())
-                playerIn.sendMessage(new TranslatableComponent("item.locusazzurro_icaruswings.transport_card_teleport.error1"), Util.NIL_UUID);
+                playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_teleport.error1"));
                 playerIn.getCooldowns().addCooldown(this, 20);
                 return InteractionResultHolder.pass(itemstack);
             }
@@ -121,14 +121,14 @@ public class TeleportTransportCard extends AbstractTransportCard{
                 }
                 else {
                     worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                    playerIn.sendMessage(new TranslatableComponent("item.locusazzurro_icaruswings.transport_card_teleport.error2"), Util.NIL_UUID);
+                    playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_teleport.error2"));
                     playerIn.getCooldowns().addCooldown(this, 20);
                     return itemStack;
                 }
             }
             else {
                 worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                playerIn.sendMessage(new TranslatableComponent("item.locusazzurro_icaruswings.transport_card_teleport.error3"), Util.NIL_UUID);
+                playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_teleport.error3"));
                 playerIn.getCooldowns().addCooldown(this, 20);
                 return itemStack;
             }
