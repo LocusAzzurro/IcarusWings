@@ -34,7 +34,7 @@ import java.util.UUID;
 public abstract class SynapseWings extends AbstractWings{
 	
 	protected final UUID MODIFIER_UUID = ModData.ARMOR_MODIFIER_UUID_PER_SLOT[2];
-	private static final double WINGS_SPEED_MOD_CONFIG = ModConfig.WINGS_SPEED_MOD.get();
+	//private static final double WINGS_SPEED_MOD_CONFIG = ModConfig.WINGS_SPEED_MOD.get();
 
 	public SynapseWings(WingsType type) {
 		super(type, Rarity.RARE);
@@ -85,7 +85,8 @@ public abstract class SynapseWings extends AbstractWings{
 			double d = wings.getDirectSpeedMod();
 			double i = wings.getInertialSpeedMod();
 			double t = wings.getTotalSpeedMod();
-			double c = WINGS_SPEED_MOD_CONFIG;
+			double c = ModConfig.WINGS_SPEED_MOD.get();
+			//todo cache config value
 			player.setDeltaMovement(flyAngle.add(
 					(lookAngle.x * d + (lookAngle.x * i - flyAngle.x) * t) * c,
 					(lookAngle.y * d + (lookAngle.y * i - flyAngle.y) * t) * c,

@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -50,7 +51,7 @@ public class FeatherWings extends AbstractWings {
 		return true;
 	}
 
-	int randomRound(double value, Random random) {
+	int randomRound(double value, RandomSource random) {
 		int intValue = (int)Math.floor(value);
 		if (random.nextDouble() < value - intValue) intValue++;
 		return intValue;

@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SoundType;
@@ -33,7 +34,7 @@ public class ElysianGrass extends TallGrassBlock {
     }
 
     @Override
-    public boolean isBonemealSuccess(Level p_180670_1_, Random p_180670_2_, BlockPos p_180670_3_, BlockState p_180670_4_) {
+    public boolean isBonemealSuccess(Level p_180670_1_, RandomSource p_180670_2_, BlockPos p_180670_3_, BlockState p_180670_4_) {
         return false;
     }
 }

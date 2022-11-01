@@ -25,7 +25,7 @@ public abstract class GreekFireFluid extends ForgeFlowingFluid{
     public static final ResourceLocation GREEK_FIRE_STILL = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_still");
     public static final ResourceLocation GREEK_FIRE_FLOWING = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_flow");
 
-    public static ForgeFlowingFluid.Properties fluidProperties = new ForgeFlowingFluid.Properties(greekFireFluidType, greekFireFlowing,null)
+    public static ForgeFlowingFluid.Properties fluidProperties = new ForgeFlowingFluid.Properties(greekFireFluidType, greekFire,greekFireFlowing)
             .bucket(ItemRegistry.greekFireBucket).block(BlockRegistry.greekFire).slopeFindDistance(1).explosionResistance(100F);
 
     public GreekFireFluid(Properties properties) {

@@ -1,6 +1,5 @@
 package org.mineplugin.locusazzurro.icaruswings;
 
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -13,8 +12,9 @@ import org.mineplugin.locusazzurro.icaruswings.registry.*;
 public class IcarusWings {
 	public IcarusWings() {
 
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		var bus = FMLJavaModLoadingContext.get().getModEventBus();
 		FluidRegistry.FLUIDS.register(bus);
+		FluidRegistry.FLUID_TYPES.register(bus);
 		SoundRegistry.SOUNDS.register(bus);
 		BlockRegistry.BLOCKS.register(bus);
 		ItemRegistry.ITEMS.register(bus);

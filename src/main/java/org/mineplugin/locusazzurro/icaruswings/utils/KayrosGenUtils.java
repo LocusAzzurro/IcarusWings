@@ -2,6 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.utils;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.XoroshiroRandomSource;
@@ -41,7 +42,7 @@ public class KayrosGenUtils {
         return convertToTag(generateTerrain(generateHeightMap((int) xo, (int) zo)));
     }
 
-    public static CompoundTag generateTerrainTagWithJitter(double xo, double zo, Random random, double amount){
+    public static CompoundTag generateTerrainTagWithJitter(double xo, double zo, RandomSource random, double amount){
         return generateTerrainTag(xo + amount * (random.nextDouble() - 0.5), zo + amount * (random.nextDouble() - 0.5));
     }
 

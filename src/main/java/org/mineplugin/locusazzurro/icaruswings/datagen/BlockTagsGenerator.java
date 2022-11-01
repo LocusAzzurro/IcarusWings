@@ -32,7 +32,7 @@ public class BlockTagsGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.elysianGrassBlock.get());
         tag(BlockTags.WOOL)
                 .add(BlockRegistry.goldenWoolBlock.get());
-        tag(BlockTags.CARPETS)
+        tag(BlockTags.WOOL_CARPETS)
                 .add(BlockRegistry.goldenWoolCarpet.get());
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(BlockRegistry.refinedBeeswaxBlock.get())

@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -190,7 +191,7 @@ public class MeadPot extends BaseEntityBlock {
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rng) {
+	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rng) {
 		if(stateIn.getValue(STATE) == MeadPotState.FERMENTING) {
 		for (int i = 0; i < 3; ++i) {
 			int j = rng.nextInt(2) * 2 - 1;

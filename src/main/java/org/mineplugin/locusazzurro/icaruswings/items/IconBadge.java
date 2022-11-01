@@ -21,7 +21,7 @@ public class IconBadge extends Item{
     @Override
     public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TextComponent(
+        list.add(Component.literal(
                 """
                         "Never regret thy fall,
                         O Icarus of the fearless flight,
