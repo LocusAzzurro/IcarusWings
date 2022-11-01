@@ -18,8 +18,8 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+import net.minecraftforge.client.event.ModelEvent.BakingCompleted;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -58,7 +58,7 @@ public class ModClientRenderEventHandler {
     }
 
     @SubscribeEvent
-    public static void onModelBaked(ModelBakeEvent e) {
+    public static void onModelBaked(BakingCompleted e) {
         Map<ResourceLocation, BakedModel> modelRegistry = e.getModelRegistry();
         ModelResourceLocation location;
         for (RegistryObject<Item> spear : SPEARS){
@@ -88,7 +88,7 @@ public class ModClientRenderEventHandler {
     }
 
     @SubscribeEvent
-    public static void onParticleFactoryRegister(ParticleFactoryRegisterEvent event){
+    public static void onParticleFactoryRegister(RegisterParticleProvidersEvent event){
         ParticleEngine particleEngine = Minecraft.getInstance().particleEngine;
         particleEngine.register(ParticleRegistry.nullity.get(), NullityParticle.Factory::new);
         particleEngine.register(ParticleRegistry.plasmaTrail.get(), PlasmaTrailParticle.Factory::new);

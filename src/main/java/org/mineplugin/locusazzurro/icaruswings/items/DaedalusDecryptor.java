@@ -6,6 +6,8 @@ import net.minecraft.world.item.Rarity;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class DaedalusDecryptor extends Item {
 	
 	private boolean isPersistent = true;
@@ -20,12 +22,12 @@ public class DaedalusDecryptor extends Item {
 	}
 
 	@Override
-	public ItemStack getContainerItem(ItemStack itemStack) {
+	public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
 		return new ItemStack(ItemRegistry.daedalusDecryptor.get());
 	}
 
 	@Override
-	public boolean hasContainerItem(ItemStack stack) {
+	public boolean hasCraftingRemainingItem(ItemStack stack) {
 		if(stack.getItem() instanceof DaedalusDecryptor) {
 			return ((DaedalusDecryptor)stack.getItem()).isPersistent;
 		}

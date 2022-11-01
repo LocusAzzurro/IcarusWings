@@ -9,6 +9,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
+import net.minecraft.world.item.enchantment.Enchantment.Rarity;
+
 public abstract class WingsEnchantment extends Enchantment {
 
     protected WingsEnchantment(Rarity rarity) {

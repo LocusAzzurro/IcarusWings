@@ -16,6 +16,8 @@ import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class WindWand extends Item {
 
     public WindWand() {

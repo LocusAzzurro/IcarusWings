@@ -6,10 +6,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.FireworkRocketEntity;
 import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.registry.EnchantmentRegistry;
+
+import net.minecraft.world.item.enchantment.Enchantment.Rarity;
 
 @Mod.EventBusSubscriber
 public class EnchantmentPyrotechnicAffinity extends WingsEnchantment {
@@ -31,7 +33,7 @@ public class EnchantmentPyrotechnicAffinity extends WingsEnchantment {
     public int getMaxCost(int lvl) {return getMinCost(lvl) + 5;}
 
     @SubscribeEvent
-    public static void fireworkExtender(EntityJoinWorldEvent e) {
+    public static void fireworkExtender(EntityJoinLevelEvent e) {
         Entity entity = e.getEntity();
         if (entity instanceof FireworkRocketEntity){
             FireworkRocketEntity firework = (FireworkRocketEntity) entity;

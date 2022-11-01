@@ -5,7 +5,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.event.entity.living.PotionEvent;
+import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -21,9 +21,9 @@ public class EffectPoisonImmunity extends AbstractEffect{
 	}
 	
 	@SubscribeEvent
-	public static void onPotionApplication(PotionEvent.PotionApplicableEvent e) {
-		if (e.getPotionEffect().getEffect().equals(MobEffects.POISON)
-				&& (e.getEntityLiving().hasEffect(EffectRegistry.poisonImmunity.get()))) {
+	public static void onPotionApplication(MobEffectEvent.Applicable e) {
+		if (e.getEffectInstance().getEffect().equals(MobEffects.POISON)
+				&& (e.getEntity().hasEffect(EffectRegistry.poisonImmunity.get()))) {
 			e.setResult(Result.DENY);
 		}
 	}

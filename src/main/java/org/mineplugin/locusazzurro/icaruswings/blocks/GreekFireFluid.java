@@ -22,6 +22,8 @@ import java.util.Random;
 import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.greekFire;
 import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.greekFireFlowing;
 
+import net.minecraftforge.fluids.ForgeFlowingFluid.Properties;
+
 public abstract class GreekFireFluid extends ForgeFlowingFluid{
 
     public static final ResourceLocation GREEK_FIRE_STILL = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_still");

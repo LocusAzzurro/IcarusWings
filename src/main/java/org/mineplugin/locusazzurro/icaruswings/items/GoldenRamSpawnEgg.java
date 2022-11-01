@@ -4,6 +4,8 @@ import net.minecraftforge.common.ForgeSpawnEggItem;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class GoldenRamSpawnEgg extends ForgeSpawnEggItem {
 
 
