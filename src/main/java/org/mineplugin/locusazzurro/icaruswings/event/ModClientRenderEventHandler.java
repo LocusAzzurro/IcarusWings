@@ -23,6 +23,7 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.mineplugin.locusazzurro.icaruswings.particles.*;
 import org.mineplugin.locusazzurro.icaruswings.registry.*;
@@ -52,17 +53,20 @@ public class ModClientRenderEventHandler {
         e.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(FluidRegistry.greekFire.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(FluidRegistry.greekFireFlowing.get(), RenderType.translucent());
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.elysianGrass.get(), RenderType.cutoutMipped());
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.flaxCrop.get(), RenderType.cutoutMipped());
+            //ItemBlockRenderTypes.setRenderLayer(BlockRegistry.elysianGrass.get(), RenderType.cutoutMipped());
+            //ItemBlockRenderTypes.setRenderLayer(BlockRegistry.flaxCrop.get(), RenderType.cutoutMipped());
+            //todo add render type in JSON
         });
     }
 
     @SubscribeEvent
     public static void onModelBaked(BakingCompleted e) {
-        Map<ResourceLocation, BakedModel> modelRegistry = e.getModelRegistry();
+        Map<ResourceLocation, BakedModel> modelRegistry = e.getModels();
         ModelResourceLocation location;
         for (RegistryObject<Item> spear : SPEARS){
-            location = new ModelResourceLocation(spear.get().getRegistryName(), "inventory");
+            var spearResource = ForgeRegistries.ITEMS.getKey(spear.get());
+            //if (spearResource == null) continue;
+            location = new ModelResourceLocation(spearResource, "inventory");
             BakedModel existingModel = modelRegistry.get(location);
             if (existingModel == null) {
                 throw new RuntimeException("Did not find original model in registry");
@@ -72,10 +76,11 @@ public class ModClientRenderEventHandler {
             }
             else {
                 SpearBakedModel spearBakedModel = new SpearBakedModel(existingModel);
-                e.getModelRegistry().put(location, spearBakedModel);
+                e.getModels().put(location, spearBakedModel);
             }
         }
 
+        //todo check spear model
     }
 
     /**

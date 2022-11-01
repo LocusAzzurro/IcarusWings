@@ -17,16 +17,13 @@ public class DataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
-        if (event.includeServer()) {
-            generator.addProvider(new RecipesGenerator(generator));
-            generator.addProvider(new LootTablesGenerator(generator));
-            BlockTagsGenerator blockTags = new BlockTagsGenerator(generator, event.getExistingFileHelper());
-            generator.addProvider(blockTags);
-            generator.addProvider(new ItemTagsGenerator(generator, blockTags, event.getExistingFileHelper()));
-        }
-        if (event.includeClient()) {
-            generator.addProvider(new BlockStatesGenerator(generator, event.getExistingFileHelper()));
-            generator.addProvider(new ItemModelsGenerator(generator, event.getExistingFileHelper()));
-        }
+        generator.addProvider(event.includeServer(), new RecipesGenerator(generator));
+        generator.addProvider(event.includeServer(), new LootTablesGenerator(generator));
+        BlockTagsGenerator blockTags = new BlockTagsGenerator(generator, event.getExistingFileHelper());
+        generator.addProvider(event.includeServer(), blockTags);
+        generator.addProvider(event.includeServer(), new ItemTagsGenerator(generator, blockTags, event.getExistingFileHelper()));
+
+        generator.addProvider(event.includeClient(), new BlockStatesGenerator(generator, event.getExistingFileHelper()));
+        generator.addProvider(event.includeClient(), new ItemModelsGenerator(generator, event.getExistingFileHelper()));
     }
 }

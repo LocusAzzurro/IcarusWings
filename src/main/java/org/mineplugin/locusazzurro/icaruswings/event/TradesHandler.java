@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.event;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -106,7 +107,7 @@ public class TradesHandler {
 		}
 
 		@Override
-		public MerchantOffer getOffer(Entity p_221182_1_, Random p_221182_2_) {
+		public MerchantOffer getOffer(Entity p_221182_1_, RandomSource p_221182_2_) {
 			return new MerchantOffer(
 					new ItemStack(Items.EMERALD, this.emeraldCost),
 					new ItemStack(this.itemStack.get().getItem(), this.numberOfItems), 

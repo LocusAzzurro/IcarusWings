@@ -186,7 +186,7 @@ public class Mead extends Item {
 					}
 				}
 				else {
-					Random rnd = level.getRandom();
+					var rnd = level.getRandom();
 					for (int i = 0; i < 10; i++) {
 						level.addParticle(ParticleRegistry.goldenSparkle.get(),
 								pos.getX() + 0.5 + (rnd.nextFloat() - 0.5),

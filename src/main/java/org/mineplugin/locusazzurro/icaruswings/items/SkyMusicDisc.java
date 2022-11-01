@@ -15,7 +15,7 @@ public class SkyMusicDisc extends RecordItem {
 	private Track track;
 	
 	public SkyMusicDisc(Track track){
-		super(track.getTrackNum(), track.getMusic(), new Item.Properties().tab(ModGroup.itemGroup).stacksTo(1).rarity(Rarity.RARE));
+		super(track.getTrackNum(), track.getMusic(), new Item.Properties().tab(ModGroup.itemGroup).stacksTo(1).rarity(Rarity.RARE), track.length);
 	}
 	
 	public Track getTrack() {
@@ -29,19 +29,21 @@ public class SkyMusicDisc extends RecordItem {
 	
 	@SuppressWarnings("unused")
 	public enum Track{
-		FALLEN_DOWN(1, () -> (SoundRegistry.trackFallenDown.get()), "Fallen Down", "Hayami Saori"),
-		RING_MY_BELL(2, () -> (SoundRegistry.trackRingMyBell.get()), "Ring My Bell", "Blue Drops");
+		FALLEN_DOWN(1, () -> (SoundRegistry.trackFallenDown.get()), "Fallen Down", "Hayami Saori", 4800),
+		RING_MY_BELL(2, () -> (SoundRegistry.trackRingMyBell.get()), "Ring My Bell", "Blue Drops", 1800);
 		
 		private int trackNum;
 		private Supplier<SoundEvent> trackMusic;
 		private String trackName;
 		private String author;
+		private int length;
 		
-		private Track(int trackNum, Supplier<SoundEvent> trackMusic, String trackName, String author) {
+		Track(int trackNum, Supplier<SoundEvent> trackMusic, String trackName, String author, int length) {
 			this.trackNum = trackNum;
 			this.trackMusic = trackMusic;
 			this.trackName = trackName;
 			this.author = author;
+			this.length = length;
 		}
 		
 		private int getTrackNum() {return this.trackNum;}

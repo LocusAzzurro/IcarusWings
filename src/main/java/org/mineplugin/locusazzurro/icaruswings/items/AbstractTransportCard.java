@@ -23,7 +23,7 @@ import java.util.List;
 public abstract class AbstractTransportCard extends Item {
 
     private CardType type;
-    private static int PERM_LEVEL = ModConfig.TRANSPORT_CARD_PERMISSION_LEVEL.get();
+    //private static int PERM_LEVEL = ModConfig.TRANSPORT_CARD_PERMISSION_LEVEL.get();
 
     public AbstractTransportCard(CardType type){
         super(new Item.Properties().tab(ModGroup.itemGroup).rarity(Rarity.UNCOMMON));
@@ -37,7 +37,7 @@ public abstract class AbstractTransportCard extends Item {
     }
 
     protected static boolean canUseCard(Player playerIn){
-        switch (PERM_LEVEL) {
+        switch (ModConfig.TRANSPORT_CARD_PERMISSION_LEVEL.get()) {
             case 0: return false;
             case 1: return playerIn.hasPermissions(2);
             case 2: return playerIn.isCreative() || playerIn.hasPermissions(2);
@@ -45,6 +45,7 @@ public abstract class AbstractTransportCard extends Item {
         }
         return false;
     }
+    //todo cache config value
 
     @Override
     public boolean isFoil(ItemStack stack){
