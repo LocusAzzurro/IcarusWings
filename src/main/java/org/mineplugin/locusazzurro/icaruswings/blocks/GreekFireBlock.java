@@ -8,7 +8,7 @@ import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 public class GreekFireBlock extends LiquidBlock {
 
     public GreekFireBlock(){
-        super(FluidRegistry.greekFire, Block.Properties.of(Material.LAVA).noCollission().strength(100.0F).noDrops());
+        super(FluidRegistry.greekFire, Block.Properties.of(Material.LAVA).noCollission().strength(100.0F).noLootTable());
     }
 
 

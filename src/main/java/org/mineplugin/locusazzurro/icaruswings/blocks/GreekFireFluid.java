@@ -10,7 +10,6 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
@@ -19,23 +18,21 @@ import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import java.util.Random;
 
-import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.greekFire;
-import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.greekFireFlowing;
-
-import net.minecraftforge.fluids.ForgeFlowingFluid.Properties;
+import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.*;
 
 public abstract class GreekFireFluid extends ForgeFlowingFluid{
 
     public static final ResourceLocation GREEK_FIRE_STILL = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_still");
     public static final ResourceLocation GREEK_FIRE_FLOWING = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_flow");
 
-    public static ForgeFlowingFluid.Properties fluidProperties = new ForgeFlowingFluid.Properties(greekFire, greekFireFlowing,null)
+    public static ForgeFlowingFluid.Properties fluidProperties = new ForgeFlowingFluid.Properties(greekFireFluidType, greekFireFlowing,null)
             .bucket(ItemRegistry.greekFireBucket).block(BlockRegistry.greekFire).slopeFindDistance(1).explosionResistance(100F);
 
     public GreekFireFluid(Properties properties) {
         super(properties);
     }
 
+    /*
     @Override
     protected FluidAttributes createAttributes() {
         return FluidAttributes.builder(GREEK_FIRE_STILL, GREEK_FIRE_FLOWING)
@@ -67,6 +64,8 @@ public abstract class GreekFireFluid extends ForgeFlowingFluid{
             }
         }
     }
+
+     */
 
     public static class Source extends GreekFireFluid{
         public Source() {
