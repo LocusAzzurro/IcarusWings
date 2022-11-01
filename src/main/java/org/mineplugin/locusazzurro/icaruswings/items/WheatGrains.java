@@ -19,6 +19,8 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
+import net.minecraft.world.item.Item.Properties;
+
 @Mod.EventBusSubscriber
 public class WheatGrains extends Item{
 
@@ -70,10 +72,10 @@ public class WheatGrains extends Item{
 	@SubscribeEvent
 	public static void tamedParrotHandler(PlayerInteractEvent.EntityInteract evt){
 		if (evt.getTarget() instanceof Parrot parrot
-				&& evt.getPlayer().getItemInHand(evt.getHand()).getItem() instanceof WheatGrains){
-			ItemStack grains = evt.getPlayer().getItemInHand(evt.getHand());
-			if (!parrot.isFlying() && parrot.isTame() && !evt.getWorld().isClientSide()) {
-				grains.interactLivingEntity(evt.getPlayer(), parrot, evt.getHand());
+				&& evt.getEntity().getItemInHand(evt.getHand()).getItem() instanceof WheatGrains){
+			ItemStack grains = evt.getEntity().getItemInHand(evt.getHand());
+			if (!parrot.isFlying() && parrot.isTame() && !evt.getLevel().isClientSide()) {
+				grains.interactLivingEntity(evt.getEntity(), parrot, evt.getHand());
 				parrot.setOrderedToSit(!parrot.isOrderedToSit());
 			}
 			evt.setResult(Event.Result.ALLOW);

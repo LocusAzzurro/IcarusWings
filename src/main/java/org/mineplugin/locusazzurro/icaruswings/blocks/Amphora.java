@@ -31,6 +31,8 @@ import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.AmphoraTileE
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 @SuppressWarnings("deprecation")
 public class Amphora extends BaseEntityBlock{
 	

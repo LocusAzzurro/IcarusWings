@@ -35,6 +35,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class Mead extends Item {
 	
 	private Infusion infusionType = null;

@@ -10,7 +10,7 @@ import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.MeadPotTileE
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 
 public class TileEntityTypeRegistry {
-	public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, ModData.MOD_ID);
+	public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, ModData.MOD_ID);
 	
 	public static final RegistryObject<BlockEntityType<MeadPotTileEntity>>
 		meadPotTileEntity = TILE_ENTITIES.register(

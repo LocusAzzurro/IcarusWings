@@ -6,7 +6,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.entity.living.PotionEvent;
+import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -147,9 +147,9 @@ public abstract class AbstractEffect extends MobEffect {
 	// - - - - 这里是事件，如无必要请勿修改 - - - - //
 	// 添加
 	@SubscribeEvent( priority = EventPriority.LOWEST )
-	public static void eventAdd( PotionEvent.PotionAddedEvent event ) {
-		MobEffectInstance effect = event.getPotionEffect( ) ; // 新的效果
-		MobEffectInstance old = event.getOldPotionEffect( ) ; // 旧的效果
+	public static void eventAdd( MobEffectEvent.Added event ) {
+		MobEffectInstance effect = event.getEffectInstance( ) ; // 新的效果
+		MobEffectInstance old = event.getOldEffectInstance( ) ; // 旧的效果
 		if ( effect.getEffect( ) instanceof AbstractEffect) { // 新效果是支持的效果
 			AbstractEffect ce = (AbstractEffect) effect.getEffect( ) ;
 			boolean flag0 = false ; // 匹配检查
@@ -159,29 +159,29 @@ public abstract class AbstractEffect extends MobEffect {
 				flag1 = old.getAmplifier( ) < effect.getAmplifier( ) ; // 等级
 			} ;
 			if ( !flag0 ) { // 初次添加
-				ce.onFirstAdded( event.getEntityLiving( ), effect, old ) ; // 通知初次添加
+				ce.onFirstAdded( event.getEntity( ), effect, old ) ; // 通知初次添加
 			} else if ( flag1 ) { // 是增强
-				ce.onAdded( event.getEntityLiving( ), effect, old ) ; // 通知添加
+				ce.onAdded( event.getEntity( ), effect, old ) ; // 通知添加
 			} ;
 		}
 	}
 	// 被移除
 	@SubscribeEvent( priority = EventPriority.LOWEST )
-	public static void eventRemove( PotionEvent.PotionRemoveEvent event ) {
-		MobEffectInstance effect = event.getPotionEffect( ) ;
+	public static void eventRemove( MobEffectEvent.Remove event ) {
+		MobEffectInstance effect = event.getEffectInstance( ) ;
 		if ( effect != null && effect.getEffect( ) instanceof AbstractEffect)  {
-			( (AbstractEffect) ( effect.getEffect( ) ) ).onRemove( event.getEntityLiving( ), effect );
+			( (AbstractEffect) ( effect.getEffect( ) ) ).onRemove( event.getEntity( ), effect );
 		}
 	}
 	// 自然消失
 	@SubscribeEvent( priority = EventPriority.LOWEST )
-	public static void eventExpiry( PotionEvent.PotionExpiryEvent event ) {
-		MobEffectInstance effect = event.getPotionEffect( ) ;
+	public static void eventExpiry( MobEffectEvent.Expired event ) {
+		MobEffectInstance effect = event.getEffectInstance( ) ;
 		// 只处理CoreEffect的内容
 		if ( effect != null && effect.getEffect( ) instanceof AbstractEffect)  {
 			// 先移除
-			event.getEntityLiving( ).removeEffect( effect.getEffect( ) ) ;
-			( (AbstractEffect) ( effect.getEffect( ) ) ).onExpiry( event.getEntityLiving( ), effect ) ;
+			event.getEntity( ).removeEffect( effect.getEffect( ) ) ;
+			( (AbstractEffect) ( effect.getEffect( ) ) ).onExpiry( event.getEntity( ), effect ) ;
 		}
 
 	}
