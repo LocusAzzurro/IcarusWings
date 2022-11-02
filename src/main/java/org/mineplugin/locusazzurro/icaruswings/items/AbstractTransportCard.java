@@ -23,7 +23,6 @@ import java.util.List;
 public abstract class AbstractTransportCard extends Item {
 
     private CardType type;
-    //private static int PERM_LEVEL = ModConfig.TRANSPORT_CARD_PERMISSION_LEVEL.get();
 
     public AbstractTransportCard(CardType type){
         super(new Item.Properties().tab(ModGroup.itemGroup).rarity(Rarity.UNCOMMON));

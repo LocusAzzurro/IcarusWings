@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/crop",
+  "render_type": "cutout",
   "textures": {
     "crop": "locusazzurro_icaruswings:block/flax_stage0"
   }

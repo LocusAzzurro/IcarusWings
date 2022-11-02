@@ -53,9 +53,6 @@ public class ModClientRenderEventHandler {
         e.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(FluidRegistry.greekFire.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(FluidRegistry.greekFireFlowing.get(), RenderType.translucent());
-            //ItemBlockRenderTypes.setRenderLayer(BlockRegistry.elysianGrass.get(), RenderType.cutoutMipped());
-            //ItemBlockRenderTypes.setRenderLayer(BlockRegistry.flaxCrop.get(), RenderType.cutoutMipped());
-            //todo add render type in JSON
         });
     }
 
