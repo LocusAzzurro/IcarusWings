@@ -78,15 +78,13 @@ public abstract class SynapseWings extends AbstractWings{
 	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
 		Player player = event.player;
 		Item item = player.getItemBySlot(EquipmentSlot.CHEST).getItem();
-		if (player.isFallFlying() && item instanceof SynapseWings) {
+		if (player.isFallFlying() && item instanceof SynapseWings wings) {
 			Vec3 lookAngle = player.getLookAngle();
 			Vec3 flyAngle = player.getDeltaMovement();
-			SynapseWings wings = (SynapseWings) item;
 			double d = wings.getDirectSpeedMod();
 			double i = wings.getInertialSpeedMod();
 			double t = wings.getTotalSpeedMod();
 			double c = ModConfig.WINGS_SPEED_MOD.get();
-			//todo cache config value
 			player.setDeltaMovement(flyAngle.add(
 					(lookAngle.x * d + (lookAngle.x * i - flyAngle.x) * t) * c,
 					(lookAngle.y * d + (lookAngle.y * i - flyAngle.y) * t) * c,

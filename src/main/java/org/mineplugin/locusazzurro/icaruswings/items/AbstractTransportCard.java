@@ -45,7 +45,6 @@ public abstract class AbstractTransportCard extends Item {
         }
         return false;
     }
-    //todo cache config value
 
     @Override
     public boolean isFoil(ItemStack stack){

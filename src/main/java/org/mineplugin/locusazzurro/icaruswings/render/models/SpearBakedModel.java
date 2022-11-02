@@ -73,7 +73,6 @@ public class SpearBakedModel implements BakedModel, IForgeBakedModel {
         }
         return this.existingModel.applyTransform(cameraTransformType, poseStack, applyLeftHandTransform);
     }
-    //todo check model for spear
 
     @Override
     public ItemOverrides getOverrides() {
