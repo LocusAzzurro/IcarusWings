@@ -8,6 +8,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 public class RefinedBeeswaxStairs extends StairBlock {
 
 	public RefinedBeeswaxStairs() {
-		super( () -> BlockRegistry.refinedBeeswaxBlock.get().defaultBlockState(), Properties.copy(BlockRegistry.beeswaxBlock.get()));
+		super( () -> BlockRegistry.refinedBeeswaxBlock.get().defaultBlockState(), Properties.copy(BlockRegistry.refinedBeeswaxBlock.get()));
 	}
 }
