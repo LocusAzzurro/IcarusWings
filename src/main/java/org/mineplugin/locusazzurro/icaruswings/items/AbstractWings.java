@@ -15,8 +15,6 @@ import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.world.item.Item.Properties;
-
 @SuppressWarnings("unused")
 @Mod.EventBusSubscriber
 public class AbstractWings extends ElytraItem {

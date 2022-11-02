@@ -1,13 +1,11 @@
 package org.mineplugin.locusazzurro.icaruswings;
 
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.mineplugin.locusazzurro.icaruswings.data.ModConfig;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.event.ModClientRenderEventHandler;
 import org.mineplugin.locusazzurro.icaruswings.registry.*;
 
 @Mod(ModData.MOD_ID)

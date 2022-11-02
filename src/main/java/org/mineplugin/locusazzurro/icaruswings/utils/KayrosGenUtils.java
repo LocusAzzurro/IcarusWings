@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.XoroshiroRandomSource;
 import net.minecraft.world.level.levelgen.synth.PerlinNoise;
 
-import java.util.Random;
 import java.util.stream.IntStream;
 
 public class KayrosGenUtils {

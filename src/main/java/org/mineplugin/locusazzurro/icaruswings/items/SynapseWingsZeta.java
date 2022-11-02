@@ -1,16 +1,14 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
-import org.mineplugin.locusazzurro.icaruswings.render.IWingsExpandable;
-
 import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
-
+import com.google.common.collect.Multimap;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.fml.common.Mod;
+import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
+import org.mineplugin.locusazzurro.icaruswings.render.IWingsExpandable;
 
 @Mod.EventBusSubscriber
 public class SynapseWingsZeta extends SynapseWings implements IWingsExpandable{

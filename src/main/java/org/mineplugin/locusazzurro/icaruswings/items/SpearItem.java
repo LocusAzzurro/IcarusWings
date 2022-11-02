@@ -34,8 +34,6 @@ import org.mineplugin.locusazzurro.icaruswings.render.renderers.SpearItemStackTi
 
 import java.util.function.Consumer;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class SpearItem extends TieredItem implements Vanishable {
 
     private final float attackDamage;

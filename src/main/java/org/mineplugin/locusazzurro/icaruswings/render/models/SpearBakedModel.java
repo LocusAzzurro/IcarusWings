@@ -16,7 +16,6 @@ import net.minecraftforge.client.extensions.IForgeBakedModel;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Random;
 
 @SuppressWarnings("deprecation")
 @OnlyIn(Dist.CLIENT)

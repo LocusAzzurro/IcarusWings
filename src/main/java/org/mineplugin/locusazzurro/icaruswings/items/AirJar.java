@@ -20,8 +20,6 @@ import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import java.util.function.BiConsumer;
 
-import net.minecraft.world.item.Item.Properties;
-
 /**
  * For glass jar filling mechanic:
  * @see GlassJar#collectAir

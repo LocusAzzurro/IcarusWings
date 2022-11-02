@@ -1,13 +1,10 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
 import net.minecraft.world.item.Item;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.fml.common.Mod;
-
-import net.minecraft.world.item.Item.Properties;
+import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 @Mod.EventBusSubscriber()
 public class QuantumFuel extends Item {

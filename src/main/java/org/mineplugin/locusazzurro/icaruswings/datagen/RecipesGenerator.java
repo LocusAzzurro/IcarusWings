@@ -3,9 +3,6 @@ package org.mineplugin.locusazzurro.icaruswings.datagen;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.world.item.Items;
-import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 import java.util.function.Consumer;
 

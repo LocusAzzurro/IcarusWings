@@ -5,8 +5,6 @@ import net.minecraft.world.item.Items;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class GreekFireBucket extends BucketItem {
 
     public GreekFireBucket() {

@@ -1,15 +1,17 @@
 package org.mineplugin.locusazzurro.icaruswings.registry;
 
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
-import org.mineplugin.locusazzurro.icaruswings.data.*;
-import org.mineplugin.locusazzurro.icaruswings.items.*;
-
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+import org.mineplugin.locusazzurro.icaruswings.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
+import org.mineplugin.locusazzurro.icaruswings.data.ModItemTier;
+import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
+import org.mineplugin.locusazzurro.icaruswings.items.*;
 
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ModData.MOD_ID);

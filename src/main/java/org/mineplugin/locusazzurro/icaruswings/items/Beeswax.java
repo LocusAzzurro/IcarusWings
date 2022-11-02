@@ -9,8 +9,6 @@ import net.minecraftforge.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
-import net.minecraft.world.item.Item.Properties;
-
 @Mod.EventBusSubscriber()
 public class Beeswax extends Item {
 
