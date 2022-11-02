@@ -65,7 +65,6 @@ public class ModClientRenderEventHandler {
         ModelResourceLocation location;
         for (RegistryObject<Item> spear : SPEARS){
             var spearResource = ForgeRegistries.ITEMS.getKey(spear.get());
-            //if (spearResource == null) continue;
             location = new ModelResourceLocation(spearResource, "inventory");
             BakedModel existingModel = modelRegistry.get(location);
             if (existingModel == null) {
@@ -79,8 +78,6 @@ public class ModClientRenderEventHandler {
                 e.getModels().put(location, spearBakedModel);
             }
         }
-
-        //todo check spear model
     }
 
     /**

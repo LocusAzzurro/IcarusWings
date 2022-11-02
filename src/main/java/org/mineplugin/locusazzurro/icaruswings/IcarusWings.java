@@ -36,7 +36,7 @@ public class IcarusWings {
 
 	static {
 		try {
-			Class<?> OFClass = Class.forName("optifine.Installer");
+			Class.forName("optifine.Installer");
 			isOptifineLoaded = true;
 		}
 		catch (ClassNotFoundException ignored) {}
