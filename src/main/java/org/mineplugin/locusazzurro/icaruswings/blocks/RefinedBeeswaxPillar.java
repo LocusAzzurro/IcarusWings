@@ -8,6 +8,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 public class RefinedBeeswaxPillar extends RotatedPillarBlock {
 	
 	public RefinedBeeswaxPillar() {
-		super(Properties.copy(BlockRegistry.beeswaxBlock.get()));
+		super(Properties.copy(BlockRegistry.refinedBeeswaxBlock.get()));
 	}
 }

@@ -8,6 +8,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 public class GoldenWoolCarpet extends CarpetBlock {
 
     public GoldenWoolCarpet() {
-        super(Properties.copy(BlockRegistry.beeswaxBlock.get()));
+        super(Properties.copy(BlockRegistry.goldenWoolBlock.get()));
     }
 }
