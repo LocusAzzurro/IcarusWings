@@ -41,9 +41,9 @@ public class SpearItem extends TieredItem implements Vanishable {
     private final float attackDamage;
     private final float attackSpeed;
     private final float attackRange;
-    private static final float BASE_DAMAGE = 1.0f;
-    private static final float BASE_ATTACK_SPEED = 1.0f;
-    private static final float BASE_ATTACK_RANGE = 6.0f;
+    private static final float BASE_DAMAGE = 2.5f;
+    private static final float BASE_ATTACK_SPEED = -2.5f;
+    private static final float BASE_ATTACK_RANGE = 1.5f;
 
     public SpearItem(Tier tier) {
         super(tier, new Properties().tab(ModGroup.itemGroup));
@@ -54,11 +54,11 @@ public class SpearItem extends TieredItem implements Vanishable {
 
     protected Multimap<Attribute, AttributeModifier> getModifiers(){
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ModData.WEAPON_ATTACK_DAMAGE_UUID,
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID,
                 "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ModData.WEAPON_ATTACK_SPEED_UUID,
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID,
                 "Weapon modifier", this.attackSpeed, AttributeModifier.Operation.ADDITION));
-        builder.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(ModData.WEAPON_ATTACK_RANGE_UUID,
+        builder.put(ForgeMod.ATTACK_RANGE.get(), new AttributeModifier(ModData.WEAPON_ATTACK_RANGE_UUID,
                 "Weapon modifier", this.attackRange, AttributeModifier.Operation.ADDITION));
         return builder.build();
     }
