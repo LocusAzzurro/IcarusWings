@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -45,6 +46,11 @@ public class AbstractWings extends ElytraItem {
 	@Override
 	public EquipmentSlot getEquipmentSlot(ItemStack stack) {
 		return EquipmentSlot.CHEST;
+	}
+
+	@Override
+	public SoundEvent getEquipSound() {
+		return getType().getEquipSound();
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -23,6 +24,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.Nullable;
 import org.mineplugin.locusazzurro.icaruswings.data.ModConfig;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
@@ -89,6 +91,12 @@ public abstract class SynapseWings extends AbstractWings{
 					(lookAngle.y * d + (lookAngle.y * i - flyAngle.y) * t) * c,
 					(lookAngle.z * d + (lookAngle.z * i - flyAngle.z) * t) * c));
 		}
+	}
+
+	@Nullable
+	@Override
+	public SoundEvent getEquipSound() {
+		return getType().getEquipSound();
 	}
 
 	@Override

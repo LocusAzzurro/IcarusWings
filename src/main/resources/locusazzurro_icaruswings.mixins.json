@@ -4,7 +4,6 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "locusazzurro_icaruswings.refmap.json",
   "mixins": [
-    "LivingEntityMixin",
     "MobEntityMixin"
   ],
   "client": [
