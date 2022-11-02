@@ -34,7 +34,6 @@ import java.util.UUID;
 public abstract class SynapseWings extends AbstractWings{
 	
 	protected final UUID MODIFIER_UUID = ModData.ARMOR_MODIFIER_UUID_PER_SLOT[2];
-	//private static final double WINGS_SPEED_MOD_CONFIG = ModConfig.WINGS_SPEED_MOD.get();
 
 	public SynapseWings(WingsType type) {
 		super(type, Rarity.RARE);
