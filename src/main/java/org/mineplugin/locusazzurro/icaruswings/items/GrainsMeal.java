@@ -4,8 +4,6 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BowlFoodItem;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class GrainsMeal extends BowlFoodItem {
 
     public GrainsMeal() {

@@ -1,6 +1,5 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
 import com.google.common.collect.Multimap;
 import net.minecraft.world.entity.EquipmentSlot;

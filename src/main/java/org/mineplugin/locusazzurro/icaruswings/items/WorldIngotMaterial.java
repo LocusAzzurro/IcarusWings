@@ -1,10 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-
 import net.minecraft.world.item.Item;
-
-import net.minecraft.world.item.Item.Properties;
+import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 public class WorldIngotMaterial extends Item{
 	

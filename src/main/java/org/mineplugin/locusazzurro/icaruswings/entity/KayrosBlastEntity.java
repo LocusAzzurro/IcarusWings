@@ -15,8 +15,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.mineplugin.locusazzurro.icaruswings.data.ModConfig;
 import org.mineplugin.locusazzurro.icaruswings.data.ModDamageSources;
@@ -26,9 +28,6 @@ import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.utils.KayrosGenUtils;
-import org.mineplugin.locusazzurro.icaruswings.utils.MathUtils;
-
-import java.util.List;
 
 public class KayrosBlastEntity extends ThrowableItemProjectile {
 

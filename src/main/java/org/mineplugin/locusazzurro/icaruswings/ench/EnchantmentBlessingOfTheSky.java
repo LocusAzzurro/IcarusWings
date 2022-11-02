@@ -11,8 +11,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import org.mineplugin.locusazzurro.icaruswings.registry.EnchantmentRegistry;
 
-import net.minecraft.world.item.enchantment.Enchantment.Rarity;
-
 @EventBusSubscriber
 public class EnchantmentBlessingOfTheSky extends WingsEnchantment {
 

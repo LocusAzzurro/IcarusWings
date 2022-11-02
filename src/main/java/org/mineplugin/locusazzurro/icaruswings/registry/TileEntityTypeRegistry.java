@@ -1,10 +1,9 @@
 package org.mineplugin.locusazzurro.icaruswings.registry;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
-
-import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.AmphoraTileEntity;
 import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.MeadPotTileEntity;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;

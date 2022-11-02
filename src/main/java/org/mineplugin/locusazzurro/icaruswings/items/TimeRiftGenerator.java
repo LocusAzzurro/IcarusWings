@@ -10,11 +10,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-import org.mineplugin.locusazzurro.icaruswings.entity.KayrosBlastEntity;
 import org.mineplugin.locusazzurro.icaruswings.entity.TimeRiftParticleEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
-import org.mineplugin.locusazzurro.icaruswings.utils.KayrosGenUtils;
 
 import java.util.function.Predicate;
 

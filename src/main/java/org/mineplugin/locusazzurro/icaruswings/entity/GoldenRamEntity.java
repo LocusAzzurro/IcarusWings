@@ -39,7 +39,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class GoldenRamEntity extends Animal implements IForgeShearable {
 

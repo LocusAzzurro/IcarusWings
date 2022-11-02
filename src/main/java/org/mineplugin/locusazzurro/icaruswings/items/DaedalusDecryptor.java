@@ -6,8 +6,6 @@ import net.minecraft.world.item.Rarity;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class DaedalusDecryptor extends Item {
 	
 	private boolean isPersistent = true;

@@ -1,6 +1,5 @@
 package org.mineplugin.locusazzurro.icaruswings.blocks;
 
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.Container;
@@ -29,9 +28,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.AmphoraTileEntity;
 
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 @SuppressWarnings("deprecation")
 public class Amphora extends BaseEntityBlock{

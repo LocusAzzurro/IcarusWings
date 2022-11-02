@@ -19,8 +19,6 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
-import net.minecraft.world.item.Item.Properties;
-
 @Mod.EventBusSubscriber
 public class WheatGrains extends Item{
 

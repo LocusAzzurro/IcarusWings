@@ -11,8 +11,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
-import java.util.Random;
-
 public class ElysianGrass extends TallGrassBlock {
 
     public ElysianGrass() {

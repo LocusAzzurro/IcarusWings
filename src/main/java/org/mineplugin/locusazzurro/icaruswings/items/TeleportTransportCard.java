@@ -1,6 +1,5 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.Util;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;

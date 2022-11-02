@@ -1,8 +1,8 @@
 package org.mineplugin.locusazzurro.icaruswings.utils;
 
+import com.mojang.math.Vector3f;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
-import com.mojang.math.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;

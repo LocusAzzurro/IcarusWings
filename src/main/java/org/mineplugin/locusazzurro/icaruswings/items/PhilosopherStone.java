@@ -1,13 +1,12 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 public class PhilosopherStone extends Item {
 

@@ -1,6 +1,5 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

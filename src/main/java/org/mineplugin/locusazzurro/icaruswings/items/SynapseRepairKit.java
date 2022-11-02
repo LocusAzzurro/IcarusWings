@@ -1,11 +1,8 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
-
-import net.minecraft.world.item.Item;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class SynapseRepairKit extends Item{
 	

@@ -1,9 +1,9 @@
 package org.mineplugin.locusazzurro.icaruswings.datagen;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.data.event.GatherDataEvent;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
 
 /**
