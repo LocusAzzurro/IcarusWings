@@ -28,8 +28,6 @@ public class IcarusWings {
 
 		ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, ModConfig.CONFIG);
 
-		//MinecraftForge.EVENT_BUS.register(new ModClientRenderEventHandler.RenderLivingEventHandler<>());
-
 		if (ModList.get().isLoaded("curios")) {
 			isCuriosLoaded = true;
 		}

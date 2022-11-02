@@ -1,10 +1,8 @@
 package org.mineplugin.locusazzurro.icaruswings.event;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.*;
@@ -14,14 +12,12 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelEvent.BakingCompleted;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -36,7 +32,9 @@ import org.mineplugin.locusazzurro.icaruswings.render.renderers.GoldenRamRendere
 import org.mineplugin.locusazzurro.icaruswings.render.renderers.SpearRenderer;
 import org.mineplugin.locusazzurro.icaruswings.render.renderers.TimeBombRenderer;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModClientRenderEventHandler{
@@ -106,16 +104,15 @@ public class ModClientRenderEventHandler{
 
     @SubscribeEvent
     public static void onParticleFactoryRegister(RegisterParticleProvidersEvent event){
-        ParticleEngine particleEngine = Minecraft.getInstance().particleEngine;
-        particleEngine.register(ParticleRegistry.nullity.get(), NullityParticle.Factory::new);
-        particleEngine.register(ParticleRegistry.plasmaTrail.get(), PlasmaTrailParticle.Factory::new);
-        particleEngine.register(ParticleRegistry.electronicBit.get(), ElectronicBitParticle.Factory::new);
-        particleEngine.register(ParticleRegistry.goldenSparkleBase.get(), GoldenSparkleParticle.BaseFactory::new);
-        particleEngine.register(ParticleRegistry.goldenSparkle.get(), GoldenSparkleParticle.AdvFactory::new);
-        particleEngine.register(ParticleRegistry.timeRiftExplosion.get(), TimeRiftExplosionParticle.Factory::new);
+        event.register(ParticleRegistry.nullity.get(), NullityParticle.Factory::new);
+        event.register(ParticleRegistry.plasmaTrail.get(), PlasmaTrailParticle.Factory::new);
+        event.register(ParticleRegistry.electronicBit.get(), ElectronicBitParticle.Factory::new);
+        event.register(ParticleRegistry.goldenSparkleBase.get(), GoldenSparkleParticle.BaseFactory::new);
+        event.register(ParticleRegistry.goldenSparkle.get(), GoldenSparkleParticle.AdvFactory::new);
+        event.register(ParticleRegistry.timeRiftExplosion.get(), TimeRiftExplosionParticle.Factory::new);
     }
 
-    private static <ENTITY extends Entity> void registerEntityRenderer(EntityType<ENTITY> type, EntityRendererProvider<ENTITY> renderer){
+    private static <E extends Entity> void registerEntityRenderer(EntityType<E> type, EntityRendererProvider<E> renderer){
         EntityRenderers.register(type, renderer);
     }
 
