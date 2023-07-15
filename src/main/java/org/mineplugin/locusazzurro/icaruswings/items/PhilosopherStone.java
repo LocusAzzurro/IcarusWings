@@ -5,13 +5,12 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 public class PhilosopherStone extends Item {
 
 	public PhilosopherStone() {
-		super(new Item.Properties().tab(ModGroup.itemGroup).stacksTo(1).food(food));
+		super(new Item.Properties().stacksTo(1).food(food));
 	}
 	
 	private static final FoodProperties food = (new FoodProperties.Builder())

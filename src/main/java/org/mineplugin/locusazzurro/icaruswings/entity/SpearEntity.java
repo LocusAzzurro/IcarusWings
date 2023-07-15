@@ -1,13 +1,14 @@
 package org.mineplugin.locusazzurro.icaruswings.entity;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,7 +22,9 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
+import org.mineplugin.locusazzurro.icaruswings.data.ModDamageSources;
 import org.mineplugin.locusazzurro.icaruswings.items.SpearItem;
+import org.mineplugin.locusazzurro.icaruswings.registry.DamageTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
@@ -76,7 +79,8 @@ public class SpearEntity extends AbstractArrow {
         }
 
         Entity owner = this.getOwner();
-        DamageSource damageSource = new IndirectEntityDamageSource("spear", this, (owner == null ? this : owner)).setProjectile();
+        DamageSource damageSource = ModDamageSources.spear(this.level, this, owner == null ? this : owner);
+        //DamageSource damageSource = new DamageSource(this.level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypeRegistry.SPEAR),this, owner == null ? this : owner);
         this.dealtDamage = true;
         SoundEvent soundevent = SoundRegistry.spearHit.get();
         if (target.hurt(damageSource, f)) {
@@ -168,7 +172,7 @@ public class SpearEntity extends AbstractArrow {
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

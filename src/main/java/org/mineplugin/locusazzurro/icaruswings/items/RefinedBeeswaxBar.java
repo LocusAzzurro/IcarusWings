@@ -2,7 +2,6 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 public class RefinedBeeswaxBar extends Item{
 	
@@ -12,7 +11,7 @@ public class RefinedBeeswaxBar extends Item{
 	}
 	
 	public RefinedBeeswaxBar(boolean isGlistering) {
-		super(new Properties().tab(ModGroup.itemGroup));
+		super(new Properties());
 		this.isGlistering = isGlistering;
 	}
 	

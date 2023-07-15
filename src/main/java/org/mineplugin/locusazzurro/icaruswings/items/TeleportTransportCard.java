@@ -2,6 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.items;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -17,6 +18,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.phys.Vec3;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.utils.MathUtils;
@@ -64,7 +67,7 @@ public class TeleportTransportCard extends AbstractTransportCard{
             else {
                 worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 if (!worldIn.isClientSide())
-                playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_teleport.error1"));
+                    playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_teleport.error1"));
                 playerIn.getCooldowns().addCooldown(this, 20);
                 return InteractionResultHolder.pass(itemstack);
             }
@@ -90,11 +93,16 @@ public class TeleportTransportCard extends AbstractTransportCard{
     public ItemStack finishUsingItem(ItemStack itemStack, Level worldIn, LivingEntity entityIn) {
         if (!worldIn.isClientSide() && entityIn instanceof ServerPlayer){
             ServerPlayer playerIn = (ServerPlayer) entityIn;
-            if (playerIn.connection.getConnection().isConnected() && !playerIn.isSleeping()) {
+            if (!playerIn.hasDisconnected() && !playerIn.isSleeping()) {
                 CompoundTag dest = itemStack.getOrCreateTag().getCompound("Destination");
                 String dim = dest.getString("Dimension");
-                ResourceKey<Level> dimension = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(dim));
-                if (worldIn.dimension().equals(dimension)) {
+                Level dimension = null;
+                DimensionType type = worldIn.registryAccess().registryOrThrow(Registries.DIMENSION_TYPE).get(new ResourceLocation(dim));
+                if (type != null) {
+                    dimension = worldIn.getServer().getLevel(ResourceKey.create(Registries.DIMENSION, new ResourceLocation(dim)));
+                }
+                //ResourceKey<Level> dimension = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(dim));
+                if (worldIn.equals(dimension)) {
                     double x = dest.getDouble("X");
                     double y = dest.getDouble("Y");
                     double z = dest.getDouble("Z");
@@ -116,14 +124,13 @@ public class TeleportTransportCard extends AbstractTransportCard{
                         itemStack.shrink(1);
                         if (itemStack.isEmpty()) itemStack = new ItemStack(Items.AIR);
                     }
-                    return itemStack;
                 }
                 else {
                     worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                     playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_teleport.error2"));
                     playerIn.getCooldowns().addCooldown(this, 20);
-                    return itemStack;
                 }
+                return itemStack;
             }
             else {
                 worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundSource.PLAYERS, 1.0F, 1.0F);

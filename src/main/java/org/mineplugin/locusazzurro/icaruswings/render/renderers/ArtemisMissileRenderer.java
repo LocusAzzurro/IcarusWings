@@ -2,7 +2,8 @@ package org.mineplugin.locusazzurro.icaruswings.render.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
+import org.joml.Vector3f;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
@@ -37,8 +38,8 @@ public class ArtemisMissileRenderer extends EntityRenderer<ArtemisMissileEntity>
         matrixStackIn.pushPose();
         matrixStackIn.scale(0.15f,0.15f, 0.15f);
         matrixStackIn.translate(0f, -0.25f, 0f);
-        matrixStackIn.mulPose(Vector3f.YN.rotationDegrees(entityYaw));
-        matrixStackIn.mulPose(Vector3f.XN.rotationDegrees(entityIn.getXRot()));
+        matrixStackIn.mulPose(Axis.YN.rotationDegrees(entityYaw));
+        matrixStackIn.mulPose(Axis.XN.rotationDegrees(entityIn.getXRot()));
         VertexConsumer vertexBuilder = bufferIn.getBuffer(model.renderType(MISSILE));
         this.model.renderToBuffer(matrixStackIn, vertexBuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         matrixStackIn.popPose();

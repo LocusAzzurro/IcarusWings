@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -87,7 +88,7 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
             }
             this.level.getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(4)).forEach(e -> {
                 ((EffectInevitability) EffectRegistry.inevitability.get()).addEffect(e, 3);
-                e.hurt(ModDamageSources.timeRift(this.getOwner()), 5.0f);
+                e.hurt(ModDamageSources.timeRift(this.level, this.getOwner()), 5.0f);
             });
             ((ServerLevel)level).sendParticles(ParticleTypes.WITCH,
                     pos.getX(), pos.getY(), pos.getZ(),
@@ -102,7 +103,7 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
         Entity entity = pResult.getEntity();
         if (entity instanceof LivingEntity livingEntity) {
             ((EffectInevitability) EffectRegistry.inevitability.get()).addEffect(livingEntity, 5);
-            livingEntity.hurt(ModDamageSources.timeRift(this.getOwner()), 15.0f);
+            livingEntity.hurt(ModDamageSources.timeRift(this.level, this.getOwner()), 15.0f);
         }
     }
 
@@ -137,7 +138,7 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

@@ -3,6 +3,7 @@ package org.mineplugin.locusazzurro.icaruswings.effect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -17,11 +18,11 @@ public class EffectSensoryMasking extends AbstractEffect{
 	}
 	
 	@SubscribeEvent
-	public static void onSetTarget(LivingSetAttackTargetEvent e) {
-		if (e.getTarget() != null) {
+	public static void onSetTarget(LivingChangeTargetEvent e) {
+		if (e.getNewTarget() != null) {
 			LivingEntity targeter = e.getEntity();
-			if (e.getTarget().hasEffect(EffectRegistry.sensoryMasking.get()) && targeter instanceof Mob) {
-				((Mob) targeter).setTarget(null);
+			if (e.getNewTarget().hasEffect(EffectRegistry.sensoryMasking.get()) && targeter instanceof Mob) {
+				((Mob) targeter).setTarget(e.getOriginalTarget());
 			}
 		}
 	}

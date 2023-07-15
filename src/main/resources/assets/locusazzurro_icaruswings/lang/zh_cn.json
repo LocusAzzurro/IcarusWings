@@ -201,8 +201,8 @@
   "effect.locusazzurro_icaruswings.inevitability": "宿命",
   "effect.locusazzurro_icaruswings.interdiction": "阻扰",
 
-  "death.attack.timeRift": "%1$s 被卷进了时空悖论",
-  "death.attack.timeRift.player": "%1$s 被 %2$s 丢进了时空悖论",
+  "death.attack.time_rift": "%1$s 被卷进了时空悖论",
+  "death.attack.time_rift.player": "%1$s 被 %2$s 丢进了时空悖论",
   "death.attack.spear": "%1$s 被 %2$s 一枪戳死了",
   "death.attack.spear.item": "%1$s 被 %2$s 用 %3$s 一枪戳死了",
 
@@ -210,8 +210,8 @@
   "subtitles.item.spear.hit": "枪：击中",
   "subtitles.item.spear.hit_ground": "枪：落地",
   "subtitles.block.mead_pot.brew": "蜜酒锅：冒泡",
-  "subtitles.block.greek_fire.ambient": '希腊火：迸裂',
-  "subtitles.block.greek_fire.pop": '希腊火：迸裂',
+  "subtitles.block.greek_fire.ambient": "希腊火：迸裂",
+  "subtitles.block.greek_fire.pop": "希腊火：迸裂",
   "subtitles.item.bucket.fill_greek_fire": "希腊火桶：装满",
   "subtitles.item.bucket.empty_greek_fire": "希腊火桶：倒出",
   "subtitles.entity.golden_ram.ambient": "金羊：咩~",

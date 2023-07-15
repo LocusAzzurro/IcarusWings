@@ -1,6 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import com.mojang.math.Vector3f;
+import org.joml.Vector3f;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.sounds.SoundSource;
@@ -14,7 +14,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.ItemHandlerHelper;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
@@ -30,7 +29,7 @@ public class AirJar extends Item {
     private AirType type;
 
     public AirJar(AirType type) {
-        super(new Properties().tab(ModGroup.itemGroup).stacksTo(16));
+        super(new Properties().stacksTo(16));
         this.type = type;
     }
 

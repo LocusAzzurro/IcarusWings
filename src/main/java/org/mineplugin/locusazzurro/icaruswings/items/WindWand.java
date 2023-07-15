@@ -12,14 +12,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.items.ItemHandlerHelper;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 public class WindWand extends Item {
 
     public WindWand() {
-        super(new Properties().tab(ModGroup.itemGroup).durability(100));
+        super(new Properties().durability(100));
     }
 
     @Override

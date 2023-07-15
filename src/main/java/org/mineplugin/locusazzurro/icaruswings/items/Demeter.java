@@ -18,7 +18,6 @@ import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 import org.mineplugin.locusazzurro.icaruswings.data.ModDamageSources;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.effect.EffectInevitability;
 import org.mineplugin.locusazzurro.icaruswings.entity.KayrosBlastEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
@@ -34,7 +33,7 @@ public class Demeter extends ProjectileWeaponItem {
     private static final float attackSpeed = -2.0f;
     private static final Multimap<Attribute, AttributeModifier> defaultModifiers;
     public Demeter(){
-        super(new Item.Properties().tab(ModGroup.itemGroup).durability(600).rarity(Rarity.RARE));
+        super(new Item.Properties().durability(600).rarity(Rarity.RARE));
     }
 
     static {
@@ -83,7 +82,7 @@ public class Demeter extends ProjectileWeaponItem {
             attacker.broadcastBreakEvent(EquipmentSlot.MAINHAND);
         });
         ((EffectInevitability) EffectRegistry.inevitability.get()).addEffect(pTarget, 1);
-        pTarget.hurt(ModDamageSources.timeRift(pAttacker), 2.0f);
+        pTarget.hurt(ModDamageSources.timeRift(pTarget.level, pAttacker), 2.0f);
         return true;
     }
 

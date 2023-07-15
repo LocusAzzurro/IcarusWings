@@ -4,6 +4,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
@@ -71,15 +72,19 @@ public enum ModArmorMaterial implements ArmorMaterial {
 	public String getName() {
 		return this.name;
 	}
-	
+
 	@Override
-	public int getDurabilityForSlot(EquipmentSlot slot) {
-	    return HEALTH_PER_SLOT[slot.getIndex()] * this.durabilityMultiplier;
+	public int getDurabilityForType(ArmorItem.Type slot) {
+		return HEALTH_PER_SLOT[slot.getSlot().getIndex()] * this.durabilityMultiplier;
 	}
-	
+
 	@Override
+	public int getDefenseForType(ArmorItem.Type type) {
+		return this.slotProtections[type.getSlot().getIndex()];
+	}
+
 	public int getDefenseForSlot(EquipmentSlot slot) {
-	    return this.slotProtections[slot.getIndex()];
+		return this.slotProtections[slot.getIndex()];
 	}
 	
 	@Override

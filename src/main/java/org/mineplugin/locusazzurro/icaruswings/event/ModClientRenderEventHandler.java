@@ -16,6 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.ModelEvent.BakingCompleted;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -56,7 +57,7 @@ public class ModClientRenderEventHandler{
     }
 
     @SubscribeEvent
-    public static void onModelBaked(BakingCompleted e) {
+    public static void onModelBaked(ModelEvent.ModifyBakingResult e) {
         Map<ResourceLocation, BakedModel> modelRegistry = e.getModels();
         ModelResourceLocation location;
         for (RegistryObject<Item> spear : SPEARS){
@@ -104,12 +105,12 @@ public class ModClientRenderEventHandler{
 
     @SubscribeEvent
     public static void onParticleFactoryRegister(RegisterParticleProvidersEvent event){
-        event.register(ParticleRegistry.nullity.get(), NullityParticle.Factory::new);
-        event.register(ParticleRegistry.plasmaTrail.get(), PlasmaTrailParticle.Factory::new);
-        event.register(ParticleRegistry.electronicBit.get(), ElectronicBitParticle.Factory::new);
-        event.register(ParticleRegistry.goldenSparkleBase.get(), GoldenSparkleParticle.BaseFactory::new);
-        event.register(ParticleRegistry.goldenSparkle.get(), GoldenSparkleParticle.AdvFactory::new);
-        event.register(ParticleRegistry.timeRiftExplosion.get(), TimeRiftExplosionParticle.Factory::new);
+        event.registerSpriteSet(ParticleRegistry.nullity.get(), NullityParticle.Factory::new);
+        event.registerSpriteSet(ParticleRegistry.plasmaTrail.get(), PlasmaTrailParticle.Factory::new);
+        event.registerSpriteSet(ParticleRegistry.electronicBit.get(), ElectronicBitParticle.Factory::new);
+        event.registerSpriteSet(ParticleRegistry.goldenSparkleBase.get(), GoldenSparkleParticle.BaseFactory::new);
+        event.registerSpriteSet(ParticleRegistry.goldenSparkle.get(), GoldenSparkleParticle.AdvFactory::new);
+        event.registerSpriteSet(ParticleRegistry.timeRiftExplosion.get(), TimeRiftExplosionParticle.Factory::new);
     }
 
     private static <E extends Entity> void registerEntityRenderer(EntityType<E> type, EntityRendererProvider<E> renderer){

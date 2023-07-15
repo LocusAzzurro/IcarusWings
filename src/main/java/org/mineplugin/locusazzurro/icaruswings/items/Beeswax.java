@@ -6,14 +6,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 @Mod.EventBusSubscriber()
 public class Beeswax extends Item {
 
 	public Beeswax() {
-		super(new Properties().tab(ModGroup.itemGroup).food(food));
+		super(new Properties().food(food));
 	}
 	
 	private static final FoodProperties food = (new FoodProperties.Builder())

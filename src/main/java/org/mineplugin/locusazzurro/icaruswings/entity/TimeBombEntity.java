@@ -1,20 +1,24 @@
 package org.mineplugin.locusazzurro.icaruswings.entity;
 
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.network.NetworkHooks;
-import org.mineplugin.locusazzurro.icaruswings.damage.DamageTimeRift;
+import org.mineplugin.locusazzurro.icaruswings.data.ModDamageSources;
+import org.mineplugin.locusazzurro.icaruswings.registry.DamageTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
@@ -97,8 +101,9 @@ public class TimeBombEntity extends Entity {
             Entity attachedTo = this.getAttachedTo();
             AABB aabb = new AABB(r, r, r, -r, -r, -r).move(attachedTo.position());
             List<LivingEntity> entities = attachedTo.level.getEntitiesOfClass(LivingEntity.class, aabb);
+            DamageSource damagesource = ModDamageSources.timeRift(this.level, attachedTo);
             for (LivingEntity entity : entities) {
-                entity.hurt(new DamageTimeRift(attachedTo), this.damage);
+                entity.hurt(damagesource, this.damage);
             }
         }
         this.discard();
@@ -115,7 +120,7 @@ public class TimeBombEntity extends Entity {
         this.entityData.get(ATTACHED_TO_TARGET).ifPresent((e) -> {
             Entity attachedTo = this.level.getEntity(e);
             if (attachedTo != null)
-            this.setPos(attachedTo.getX(), attachedTo.getY(), attachedTo.getZ());
+                this.setPos(attachedTo.getX(), attachedTo.getY(), attachedTo.getZ());
         });
     }
 
@@ -175,7 +180,7 @@ public class TimeBombEntity extends Entity {
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

@@ -22,6 +22,6 @@ public class EffectInevitability extends AbstractEffect{
 
     @Override
     public void overflow(LivingEntity entity, int overflowLevel) {
-        entity.hurt(ModDamageSources.timeRift(entity), overflowLevel * 50);
+        entity.hurt(ModDamageSources.timeRift(entity.level), overflowLevel * 50);
     };
 }

@@ -5,14 +5,14 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.IndirectEntityDamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
@@ -153,7 +153,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
         super.onHit(ray);
         if(!this.level.isClientSide){
             boolean flag = ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
-            this.level.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower, flag, Explosion.BlockInteraction.NONE);
+            this.level.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower, flag, Level.ExplosionInteraction.NONE);
         }
         this.discard();
     }
@@ -169,9 +169,8 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
         if (!this.level.isClientSide) {
             Entity entity = ray.getEntity();
             Entity owner = this.getOwner();
-            entity.hurt(
-                    (new IndirectEntityDamageSource("explosion", this, owner)).setExplosion()
-                    , 8.0F);
+            DamageSource damageSource = this.level.damageSources().explosion(this, owner);
+            entity.hurt(damageSource, 8.0F);
             if (owner instanceof LivingEntity) {
                 this.doEnchantDamageEffects((LivingEntity)owner, entity);
             }
@@ -182,7 +181,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     protected void onEmptyFuel(){
         if(!this.level.isClientSide){
             boolean flag = ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
-            this.level.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower + 0.5f, flag, Explosion.BlockInteraction.NONE);
+            this.level.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower + 0.5f, flag, Level.ExplosionInteraction.NONE);
         }
         this.discard();
     }
@@ -254,7 +253,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

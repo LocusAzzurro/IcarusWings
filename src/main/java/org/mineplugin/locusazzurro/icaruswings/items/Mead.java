@@ -26,7 +26,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.items.ItemHandlerHelper;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.*;
 
 import javax.annotation.Nullable;
@@ -38,7 +37,7 @@ public class Mead extends Item {
 	private Infusion infusionType = null;
 	
 	public Mead() {
-		super(new Properties().tab(ModGroup.itemGroup).food(food).stacksTo(4));
+		super(new Properties().food(food).stacksTo(4));
 	}
 	
 	public Mead(Infusion type) {

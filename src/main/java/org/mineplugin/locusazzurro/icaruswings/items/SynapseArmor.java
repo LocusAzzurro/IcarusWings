@@ -11,7 +11,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import org.mineplugin.locusazzurro.icaruswings.data.ModArmorMaterial;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import java.util.UUID;
 
@@ -21,13 +20,13 @@ public class SynapseArmor extends ArmorItem implements Vanishable {
 	
 	private static final UUID[] ARMOR_MODIFIER_UUID_PER_SLOT = ModData.ARMOR_MODIFIER_UUID_PER_SLOT;
 	
-	public SynapseArmor(EquipmentSlot slot) {
-		super(material, slot, 
-			new Item.Properties().tab(ModGroup.itemGroup).defaultDurability(material.getDurabilityForSlot(slot)).rarity(Rarity.RARE));
+	public SynapseArmor(ArmorItem.Type type) {
+		super(material, type,
+			new Item.Properties().defaultDurability(material.getDurabilityForType(type)).rarity(Rarity.RARE));
 	}
 	
 	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-		return slot == this.slot ? this.getModifiersPerSlot(slot) : super.getDefaultAttributeModifiers(slot);
+		return slot == this.type.getSlot() ? this.getModifiersPerSlot(slot) : super.getDefaultAttributeModifiers(slot);
 	}
 	
 	private Multimap<Attribute, AttributeModifier> getModifiersPerSlot(EquipmentSlot slot)
@@ -49,7 +48,7 @@ public class SynapseArmor extends ArmorItem implements Vanishable {
 
 	@Override
 	public boolean isEnderMask(ItemStack stack, Player player, EnderMan endermanEntity) {
-		return (this.slot == EquipmentSlot.HEAD);
+		return (this.type == Type.HELMET);
 	}
 	
 }

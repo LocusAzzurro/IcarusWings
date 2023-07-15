@@ -1,7 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
 import net.minecraft.world.item.Item;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 
 public class FeatherBunch extends Item {
@@ -9,7 +8,7 @@ public class FeatherBunch extends Item {
 	public WingsType type;
 
 	public FeatherBunch(WingsType type) {
-		super(new Properties().tab(ModGroup.itemGroup));
+		super(new Properties());
 		this.type = type;
 	}
 

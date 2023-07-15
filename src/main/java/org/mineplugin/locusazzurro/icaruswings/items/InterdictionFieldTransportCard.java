@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import com.mojang.math.Vector3f;
+import org.joml.Vector3d;
+import org.joml.Vector3f;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -20,8 +21,8 @@ import java.util.List;
 
 public class InterdictionFieldTransportCard extends AbstractTransportCard{
 
-    private static final List<Vec3> PARTICLE_POINTS = MathUtils.fibonacciSphere(500);
-    private static final List<Vec3> LINE_ANCHORS = MathUtils.fibonacciSphere(50);
+    private static final List<Vector3d> PARTICLE_POINTS = MathUtils.fibonacciSphere(500);
+    private static final List<Vector3d> LINE_ANCHORS = MathUtils.fibonacciSphere(50);
     private static final float RANGE = 10;
 
     public InterdictionFieldTransportCard() {
@@ -34,9 +35,9 @@ public class InterdictionFieldTransportCard extends AbstractTransportCard{
 
         if (worldIn.isClientSide()) {
             PARTICLE_POINTS.forEach((point) -> {
-                Vector3f rPoint = new Vector3f(point.scale(2));
-                Vector3f[] expand = {new Vector3f(point.scale(0.3)), new Vector3f(point.scale(0.6)), new Vector3f(point.scale(0.9))};
-                for (Vector3f vec : expand) {
+                Vector3d rPoint = new Vector3d(point.mul(2.0));
+                Vector3d[] expand = {new Vector3d(point.mul(0.3)), new Vector3d(point.mul(0.6)), new Vector3d(point.mul(0.9))};
+                for (Vector3d vec : expand) {
                     worldIn.addParticle(ParticleTypes.END_ROD,
                             playerIn.getX() + rPoint.x(),
                             playerIn.getY() + rPoint.y(),
@@ -45,12 +46,12 @@ public class InterdictionFieldTransportCard extends AbstractTransportCard{
                 }
             });
             LINE_ANCHORS.forEach((point) -> {
-                Vector3f rPoint = new Vector3f(point.scale(2));
-                Vector3f[] expand = new Vector3f[10];
+                Vector3d rPoint = new Vector3d(point.mul(2));
+                Vector3d[] expand = new Vector3d[10];
                 for (int i = 0; i < expand.length; i++){
-                    expand[i] = new Vector3f(point.scale(0.1 * i));
+                    expand[i] = new Vector3d(point.mul(0.1 * i));
                 }
-                for (Vector3f vec : expand) {
+                for (Vector3d vec : expand) {
                     worldIn.addParticle(ParticleTypes.END_ROD,
                             playerIn.getX() + rPoint.x(),
                             playerIn.getY() + rPoint.y(),

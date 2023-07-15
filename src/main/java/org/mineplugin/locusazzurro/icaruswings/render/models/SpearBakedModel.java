@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -63,12 +64,12 @@ public class SpearBakedModel implements BakedModel, IForgeBakedModel {
     }
 
     @Override
-    public BakedModel applyTransform(ItemTransforms.TransformType cameraTransformType, PoseStack poseStack, boolean applyLeftHandTransform) {
-        if (cameraTransformType == ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND ||
-                cameraTransformType == ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND ||
-                cameraTransformType == ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND ||
-                cameraTransformType == ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND) {
-            return (BakedModel) this;
+    public BakedModel applyTransform(ItemDisplayContext cameraTransformType, PoseStack poseStack, boolean applyLeftHandTransform) {
+        if (cameraTransformType == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND ||
+                cameraTransformType == ItemDisplayContext.FIRST_PERSON_LEFT_HAND ||
+                cameraTransformType == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND ||
+                cameraTransformType == ItemDisplayContext.THIRD_PERSON_LEFT_HAND) {
+            return this;
         }
         return this.existingModel.applyTransform(cameraTransformType, poseStack, applyLeftHandTransform);
     }
