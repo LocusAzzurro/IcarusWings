@@ -12,15 +12,15 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import org.mineplugin.locusazzurro.icaruswings.registry.TileEntityTypeRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.BlockEntityTypeRegistry;
 
-public class AmphoraTileEntity extends RandomizableContainerBlockEntity {
+public class AmphoraBlockEntity extends RandomizableContainerBlockEntity {
 	
 	private NonNullList<ItemStack> items = NonNullList.withSize(45, ItemStack.EMPTY);
 
 
-	public AmphoraTileEntity(BlockPos a, BlockState b) {
-		super(TileEntityTypeRegistry.amphoraTileEntity.get(), a, b);
+	public AmphoraBlockEntity(BlockPos a, BlockState b) {
+		super(BlockEntityTypeRegistry.AMPHORA_BLOCK_ENTITY.get(), a, b);
 	}
 
 	@Override

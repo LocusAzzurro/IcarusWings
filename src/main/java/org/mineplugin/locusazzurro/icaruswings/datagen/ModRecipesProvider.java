@@ -1,6 +1,5 @@
 package org.mineplugin.locusazzurro.icaruswings.datagen;
 
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -10,10 +9,11 @@ import java.util.function.Consumer;
 
 /**
  * @author DustW
+ * @author LocusAzzurro
  **/
-public class RecipesGenerator extends RecipeProvider implements IConditionBuilder {
+public class ModRecipesProvider extends RecipeProvider implements IConditionBuilder {
 
-    public RecipesGenerator(PackOutput output) {
+    public ModRecipesProvider(PackOutput output) {
         super(output);
     }
 

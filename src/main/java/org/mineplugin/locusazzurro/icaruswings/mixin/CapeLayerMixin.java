@@ -15,12 +15,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(CapeLayer.class)
 public class CapeLayerMixin {
 
-	@Inject(at = @At(value = "HEAD"), method = "render", cancellable = true)
-	public void render(PoseStack p_225628_1_, MultiBufferSource p_225628_2_, int p_225628_3_,
-					   AbstractClientPlayer p_225628_4_, float p_225628_5_, float p_225628_6_, float p_225628_7_,
+	@Inject(at = @At(value = "HEAD"), method = "render*", cancellable = true)
+	public void render(PoseStack pose, MultiBufferSource p_225628_2_, int p_225628_3_,
+					   AbstractClientPlayer clientPlayer, float p_225628_5_, float p_225628_6_, float p_225628_7_,
 					   float p_225628_8_, float p_225628_9_, float p_225628_10_, CallbackInfo cb) {
 		
-		ItemStack itemstack = p_225628_4_.getItemBySlot(EquipmentSlot.CHEST);
+		ItemStack itemstack = clientPlayer.getItemBySlot(EquipmentSlot.CHEST);
         if (itemstack.getItem() instanceof AbstractWings) {
         	cb.cancel();
         }

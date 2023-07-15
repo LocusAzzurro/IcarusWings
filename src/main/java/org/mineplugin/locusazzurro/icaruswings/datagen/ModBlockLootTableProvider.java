@@ -8,9 +8,9 @@ import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
 import java.util.Set;
 
-public class BlockLootTableProvider extends BlockLootSubProvider {
+public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
-    public BlockLootTableProvider() {
+    public ModBlockLootTableProvider() {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags());
     }
 

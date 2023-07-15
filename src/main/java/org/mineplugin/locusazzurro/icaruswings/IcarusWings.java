@@ -20,7 +20,7 @@ public class IcarusWings {
 		ItemRegistry.ITEMS.register(bus);
 		EntityTypeRegistry.ENTITIES.register(bus);
 		ParticleRegistry.PARTICLES.register(bus);
-		TileEntityTypeRegistry.TILE_ENTITIES.register(bus);
+		BlockEntityTypeRegistry.BLOCK_ENTITIES.register(bus);
 		EnchantmentRegistry.ENCHANTMENTS.register(bus);
 		EffectRegistry.EFFECTS.register(bus);
 

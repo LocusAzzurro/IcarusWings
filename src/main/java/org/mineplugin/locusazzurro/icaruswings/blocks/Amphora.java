@@ -25,7 +25,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.AmphoraTileEntity;
+import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.AmphoraBlockEntity;
 
 import javax.annotation.Nullable;
 
@@ -89,8 +89,8 @@ public class Amphora extends BaseEntityBlock{
 	    worldIn.setBlock(posIn.above(), stateIn.setValue(HALF, DoubleBlockHalf.UPPER), 3);
 		if (stackIn.hasCustomHoverName()) {
 			BlockEntity tileentity = worldIn.getBlockEntity(posIn);
-			if (tileentity instanceof AmphoraTileEntity) {
-				((AmphoraTileEntity) tileentity).setCustomName(stackIn.getHoverName());
+			if (tileentity instanceof AmphoraBlockEntity) {
+				((AmphoraBlockEntity) tileentity).setCustomName(stackIn.getHoverName());
 			}
 		}
 	}
@@ -140,7 +140,7 @@ public class Amphora extends BaseEntityBlock{
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pPos, BlockState state) {
 		if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
-			return new AmphoraTileEntity(pPos, state);
+			return new AmphoraBlockEntity(pPos, state);
 		}
 
 		return null;
@@ -156,8 +156,8 @@ public class Amphora extends BaseEntityBlock{
 			if (stateIn.getValue(HALF) == DoubleBlockHalf.UPPER) {
 				tileentity = worldIn.getBlockEntity(posIn.below());	}
 			else { tileentity = worldIn.getBlockEntity(posIn); }
-			if (tileentity instanceof AmphoraTileEntity) {
-				playerIn.openMenu((AmphoraTileEntity) tileentity);
+			if (tileentity instanceof AmphoraBlockEntity) {
+				playerIn.openMenu((AmphoraBlockEntity) tileentity);
 			}
 			return InteractionResult.CONSUME;
 		}
