@@ -23,7 +23,7 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
+
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ForgeMod;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
@@ -84,9 +84,13 @@ public class SpearItem extends TieredItem implements Vanishable {
 
     @Override
     public float getDestroySpeed(ItemStack itemStack, BlockState blockState) {
-        Material material = blockState.getMaterial();
+        return 1.5f;
+        //todo repliacte new sword mechanics
+        /*Material material = blockState.getMaterial();
         return material != Material.PLANT && material != Material.REPLACEABLE_PLANT
                 && !blockState.is(BlockTags.LEAVES) && material != Material.VEGETABLE ? 1.0F : 1.5F;
+
+         */
     }
 
     @Override

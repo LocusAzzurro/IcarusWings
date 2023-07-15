@@ -139,7 +139,7 @@ public abstract class AbstractEffect extends MobEffect {
 
 	// 放入治疗物品
 	public void setCurativeItems( ItemStack stack ) {
-		if ( this.getCurativeItems( ).stream( ).noneMatch( stackIn -> stackIn.sameItem( stack ) ) ) {
+		if ( this.getCurativeItems( ).stream( ).noneMatch( stackIn -> stackIn.is(stack.getItem()) ) ) {
 			this.getCurativeItems( ).add( stack ) ;
 		} ;
 	} ;

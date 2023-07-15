@@ -64,7 +64,7 @@ public class InterdictionFieldTransportCard extends AbstractTransportCard{
 
         float r = RANGE;
         AABB aabb = new AABB(r, r, r, -r, -r, -r).move(playerIn.position());
-        List<LivingEntity> entities = playerIn.level.getEntitiesOfClass(LivingEntity.class, aabb);
+        List<LivingEntity> entities = playerIn.level().getEntitiesOfClass(LivingEntity.class, aabb);
         entities.remove(playerIn);
         for (LivingEntity entity : entities) {
             entity.addEffect(new MobEffectInstance(EffectRegistry.interdiction.get(), 1200, 0));

@@ -9,15 +9,16 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.TallGrassBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
+
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
 public class ElysianGrass extends TallGrassBlock {
 
     public ElysianGrass() {
-        super(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT)
+        super(BlockBehaviour.Properties.of()
                 .noCollission()
                 .instabreak()
+                .replaceable()
                 .sound(SoundType.GRASS)
         );
     }

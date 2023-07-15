@@ -45,23 +45,23 @@ public class TimeRiftParticleEntity extends ThrowableItemProjectile {
         }
         life++;
 
-        if (level.isClientSide()){
-            double xR = level.random.nextDouble() * 0.1d - 0.05d;
-            double yR = level.random.nextDouble() * 0.1d - 0.05d;
-            double zR = level.random.nextDouble() * 0.1d - 0.05d;
-            level.addParticle(ParticleTypes.DRAGON_BREATH, this.getX(), this.getY(), this.getZ(), xR,yR,zR);
+        if (level().isClientSide()){
+            double xR = level().random.nextDouble() * 0.1d - 0.05d;
+            double yR = level().random.nextDouble() * 0.1d - 0.05d;
+            double zR = level().random.nextDouble() * 0.1d - 0.05d;
+            level().addParticle(ParticleTypes.DRAGON_BREATH, this.getX(), this.getY(), this.getZ(), xR,yR,zR);
         }
     }
 
     @Override
     protected void onHit(HitResult ray){
         super.onHit(ray);
-        if (level.isClientSide()){
+        if (level().isClientSide()){
             for (int i = 0; i < 10; i++) {
-                double xR = level.random.nextDouble() * 0.1d - 0.05d;
-                double yR = level.random.nextDouble() * 0.1d - 0.05d;
-                double zR = level.random.nextDouble() * 0.1d - 0.05d;
-                level.addParticle(ParticleTypes.DRAGON_BREATH, this.getX(), this.getY(), this.getZ(), xR, yR, zR);
+                double xR = level().random.nextDouble() * 0.1d - 0.05d;
+                double yR = level().random.nextDouble() * 0.1d - 0.05d;
+                double zR = level().random.nextDouble() * 0.1d - 0.05d;
+                level().addParticle(ParticleTypes.DRAGON_BREATH, this.getX(), this.getY(), this.getZ(), xR, yR, zR);
             }
         }
         this.discard();
@@ -75,10 +75,10 @@ public class TimeRiftParticleEntity extends ThrowableItemProjectile {
     @Override
     protected void onHitEntity(EntityHitResult ray){
         super.onHitEntity(ray);
-        if (!this.level.isClientSide) {
+        if (!this.level().isClientSide) {
             Entity entity = ray.getEntity();
             Entity owner = this.getOwner();
-            entity.hurt(ModDamageSources.timeRift(entity.level, owner), 2.0f);
+            entity.hurt(ModDamageSources.timeRift(entity.level(), owner), 2.0f);
             if (entity instanceof LivingEntity) {
                 ((EffectInevitability) EffectRegistry.inevitability.get()).addEffect((LivingEntity) entity, 1);
             }

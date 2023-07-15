@@ -55,42 +55,42 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
         }
         life++;
 
-        if (level.isClientSide()){
-            double xR = level.random.nextDouble() * 0.1d - 0.05d;
-            double yR = level.random.nextDouble() * 0.1d - 0.05d;
-            double zR = level.random.nextDouble() * 0.1d - 0.05d;
-            level.addParticle(ParticleTypes.WITCH, this.getX(), this.getY(), this.getZ(), xR,yR,zR);
+        if (level().isClientSide()){
+            double xR = level().random.nextDouble() * 0.1d - 0.05d;
+            double yR = level().random.nextDouble() * 0.1d - 0.05d;
+            double zR = level().random.nextDouble() * 0.1d - 0.05d;
+            level().addParticle(ParticleTypes.WITCH, this.getX(), this.getY(), this.getZ(), xR,yR,zR);
         }
     }
 
     @Override
     public void onHit(HitResult ray){
         super.onHit(ray);
-        this.level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundRegistry.timeRiftCollapse.get(), SoundSource.PLAYERS, 2.0F, 1.1F);
+        this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundRegistry.timeRiftCollapse.get(), SoundSource.PLAYERS, 2.0F, 1.1F);
     }
 
     @Override
     public void onHitBlock(BlockHitResult ray){
         super.onHitBlock(ray);
         BlockPos pos = ray.getBlockPos();
-        if (!level.isClientSide()){
+        if (!level().isClientSide()){
             if (ALLOW_TERRAIN) {
                 byte[] terrain = this.entityData.get(LANDSCAPE).getByteArray("Landscape");
                 int xo = pos.getX() - 4;
-                int yo = pos.getY() - level.random.nextInt(3);
+                int yo = pos.getY() - level().random.nextInt(3);
                 int zo = pos.getZ() - 4;
                 for (int i = 0; i < terrain.length; i++) {
                     int y = i / 64;
                     int z = (i - 64 * y) / 8;
                     int x = i - 64 * y - 8 * z;
-                    level.setBlock(new BlockPos(xo + x, yo + y, zo + z), KayrosGenUtils.palette[terrain[i]], 3);
+                    level().setBlock(new BlockPos(xo + x, yo + y, zo + z), KayrosGenUtils.palette[terrain[i]], 3);
                 }
             }
-            this.level.getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(4)).forEach(e -> {
+            this.level().getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(4)).forEach(e -> {
                 ((EffectInevitability) EffectRegistry.inevitability.get()).addEffect(e, 3);
-                e.hurt(ModDamageSources.timeRift(this.level, this.getOwner()), 5.0f);
+                e.hurt(ModDamageSources.timeRift(this.level(), this.getOwner()), 5.0f);
             });
-            ((ServerLevel)level).sendParticles(ParticleTypes.WITCH,
+            ((ServerLevel)level()).sendParticles(ParticleTypes.WITCH,
                     pos.getX(), pos.getY(), pos.getZ(),
                     4000, 4, 4, 4, 0.001);
         }
@@ -103,7 +103,7 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
         Entity entity = pResult.getEntity();
         if (entity instanceof LivingEntity livingEntity) {
             ((EffectInevitability) EffectRegistry.inevitability.get()).addEffect(livingEntity, 5);
-            livingEntity.hurt(ModDamageSources.timeRift(this.level, this.getOwner()), 15.0f);
+            livingEntity.hurt(ModDamageSources.timeRift(this.level(), this.getOwner()), 15.0f);
         }
     }
 

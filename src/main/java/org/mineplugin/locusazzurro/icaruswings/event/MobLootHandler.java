@@ -35,7 +35,7 @@ public class MobLootHandler {
 		for (Pair<Supplier<ItemStack>, Float> i: tables) {
 			if (Math.random() < i.getRight() * Math.pow(1.2, looting)) { stacks.add(i.getLeft().get()); }
 		}
-		stacks.forEach( i -> event.getDrops().add(new ItemEntity(entity.level, entity.getX(), entity.getY(), entity.getZ(), i)));
+		stacks.forEach( i -> event.getDrops().add(new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), i)));
 		}
     }
 	

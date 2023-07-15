@@ -105,9 +105,9 @@ public class GoldenRamEntity extends Animal implements IForgeShearable {
 	@Override
 	public void tick() {
 		super.tick();
-		if (level.isClientSide() && (this.tickCount % 4 == 0)){
-			var rnd = level.getRandom();
-			level.addParticle(ParticleRegistry.goldenSparkle.get(),
+		if (level().isClientSide() && (this.tickCount % 4 == 0)){
+			var rnd = level().getRandom();
+			level().addParticle(ParticleRegistry.goldenSparkle.get(),
 					this.getX(), this.getY()+0.8, this.getZ(),
 					(rnd.nextFloat() - 0.5) / 4 ,
 					(rnd.nextFloat() - 0.4) / 4 ,
@@ -173,7 +173,7 @@ public class GoldenRamEntity extends Animal implements IForgeShearable {
 
 	@Override
 	public void aiStep() {
-		if (this.level.isClientSide) {
+		if (this.level().isClientSide) {
 			this.eatAnimationTick = Math.max(0, this.eatAnimationTick - 1);
 		}
 		super.aiStep();

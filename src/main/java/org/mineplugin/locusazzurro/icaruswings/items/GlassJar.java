@@ -26,7 +26,7 @@ public class GlassJar extends Item {
     @SubscribeEvent
     public static void collectAir(TickEvent.PlayerTickEvent e){
         Player player = e.player;
-        Level world = player.level;
+        Level world = player.level();
         if (player.isFallFlying() && player.tickCount % 20 == 0 && !world.isClientSide() && e.phase == TickEvent.Phase.END){
             int slot = player.getInventory().findSlotMatchingUnusedItem(new ItemStack(ItemRegistry.glassJar.get()));
             if (slot != -1){
