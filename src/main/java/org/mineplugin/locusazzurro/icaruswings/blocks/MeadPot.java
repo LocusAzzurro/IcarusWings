@@ -41,12 +41,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Nullable;
 import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.ITickableBlockEntity;
-import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.MeadPotTileEntity;
+import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.MeadPotBlockEntity;
 import org.mineplugin.locusazzurro.icaruswings.items.Mead;
 import org.mineplugin.locusazzurro.icaruswings.items.WorldEssence;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
-import org.mineplugin.locusazzurro.icaruswings.registry.TileEntityTypeRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.BlockEntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.utils.IWLazy;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -84,13 +84,13 @@ public class MeadPot extends BaseEntityBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-		return ITickableBlockEntity.getTicker(pLevel, TileEntityTypeRegistry.meadPotTileEntity.get(), pBlockEntityType);
+		return ITickableBlockEntity.getTicker(pLevel, BlockEntityTypeRegistry.MEAD_POT_BLOCK_ENTITY.get(), pBlockEntityType);
 	}
 
 	@Nullable
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-		return new MeadPotTileEntity(pPos, pState);
+		return new MeadPotBlockEntity(pPos, pState);
 	}
 	
 	@Override
@@ -115,9 +115,9 @@ public class MeadPot extends BaseEntityBlock {
 	
 	@Override
 	public int getAnalogOutputSignal(BlockState stateIn, Level worldIn, BlockPos pos) {
-		if (worldIn.getBlockEntity(pos) != null && worldIn.getBlockEntity(pos) instanceof MeadPotTileEntity meadPotTE){
+		if (worldIn.getBlockEntity(pos) != null && worldIn.getBlockEntity(pos) instanceof MeadPotBlockEntity meadPotTE){
 			float progress = meadPotTE.getFermentationProgress();
-			float fermentationTime = MeadPotTileEntity.getFermentationTime();
+			float fermentationTime = MeadPotBlockEntity.getFermentationTime();
 			return (int) ((progress / fermentationTime) * 15);
 		}
 		return 0;
@@ -129,7 +129,7 @@ public class MeadPot extends BaseEntityBlock {
 	}
 	@Override
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if (!worldIn.isClientSide && handIn == InteractionHand.MAIN_HAND && worldIn.getBlockEntity(pos) instanceof MeadPotTileEntity meadPotTE) {
+        if (!worldIn.isClientSide && handIn == InteractionHand.MAIN_HAND && worldIn.getBlockEntity(pos) instanceof MeadPotBlockEntity meadPotTE) {
             ItemStack stackIn = player.getItemInHand(handIn);
             if (stackIn.getItem() == Items.HONEY_BOTTLE && stackIn.getCount() >= 4
             		&& !meadPotTE.isFermenting() && !meadPotTE.isComplete()) {

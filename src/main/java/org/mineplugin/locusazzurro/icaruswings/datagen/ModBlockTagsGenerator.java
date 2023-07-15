@@ -12,10 +12,11 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * @author DustW
+ * @author LocusAzzurro
  **/
-public class BlockTagsGenerator extends BlockTagsProvider {
+public class ModBlockTagsGenerator extends BlockTagsProvider {
 
-    public BlockTagsGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper helper) {
+    public ModBlockTagsGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper helper) {
         super(output, lookupProvider, DataGenerators.MOD_ID, helper);
     }
 

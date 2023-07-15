@@ -7,17 +7,17 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.mineplugin.locusazzurro.icaruswings.blocks.MeadPot;
-import org.mineplugin.locusazzurro.icaruswings.registry.TileEntityTypeRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.BlockEntityTypeRegistry;
 
-public class MeadPotTileEntity extends BlockEntity implements ITickableBlockEntity<MeadPotTileEntity> {
+public class MeadPotBlockEntity extends BlockEntity implements ITickableBlockEntity<MeadPotBlockEntity> {
 	
 	private static final int FERMENTATION_TIME = 3600 * 20; //1h / 3 in-game days
 	private int fermentationProgress = 0;
 	private boolean isFermenting = false;
 	private boolean isComplete = false;
 	
-	public MeadPotTileEntity(BlockPos pos, BlockState state) {
-		super(TileEntityTypeRegistry.meadPotTileEntity.get(), pos, state);
+	public MeadPotBlockEntity(BlockPos pos, BlockState state) {
+		super(BlockEntityTypeRegistry.MEAD_POT_BLOCK_ENTITY.get(), pos, state);
 	}
 
 	public void startFermenting() {
@@ -63,7 +63,7 @@ public class MeadPotTileEntity extends BlockEntity implements ITickableBlockEnti
 	}
 
 	@Override
-	public MeadPotTileEntity getBlockEntity() {
+	public MeadPotBlockEntity getBlockEntity() {
 		return this;
 	}
 

@@ -10,6 +10,6 @@ public class LootTableProvider {
 
     public static net.minecraft.data.loot.LootTableProvider create(PackOutput output){
         return new net.minecraft.data.loot.LootTableProvider(output, Set.of(),
-                List.of(new net.minecraft.data.loot.LootTableProvider.SubProviderEntry(BlockLootTableProvider::new, LootContextParamSets.BLOCK)));
+                List.of(new net.minecraft.data.loot.LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)));
     }
 }
