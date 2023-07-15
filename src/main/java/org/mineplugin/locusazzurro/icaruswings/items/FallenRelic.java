@@ -10,7 +10,6 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class FallenRelic extends Item{
 	private final boolean isUpgraded = false;
 	
 	public FallenRelic(RelicType type, boolean restored){
-		super(new Item.Properties().tab(ModGroup.itemGroup).stacksTo(1).fireResistant().rarity(Rarity.UNCOMMON));
+		super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.UNCOMMON));
 		this.relicType = type;
 		this.isRestored = restored;
 	}

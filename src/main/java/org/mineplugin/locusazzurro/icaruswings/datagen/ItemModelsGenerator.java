@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.datagen;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -9,8 +10,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
  **/
 public class ItemModelsGenerator extends ItemModelProvider {
 
-    public ItemModelsGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, DataGenerators.MOD_ID, existingFileHelper);
+    public ItemModelsGenerator(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, DataGenerators.MOD_ID, existingFileHelper);
     }
 
     @Override

@@ -3,6 +3,7 @@ package org.mineplugin.locusazzurro.icaruswings.entity;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -77,7 +78,7 @@ public class TimeRiftParticleEntity extends ThrowableItemProjectile {
         if (!this.level.isClientSide) {
             Entity entity = ray.getEntity();
             Entity owner = this.getOwner();
-            entity.hurt(ModDamageSources.timeRift(owner), 2.0f);
+            entity.hurt(ModDamageSources.timeRift(entity.level, owner), 2.0f);
             if (entity instanceof LivingEntity) {
                 ((EffectInevitability) EffectRegistry.inevitability.get()).addEffect((LivingEntity) entity, 1);
             }
@@ -117,7 +118,7 @@ public class TimeRiftParticleEntity extends ThrowableItemProjectile {
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

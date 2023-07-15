@@ -4,7 +4,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.RecordItem;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import java.util.function.Supplier;
@@ -15,7 +14,7 @@ public class SkyMusicDisc extends RecordItem {
 	private Track track;
 	
 	public SkyMusicDisc(Track track){
-		super(track.getTrackNum(), track.getMusic(), new Item.Properties().tab(ModGroup.itemGroup).stacksTo(1).rarity(Rarity.RARE), track.length);
+		super(track.getTrackNum(), track.getMusic(), new Item.Properties().stacksTo(1).rarity(Rarity.RARE), track.length);
 	}
 	
 	public Track getTrack() {

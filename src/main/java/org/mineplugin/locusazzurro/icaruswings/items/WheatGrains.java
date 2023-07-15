@@ -16,7 +16,6 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.ItemHandlerHelper;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 @Mod.EventBusSubscriber
@@ -25,7 +24,7 @@ public class WheatGrains extends Item{
 	private final static float ACQUIRE_FEATHER_CHANCE = 0.5f;
 	
 	public WheatGrains() {
-		super(new Properties().tab(ModGroup.itemGroup).food(food));
+		super(new Properties().food(food));
 		
 	}
 	
@@ -47,16 +46,15 @@ public class WheatGrains extends Item{
 				}
 				target.playSound(SoundEvents.PARROT_EAT, 2.0f, 1.3f);
 				if (Math.random() > ACQUIRE_FEATHER_CHANCE) {
-					
-					int variant = ((Parrot) target).getVariant();
+
+					Parrot.Variant var = ((Parrot) target).getVariant();
 					new ItemStack(Items.FEATHER);
-					ItemStack feather = switch (variant) {
-						case 0 -> new ItemStack(ItemRegistry.redFeather.get());
-						case 1 -> new ItemStack(ItemRegistry.blueFeather.get());
-						case 2 -> new ItemStack(ItemRegistry.greenFeather.get());
-						case 3 -> new ItemStack(ItemRegistry.cyanFeather.get());
-						case 4 -> new ItemStack(ItemRegistry.grayFeather.get());
-						default -> new ItemStack(Items.FEATHER);
+					ItemStack feather = switch (var) {
+						case RED_BLUE -> new ItemStack(ItemRegistry.redFeather.get());
+						case BLUE -> new ItemStack(ItemRegistry.blueFeather.get());
+						case GREEN -> new ItemStack(ItemRegistry.greenFeather.get());
+						case YELLOW_BLUE -> new ItemStack(ItemRegistry.cyanFeather.get());
+						case GRAY -> new ItemStack(ItemRegistry.grayFeather.get());
 					};
 					ItemHandlerHelper.giveItemToPlayer(player, feather);
 				}

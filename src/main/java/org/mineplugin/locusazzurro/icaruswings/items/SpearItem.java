@@ -27,7 +27,6 @@ import net.minecraft.world.level.material.Material;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ForgeMod;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.entity.SpearEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.render.renderers.SpearItemStackTileEntityRenderer;
@@ -44,7 +43,7 @@ public class SpearItem extends TieredItem implements Vanishable {
     private static final float BASE_ATTACK_RANGE = 1.5f;
 
     public SpearItem(Tier tier) {
-        super(tier, new Properties().tab(ModGroup.itemGroup));
+        super(tier, new Properties());
         this.attackDamage = BASE_DAMAGE + tier.getAttackDamageBonus();
         this.attackSpeed = BASE_ATTACK_SPEED;
         this.attackRange = BASE_ATTACK_RANGE;
@@ -56,7 +55,7 @@ public class SpearItem extends TieredItem implements Vanishable {
                 "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID,
                 "Weapon modifier", this.attackSpeed, AttributeModifier.Operation.ADDITION));
-        builder.put(ForgeMod.ATTACK_RANGE.get(), new AttributeModifier(ModData.WEAPON_ATTACK_RANGE_UUID,
+        builder.put(ForgeMod.ENTITY_REACH.get(), new AttributeModifier(ModData.WEAPON_ATTACK_RANGE_UUID,
                 "Weapon modifier", this.attackRange, AttributeModifier.Operation.ADDITION));
         return builder.build();
     }

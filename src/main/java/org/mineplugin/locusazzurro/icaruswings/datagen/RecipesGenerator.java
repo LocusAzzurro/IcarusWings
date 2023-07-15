@@ -1,33 +1,23 @@
 package org.mineplugin.locusazzurro.icaruswings.datagen;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 import java.util.function.Consumer;
 
 /**
  * @author DustW
  **/
-public class RecipesGenerator extends RecipeProvider {
+public class RecipesGenerator extends RecipeProvider implements IConditionBuilder {
 
-    public RecipesGenerator(DataGenerator generatorIn) {
-        super(generatorIn);
+    public RecipesGenerator(PackOutput output) {
+        super(output);
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
-        //合成表，你自己看看，unlockedBy 是必填项
-        //ShapedRecipeBuilder
-        //        .shaped(result item)
-        //        .define('R', )
-        //        .define('B', )
-        //        .define('G', )
-        //        .define('Y', )
-        //        .define('C', )
-        //        .pattern("RRG")
-        //        .pattern("YCG")
-        //        .pattern("YBB")
-        //        .unlockedBy("has_stone", has(Blocks.DIORITE)).save(consumer);
+    protected void buildRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
     }
 }

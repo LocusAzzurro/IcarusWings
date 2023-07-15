@@ -8,43 +8,33 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Equipable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Wearable;
 import org.mineplugin.locusazzurro.icaruswings.data.ModArmorMaterial;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import java.util.UUID;
 
-public class BeeswaxArmor extends ArmorItem implements Wearable {
+public class BeeswaxArmor extends ArmorItem implements Equipable {
 	
 	private static final ModArmorMaterial material = ModArmorMaterial.BEESWAX;
 
 	private static final UUID[] ARMOR_MODIFIER_UUID_PER_SLOT = ModData.ARMOR_MODIFIER_UUID_PER_SLOT;
 
-	public BeeswaxArmor(EquipmentSlot slot) {
-		super(material, slot, new Item.Properties().tab(ModGroup.itemGroup).defaultDurability(material.getDurabilityForSlot(slot)));
+	public BeeswaxArmor(ArmorItem.Type type) {
+		super(material, type, new Item.Properties().defaultDurability(material.getDurabilityForType(type)));
 	}
 
 	@Override
 	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-		return slot == this.slot ? this.getModifiersPerSlot(slot) : super.getDefaultAttributeModifiers(slot);
+		return slot == this.type.getSlot() ? this.getModifiersPerSlot(slot) : super.getDefaultAttributeModifiers(slot);
 	}
 
 	private Multimap<Attribute, AttributeModifier> getModifiersPerSlot(EquipmentSlot slot) {
 
-		/*
-		Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-		UUID uuid = ARMOR_MODIFIER_UUID_PER_SLOT[slot.getIndex()];
-		builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier",
-				(double) material.getDefenseForSlot(slot), AttributeModifier.Operation.ADDITION));
-		builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness",
-				(double) material.getToughness(), AttributeModifier.Operation.ADDITION));
-
-		 */
 		Builder<Attribute, AttributeModifier> builder = ModData.createArmorModifierBuilder(slot, material);
-		if (slot == EquipmentSlot.FEET) {
+		if (slot == Type.BOOTS.getSlot()) {
 	    	builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(ARMOR_MODIFIER_UUID_PER_SLOT[slot.getIndex()], "movement_speed", 0.01f, AttributeModifier.Operation.ADDITION));}
 		return builder.build();
 	}

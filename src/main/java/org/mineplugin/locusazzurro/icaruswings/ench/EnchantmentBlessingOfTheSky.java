@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.ench;
 
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -37,7 +38,8 @@ public class EnchantmentBlessingOfTheSky extends WingsEnchantment {
     public boolean isDiscoverable() {return false;}
 
     private static boolean isValidDamageType(DamageSource damage){
-        return damage.isExplosion() || damage.isFire() || damage.isProjectile() || damage.isMagic();
+        return damage.is(DamageTypeTags.IS_EXPLOSION) || damage.is(DamageTypeTags.IS_FIRE) ||
+                damage.is(DamageTypeTags.IS_PROJECTILE) ||  damage.is(DamageTypeTags.BYPASSES_ARMOR);
     }
 
     @SubscribeEvent

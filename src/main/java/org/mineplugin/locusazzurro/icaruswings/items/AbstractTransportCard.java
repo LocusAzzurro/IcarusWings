@@ -15,7 +15,6 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import org.mineplugin.locusazzurro.icaruswings.data.ModConfig;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import java.util.List;
 
@@ -25,7 +24,7 @@ public abstract class AbstractTransportCard extends Item {
     private CardType type;
 
     public AbstractTransportCard(CardType type){
-        super(new Item.Properties().tab(ModGroup.itemGroup).rarity(Rarity.UNCOMMON));
+        super(new Item.Properties().rarity(Rarity.UNCOMMON));
         this.type = type;
     }
 

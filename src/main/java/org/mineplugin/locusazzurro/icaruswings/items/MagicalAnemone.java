@@ -10,14 +10,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 
 import java.util.List;
 
 public class MagicalAnemone extends Item {
 
     public MagicalAnemone(){
-        super(new Item.Properties().tab(ModGroup.itemGroup).rarity(Rarity.UNCOMMON).stacksTo(1));
+        super(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1));
     }
 
     @Override

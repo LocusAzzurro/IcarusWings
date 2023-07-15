@@ -13,7 +13,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.registries.RegistryObject;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
@@ -21,7 +20,7 @@ import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 public class GlassJar extends Item {
 
     public GlassJar(){
-        super(new Item.Properties().tab(ModGroup.itemGroup).stacksTo(16));
+        super(new Item.Properties().stacksTo(16));
     }
 
     @SubscribeEvent

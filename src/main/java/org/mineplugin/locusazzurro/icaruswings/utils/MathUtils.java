@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.utils;
 
-import com.mojang.math.Vector3f;
+import org.joml.Vector3d;
+import org.joml.Vector3f;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
 
@@ -15,9 +16,9 @@ public class MathUtils {
      * @param samples number of points
      * @return ArrayList of points in Vector3d
      */
-    public static List<Vec3> fibonacciSphere(int samples){
+    public static List<Vector3d> fibonacciSphere(int samples){
 
-        List<Vec3> points = new ArrayList<>();
+        List<Vector3d> points = new ArrayList<>();
         double phi = Math.PI * (3.0d - Math.sqrt(5.0d));
         double theta,x,y,z,r;
         for (int i = 0; i < samples; i++){
@@ -26,15 +27,15 @@ public class MathUtils {
             theta = phi * i;
             x = Math.cos(theta) * r;
             z = Math.sin(theta) * r;
-            points.add(new Vec3(x,y,z));
+            points.add(new Vector3d(x,y,z));
         }
         return points;
     }
 
     public static List<Vector3f> fibonacciSphereFloat(int samples){
-        List<Vec3> pointsDouble = fibonacciSphere(samples);
+        List<Vector3d> pointsDouble = fibonacciSphere(samples);
         List<Vector3f> pointsFloat = new ArrayList<>();
-        pointsDouble.forEach((p) -> pointsFloat.add(new Vector3f(p)));
+        pointsDouble.forEach((p) -> pointsFloat.add(new Vector3f((float) p.x(), (float) p.y(), (float) p.z())));
         return pointsFloat;
     }
 
@@ -110,8 +111,8 @@ public class MathUtils {
      * @param subDivisions number of subdivisions (segments) for each side
      * @return ArrayList of points in Vector3d
      */
-    public static List<Vec3> cubeMatrixFrame(int subDivisions){
-        List<Vec3> points = new ArrayList<>();
+    public static List<Vector3d> cubeMatrixFrame(int subDivisions){
+        List<Vector3d> points = new ArrayList<>();
         double x,y,z,s;
         s = 2d / subDivisions;
         y = -1;
@@ -119,7 +120,7 @@ public class MathUtils {
             z = -1 + s * i;
             for (int j = 0; j <= subDivisions; j++){
                 x = -1 + s * j;
-                points.add(new Vec3(x,y,z));
+                points.add(new Vector3d(x,y,z));
             }
         }
         for (int i = 1; i < subDivisions; i++){
@@ -127,22 +128,22 @@ public class MathUtils {
             x = -1;
             for (int j = 0; j <= subDivisions; j++){
                 z = -1 + s * j;
-                points.add(new Vec3(x,y,z));
+                points.add(new Vector3d(x,y,z));
             }
             z = -1;
             for (int j = 1; j < subDivisions; j++){
                 x = -1 + s * j;
-                points.add(new Vec3(x,y,z));
+                points.add(new Vector3d(x,y,z));
             }
             z = 1;
             for (int j = 1; j < subDivisions; j++){
                 x = -1 + s * j;
-                points.add(new Vec3(x,y,z));
+                points.add(new Vector3d(x,y,z));
             }
             x = 1;
             for (int j = 0; j <= subDivisions; j++){
                 z = -1 + s * j;
-                points.add(new Vec3(x,y,z));
+                points.add(new Vector3d(x,y,z));
             }
         }
         y = 1;
@@ -150,7 +151,7 @@ public class MathUtils {
             z = -1 + s * i;
             for (int j = 0; j <= subDivisions; j++){
                 x = -1 + s * j;
-                points.add(new Vec3(x,y,z));
+                points.add(new Vector3d(x,y,z));
             }
         }
         return points;

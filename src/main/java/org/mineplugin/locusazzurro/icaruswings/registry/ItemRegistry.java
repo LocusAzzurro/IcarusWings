@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.registry;
 
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
@@ -8,7 +9,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.data.ModItemTier;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.items.*;
@@ -51,39 +51,39 @@ public class ItemRegistry {
     
     public static final RegistryObject<Item> beeswax = ITEMS.register("beeswax", Beeswax::new);
     public static final RegistryObject<Item> beeswaxBlock = ITEMS.register("beeswax_block",
-    		() -> new BlockItem(BlockRegistry.beeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.beeswaxBlock.get(), new Item.Properties()));
     public static final RegistryObject<Item> refinedBeeswaxBar = ITEMS.register("refined_beeswax_bar", RefinedBeeswaxBar::new);
     public static final RegistryObject<Item> glisteringRefinedBeeswaxBar = ITEMS.register("glistering_refined_beeswax_bar",
     		() -> new RefinedBeeswaxBar(true));
     public static final RegistryObject<Item> refinedBeeswaxBlock = ITEMS.register("refined_beeswax_block",
-    		() -> new BlockItem(BlockRegistry.refinedBeeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.refinedBeeswaxBlock.get(), new Item.Properties()));
     public static final RegistryObject<Item> refinedBeeswaxSlab = ITEMS.register("refined_beeswax_slab",
-    		() -> new BlockItem(BlockRegistry.refinedBeeswaxSlab.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.refinedBeeswaxSlab.get(), new Item.Properties()));
     public static final RegistryObject<Item> refinedBeeswaxPillar = ITEMS.register("refined_beeswax_pillar",
-    		() -> new BlockItem(BlockRegistry.refinedBeeswaxPillar.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.refinedBeeswaxPillar.get(), new Item.Properties()));
     public static final RegistryObject<Item> refinedBeeswaxStairs = ITEMS.register("refined_beeswax_stairs",
-    		() -> new BlockItem(BlockRegistry.refinedBeeswaxStairs.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.refinedBeeswaxStairs.get(), new Item.Properties()));
     public static final RegistryObject<Item> refinedBeeswaxBlockChiseled = ITEMS.register("chiseled_refined_beeswax_block",
-    		() -> new BlockItem(BlockRegistry.refinedBeeswaxBlockChiseled.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.refinedBeeswaxBlockChiseled.get(), new Item.Properties()));
     public static final RegistryObject<Item> smoothRefinedBeeswaxBlock = ITEMS.register("smooth_refined_beeswax_block",
-    		() -> new BlockItem(BlockRegistry.smoothRefinedBeeswaxBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.smoothRefinedBeeswaxBlock.get(), new Item.Properties()));
     public static final RegistryObject<Item> elysianGrassBlock = ITEMS.register("elysian_grass_block",
-            () -> new BlockItem(BlockRegistry.elysianGrassBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+            () -> new BlockItem(BlockRegistry.elysianGrassBlock.get(), new Item.Properties()));
     public static final RegistryObject<Item> elysianSoil = ITEMS.register("elysian_soil",
-            () -> new BlockItem(BlockRegistry.elysianSoil.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+            () -> new BlockItem(BlockRegistry.elysianSoil.get(), new Item.Properties()));
     public static final RegistryObject<Item> elysianGrass = ITEMS.register("elysian_grass",
-            () -> new BlockItem(BlockRegistry.elysianGrass.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+            () -> new BlockItem(BlockRegistry.elysianGrass.get(), new Item.Properties()));
     public static final RegistryObject<Item> goldenWoolBlock = ITEMS.register("golden_wool_block",
-            () -> new BlockItem(BlockRegistry.goldenWoolBlock.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+            () -> new BlockItem(BlockRegistry.goldenWoolBlock.get(), new Item.Properties()));
     public static final RegistryObject<Item> goldenWoolCarpet = ITEMS.register("golden_wool_carpet",
-            () -> new BlockItem(BlockRegistry.goldenWoolCarpet.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+            () -> new BlockItem(BlockRegistry.goldenWoolCarpet.get(), new Item.Properties()));
     public static final RegistryObject<Item> honeyCake = ITEMS.register("honey_cake",
-            () -> new BlockItem(BlockRegistry.honeyCake.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+            () -> new BlockItem(BlockRegistry.honeyCake.get(), new Item.Properties()));
     
     public static final RegistryObject<Item> meadPot = ITEMS.register("mead_pot",
-    		() -> new BlockItem(BlockRegistry.meadPot.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.meadPot.get(), new Item.Properties()));
     public static final RegistryObject<Item> amphora = ITEMS.register("amphora",
-    		() -> new BlockItem(BlockRegistry.amphora.get(), new Item.Properties().tab(ModGroup.itemGroup)));
+    		() -> new BlockItem(BlockRegistry.amphora.get(), new Item.Properties()));
     public static final RegistryObject<Item> greekFireBucket = ITEMS.register("greek_fire_bucket", GreekFireBucket::new);
 
     public static final RegistryObject<Item> glassJar = ITEMS.register("glass_jar", GlassJar::new);
@@ -124,19 +124,19 @@ public class ItemRegistry {
     public static final RegistryObject<Item> grainsMeal = ITEMS.register("grains_meal", GrainsMeal::new);
 
     public static final RegistryObject<Item> herbalCrown = ITEMS.register("herbal_crown",
-    		() -> new HerbalAccessory(EquipmentSlot.HEAD));
+    		() -> new HerbalAccessory(ArmorItem.Type.HELMET));
     public static final RegistryObject<Item> featherHelmet = ITEMS.register("feather_helmet",
-    		() -> new FeatherArmor(EquipmentSlot.HEAD, false));
+    		() -> new FeatherArmor(ArmorItem.Type.HELMET, false));
     public static final RegistryObject<Item> goldenFeatherHelmet = ITEMS.register("golden_feather_helmet",
-    		() -> new FeatherArmor(EquipmentSlot.HEAD, true));
+    		() -> new FeatherArmor(ArmorItem.Type.HELMET, true));
     public static final RegistryObject<Item> linenCloak = ITEMS.register("linen_cloak",
-    		() -> new LinenCloth(EquipmentSlot.CHEST));
+    		() -> new LinenCloth(ArmorItem.Type.CHESTPLATE));
     public static final RegistryObject<Item> linenUndergarment = ITEMS.register("linen_undergarment",
-    		() -> new LinenCloth(EquipmentSlot.LEGS));
+    		() -> new LinenCloth(ArmorItem.Type.LEGGINGS));
     public static final RegistryObject<Item> goldenFleeceMantle = ITEMS.register("golden_fleece_mantle",
-            () -> new GoldenFleeceArmor(EquipmentSlot.CHEST));
+            () -> new GoldenFleeceArmor(ArmorItem.Type.CHESTPLATE));
     public static final RegistryObject<Item> beeswaxBoots = ITEMS.register("beeswax_boots",
-    		() -> new BeeswaxArmor(EquipmentSlot.FEET));
+    		() -> new BeeswaxArmor(ArmorItem.Type.BOOTS));
 
     public static final RegistryObject<Item> goldemRamSpawmEgg = ITEMS.register("golden_ram_spawn_egg", GoldenRamSpawnEgg::new);
     
@@ -190,13 +190,13 @@ public class ItemRegistry {
     public static final RegistryObject<Item> quantumFuel = ITEMS.register("quantum_fuel", QuantumFuel::new);
     
     public static final RegistryObject<Item> synapseHelmet = ITEMS.register("synapse_helmet",
-    		() -> new SynapseArmor(EquipmentSlot.HEAD));
+    		() -> new SynapseArmor(ArmorItem.Type.HELMET));
     public static final RegistryObject<Item> synapseChestplate = ITEMS.register("synapse_chestplate",
-    		() -> new SynapseArmor(EquipmentSlot.CHEST));
+    		() -> new SynapseArmor(ArmorItem.Type.CHESTPLATE));
     public static final RegistryObject<Item> synapseLeggings = ITEMS.register("synapse_leggings",
-    		() -> new SynapseArmor(EquipmentSlot.LEGS));
+    		() -> new SynapseArmor(ArmorItem.Type.LEGGINGS));
     public static final RegistryObject<Item> synapseBoots = ITEMS.register("synapse_boots",
-    		() -> new SynapseArmor(EquipmentSlot.FEET));
+    		() -> new SynapseArmor(ArmorItem.Type.BOOTS));
     
     public static final RegistryObject<Item> synapseAlloySword = ITEMS.register("synapse_alloy_sword", SynapseAlloySword::new);
     public static final RegistryObject<Item> steelPickaxe = ITEMS.register("steel_pickaxe", SteelPickaxe::new);

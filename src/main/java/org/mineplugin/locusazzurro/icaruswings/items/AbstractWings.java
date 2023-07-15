@@ -10,7 +10,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.data.IWingsType;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
 
 import javax.annotation.Nullable;
@@ -22,17 +21,17 @@ public class AbstractWings extends ElytraItem {
 	protected IWingsType type;
 
 	protected AbstractWings(IWingsType type) {
-		super(new Properties().tab(ModGroup.itemGroup).durability(type.getDurability()));
+		super(new Properties().durability(type.getDurability()));
 		this.type = type;
 	}
 
 	protected AbstractWings(IWingsType type, Rarity rarity) {
-		super(new Properties().tab(ModGroup.itemGroup).durability(type.getDurability()).rarity(rarity));
+		super(new Properties().durability(type.getDurability()).rarity(rarity));
 		this.type = type;
 	}
 
 	protected AbstractWings() {
-		super(new Properties().tab(ModGroup.itemGroup).durability(WingsType.FEATHER.getDurability()));
+		super(new Properties().durability(WingsType.FEATHER.getDurability()));
 		this.type = WingsType.FEATHER;
 	}
 

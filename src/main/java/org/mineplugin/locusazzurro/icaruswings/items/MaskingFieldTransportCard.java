@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.items;
 
-import com.mojang.math.Vector3f;
+import org.joml.Vector3d;
+import org.joml.Vector3f;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class MaskingFieldTransportCard extends AbstractTransportCard{
 
-    private static final List<Vec3> PARTICLE_POINTS = MathUtils.cubeMatrixFrame(20);
+    private static final List<Vector3d> PARTICLE_POINTS = MathUtils.cubeMatrixFrame(20);
     private static final float RANGE = 4;
 
     public MaskingFieldTransportCard() {
@@ -36,7 +37,7 @@ public class MaskingFieldTransportCard extends AbstractTransportCard{
 
         if (worldIn.isClientSide()) {
             PARTICLE_POINTS.forEach((point) -> {
-                Vector3f rPoint = new Vector3f(point.scale(0.4));
+                Vector3d rPoint = new Vector3d(point.mul(0.4));
                 worldIn.addParticle(ParticleRegistry.electronicBit.get(),
                         playerIn.getX(), playerIn.getY() + 0.5, playerIn.getZ(),
                         rPoint.x(), rPoint.y(), rPoint.z());

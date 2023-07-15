@@ -202,8 +202,8 @@
   "effect.locusazzurro_icaruswings.inevitability": "Inevitability",
   "effect.locusazzurro_icaruswings.interdiction": "Interdiction",
 
-  "death.attack.timeRift": "%1$s got stuck in a time paradox",
-  "death.attack.timeRift.player": "%1$s got thrown into a time paradox by %2$s",
+  "death.attack.time_rift": "%1$s got stuck in a time paradox",
+  "death.attack.time_rift.player": "%1$s got thrown into a time paradox by %2$s",
   "death.attack.spear": "%1$s was speared by %2$s",
   "death.attack.spear.item": "%1$s was speared by %2$s with %3$s",
 
@@ -211,8 +211,8 @@
   "subtitles.item.spear.hit": "Spear hits",
   "subtitles.item.spear.hit_ground": "Spear hits ground",
   "subtitles.block.mead_pot.brew": "Mead pot bubbles",
-  "subtitles.block.greek_fire.ambient": 'Greek fire pops',
-  "subtitles.block.greek_fire.pop": 'Greek fire pops',
+  "subtitles.block.greek_fire.ambient": "Greek fire pops",
+  "subtitles.block.greek_fire.pop": "Greek fire pops",
   "subtitles.item.bucket.fill_greek_fire": "Greek fire bucket fills",
   "subtitles.item.bucket.empty_greek_fire": "Greek fire bucket empties",
   "subtitles.entity.golden_ram.ambient": "Golden ram baahs",

@@ -9,7 +9,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
-import org.mineplugin.locusazzurro.icaruswings.data.ModGroup;
 import org.mineplugin.locusazzurro.icaruswings.entity.TimeRiftParticleEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
@@ -19,7 +18,7 @@ import java.util.function.Predicate;
 public class TimeRiftGenerator extends ProjectileWeaponItem {
 
     public TimeRiftGenerator(){
-        super(new Item.Properties().tab(ModGroup.itemGroup).durability(400));
+        super(new Item.Properties().durability(400));
     }
 
     @Override
