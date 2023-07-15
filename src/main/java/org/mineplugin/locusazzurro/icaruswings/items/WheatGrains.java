@@ -36,7 +36,7 @@ public class WheatGrains extends Item{
 	@Override
 	public InteractionResult interactLivingEntity(ItemStack stack, Player player,
                                                   LivingEntity target, InteractionHand hand) {
-		Level world = player.level;
+		Level world = player.level();
 		
 		if (stack.getItem() == ItemRegistry.wheatGrains.get() && target instanceof Parrot) {
 			if (!world.isClientSide)

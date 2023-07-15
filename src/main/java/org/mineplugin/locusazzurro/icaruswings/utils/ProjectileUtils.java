@@ -17,7 +17,7 @@ public class ProjectileUtils {
         double hS = size / 2;
         for (int i = 0 ; i < depth; i++){
             AABB aabb = new AABB(hS,hS,hS,-hS,-hS,-hS).move(checkPos);
-            List<LivingEntity> entities = targeter.level.getEntitiesOfClass(LivingEntity.class, aabb);
+            List<LivingEntity> entities = targeter.level().getEntitiesOfClass(LivingEntity.class, aabb);
             for (LivingEntity entity : entities){
                 if (entity != targeter && targeter.hasLineOfSight(entity)) return entity;
             }

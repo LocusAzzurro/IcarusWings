@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -48,14 +49,15 @@ public class TreasureTransportCard extends AbstractTransportCard{
                 if (lootTableResource != null){
                     try {Objects.requireNonNull(worldIn.getServer());}
                     catch (NullPointerException e) {return InteractionResultHolder.fail(itemstack);}
-                    LootTable lootTable = worldIn.getServer().getLootTables().get(lootTableResource);
+                    LootTable lootTable = worldIn.getServer().getLootData().getLootTable(lootTableResource);
                     long lootSeed = worldIn.random.nextLong();
-                    LootContext lootContext = (new LootContext.Builder((ServerLevel)worldIn))
+                    LootContext lootContext = new LootContext.Builder(new LootParams.Builder((ServerLevel) worldIn)
                             .withParameter(LootContextParams.ORIGIN, playerIn.position())
-                            .withOptionalRandomSeed(lootSeed).withLuck(playerIn.getLuck())
-                            .withParameter(LootContextParams.THIS_ENTITY, playerIn)
-                            .create(LootContextParamSets.CHEST);
-                    lootItems.addAll(lootTable.getRandomItems(lootContext));
+                            .withLuck(playerIn.getLuck())
+                            .create(LootContextParamSets.CHEST))
+                            .withOptionalRandomSeed(lootSeed)
+                            .create(lootTableResource);
+                    lootTable.getRandomItems(lootContext, lootItems::add);
                     if (lootItems.isEmpty()) {
                         errorCode = 2;
                     } else {

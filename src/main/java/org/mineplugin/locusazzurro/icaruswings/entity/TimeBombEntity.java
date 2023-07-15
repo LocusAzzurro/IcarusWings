@@ -64,15 +64,15 @@ public class TimeBombEntity extends Entity {
         this.moveToAttached();
         this.tickLife();
 
-        if(level.isClientSide()){
-            level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0,0,0);
+        if(level().isClientSide()){
+            level().addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0,0,0);
             if (this.life >= this.maxLife){
-                level.addParticle(ParticleRegistry.timeRiftExplosion.get(), this.getX(), this.getY(), this.getZ(), 0,0,0);
+                level().addParticle(ParticleRegistry.timeRiftExplosion.get(), this.getX(), this.getY(), this.getZ(), 0,0,0);
             }
         }
 
         if (this.life >= this.maxLife){
-            level.playSound(null, this.getX(), this.getY(),this.getZ(),
+            level().playSound(null, this.getX(), this.getY(),this.getZ(),
                     SoundRegistry.timeRiftCollapse.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
             this.explode();
         }
@@ -82,13 +82,13 @@ public class TimeBombEntity extends Entity {
             TimeRiftParticleEntity particle;
             for (int i = 0; i < 8; i++) {
                 if (source instanceof LivingEntity) {
-                    particle = new TimeRiftParticleEntity((LivingEntity) source, level);
+                    particle = new TimeRiftParticleEntity((LivingEntity) source, level());
                 } else {
-                    particle = new TimeRiftParticleEntity(this.getX(), this.getY(), this.getZ(), level);
+                    particle = new TimeRiftParticleEntity(this.getX(), this.getY(), this.getZ(), level());
                 }
                 particle.setNoGravity(true);
                 particle.shootFromRotation(this, 0f, this.initialAngle + 45 * i + life * 2,  0.0f, 0.5f, 0.0f);
-                level.addFreshEntity(particle);
+                level().addFreshEntity(particle);
             }
         }
     }
@@ -100,8 +100,8 @@ public class TimeBombEntity extends Entity {
         if (this.getAttachedTo() != null) {
             Entity attachedTo = this.getAttachedTo();
             AABB aabb = new AABB(r, r, r, -r, -r, -r).move(attachedTo.position());
-            List<LivingEntity> entities = attachedTo.level.getEntitiesOfClass(LivingEntity.class, aabb);
-            DamageSource damagesource = ModDamageSources.timeRift(this.level, attachedTo);
+            List<LivingEntity> entities = attachedTo.level().getEntitiesOfClass(LivingEntity.class, aabb);
+            DamageSource damagesource = ModDamageSources.timeRift(this.level(), attachedTo);
             for (LivingEntity entity : entities) {
                 entity.hurt(damagesource, this.damage);
             }
@@ -118,7 +118,7 @@ public class TimeBombEntity extends Entity {
 
     private void moveToAttached(){
         this.entityData.get(ATTACHED_TO_TARGET).ifPresent((e) -> {
-            Entity attachedTo = this.level.getEntity(e);
+            Entity attachedTo = this.level().getEntity(e);
             if (attachedTo != null)
                 this.setPos(attachedTo.getX(), attachedTo.getY(), attachedTo.getZ());
         });
@@ -134,10 +134,10 @@ public class TimeBombEntity extends Entity {
 
     @Nullable
     public Entity getAttachedTo() {
-        if (this.attachedUUID != null && this.level instanceof ServerLevel) {
-            return ((ServerLevel)this.level).getEntity(this.attachedUUID);
+        if (this.attachedUUID != null && this.level() instanceof ServerLevel) {
+            return ((ServerLevel)this.level()).getEntity(this.attachedUUID);
         } else {
-            return this.attachedNetworkId != 0 ? this.level.getEntity(this.attachedNetworkId) : null;
+            return this.attachedNetworkId != 0 ? this.level().getEntity(this.attachedNetworkId) : null;
         }
     }
 

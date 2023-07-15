@@ -82,7 +82,7 @@ public class Demeter extends ProjectileWeaponItem {
             attacker.broadcastBreakEvent(EquipmentSlot.MAINHAND);
         });
         ((EffectInevitability) EffectRegistry.inevitability.get()).addEffect(pTarget, 1);
-        pTarget.hurt(ModDamageSources.timeRift(pTarget.level, pAttacker), 2.0f);
+        pTarget.hurt(ModDamageSources.timeRift(pTarget.level(), pAttacker), 2.0f);
         return true;
     }
 

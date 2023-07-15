@@ -79,7 +79,7 @@ public class SpearEntity extends AbstractArrow {
         }
 
         Entity owner = this.getOwner();
-        DamageSource damageSource = ModDamageSources.spear(this.level, this, owner == null ? this : owner);
+        DamageSource damageSource = ModDamageSources.spear(this.level(), this, owner == null ? this : owner);
         //DamageSource damageSource = new DamageSource(this.level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypeRegistry.SPEAR),this, owner == null ? this : owner);
         this.dealtDamage = true;
         SoundEvent soundevent = SoundRegistry.spearHit.get();

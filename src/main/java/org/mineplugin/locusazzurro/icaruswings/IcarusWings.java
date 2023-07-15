@@ -18,6 +18,7 @@ public class IcarusWings {
 		SoundRegistry.SOUNDS.register(bus);
 		BlockRegistry.BLOCKS.register(bus);
 		ItemRegistry.ITEMS.register(bus);
+		CreativeTabRegistry.CREATIVE_TABS.register(bus);
 		EntityTypeRegistry.ENTITIES.register(bus);
 		ParticleRegistry.PARTICLES.register(bus);
 		BlockEntityTypeRegistry.BLOCK_ENTITIES.register(bus);

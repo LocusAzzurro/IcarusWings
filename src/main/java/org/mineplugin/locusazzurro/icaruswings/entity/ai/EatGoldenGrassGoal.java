@@ -24,7 +24,7 @@ public class EatGoldenGrassGoal extends Goal {
 
     public EatGoldenGrassGoal(Mob entity) {
         this.mob = entity;
-        this.level = entity.level;
+        this.level = entity.level();
         this.eatBlock = BlockRegistry.elysianGrassBlock.get();
         this.eatenBlock = BlockRegistry.elysianSoil.get();
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.JUMP));

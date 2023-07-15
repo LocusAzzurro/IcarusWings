@@ -7,12 +7,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
+
 
 public class BeeswaxBlock extends Block {
 
 	public BeeswaxBlock() {
-		super(BlockBehaviour.Properties.of(Material.CLAY)
+		super(BlockBehaviour.Properties.of()
 				.strength(0.5f)
 				.speedFactor(1.1f)
 				.friction(0.9f)

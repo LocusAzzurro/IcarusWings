@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.material.Material;
+
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -71,7 +71,7 @@ public class MeadPot extends BaseEntityBlock {
 	private static final double particleB = 38D / 255D;
 	
 	public MeadPot() {
-		super(BlockBehaviour.Properties.of(Material.STONE)
+		super(BlockBehaviour.Properties.of()
 				.strength(1.5f, 6.0f)
 				.sound(SoundType.STONE)
 				.requiresCorrectToolForDrops()

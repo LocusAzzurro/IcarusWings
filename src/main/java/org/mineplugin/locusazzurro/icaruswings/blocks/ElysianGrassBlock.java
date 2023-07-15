@@ -10,14 +10,14 @@ import net.minecraft.world.level.block.GrassBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.lighting.LayerLightEngine;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.lighting.LightEngine;
+
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
 public class ElysianGrassBlock extends GrassBlock {
 
     public ElysianGrassBlock() {
-        super(BlockBehaviour.Properties.of(Material.GRASS)
+        super(BlockBehaviour.Properties.of()
                 .randomTicks()
                 .strength(0.7F)
                 .sound(SoundType.GRASS)
@@ -30,7 +30,7 @@ public class ElysianGrassBlock extends GrassBlock {
         if (blockstate.getFluidState().getAmount() == 8) {
             return false;
         } else {
-            int i = LayerLightEngine.getLightBlockInto(levelReader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(levelReader, blockpos));
+            int i = LightEngine.getLightBlockInto(levelReader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(levelReader, blockpos));
             return i < levelReader.getMaxLightLevel();
         }
     }

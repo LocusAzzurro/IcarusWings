@@ -10,14 +10,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
+
 import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 public class GreekFireBlock extends LiquidBlock {
 
     public GreekFireBlock(){
-        super(FluidRegistry.greekFire, Block.Properties.of(Material.LAVA).noCollission().strength(100.0F).noLootTable().lightLevel((b) -> 15));
+        super(FluidRegistry.greekFire, Block.Properties.of().liquid().noCollission().strength(100.0F).noLootTable().lightLevel((b) -> 15));
     }
 
     @SuppressWarnings("deprecation")

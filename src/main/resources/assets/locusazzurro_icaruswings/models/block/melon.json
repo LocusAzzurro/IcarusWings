@@ -1,7 +1,7 @@
 {
   "loader": "forge:obj",
   "model": "locusazzurro_icaruswings:models/block/melon.obj",
-  "flip-v": true,
+  "flip_v": true,
   "textures": {
     "particle": "locusazzurro_icaruswings:block/melon_green"
   },
