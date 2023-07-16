@@ -1,7 +1,6 @@
 {
     "pack": {
         "description": "${mod_id} resources",
-        "pack_format": 9,
-        "_comment": "1.18.2"
+        "pack_format": 15
     }
 }
