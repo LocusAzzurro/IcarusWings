@@ -37,7 +37,7 @@ public class MaskingFieldTransportCard extends AbstractTransportCard{
 
         if (worldIn.isClientSide()) {
             PARTICLE_POINTS.forEach((point) -> {
-                Vector3d rPoint = new Vector3d(point.mul(0.4));
+                Vector3d rPoint = MathUtils.mulCopy(point, 0.4);
                 worldIn.addParticle(ParticleRegistry.electronicBit.get(),
                         playerIn.getX(), playerIn.getY() + 0.5, playerIn.getZ(),
                         rPoint.x(), rPoint.y(), rPoint.z());

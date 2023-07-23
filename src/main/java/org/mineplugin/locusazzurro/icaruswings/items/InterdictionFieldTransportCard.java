@@ -35,8 +35,8 @@ public class InterdictionFieldTransportCard extends AbstractTransportCard{
 
         if (worldIn.isClientSide()) {
             PARTICLE_POINTS.forEach((point) -> {
-                Vector3d rPoint = new Vector3d(point.mul(2.0));
-                Vector3d[] expand = {new Vector3d(point.mul(0.3)), new Vector3d(point.mul(0.6)), new Vector3d(point.mul(0.9))};
+                Vector3d rPoint = MathUtils.mulCopy(point, 2.0d);
+                Vector3d[] expand = {MathUtils.mulCopy(point, 0.3), MathUtils.mulCopy(point, 0.6), MathUtils.mulCopy(point, 0.9)};
                 for (Vector3d vec : expand) {
                     worldIn.addParticle(ParticleTypes.END_ROD,
                             playerIn.getX() + rPoint.x(),
@@ -46,10 +46,10 @@ public class InterdictionFieldTransportCard extends AbstractTransportCard{
                 }
             });
             LINE_ANCHORS.forEach((point) -> {
-                Vector3d rPoint = new Vector3d(point.mul(2));
+                Vector3d rPoint = MathUtils.mulCopy(point, 2.0d);
                 Vector3d[] expand = new Vector3d[10];
                 for (int i = 0; i < expand.length; i++){
-                    expand[i] = new Vector3d(point.mul(0.1 * i));
+                    expand[i] = MathUtils.mulCopy(point, 0.1 * i);
                 }
                 for (Vector3d vec : expand) {
                     worldIn.addParticle(ParticleTypes.END_ROD,
