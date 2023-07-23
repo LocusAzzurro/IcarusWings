@@ -157,5 +157,9 @@ public class MathUtils {
         return points;
     }
 
+    public static Vector3d mulCopy(Vector3d vec, double scalar){
+        return new Vector3d(vec.x() * scalar, vec.y * scalar, vec.z * scalar);
+    }
+
 }
 
