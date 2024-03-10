@@ -12,18 +12,18 @@ import java.util.function.Supplier;
 
 public enum WingsType implements IWingsType{
 
-	FEATHER("feather", 100, ItemRegistry.featherBunch,false, SoundRegistry.wingsEquipFeather),
-	FEATHER_COLORED("colored_feather", 150, ItemRegistry.coloredFeatherBunch,false, SoundRegistry.wingsEquipFeather),
-	FEATHER_GOLDEN("golden_feather", 200, ItemRegistry.goldenFeatherBunch,false, SoundRegistry.wingsEquipFeather),
-	SYNAPSE_ALPHA("synapse_alpha", 500, ItemRegistry.synapseWingsRecharger,true, SoundRegistry.wingsEquipSynapse),
-	SYNAPSE_BETA("synapse_beta", 450, ItemRegistry.synapseWingsRecharger,true, SoundRegistry.wingsEquipSynapse),
-	SYNAPSE_DELTA("synapse_delta", 400, ItemRegistry.synapseWingsRecharger,true, SoundRegistry.wingsEquipSynapse),
-	SYNAPSE_EPSILON("synapse_epsilon", 420, ItemRegistry.synapseWingsRecharger,true, SoundRegistry.wingsEquipSynapse),
-	SYNAPSE_ZETA("synapse_zeta", 440, ItemRegistry.synapseWingsRecharger,true, SoundRegistry.wingsEquipSynapse),
-	SYNAPSE_THETA("synapse_theta", 500, ItemRegistry.synapseWingsRecharger,true, SoundRegistry.wingsEquipSynapse),
+	FEATHER("feather", 100, ItemRegistry.FEATHER_BUNCH,false, SoundRegistry.wingsEquipFeather),
+	FEATHER_COLORED("colored_feather", 150, ItemRegistry.COLORED_FEATHER_BUNCH,false, SoundRegistry.wingsEquipFeather),
+	FEATHER_GOLDEN("golden_feather", 200, ItemRegistry.GOLDEN_FEATHER_BUNCH,false, SoundRegistry.wingsEquipFeather),
+	SYNAPSE_ALPHA("synapse_alpha", 500, ItemRegistry.SYNAPSE_WINGS_RECHARGER,true, SoundRegistry.wingsEquipSynapse),
+	SYNAPSE_BETA("synapse_beta", 450, ItemRegistry.SYNAPSE_WINGS_RECHARGER,true, SoundRegistry.wingsEquipSynapse),
+	SYNAPSE_DELTA("synapse_delta", 400, ItemRegistry.SYNAPSE_WINGS_RECHARGER,true, SoundRegistry.wingsEquipSynapse),
+	SYNAPSE_EPSILON("synapse_epsilon", 420, ItemRegistry.SYNAPSE_WINGS_RECHARGER,true, SoundRegistry.wingsEquipSynapse),
+	SYNAPSE_ZETA("synapse_zeta", 440, ItemRegistry.SYNAPSE_WINGS_RECHARGER,true, SoundRegistry.wingsEquipSynapse),
+	SYNAPSE_THETA("synapse_theta", 500, ItemRegistry.SYNAPSE_WINGS_RECHARGER,true, SoundRegistry.wingsEquipSynapse),
 	PAPER("paper", 10, () -> Items.PAPER,false, SoundRegistry.wingsEquipPaper),
-	MAGIC("magic", 450, ItemRegistry.magicMembrane,false, SoundRegistry.wingsEquipMagic),
-	PHI_STONE("philosopher_stone", 495, ItemRegistry.magicMembrane,false, SoundRegistry.wingsEquipMagic);
+	MAGIC("magic", 450, ItemRegistry.MAGIC_MEMBRANE,false, SoundRegistry.wingsEquipMagic),
+	PHI_STONE("philosopher_stone", 495, ItemRegistry.MAGIC_MEMBRANE,false, SoundRegistry.wingsEquipMagic);
 	
 	private final String name;
 	private final int durability;

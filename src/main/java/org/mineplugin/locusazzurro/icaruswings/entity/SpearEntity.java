@@ -1,6 +1,5 @@
 package org.mineplugin.locusazzurro.icaruswings.entity;
 
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -24,7 +23,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 import org.mineplugin.locusazzurro.icaruswings.data.ModDamageSources;
 import org.mineplugin.locusazzurro.icaruswings.items.SpearItem;
-import org.mineplugin.locusazzurro.icaruswings.registry.DamageTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
@@ -39,7 +37,7 @@ public class SpearEntity extends AbstractArrow {
 
     public SpearEntity(EntityType<? extends SpearEntity> type, Level world) {
         super(type, world);
-        this.spearItem = new ItemStack(ItemRegistry.woodenSpear.get());
+        this.spearItem = new ItemStack(ItemRegistry.WOODEN_SPEAR.get());
     }
 
     public SpearEntity(Level worldIn, LivingEntity owner, ItemStack spear){
@@ -51,7 +49,7 @@ public class SpearEntity extends AbstractArrow {
     @OnlyIn(Dist.CLIENT)
     public SpearEntity(Level p_i48791_1_, double p_i48791_2_, double p_i48791_4_, double p_i48791_6_) {
         super(EntityTypeRegistry.spearEntity.get(), p_i48791_2_, p_i48791_4_, p_i48791_6_, p_i48791_1_);
-        this.spearItem = new ItemStack(ItemRegistry.woodenSpear.get());
+        this.spearItem = new ItemStack(ItemRegistry.WOODEN_SPEAR.get());
     }
 
     @Override
@@ -132,7 +130,7 @@ public class SpearEntity extends AbstractArrow {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(SPEAR_ITEM, new ItemStack(ItemRegistry.woodenSpear.get()));
+        this.entityData.define(SPEAR_ITEM, new ItemStack(ItemRegistry.WOODEN_SPEAR.get()));
     }
 
     @Override

@@ -9,8 +9,8 @@ import java.util.function.Supplier;
 
 public enum ModItemTier implements Tier {
 	
-	STEEL(2, 300, 7.0F, 2.5F, 9, () -> {return Ingredient.of(ItemRegistry.steelIngot.get());}),
-	SYNAPSE_ALLOY(4, 2400, 10.0F, 5.0F, 16, () -> {return Ingredient.of(ItemRegistry.synapseAlloyIngot.get());});
+	STEEL(2, 300, 7.0F, 2.5F, 9, () -> {return Ingredient.of(ItemRegistry.STEEL_INGOT.get());}),
+	SYNAPSE_ALLOY(4, 2400, 10.0F, 5.0F, 16, () -> {return Ingredient.of(ItemRegistry.SYNAPSE_ALLOY_INGOT.get());});
 	
 	private final int harvestLevel;
 	private final int maxUses;

@@ -15,10 +15,10 @@ public class BlockEntityTypeRegistry {
 	public static final RegistryObject<BlockEntityType<MeadPotBlockEntity>>
 			MEAD_POT_BLOCK_ENTITY = BLOCK_ENTITIES.register(
 		"mead_pot_block_entity", () -> BlockEntityType.Builder
-		.of(MeadPotBlockEntity::new, BlockRegistry.meadPot.get()).build(null));
+		.of(MeadPotBlockEntity::new, BlockRegistry.MEAD_POT.get()).build(null));
 	
 	public static final RegistryObject<BlockEntityType<AmphoraBlockEntity>>
 			AMPHORA_BLOCK_ENTITY = BLOCK_ENTITIES.register(
 		"amphora_block_entity", () -> BlockEntityType.Builder
-		.of(AmphoraBlockEntity::new, BlockRegistry.amphora.get()).build(null));
+		.of(AmphoraBlockEntity::new, BlockRegistry.AMPHORA.get()).build(null));
 }

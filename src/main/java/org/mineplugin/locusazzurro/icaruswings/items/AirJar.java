@@ -52,7 +52,7 @@ public class AirJar extends Item {
         worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundRegistry.airJarEmpty.get(), SoundSource.NEUTRAL, 0.5f, 0.6f);
         if (!playerIn.getAbilities().instabuild){
             itemStack.shrink(1);
-            ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegistry.glassJar.get()));
+            ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegistry.GLASS_JAR.get()));
         }
         playerIn.awardStat(Stats.ITEM_USED.get(this));
         return InteractionResultHolder.consume(itemStack);
@@ -60,7 +60,7 @@ public class AirJar extends Item {
 
     @Override
     public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
-        return new ItemStack(ItemRegistry.glassJar.get());
+        return new ItemStack(ItemRegistry.GLASS_JAR.get());
     }
 
     @Override

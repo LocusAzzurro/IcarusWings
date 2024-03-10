@@ -62,10 +62,10 @@ public class ArtemisLauncher extends ProjectileWeaponItem {
 
     @Override
     public boolean isValidRepairItem(ItemStack thisItem, ItemStack repairItem) {
-        return repairItem.getItem() == ItemRegistry.synapseRepairKit.get() || super.isValidRepairItem(thisItem, repairItem);
+        return repairItem.getItem() == ItemRegistry.SYNAPSE_REPAIR_KIT.get() || super.isValidRepairItem(thisItem, repairItem);
     }
 
-    public static final Predicate<ItemStack> ARTEMIS_MISSILE = (item) -> item.getItem().equals(ItemRegistry.artemisMissile.get());
+    public static final Predicate<ItemStack> ARTEMIS_MISSILE = (item) -> item.getItem().equals(ItemRegistry.ARTEMIS_MISSILE.get());
 
     @Override
     public Predicate<ItemStack> getAllSupportedProjectiles() {

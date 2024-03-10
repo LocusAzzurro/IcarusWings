@@ -47,7 +47,7 @@ public class ElysianGrassBlock extends GrassBlock {
                 return;
             }
 
-            level.setBlockAndUpdate(pos, BlockRegistry.elysianSoil.get().defaultBlockState());
+            level.setBlockAndUpdate(pos, BlockRegistry.ELYSIAN_SOIL.get().defaultBlockState());
         } else {
             if (!level.isAreaLoaded(pos, 3)) {
                 return;
@@ -58,8 +58,8 @@ public class ElysianGrassBlock extends GrassBlock {
 
                 for(int i = 0; i < 4; ++i) {
                     BlockPos blockpos = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-                    if (level.getBlockState(blockpos).is(BlockRegistry.elysianSoil.get()) && canPropagate(blockstate, level, blockpos)) {
-                        level.setBlockAndUpdate(blockpos, BlockRegistry.elysianGrassBlock.get().defaultBlockState());
+                    if (level.getBlockState(blockpos).is(BlockRegistry.ELYSIAN_SOIL.get()) && canPropagate(blockstate, level, blockpos)) {
+                        level.setBlockAndUpdate(blockpos, BlockRegistry.ELYSIAN_GRASS_BLOCK.get().defaultBlockState());
                     }
                 }
             }

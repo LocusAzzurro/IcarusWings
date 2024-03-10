@@ -17,7 +17,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelEvent;
-import net.minecraftforge.client.event.ModelEvent.BakingCompleted;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -118,13 +117,13 @@ public class ModClientRenderEventHandler{
     }
 
     private static final List<RegistryObject<Item>> SPEARS = Arrays.asList(
-            ItemRegistry.woodenSpear,
-            ItemRegistry.stoneSpear,
-            ItemRegistry.ironSpear,
-            ItemRegistry.steelSpear,
-            ItemRegistry.goldenSpear,
-            ItemRegistry.diamondSpear,
-            ItemRegistry.netheriteSpear,
-            ItemRegistry.synapseAlloySpear
+            ItemRegistry.WOODEN_SPEAR,
+            ItemRegistry.STONE_SPEAR,
+            ItemRegistry.IRON_SPEAR,
+            ItemRegistry.STEEL_SPEAR,
+            ItemRegistry.GOLDEN_SPEAR,
+            ItemRegistry.DIAMOND_SPEAR,
+            ItemRegistry.NETHERITE_SPEAR,
+            ItemRegistry.SYNAPSE_ALLOY_SPEAR
     );
 }

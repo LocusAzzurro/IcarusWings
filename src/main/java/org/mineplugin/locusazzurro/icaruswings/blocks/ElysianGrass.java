@@ -25,7 +25,7 @@ public class ElysianGrass extends TallGrassBlock {
 
     @Override
     protected boolean mayPlaceOn(BlockState stateIn, BlockGetter iBlockReader, BlockPos blockPos) {
-        return stateIn.is(BlockRegistry.elysianGrassBlock.get()) || stateIn.is(BlockRegistry.elysianSoil.get());
+        return stateIn.is(BlockRegistry.ELYSIAN_GRASS_BLOCK.get()) || stateIn.is(BlockRegistry.ELYSIAN_SOIL.get());
     }
 
     @Override

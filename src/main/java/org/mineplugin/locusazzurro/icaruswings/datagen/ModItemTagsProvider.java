@@ -26,11 +26,11 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     protected void addTags(HolderLookup.Provider lookupProvider) {
 
         tag(ModTags.COLORED_FEATHERS)
-                .add(ItemRegistry.redFeather.get())
-                .add(ItemRegistry.blueFeather.get())
-                .add(ItemRegistry.greenFeather.get())
-                .add(ItemRegistry.cyanFeather.get())
-                .add(ItemRegistry.grayFeather.get());
+                .add(ItemRegistry.RED_FEATHER.get())
+                .add(ItemRegistry.BLUE_FEATHER.get())
+                .add(ItemRegistry.GREEN_FEATHER.get())
+                .add(ItemRegistry.CYAN_FEATHER.get())
+                .add(ItemRegistry.GRAY_FEATHER.get());
         tag(ModTags.HERBS)
                 .addTag(ItemTags.SMALL_FLOWERS)
                 .remove(Items.WITHER_ROSE)
@@ -40,36 +40,36 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 .add(Items.SEA_PICKLE)
                 .add(Items.SWEET_BERRIES);
         tag(ModTags.CROP_STRINGS)
-                .add(ItemRegistry.wheatString.get())
-                .add(ItemRegistry.linenString.get());
+                .add(ItemRegistry.WHEAT_STRING.get())
+                .add(ItemRegistry.LINEN_STRING.get());
         tag(ModTags.CROP_GRAINS)
-                .add(ItemRegistry.wheatGrains.get())
-                .add(ItemRegistry.flaxSeeds.get());
+                .add(ItemRegistry.WHEAT_GRAINS.get())
+                .add(ItemRegistry.FLAX_SEEDS.get());
         tag(ModTags.WORLD_ESSENCES)
-                .add(ItemRegistry.zephirEssence.get())
-                .add(ItemRegistry.netherEssence.get())
-                .add(ItemRegistry.voidEssence.get());
+                .add(ItemRegistry.ZEPHIR_ESSENCE.get())
+                .add(ItemRegistry.NETHER_ESSENCE.get())
+                .add(ItemRegistry.VOID_ESSENCE.get());
         tag(ModTags.WORLD_INGOTS)
-                .add(ItemRegistry.steelIngot.get())
-                .add(ItemRegistry.magmaIngot.get())
-                .add(ItemRegistry.purpurIngot.get());
+                .add(ItemRegistry.STEEL_INGOT.get())
+                .add(ItemRegistry.MAGMA_INGOT.get())
+                .add(ItemRegistry.PURPUR_INGOT.get());
         tag(ModTags.FALLEN_RELICS)
-                .add(ItemRegistry.fallenRelicCore.get())
-                .add(ItemRegistry.fallenRelicOffensive.get())
-                .add(ItemRegistry.fallenRelicDefensive.get())
-                .add(ItemRegistry.fallenRelicInterface.get())
-                .add(ItemRegistry.fallenRelicPropulsion.get());
+                .add(ItemRegistry.FALLEN_RELIC_CORE.get())
+                .add(ItemRegistry.FALLEN_RELIC_OFFENSIVE.get())
+                .add(ItemRegistry.FALLEN_RELIC_DEFENSIVE.get())
+                .add(ItemRegistry.FALLEN_RELIC_INTERFACE.get())
+                .add(ItemRegistry.FALLEN_RELIC_PROPULSION.get());
         tag(ModTags.RESTORED_FALLEN_RELICS)
-                .add(ItemRegistry.restoredFallenRelicCore.get())
-                .add(ItemRegistry.restoredFallenRelicOffensive.get())
-                .add(ItemRegistry.restoredFallenRelicDefensive.get())
-                .add(ItemRegistry.restoredFallenRelicInterface.get())
-                .add(ItemRegistry.restoredFallenRelicPropulsion.get());
+                .add(ItemRegistry.RESTORED_FALLEN_RELIC_CORE.get())
+                .add(ItemRegistry.RESTORED_FALLEN_RELIC_OFFENSIVE.get())
+                .add(ItemRegistry.RESTORED_FALLEN_RELIC_DEFENSIVE.get())
+                .add(ItemRegistry.RESTORED_FALLEN_RELIC_INTERFACE.get())
+                .add(ItemRegistry.RESTORED_FALLEN_RELIC_PROPULSION.get());
         tag(ModTags.SYNAPSE_ARMOR)
-                .add(ItemRegistry.synapseHelmet.get())
-                .add(ItemRegistry.synapseChestplate.get())
-                .add(ItemRegistry.synapseLeggings.get())
-                .add(ItemRegistry.synapseBoots.get());
+                .add(ItemRegistry.SYNAPSE_HELMET.get())
+                .add(ItemRegistry.SYNAPSE_CHESTPLATE.get())
+                .add(ItemRegistry.SYNAPSE_LEGGINGS.get())
+                .add(ItemRegistry.SYNAPSE_BOOTS.get());
     }
 
     @Override

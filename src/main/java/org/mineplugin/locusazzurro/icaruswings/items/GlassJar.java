@@ -28,7 +28,7 @@ public class GlassJar extends Item {
         Player player = e.player;
         Level world = player.level();
         if (player.isFallFlying() && player.tickCount % 20 == 0 && !world.isClientSide() && e.phase == TickEvent.Phase.END){
-            int slot = player.getInventory().findSlotMatchingUnusedItem(new ItemStack(ItemRegistry.glassJar.get()));
+            int slot = player.getInventory().findSlotMatchingUnusedItem(new ItemStack(ItemRegistry.GLASS_JAR.get()));
             if (slot != -1){
                 float rand = world.random.nextFloat();
                 int altitude = (int)Math.round(Mth.clamp(player.getY(), 0, 255));
@@ -62,10 +62,10 @@ public class GlassJar extends Item {
     }
 
     private static RegistryObject<Item> getResultItem(int dimN){
-        if (dimN == 0) return ItemRegistry.zephirAirJar;
-        else if (dimN == 1) return ItemRegistry.netherAirJar;
-        else if (dimN == 2) return ItemRegistry.voidAirJar;
-        else return ItemRegistry.glassJar;
+        if (dimN == 0) return ItemRegistry.ZEPHIR_AIR_JAR;
+        else if (dimN == 1) return ItemRegistry.NETHER_AIR_JAR;
+        else if (dimN == 2) return ItemRegistry.VOID_AIR_JAR;
+        else return ItemRegistry.GLASS_JAR;
     }
 
     private static float[][] CT = Util.make(new float[3][128], (t) -> {

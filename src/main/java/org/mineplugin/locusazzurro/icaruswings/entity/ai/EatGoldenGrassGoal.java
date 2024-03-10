@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 
 public class EatGoldenGrassGoal extends Goal {
 
-    private static final Predicate<BlockState> IS_GOLDEN_GRASS = BlockStatePredicate.forBlock(BlockRegistry.elysianGrass.get());
+    private static final Predicate<BlockState> IS_GOLDEN_GRASS = BlockStatePredicate.forBlock(BlockRegistry.ELYSIAN_GRASS.get());
     private final Mob mob;
     private final Level level;
     private final Block eatBlock;
@@ -25,8 +25,8 @@ public class EatGoldenGrassGoal extends Goal {
     public EatGoldenGrassGoal(Mob entity) {
         this.mob = entity;
         this.level = entity.level();
-        this.eatBlock = BlockRegistry.elysianGrassBlock.get();
-        this.eatenBlock = BlockRegistry.elysianSoil.get();
+        this.eatBlock = BlockRegistry.ELYSIAN_GRASS_BLOCK.get();
+        this.eatenBlock = BlockRegistry.ELYSIAN_SOIL.get();
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.JUMP));
     }
 

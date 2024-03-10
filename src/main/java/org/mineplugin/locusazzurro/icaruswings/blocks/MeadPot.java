@@ -142,8 +142,8 @@ public class MeadPot extends BaseEntityBlock {
             	worldIn.playSound(null, pos, SoundRegistry.meadPotBrew.get(), SoundSource.BLOCKS, 2.0f, 1.3f);
             	return InteractionResult.SUCCESS;
             }
-            if (stackIn.getItem() == ItemRegistry.glassJar.get() && meadPotTE.isComplete()) {
-				Item itemOut = ItemRegistry.mead.get();
+            if (stackIn.getItem() == ItemRegistry.GLASS_JAR.get() && meadPotTE.isComplete()) {
+				Item itemOut = ItemRegistry.MEAD.get();
 				if (!player.getAbilities().instabuild) stackIn.shrink(1);
 				for (Map.Entry<Mead.Infusion, IWLazy<Item>> entry : infusionMapOut.entrySet()) {
 					if (state.getValue(INFUSION) == entry.getKey()) {
@@ -217,23 +217,23 @@ public class MeadPot extends BaseEntityBlock {
 	public static final Predicate<ItemStack> validInfusionItems = (itemStack) ->
 			itemStack.getItem() instanceof WorldEssence
 			|| itemStack.is(Items.GOLDEN_APPLE)
-			|| itemStack.is(ItemRegistry.herbBunch.get());
+			|| itemStack.is(ItemRegistry.HERB_BUNCH.get());
 
 	private static final Map<IWLazy<Item>, Mead.Infusion> infusionMapIn = new HashMap<>();
 	private static final Map<Mead.Infusion, IWLazy<Item> > infusionMapOut = new HashMap<>();
 
 	static {
-		infusionMapIn.put(IWLazy.of(ItemRegistry.zephirEssence), Mead.Infusion.ZEPHIR);
-		infusionMapIn.put(IWLazy.of(ItemRegistry.netherEssence), Mead.Infusion.NETHER);
-		infusionMapIn.put(IWLazy.of(ItemRegistry.voidEssence), Mead.Infusion.VOID);
-		infusionMapIn.put(IWLazy.of(ItemRegistry.herbBunch), Mead.Infusion.HERBS);
+		infusionMapIn.put(IWLazy.of(ItemRegistry.ZEPHIR_ESSENCE), Mead.Infusion.ZEPHIR);
+		infusionMapIn.put(IWLazy.of(ItemRegistry.NETHER_ESSENCE), Mead.Infusion.NETHER);
+		infusionMapIn.put(IWLazy.of(ItemRegistry.VOID_ESSENCE), Mead.Infusion.VOID);
+		infusionMapIn.put(IWLazy.of(ItemRegistry.HERB_BUNCH), Mead.Infusion.HERBS);
 		infusionMapIn.put(IWLazy.of(() -> Items.GOLDEN_APPLE), Mead.Infusion.GOLDEN_APPLE);
-		infusionMapOut.put(Mead.Infusion.NONE, IWLazy.of(ItemRegistry.mead));
-		infusionMapOut.put(Mead.Infusion.ZEPHIR, IWLazy.of(ItemRegistry.zephirInfusedMead));
-		infusionMapOut.put(Mead.Infusion.NETHER, IWLazy.of(ItemRegistry.netherInfusedMead));
-		infusionMapOut.put(Mead.Infusion.VOID, IWLazy.of(ItemRegistry.voidInfusedMead));
-		infusionMapOut.put(Mead.Infusion.HERBS, IWLazy.of(ItemRegistry.herbsInfusedMead));
-		infusionMapOut.put(Mead.Infusion.GOLDEN_APPLE, IWLazy.of(ItemRegistry.goldenAppleInfusedMead));
+		infusionMapOut.put(Mead.Infusion.NONE, IWLazy.of(ItemRegistry.MEAD));
+		infusionMapOut.put(Mead.Infusion.ZEPHIR, IWLazy.of(ItemRegistry.ZEPHIR_INFUSED_MEAD));
+		infusionMapOut.put(Mead.Infusion.NETHER, IWLazy.of(ItemRegistry.NETHER_INFUSED_MEAD));
+		infusionMapOut.put(Mead.Infusion.VOID, IWLazy.of(ItemRegistry.VOID_INFUSED_MEAD));
+		infusionMapOut.put(Mead.Infusion.HERBS, IWLazy.of(ItemRegistry.HERBS_INFUSED_MEAD));
+		infusionMapOut.put(Mead.Infusion.GOLDEN_APPLE, IWLazy.of(ItemRegistry.GOLDEN_APPLE_INFUSED_MEAD));
 	}
 
 

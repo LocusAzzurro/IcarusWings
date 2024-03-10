@@ -38,7 +38,7 @@ public class WheatGrains extends Item{
                                                   LivingEntity target, InteractionHand hand) {
 		Level world = player.level();
 		
-		if (stack.getItem() == ItemRegistry.wheatGrains.get() && target instanceof Parrot) {
+		if (stack.getItem() == ItemRegistry.WHEAT_GRAINS.get() && target instanceof Parrot) {
 			if (!world.isClientSide)
 			{
 				if (!player.isCreative()) {
@@ -50,11 +50,11 @@ public class WheatGrains extends Item{
 					Parrot.Variant var = ((Parrot) target).getVariant();
 					new ItemStack(Items.FEATHER);
 					ItemStack feather = switch (var) {
-						case RED_BLUE -> new ItemStack(ItemRegistry.redFeather.get());
-						case BLUE -> new ItemStack(ItemRegistry.blueFeather.get());
-						case GREEN -> new ItemStack(ItemRegistry.greenFeather.get());
-						case YELLOW_BLUE -> new ItemStack(ItemRegistry.cyanFeather.get());
-						case GRAY -> new ItemStack(ItemRegistry.grayFeather.get());
+						case RED_BLUE -> new ItemStack(ItemRegistry.RED_FEATHER.get());
+						case BLUE -> new ItemStack(ItemRegistry.BLUE_FEATHER.get());
+						case GREEN -> new ItemStack(ItemRegistry.GREEN_FEATHER.get());
+						case YELLOW_BLUE -> new ItemStack(ItemRegistry.CYAN_FEATHER.get());
+						case GRAY -> new ItemStack(ItemRegistry.GRAY_FEATHER.get());
 					};
 					ItemHandlerHelper.giveItemToPlayer(player, feather);
 				}

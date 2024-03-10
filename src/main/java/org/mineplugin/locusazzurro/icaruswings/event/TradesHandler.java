@@ -23,35 +23,35 @@ import java.util.function.Supplier;
 public class TradesHandler {
 
 	private final static VillagerTrades.ItemListing zephirEssenceTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.zephirEssence.get()), 16, 1, 1, 2, 1.0f);
+			() -> new ItemStack(ItemRegistry.ZEPHIR_ESSENCE.get()), 16, 1, 1, 2, 1.0f);
 	private static final VillagerTrades.ItemListing amphoraTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.amphora.get()), 4, 1, 2, 1, 1.0f);
+			() -> new ItemStack(ItemRegistry.AMPHORA.get()), 4, 1, 2, 1, 1.0f);
 	private static final VillagerTrades.ItemListing goldenFeatherTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.goldenFeather.get()), 6, 1, 3, 1, 1.0f);
+			() -> new ItemStack(ItemRegistry.GOLDEN_FEATHER.get()), 6, 1, 3, 1, 1.0f);
 	private static final VillagerTrades.ItemListing anemoneTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.anemone.get()), 8, 1, 2, 2, 1.0f);
+			() -> new ItemStack(ItemRegistry.ANEMONE.get()), 8, 1, 2, 2, 1.0f);
 	private static final VillagerTrades.ItemListing greekFireTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.greekFireBucket.get()), 18, 1, 1, 2, 1.0f);
+			() -> new ItemStack(ItemRegistry.GREEK_FIRE_BUCKET.get()), 18, 1, 1, 2, 1.0f);
 	
 	private static final VillagerTrades.ItemListing redFeatherTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.redFeather.get()), 2, 1, 3, 1, 1.0f);
+			() -> new ItemStack(ItemRegistry.RED_FEATHER.get()), 2, 1, 3, 1, 1.0f);
 	private static final VillagerTrades.ItemListing blueFeatherTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.blueFeather.get()), 2, 1, 3, 1, 1.0f);
+			() -> new ItemStack(ItemRegistry.BLUE_FEATHER.get()), 2, 1, 3, 1, 1.0f);
 	private static final VillagerTrades.ItemListing cyanFeatherTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.cyanFeather.get()), 2, 1, 3, 1, 1.0f);
+			() -> new ItemStack(ItemRegistry.CYAN_FEATHER.get()), 2, 1, 3, 1, 1.0f);
 	private static final VillagerTrades.ItemListing greenFeatherTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.greenFeather.get()), 2, 1, 3, 1, 1.0f);
+			() -> new ItemStack(ItemRegistry.GREEN_FEATHER.get()), 2, 1, 3, 1, 1.0f);
 	private static final VillagerTrades.ItemListing grayFeatherTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.grayFeather.get()), 2, 1, 3, 1, 1.0f);
+			() -> new ItemStack(ItemRegistry.GRAY_FEATHER.get()), 2, 1, 3, 1, 1.0f);
 
 	private static final VillagerTrades.ItemListing flaxSeedsTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.flaxSeeds.get()), 4, 2, 2, 1, 1.0f);
+			() -> new ItemStack(ItemRegistry.FLAX_SEEDS.get()), 4, 2, 2, 1, 1.0f);
 
 	private static final VillagerTrades.ItemListing linenTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.linen.get()), 4, 1, 5, 1, 1.0f);
+			() -> new ItemStack(ItemRegistry.LINEN.get()), 4, 1, 5, 1, 1.0f);
 
 	private static final VillagerTrades.ItemListing goldenFleeceTrade = new ItemsForEmeraldsTrade(
-			() -> new ItemStack(ItemRegistry.goldenFleece.get()), 20, 1, 1, 3, 1.0f);
+			() -> new ItemStack(ItemRegistry.GOLDEN_FLEECE.get()), 20, 1, 1, 3, 1.0f);
 
 	@SubscribeEvent
 	public static void onWandererTradesInit(WandererTradesEvent event) {

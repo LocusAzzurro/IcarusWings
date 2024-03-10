@@ -102,10 +102,10 @@ public class Mead extends Item {
 		}
 
 		if (stackIn.isEmpty()) {
-			return new ItemStack(ItemRegistry.glassJar.get());
+			return new ItemStack(ItemRegistry.GLASS_JAR.get());
 		} else {
 			if (entityIn instanceof Player player && !((Player) entityIn).getAbilities().instabuild) {
-				ItemStack itemstack = new ItemStack(ItemRegistry.glassJar.get());
+				ItemStack itemstack = new ItemStack(ItemRegistry.GLASS_JAR.get());
                 ItemHandlerHelper.giveItemToPlayer(player, itemstack);
 			}
 
@@ -157,13 +157,13 @@ public class Mead extends Item {
 						BlockState block1 = level.getBlockState(p);
 						BlockState blockUp = level.getBlockState(p.above());
 						if ((block1.is(Blocks.DIRT) || block1.is(Blocks.GRASS_BLOCK)) && blockUp.isAir() && level.random.nextFloat() < 0.4) {
-							level.setBlock(p.above(), BlockRegistry.elysianGrass.get().defaultBlockState(), 3);
+							level.setBlock(p.above(), BlockRegistry.ELYSIAN_GRASS.get().defaultBlockState(), 3);
 						}
 						if (block1.is(Blocks.DIRT)) {
-							level.setBlock(p, BlockRegistry.elysianSoil.get().defaultBlockState(), 3);
+							level.setBlock(p, BlockRegistry.ELYSIAN_SOIL.get().defaultBlockState(), 3);
 						}
 						if (block1.is(Blocks.GRASS_BLOCK)) {
-							level.setBlock(p, BlockRegistry.elysianGrassBlock.get().defaultBlockState(), 3);
+							level.setBlock(p, BlockRegistry.ELYSIAN_GRASS_BLOCK.get().defaultBlockState(), 3);
 						}
 					});
 
@@ -176,7 +176,7 @@ public class Mead extends Item {
 
 					if (!player.getAbilities().instabuild) {
 						item.shrink(1);
-						ItemStack itemstack = new ItemStack(ItemRegistry.glassJar.get());
+						ItemStack itemstack = new ItemStack(ItemRegistry.GLASS_JAR.get());
 						ItemHandlerHelper.giveItemToPlayer(player, itemstack);
 					}
 				}

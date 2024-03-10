@@ -20,7 +20,7 @@ public class DaedalusDecryptor extends Item {
 
 	@Override
 	public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
-		return new ItemStack(ItemRegistry.daedalusDecryptor.get());
+		return new ItemStack(ItemRegistry.DAEDALUS_DECRYPTOR.get());
 	}
 
 	@Override

@@ -23,30 +23,30 @@ public class ModBlockTagsGenerator extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider p_256380_) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(BlockRegistry.refinedBeeswaxBlock.get())
-                .add(BlockRegistry.refinedBeeswaxPillar.get())
-                .add(BlockRegistry.refinedBeeswaxBlockChiseled.get())
-                .add(BlockRegistry.refinedBeeswaxStairs.get())
-                .add(BlockRegistry.refinedBeeswaxSlab.get())
-                .add(BlockRegistry.smoothRefinedBeeswaxBlock.get())
-                .add(BlockRegistry.amphora.get())
-                .add(BlockRegistry.meadPot.get());
+                .add(BlockRegistry.REFINED_BEESWAX_BLOCK.get())
+                .add(BlockRegistry.REFINED_BEESWAX_PILLAR.get())
+                .add(BlockRegistry.CHISELED_REFINED_BEESWAX_BLOCK.get())
+                .add(BlockRegistry.REFINED_BEESWAX_STAIRS.get())
+                .add(BlockRegistry.REFINED_BEESWAX_SLAB.get())
+                .add(BlockRegistry.SMOOTH_REFINED_BEESWAX_BLOCK.get())
+                .add(BlockRegistry.AMPHORA.get())
+                .add(BlockRegistry.MEAD_POT.get());
         tag(BlockTags.MINEABLE_WITH_SHOVEL)
-                .add(BlockRegistry.elysianSoil.get())
-                .add(BlockRegistry.elysianGrassBlock.get());
+                .add(BlockRegistry.ELYSIAN_SOIL.get())
+                .add(BlockRegistry.ELYSIAN_GRASS_BLOCK.get());
         tag(BlockTags.WOOL)
-                .add(BlockRegistry.goldenWoolBlock.get());
+                .add(BlockRegistry.GOLDEN_WOOL_BLOCK.get());
         tag(BlockTags.WOOL_CARPETS)
-                .add(BlockRegistry.goldenWoolCarpet.get());
+                .add(BlockRegistry.GOLDEN_WOOL_CARPET.get());
         tag(BlockTags.NEEDS_STONE_TOOL)
-                .add(BlockRegistry.refinedBeeswaxBlock.get())
-                .add(BlockRegistry.refinedBeeswaxPillar.get())
-                .add(BlockRegistry.refinedBeeswaxBlockChiseled.get())
-                .add(BlockRegistry.refinedBeeswaxStairs.get())
-                .add(BlockRegistry.refinedBeeswaxSlab.get())
-                .add(BlockRegistry.smoothRefinedBeeswaxBlock.get());
+                .add(BlockRegistry.REFINED_BEESWAX_BLOCK.get())
+                .add(BlockRegistry.REFINED_BEESWAX_PILLAR.get())
+                .add(BlockRegistry.CHISELED_REFINED_BEESWAX_BLOCK.get())
+                .add(BlockRegistry.REFINED_BEESWAX_STAIRS.get())
+                .add(BlockRegistry.REFINED_BEESWAX_SLAB.get())
+                .add(BlockRegistry.SMOOTH_REFINED_BEESWAX_BLOCK.get());
         tag(BlockTags.NEEDS_IRON_TOOL)
-                .add(BlockRegistry.meadPot.get());
+                .add(BlockRegistry.MEAD_POT.get());
     }
 
     @Override

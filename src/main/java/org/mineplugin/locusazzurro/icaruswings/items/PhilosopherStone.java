@@ -30,7 +30,7 @@ public class PhilosopherStone extends Item {
 
 	@Override
 	public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
-		return new ItemStack(ItemRegistry.philosopherStone.get());
+		return new ItemStack(ItemRegistry.PHILOSOPHER_STONE.get());
 	}
 
 	@Override

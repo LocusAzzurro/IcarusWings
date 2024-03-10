@@ -109,7 +109,7 @@ public class TimeRiftParticleEntity extends ThrowableItemProjectile {
 
     @Override
     protected Item getDefaultItem() {
-        return ItemRegistry.timeRiftCharge.get();
+        return ItemRegistry.TIME_RIFT_CHARGE.get();
     }
 
     @Override

@@ -18,19 +18,19 @@ import java.util.function.Supplier;
 public enum ModArmorMaterial implements ArmorMaterial {
 	// name, duraMulti, slotProt[4], enchValue, sound, toughness, KBRes, repIng
 	FEATHER("feather", 4, new int[] {1,2,3,1}, 15, SoundRegistry.armorEquipFeather, //chain
-			0.0F, 0.0F, () -> Ingredient.of(ItemRegistry.featherBunch.get())),
+			0.0F, 0.0F, () -> Ingredient.of(ItemRegistry.FEATHER_BUNCH.get())),
 	GOLDEN_FEATHER("golden_feather", 7, new int[] {1,3,5,2}, 20, SoundRegistry.armorEquipFeather,
-			0.5F, 0.0F, () -> Ingredient.of(ItemRegistry.goldenFeatherBunch.get())),
+			0.5F, 0.0F, () -> Ingredient.of(ItemRegistry.GOLDEN_FEATHER_BUNCH.get())),
 	BEESWAX("beeswax", 5, new int[] {1,2,3,1}, 10, SoundRegistry.armorEquipBeeswax, //honey
-			0.0F, 0.0F, () -> Ingredient.of(ItemRegistry.refinedBeeswaxBar.get())),
+			0.0F, 0.0F, () -> Ingredient.of(ItemRegistry.REFINED_BEESWAX_BAR.get())),
 	LINEN("linen", 4, new int[] {1,2,2,1}, 12, SoundRegistry.armorEquipLinen, //leather
-			0.0F, 0.0F, () -> Ingredient.of(ItemRegistry.linen.get())),
+			0.0F, 0.0F, () -> Ingredient.of(ItemRegistry.LINEN.get())),
 	GOLDEN_FLEECE("golden_fleece", 7, new int[] {1,3,5,2}, 20, SoundRegistry.armorEquipGoldenFleece,
-			0.5F, 0.0F, () -> Ingredient.of(ItemRegistry.goldenFleece.get())),
+			0.5F, 0.0F, () -> Ingredient.of(ItemRegistry.GOLDEN_FLEECE.get())),
 	HERBAL("herbal", 1, new int[] {1,1,1,1}, 20, SoundRegistry.armorEquipHerbal, //leather
 			0.0F, 0.0F, () -> Ingredient.of(ItemTags.create(new ResourceLocation("locusazzurro_icaruswings:herbs")))),
 	SYNAPSE("synapse_tech", 40, new int[] {3,6,8,3}, 12, SoundRegistry.armorEquipSynapse, //diamond
-			4.0F, 0.0F, () -> Ingredient.of(ItemRegistry.synapseRepairKit.get()))
+			4.0F, 0.0F, () -> Ingredient.of(ItemRegistry.SYNAPSE_REPAIR_KIT.get()))
 	;
 	
 	//fuck mojang

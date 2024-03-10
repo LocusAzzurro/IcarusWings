@@ -88,10 +88,10 @@ public class Demeter extends ProjectileWeaponItem {
 
     @Override
     public boolean isValidRepairItem(ItemStack thisItem, ItemStack repairItem) {
-        return repairItem.getItem() == ItemRegistry.synapseRepairKit.get() || super.isValidRepairItem(thisItem, repairItem);
+        return repairItem.getItem() == ItemRegistry.SYNAPSE_REPAIR_KIT.get() || super.isValidRepairItem(thisItem, repairItem);
     }
 
-    public static final Predicate<ItemStack> DEMETER_CHARGE = (item) -> item.getItem().equals(ItemRegistry.demeterCharge.get());
+    public static final Predicate<ItemStack> DEMETER_CHARGE = (item) -> item.getItem().equals(ItemRegistry.DEMETER_CHARGE.get());
 
     @Override
     public Predicate<ItemStack> getAllSupportedProjectiles() {

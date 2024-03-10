@@ -53,10 +53,10 @@ public class TimeRiftGenerator extends ProjectileWeaponItem {
 
     @Override
     public boolean isValidRepairItem(ItemStack thisItem, ItemStack repairItem) {
-        return repairItem.getItem() == ItemRegistry.synapseRepairKit.get() || super.isValidRepairItem(thisItem, repairItem);
+        return repairItem.getItem() == ItemRegistry.SYNAPSE_REPAIR_KIT.get() || super.isValidRepairItem(thisItem, repairItem);
     }
 
-    public static final Predicate<ItemStack> TIME_RIFT_CHARGE = (item) -> item.getItem().equals(ItemRegistry.timeRiftCharge.get());
+    public static final Predicate<ItemStack> TIME_RIFT_CHARGE = (item) -> item.getItem().equals(ItemRegistry.TIME_RIFT_CHARGE.get());
 
     @Override
     public Predicate<ItemStack> getAllSupportedProjectiles() {

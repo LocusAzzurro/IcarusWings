@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 public class MelonItem extends BlockItem {
 	
 	public MelonItem() {
-		super(BlockRegistry.melon.get(), new Item.Properties().rarity(Rarity.RARE));
+		super(BlockRegistry.MELON.get(), new Item.Properties().rarity(Rarity.RARE));
 	}
 	
 	@Nullable
