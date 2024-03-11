@@ -186,6 +186,12 @@
 
   "item.locusazzurro_icaruswings.icon_badge": "Icarus Wings Badge",
 
+  "upgrade.locusazzurro_icaruswings.gold_upgrade": "Gold Upgrade",
+  "item.locusazzurro_icaruswings.smithing_template.gold_upgrade.additions_slot_description": "Add Gold Ingot",
+  "item.locusazzurro_icaruswings.smithing_template.gold_upgrade.applies_to": "Feather & String",
+  "item.locusazzurro_icaruswings.smithing_template.gold_upgrade.base_slot_description": "Add feather or string",
+  "item.locusazzurro_icaruswings.smithing_template.gold_upgrade.ingredients": "Gold Ingot",
+
   "entity.locusazzurro_icaruswings.artemis_missile": "Artemis Missile",
   "entity.locusazzurro_icaruswings.time_bomb": "Time Singularity",
   "entity.locusazzurro_icaruswings.time_rift_particle": "Time Rift Particle",

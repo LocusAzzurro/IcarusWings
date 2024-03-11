@@ -186,6 +186,12 @@
 
   "item.locusazzurro_icaruswings.icon_badge": "伊卡洛斯之翼徽章",
 
+  "upgrade.locusazzurro_icaruswings.gold_upgrade": "镀金升级",
+  "item.locusazzurro_icaruswings.smithing_template.gold_upgrade.additions_slot_description": "放入金锭",
+  "item.locusazzurro_icaruswings.smithing_template.gold_upgrade.applies_to": "羽毛或线",
+  "item.locusazzurro_icaruswings.smithing_template.gold_upgrade.base_slot_description": "放入羽毛或线",
+  "item.locusazzurro_icaruswings.smithing_template.gold_upgrade.ingredients": "金锭",
+
   "entity.locusazzurro_icaruswings.artemis_missile": "阿尔忒弥斯导弹",
   "entity.locusazzurro_icaruswings.time_bomb": "时空奇点",
   "entity.locusazzurro_icaruswings.time_rift_particle": "时空裂缝粒子",

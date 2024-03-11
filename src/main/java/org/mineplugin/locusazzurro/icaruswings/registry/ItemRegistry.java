@@ -12,6 +12,8 @@ import org.mineplugin.locusazzurro.icaruswings.common.data.ModItemTier;
 import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.common.item.*;
 
+import java.util.function.Supplier;
+
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ModData.MOD_ID);
     
@@ -44,7 +46,8 @@ public class ItemRegistry {
     public static final RegistryObject<Item> ULTRAMARINE_GEM = ITEMS.register("ultramarine_gem", GemCurrency::new);
     public static final RegistryObject<Item> SAPPHIRE_GEM = ITEMS.register("sapphire_gem", GemCurrency::new);
     public static final RegistryObject<Item> BLUE_TOPAZ_GEM = ITEMS.register("blue_topaz_gem", GemCurrency::new);
-    
+
+    public static final RegistryObject<Item> GOLD_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("gold_upgrade_smithing_template", GoldUpgradeSmithingTemplate::new);
     public static final RegistryObject<Item> REFORGED_NETHERITE_INGOT = ITEMS.register("reforged_netherite_ingot", WorldIngot::new);
     public static final RegistryObject<Item> SYNAPSE_ALLOY_INGOT = ITEMS.register("synapse_alloy_ingot", WorldIngot::new);
     
@@ -246,6 +249,10 @@ public class ItemRegistry {
     
     public static final RegistryObject<Item> MELON = ITEMS.register("melon", MelonItem::new);
     public static final RegistryObject<Item> ICON_BADGE = ITEMS.register("icon_badge", IconBadge::new);
+
+    private static RegistryObject<Item> registerItem(String name, Supplier<Item> item){
+        return ITEMS.register(name, item);
+    }
 
 }
 
