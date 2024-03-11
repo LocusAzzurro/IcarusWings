@@ -6,9 +6,9 @@ import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.mineplugin.locusazzurro.icaruswings.blocks.GreekFireFluid;
-import org.mineplugin.locusazzurro.icaruswings.blocks.GreekFireFluidType;
-import org.mineplugin.locusazzurro.icaruswings.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.common.block.GreekFireFluid;
+import org.mineplugin.locusazzurro.icaruswings.common.block.GreekFireFluidType;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 
 public class FluidRegistry {
 

@@ -8,7 +8,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import org.mineplugin.locusazzurro.icaruswings.data.ModTags;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModTags;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 import java.util.concurrent.CompletableFuture;

@@ -4,8 +4,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageType;
-import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
-import org.mineplugin.locusazzurro.icaruswings.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 
 public class DamageTypeRegistry {
 

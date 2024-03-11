@@ -5,8 +5,9 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.mineplugin.locusazzurro.icaruswings.blocks.*;
-import org.mineplugin.locusazzurro.icaruswings.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.block.*;
+import org.mineplugin.locusazzurro.icaruswings.common.block.*;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 
 public class BlockRegistry {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ModData.MOD_ID);

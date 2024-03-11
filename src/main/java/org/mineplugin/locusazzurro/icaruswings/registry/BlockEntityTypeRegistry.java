@@ -4,9 +4,9 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.AmphoraBlockEntity;
-import org.mineplugin.locusazzurro.icaruswings.blocks.blockentities.MeadPotBlockEntity;
-import org.mineplugin.locusazzurro.icaruswings.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.common.block.entity.AmphoraBlockEntity;
+import org.mineplugin.locusazzurro.icaruswings.common.block.entity.MeadPotBlockEntity;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 
 public class BlockEntityTypeRegistry {
 

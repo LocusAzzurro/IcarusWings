@@ -4,8 +4,8 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.resources.ResourceLocation;
-import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.render.models.*;
+import org.mineplugin.locusazzurro.icaruswings.client.render.models.*;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 
 import java.util.Map;
 

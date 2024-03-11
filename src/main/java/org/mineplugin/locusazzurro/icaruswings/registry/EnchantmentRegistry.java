@@ -4,10 +4,10 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.ench.EnchantmentBlessingOfTheSky;
-import org.mineplugin.locusazzurro.icaruswings.ench.EnchantmentCollisionProtection;
-import org.mineplugin.locusazzurro.icaruswings.ench.EnchantmentPyrotechnicAffinity;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.common.ench.EnchantmentBlessingOfTheSky;
+import org.mineplugin.locusazzurro.icaruswings.common.ench.EnchantmentCollisionProtection;
+import org.mineplugin.locusazzurro.icaruswings.common.ench.EnchantmentPyrotechnicAffinity;
 
 public class EnchantmentRegistry {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, ModData.MOD_ID);

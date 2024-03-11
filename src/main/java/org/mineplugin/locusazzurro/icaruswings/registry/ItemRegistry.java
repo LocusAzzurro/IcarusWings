@@ -7,10 +7,11 @@ import net.minecraft.world.item.Tiers;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.mineplugin.locusazzurro.icaruswings.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.data.ModItemTier;
-import org.mineplugin.locusazzurro.icaruswings.data.WingsType;
-import org.mineplugin.locusazzurro.icaruswings.items.*;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModItemTier;
+import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
+import org.mineplugin.locusazzurro.icaruswings.common.item.*;
+import org.mineplugin.locusazzurro.icaruswings.item.*;
 
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ModData.MOD_ID);
