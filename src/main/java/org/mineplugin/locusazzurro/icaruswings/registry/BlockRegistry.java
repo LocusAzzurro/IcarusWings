@@ -5,7 +5,6 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.mineplugin.locusazzurro.icaruswings.block.*;
 import org.mineplugin.locusazzurro.icaruswings.common.block.*;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 

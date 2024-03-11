@@ -11,7 +11,6 @@ import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModItemTier;
 import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.common.item.*;
-import org.mineplugin.locusazzurro.icaruswings.item.*;
 
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ModData.MOD_ID);

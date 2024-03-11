@@ -24,7 +24,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.*;
-import org.mineplugin.locusazzurro.icaruswings.particle.*;
 import org.mineplugin.locusazzurro.icaruswings.registry.*;
 import org.mineplugin.locusazzurro.icaruswings.client.render.layers.WingsLayer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.models.SpearBakedModel;
