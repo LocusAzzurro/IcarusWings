@@ -34,37 +34,6 @@ public class SkyMusicDisc extends RecordItem {
 		return this.track;
 	}
 
-	/*
-	public InteractionResult useOn(UseOnContext context) {
-		Level level = context.getLevel();
-		BlockPos blockpos = context.getClickedPos();
-		BlockState blockstate = level.getBlockState(blockpos);
-		if (blockstate.is(Blocks.JUKEBOX) && !blockstate.getValue(JukeboxBlock.HAS_RECORD)) {
-			ItemStack itemstack = context.getItemInHand();
-			if (!level.isClientSide) {
-				Player player = context.getPlayer();
-				BlockEntity blockentity = level.getBlockEntity(blockpos);
-				if (blockentity instanceof JukeboxBlockEntity jukeboxblockentity) {
-					jukeboxblockentity.setItem(0, itemstack.copy());
-					//jukeboxblockentity.setFirstItem(itemstack.copy());
-					//level.setBlock(jukeboxblockentity.getBlockPos(), jukeboxblockentity.getBlockState().setValue(JukeboxBlock.HAS_RECORD, true), 3);
-					//level.gameEvent(GameEvent.BLOCK_CHANGE, blockpos, GameEvent.Context.of(player, blockstate));
-				}
-
-				itemstack.shrink(1);
-				if (player != null) {
-					player.awardStat(Stats.PLAY_RECORD);
-				}
-			}
-
-			return InteractionResult.sidedSuccess(level.isClientSide);
-		} else {
-			return InteractionResult.PASS;
-		}
-	}
-
-	 */
-
 	@Override
 	public int getAnalogOutput() {
 		return this.getTrack().getTrackNum();

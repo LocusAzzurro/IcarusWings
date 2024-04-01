@@ -4,6 +4,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -17,12 +18,12 @@ import java.util.function.Supplier;
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ModData.MOD_ID);
     
-    public static final RegistryObject<Item> RED_FEATHER = ITEMS.register("red_feather", ColoredFeather::new);
-    public static final RegistryObject<Item> BLUE_FEATHER = ITEMS.register("blue_feather", ColoredFeather::new);
-    public static final RegistryObject<Item> GREEN_FEATHER = ITEMS.register("green_feather", ColoredFeather::new);
-    public static final RegistryObject<Item> CYAN_FEATHER = ITEMS.register("cyan_feather", ColoredFeather::new);
-    public static final RegistryObject<Item> GRAY_FEATHER = ITEMS.register("gray_feather", ColoredFeather::new);
-    public static final RegistryObject<Item> GOLDEN_FEATHER = ITEMS.register("golden_feather", GoldenFeather::new);
+    public static final RegistryObject<Item> RED_FEATHER = registerSimpleItem("red_feather");
+    public static final RegistryObject<Item> BLUE_FEATHER = registerSimpleItem("blue_feather");
+    public static final RegistryObject<Item> GREEN_FEATHER = registerSimpleItem("green_feather");
+    public static final RegistryObject<Item> CYAN_FEATHER = registerSimpleItem("cyan_feather");
+    public static final RegistryObject<Item> GRAY_FEATHER = registerSimpleItem("gray_feather");
+    public static final RegistryObject<Item> GOLDEN_FEATHER = registerSimpleItem("golden_feather");
     
     public static final RegistryObject<Item> FEATHER_BUNCH = ITEMS.register("feather_bunch",
     		() -> new FeatherBunch(WingsType.FEATHER));
@@ -30,26 +31,26 @@ public class ItemRegistry {
     		() -> new FeatherBunch(WingsType.FEATHER_COLORED));
     public static final RegistryObject<Item> GOLDEN_FEATHER_BUNCH = ITEMS.register("golden_feather_bunch",
     		() -> new FeatherBunch(WingsType.FEATHER_GOLDEN));
-    public static final RegistryObject<Item> HERB_BUNCH = ITEMS.register("herb_bunch", HerbBunch::new);
+    public static final RegistryObject<Item> HERB_BUNCH = registerSimpleItem("herb_bunch");
     
-    public static final RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot", WorldIngot::new);
-    public static final RegistryObject<Item> MAGMA_INGOT = ITEMS.register("magma_ingot", WorldIngot::new);
-    public static final RegistryObject<Item> PURPUR_INGOT = ITEMS.register("purpur_ingot", WorldIngot::new);
-    public static final RegistryObject<Item> STEEL_MIXTURE = ITEMS.register("steel_mixture", WorldIngotMaterial::new);
-    public static final RegistryObject<Item> MAGMA_MIXTURE = ITEMS.register("magma_mixture", WorldIngotMaterial::new);
-    public static final RegistryObject<Item> PURPUR_MIXTURE = ITEMS.register("purpur_mixture", WorldIngotMaterial::new);
+    public static final RegistryObject<Item> STEEL_INGOT = registerSimpleItem("steel_ingot");
+    public static final RegistryObject<Item> MAGMA_INGOT = registerSimpleItem("magma_ingot");
+    public static final RegistryObject<Item> PURPUR_INGOT = registerSimpleItem("purpur_ingot");
+    public static final RegistryObject<Item> STEEL_MIXTURE = registerSimpleItem("steel_mixture");
+    public static final RegistryObject<Item> MAGMA_MIXTURE = registerSimpleItem("magma_mixture");
+    public static final RegistryObject<Item> PURPUR_MIXTURE = registerSimpleItem("purpur_mixture");
     
-    public static final RegistryObject<Item> ZEPHIR_ESSENCE = ITEMS.register("zephir_essence", WorldEssence::new);
-    public static final RegistryObject<Item> NETHER_ESSENCE = ITEMS.register("nether_essence", WorldEssence::new);
-    public static final RegistryObject<Item> VOID_ESSENCE = ITEMS.register("void_essence", WorldEssence::new);
+    public static final RegistryObject<Item> ZEPHIR_ESSENCE = registerSimpleItemSmallStack("zephir_essence");
+    public static final RegistryObject<Item> NETHER_ESSENCE = registerSimpleItemSmallStack("nether_essence");
+    public static final RegistryObject<Item> VOID_ESSENCE = registerSimpleItemSmallStack("void_essence");
     
-    public static final RegistryObject<Item> ULTRAMARINE_GEM = ITEMS.register("ultramarine_gem", GemCurrency::new);
-    public static final RegistryObject<Item> SAPPHIRE_GEM = ITEMS.register("sapphire_gem", GemCurrency::new);
-    public static final RegistryObject<Item> BLUE_TOPAZ_GEM = ITEMS.register("blue_topaz_gem", GemCurrency::new);
+    public static final RegistryObject<Item> ULTRAMARINE_GEM = registerSimpleItemSmallStack("ultramarine_gem");
+    public static final RegistryObject<Item> SAPPHIRE_GEM = registerSimpleItemSmallStack("sapphire_gem");
+    public static final RegistryObject<Item> BLUE_TOPAZ_GEM = registerSimpleItemSmallStack("blue_topaz_gem");
 
     public static final RegistryObject<Item> GOLD_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("gold_upgrade_smithing_template", GoldUpgradeSmithingTemplate::new);
-    public static final RegistryObject<Item> REFORGED_NETHERITE_INGOT = ITEMS.register("reforged_netherite_ingot", WorldIngot::new);
-    public static final RegistryObject<Item> SYNAPSE_ALLOY_INGOT = ITEMS.register("synapse_alloy_ingot", WorldIngot::new);
+    public static final RegistryObject<Item> REFORGED_NETHERITE_INGOT = registerSimpleItem("reforged_netherite_ingot");
+    public static final RegistryObject<Item> SYNAPSE_ALLOY_INGOT = registerSimpleItem("synapse_alloy_ingot");
     
     public static final RegistryObject<Item> BEESWAX = ITEMS.register("beeswax", Beeswax::new);
     public static final RegistryObject<Item> BEESWAX_BLOCK = ITEMS.register("beeswax_block",
@@ -57,35 +58,21 @@ public class ItemRegistry {
     public static final RegistryObject<Item> REFINED_BEESWAX_BAR = ITEMS.register("refined_beeswax_bar", RefinedBeeswaxBar::new);
     public static final RegistryObject<Item> GLISTERING_REFINED_BEESWAX_BAR = ITEMS.register("glistering_refined_beeswax_bar",
     		() -> new RefinedBeeswaxBar(true));
-    public static final RegistryObject<Item> REFINED_BEESWAX_BLOCK = ITEMS.register("refined_beeswax_block",
-    		() -> new BlockItem(BlockRegistry.REFINED_BEESWAX_BLOCK.get(), new Item.Properties()));
-    public static final RegistryObject<Item> REFINED_BEESWAX_SLAB = ITEMS.register("refined_beeswax_slab",
-    		() -> new BlockItem(BlockRegistry.REFINED_BEESWAX_SLAB.get(), new Item.Properties()));
-    public static final RegistryObject<Item> REFINED_BEESWAX_PILLAR = ITEMS.register("refined_beeswax_pillar",
-    		() -> new BlockItem(BlockRegistry.REFINED_BEESWAX_PILLAR.get(), new Item.Properties()));
-    public static final RegistryObject<Item> REFINED_BEESWAX_STAIRS = ITEMS.register("refined_beeswax_stairs",
-    		() -> new BlockItem(BlockRegistry.REFINED_BEESWAX_STAIRS.get(), new Item.Properties()));
-    public static final RegistryObject<Item> CHISELED_REFINED_BEESWAX_BLOCK = ITEMS.register("chiseled_refined_beeswax_block",
-    		() -> new BlockItem(BlockRegistry.CHISELED_REFINED_BEESWAX_BLOCK.get(), new Item.Properties()));
-    public static final RegistryObject<Item> SMOOTH_REFINED_BEESWAX_BLOCK = ITEMS.register("smooth_refined_beeswax_block",
-    		() -> new BlockItem(BlockRegistry.SMOOTH_REFINED_BEESWAX_BLOCK.get(), new Item.Properties()));
-    public static final RegistryObject<Item> ELYSIAN_GRASS_BLOCK = ITEMS.register("elysian_grass_block",
-            () -> new BlockItem(BlockRegistry.ELYSIAN_GRASS_BLOCK.get(), new Item.Properties()));
-    public static final RegistryObject<Item> ELYSIAN_SOIL = ITEMS.register("elysian_soil",
-            () -> new BlockItem(BlockRegistry.ELYSIAN_SOIL.get(), new Item.Properties()));
-    public static final RegistryObject<Item> ELYSIAN_GRASS = ITEMS.register("elysian_grass",
-            () -> new BlockItem(BlockRegistry.ELYSIAN_GRASS.get(), new Item.Properties()));
-    public static final RegistryObject<Item> GOLDEN_WOOL_BLOCK = ITEMS.register("golden_wool_block",
-            () -> new BlockItem(BlockRegistry.GOLDEN_WOOL_BLOCK.get(), new Item.Properties()));
-    public static final RegistryObject<Item> GOLDEN_WOOL_CARPET = ITEMS.register("golden_wool_carpet",
-            () -> new BlockItem(BlockRegistry.GOLDEN_WOOL_CARPET.get(), new Item.Properties()));
-    public static final RegistryObject<Item> HONEY_CAKE = ITEMS.register("honey_cake",
-            () -> new BlockItem(BlockRegistry.HONEY_CAKE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> REFINED_BEESWAX_BLOCK = fromBlock(BlockRegistry.REFINED_BEESWAX_BLOCK);
+    public static final RegistryObject<Item> REFINED_BEESWAX_SLAB = fromBlock(BlockRegistry.REFINED_BEESWAX_SLAB);
+    public static final RegistryObject<Item> REFINED_BEESWAX_PILLAR = fromBlock(BlockRegistry.REFINED_BEESWAX_PILLAR);
+    public static final RegistryObject<Item> REFINED_BEESWAX_STAIRS = fromBlock(BlockRegistry.REFINED_BEESWAX_STAIRS);
+    public static final RegistryObject<Item> CHISELED_REFINED_BEESWAX_BLOCK = fromBlock(BlockRegistry.CHISELED_REFINED_BEESWAX_BLOCK);;
+    public static final RegistryObject<Item> SMOOTH_REFINED_BEESWAX_BLOCK = fromBlock(BlockRegistry.SMOOTH_REFINED_BEESWAX_BLOCK);
+    public static final RegistryObject<Item> ELYSIAN_GRASS_BLOCK = fromBlock(BlockRegistry.ELYSIAN_GRASS_BLOCK);
+    public static final RegistryObject<Item> ELYSIAN_SOIL = fromBlock(BlockRegistry.ELYSIAN_SOIL);
+    public static final RegistryObject<Item> ELYSIAN_GRASS = fromBlock(BlockRegistry.ELYSIAN_GRASS);
+    public static final RegistryObject<Item> GOLDEN_WOOL_BLOCK = fromBlock(BlockRegistry.GOLDEN_WOOL_BLOCK);
+    public static final RegistryObject<Item> GOLDEN_WOOL_CARPET = fromBlock(BlockRegistry.GOLDEN_WOOL_CARPET);
+    public static final RegistryObject<Item> HONEY_CAKE = fromBlock(BlockRegistry.HONEY_CAKE);
     
-    public static final RegistryObject<Item> MEAD_POT = ITEMS.register("mead_pot",
-    		() -> new BlockItem(BlockRegistry.MEAD_POT.get(), new Item.Properties()));
-    public static final RegistryObject<Item> AMPHORA = ITEMS.register("amphora",
-    		() -> new BlockItem(BlockRegistry.AMPHORA.get(), new Item.Properties()));
+    public static final RegistryObject<Item> MEAD_POT = fromBlock(BlockRegistry.MEAD_POT);
+    public static final RegistryObject<Item> AMPHORA = fromBlock(BlockRegistry.AMPHORA);
     public static final RegistryObject<Item> GREEK_FIRE_BUCKET = ITEMS.register("greek_fire_bucket", GreekFireBucket::new);
 
     public static final RegistryObject<Item> GLASS_JAR = ITEMS.register("glass_jar", GlassJar::new);
@@ -110,19 +97,19 @@ public class ItemRegistry {
             () -> new AirJar(AirJar.AirType.NETHER));
     public static final RegistryObject<Item> VOID_AIR_JAR = ITEMS.register("void_air_jar",
             () -> new AirJar(AirJar.AirType.VOID));
-    public static final RegistryObject<Item> ANEMONE = ITEMS.register("anemone", Anemone::new);
+    public static final RegistryObject<Item> ANEMONE = registerSimpleItem("anemone");
     public static final RegistryObject<Item> MAGICAL_ANEMONE = ITEMS.register("magical_anemone", MagicalAnemone::new);
     public static final RegistryObject<Item> WIND_WAND = ITEMS.register("wind_wand", WindWand::new);
     
     public static final RegistryObject<Item> WHEAT_GRAINS = ITEMS.register("wheat_grains", WheatGrains::new);
-    public static final RegistryObject<Item> WHEAT_STRING = ITEMS.register("wheat_string", WheatString::new);
-    public static final RegistryObject<Item> FLAX = ITEMS.register("flax", Flax::new);
+    public static final RegistryObject<Item> WHEAT_STRING = registerSimpleItem("wheat_string");
+    public static final RegistryObject<Item> FLAX = registerSimpleItem("flax");
     public static final RegistryObject<Item> FLAX_SEEDS = ITEMS.register("flax_seeds", FlaxSeeds::new);
-    public static final RegistryObject<Item> LINEN_STRING = ITEMS.register("linen_string", LinenString::new);
-    public static final RegistryObject<Item> GOLDEN_STRING = ITEMS.register("golden_string", GoldenString::new);
-    public static final RegistryObject<Item> GOLDEN_FLEECE = ITEMS.register("golden_fleece", GoldenString::new);
+    public static final RegistryObject<Item> LINEN_STRING = registerSimpleItem("linen_string");
+    public static final RegistryObject<Item> GOLDEN_STRING = registerSimpleItem("golden_string");
+    public static final RegistryObject<Item> GOLDEN_FLEECE = registerSimpleItem("golden_fleece");
     
-    public static final RegistryObject<Item> LINEN = ITEMS.register("linen", Linen::new);
+    public static final RegistryObject<Item> LINEN = registerSimpleItem("linen");
     public static final RegistryObject<Item> GRAINS_MEAL = ITEMS.register("grains_meal", GrainsMeal::new);
 
     public static final RegistryObject<Item> HERBAL_CROWN = ITEMS.register("herbal_crown",
@@ -150,7 +137,7 @@ public class ItemRegistry {
     		() -> new FeatherWings(WingsType.FEATHER_GOLDEN));
     public static final RegistryObject<Item> PAPER_WINGS = ITEMS.register("paper_wings", PaperWings::new);
     
-    public static final RegistryObject<Item> MAGIC_MEMBRANE = ITEMS.register("magic_membrane", MagicMembrane::new);
+    public static final RegistryObject<Item> MAGIC_MEMBRANE = registerSimpleItemSmallStack("magic_membrane");
     public static final RegistryObject<Item> PHILOSOPHER_STONE = ITEMS.register("philosopher_stone", PhilosopherStone::new);
     
     public static final RegistryObject<Item> MAGIC_WINGS = ITEMS.register("magic_wings",
@@ -220,7 +207,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> MELAN_WINGS = ITEMS.register("melan_wings", SynapseWingsTheta::new);
 
     public static final RegistryObject<Item> ARTEMIS_LAUNCHER = ITEMS.register("artemis_launcher", ArtemisLauncher::new);
-    public static final RegistryObject<Item> ARTEMIS_MISSILE = ITEMS.register("artemis_missile", ArtemisMissile::new);
+    public static final RegistryObject<Item> ARTEMIS_MISSILE = registerSimpleItem("artemis_missile");
     public static final RegistryObject<Item> TIME_RIFT_GENERATOR = ITEMS.register("time_rift_generator", TimeRiftGenerator::new);
     public static final RegistryObject<Item> TIME_RIFT_CHARGE = ITEMS.register("time_rift_charge", TimeRiftCharge::new);
     public static final RegistryObject<Item> DEMETER = ITEMS.register("demeter", Demeter::new);
@@ -252,6 +239,18 @@ public class ItemRegistry {
 
     private static RegistryObject<Item> registerItem(String name, Supplier<Item> item){
         return ITEMS.register(name, item);
+    }
+
+    private static RegistryObject<Item> registerSimpleItem(String name){
+        return ITEMS.register(name, () -> new Item(new Item.Properties()));
+    }
+
+    private static RegistryObject<Item> registerSimpleItemSmallStack(String name){
+        return ITEMS.register(name, () -> new Item(new Item.Properties().stacksTo(16)));
+    }
+
+    private static <B extends Block> RegistryObject<Item> fromBlock(RegistryObject<B> block) {
+        return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
 }

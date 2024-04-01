@@ -42,7 +42,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Nullable;
 import org.mineplugin.locusazzurro.icaruswings.common.block.entity.ITickableBlockEntity;
 import org.mineplugin.locusazzurro.icaruswings.common.block.entity.MeadPotBlockEntity;
-import org.mineplugin.locusazzurro.icaruswings.common.item.WorldEssence;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModTags;
 import org.mineplugin.locusazzurro.icaruswings.common.item.Mead;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
@@ -69,7 +69,27 @@ public class MeadPot extends BaseEntityBlock {
 	private static final double particleR = 233D / 255D;
 	private static final double particleG = 147D / 255D;
 	private static final double particleB = 38D / 255D;
-	
+
+	public static final Predicate<ItemStack> isValidInfusionItem = (itemStack) ->
+			itemStack.is(ModTags.WORLD_ESSENCES) || itemStack.is(Items.GOLDEN_APPLE) || itemStack.is(ItemRegistry.HERB_BUNCH.get());
+
+	private static final Map<IWLazy<Item>, Mead.Infusion> infusionMapIn = new HashMap<>();
+	private static final Map<Mead.Infusion, IWLazy<Item> > infusionMapOut = new HashMap<>();
+
+	static {
+		infusionMapIn.put(IWLazy.of(ItemRegistry.ZEPHIR_ESSENCE), Mead.Infusion.ZEPHIR);
+		infusionMapIn.put(IWLazy.of(ItemRegistry.NETHER_ESSENCE), Mead.Infusion.NETHER);
+		infusionMapIn.put(IWLazy.of(ItemRegistry.VOID_ESSENCE), Mead.Infusion.VOID);
+		infusionMapIn.put(IWLazy.of(ItemRegistry.HERB_BUNCH), Mead.Infusion.HERBS);
+		infusionMapIn.put(IWLazy.of(() -> Items.GOLDEN_APPLE), Mead.Infusion.GOLDEN_APPLE);
+		infusionMapOut.put(Mead.Infusion.NONE, IWLazy.of(ItemRegistry.MEAD));
+		infusionMapOut.put(Mead.Infusion.ZEPHIR, IWLazy.of(ItemRegistry.ZEPHIR_INFUSED_MEAD));
+		infusionMapOut.put(Mead.Infusion.NETHER, IWLazy.of(ItemRegistry.NETHER_INFUSED_MEAD));
+		infusionMapOut.put(Mead.Infusion.VOID, IWLazy.of(ItemRegistry.VOID_INFUSED_MEAD));
+		infusionMapOut.put(Mead.Infusion.HERBS, IWLazy.of(ItemRegistry.HERBS_INFUSED_MEAD));
+		infusionMapOut.put(Mead.Infusion.GOLDEN_APPLE, IWLazy.of(ItemRegistry.GOLDEN_APPLE_INFUSED_MEAD));
+	}
+
 	public MeadPot() {
 		super(BlockBehaviour.Properties.of()
 				.strength(1.5f, 6.0f)
@@ -166,7 +186,7 @@ public class MeadPot extends BaseEntityBlock {
 	@Override
 	public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
 		if (pEntity instanceof ItemEntity itemEntity
-				&& validInfusionItems.test(itemEntity.getItem())
+				&& isValidInfusionItem.test(itemEntity.getItem())
 				&& pState.getValue(STATE) == MeadPotState.FERMENTING && pState.getValue(INFUSION) == Mead.Infusion.NONE){
 			ItemStack stack = itemEntity.getItem();
 			infusionMapIn.forEach((item, infusion) -> {
@@ -214,27 +234,7 @@ public class MeadPot extends BaseEntityBlock {
 				.setValue(INFUSION, Mead.Infusion.NONE);
 	}
 	
-	public static final Predicate<ItemStack> validInfusionItems = (itemStack) ->
-			itemStack.getItem() instanceof WorldEssence
-			|| itemStack.is(Items.GOLDEN_APPLE)
-			|| itemStack.is(ItemRegistry.HERB_BUNCH.get());
 
-	private static final Map<IWLazy<Item>, Mead.Infusion> infusionMapIn = new HashMap<>();
-	private static final Map<Mead.Infusion, IWLazy<Item> > infusionMapOut = new HashMap<>();
-
-	static {
-		infusionMapIn.put(IWLazy.of(ItemRegistry.ZEPHIR_ESSENCE), Mead.Infusion.ZEPHIR);
-		infusionMapIn.put(IWLazy.of(ItemRegistry.NETHER_ESSENCE), Mead.Infusion.NETHER);
-		infusionMapIn.put(IWLazy.of(ItemRegistry.VOID_ESSENCE), Mead.Infusion.VOID);
-		infusionMapIn.put(IWLazy.of(ItemRegistry.HERB_BUNCH), Mead.Infusion.HERBS);
-		infusionMapIn.put(IWLazy.of(() -> Items.GOLDEN_APPLE), Mead.Infusion.GOLDEN_APPLE);
-		infusionMapOut.put(Mead.Infusion.NONE, IWLazy.of(ItemRegistry.MEAD));
-		infusionMapOut.put(Mead.Infusion.ZEPHIR, IWLazy.of(ItemRegistry.ZEPHIR_INFUSED_MEAD));
-		infusionMapOut.put(Mead.Infusion.NETHER, IWLazy.of(ItemRegistry.NETHER_INFUSED_MEAD));
-		infusionMapOut.put(Mead.Infusion.VOID, IWLazy.of(ItemRegistry.VOID_INFUSED_MEAD));
-		infusionMapOut.put(Mead.Infusion.HERBS, IWLazy.of(ItemRegistry.HERBS_INFUSED_MEAD));
-		infusionMapOut.put(Mead.Infusion.GOLDEN_APPLE, IWLazy.of(ItemRegistry.GOLDEN_APPLE_INFUSED_MEAD));
-	}
 
 
 	public enum MeadPotState implements StringRepresentable {

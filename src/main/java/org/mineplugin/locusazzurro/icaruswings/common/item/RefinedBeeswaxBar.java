@@ -14,10 +14,6 @@ public class RefinedBeeswaxBar extends Item{
 		super(new Properties());
 		this.isGlistering = isGlistering;
 	}
-	
-	public boolean isGlistering() {
-		return this.isGlistering;
-	}
 
 	public boolean isPiglinCurrency(ItemStack stack) {
 		return ((RefinedBeeswaxBar)stack.getItem()).isGlistering;

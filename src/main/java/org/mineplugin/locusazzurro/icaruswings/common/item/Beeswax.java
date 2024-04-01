@@ -26,9 +26,5 @@ public class Beeswax extends Item {
 			event.setBurnTime(200);
 	}
 	
-	public int getBurnTime(ItemStack stack) {
-		return 200;
-	}
-	
 }
 
