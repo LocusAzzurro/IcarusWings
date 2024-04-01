@@ -70,6 +70,9 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 .add(ItemRegistry.SYNAPSE_CHESTPLATE.get())
                 .add(ItemRegistry.SYNAPSE_LEGGINGS.get())
                 .add(ItemRegistry.SYNAPSE_BOOTS.get());
+        tag(ItemTags.MUSIC_DISCS)
+                .add(ItemRegistry.DISC_FALLEN_DOWN.get())
+                .add(ItemRegistry.DISC_RING_MY_BELL.get());
     }
 
     @Override
