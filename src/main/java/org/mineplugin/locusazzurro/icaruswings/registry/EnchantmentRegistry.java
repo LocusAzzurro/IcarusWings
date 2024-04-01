@@ -12,7 +12,7 @@ import org.mineplugin.locusazzurro.icaruswings.common.ench.EnchantmentPyrotechni
 public class EnchantmentRegistry {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, ModData.MOD_ID);
 	
-	public static final RegistryObject<Enchantment> collisionProtection = ENCHANTMENTS.register("collision_protection", EnchantmentCollisionProtection::new);
-	public static final RegistryObject<Enchantment> pyrotechnicAffinity = ENCHANTMENTS.register("pyrotechnic_affinity", EnchantmentPyrotechnicAffinity::new);
-	public static final RegistryObject<Enchantment> blessingOfTheSky = ENCHANTMENTS.register("blessing_of_the_sky", EnchantmentBlessingOfTheSky::new);
+	public static final RegistryObject<Enchantment> COLLISION_PROTECTION = ENCHANTMENTS.register("collision_protection", EnchantmentCollisionProtection::new);
+	public static final RegistryObject<Enchantment> PYROTECHNIC_AFFINITY = ENCHANTMENTS.register("pyrotechnic_affinity", EnchantmentPyrotechnicAffinity::new);
+	public static final RegistryObject<Enchantment> BLESSING_OF_THE_SKY = ENCHANTMENTS.register("blessing_of_the_sky", EnchantmentBlessingOfTheSky::new);
 }

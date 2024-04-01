@@ -46,7 +46,7 @@ public class TimeBombEntity extends Entity {
     }
 
     public TimeBombEntity(Level worldIn, Entity holder, float damage, float range, int maxLife){
-        this(EntityTypeRegistry.timeBombEntity.get(), worldIn);
+        this(EntityTypeRegistry.TIME_BOMB.get(), worldIn);
         this.damage = damage;
         this.range = range;
         this.maxLife = maxLife;
@@ -65,13 +65,13 @@ public class TimeBombEntity extends Entity {
         if(level().isClientSide()){
             level().addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0,0,0);
             if (this.life >= this.maxLife){
-                level().addParticle(ParticleRegistry.timeRiftExplosion.get(), this.getX(), this.getY(), this.getZ(), 0,0,0);
+                level().addParticle(ParticleRegistry.TIME_RIFT_EXPLOSION.get(), this.getX(), this.getY(), this.getZ(), 0,0,0);
             }
         }
 
         if (this.life >= this.maxLife){
             level().playSound(null, this.getX(), this.getY(),this.getZ(),
-                    SoundRegistry.timeRiftCollapse.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
+                    SoundRegistry.TIME_RIFT_COLLAPSE.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
             this.explode();
         }
 

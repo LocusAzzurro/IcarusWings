@@ -7,7 +7,7 @@ public class GoldenRamSpawnEgg extends ForgeSpawnEggItem {
 
 
     public GoldenRamSpawnEgg() {
-        super(EntityTypeRegistry.goldenRamEntity,
+        super(EntityTypeRegistry.GOLDEN_RAM,
                 15198183, 0xf2f1aa,
                 new Properties());
     }

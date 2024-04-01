@@ -48,7 +48,7 @@ public class EnchantmentBlessingOfTheSky extends WingsEnchantment {
             LivingEntity livingEntity = (LivingEntity) e.getEntity();
             ItemStack armor = livingEntity.getItemBySlot(EquipmentSlot.CHEST);
             if (livingEntity.isFallFlying() && armor.getItem() instanceof ElytraItem
-                && EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistry.blessingOfTheSky.get(), livingEntity) > 0
+                && EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistry.BLESSING_OF_THE_SKY.get(), livingEntity) > 0
                 && isValidDamageType(e.getSource())){
                 e.setAmount(e.getAmount() / 2);
             }

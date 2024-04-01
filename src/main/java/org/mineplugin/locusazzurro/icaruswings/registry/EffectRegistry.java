@@ -13,9 +13,9 @@ import org.mineplugin.locusazzurro.icaruswings.common.effect.EffectSensoryMaskin
 public class EffectRegistry {
 	public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, ModData.MOD_ID);
 	
-	public static final RegistryObject<MobEffect> poisonImmunity = EFFECTS.register("poison_immunity", EffectPoisonImmunity::new);
-	public static final RegistryObject<MobEffect> sensoryMasking = EFFECTS.register("sensory_masking", EffectSensoryMasking::new);
-	public static final RegistryObject<MobEffect> inevitability = EFFECTS.register("inevitability", EffectInevitability::new);
-	public static final RegistryObject<MobEffect> interdiction = EFFECTS.register("interdiction", EffectInterdiction::new);
+	public static final RegistryObject<MobEffect> POISON_IMMUNITY = EFFECTS.register("poison_immunity", EffectPoisonImmunity::new);
+	public static final RegistryObject<MobEffect> SENSORY_MASKING = EFFECTS.register("sensory_masking", EffectSensoryMasking::new);
+	public static final RegistryObject<MobEffect> INEVITABILITY = EFFECTS.register("inevitability", EffectInevitability::new);
+	public static final RegistryObject<MobEffect> INTERDICTION = EFFECTS.register("interdiction", EffectInterdiction::new);
 
 }

@@ -23,8 +23,8 @@ public class GreekFireFluidType extends FluidType {
         super(FluidType.Properties.create()
                 .density(4000).viscosity(7000).lightLevel(15).temperature(1500).canDrown(false)
                 .descriptionId("block.locusazzurro_icaruswings.greek_fire")
-                .sound(SoundActions.BUCKET_FILL, SoundRegistry.bucketFillGreekFire.get())
-                .sound(SoundActions.BUCKET_EMPTY, SoundRegistry.bucketEmptyGreekFire.get()));
+                .sound(SoundActions.BUCKET_FILL, SoundRegistry.BUCKET_FILL_GREEK_FIRE.get())
+                .sound(SoundActions.BUCKET_EMPTY, SoundRegistry.BUCKET_EMPTY_GREEK_FIRE.get()));
     }
 
     @Override

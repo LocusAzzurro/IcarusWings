@@ -42,16 +42,16 @@ public class ModClientRenderEventHandler{
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent e){
 
-        registerEntityRenderer(EntityTypeRegistry.goldenRamEntity.get(), GoldenRamRenderer::new);
-        registerEntityRenderer(EntityTypeRegistry.artemisMissileEntity.get(), ArtemisMissileRenderer::new);
-        registerEntityRenderer(EntityTypeRegistry.timeBombEntity.get(), TimeBombRenderer::new);
-        registerEntityRenderer(EntityTypeRegistry.timeRiftParticleEntity.get(), ThrownItemRenderer::new);
-        registerEntityRenderer(EntityTypeRegistry.kayrosBlastEntity.get(), ThrownItemRenderer::new);
-        registerEntityRenderer(EntityTypeRegistry.spearEntity.get(), SpearRenderer::new);
+        registerEntityRenderer(EntityTypeRegistry.GOLDEN_RAM.get(), GoldenRamRenderer::new);
+        registerEntityRenderer(EntityTypeRegistry.ARTEMIS_MISSILE.get(), ArtemisMissileRenderer::new);
+        registerEntityRenderer(EntityTypeRegistry.TIME_BOMB.get(), TimeBombRenderer::new);
+        registerEntityRenderer(EntityTypeRegistry.TIME_RIFT_PARTICLE.get(), ThrownItemRenderer::new);
+        registerEntityRenderer(EntityTypeRegistry.KAYROS_BLAST.get(), ThrownItemRenderer::new);
+        registerEntityRenderer(EntityTypeRegistry.SPEAR.get(), SpearRenderer::new);
 
         e.enqueueWork(() -> {
-            ItemBlockRenderTypes.setRenderLayer(FluidRegistry.greekFire.get(), RenderType.translucent());
-            ItemBlockRenderTypes.setRenderLayer(FluidRegistry.greekFireFlowing.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(FluidRegistry.GREEK_FIRE.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(FluidRegistry.GREEK_FIRE_FLOWING.get(), RenderType.translucent());
         });
     }
 
@@ -104,12 +104,12 @@ public class ModClientRenderEventHandler{
 
     @SubscribeEvent
     public static void onParticleFactoryRegister(RegisterParticleProvidersEvent event){
-        event.registerSpriteSet(ParticleRegistry.nullity.get(), NullityParticle.Factory::new);
-        event.registerSpriteSet(ParticleRegistry.plasmaTrail.get(), PlasmaTrailParticle.Factory::new);
-        event.registerSpriteSet(ParticleRegistry.electronicBit.get(), ElectronicBitParticle.Factory::new);
-        event.registerSpriteSet(ParticleRegistry.goldenSparkleBase.get(), GoldenSparkleParticle.BaseFactory::new);
-        event.registerSpriteSet(ParticleRegistry.goldenSparkle.get(), GoldenSparkleParticle.AdvFactory::new);
-        event.registerSpriteSet(ParticleRegistry.timeRiftExplosion.get(), TimeRiftExplosionParticle.Factory::new);
+        event.registerSpriteSet(ParticleRegistry.NULLITY.get(), NullityParticle.Factory::new);
+        event.registerSpriteSet(ParticleRegistry.PLASMA_TRAIL.get(), PlasmaTrailParticle.Factory::new);
+        event.registerSpriteSet(ParticleRegistry.ELECTRONIC_BIT.get(), ElectronicBitParticle.Factory::new);
+        event.registerSpriteSet(ParticleRegistry.GOLDEN_SPARKLE_BASE.get(), GoldenSparkleParticle.BaseFactory::new);
+        event.registerSpriteSet(ParticleRegistry.GOLDEN_SPARKLE.get(), GoldenSparkleParticle.AdvFactory::new);
+        event.registerSpriteSet(ParticleRegistry.TIME_RIFT_EXPLOSION.get(), TimeRiftExplosionParticle.Factory::new);
     }
 
     private static <E extends Entity> void registerEntityRenderer(EntityType<E> type, EntityRendererProvider<E> renderer){

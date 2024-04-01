@@ -30,11 +30,11 @@ public class TimeRiftParticleEntity extends ThrowableItemProjectile {
     }
 
     public TimeRiftParticleEntity(LivingEntity entity, Level world){
-        super(EntityTypeRegistry.timeRiftParticleEntity.get(), entity, world);
+        super(EntityTypeRegistry.TIME_RIFT_PARTICLE.get(), entity, world);
     }
 
     public TimeRiftParticleEntity(double x, double y, double z, Level world){
-        super(EntityTypeRegistry.timeRiftParticleEntity.get(), x, y, z, world);
+        super(EntityTypeRegistry.TIME_RIFT_PARTICLE.get(), x, y, z, world);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class TimeRiftParticleEntity extends ThrowableItemProjectile {
             Entity owner = this.getOwner();
             entity.hurt(ModDamageSources.timeRift(entity.level(), owner), 2.0f);
             if (entity instanceof LivingEntity) {
-                ((EffectInevitability) EffectRegistry.inevitability.get()).addEffect((LivingEntity) entity, 1);
+                ((EffectInevitability) EffectRegistry.INEVITABILITY.get()).addEffect((LivingEntity) entity, 1);
             }
         }
     }

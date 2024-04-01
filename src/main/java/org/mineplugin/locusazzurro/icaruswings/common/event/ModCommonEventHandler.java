@@ -21,7 +21,7 @@ public class ModCommonEventHandler {
 
     @SubscribeEvent
     public static void registerEntityAttributes(EntityAttributeCreationEvent e){
-        e.put(EntityTypeRegistry.goldenRamEntity.get(), GoldenRamEntity.setCustomAttributes().build());
+        e.put(EntityTypeRegistry.GOLDEN_RAM.get(), GoldenRamEntity.setCustomAttributes().build());
     }
 
     @SubscribeEvent

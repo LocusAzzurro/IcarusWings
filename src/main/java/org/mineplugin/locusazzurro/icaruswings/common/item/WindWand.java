@@ -59,7 +59,7 @@ public class WindWand extends Item {
                     offhandStack.shrink(1);
                     ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegistry.GLASS_JAR.get()));
                 }
-                worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundRegistry.airJarEmpty.get(), SoundSource.NEUTRAL, 0.5f, 0.6f);
+                worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundRegistry.AIR_JAR_EMPTY.get(), SoundSource.NEUTRAL, 0.5f, 0.6f);
                 itemStack.setDamageValue(Math.max(itemStack.getDamageValue() - repairAmount, 0));
             }
             else {
@@ -84,7 +84,7 @@ public class WindWand extends Item {
                     }
                 }
                 worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(),
-                        SoundRegistry.windWandBurst.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
+                        SoundRegistry.WIND_WAND_BURST.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
                 playerIn.awardStat(Stats.ITEM_USED.get(this));
             }
         }

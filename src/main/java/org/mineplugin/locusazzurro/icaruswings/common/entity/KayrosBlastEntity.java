@@ -43,7 +43,7 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
     }
 
     public KayrosBlastEntity(LivingEntity entity, Level world, CompoundTag terrain){
-        super(EntityTypeRegistry.kayrosBlastEntity.get(), entity, world);
+        super(EntityTypeRegistry.KAYROS_BLAST.get(), entity, world);
         this.entityData.set(LANDSCAPE, terrain);
     }
 
@@ -66,7 +66,7 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
     @Override
     public void onHit(HitResult ray){
         super.onHit(ray);
-        this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundRegistry.timeRiftCollapse.get(), SoundSource.PLAYERS, 2.0F, 1.1F);
+        this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundRegistry.TIME_RIFT_COLLAPSE.get(), SoundSource.PLAYERS, 2.0F, 1.1F);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
                 }
             }
             this.level().getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(4)).forEach(e -> {
-                ((EffectInevitability) EffectRegistry.inevitability.get()).addEffect(e, 3);
+                ((EffectInevitability) EffectRegistry.INEVITABILITY.get()).addEffect(e, 3);
                 e.hurt(ModDamageSources.timeRift(this.level(), this.getOwner()), 5.0f);
             });
             ((ServerLevel)level()).sendParticles(ParticleTypes.WITCH,
@@ -102,7 +102,7 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
         super.onHitEntity(pResult);
         Entity entity = pResult.getEntity();
         if (entity instanceof LivingEntity livingEntity) {
-            ((EffectInevitability) EffectRegistry.inevitability.get()).addEffect(livingEntity, 5);
+            ((EffectInevitability) EffectRegistry.INEVITABILITY.get()).addEffect(livingEntity, 5);
             livingEntity.hurt(ModDamageSources.timeRift(this.level(), this.getOwner()), 15.0f);
         }
     }

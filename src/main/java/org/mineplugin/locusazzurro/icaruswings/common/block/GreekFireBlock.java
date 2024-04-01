@@ -16,7 +16,7 @@ import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 public class GreekFireBlock extends LiquidBlock {
 
     public GreekFireBlock(){
-        super(FluidRegistry.greekFire, Block.Properties.of().liquid().noCollission().strength(100.0F).noLootTable().lightLevel((b) -> 15));
+        super(FluidRegistry.GREEK_FIRE, Block.Properties.of().liquid().noCollission().strength(100.0F).noLootTable().lightLevel((b) -> 15));
     }
 
     @SuppressWarnings("deprecation")
@@ -39,13 +39,13 @@ public class GreekFireBlock extends LiquidBlock {
         if (worldIn.getBlockState(blockpos).isAir() && !worldIn.getBlockState(blockpos).isSolidRender(worldIn, blockpos)) {
             int seed = random.nextInt(200);
             if (seed == 0) {
-                worldIn.playLocalSound((double)blockPos.getX(), (double)blockPos.getY(), (double)blockPos.getZ(), SoundRegistry.greekFireAmbient.get(), SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+                worldIn.playLocalSound((double)blockPos.getX(), (double)blockPos.getY(), (double)blockPos.getZ(), SoundRegistry.GREEK_FIRE_AMBIENT.get(), SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
             }
             if (seed % 100 == 0){
                 double d0 = (double)blockPos.getX() + random.nextDouble();
                 double d1 = (double)blockPos.getY() + 1.0D;
                 double d2 = (double)blockPos.getZ() + random.nextDouble();
-                worldIn.playLocalSound(d0, d1, d2, SoundRegistry.greekFirePop.get(), SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+                worldIn.playLocalSound(d0, d1, d2, SoundRegistry.GREEK_FIRE_POP.get(), SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
             }
             if (seed % 50 == 0) {
                 double d0 = (double)blockPos.getX() + random.nextDouble();

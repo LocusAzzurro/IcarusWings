@@ -43,7 +43,7 @@ public class ArtemisTransportCard extends AbstractTransportCard{
                 if (!worldIn.isClientSide()) {
                     playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_artemis.error1"));
                 }
-                worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundSource.PLAYERS, 1.0F, 0.5F);
+                worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_FAIL.get(), SoundSource.PLAYERS, 1.0F, 0.5F);
                 playerIn.getCooldowns().addCooldown(this, 10);
                 return InteractionResultHolder.pass(itemStack);
             }
@@ -65,9 +65,9 @@ public class ArtemisTransportCard extends AbstractTransportCard{
             }
             missile.moveTo(dPos[i]);
             worldIn.addFreshEntity(missile);
-            worldIn.playSound(null, missile, SoundRegistry.artemisMissileLaunch.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+            worldIn.playSound(null, missile, SoundRegistry.ARTEMIS_MISSILE_LAUNCH.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
         }
-        worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationArtemis.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+        worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_ACTIVATION_ARTEMIS.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
         if (!playerIn.isCreative()){ itemStack.shrink(1); }
         playerIn.getCooldowns().addCooldown(this, 40);

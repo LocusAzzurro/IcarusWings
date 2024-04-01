@@ -41,14 +41,14 @@ public class SpearEntity extends AbstractArrow {
     }
 
     public SpearEntity(Level worldIn, LivingEntity owner, ItemStack spear){
-        super(EntityTypeRegistry.spearEntity.get(), owner, worldIn);
+        super(EntityTypeRegistry.SPEAR.get(), owner, worldIn);
         this.spearItem = spear.copy();
         this.entityData.set(SPEAR_ITEM, spear);
     }
 
     @OnlyIn(Dist.CLIENT)
     public SpearEntity(Level p_i48791_1_, double p_i48791_2_, double p_i48791_4_, double p_i48791_6_) {
-        super(EntityTypeRegistry.spearEntity.get(), p_i48791_2_, p_i48791_4_, p_i48791_6_, p_i48791_1_);
+        super(EntityTypeRegistry.SPEAR.get(), p_i48791_2_, p_i48791_4_, p_i48791_6_, p_i48791_1_);
         this.spearItem = new ItemStack(ItemRegistry.WOODEN_SPEAR.get());
     }
 
@@ -80,7 +80,7 @@ public class SpearEntity extends AbstractArrow {
         DamageSource damageSource = ModDamageSources.spear(this.level(), this, owner == null ? this : owner);
         //DamageSource damageSource = new DamageSource(this.level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypeRegistry.SPEAR),this, owner == null ? this : owner);
         this.dealtDamage = true;
-        SoundEvent soundevent = SoundRegistry.spearHit.get();
+        SoundEvent soundevent = SoundRegistry.SPEAR_HIT.get();
         if (target.hurt(damageSource, f)) {
             if (target.getType() == EntityType.ENDERMAN) {
                 return;
@@ -104,7 +104,7 @@ public class SpearEntity extends AbstractArrow {
 
     @Override
     protected SoundEvent getDefaultHitGroundSoundEvent() {
-        return SoundRegistry.spearHitGround.get();
+        return SoundRegistry.SPEAR_HIT_GROUND.get();
     }
 
     @Override

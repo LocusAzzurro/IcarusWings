@@ -36,7 +36,7 @@ public class MaskingFieldTransportCard extends AbstractTransportCard{
         if (worldIn.isClientSide()) {
             PARTICLE_POINTS.forEach((point) -> {
                 Vector3d rPoint = MathUtils.mulCopy(point, 0.4);
-                worldIn.addParticle(ParticleRegistry.electronicBit.get(),
+                worldIn.addParticle(ParticleRegistry.ELECTRONIC_BIT.get(),
                         playerIn.getX(), playerIn.getY() + 0.5, playerIn.getZ(),
                         rPoint.x(), rPoint.y(), rPoint.z());
             });
@@ -44,17 +44,17 @@ public class MaskingFieldTransportCard extends AbstractTransportCard{
                 double xR = worldIn.random.nextDouble() * 2 - 1;
                 double yR = worldIn.random.nextDouble() * 2 - 1;
                 double zR = worldIn.random.nextDouble() * 2 - 1;
-                worldIn.addParticle(ParticleRegistry.electronicBit.get(), playerIn.getX(), playerIn.getY() + 0.5, playerIn.getZ(), xR, yR, zR);
+                worldIn.addParticle(ParticleRegistry.ELECTRONIC_BIT.get(), playerIn.getX(), playerIn.getY() + 0.5, playerIn.getZ(), xR, yR, zR);
             }
         }
 
-        worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationElectronic.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+        worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_ACTIVATION_ELECTRONIC.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
         float r = RANGE;
         AABB aabb = new AABB(r, r, r, -r, -r, -r).move(playerIn.position());
         List<Player> players = playerIn.level().getEntitiesOfClass(Player.class, aabb);
         for (Player player : players) {
-            player.addEffect(new MobEffectInstance(EffectRegistry.sensoryMasking.get(), 2400, 0));
+            player.addEffect(new MobEffectInstance(EffectRegistry.SENSORY_MASKING.get(), 2400, 0));
         }
 
         if(!playerIn.isCreative()) {itemstack.shrink(1);}

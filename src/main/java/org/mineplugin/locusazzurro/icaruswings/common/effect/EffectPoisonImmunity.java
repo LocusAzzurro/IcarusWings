@@ -23,7 +23,7 @@ public class EffectPoisonImmunity extends AbstractEffect{
 	@SubscribeEvent
 	public static void onPotionApplication(MobEffectEvent.Applicable e) {
 		if (e.getEffectInstance().getEffect().equals(MobEffects.POISON)
-				&& (e.getEntity().hasEffect(EffectRegistry.poisonImmunity.get()))) {
+				&& (e.getEntity().hasEffect(EffectRegistry.POISON_IMMUNITY.get()))) {
 			e.setResult(Result.DENY);
 		}
 	}

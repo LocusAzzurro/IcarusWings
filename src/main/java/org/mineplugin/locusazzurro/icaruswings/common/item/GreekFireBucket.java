@@ -7,6 +7,6 @@ import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 public class GreekFireBucket extends BucketItem {
 
     public GreekFireBucket() {
-        super(FluidRegistry.greekFire, new Properties().craftRemainder(Items.BUCKET));
+        super(FluidRegistry.GREEK_FIRE, new Properties().craftRemainder(Items.BUCKET));
     }
 }

@@ -159,7 +159,7 @@ public class MeadPot extends BaseEntityBlock {
 					ItemHandlerHelper.giveItemToPlayer(player, stackOut);
 				}
             	meadPotTE.startFermenting();
-            	worldIn.playSound(null, pos, SoundRegistry.meadPotBrew.get(), SoundSource.BLOCKS, 2.0f, 1.3f);
+            	worldIn.playSound(null, pos, SoundRegistry.MEAD_POT_BREW.get(), SoundSource.BLOCKS, 2.0f, 1.3f);
             	return InteractionResult.SUCCESS;
             }
             if (stackIn.getItem() == ItemRegistry.GLASS_JAR.get() && meadPotTE.isComplete()) {
@@ -174,7 +174,7 @@ public class MeadPot extends BaseEntityBlock {
 				ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(itemOut));
             	meadPotTE.setEmpty();
 				worldIn.setBlock(pos, worldIn.getBlockState(pos).setValue(INFUSION, Mead.Infusion.NONE), 3);
-            	worldIn.playSound(null, pos, SoundRegistry.meadPotBrew.get(), SoundSource.BLOCKS, 2.0f, 1.3f);
+            	worldIn.playSound(null, pos, SoundRegistry.MEAD_POT_BREW.get(), SoundSource.BLOCKS, 2.0f, 1.3f);
             	return InteractionResult.SUCCESS;
             }
             return InteractionResult.PASS;
@@ -193,7 +193,7 @@ public class MeadPot extends BaseEntityBlock {
 				if (stack.is(item.get())) {
 					pLevel.setBlock(pPos, pLevel.getBlockState(pPos).setValue(INFUSION, infusion), 3);
 				}});
-			pLevel.playSound(null, pPos, SoundRegistry.meadPotBrew.get(), SoundSource.BLOCKS, 2.0f, 1.0f);
+			pLevel.playSound(null, pPos, SoundRegistry.MEAD_POT_BREW.get(), SoundSource.BLOCKS, 2.0f, 1.0f);
 			if (pLevel instanceof ServerLevel server){
 				server.sendParticles(ParticleTypes.POOF,
 						pPos.getX() + 0.5,

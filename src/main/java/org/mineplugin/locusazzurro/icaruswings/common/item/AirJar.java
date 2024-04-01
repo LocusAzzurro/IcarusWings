@@ -49,7 +49,7 @@ public class AirJar extends Item {
                         1, 1, 1);
             }
         }
-        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundRegistry.airJarEmpty.get(), SoundSource.NEUTRAL, 0.5f, 0.6f);
+        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundRegistry.AIR_JAR_EMPTY.get(), SoundSource.NEUTRAL, 0.5f, 0.6f);
         if (!playerIn.getAbilities().instabuild){
             itemStack.shrink(1);
             ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegistry.GLASS_JAR.get()));

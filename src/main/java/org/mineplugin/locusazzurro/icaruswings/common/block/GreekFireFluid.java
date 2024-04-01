@@ -7,6 +7,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.*;
@@ -15,7 +16,7 @@ public abstract class GreekFireFluid extends ForgeFlowingFluid{
 
     public static final ResourceLocation GREEK_FIRE_STILL = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_still");
     public static final ResourceLocation GREEK_FIRE_FLOWING = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_flow");
-    public static ForgeFlowingFluid.Properties fluidProperties = new ForgeFlowingFluid.Properties(greekFireFluidType, greekFire,greekFireFlowing)
+    public static ForgeFlowingFluid.Properties fluidProperties = new ForgeFlowingFluid.Properties(GREEK_FIRE_FLUID_TYPE, GREEK_FIRE, FluidRegistry.GREEK_FIRE_FLOWING)
             .bucket(ItemRegistry.GREEK_FIRE_BUCKET).block(BlockRegistry.GREEK_FIRE).slopeFindDistance(1).explosionResistance(100F);
 
     public GreekFireFluid(Properties properties) {

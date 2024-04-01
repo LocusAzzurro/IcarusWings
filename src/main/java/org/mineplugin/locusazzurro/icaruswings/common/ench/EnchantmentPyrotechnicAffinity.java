@@ -36,7 +36,7 @@ public class EnchantmentPyrotechnicAffinity extends WingsEnchantment {
             FireworkRocketEntity firework = (FireworkRocketEntity) entity;
             if (firework.isAttachedToEntity()
                     && firework.attachedToEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ElytraItem){
-                int enchLvl = EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistry.pyrotechnicAffinity.get(), firework.attachedToEntity);
+                int enchLvl = EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistry.PYROTECHNIC_AFFINITY.get(), firework.attachedToEntity);
                 firework.lifetime *= 1 + enchLvl * 0.1;
             }
         }

@@ -43,7 +43,7 @@ public class GlassJar extends Item {
                 if (rand <= chance) {
                     targetStack.shrink(1);
                     ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(getResultItem(dim).get()));
-                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundRegistry.airJarFill.get(), SoundSource.NEUTRAL, 0.9f, 0.8f);
+                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundRegistry.AIR_JAR_FILL.get(), SoundSource.NEUTRAL, 0.9f, 0.8f);
                 }
             }
         }

@@ -42,7 +42,7 @@ public class ArtemisLauncher extends ProjectileWeaponItem {
             missile.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, 2.0f, 1.0f);
         }
         worldIn.addFreshEntity(missile);
-        worldIn.playSound(null, missile, SoundRegistry.artemisMissileLaunch.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+        worldIn.playSound(null, missile, SoundRegistry.ARTEMIS_MISSILE_LAUNCH.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
         if (!worldIn.isClientSide()) {
             item.hurtAndBreak(1, playerIn, (player) -> {

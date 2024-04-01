@@ -55,7 +55,7 @@ public class Demeter extends ProjectileWeaponItem {
             particle.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, 1.0f, 0.5f);
             particle.setNoGravity(true);
             worldIn.addFreshEntity(particle);
-            worldIn.playSound(null, playerIn, SoundRegistry.demeterBlast.get(), SoundSource.PLAYERS, 1.0F, 1.2F);
+            worldIn.playSound(null, playerIn, SoundRegistry.DEMETER_BLAST.get(), SoundSource.PLAYERS, 1.0F, 1.2F);
             itemStack.hurtAndBreak(1, playerIn, (player) -> player.broadcastBreakEvent(playerIn.getUsedItemHand()));
         }
 
@@ -81,7 +81,7 @@ public class Demeter extends ProjectileWeaponItem {
         pStack.hurtAndBreak(1, pAttacker, (attacker) -> {
             attacker.broadcastBreakEvent(EquipmentSlot.MAINHAND);
         });
-        ((EffectInevitability) EffectRegistry.inevitability.get()).addEffect(pTarget, 1);
+        ((EffectInevitability) EffectRegistry.INEVITABILITY.get()).addEffect(pTarget, 1);
         pTarget.hurt(ModDamageSources.timeRift(pTarget.level(), pAttacker), 2.0f);
         return true;
     }

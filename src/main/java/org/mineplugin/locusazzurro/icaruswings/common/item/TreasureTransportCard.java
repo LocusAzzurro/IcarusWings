@@ -74,10 +74,10 @@ public class TreasureTransportCard extends AbstractTransportCard{
         }
 
         if (readLootTableSuccess){
-            worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationGeneric.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+            worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_ACTIVATION_GENERIC.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
             if (!worldIn.isClientSide()) {
                 if (playerIn.isCrouching()){
-                    ((ServerLevel) worldIn).sendParticles(ParticleRegistry.goldenSparkleBase.get(), playerIn.getX(), playerIn.getY(), playerIn.getZ(),
+                    ((ServerLevel) worldIn).sendParticles(ParticleRegistry.GOLDEN_SPARKLE_BASE.get(), playerIn.getX(), playerIn.getY(), playerIn.getZ(),
                             30, 0.5d, 0.5d, 0.5d, 0.0d);
                     for (ItemStack item : lootItems){
                         ItemHandlerHelper.giveItemToPlayer(playerIn, item);
@@ -94,7 +94,7 @@ public class TreasureTransportCard extends AbstractTransportCard{
                                 playerIn.getX() + dropPoints[pI].x, yP,
                                 playerIn.getZ() + dropPoints[pI].z, item);
                         worldIn.addFreshEntity(itemEntity);
-                        ((ServerLevel) worldIn).sendParticles(ParticleRegistry.goldenSparkleBase.get(),
+                        ((ServerLevel) worldIn).sendParticles(ParticleRegistry.GOLDEN_SPARKLE_BASE.get(),
                                 playerIn.getX() + dropPoints[pI].x,
                                 yP, playerIn.getZ() + dropPoints[pI].z,
                                 3, 0.1d, 0.1d, 0.1d, 0.0d);
@@ -108,7 +108,7 @@ public class TreasureTransportCard extends AbstractTransportCard{
             return InteractionResultHolder.consume(itemstack);
         }
         else {
-            worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+            worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_FAIL.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
             if (errorCode == 1) {
                 playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_treasure.error1"));
             }

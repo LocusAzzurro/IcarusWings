@@ -20,7 +20,7 @@ public class EffectSensoryMasking extends AbstractEffect{
 	public static void onSetTarget(LivingChangeTargetEvent e) {
 		if (e.getNewTarget() != null) {
 			LivingEntity targeter = e.getEntity();
-			if (e.getNewTarget().hasEffect(EffectRegistry.sensoryMasking.get()) && targeter instanceof Mob) {
+			if (e.getNewTarget().hasEffect(EffectRegistry.SENSORY_MASKING.get()) && targeter instanceof Mob) {
 				((Mob) targeter).setTarget(e.getOriginalTarget());
 			}
 		}

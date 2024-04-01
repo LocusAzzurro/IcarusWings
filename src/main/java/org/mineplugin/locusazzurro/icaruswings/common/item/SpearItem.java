@@ -174,7 +174,7 @@ public class SpearItem extends TieredItem implements Vanishable {
                 }
 
                 worldIn.addFreshEntity(spearEntity);
-                worldIn.playSound(null, spearEntity, SoundRegistry.spearThrow.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                worldIn.playSound(null, spearEntity, SoundRegistry.SPEAR_THROW.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 if (!playerIn.getAbilities().instabuild) {
                     playerIn.getInventory().removeItem(itemStack);
                 }

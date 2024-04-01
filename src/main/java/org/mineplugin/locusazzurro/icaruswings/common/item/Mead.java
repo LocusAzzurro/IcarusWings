@@ -89,7 +89,7 @@ public class Mead extends Item {
 					case HERBS -> {
                         extraEffect.add(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
                         extraEffect.add(new MobEffectInstance(MobEffects.LUCK, 1200, 0));
-						extraEffect.add(new MobEffectInstance(EffectRegistry.poisonImmunity.get(), 1200, 0));
+						extraEffect.add(new MobEffectInstance(EffectRegistry.POISON_IMMUNITY.get(), 1200, 0));
                     }
                     default -> {
                     }
@@ -171,7 +171,7 @@ public class Mead extends Item {
 					List<Sheep> sheep = level.getEntitiesOfClass(Sheep.class, aabb);
 					if (!sheep.isEmpty()){
 						Sheep sheep1 = sheep.get(level.random.nextInt(sheep.size()));
-						sheep1.convertTo(EntityTypeRegistry.goldenRamEntity.get(), true);
+						sheep1.convertTo(EntityTypeRegistry.GOLDEN_RAM.get(), true);
 					}
 
 					if (!player.getAbilities().instabuild) {
@@ -183,7 +183,7 @@ public class Mead extends Item {
 				else {
 					var rnd = level.getRandom();
 					for (int i = 0; i < 10; i++) {
-						level.addParticle(ParticleRegistry.goldenSparkle.get(),
+						level.addParticle(ParticleRegistry.GOLDEN_SPARKLE.get(),
 								pos.getX() + 0.5 + (rnd.nextFloat() - 0.5),
 								pos.getY() + 1.5 + (rnd.nextFloat() - 0.5) / 3,
 								pos.getZ() + 0.5 + (rnd.nextFloat() - 0.5),

@@ -33,7 +33,7 @@ public class TimeRiftGenerator extends ProjectileWeaponItem {
         particle.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, 2.0f, 0.5f);
         particle.setNoGravity(true);
         worldIn.addFreshEntity(particle);
-        worldIn.playSound(null, playerIn, SoundRegistry.timeRiftGeneratorFire.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+        worldIn.playSound(null, playerIn, SoundRegistry.TIME_RIFT_GENERATOR_FIRE.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
         if (!worldIn.isClientSide()) {
             itemStack.hurtAndBreak(1, playerIn, (player) -> {

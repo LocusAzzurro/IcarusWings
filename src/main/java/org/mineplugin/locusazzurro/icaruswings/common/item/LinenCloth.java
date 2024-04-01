@@ -7,10 +7,10 @@ import org.mineplugin.locusazzurro.icaruswings.common.data.ModArmorMaterial;
 
 public class LinenCloth extends ArmorItem implements Vanishable {
 
-	private static final ModArmorMaterial material = ModArmorMaterial.LINEN;
+	private static final ModArmorMaterial MATERIAL = ModArmorMaterial.LINEN;
 
 	public LinenCloth(ArmorItem.Type type) {
-		super(material, type, new Item.Properties().defaultDurability(material.getDurabilityForType(type)));
+		super(MATERIAL, type, new Item.Properties().defaultDurability(MATERIAL.getDurabilityForType(type)));
 	}
 
 

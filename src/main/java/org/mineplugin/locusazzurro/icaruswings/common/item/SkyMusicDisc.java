@@ -1,22 +1,9 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.stats.Stats;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.RecordItem;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.JukeboxBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.JukeboxBlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.gameevent.GameEvent;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import java.util.function.Supplier;
@@ -41,8 +28,8 @@ public class SkyMusicDisc extends RecordItem {
 	
 	@SuppressWarnings("unused")
 	public enum Track{
-		FALLEN_DOWN(1, () -> (SoundRegistry.trackFallenDown.get()), "Fallen Down", "Hayami Saori", 4800),
-		RING_MY_BELL(2, () -> (SoundRegistry.trackRingMyBell.get()), "Ring My Bell", "Blue Drops", 1800);
+		FALLEN_DOWN(1, () -> (SoundRegistry.TRACK_FALLEN_DOWN.get()), "Fallen Down", "Hayami Saori", 4800),
+		RING_MY_BELL(2, () -> (SoundRegistry.TRACK_RING_MY_BELL.get()), "Ring My Bell", "Blue Drops", 1800);
 		
 		private int trackNum;
 		private Supplier<SoundEvent> trackMusic;

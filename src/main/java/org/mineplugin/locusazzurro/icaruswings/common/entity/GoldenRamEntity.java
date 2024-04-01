@@ -107,7 +107,7 @@ public class GoldenRamEntity extends Animal implements IForgeShearable {
 		super.tick();
 		if (level().isClientSide() && (this.tickCount % 4 == 0)){
 			var rnd = level().getRandom();
-			level().addParticle(ParticleRegistry.goldenSparkle.get(),
+			level().addParticle(ParticleRegistry.GOLDEN_SPARKLE.get(),
 					this.getX(), this.getY()+0.8, this.getZ(),
 					(rnd.nextFloat() - 0.5) / 4 ,
 					(rnd.nextFloat() - 0.4) / 4 ,
@@ -116,18 +116,18 @@ public class GoldenRamEntity extends Animal implements IForgeShearable {
 	}
 
 	@Override
-	protected SoundEvent getAmbientSound() {return SoundRegistry.goldenRamAmbient.get();}
+	protected SoundEvent getAmbientSound() {return SoundRegistry.GOLDEN_RAM_AMBIENT.get();}
 	
 	@Override
 	@ParametersAreNonnullByDefault
-	protected SoundEvent getHurtSound(DamageSource ds) {return SoundRegistry.goldenRamHurt.get();}
+	protected SoundEvent getHurtSound(DamageSource ds) {return SoundRegistry.GOLDEN_RAM_HURT.get();}
 	
 	@Override
-	protected SoundEvent getDeathSound() {return SoundRegistry.goldenRamDeath.get();}
+	protected SoundEvent getDeathSound() {return SoundRegistry.GOLDEN_RAM_DEATH.get();}
 
 	@Override
 	protected void playStepSound(BlockPos pos, BlockState state) {
-		this.playSound(SoundRegistry.goldenRamStep.get(), 0.15F, 1.0F);
+		this.playSound(SoundRegistry.GOLDEN_RAM_STEP.get(), 0.15F, 1.0F);
 	}
 
 	public void setSheared(boolean isSheared) {
@@ -151,7 +151,7 @@ public class GoldenRamEntity extends Animal implements IForgeShearable {
 	@Nonnull
 	@Override
 	public List<ItemStack> onSheared(@Nullable Player player, @Nonnull ItemStack item, Level world, BlockPos pos, int fortune) {
-		world.playSound(null, this, SoundRegistry.goldenRamShear.get(), player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
+		world.playSound(null, this, SoundRegistry.GOLDEN_RAM_SHEAR.get(), player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
 		if (!world.isClientSide) {
 			this.setSheared(true);
 			int i = 1 + this.random.nextInt(3);

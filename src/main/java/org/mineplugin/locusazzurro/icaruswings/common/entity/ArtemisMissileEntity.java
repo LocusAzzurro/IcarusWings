@@ -35,7 +35,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     private static final int DEFAULT_FUEL = 1200; // Default: 1200 (60s)
     private int fuel;
     private double homingSpeed = 1.1;
-    private static final ParticleOptions PARTICLE = ParticleRegistry.plasmaTrail.get();
+    private static final ParticleOptions PARTICLE = ParticleRegistry.PLASMA_TRAIL.get();
     
     // 空白粒子
     public static final ParticleOptions PARTICLE_EMPTY = new BlockParticleOption(ParticleTypes.BLOCK, Blocks.AIR.defaultBlockState()) ;
@@ -46,7 +46,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     }
 
     public ArtemisMissileEntity(double x, double y, double z, double accelX, double accelY, double accelZ, Level world){
-        this(EntityTypeRegistry.artemisMissileEntity.get(), world);
+        this(EntityTypeRegistry.ARTEMIS_MISSILE.get(), world);
         this.moveTo(x, y, z, this.getYRot(), this.getXRot());
         this.reapplyPosition();
         double v = Mth.sqrt((float) (accelX * accelX + accelY * accelY + accelZ * accelZ));
@@ -64,7 +64,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     }
 
     public ArtemisMissileEntity(Level world, LivingEntity shooter, double powerX, double powerY, double powerZ){
-        this(EntityTypeRegistry.artemisMissileEntity.get(), world);
+        this(EntityTypeRegistry.ARTEMIS_MISSILE.get(), world);
         this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
         this.reapplyPosition();
         this.setOwner(shooter);
@@ -74,14 +74,14 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     }
 
     public ArtemisMissileEntity(Level world, LivingEntity shooter){
-        this(EntityTypeRegistry.artemisMissileEntity.get(), world);
+        this(EntityTypeRegistry.ARTEMIS_MISSILE.get(), world);
         this.setOwner(shooter);
         this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
         this.reapplyPosition();
     }
 
     public ArtemisMissileEntity(Level world, LivingEntity shooter, LivingEntity target){
-        this(EntityTypeRegistry.artemisMissileEntity.get(), world);
+        this(EntityTypeRegistry.ARTEMIS_MISSILE.get(), world);
         this.setOwner(shooter);
         this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
         this.reapplyPosition();

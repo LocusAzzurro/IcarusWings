@@ -58,12 +58,12 @@ public class TeleportTransportCard extends AbstractTransportCard{
                         }
                     }
                 }
-                worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundRegistry.transportCardTeleportAnchor.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundRegistry.TRANSPORT_CARD_TELEPORT_ANCHOR.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 playerIn.getCooldowns().addCooldown(this, 40);
                 return InteractionResultHolder.consume(itemstack);
             }
             else {
-                worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_FAIL.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 if (!worldIn.isClientSide())
                     playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_teleport.error1"));
                 playerIn.getCooldowns().addCooldown(this, 20);
@@ -72,7 +72,7 @@ public class TeleportTransportCard extends AbstractTransportCard{
         }
         else {
             playerIn.startUsingItem(handIn);
-            worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationChrono.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+            worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_ACTIVATION_CHRONO.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
         }
         return InteractionResultHolder.consume(itemstack);
     }
@@ -109,11 +109,11 @@ public class TeleportTransportCard extends AbstractTransportCard{
                     playerIn.fallDistance = 0.0F;
                     ((ServerLevel)worldIn).sendParticles(ParticleTypes.PORTAL, playerIn.getX(), playerIn.getY(), playerIn.getZ(),
                             20, 1d, 0.5d, 1d, 0.0d);
-                    worldIn.playSound(null, playerIn, SoundRegistry.transportCardTeleport.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                    worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_TELEPORT.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
                     playerIn.teleportTo(x, y, z);
 
-                    worldIn.playSound(null, playerIn, SoundRegistry.transportCardTeleport.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                    worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_TELEPORT.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                     ((ServerLevel)worldIn).sendParticles(ParticleTypes.PORTAL, playerIn.getX(), playerIn.getY(), playerIn.getZ(),
                             20, 1d, 0.5d, 1d, 0.0d);
 
@@ -124,14 +124,14 @@ public class TeleportTransportCard extends AbstractTransportCard{
                     }
                 }
                 else {
-                    worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                    worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_FAIL.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                     playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_teleport.error2"));
                     playerIn.getCooldowns().addCooldown(this, 20);
                 }
                 return itemStack;
             }
             else {
-                worldIn.playSound(null, playerIn, SoundRegistry.transportCardFail.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_FAIL.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_teleport.error3"));
                 playerIn.getCooldowns().addCooldown(this, 20);
                 return itemStack;

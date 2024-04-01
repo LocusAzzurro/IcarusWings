@@ -25,7 +25,7 @@ public class ChronoExplosionTransportCard extends AbstractTransportCard{
         TimeBombEntity bomb = new TimeBombEntity(worldIn, playerIn, DAMAGE, RANGE, 120);
         bomb.setPulsing();
         worldIn.addFreshEntity(bomb);
-        worldIn.playSound(null, playerIn, SoundRegistry.transportCardActivationChrono.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+        worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_ACTIVATION_CHRONO.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
         if(!playerIn.isCreative()) {itemstack.shrink(1);}
         playerIn.getCooldowns().addCooldown(this, 80);
