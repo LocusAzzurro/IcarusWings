@@ -2,14 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "locusazzurro_icaruswings:elysian_grass"
-        }
-      ],
       "conditions": [
         {
           "condition": "minecraft:match_tool",
@@ -19,7 +12,15 @@
             ]
           }
         }
-      ]
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "locusazzurro_icaruswings:elysian_grass"
+        }
+      ],
+      "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "locusazzurro_icaruswings:blocks/elysian_grass"
 }

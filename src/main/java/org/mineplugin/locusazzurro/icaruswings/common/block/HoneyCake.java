@@ -8,6 +8,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 public class HoneyCake extends CakeBlock {
 
     public HoneyCake() {
-        super(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOL));
+        super(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOL).noLootTable());
     }
 }
