@@ -38,7 +38,7 @@ public class ArtemisTransportCard extends AbstractTransportCard{
         LivingEntity target = null;
         boolean homing = (type == CardType.ARTEMIS_HOMING);
         if (homing) {
-            target = ProjectileUtils.rayTraceTarget(playerIn, 0.1d, 300, 0.2);
+            target = ProjectileUtils.rayTraceTarget(playerIn, ProjectileUtils.IS_HOSTILE, 0.5f, 500, 2);
             if (target == null) {
                 if (!worldIn.isClientSide()) {
                     playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_artemis.error1"));

@@ -35,6 +35,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     private static final int DEFAULT_FUEL = 1200; // Default: 1200 (60s)
     private int fuel;
     private double homingSpeed = 1.1;
+    private double cruisingSpeed = 0.8;
     private static final ParticleOptions PARTICLE = ParticleRegistry.PLASMA_TRAIL.get();
     
     // 空白粒子
@@ -140,6 +141,10 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
                     .normalize().scale(homingSpeed);
             this.setDeltaMovement(v3d);
         }
+        else {
+            this.setDeltaMovement(this.getDeltaMovement().normalize().scale(cruisingSpeed));
+        }
+
         if (this.fuel <= 0) {
             this.onEmptyFuel();
         }

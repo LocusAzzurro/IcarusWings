@@ -32,7 +32,7 @@ public class ArtemisLauncher extends ProjectileWeaponItem {
             return InteractionResultHolder.pass(item);
         }
 
-        LivingEntity entity = ProjectileUtils.rayTraceTarget(playerIn, 0.1f, 300, 1);
+        LivingEntity entity = ProjectileUtils.rayTraceTarget(playerIn, ProjectileUtils.IS_HOSTILE, 0.5f, 500, 2);
         ArtemisMissileEntity missile;
         if (entity != null) {
             missile = new ArtemisMissileEntity(worldIn, playerIn, entity);

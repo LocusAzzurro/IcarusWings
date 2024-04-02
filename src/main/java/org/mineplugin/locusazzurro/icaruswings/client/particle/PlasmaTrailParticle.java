@@ -19,7 +19,7 @@ public class PlasmaTrailParticle extends TextureSheetParticle {
         this.xd = xSpeed + (Math.random() * 2.0d - 1.0d) * 0.005d;
         this.yd = ySpeed + (Math.random() * 2.0d - 1.0d) * 0.005d;
         this.zd = zSpeed + (Math.random() * 2.0d - 1.0d) * 0.005d;
-        this.lifetime = (int)(10 / Math.random() * 1.5f);
+        this.lifetime = (int)Math.min(50f, (10 / Math.random() * 1.5f));
         this.hasPhysics = true;
     }
 
