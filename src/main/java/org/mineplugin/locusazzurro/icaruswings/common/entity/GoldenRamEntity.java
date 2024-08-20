@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -25,10 +26,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.IForgeShearable;
-import net.minecraftforge.network.NetworkHooks;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.IShearable;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.ai.EatGoldenGrassGoal;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GoldenRamEntity extends Animal implements IForgeShearable {
+public class GoldenRamEntity extends Animal implements IShearable {
 
 	private static final EntityDataAccessor<Boolean> IS_SHEARED = SynchedEntityData.defineId(GoldenRamEntity.class, EntityDataSerializers.BOOLEAN);
 	private EatGoldenGrassGoal eatBlockGoal;
@@ -79,7 +79,7 @@ public class GoldenRamEntity extends Animal implements IForgeShearable {
 	
 	@Override
 	public Packet<ClientGamePacketListener> getAddEntityPacket() {
-	  return NetworkHooks.getEntitySpawningPacket(this);
+		return new ClientboundAddEntityPacket(this);
 	}
 
 	public static AttributeSupplier.Builder setCustomAttributes(){

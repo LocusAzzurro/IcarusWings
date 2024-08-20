@@ -6,15 +6,16 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.EffectCure;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = ModData.MOD_ID)
 public abstract class AbstractEffect extends MobEffect {
@@ -29,10 +30,6 @@ public abstract class AbstractEffect extends MobEffect {
 	public void applyEffectTick( LivingEntity entity, int level ) {
 
 	}
-	@Override
-	public boolean isDurationEffectTick ( int tickRemaining, int level ) {
-		return false ;
-	} ;
 
 	@Override
 	public void applyInstantenousEffect(@Nullable Entity p_180793_1_, @Nullable Entity p_180793_2_, LivingEntity p_180793_3_, int p_180793_4_, double p_180793_5_ ) {
@@ -131,23 +128,21 @@ public abstract class AbstractEffect extends MobEffect {
 		return true ;
 	}
 
-	// 治疗物品（已覆盖，所以牛奶不再生效）
+	// 治疗物品
 	@Override
-	public List<ItemStack> getCurativeItems() {
-		return this.CurativeItems ;
+	public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
+
 	}
 
-	// 放入治疗物品
-	public void setCurativeItems( ItemStack stack ) {
-		if ( this.getCurativeItems( ).stream( ).noneMatch( stackIn -> stackIn.is(stack.getItem()) ) ) {
-			this.getCurativeItems( ).add( stack ) ;
-		} ;
+	@Override
+	public boolean shouldApplyEffectTickThisTick(int tickRemaining, int level ) {
+		return false ;
 	} ;
 
 	// - - - - 这里是事件，如无必要请勿修改 - - - - //
 	// 添加
 	@SubscribeEvent( priority = EventPriority.LOWEST )
-	public static void eventAdd( MobEffectEvent.Added event ) {
+	public static void eventAdd(MobEffectEvent.Added event ) {
 		MobEffectInstance effect = event.getEffectInstance( ) ; // 新的效果
 		MobEffectInstance old = event.getOldEffectInstance( ) ; // 旧的效果
 		if ( effect.getEffect( ) instanceof AbstractEffect) { // 新效果是支持的效果

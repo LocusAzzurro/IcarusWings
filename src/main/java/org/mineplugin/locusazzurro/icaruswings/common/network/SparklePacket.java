@@ -2,9 +2,9 @@ package org.mineplugin.locusazzurro.icaruswings.common.network;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.network.NetworkEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.DistExecutor;
+import net.neoforged.network.NetworkEvent;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 
 import java.util.function.Supplier;

@@ -8,13 +8,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
+
+import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber
 public class GlassJar extends Item {
@@ -61,7 +62,7 @@ public class GlassJar extends Item {
         else return -1;
     }
 
-    private static RegistryObject<Item> getResultItem(int dimN){
+    private static Supplier<Item> getResultItem(int dimN){
         if (dimN == 0) return ItemRegistry.ZEPHIR_AIR_JAR;
         else if (dimN == 1) return ItemRegistry.NETHER_AIR_JAR;
         else if (dimN == 2) return ItemRegistry.VOID_AIR_JAR;

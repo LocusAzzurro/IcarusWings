@@ -1,32 +1,18 @@
 package org.mineplugin.locusazzurro.icaruswings.datagen;
 
-import net.minecraft.advancements.critereon.BlockPredicate;
-import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
-import net.minecraft.core.BlockPos;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
-import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.*;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraftforge.registries.RegistryObject;
-import org.mineplugin.locusazzurro.icaruswings.common.block.ElysianGrassBlock;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
@@ -59,6 +45,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return BlockRegistry.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return BlockRegistry.BLOCKS.getEntries().stream().map(b -> ((Block)b.get())).collect(Collectors.toList());
     }
 }

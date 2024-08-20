@@ -9,20 +9,20 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ForgeHooksClient;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.ModelEvent;
-import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.ClientHooks;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.ModelEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.*;
 import org.mineplugin.locusazzurro.icaruswings.registry.*;
 import org.mineplugin.locusazzurro.icaruswings.client.render.layers.WingsLayer;
@@ -35,8 +35,9 @@ import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.TimeBombR
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModClientRenderEventHandler{
 
     @SubscribeEvent
@@ -59,8 +60,8 @@ public class ModClientRenderEventHandler{
     public static void onModelBaked(ModelEvent.ModifyBakingResult e) {
         Map<ResourceLocation, BakedModel> modelRegistry = e.getModels();
         ModelResourceLocation location;
-        for (RegistryObject<Item> spear : SPEARS){
-            var spearResource = ForgeRegistries.ITEMS.getKey(spear.get());
+        for (Supplier<Item> spear : SPEARS){
+            var spearResource = BuiltInRegistries.ITEM.getKey(spear.get());
             location = new ModelResourceLocation(spearResource, "inventory");
             BakedModel existingModel = modelRegistry.get(location);
             if (existingModel == null) {
@@ -82,7 +83,7 @@ public class ModClientRenderEventHandler{
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterRenderers event) {
         Map<ModelLayerLocation, LayerDefinition> layers = ModelLayerRegistry.createLayerDefinitions();
-        layers.forEach((location, definition) -> ForgeHooksClient.registerLayerDefinition(location, () -> definition));
+        layers.forEach((location, definition) -> ClientHooks.registerLayerDefinition(location, () -> definition));
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
@@ -90,9 +91,13 @@ public class ModClientRenderEventHandler{
     public static void addWingsLayer(EntityRenderersEvent.AddLayers event){
 
         event.getSkins().forEach(skin -> {
-            var renderer = event.getSkin(skin);
-            if (renderer != null)
+            EntityRenderer<? extends Player> skin1 = event.getSkin(skin);
+            /* //todo fix addlayer
+            if (skin1 != null)
                 renderer.addLayer(new WingsLayer<>((RenderLayerParent) renderer, Minecraft.getInstance().getEntityModels()));
+
+             */
+
         });
 
         Minecraft.getInstance().getEntityRenderDispatcher().renderers.forEach((entityType, entityRenderer) -> {
@@ -116,7 +121,7 @@ public class ModClientRenderEventHandler{
         EntityRenderers.register(type, renderer);
     }
 
-    private static final List<RegistryObject<Item>> SPEARS = Arrays.asList(
+    private static final List<Supplier<Item>> SPEARS = Arrays.asList(
             ItemRegistry.WOODEN_SPEAR,
             ItemRegistry.STONE_SPEAR,
             ItemRegistry.IRON_SPEAR,

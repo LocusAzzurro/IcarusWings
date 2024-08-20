@@ -6,6 +6,6 @@ import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 public class RefinedBeeswaxSlab extends SlabBlock {
 	
 	public RefinedBeeswaxSlab() {
-		super(Properties.copy(BlockRegistry.REFINED_BEESWAX_BLOCK.get()));
+		super(Properties.ofFullCopy(BlockRegistry.REFINED_BEESWAX_BLOCK.get()));
 	}
 }

@@ -3,7 +3,7 @@ package org.mineplugin.locusazzurro.icaruswings.common.item;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.fml.common.Mod;
 
 @Mod.EventBusSubscriber()
 public class QuantumFuel extends Item {

@@ -1,9 +1,9 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
-import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 
-public class GoldenRamSpawnEgg extends ForgeSpawnEggItem {
+public class GoldenRamSpawnEgg extends DeferredSpawnEggItem {
 
 
     public GoldenRamSpawnEgg() {

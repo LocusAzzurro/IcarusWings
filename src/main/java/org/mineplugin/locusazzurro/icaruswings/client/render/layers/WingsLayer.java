@@ -12,14 +12,16 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.ElytraLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.PlayerModelPart;
+import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.client.render.models.WingsModel;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.common.item.AbstractWings;
@@ -64,13 +66,13 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 		if (shouldRender(itemstack, entityLivingBaseIn)) {
 			ResourceLocation resourceLocation;
 			if (entityLivingBaseIn instanceof AbstractClientPlayer player) {
-				if (player.isElytraLoaded()
-						&& player.getElytraTextureLocation() != null) {
-					resourceLocation = player.getElytraTextureLocation();
-				} else if (player.isCapeLoaded()
-						&& player.getCloakTextureLocation() != null
-						&& player.isModelPartShown(PlayerModelPart.CAPE)) {
-					resourceLocation = player.getCloakTextureLocation();
+				PlayerSkin skin = player.getSkin();
+				if (itemstack.getItem() instanceof ElytraItem
+						&& skin.elytraTexture() != null) {
+					resourceLocation = skin.elytraTexture();
+				} else if (player.isModelPartShown(PlayerModelPart.CAPE)
+						&& skin.capeTexture() != null) {
+					resourceLocation = skin.capeTexture();
 				} else {
 					resourceLocation = getElytraTexture(itemstack, entityLivingBaseIn);
 				}

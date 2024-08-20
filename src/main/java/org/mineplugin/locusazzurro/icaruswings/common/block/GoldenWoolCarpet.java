@@ -6,6 +6,6 @@ import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 public class GoldenWoolCarpet extends CarpetBlock {
 
     public GoldenWoolCarpet() {
-        super(Properties.copy(BlockRegistry.GOLDEN_WOOL_BLOCK.get()));
+        super(Properties.ofFullCopy(BlockRegistry.GOLDEN_WOOL_BLOCK.get()));
     }
 }

@@ -6,7 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 
 @SuppressWarnings("unused")

@@ -2,9 +2,10 @@ package org.mineplugin.locusazzurro.icaruswings.common.block;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
+import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
@@ -12,51 +13,16 @@ import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.*;
 
-public abstract class GreekFireFluid extends ForgeFlowingFluid{
+public abstract class GreekFireFluid extends BaseFlowingFluid {
 
     public static final ResourceLocation GREEK_FIRE_STILL = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_still");
     public static final ResourceLocation GREEK_FIRE_FLOWING = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_flow");
-    public static ForgeFlowingFluid.Properties fluidProperties = new ForgeFlowingFluid.Properties(GREEK_FIRE_FLUID_TYPE, GREEK_FIRE, FluidRegistry.GREEK_FIRE_FLOWING)
+    public static BaseFlowingFluid.Properties fluidProperties = new BaseFlowingFluid.Properties(GREEK_FIRE_FLUID_TYPE, GREEK_FIRE, FluidRegistry.GREEK_FIRE_FLOWING)
             .bucket(ItemRegistry.GREEK_FIRE_BUCKET).block(BlockRegistry.GREEK_FIRE).slopeFindDistance(1).explosionResistance(100F);
 
-    public GreekFireFluid(Properties properties) {
+    public GreekFireFluid(BaseFlowingFluid.Properties properties) {
         super(properties);
     }
-
-    /*
-    @Override
-    protected FluidAttributes createAttributes() {
-        return FluidAttributes.builder(GREEK_FIRE_STILL, GREEK_FIRE_FLOWING)
-                .color(0xfff79059).density(4000).viscosity(7000).luminosity(15).temperature(1500)
-                .translationKey("block.locusazzurro_icaruswings.greek_fire")
-                .sound(SoundRegistry.bucketFillGreekFire.get(), SoundRegistry.bucketEmptyGreekFire.get()).build(this);
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void animateTick(Level worldIn, BlockPos blockPos, FluidState fluidState, Random random) {
-        BlockPos blockpos = blockPos.above();
-        if (worldIn.getBlockState(blockpos).isAir() && !worldIn.getBlockState(blockpos).isSolidRender(worldIn, blockpos)) {
-            int seed = random.nextInt(200);
-            if (seed == 0) {
-                worldIn.playLocalSound((double)blockPos.getX(), (double)blockPos.getY(), (double)blockPos.getZ(), SoundRegistry.greekFireAmbient.get(), SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
-            }
-            if (seed % 100 == 0){
-                double d0 = (double)blockPos.getX() + random.nextDouble();
-                double d1 = (double)blockPos.getY() + 1.0D;
-                double d2 = (double)blockPos.getZ() + random.nextDouble();
-                worldIn.playLocalSound(d0, d1, d2, SoundRegistry.greekFirePop.get(), SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
-            }
-            if (seed % 50 == 0) {
-                double d0 = (double)blockPos.getX() + random.nextDouble();
-                double d1 = (double)blockPos.getY() + 1.0D;
-                double d2 = (double)blockPos.getZ() + random.nextDouble();
-                worldIn.addParticle(ParticleTypes.LAVA, d0, d1, d2, 0.0D, 0.0D, 0.0D);
-            }
-        }
-    }
-
-     */
 
     public static class Source extends GreekFireFluid{
         public Source() {

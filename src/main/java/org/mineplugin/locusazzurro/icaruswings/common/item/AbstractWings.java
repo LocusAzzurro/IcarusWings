@@ -8,7 +8,7 @@ import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.common.data.IWingsType;
 import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 

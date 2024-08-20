@@ -22,9 +22,8 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import net.minecraftforge.common.ForgeMod;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.SpearEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
@@ -54,7 +53,7 @@ public class SpearItem extends TieredItem implements Vanishable {
                 "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID,
                 "Weapon modifier", this.attackSpeed, AttributeModifier.Operation.ADDITION));
-        builder.put(ForgeMod.ENTITY_REACH.get(), new AttributeModifier(ModData.WEAPON_ATTACK_RANGE_UUID,
+        builder.put(NeoForgeMod.ENTITY_REACH.value(), new AttributeModifier(ModData.WEAPON_ATTACK_RANGE_UUID,
                 "Weapon modifier", this.attackRange, AttributeModifier.Operation.ADDITION));
         return builder.build();
     }

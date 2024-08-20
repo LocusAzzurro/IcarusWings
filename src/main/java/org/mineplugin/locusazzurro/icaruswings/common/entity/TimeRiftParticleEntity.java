@@ -4,6 +4,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.network.NetworkHooks;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModDamageSources;
 import org.mineplugin.locusazzurro.icaruswings.common.effect.EffectInevitability;
 import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
@@ -119,7 +119,8 @@ public class TimeRiftParticleEntity extends ThrowableItemProjectile {
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
+        Entity entity = this.getOwner();
+        return new ClientboundAddEntityPacket(this, entity == null ? 0 : entity.getId());
     }
 
 }

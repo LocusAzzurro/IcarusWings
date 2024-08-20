@@ -7,7 +7,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
-import net.minecraftforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.EventHooks;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
 import java.util.EnumSet;
@@ -71,7 +71,7 @@ public class EatGoldenGrassGoal extends Goal {
         if (this.eatAnimationTick == 4) {
             BlockPos mobPos = this.mob.blockPosition();
             if (IS_GOLDEN_GRASS.test(this.level.getBlockState(mobPos))) {
-                if (ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
+                if (EventHooks.getMobGriefingEvent(this.level, this.mob)) {
                     this.level.destroyBlock(mobPos, false);
                 }
 
@@ -79,7 +79,7 @@ public class EatGoldenGrassGoal extends Goal {
             } else {
                 BlockPos mobPosBelow = mobPos.below();
                 if (this.level.getBlockState(mobPosBelow).is(this.eatBlock)) {
-                    if (ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
+                    if (EventHooks.getMobGriefingEvent(this.level, this.mob)) {
                         this.level.levelEvent(2001, mobPosBelow, Block.getId(this.eatBlock.defaultBlockState()));
                         this.level.setBlock(mobPosBelow, this.eatenBlock.defaultBlockState(), 2);
                     }

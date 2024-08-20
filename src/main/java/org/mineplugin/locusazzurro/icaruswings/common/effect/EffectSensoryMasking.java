@@ -3,9 +3,9 @@ package org.mineplugin.locusazzurro.icaruswings.common.effect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod.EventBusSubscriber;
 import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
 
 @EventBusSubscriber

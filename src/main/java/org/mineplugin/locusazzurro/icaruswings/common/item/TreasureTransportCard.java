@@ -17,7 +17,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.util.MathUtils;
@@ -25,6 +25,7 @@ import org.mineplugin.locusazzurro.icaruswings.util.MathUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class TreasureTransportCard extends AbstractTransportCard{
 
@@ -56,7 +57,7 @@ public class TreasureTransportCard extends AbstractTransportCard{
                             .withLuck(playerIn.getLuck())
                             .create(LootContextParamSets.CHEST))
                             .withOptionalRandomSeed(lootSeed)
-                            .create(lootTableResource);
+                            .create(Optional.of(lootTableResource));
                     lootTable.getRandomItems(lootContext, lootItems::add);
                     if (lootItems.isEmpty()) {
                         errorCode = 2;

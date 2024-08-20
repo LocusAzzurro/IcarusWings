@@ -1,16 +1,16 @@
 package org.mineplugin.locusazzurro.icaruswings.common.data;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ModConfig {
 
-    public static ForgeConfigSpec CONFIG;
-    public static ForgeConfigSpec.DoubleValue WINGS_SPEED_MOD;
-    public static ForgeConfigSpec.IntValue TRANSPORT_CARD_PERMISSION_LEVEL;
-    public static ForgeConfigSpec.BooleanValue ALLOW_DEMETER_CHANGE_TERRAIN;
+    public static ModConfigSpec CONFIG;
+    public static ModConfigSpec.DoubleValue WINGS_SPEED_MOD;
+    public static ModConfigSpec.IntValue TRANSPORT_CARD_PERMISSION_LEVEL;
+    public static ModConfigSpec.BooleanValue ALLOW_DEMETER_CHANGE_TERRAIN;
 
     static {
-        ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder b = new ModConfigSpec.Builder();
         b.comment("Icarus Wings Config File").push("config");
         WINGS_SPEED_MOD = b
                 .comment("Speed factor for Synapse Wings")

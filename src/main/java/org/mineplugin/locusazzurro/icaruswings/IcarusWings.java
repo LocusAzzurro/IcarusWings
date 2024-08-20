@@ -1,18 +1,18 @@
 package org.mineplugin.locusazzurro.icaruswings;
 
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModConfig;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.registry.*;
 
 @Mod(ModData.MOD_ID)
 public class IcarusWings {
-	public IcarusWings() {
 
-		var bus = FMLJavaModLoadingContext.get().getModEventBus();
+	public IcarusWings(IEventBus bus) {
+
 		FluidRegistry.FLUIDS.register(bus);
 		FluidRegistry.FLUID_TYPES.register(bus);
 		SoundRegistry.SOUNDS.register(bus);
@@ -25,7 +25,7 @@ public class IcarusWings {
 		EnchantmentRegistry.ENCHANTMENTS.register(bus);
 		EffectRegistry.EFFECTS.register(bus);
 
-		ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, ModConfig.CONFIG);
+		ModLoadingContext.get().registerConfig(net.neoforged.fml.config.ModConfig.Type.COMMON, ModConfig.CONFIG);
 
 		if (ModList.get().isLoaded("curios")) {
 			isCuriosLoaded = true;

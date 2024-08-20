@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 

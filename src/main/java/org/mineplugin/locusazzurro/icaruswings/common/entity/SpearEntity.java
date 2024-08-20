@@ -3,6 +3,7 @@ package org.mineplugin.locusazzurro.icaruswings.common.entity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -18,9 +19,8 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.network.NetworkHooks;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModDamageSources;
 import org.mineplugin.locusazzurro.icaruswings.common.item.SpearItem;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
@@ -32,23 +32,24 @@ import javax.annotation.Nullable;
 public class SpearEntity extends AbstractArrow {
 
     private static final EntityDataAccessor<ItemStack> SPEAR_ITEM = SynchedEntityData.defineId(SpearEntity.class, EntityDataSerializers.ITEM_STACK);
+    private static ItemStack WOODEN_SPEAR = new ItemStack(ItemRegistry.WOODEN_SPEAR.get());
     private ItemStack spearItem;
     private boolean dealtDamage;
 
     public SpearEntity(EntityType<? extends SpearEntity> type, Level world) {
-        super(type, world);
+        super(type, world, WOODEN_SPEAR);
         this.spearItem = new ItemStack(ItemRegistry.WOODEN_SPEAR.get());
     }
 
     public SpearEntity(Level worldIn, LivingEntity owner, ItemStack spear){
-        super(EntityTypeRegistry.SPEAR.get(), owner, worldIn);
+        super(EntityTypeRegistry.SPEAR.get(), owner, worldIn, WOODEN_SPEAR);
         this.spearItem = spear.copy();
         this.entityData.set(SPEAR_ITEM, spear);
     }
 
     @OnlyIn(Dist.CLIENT)
     public SpearEntity(Level p_i48791_1_, double p_i48791_2_, double p_i48791_4_, double p_i48791_6_) {
-        super(EntityTypeRegistry.SPEAR.get(), p_i48791_2_, p_i48791_4_, p_i48791_6_, p_i48791_1_);
+        super(EntityTypeRegistry.SPEAR.get(), p_i48791_2_, p_i48791_4_, p_i48791_6_, p_i48791_1_, WOODEN_SPEAR);
         this.spearItem = new ItemStack(ItemRegistry.WOODEN_SPEAR.get());
     }
 
@@ -171,8 +172,9 @@ public class SpearEntity extends AbstractArrow {
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
+        return new ClientboundAddEntityPacket(this);
     }
+
 
 }
 

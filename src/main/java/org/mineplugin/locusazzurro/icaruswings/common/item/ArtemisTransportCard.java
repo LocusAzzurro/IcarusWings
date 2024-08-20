@@ -27,6 +27,10 @@ public class ArtemisTransportCard extends AbstractTransportCard{
         super(CardType.ARTEMIS_SCATTER);
     }
 
+    public ArtemisTransportCard(CardType type){
+        super(type);
+    }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemStack = playerIn.getItemInHand(handIn);

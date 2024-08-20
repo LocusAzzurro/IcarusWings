@@ -1,8 +1,8 @@
 package org.mineplugin.locusazzurro.icaruswings.common.network;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
+import net.neoforged.network.NetworkRegistry;
+import net.neoforged.network.simple.SimpleChannel;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 
 public class ModPacketHandler {

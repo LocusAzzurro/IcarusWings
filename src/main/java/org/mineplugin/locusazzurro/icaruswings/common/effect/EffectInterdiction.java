@@ -20,7 +20,7 @@ public class EffectInterdiction extends AbstractEffect{
     }
 
     @Override
-    public boolean isDurationEffectTick (int tickRemaining, int level) {
+    public boolean shouldApplyEffectTickThisTick(int tickRemaining, int level) {
         int interval = 20 >> level;
         if (interval > 0){
             return tickRemaining % interval == 0;

@@ -6,6 +6,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,8 +20,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.network.NetworkHooks;
+import net.neoforged.neoforge.event.EventHooks;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 
@@ -157,7 +157,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     protected void onHit(HitResult ray){
         super.onHit(ray);
         if(!this.level().isClientSide){
-            boolean flag = ForgeEventFactory.getMobGriefingEvent(this.level(), this.getOwner());
+            boolean flag = EventHooks.getMobGriefingEvent(this.level(), this.getOwner());
             this.level().explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower, flag, Level.ExplosionInteraction.NONE);
         }
         this.discard();
@@ -185,7 +185,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
 
     protected void onEmptyFuel(){
         if(!this.level().isClientSide){
-            boolean flag = ForgeEventFactory.getMobGriefingEvent(this.level(), this.getOwner());
+            boolean flag = EventHooks.getMobGriefingEvent(this.level(), this.getOwner());
             this.level().explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower + 0.5f, flag, Level.ExplosionInteraction.NONE);
         }
         this.discard();
@@ -259,7 +259,21 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
+        Entity entity = this.getOwner();
+        int i = entity == null ? 0 : entity.getId();
+        return new ClientboundAddEntityPacket(
+                this.getId(),
+                this.getUUID(),
+                this.getX(),
+                this.getY(),
+                this.getZ(),
+                this.getXRot(),
+                this.getYRot(),
+                this.getType(),
+                i,
+                new Vec3(this.xPower, this.yPower, this.zPower),
+                0.0
+        );
     }
 
 }

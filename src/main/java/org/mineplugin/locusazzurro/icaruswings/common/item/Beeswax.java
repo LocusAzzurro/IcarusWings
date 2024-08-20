@@ -2,10 +2,9 @@ package org.mineplugin.locusazzurro.icaruswings.common.item;
 
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 @Mod.EventBusSubscriber()
