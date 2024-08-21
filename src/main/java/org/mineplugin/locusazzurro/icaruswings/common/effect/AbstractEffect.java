@@ -17,8 +17,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Set;
 
-@Mod.EventBusSubscriber(modid = ModData.MOD_ID)
-public abstract class AbstractEffect extends MobEffect {
+public class AbstractEffect extends MobEffect {
 
 	protected ArrayList<ItemStack> CurativeItems = new ArrayList<>() ;
 
@@ -160,26 +159,7 @@ public abstract class AbstractEffect extends MobEffect {
 			} ;
 		}
 	}
-	// 被移除
-	@SubscribeEvent( priority = EventPriority.LOWEST )
-	public static void eventRemove( MobEffectEvent.Remove event ) {
-		MobEffectInstance effect = event.getEffectInstance( ) ;
-		if ( effect != null && effect.getEffect( ) instanceof AbstractEffect)  {
-			( (AbstractEffect) ( effect.getEffect( ) ) ).onRemove( event.getEntity( ), effect );
-		}
-	}
-	// 自然消失
-	@SubscribeEvent( priority = EventPriority.LOWEST )
-	public static void eventExpiry( MobEffectEvent.Expired event ) {
-		MobEffectInstance effect = event.getEffectInstance( ) ;
-		// 只处理CoreEffect的内容
-		if ( effect != null && effect.getEffect( ) instanceof AbstractEffect)  {
-			// 先移除
-			event.getEntity( ).removeEffect( effect.getEffect( ) ) ;
-			( (AbstractEffect) ( effect.getEffect( ) ) ).onExpiry( event.getEntity( ), effect ) ;
-		}
 
-	}
 
 
 }

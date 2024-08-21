@@ -32,7 +32,6 @@ import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 import java.util.List;
 import java.util.UUID;
 
-@Mod.EventBusSubscriber
 public abstract class SynapseWings extends AbstractWings{
 	
 	protected final UUID MODIFIER_UUID = ModData.ARMOR_MODIFIER_UUID_PER_SLOT[2];
@@ -71,27 +70,10 @@ public abstract class SynapseWings extends AbstractWings{
 	}
 
 	//Default: Direct = 0.1, Inertial = 1.5, Total = 0.5
-	protected abstract double getDirectSpeedMod();
-	protected abstract double getInertialSpeedMod();
-	protected abstract double getTotalSpeedMod();
+	public abstract double getDirectSpeedMod();
+	public abstract double getInertialSpeedMod();
+	public abstract double getTotalSpeedMod();
 
-	@SubscribeEvent(priority = EventPriority.LOW)
-	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-		Player player = event.player;
-		Item item = player.getItemBySlot(EquipmentSlot.CHEST).getItem();
-		if (player.isFallFlying() && item instanceof SynapseWings wings) {
-			Vec3 lookAngle = player.getLookAngle();
-			Vec3 flyAngle = player.getDeltaMovement();
-			double d = wings.getDirectSpeedMod();
-			double i = wings.getInertialSpeedMod();
-			double t = wings.getTotalSpeedMod();
-			double c = ModConfig.WINGS_SPEED_MOD.get();
-			player.setDeltaMovement(flyAngle.add(
-					(lookAngle.x * d + (lookAngle.x * i - flyAngle.x) * t) * c,
-					(lookAngle.y * d + (lookAngle.y * i - flyAngle.y) * t) * c,
-					(lookAngle.z * d + (lookAngle.z * i - flyAngle.z) * t) * c));
-		}
-	}
 
 	@Nullable
 	@Override

@@ -18,11 +18,11 @@ public class SynapseWingsBeta extends SynapseWings implements IWingsExpandable, 
 	}
 
 	@Override
-	protected double getDirectSpeedMod(){return 0.08d;}
+    public double getDirectSpeedMod(){return 0.08d;}
 	@Override
-	protected double getInertialSpeedMod(){return 1.2d;}
+	public double getInertialSpeedMod(){return 1.2d;}
 	@Override
-	protected double getTotalSpeedMod(){return 0.5d;}
+	public double getTotalSpeedMod(){return 0.5d;}
 
 	@Override
 	public float getExpansionFactor() {

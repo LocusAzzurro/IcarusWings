@@ -13,19 +13,10 @@ import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
 
 import javax.annotation.Nullable;
 
-@EventBusSubscriber
 public class EffectPoisonImmunity extends AbstractEffect{
 
 	public EffectPoisonImmunity() {
 		super(MobEffectCategory.BENEFICIAL, 0xe4fbbd);
-	}
-	
-	@SubscribeEvent
-	public static void onPotionApplication(MobEffectEvent.Applicable e) {
-		if (e.getEffectInstance().getEffect().equals(MobEffects.POISON)
-				&& (e.getEntity().hasEffect(EffectRegistry.POISON_IMMUNITY.get()))) {
-			e.setResult(Result.DENY);
-		}
 	}
 	
 	@Override

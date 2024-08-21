@@ -8,22 +8,10 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod.EventBusSubscriber;
 import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
 
-@EventBusSubscriber
 public class EffectSensoryMasking extends AbstractEffect{
 
 	public EffectSensoryMasking() {
 		super(MobEffectCategory.BENEFICIAL, 0xf0f0ff);
 
 	}
-	
-	@SubscribeEvent
-	public static void onSetTarget(LivingChangeTargetEvent e) {
-		if (e.getNewTarget() != null) {
-			LivingEntity targeter = e.getEntity();
-			if (e.getNewTarget().hasEffect(EffectRegistry.SENSORY_MASKING.get()) && targeter instanceof Mob) {
-				((Mob) targeter).setTarget(e.getOriginalTarget());
-			}
-		}
-	}
-	
 }

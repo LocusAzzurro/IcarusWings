@@ -15,9 +15,9 @@ public class SynapseWingsEpsilon extends SynapseWings implements IWingsExpandabl
 		super(WingsType.SYNAPSE_EPSILON);
 	}
 
-	protected double getDirectSpeedMod(){return 0.04d;}
-	protected double getInertialSpeedMod(){return 1.2d;}
-	protected double getTotalSpeedMod(){return 0.5d;}
+	public double getDirectSpeedMod(){return 0.04d;}
+	public double getInertialSpeedMod(){return 1.2d;}
+	public double getTotalSpeedMod(){return 0.5d;}
 
 	@Override
 	public float getExpansionFactor() {

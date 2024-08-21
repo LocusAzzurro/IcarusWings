@@ -10,7 +10,6 @@ import net.neoforged.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 
 @SuppressWarnings("unused")
-@Mod.EventBusSubscriber
 public class FeatherWings extends AbstractWings {
 
 	public FeatherWings(WingsType type) {

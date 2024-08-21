@@ -62,6 +62,8 @@ public class MeadPot extends BaseEntityBlock {
 	
 	public static final EnumProperty<MeadPotState> STATE = EnumProperty.create("state", MeadPotState.class);
 	public static final EnumProperty<Mead.Infusion> INFUSION = EnumProperty.create("infusion", Mead.Infusion.class);
+
+	public static final MapCodec<MeadPot> CODEC = simpleCodec(properties -> new MeadPot());
 	
 	private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	protected static final VoxelShape SHAPE = Shapes.join(
@@ -122,6 +124,11 @@ public class MeadPot extends BaseEntityBlock {
 	@Override
 	public VoxelShape getInteractionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
 		return INSIDE;
+	}
+
+	@Override
+	protected MapCodec<? extends BaseEntityBlock> codec() {
+		return CODEC;
 	}
 
 	@Override

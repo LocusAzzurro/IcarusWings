@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.common.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.Container;
@@ -17,6 +18,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
@@ -38,6 +40,8 @@ public class Amphora extends BaseEntityBlock{
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final EnumProperty<ChestType> TYPE = BlockStateProperties.CHEST_TYPE;
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+
+	public static final MapCodec<Amphora> CODEC = simpleCodec(properties -> new Amphora());
 
 	public Amphora() {
 		super(Properties.of()
@@ -78,7 +82,12 @@ public class Amphora extends BaseEntityBlock{
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateIn) {
 	      stateIn.add(HALF, FACING, TYPE);
 	}
-	
+
+	@Override
+	protected MapCodec<? extends BaseEntityBlock> codec() {
+		return CODEC;
+	}
+
 	@Override
 	public RenderShape getRenderShape(BlockState p_149645_1_) {
 		return RenderShape.MODEL;
@@ -112,15 +121,16 @@ public class Amphora extends BaseEntityBlock{
 			return doubleblockhalf == DoubleBlockHalf.LOWER && dirIn == Direction.DOWN && !pState.canSurvive(worldIn, pCurrentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(pState, dirIn, pNeighborState, worldIn, pCurrentPos, pNeighborPos);
 		}
 	}
-	
+
 	@Override
-	public void playerWillDestroy(Level pLevel, BlockPos pPos, BlockState pState, Player pPlayer) {
+	public void playerDestroy(Level pLevel, Player pPlayer, BlockPos pPos, BlockState pState, @Nullable BlockEntity pBlockEntity, ItemStack pTool) {
 		if (!pLevel.isClientSide && pPlayer.isCreative()) {
 			preventCreativeDropFromBottomPart(pLevel, pPos, pState, pPlayer);
 		}
-		super.playerWillDestroy(pLevel, pPos, pState, pPlayer);
+		super.playerDestroy(pLevel, pPlayer, pPos, pState,pBlockEntity, pTool);
 	}
-	
+
+
 	@Override
 	public PushReaction getPistonPushReaction(BlockState pState) {
 		return PushReaction.BLOCK;

@@ -15,8 +15,8 @@ import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 import javax.annotation.Nullable;
 
 @SuppressWarnings("unused")
-@Mod.EventBusSubscriber
-public class AbstractWings extends ElytraItem {
+
+public abstract class AbstractWings extends ElytraItem {
 
 	protected IWingsType type;
 

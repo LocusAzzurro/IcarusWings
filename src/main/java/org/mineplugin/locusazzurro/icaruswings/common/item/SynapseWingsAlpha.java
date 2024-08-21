@@ -15,9 +15,9 @@ public class SynapseWingsAlpha extends SynapseWings implements IWingsExpandable{
 		super(WingsType.SYNAPSE_ALPHA);
 	}
 
-	protected double getDirectSpeedMod(){return 0.1d;}
-	protected double getInertialSpeedMod(){return 1.5d;}
-	protected double getTotalSpeedMod(){return 0.5d;}
+	public double getDirectSpeedMod(){return 0.1d;}
+	public double getInertialSpeedMod(){return 1.5d;}
+	public double getTotalSpeedMod(){return 0.5d;}
 
 	@Override
 	public float getExpansionFactor() {

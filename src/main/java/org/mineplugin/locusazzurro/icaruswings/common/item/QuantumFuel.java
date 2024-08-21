@@ -5,7 +5,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.neoforged.fml.common.Mod;
 
-@Mod.EventBusSubscriber()
 public class QuantumFuel extends Item {
 
 	public QuantumFuel() {

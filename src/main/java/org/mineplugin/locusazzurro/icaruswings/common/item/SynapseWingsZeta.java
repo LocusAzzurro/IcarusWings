@@ -10,16 +10,15 @@ import net.neoforged.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.client.render.IWingsExpandable;
 
-@Mod.EventBusSubscriber
 public class SynapseWingsZeta extends SynapseWings implements IWingsExpandable{
 	
 	public SynapseWingsZeta() {
 		super(WingsType.SYNAPSE_ZETA);
 	}
 
-	protected double getDirectSpeedMod(){return 0.08d;}
-	protected double getInertialSpeedMod(){return 1.1d;}
-	protected double getTotalSpeedMod(){return 0.5d;}
+	public double getDirectSpeedMod(){return 0.08d;}
+	public double getInertialSpeedMod(){return 1.1d;}
+	public double getTotalSpeedMod(){return 0.5d;}
 
 	@Override
 	public float getExpansionFactor() {

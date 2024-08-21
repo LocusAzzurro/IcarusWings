@@ -59,21 +59,21 @@ public class ItemRegistry {
             () -> new RefinedBeeswaxBar(false));
     public static final Supplier<Item> GLISTERING_REFINED_BEESWAX_BAR = ITEMS.register("glistering_refined_beeswax_bar",
     		() -> new RefinedBeeswaxBar(true));
-    public static final Supplier<Item> REFINED_BEESWAX_BLOCK = fromBlock(BlockRegistry.REFINED_BEESWAX_BLOCK);
-    public static final Supplier<Item> REFINED_BEESWAX_SLAB = fromBlock(BlockRegistry.REFINED_BEESWAX_SLAB);
-    public static final Supplier<Item> REFINED_BEESWAX_PILLAR = fromBlock(BlockRegistry.REFINED_BEESWAX_PILLAR);
-    public static final Supplier<Item> REFINED_BEESWAX_STAIRS = fromBlock(BlockRegistry.REFINED_BEESWAX_STAIRS);
-    public static final Supplier<Item> CHISELED_REFINED_BEESWAX_BLOCK = fromBlock(BlockRegistry.CHISELED_REFINED_BEESWAX_BLOCK);;
-    public static final Supplier<Item> SMOOTH_REFINED_BEESWAX_BLOCK = fromBlock(BlockRegistry.SMOOTH_REFINED_BEESWAX_BLOCK);
-    public static final Supplier<Item> ELYSIAN_GRASS_BLOCK = fromBlock(BlockRegistry.ELYSIAN_GRASS_BLOCK);
-    public static final Supplier<Item> ELYSIAN_SOIL = fromBlock(BlockRegistry.ELYSIAN_SOIL);
-    public static final Supplier<Item> ELYSIAN_GRASS = fromBlock(BlockRegistry.ELYSIAN_GRASS);
-    public static final Supplier<Item> GOLDEN_WOOL_BLOCK = fromBlock(BlockRegistry.GOLDEN_WOOL_BLOCK);
-    public static final Supplier<Item> GOLDEN_WOOL_CARPET = fromBlock(BlockRegistry.GOLDEN_WOOL_CARPET);
-    public static final Supplier<Item> HONEY_CAKE = fromBlock(BlockRegistry.HONEY_CAKE);
+    public static final Supplier<Item> REFINED_BEESWAX_BLOCK = fromBlock("refined_beeswax_block", BlockRegistry.REFINED_BEESWAX_BLOCK);
+    public static final Supplier<Item> REFINED_BEESWAX_SLAB = fromBlock("refined_beeswax_slab", BlockRegistry.REFINED_BEESWAX_SLAB);
+    public static final Supplier<Item> REFINED_BEESWAX_PILLAR = fromBlock("refined_beeswax_pillar", BlockRegistry.REFINED_BEESWAX_PILLAR);
+    public static final Supplier<Item> REFINED_BEESWAX_STAIRS = fromBlock("refined_beeswax_stairs", BlockRegistry.REFINED_BEESWAX_STAIRS);
+    public static final Supplier<Item> CHISELED_REFINED_BEESWAX_BLOCK = fromBlock("chiseled_refined_beeswax_block", BlockRegistry.CHISELED_REFINED_BEESWAX_BLOCK);;
+    public static final Supplier<Item> SMOOTH_REFINED_BEESWAX_BLOCK = fromBlock("smooth_refined_beeswax_block", BlockRegistry.SMOOTH_REFINED_BEESWAX_BLOCK);
+    public static final Supplier<Item> ELYSIAN_GRASS_BLOCK = fromBlock("elysian_grass_block", BlockRegistry.ELYSIAN_GRASS_BLOCK);
+    public static final Supplier<Item> ELYSIAN_SOIL = fromBlock("elysian_soil", BlockRegistry.ELYSIAN_SOIL);
+    public static final Supplier<Item> ELYSIAN_GRASS = fromBlock("elysian_grass", BlockRegistry.ELYSIAN_GRASS);
+    public static final Supplier<Item> GOLDEN_WOOL_BLOCK = fromBlock("golden_wool_block", BlockRegistry.GOLDEN_WOOL_BLOCK);
+    public static final Supplier<Item> GOLDEN_WOOL_CARPET = fromBlock("golden_wool_carpet", BlockRegistry.GOLDEN_WOOL_CARPET);
+    public static final Supplier<Item> HONEY_CAKE = fromBlock("honey_cake", BlockRegistry.HONEY_CAKE);
     
-    public static final Supplier<Item> MEAD_POT = fromBlock(BlockRegistry.MEAD_POT);
-    public static final Supplier<Item> AMPHORA = fromBlock(BlockRegistry.AMPHORA);
+    public static final Supplier<Item> MEAD_POT = fromBlock("mead_pot", BlockRegistry.MEAD_POT);
+    public static final Supplier<Item> AMPHORA = fromBlock("amphora", BlockRegistry.AMPHORA);
     public static final Supplier<Item> GREEK_FIRE_BUCKET = ITEMS.register("greek_fire_bucket", GreekFireBucket::new);
 
     public static final Supplier<Item> GLASS_JAR = ITEMS.register("glass_jar", GlassJar::new);
@@ -250,8 +250,8 @@ public class ItemRegistry {
         return ITEMS.register(name, () -> new Item(new Item.Properties().stacksTo(16)));
     }
 
-    private static <B extends Block> Supplier<Item> fromBlock(Supplier<B> block) {
-        return ITEMS.register(BuiltInRegistries.BLOCK.getKey(block.get()).getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
+    private static <B extends Block> Supplier<Item> fromBlock(String name, Supplier<B> block) {
+        return ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
 }

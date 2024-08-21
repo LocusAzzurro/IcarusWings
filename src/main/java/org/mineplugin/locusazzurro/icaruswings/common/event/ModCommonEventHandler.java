@@ -4,10 +4,11 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlerEvent;
+import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.GoldenRamEntity;
-import org.mineplugin.locusazzurro.icaruswings.common.network.ModPacketHandler;
+import org.mineplugin.locusazzurro.icaruswings.common.network.ClientBoundSparklePacket;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 
 @Mod.EventBusSubscriber(modid = ModData.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -15,8 +16,12 @@ import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 public class ModCommonEventHandler {
 
     @SubscribeEvent
-    public static void registerPacketHandlers(FMLCommonSetupEvent event) {
-        event.enqueueWork(ModPacketHandler::register);
+    public static void onRegisterPayloadHandler(RegisterPayloadHandlerEvent event) {
+        final IPayloadRegistrar registrar = event.registrar(ModData.MOD_ID)
+                .versioned("1")
+                .optional();
+        registrar.play(ClientBoundSparklePacket.ID, ClientBoundSparklePacket::create,
+                handler -> handler.client(ClientBoundSparklePacket::handle));
     }
 
     @SubscribeEvent
