@@ -23,6 +23,7 @@ import net.neoforged.neoforge.client.ClientHooks;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.event.RenderPlayerEvent;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.*;
 import org.mineplugin.locusazzurro.icaruswings.registry.*;
 import org.mineplugin.locusazzurro.icaruswings.client.render.layers.WingsLayer;
@@ -86,19 +87,10 @@ public class ModClientRenderEventHandler{
         layers.forEach((location, definition) -> ClientHooks.registerLayerDefinition(location, () -> definition));
     }
 
+
     @SuppressWarnings({"rawtypes", "unchecked"})
     @SubscribeEvent
-    public static void addWingsLayer(EntityRenderersEvent.AddLayers event){
-
-        event.getSkins().forEach(skin -> {
-            EntityRenderer<? extends Player> skin1 = event.getSkin(skin);
-            /* //todo fix addlayer
-            if (skin1 != null)
-                renderer.addLayer(new WingsLayer<>((RenderLayerParent) renderer, Minecraft.getInstance().getEntityModels()));
-
-             */
-
-        });
+    public static void addLivingWingsLayer(EntityRenderersEvent.AddLayers event){
 
         Minecraft.getInstance().getEntityRenderDispatcher().renderers.forEach((entityType, entityRenderer) -> {
             if (entityRenderer instanceof LivingEntityRenderer<?,?> livingEntityRenderer && !(livingEntityRenderer instanceof PlayerRenderer)) {
