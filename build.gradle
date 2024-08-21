@@ -66,9 +66,9 @@ repositories {
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:17.0.0.29" //todo change to variable
-    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:17.0.0.30"
-    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:17.0.0.30"
+    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version_common}"
+    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version_neoforge}"
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version_neoforge}"
 
     implementation "mcjty.theoneprobe:theoneprobe:${top_version}"
 }
