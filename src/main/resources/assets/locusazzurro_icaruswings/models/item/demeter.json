@@ -1,5 +1,5 @@
 {
-  "loader": "forge:obj",
+  "loader": "neoforge:obj",
   "model": "locusazzurro_icaruswings:models/item/demeter.obj",
   "flip_v": true,
   "display": {
