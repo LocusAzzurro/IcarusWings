@@ -2,10 +2,9 @@ package org.mineplugin.locusazzurro.icaruswings.common.item;
 
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Vanishable;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModArmorMaterial;
 
-public class FeatherArmor extends ArmorItem implements Vanishable {
+public class FeatherArmor extends ArmorItem implements{
 	
 	private static final ModArmorMaterial materialFeather = ModArmorMaterial.FEATHER;
 	private static final ModArmorMaterial materialGoldenFeather = ModArmorMaterial.GOLDEN_FEATHER;
@@ -13,7 +12,7 @@ public class FeatherArmor extends ArmorItem implements Vanishable {
 	public FeatherArmor(ArmorItem.Type type, boolean isGolden) {
 		super((isGolden ? materialGoldenFeather : materialFeather),
 				type, new Item.Properties()
-				.defaultDurability((isGolden ? materialGoldenFeather : materialFeather).getDurabilityForType(type)));
+				.durability((isGolden ? materialGoldenFeather : materialFeather).getDurabilityForType(type)));
 	}
 
 }

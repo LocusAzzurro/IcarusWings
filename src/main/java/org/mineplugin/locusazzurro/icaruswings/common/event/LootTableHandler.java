@@ -7,7 +7,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootTableReference;
 import net.neoforged.neoforge.event.LootTableLoadEvent;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod.EventBusSubscriber;
+import net.neoforged.fml.common.EventBusSubscriber;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.util.BindList;
 

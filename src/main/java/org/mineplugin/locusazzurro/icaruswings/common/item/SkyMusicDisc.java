@@ -2,26 +2,24 @@ package org.mineplugin.locusazzurro.icaruswings.common.item;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.RecordItem;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import java.util.function.Supplier;
 
 
-public class SkyMusicDisc extends RecordItem {
+public class SkyMusicDisc extends Item {
 	
 	private Track track;
 	
 	public SkyMusicDisc(Track track){
-		super(track.getTrackNum(), track.getMusic(), new Item.Properties().stacksTo(1).rarity(Rarity.RARE), track.length);
+		super(new Item.Properties().stacksTo(1)); //todo check rarity
+		//todo add tracks back / check new format
 	}
 	
 	public Track getTrack() {
 		return this.track;
 	}
 
-	@Override
 	public int getAnalogOutput() {
 		return this.getTrack().getTrackNum();
 	}

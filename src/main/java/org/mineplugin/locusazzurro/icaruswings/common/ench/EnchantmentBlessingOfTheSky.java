@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod.EventBusSubscriber;
+import net.neoforged.fml.common.EventBusSubscriber;
 import org.mineplugin.locusazzurro.icaruswings.registry.EnchantmentRegistry;
 
 @EventBusSubscriber

@@ -3,11 +3,11 @@ package org.mineplugin.locusazzurro.icaruswings.common.item;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
-@Mod.EventBusSubscriber()
+@EventBusSubscriber()
 public class Beeswax extends Item {
 
 	public Beeswax() {

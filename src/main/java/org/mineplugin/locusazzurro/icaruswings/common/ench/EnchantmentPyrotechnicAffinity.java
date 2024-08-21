@@ -10,7 +10,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.registry.EnchantmentRegistry;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class EnchantmentPyrotechnicAffinity extends WingsEnchantment {
 
     public EnchantmentPyrotechnicAffinity() {

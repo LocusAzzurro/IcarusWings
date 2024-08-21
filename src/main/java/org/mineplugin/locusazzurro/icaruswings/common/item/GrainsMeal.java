@@ -1,16 +1,14 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BowlFoodItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 
-public class GrainsMeal extends BowlFoodItem {
+public class GrainsMeal extends Item {
 
     public GrainsMeal() {
-        super(new Properties().food(food));
+        super(new Item.Properties().stacksTo(1).food(FOOD_PROPERTIES));
     }
+    private static final FoodProperties FOOD_PROPERTIES = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.6F).usingConvertsTo(Items.BOWL).build();
 
-    private static final FoodProperties food = (new FoodProperties.Builder())
-            .saturationMod(3)
-            .nutrition(5)
-            .build();
 }

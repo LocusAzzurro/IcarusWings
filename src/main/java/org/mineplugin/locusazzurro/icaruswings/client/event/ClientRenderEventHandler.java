@@ -4,11 +4,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
 import org.mineplugin.locusazzurro.icaruswings.client.render.layers.WingsLayer;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
 public class ClientRenderEventHandler {
 
     @SuppressWarnings({"rawtypes", "unchecked"})

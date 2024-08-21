@@ -18,7 +18,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class WheatGrains extends Item{
 
 	private final static float ACQUIRE_FEATHER_CHANCE = 0.5f;

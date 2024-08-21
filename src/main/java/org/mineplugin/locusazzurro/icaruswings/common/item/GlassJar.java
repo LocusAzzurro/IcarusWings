@@ -17,7 +17,7 @@ import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class GlassJar extends Item {
 
     public GlassJar(){

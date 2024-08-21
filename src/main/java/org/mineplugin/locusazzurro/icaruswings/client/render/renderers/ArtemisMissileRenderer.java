@@ -18,7 +18,7 @@ import org.mineplugin.locusazzurro.icaruswings.client.render.models.ArtemisMissi
 @OnlyIn(Dist.CLIENT)
 public class ArtemisMissileRenderer extends EntityRenderer<ArtemisMissileEntity> {
 
-    private static final ResourceLocation MISSILE = new ResourceLocation(ModData.MOD_ID, "textures/entity/artemis_missile.png");
+    private static final ResourceLocation MISSILE = ResourceLocation.fromNamespaceAndPath(ModData.MOD_ID, "textures/entity/artemis_missile.png");
     private final ArtemisMissileModel model;
 
     public ArtemisMissileRenderer(Context context) {

@@ -11,7 +11,7 @@ import org.mineplugin.locusazzurro.icaruswings.common.entity.GoldenRamEntity;
 import org.mineplugin.locusazzurro.icaruswings.common.network.ClientBoundSparklePacket;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 
-@Mod.EventBusSubscriber(modid = ModData.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = ModData.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 
 public class ModCommonEventHandler {
 

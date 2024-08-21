@@ -4,7 +4,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -34,6 +33,8 @@ public class TreasureTransportCard extends AbstractTransportCard{
         super(CardType.TREASURE);
     }
 
+    //todo recheck loot table reading
+    /*
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
@@ -120,4 +121,6 @@ public class TreasureTransportCard extends AbstractTransportCard{
             return InteractionResultHolder.pass(itemstack);
         }
     }
+
+     */
 }

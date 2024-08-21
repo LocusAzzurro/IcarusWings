@@ -11,7 +11,7 @@ import net.neoforged.neoforge.event.TickEvent;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModConfig;
 import org.mineplugin.locusazzurro.icaruswings.common.item.SynapseWings;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class SynapseWingsFlyingHandler {
 
     @SubscribeEvent(priority = EventPriority.LOW)

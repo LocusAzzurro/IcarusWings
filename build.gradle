@@ -3,58 +3,58 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.80'
+    id 'net.neoforged.moddev' version '1.0.11'
 }
 
 version = mod_version
 group = mod_group
 
-repositories {
-    mavenLocal()
-}
+
 
 base {
     archivesName = mod_id
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
-minecraft {
-    accessTransformers {
-        file('src/main/resources/META-INF/accesstransformer.cfg')
+neoForge {
+
+    version = project.neoforge_version
+    validateAccessTransformers = true
+
+    runs {
+        configureEach {
+            logLevel = org.slf4j.event.Level.INFO
+        }
+        client {
+            client()
+        }
+        data {
+            data()
+        }
+        server {
+            server()
+        }
+    }
+
+    mods {
+        mod_id {
+            sourceSet sourceSets.main
+        }
+    }
+
+    parchment {
+        minecraftVersion = minecraft_version
+        mappingsVersion = parchment_version
     }
 }
 
-runs {
 
-    configureEach {
-        systemProperty 'forge.logging.markers', 'REGISTRIES'
-        systemProperty 'forge.logging.console.level', 'debug'
-
-        modSource project.sourceSets.main
-    }
-
-    client {
-        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
-    }
-
-    server {
-        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
-        programArgument '--nogui'
-    }
-
-    gameTestServer {
-        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
-    }
-
-    data {
-        programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
-    }
-}
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    mavenLocal()
     maven { // JEI
         url "https://maven.blamejared.com"
     }
@@ -64,7 +64,6 @@ repositories {
 }
 
 dependencies {
-    implementation "net.neoforged:neoforge:${neo_version}"
 
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version_common}"
     compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version_neoforge}"
@@ -77,8 +76,8 @@ tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [
             minecraft_version: minecraft_version,
             minecraft_version_range: minecraft_version_range,
-            neo_version: neo_version,
-            neo_version_range: neo_version_range,
+            neoforge_version: neoforge_version,
+            neoforge_version_range: neoforge_version_range,
             loader_version_range: loader_version_range,
             mod_id: mod_id,
             mod_name: mod_name,
@@ -109,8 +108,6 @@ jar {
         ])
     }
 }
-
-jar.finalizedBy('reobfJar')
 
 publishing {
     publications {
