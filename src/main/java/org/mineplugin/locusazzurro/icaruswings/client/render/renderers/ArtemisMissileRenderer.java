@@ -32,15 +32,15 @@ public class ArtemisMissileRenderer extends EntityRenderer<ArtemisMissileEntity>
     }
 
     @Override
-    public void render(ArtemisMissileEntity entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn){
-        super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-        matrixStackIn.pushPose();
-        matrixStackIn.scale(0.15f,0.15f, 0.15f);
-        matrixStackIn.translate(0f, -0.25f, 0f);
-        matrixStackIn.mulPose(Axis.YN.rotationDegrees(entityYaw));
-        matrixStackIn.mulPose(Axis.XN.rotationDegrees(entityIn.getXRot()));
-        VertexConsumer vertexBuilder = bufferIn.getBuffer(model.renderType(MISSILE));
-        this.model.renderToBuffer(matrixStackIn, vertexBuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-        matrixStackIn.popPose();
+    public void render(ArtemisMissileEntity entityIn, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int packedLightIn){
+        super.render(entityIn, entityYaw, partialTicks, poseStack, bufferIn, packedLightIn);
+        poseStack.pushPose();
+        poseStack.scale(0.15f,0.15f, 0.15f);
+        poseStack.translate(0f, -0.25f, 0f);
+        poseStack.mulPose(Axis.YN.rotationDegrees(entityYaw));
+        poseStack.mulPose(Axis.XN.rotationDegrees(entityIn.getXRot()));
+        VertexConsumer vertexConsumer = bufferIn.getBuffer(model.renderType(MISSILE));
+        this.model.renderToBuffer(poseStack, vertexConsumer, packedLightIn, OverlayTexture.NO_OVERLAY, 0xff_ff_ff_ff);
+        poseStack.popPose();
     }
 }

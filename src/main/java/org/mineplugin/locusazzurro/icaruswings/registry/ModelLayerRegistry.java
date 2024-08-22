@@ -30,7 +30,7 @@ public class ModelLayerRegistry {
     }
 
     private static ModelLayerLocation register(String pPath){
-        return new ModelLayerLocation(new ResourceLocation(MOD_ID, pPath), "main");
+        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MOD_ID, pPath), "main");
     };
 
 }

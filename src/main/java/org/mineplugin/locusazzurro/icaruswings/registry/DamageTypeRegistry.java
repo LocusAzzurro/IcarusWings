@@ -13,7 +13,7 @@ public class DamageTypeRegistry {
 
     private static ResourceKey<DamageType> register(String name)
     {
-        return ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ModData.MOD_ID, name));
+        return ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(ModData.MOD_ID, name));
     }
 
 }
