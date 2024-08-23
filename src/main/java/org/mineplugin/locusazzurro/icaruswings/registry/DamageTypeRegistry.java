@@ -4,7 +4,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageType;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 
 public class DamageTypeRegistry {
 
@@ -13,7 +13,7 @@ public class DamageTypeRegistry {
 
     private static ResourceKey<DamageType> register(String name)
     {
-        return ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(ModData.MOD_ID, name));
+        return ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, name));
     }
 
 }

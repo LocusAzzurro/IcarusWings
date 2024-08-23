@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.common.data;
 
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
@@ -11,5 +12,5 @@ public interface IWingsType {
 	Item getRepairItem();
 	ResourceLocation getTexture();
 	ResourceLocation getTextureReversed();
-	SoundEvent getEquipSound();
+	Holder<SoundEvent> getEquipSound();
 }

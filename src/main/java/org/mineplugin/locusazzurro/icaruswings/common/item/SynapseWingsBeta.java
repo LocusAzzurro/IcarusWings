@@ -7,9 +7,9 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
-import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.client.render.IWingsExpandable;
 import org.mineplugin.locusazzurro.icaruswings.client.render.IWingsTranslucent;
+import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 
 public class SynapseWingsBeta extends SynapseWings implements IWingsExpandable, IWingsTranslucent{
 	

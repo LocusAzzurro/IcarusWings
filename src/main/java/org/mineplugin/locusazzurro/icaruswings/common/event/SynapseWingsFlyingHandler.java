@@ -6,8 +6,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModConfig;
 import org.mineplugin.locusazzurro.icaruswings.common.item.SynapseWings;
 
@@ -15,8 +15,8 @@ import org.mineplugin.locusazzurro.icaruswings.common.item.SynapseWings;
 public class SynapseWingsFlyingHandler {
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        Player player = event.player;
+    public static void onPlayerTick(PlayerTickEvent event) {
+        Player player = event.getEntity();
         Item item = player.getItemBySlot(EquipmentSlot.CHEST).getItem();
         if (player.isFallFlying() && item instanceof SynapseWings wings) {
             Vec3 lookAngle = player.getLookAngle();

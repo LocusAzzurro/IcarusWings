@@ -1,49 +1,35 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
-import com.google.common.collect.ImmutableMultimap.Builder;
-import com.google.common.collect.Multimap;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModArmorMaterial;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import org.mineplugin.locusazzurro.icaruswings.registry.ArmorMaterialRegistry;
 
-import java.util.UUID;
-
-public class SynapseArmor extends ArmorItem implements Vanishable {
-	
-	private static final ModArmorMaterial material = ModArmorMaterial.SYNAPSE;
-	
-	private static final UUID[] ARMOR_MODIFIER_UUID_PER_SLOT = ModData.ARMOR_MODIFIER_UUID_PER_SLOT;
+public class SynapseArmor extends ArmorItem {
 	
 	public SynapseArmor(ArmorItem.Type type) {
-		super(material, type,
-			new Item.Properties().defaultDurability(material.getDurabilityForType(type)).rarity(Rarity.RARE));
+		super(ArmorMaterialRegistry.SYNAPSE, type, new Properties().durability(type.getDurability(40)).rarity(Rarity.RARE));
 	}
-	
-	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-		return slot == this.type.getSlot() ? this.getModifiersPerSlot(slot) : super.getDefaultAttributeModifiers(slot);
-	}
-	
-	private Multimap<Attribute, AttributeModifier> getModifiersPerSlot(EquipmentSlot slot)
-	{
-		Builder<Attribute, AttributeModifier> builder = ModData.createArmorModifierBuilder(slot, material);
-	    UUID uuid = ARMOR_MODIFIER_UUID_PER_SLOT[slot.getIndex()];
-		
-	    if (slot == EquipmentSlot.HEAD) {
-	    	builder.put(Attributes.LUCK, new AttributeModifier(uuid, "luck", 2.0f, AttributeModifier.Operation.ADDITION));}
-	    if (slot == EquipmentSlot.CHEST) {
-	    	builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(uuid, "attack_damage", 2.0f, AttributeModifier.Operation.ADDITION));}
-	    if (slot == EquipmentSlot.LEGS) {
-	    	builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "knockback_resistance", 0.2f, AttributeModifier.Operation.ADDITION));}
-	    if (slot == EquipmentSlot.FEET) {
-	    	builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "movement_speed", 0.05f, AttributeModifier.Operation.ADDITION));}
 
-		return builder.build();
+	@Override
+	public ItemAttributeModifiers getDefaultAttributeModifiers() {
+		ItemAttributeModifiers defaultAttributeModifiers = super.getDefaultAttributeModifiers();
+		return defaultAttributeModifiers
+				.withModifierAdded(Attributes.LUCK, new AttributeModifier(ResourceLocation.withDefaultNamespace("luck"), 2.0f, AttributeModifier.Operation.ADD_VALUE),
+						EquipmentSlotGroup.HEAD)
+				.withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(ResourceLocation.withDefaultNamespace("attack_damage"), 2.0f, AttributeModifier.Operation.ADD_VALUE),
+						EquipmentSlotGroup.CHEST)
+				.withModifierAdded(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(ResourceLocation.withDefaultNamespace("knockback_resistance"), 0.2f, AttributeModifier.Operation.ADD_VALUE),
+						EquipmentSlotGroup.LEGS)
+				.withModifierAdded(Attributes.MOVEMENT_SPEED, new AttributeModifier(ResourceLocation.withDefaultNamespace("movement_speed"), 0.05f, AttributeModifier.Operation.ADD_VALUE),
+						EquipmentSlotGroup.FEET);
 	}
 
 	@Override

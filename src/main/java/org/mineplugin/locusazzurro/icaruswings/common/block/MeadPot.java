@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.common.block;
 
+import com.google.common.base.Suppliers;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -30,7 +31,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -45,15 +45,16 @@ import org.mineplugin.locusazzurro.icaruswings.common.block.entity.ITickableBloc
 import org.mineplugin.locusazzurro.icaruswings.common.block.entity.MeadPotBlockEntity;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModTags;
 import org.mineplugin.locusazzurro.icaruswings.common.item.Mead;
+import org.mineplugin.locusazzurro.icaruswings.registry.BlockEntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
-import org.mineplugin.locusazzurro.icaruswings.registry.BlockEntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.util.IWLazy;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 @ParametersAreNonnullByDefault
@@ -76,21 +77,21 @@ public class MeadPot extends BaseEntityBlock {
 	public static final Predicate<ItemStack> isValidInfusionItem = (itemStack) ->
 			itemStack.is(ModTags.WORLD_ESSENCES) || itemStack.is(Items.GOLDEN_APPLE) || itemStack.is(ItemRegistry.HERB_BUNCH.get());
 
-	private static final Map<IWLazy<Item>, Mead.Infusion> infusionMapIn = new HashMap<>();
-	private static final Map<Mead.Infusion, IWLazy<Item> > infusionMapOut = new HashMap<>();
+	private static final Map<Supplier<Item>, Mead.Infusion> INFUSION_MAP_IN = new HashMap<>();
+	private static final Map<Mead.Infusion, Supplier<Item>> INFUSION_MAP_OUT = new HashMap<>();
 
 	static {
-		infusionMapIn.put(IWLazy.of(ItemRegistry.ZEPHIR_ESSENCE), Mead.Infusion.ZEPHIR);
-		infusionMapIn.put(IWLazy.of(ItemRegistry.NETHER_ESSENCE), Mead.Infusion.NETHER);
-		infusionMapIn.put(IWLazy.of(ItemRegistry.VOID_ESSENCE), Mead.Infusion.VOID);
-		infusionMapIn.put(IWLazy.of(ItemRegistry.HERB_BUNCH), Mead.Infusion.HERBS);
-		infusionMapIn.put(IWLazy.of(() -> Items.GOLDEN_APPLE), Mead.Infusion.GOLDEN_APPLE);
-		infusionMapOut.put(Mead.Infusion.NONE, IWLazy.of(ItemRegistry.MEAD));
-		infusionMapOut.put(Mead.Infusion.ZEPHIR, IWLazy.of(ItemRegistry.ZEPHIR_INFUSED_MEAD));
-		infusionMapOut.put(Mead.Infusion.NETHER, IWLazy.of(ItemRegistry.NETHER_INFUSED_MEAD));
-		infusionMapOut.put(Mead.Infusion.VOID, IWLazy.of(ItemRegistry.VOID_INFUSED_MEAD));
-		infusionMapOut.put(Mead.Infusion.HERBS, IWLazy.of(ItemRegistry.HERBS_INFUSED_MEAD));
-		infusionMapOut.put(Mead.Infusion.GOLDEN_APPLE, IWLazy.of(ItemRegistry.GOLDEN_APPLE_INFUSED_MEAD));
+		INFUSION_MAP_IN.put(Suppliers.memoize(ItemRegistry.ZEPHIR_ESSENCE::get), Mead.Infusion.ZEPHIR);
+		INFUSION_MAP_IN.put(Suppliers.memoize(ItemRegistry.NETHER_ESSENCE::get), Mead.Infusion.NETHER);
+		INFUSION_MAP_IN.put(Suppliers.memoize(ItemRegistry.VOID_ESSENCE::get), Mead.Infusion.VOID);
+		INFUSION_MAP_IN.put(Suppliers.memoize(ItemRegistry.HERB_BUNCH::get), Mead.Infusion.HERBS);
+		INFUSION_MAP_IN.put(Suppliers.memoize(() -> Items.GOLDEN_APPLE), Mead.Infusion.GOLDEN_APPLE);
+		INFUSION_MAP_OUT.put(Mead.Infusion.NONE, Suppliers.memoize(ItemRegistry.MEAD::get));
+		INFUSION_MAP_OUT.put(Mead.Infusion.ZEPHIR, Suppliers.memoize(ItemRegistry.ZEPHIR_INFUSED_MEAD::get));
+		INFUSION_MAP_OUT.put(Mead.Infusion.NETHER, Suppliers.memoize(ItemRegistry.NETHER_INFUSED_MEAD::get));
+		INFUSION_MAP_OUT.put(Mead.Infusion.VOID, Suppliers.memoize(ItemRegistry.VOID_INFUSED_MEAD::get));
+		INFUSION_MAP_OUT.put(Mead.Infusion.HERBS, Suppliers.memoize(ItemRegistry.HERBS_INFUSED_MEAD::get));
+		INFUSION_MAP_OUT.put(Mead.Infusion.GOLDEN_APPLE, Suppliers.memoize(ItemRegistry.GOLDEN_APPLE_INFUSED_MEAD::get));
 	}
 
 	public MeadPot() {
@@ -173,7 +174,7 @@ public class MeadPot extends BaseEntityBlock {
             if (stackIn.getItem() == ItemRegistry.GLASS_JAR.get() && meadPotTE.isComplete()) {
 				Item itemOut = ItemRegistry.MEAD.get();
 				if (!player.getAbilities().instabuild) stackIn.shrink(1);
-				for (Map.Entry<Mead.Infusion, IWLazy<Item>> entry : infusionMapOut.entrySet()) {
+				for (Map.Entry<Mead.Infusion, IWLazy<Item>> entry : INFUSION_MAP_OUT.entrySet()) {
 					if (state.getValue(INFUSION) == entry.getKey()) {
 						itemOut = entry.getValue().get();
 						break;
@@ -197,7 +198,7 @@ public class MeadPot extends BaseEntityBlock {
 				&& isValidInfusionItem.test(itemEntity.getItem())
 				&& pState.getValue(STATE) == MeadPotState.FERMENTING && pState.getValue(INFUSION) == Mead.Infusion.NONE){
 			ItemStack stack = itemEntity.getItem();
-			infusionMapIn.forEach((item, infusion) -> {
+			INFUSION_MAP_IN.forEach((item, infusion) -> {
 				if (stack.is(item.get())) {
 					pLevel.setBlock(pPos, pLevel.getBlockState(pPos).setValue(INFUSION, infusion), 3);
 				}});

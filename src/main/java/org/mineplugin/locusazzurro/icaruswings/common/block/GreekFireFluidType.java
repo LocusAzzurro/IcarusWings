@@ -2,17 +2,17 @@ package org.mineplugin.locusazzurro.icaruswings.common.block;
 
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.neoforged.neoforge.common.SoundActions;
-import org.joml.Vector3f;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.FluidType;
 import org.jetbrains.annotations.NotNull;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import org.joml.Vector3f;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import java.util.function.Consumer;
@@ -45,13 +45,13 @@ public class GreekFireFluidType extends FluidType {
             @Override
             public ResourceLocation getOverlayTexture()
             {
-                return new ResourceLocation(ModData.MOD_ID, "block/greek_fire_still");
+                return ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "block/greek_fire_still");
             }
 
             @Override
             public ResourceLocation getRenderOverlayTexture(Minecraft mc)
             {
-                return new ResourceLocation(ModData.MOD_ID, "textures/block/greek_fire_overlay.png");
+                return ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "textures/block/greek_fire_overlay.png");
             }
 
             @Override

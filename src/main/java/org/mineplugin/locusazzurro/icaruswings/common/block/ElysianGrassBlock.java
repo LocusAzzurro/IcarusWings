@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.lighting.LightEngine;
-
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
 public class ElysianGrassBlock extends GrassBlock {

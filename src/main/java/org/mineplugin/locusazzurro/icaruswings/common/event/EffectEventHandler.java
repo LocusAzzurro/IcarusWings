@@ -8,14 +8,13 @@ import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.common.effect.AbstractEffect;
 import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
 
-@EventBusSubscriber(modid = ModData.MOD_ID)
+@EventBusSubscriber(modid = IcarusWings.MOD_ID)
 public class EffectEventHandler {
 
     // From AbstractEffect

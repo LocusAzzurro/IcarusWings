@@ -2,21 +2,21 @@ package org.mineplugin.locusazzurro.icaruswings.common.block;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
-import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.*;
+import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.GREEK_FIRE;
+import static org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry.GREEK_FIRE_FLUID_TYPE;
 
 public abstract class GreekFireFluid extends BaseFlowingFluid {
 
-    public static final ResourceLocation GREEK_FIRE_STILL = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_still");
-    public static final ResourceLocation GREEK_FIRE_FLOWING = new ResourceLocation(ModData.MOD_ID, "block/greek_fire_flow");
+    public static final ResourceLocation GREEK_FIRE_STILL = ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "block/greek_fire_still");
+    public static final ResourceLocation GREEK_FIRE_FLOWING = ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "block/greek_fire_flow");
     public static BaseFlowingFluid.Properties fluidProperties = new BaseFlowingFluid.Properties(GREEK_FIRE_FLUID_TYPE, GREEK_FIRE, FluidRegistry.GREEK_FIRE_FLOWING)
             .bucket(ItemRegistry.GREEK_FIRE_BUCKET).block(BlockRegistry.GREEK_FIRE).slopeFindDistance(1).explosionResistance(100F);
 

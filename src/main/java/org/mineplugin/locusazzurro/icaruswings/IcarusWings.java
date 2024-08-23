@@ -5,11 +5,12 @@ import net.neoforged.fml.ModList;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModConfig;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 import org.mineplugin.locusazzurro.icaruswings.registry.*;
 
-@Mod(ModData.MOD_ID)
+@Mod(IcarusWings.MOD_ID)
 public class IcarusWings {
+
+	public static final String MOD_ID = "locusazzurro_icaruswings";
 
 	public IcarusWings(IEventBus bus) {
 
@@ -22,8 +23,8 @@ public class IcarusWings {
 		EntityTypeRegistry.ENTITIES.register(bus);
 		ParticleRegistry.PARTICLES.register(bus);
 		BlockEntityTypeRegistry.BLOCK_ENTITIES.register(bus);
-		EnchantmentRegistry.ENCHANTMENTS.register(bus);
 		EffectRegistry.EFFECTS.register(bus);
+		LootModifierRegistry.LOOT_MODIFIERS.register(bus);
 
 		ModLoadingContext.get().registerConfig(net.neoforged.fml.config.ModConfig.Type.COMMON, ModConfig.CONFIG);
 

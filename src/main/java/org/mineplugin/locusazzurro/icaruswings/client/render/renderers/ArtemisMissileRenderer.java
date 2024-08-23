@@ -10,15 +10,15 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
+import org.mineplugin.locusazzurro.icaruswings.client.render.models.ArtemisMissileModel;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.ArtemisMissileEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.ModelLayerRegistry;
-import org.mineplugin.locusazzurro.icaruswings.client.render.models.ArtemisMissileModel;
 
 @OnlyIn(Dist.CLIENT)
 public class ArtemisMissileRenderer extends EntityRenderer<ArtemisMissileEntity> {
 
-    private static final ResourceLocation MISSILE = ResourceLocation.fromNamespaceAndPath(ModData.MOD_ID, "textures/entity/artemis_missile.png");
+    private static final ResourceLocation MISSILE = ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "textures/entity/artemis_missile.png");
     private final ArtemisMissileModel model;
 
     public ArtemisMissileRenderer(Context context) {

@@ -1,9 +1,12 @@
 package org.mineplugin.locusazzurro.icaruswings.datagen;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author DustW
@@ -11,8 +14,8 @@ import net.neoforged.neoforge.common.conditions.IConditionBuilder;
  **/
 public class ModRecipesProvider extends RecipeProvider implements IConditionBuilder {
 
-    public ModRecipesProvider(PackOutput output) {
-        super(output);
+    public ModRecipesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+        super(output, registries);
     }
 
     @Override

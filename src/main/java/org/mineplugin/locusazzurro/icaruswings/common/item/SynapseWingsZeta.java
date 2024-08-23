@@ -6,9 +6,8 @@ import com.google.common.collect.Multimap;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.neoforged.fml.common.Mod;
-import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.client.render.IWingsExpandable;
+import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 
 public class SynapseWingsZeta extends SynapseWings implements IWingsExpandable{
 	

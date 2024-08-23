@@ -6,16 +6,15 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Parrot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModFoods;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 @EventBusSubscriber
@@ -24,14 +23,9 @@ public class WheatGrains extends Item{
 	private final static float ACQUIRE_FEATHER_CHANCE = 0.5f;
 	
 	public WheatGrains() {
-		super(new Properties().food(food));
+		super(new Properties().food(ModFoods.WHEAT_GRAINS));
 		
 	}
-	
-	private static final FoodProperties food = (new FoodProperties.Builder())
-			.saturationMod(0)
-			.nutrition(2)
-			.build();
 	
 	@Override
 	public InteractionResult interactLivingEntity(ItemStack stack, Player player,
@@ -74,7 +68,8 @@ public class WheatGrains extends Item{
 				grains.interactLivingEntity(evt.getEntity(), parrot, evt.getHand());
 				parrot.setOrderedToSit(!parrot.isOrderedToSit());
 			}
-			evt.setResult(Event.Result.ALLOW);
+			evt.setCanceled(true);
+			evt.setCancellationResult(InteractionResult.CONSUME);
 		}
 	}
 

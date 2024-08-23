@@ -6,14 +6,12 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.handling.PlayPayloadContext;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
-
-import java.util.function.Supplier;
 
 public record ClientBoundSparklePacket(double x, double y, double z) implements CustomPacketPayload {
 
-    public static final ResourceLocation ID = new ResourceLocation(ModData.MOD_ID, "sparkle");
+    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "sparkle");
 
     public static ClientBoundSparklePacket create(FriendlyByteBuf buf) {
         return new ClientBoundSparklePacket(buf.readDouble(), buf.readDouble(), buf.readDouble());

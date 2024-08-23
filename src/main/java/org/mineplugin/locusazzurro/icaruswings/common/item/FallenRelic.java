@@ -8,8 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 
 import java.util.List;
 
@@ -43,19 +42,23 @@ public class FallenRelic extends Item{
 	}
 
 	@Override
-	public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
-		super.appendHoverText(itemstack, world, list, flag);
-		RelicType type = ((FallenRelic)itemstack.getItem()).getType();
-		list.add(Component.translatable("item.locusazzurro_icaruswings.fallen_relic_"+ type +".tooltip")
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+		super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+		RelicType type = ((FallenRelic)stack.getItem()).getType();
+		tooltipComponents.add(Component.translatable("item.locusazzurro_icaruswings.fallen_relic_"+ type +".tooltip")
 				.setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
 	}
 
 	@Override
 	public String getDescriptionId(){
-		return "item." + ModData.MOD_ID + "." + (this.getType().isUpgraded() ? "upgraded_" : (this.isRestored ? "restored_" : "")) + "fallen_relic";
+		return "item." + IcarusWings.MOD_ID + "." + (this.getType().isUpgraded() ? "upgraded_" : (this.isRestored ? "restored_" : "")) + "fallen_relic";
 	}
-	
-	public enum RelicType implements StringRepresentable {
+
+    public boolean isUpgraded() {
+        return isUpgraded;
+    }
+
+    public enum RelicType implements StringRepresentable {
 		CORE("core", false),
 		SECOND_GEN_CORE("second_gen_core", true),
 		INTERFACE("interface", false),

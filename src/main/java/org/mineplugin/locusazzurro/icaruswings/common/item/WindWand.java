@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -22,7 +23,7 @@ public class WindWand extends Item {
     }
 
     @Override
-    public int getUseDuration(ItemStack p_77626_1_) {
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 72000;
     }
 
@@ -39,22 +40,14 @@ public class WindWand extends Item {
 
     @Override
     public void releaseUsing(ItemStack itemStack, Level worldIn, LivingEntity livingIn, int charge) {
-        if (livingIn instanceof Player) {
-            Player playerIn = (Player) livingIn;
+        if (livingIn instanceof Player playerIn) {
             if (playerIn.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof AirJar && itemStack.getDamageValue() > 0) {
                 ItemStack offhandStack = playerIn.getItemInHand(InteractionHand.OFF_HAND);
-                int repairAmount = 0;
-                switch (((AirJar) offhandStack.getItem()).getType()) {
-                    case ZEPHIR:
-                        repairAmount = 1;
-                        break;
-                    case NETHER:
-                        repairAmount = 2;
-                        break;
-                    case VOID:
-                        repairAmount = 3;
-                        break;
-                }
+                int repairAmount = switch (((AirJar) offhandStack.getItem()).getType()) {
+                    case ZEPHIR -> 1;
+                    case NETHER -> 2;
+                    case VOID -> 3;
+                };
                 if (!playerIn.getAbilities().instabuild) {
                     offhandStack.shrink(1);
                     ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegistry.GLASS_JAR.get()));
@@ -66,14 +59,12 @@ public class WindWand extends Item {
                 Vec3 lookVec = playerIn.getLookAngle();
                 Vec3 moveVec = playerIn.getDeltaMovement();
                 Vec3 yBonus = new Vec3(0f, 0.5f, 0f);
-                int i = this.getUseDuration(itemStack) - charge;
+                int i = this.getUseDuration(itemStack, playerIn) - charge;
                 if (i >= 5) playerIn.setDeltaMovement(moveVec.add(lookVec.reverse().scale(1.5)).add(yBonus));
                 else playerIn.setDeltaMovement(moveVec.add(lookVec.scale(2.0)).add(yBonus));
                 playerIn.fallDistance = 0;
                 if (!worldIn.isClientSide()) {
-                    itemStack.hurtAndBreak(1, playerIn, (player) -> {
-                        player.broadcastBreakEvent(playerIn.getUsedItemHand());
-                    });
+                    itemStack.hurtAndBreak(1, (ServerLevel) worldIn, playerIn, item -> {});
                 }
                 else {
                     for(int j = 0; j < 10; j++){

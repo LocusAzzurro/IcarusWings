@@ -1,14 +1,14 @@
 package org.mineplugin.locusazzurro.icaruswings.common.data;
 
+import net.minecraft.core.Holder.Reference;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import org.mineplugin.locusazzurro.icaruswings.registry.DamageTypeRegistry;
-import net.minecraft.world.damagesource.DamageType;
-import net.minecraft.core.Holder.Reference;
 
 public class ModDamageSources {
 

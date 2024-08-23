@@ -2,15 +2,15 @@ package org.mineplugin.locusazzurro.icaruswings.registry;
 
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import net.minecraft.core.registries.BuiltInRegistries;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 
 import java.util.function.Supplier;
 
 public class ParticleRegistry {
 
-    public static DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, ModData.MOD_ID);
+    public static DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, IcarusWings.MOD_ID);
 
     public static Supplier<SimpleParticleType> NULLITY = PARTICLES.register("nullity",
             () -> new SimpleParticleType(true));

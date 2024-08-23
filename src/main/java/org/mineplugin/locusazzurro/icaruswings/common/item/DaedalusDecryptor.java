@@ -7,11 +7,7 @@ import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 public class DaedalusDecryptor extends Item {
 	
-	private boolean isPersistent = true;
-	
-	public DaedalusDecryptor() {
-		this(true);
-	}
+	private final boolean isPersistent;
 	
 	public DaedalusDecryptor(boolean isPersistent) {
 		super(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
@@ -20,7 +16,7 @@ public class DaedalusDecryptor extends Item {
 
 	@Override
 	public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
-		return new ItemStack(ItemRegistry.DAEDALUS_DECRYPTOR.get());
+		return isPersistent ? new ItemStack(ItemRegistry.DAEDALUS_DECRYPTOR.get()) : ItemStack.EMPTY;
 	}
 
 	@Override

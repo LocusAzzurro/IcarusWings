@@ -1,17 +1,17 @@
 package org.mineplugin.locusazzurro.icaruswings.registry;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.minecraft.core.registries.BuiltInRegistries;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.*;
 
 import java.util.function.Supplier;
 
 public class EntityTypeRegistry {
-	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, ModData.MOD_ID);
+	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, IcarusWings.MOD_ID);
 	
 	public static final Supplier<EntityType<GoldenRamEntity>> GOLDEN_RAM =
 			register("golden_ram", () -> EntityType.Builder

@@ -95,11 +95,11 @@ public class TeleportTransportCard extends AbstractTransportCard{
                 CompoundTag dest = itemStack.getOrCreateTag().getCompound("Destination");
                 String dim = dest.getString("Dimension");
                 Level dimension = null;
-                DimensionType type = worldIn.registryAccess().registryOrThrow(Registries.DIMENSION_TYPE).get(new ResourceLocation(dim));
+                DimensionType type = worldIn.registryAccess().registryOrThrow(Registries.DIMENSION_TYPE).get(ResourceLocation.fromNamespaceAndPath(dim));
                 if (type != null) {
-                    dimension = worldIn.getServer().getLevel(ResourceKey.create(Registries.DIMENSION, new ResourceLocation(dim)));
+                    dimension = worldIn.getServer().getLevel(ResourceKey.create(Registries.DIMENSION, ResourceLocation.fromNamespaceAndPath(dim)));
                 }
-                //ResourceKey<Level> dimension = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(dim));
+                //ResourceKey<Level> dimension = ResourceKey.create(Registry.DIMENSION_REGISTRY, ResourceLocation.fromNamespaceAndPath(dim));
                 if (worldIn.equals(dimension)) {
                     double x = dest.getDouble("X");
                     double y = dest.getDouble("Y");

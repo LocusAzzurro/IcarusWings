@@ -1,0 +1,1 @@
+package org.mineplugin.locusazzurro.icaruswings.registry;

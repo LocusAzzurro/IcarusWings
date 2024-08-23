@@ -9,8 +9,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
@@ -25,10 +25,10 @@ public class GlassJar extends Item {
     }
 
     @SubscribeEvent
-    public static void collectAir(TickEvent.PlayerTickEvent e){
-        Player player = e.player;
+    public static void collectAir(PlayerTickEvent.Pre e){
+        Player player = e.getEntity();
         Level world = player.level();
-        if (player.isFallFlying() && player.tickCount % 20 == 0 && !world.isClientSide() && e.phase == TickEvent.Phase.END){
+        if (player.isFallFlying() && player.tickCount % 20 == 0 && !world.isClientSide()){
             int slot = player.getInventory().findSlotMatchingUnusedItem(new ItemStack(ItemRegistry.GLASS_JAR.get()));
             if (slot != -1){
                 float rand = world.random.nextFloat();
@@ -69,7 +69,7 @@ public class GlassJar extends Item {
         else return ItemRegistry.GLASS_JAR;
     }
 
-    private static float[][] CT = Util.make(new float[3][128], (t) -> {
+    private static final float[][] CT = Util.make(new float[3][128], (t) -> {
         for(int i = 0; i < 128; i++){
            t[0][i] = ZEPHIR_BASE_CHANCE * F(i);
            t[1][i] = NETHER_BASE_CHANCE * F(i);

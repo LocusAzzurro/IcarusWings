@@ -22,16 +22,16 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import org.mineplugin.locusazzurro.icaruswings.client.render.models.WingsModel;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.common.item.AbstractWings;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.client.render.IWingsExpandable;
 import org.mineplugin.locusazzurro.icaruswings.client.render.IWingsTranslucent;
+import org.mineplugin.locusazzurro.icaruswings.client.render.models.WingsModel;
+import org.mineplugin.locusazzurro.icaruswings.common.item.AbstractWings;
 
 @OnlyIn(Dist.CLIENT)
 public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extends ElytraLayer<T, M> {
 	
-	private static final ResourceLocation WINGS_FEATHER = new ResourceLocation(ModData.MOD_ID, "textures/entity/feather_wings.png");
+	private static final ResourceLocation WINGS_FEATHER = ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "textures/entity/feather_wings.png");
 	private final WingsModel<T> elytraModel;
 
 	public WingsLayer(RenderLayerParent<T, M> renderIn, EntityModelSet root) {
@@ -90,11 +90,10 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 			boolean isWingsTranslucent = itemstack.getItem() instanceof IWingsTranslucent;
 			VertexConsumer vertexBuilder = ItemRenderer.getArmorFoilBuffer(bufferIn,
 					isWingsTranslucent ? RenderType.entityTranslucent(resourceLocation) : RenderType.armorCutoutNoCull(resourceLocation),
-					false,
 					!isWingsTranslucent && itemstack.hasFoil()
 			);
 
-			this.elytraModel.renderToBuffer(matrixStackIn, vertexBuilder, packetLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+			this.elytraModel.renderToBuffer(matrixStackIn, vertexBuilder, packetLightIn, OverlayTexture.NO_OVERLAY, 0xff_ff_ff_ff);
 			
 			matrixStackIn.popPose();
 		}

@@ -9,15 +9,15 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
+import org.mineplugin.locusazzurro.icaruswings.client.render.models.TimeBombModel;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.TimeBombEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.ModelLayerRegistry;
-import org.mineplugin.locusazzurro.icaruswings.client.render.models.TimeBombModel;
 
 @OnlyIn(Dist.CLIENT)
 public class TimeBombRenderer extends EntityRenderer<TimeBombEntity> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(ModData.MOD_ID, "textures/entity/time_bomb.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "textures/entity/time_bomb.png");
     private final TimeBombModel<TimeBombEntity> model;
 
     public TimeBombRenderer(Context context) {

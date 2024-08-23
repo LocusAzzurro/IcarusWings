@@ -1,30 +1,33 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
-import net.neoforged.neoforge.common.NeoForgeMod;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
+import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.SpearItemStackTileEntityRenderer;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.SpearEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
-import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.SpearItemStackTileEntityRenderer;
 
 import java.util.function.Consumer;
 
@@ -45,22 +48,17 @@ public class SpearItem extends TieredItem{
     }
 
 
-
-    protected Multimap<Attribute, AttributeModifier> getModifiers(){
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID,
-                "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID,
-                "Weapon modifier", this.attackSpeed, AttributeModifier.Operation.ADDITION));
-        builder.put(NeoForgeMod.ENTITY_REACH.value(), new AttributeModifier(ModData.WEAPON_ATTACK_RANGE_UUID,
-                "Weapon modifier", this.attackRange, AttributeModifier.Operation.ADDITION));
-        return builder.build();
-    }
-
-    @SuppressWarnings("deprecation")
     @Override
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-        return slot == EquipmentSlot.MAINHAND ? this.getModifiers() : super.getDefaultAttributeModifiers(slot);
+    @SuppressWarnings("deprecation")
+    public ItemAttributeModifiers getDefaultAttributeModifiers() {
+        ItemAttributeModifiers defaultAttributeModifiers = super.getDefaultAttributeModifiers();
+        return defaultAttributeModifiers
+                .withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(ResourceLocation.withDefaultNamespace("attack_damage"), this.attackDamage, AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.MAINHAND)
+                .withModifierAdded(Attributes.ATTACK_SPEED, new AttributeModifier(ResourceLocation.withDefaultNamespace("attack_speed"), this.attackSpeed, AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.MAINHAND)
+                .withModifierAdded(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(ResourceLocation.withDefaultNamespace("entity_interaction_range"), this.attackRange, AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.MAINHAND);
     }
 
     public float getAttackDamage() {
@@ -92,25 +90,21 @@ public class SpearItem extends TieredItem{
 
     @Override
     public boolean hurtEnemy(ItemStack itemStack, LivingEntity target, LivingEntity attacker) {
-        itemStack.hurtAndBreak(1, attacker, (player) -> {
-            player.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-        });
+        itemStack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
         return true;
     }
 
     @Override
     public boolean mineBlock(ItemStack itemStack, Level worldIn, BlockState blockState, BlockPos pos, LivingEntity user) {
         if (blockState.getDestroySpeed(worldIn, pos) != 0.0F) {
-            itemStack.hurtAndBreak(2, user, (item) -> {
-                item.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-            });
+            itemStack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
         }
 
         return true;
     }
 
     @Override
-    public boolean isCorrectToolForDrops(BlockState blockState) {
+    public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         return false;
     }
 
@@ -139,7 +133,7 @@ public class SpearItem extends TieredItem{
     }
 
     @Override
-    public int getUseDuration(ItemStack p_77626_1_) {
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 72000;
     }
 
@@ -158,12 +152,10 @@ public class SpearItem extends TieredItem{
     public void releaseUsing(ItemStack itemStack, Level worldIn, LivingEntity livingIn, int charge) {
         if (livingIn instanceof Player) {
             Player playerIn = (Player)livingIn;
-            int i = this.getUseDuration(itemStack) - charge;
+            int i = this.getUseDuration(itemStack, livingIn) - charge;
             if (i >= 10) {
                 if (!worldIn.isClientSide){
-                    itemStack.hurtAndBreak(1, playerIn, (player) -> {
-                        player.broadcastBreakEvent(livingIn.getUsedItemHand());
-                    });
+                    itemStack.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);
                 }
                 SpearEntity spearEntity = new SpearEntity(worldIn, playerIn, itemStack);
                 spearEntity.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0F, 2.5F, 1.0F);

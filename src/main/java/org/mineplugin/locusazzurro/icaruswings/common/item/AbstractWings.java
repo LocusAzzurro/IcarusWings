@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -8,7 +9,6 @@ import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
-import net.neoforged.fml.common.Mod;
 import org.mineplugin.locusazzurro.icaruswings.common.data.IWingsType;
 import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 
@@ -46,7 +46,7 @@ public abstract class AbstractWings extends ElytraItem {
 	}
 
 	@Override
-	public SoundEvent getEquipSound() {
+	public Holder<SoundEvent> getEquipSound() {
 		return getType().getEquipSound();
 	}
 

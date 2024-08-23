@@ -1,22 +1,27 @@
 package org.mineplugin.locusazzurro.icaruswings.registry;
 
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Tiers;
-import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.registries.BuiltInRegistries;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModItemTier;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
+import org.mineplugin.locusazzurro.icaruswings.common.data.IWingsType;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModFoods;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModItemTiers;
 import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 import org.mineplugin.locusazzurro.icaruswings.common.item.*;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Supplier;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 @SuppressWarnings("unused")
 public class ItemRegistry {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, ModData.MOD_ID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, IcarusWings.MOD_ID);
     
     public static final Supplier<Item> RED_FEATHER = registerSimpleItem("red_feather");
     public static final Supplier<Item> BLUE_FEATHER = registerSimpleItem("blue_feather");
@@ -25,12 +30,9 @@ public class ItemRegistry {
     public static final Supplier<Item> GRAY_FEATHER = registerSimpleItem("gray_feather");
     public static final Supplier<Item> GOLDEN_FEATHER = registerSimpleItem("golden_feather");
     
-    public static final Supplier<Item> FEATHER_BUNCH = ITEMS.register("feather_bunch",
-    		() -> new FeatherBunch(WingsType.FEATHER));
-    public static final Supplier<Item> COLORED_FEATHER_BUNCH = ITEMS.register("colored_feather_bunch",
-    		() -> new FeatherBunch(WingsType.FEATHER_COLORED));
-    public static final Supplier<Item> GOLDEN_FEATHER_BUNCH = ITEMS.register("golden_feather_bunch",
-    		() -> new FeatherBunch(WingsType.FEATHER_GOLDEN));
+    public static final Supplier<Item> FEATHER_BUNCH = registerSimpleItem("feather_bunch");
+    public static final Supplier<Item> COLORED_FEATHER_BUNCH = registerSimpleItem("colored_feather_bunch");
+    public static final Supplier<Item> GOLDEN_FEATHER_BUNCH = registerSimpleItem("golden_feather_bunch");
     public static final Supplier<Item> HERB_BUNCH = registerSimpleItem("herb_bunch");
     
     public static final Supplier<Item> STEEL_INGOT = registerSimpleItem("steel_ingot");
@@ -52,18 +54,17 @@ public class ItemRegistry {
     public static final Supplier<Item> REFORGED_NETHERITE_INGOT = registerSimpleItem("reforged_netherite_ingot");
     public static final Supplier<Item> SYNAPSE_ALLOY_INGOT = registerSimpleItem("synapse_alloy_ingot");
     
-    public static final Supplier<Item> BEESWAX = ITEMS.register("beeswax", Beeswax::new);
-    public static final Supplier<Item> BEESWAX_BLOCK = ITEMS.register("beeswax_block",
-    		() -> new BlockItem(BlockRegistry.BEESWAX_BLOCK.get(), new Item.Properties()));
-    public static final Supplier<Item> REFINED_BEESWAX_BAR = ITEMS.register("refined_beeswax_bar",
-            () -> new RefinedBeeswaxBar(false));
+    public static final Supplier<Item> BEESWAX = ITEMS.register("beeswax",
+            () -> new Item(new Item.Properties().food(ModFoods.BEESWAX)));
+    public static final Supplier<Item> BEESWAX_BLOCK = fromBlock("beeswax_block", BlockRegistry.BEESWAX_BLOCK);
+    public static final Supplier<Item> REFINED_BEESWAX_BAR = registerSimpleItem("refined_beeswax_bar");
     public static final Supplier<Item> GLISTERING_REFINED_BEESWAX_BAR = ITEMS.register("glistering_refined_beeswax_bar",
-    		() -> new RefinedBeeswaxBar(true));
+    		() -> new Item(new Item.Properties()){@Override public boolean isPiglinCurrency(ItemStack s) {return true;}});
     public static final Supplier<Item> REFINED_BEESWAX_BLOCK = fromBlock("refined_beeswax_block", BlockRegistry.REFINED_BEESWAX_BLOCK);
     public static final Supplier<Item> REFINED_BEESWAX_SLAB = fromBlock("refined_beeswax_slab", BlockRegistry.REFINED_BEESWAX_SLAB);
     public static final Supplier<Item> REFINED_BEESWAX_PILLAR = fromBlock("refined_beeswax_pillar", BlockRegistry.REFINED_BEESWAX_PILLAR);
     public static final Supplier<Item> REFINED_BEESWAX_STAIRS = fromBlock("refined_beeswax_stairs", BlockRegistry.REFINED_BEESWAX_STAIRS);
-    public static final Supplier<Item> CHISELED_REFINED_BEESWAX_BLOCK = fromBlock("chiseled_refined_beeswax_block", BlockRegistry.CHISELED_REFINED_BEESWAX_BLOCK);;
+    public static final Supplier<Item> CHISELED_REFINED_BEESWAX_BLOCK = fromBlock("chiseled_refined_beeswax_block", BlockRegistry.CHISELED_REFINED_BEESWAX_BLOCK);
     public static final Supplier<Item> SMOOTH_REFINED_BEESWAX_BLOCK = fromBlock("smooth_refined_beeswax_block", BlockRegistry.SMOOTH_REFINED_BEESWAX_BLOCK);
     public static final Supplier<Item> ELYSIAN_GRASS_BLOCK = fromBlock("elysian_grass_block", BlockRegistry.ELYSIAN_GRASS_BLOCK);
     public static final Supplier<Item> ELYSIAN_SOIL = fromBlock("elysian_soil", BlockRegistry.ELYSIAN_SOIL);
@@ -74,11 +75,12 @@ public class ItemRegistry {
     
     public static final Supplier<Item> MEAD_POT = fromBlock("mead_pot", BlockRegistry.MEAD_POT);
     public static final Supplier<Item> AMPHORA = fromBlock("amphora", BlockRegistry.AMPHORA);
-    public static final Supplier<Item> GREEK_FIRE_BUCKET = ITEMS.register("greek_fire_bucket", GreekFireBucket::new);
+    public static final Supplier<Item> GREEK_FIRE_BUCKET = ITEMS.register("greek_fire_bucket",
+            () -> new BucketItem(FluidRegistry.GREEK_FIRE.get(), new Item.Properties().craftRemainder(Items.BUCKET)));
 
     public static final Supplier<Item> GLASS_JAR = ITEMS.register("glass_jar", GlassJar::new);
 
-    public static final Supplier<Item> MEAD = ITEMS.register("mead", () -> new Mead());
+    public static final Supplier<Item> MEAD = ITEMS.register("mead", () -> new Mead()); //todo all meads
     public static final Supplier<Item> ZEPHIR_INFUSED_MEAD = ITEMS.register("zephir_infused_mead",
     		() -> new Mead(Mead.Infusion.ZEPHIR));
     public static final Supplier<Item> NETHER_INFUSED_MEAD = ITEMS.register("nether_infused_mead",
@@ -99,36 +101,38 @@ public class ItemRegistry {
     public static final Supplier<Item> VOID_AIR_JAR = ITEMS.register("void_air_jar",
             () -> new AirJar(AirJar.AirType.VOID));
     public static final Supplier<Item> ANEMONE = registerSimpleItem("anemone");
-    public static final Supplier<Item> MAGICAL_ANEMONE = ITEMS.register("magical_anemone", MagicalAnemone::new);
+    public static final Supplier<Item> MAGICAL_ANEMONE = ITEMS.register("magical_anemone", MagicalAnemone::new); //todo
     public static final Supplier<Item> WIND_WAND = ITEMS.register("wind_wand", WindWand::new);
     
     public static final Supplier<Item> WHEAT_GRAINS = ITEMS.register("wheat_grains", WheatGrains::new);
     public static final Supplier<Item> WHEAT_STRING = registerSimpleItem("wheat_string");
     public static final Supplier<Item> FLAX = registerSimpleItem("flax");
-    public static final Supplier<Item> FLAX_SEEDS = ITEMS.register("flax_seeds", FlaxSeeds::new);
+    public static final Supplier<Item> FLAX_SEEDS = ITEMS.register("flax_seeds", () -> new ItemNameBlockItem(BlockRegistry.FLAX_CROP.get(), new Item.Properties()));
     public static final Supplier<Item> LINEN_STRING = registerSimpleItem("linen_string");
     public static final Supplier<Item> GOLDEN_STRING = registerSimpleItem("golden_string");
     public static final Supplier<Item> GOLDEN_FLEECE = registerSimpleItem("golden_fleece");
     
     public static final Supplier<Item> LINEN = registerSimpleItem("linen");
-    public static final Supplier<Item> GRAINS_MEAL = ITEMS.register("grains_meal", GrainsMeal::new);
+    public static final Supplier<Item> GRAINS_MEAL = ITEMS.register("grains_meal",
+            () -> new Item(new Item.Properties().food(ModFoods.GRAINS_MEAL)));
 
     public static final Supplier<Item> HERBAL_CROWN = ITEMS.register("herbal_crown",
-    		() -> new HerbalAccessory(ArmorItem.Type.HELMET));
+            () -> new ArmorItem(ArmorMaterialRegistry.HERBAL, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(1))));
     public static final Supplier<Item> FEATHER_HELMET = ITEMS.register("feather_helmet",
-    		() -> new FeatherArmor(ArmorItem.Type.HELMET, false));
+    		() -> new ArmorItem(ArmorMaterialRegistry.FEATHER, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(4))));
     public static final Supplier<Item> GOLDEN_FEATHER_HELMET = ITEMS.register("golden_feather_helmet",
-    		() -> new FeatherArmor(ArmorItem.Type.HELMET, true));
+            () -> new ArmorItem(ArmorMaterialRegistry.GOLDEN_FEATHER, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(7))));
     public static final Supplier<Item> LINEN_CLOAK = ITEMS.register("linen_cloak",
-    		() -> new LinenCloth(ArmorItem.Type.CHESTPLATE));
+            () -> new ArmorItem(ArmorMaterialRegistry.LINEN, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(4))));
     public static final Supplier<Item> LINEN_UNDERGARMENT = ITEMS.register("linen_undergarment",
-    		() -> new LinenCloth(ArmorItem.Type.LEGGINGS));
+            () -> new ArmorItem(ArmorMaterialRegistry.LINEN, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(4))));
     public static final Supplier<Item> GOLDEN_FLEECE_MANTLE = ITEMS.register("golden_fleece_mantle",
-            () -> new GoldenFleeceArmor(ArmorItem.Type.CHESTPLATE));
+            () -> new ArmorItem(ArmorMaterialRegistry.GOLDEN_FLEECE, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(7))));
     public static final Supplier<Item> BEESWAX_BOOTS = ITEMS.register("beeswax_boots",
     		() -> new BeeswaxArmor(ArmorItem.Type.BOOTS));
 
-    public static final Supplier<Item> GOLDEN_RAM_SPAWN_EGG = ITEMS.register("golden_ram_spawn_egg", GoldenRamSpawnEgg::new);
+    public static final Supplier<Item> GOLDEN_RAM_SPAWN_EGG = ITEMS.register("golden_ram_spawn_egg",
+            () -> new DeferredSpawnEggItem(EntityTypeRegistry.GOLDEN_RAM, 15198183, 0xf2f1aa, new Item.Properties()));
     
     public static final Supplier<Item> FEATHER_WINGS = ITEMS.register("feather_wings",
     		() -> new FeatherWings(WingsType.FEATHER));
@@ -136,15 +140,19 @@ public class ItemRegistry {
     		() -> new FeatherWings(WingsType.FEATHER_COLORED));
     public static final Supplier<Item> GOLDEN_FEATHER_WINGS = ITEMS.register("golden_feather_wings",
     		() -> new FeatherWings(WingsType.FEATHER_GOLDEN));
-    public static final Supplier<Item> PAPER_WINGS = ITEMS.register("paper_wings", PaperWings::new);
+    public static final Supplier<Item> PAPER_WINGS = ITEMS.register("paper_wings",
+            () -> new AbstractWings() {
+                @Override public IWingsType getType() {return WingsType.PAPER;}
+                @Override public boolean canElytraFly(ItemStack stack, LivingEntity entity) {return true;}
+            });
     
     public static final Supplier<Item> MAGIC_MEMBRANE = registerSimpleItemSmallStack("magic_membrane");
     public static final Supplier<Item> PHILOSOPHER_STONE = ITEMS.register("philosopher_stone", PhilosopherStone::new);
     
     public static final Supplier<Item> MAGIC_WINGS = ITEMS.register("magic_wings",
-    		() -> new MagicWings(WingsType.MAGIC));
+    		() -> new AbstractWings() {@Override public IWingsType getType() {return WingsType.MAGIC;}});
     public static final Supplier<Item> FLANDRE_MAGIC_WINGS = ITEMS.register("flandre_magic_wings",
-    		() -> new MagicWings(WingsType.PHI_STONE));
+    		() -> new AbstractWings() {@Override public IWingsType getType() {return WingsType.PHI_STONE;}});
     
     public static final Supplier<Item> FALLEN_RELIC_CORE = ITEMS.register("fallen_relic_core",
     		() -> new FallenRelic(FallenRelic.RelicType.CORE));
@@ -159,7 +167,8 @@ public class ItemRegistry {
     
     public static final Supplier<Item> DAEDALUS_MANUSCRIPT = ITEMS.register("daedalus_manuscript",
     		() -> new DaedalusDecryptor(false));
-    public static final Supplier<Item> DAEDALUS_DECRYPTOR = ITEMS.register("daedalus_decryptor", () -> new DaedalusDecryptor());
+    public static final Supplier<Item> DAEDALUS_DECRYPTOR = ITEMS.register("daedalus_decryptor",
+            () -> new DaedalusDecryptor(true));
     
     public static final Supplier<Item> RESTORED_FALLEN_RELIC_CORE = ITEMS.register("restored_fallen_relic_core",
     		() -> new FallenRelic(FallenRelic.RelicType.CORE, true));
@@ -175,9 +184,12 @@ public class ItemRegistry {
     public static final Supplier<Item> UPGRADED_FALLEN_RELIC_CORE = ITEMS.register("upgraded_fallen_relic_core",
     		() -> new FallenRelic(FallenRelic.RelicType.SECOND_GEN_CORE, true));
     
-    public static final Supplier<Item> SYNAPSE_REPAIR_KIT = ITEMS.register("synapse_repair_kit", SynapseRepairKit::new);
-    public static final Supplier<Item> SYNAPSE_WINGS_RECHARGER = ITEMS.register("synapse_wings_recharger", SynapseWingsRecharger::new);
-    public static final Supplier<Item> QUANTUM_FUEL = ITEMS.register("quantum_fuel", QuantumFuel::new);
+    public static final Supplier<Item> SYNAPSE_REPAIR_KIT = ITEMS.register("synapse_repair_kit",
+            () -> new Item(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.UNCOMMON)));
+    public static final Supplier<Item> SYNAPSE_WINGS_RECHARGER = ITEMS.register("synapse_wings_recharger",
+            () -> new FoiledItem(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.UNCOMMON)));
+    public static final Supplier<Item> QUANTUM_FUEL = ITEMS.register("quantum_fuel",
+            () -> new FoiledItem(new Item.Properties().stacksTo(4).fireResistant().rarity(Rarity.UNCOMMON)));
     
     public static final Supplier<Item> SYNAPSE_HELMET = ITEMS.register("synapse_helmet",
     		() -> new SynapseArmor(ArmorItem.Type.HELMET));
@@ -188,17 +200,19 @@ public class ItemRegistry {
     public static final Supplier<Item> SYNAPSE_BOOTS = ITEMS.register("synapse_boots",
     		() -> new SynapseArmor(ArmorItem.Type.BOOTS));
     
-    public static final Supplier<Item> SYNAPSE_ALLOY_SWORD = ITEMS.register("synapse_alloy_sword", SynapseAlloySword::new);
-    public static final Supplier<Item> STEEL_PICKAXE = ITEMS.register("steel_pickaxe", SteelPickaxe::new);
+    public static final Supplier<Item> SYNAPSE_ALLOY_SWORD = ITEMS.register("synapse_alloy_sword",
+            () -> new SwordItem(ModItemTiers.SYNAPSE_ALLOY, new Item.Properties()));
+    public static final Supplier<Item> STEEL_PICKAXE = ITEMS.register("steel_pickaxe",
+            () -> new PickaxeItem(ModItemTiers.STEEL, new Item.Properties()));
 
-    public static final Supplier<Item> WOODEN_SPEAR = ITEMS.register("wooden_spear", () -> new SpearItem(Tiers.WOOD));
+    public static final Supplier<Item> WOODEN_SPEAR = ITEMS.register("wooden_spear", () -> new SpearItem(Tiers.WOOD)); //todo rewrite spears
     public static final Supplier<Item> STONE_SPEAR = ITEMS.register("stone_spear", () -> new SpearItem(Tiers.STONE));
     public static final Supplier<Item> IRON_SPEAR = ITEMS.register("iron_spear", () -> new SpearItem(Tiers.IRON));
-    public static final Supplier<Item> STEEL_SPEAR = ITEMS.register("steel_spear", () -> new SpearItem(ModItemTier.STEEL));
+    public static final Supplier<Item> STEEL_SPEAR = ITEMS.register("steel_spear", () -> new SpearItem(ModItemTiers.STEEL));
     public static final Supplier<Item> GOLDEN_SPEAR = ITEMS.register("golden_spear", () -> new SpearItem(Tiers.GOLD));
     public static final Supplier<Item> DIAMOND_SPEAR = ITEMS.register("diamond_spear", () -> new SpearItem(Tiers.DIAMOND));
     public static final Supplier<Item> NETHERITE_SPEAR = ITEMS.register("netherite_spear", () -> new SpearItem(Tiers.NETHERITE));
-    public static final Supplier<Item> SYNAPSE_ALLOY_SPEAR = ITEMS.register("synapse_alloy_spear", () -> new SpearItem(ModItemTier.SYNAPSE_ALLOY));
+    public static final Supplier<Item> SYNAPSE_ALLOY_SPEAR = ITEMS.register("synapse_alloy_spear", () -> new SpearItem(ModItemTiers.SYNAPSE_ALLOY));
 
     public static final Supplier<Item> IKAROS_WINGS = ITEMS.register("ikaros_wings", SynapseWingsAlpha::new);
     public static final Supplier<Item> NYMPH_WINGS = ITEMS.register("nymph_wings", SynapseWingsBeta::new);

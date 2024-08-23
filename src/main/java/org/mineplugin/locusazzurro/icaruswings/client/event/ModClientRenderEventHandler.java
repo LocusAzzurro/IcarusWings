@@ -1,38 +1,33 @@
 package org.mineplugin.locusazzurro.icaruswings.client.event;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.ClientHooks;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
-import net.neoforged.neoforge.client.event.RenderPlayerEvent;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.*;
-import org.mineplugin.locusazzurro.icaruswings.registry.*;
-import org.mineplugin.locusazzurro.icaruswings.client.render.layers.WingsLayer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.models.SpearBakedModel;
 import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.ArtemisMissileRenderer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.GoldenRamRenderer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.SpearRenderer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.TimeBombRenderer;
+import org.mineplugin.locusazzurro.icaruswings.registry.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -60,7 +55,7 @@ public class ModClientRenderEventHandler{
 
     @SubscribeEvent
     public static void onModelBaked(ModelEvent.ModifyBakingResult e) {
-        Map<ResourceLocation, BakedModel> modelRegistry = e.getModels();
+        Map<ModelResourceLocation, BakedModel> modelRegistry = e.getModels();
         ModelResourceLocation location;
         for (Supplier<Item> spear : SPEARS){
             var spearResource = BuiltInRegistries.ITEM.getKey(spear.get());
@@ -90,14 +85,19 @@ public class ModClientRenderEventHandler{
 
 
     @SuppressWarnings({"rawtypes", "unchecked"})
-    @SubscribeEvent
+    //@SubscribeEvent
     public static void addLivingWingsLayer(EntityRenderersEvent.AddLayers event){
 
-        Minecraft.getInstance().getEntityRenderDispatcher().renderers.forEach((entityType, entityRenderer) -> {
+        /* //todo add layer to all Living
+        EntityRenderDispatcher entityRenderDispatcher = Minecraft.getInstance().getEntityRenderDispatcher();
+
+        entityRenderDispatcher.renderers.forEach((entityType, entityRenderer) -> {
             if (entityRenderer instanceof LivingEntityRenderer<?,?> livingEntityRenderer && !(livingEntityRenderer instanceof PlayerRenderer)) {
                 livingEntityRenderer.addLayer(new WingsLayer<>((RenderLayerParent) livingEntityRenderer, Minecraft.getInstance().getEntityModels()));
             }
         });
+
+         */
     }
 
     @SubscribeEvent

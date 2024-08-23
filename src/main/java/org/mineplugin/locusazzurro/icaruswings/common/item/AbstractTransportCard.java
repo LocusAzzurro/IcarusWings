@@ -12,9 +12,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModConfig;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 
 import java.util.List;
 
@@ -50,16 +49,15 @@ public abstract class AbstractTransportCard extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-        CardType type = ((AbstractTransportCard)pStack.getItem()).getType();
-        pTooltipComponents.add(Component.translatable("item.locusazzurro_icaruswings.transport_card_"+ type +".tooltip")
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        tooltipComponents.add(Component.translatable("item.locusazzurro_icaruswings.transport_card_"+ type +".tooltip")
                 .setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
     }
 
     @Override
     public String getDescriptionId(){
-        return "item." + ModData.MOD_ID + ".transport_card";
+        return "item." + IcarusWings.MOD_ID + ".transport_card";
     }
 
     public CardType getType(){

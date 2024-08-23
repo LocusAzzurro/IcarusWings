@@ -1,17 +1,17 @@
 package org.mineplugin.locusazzurro.icaruswings.registry;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.minecraft.core.registries.BuiltInRegistries;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.common.block.entity.AmphoraBlockEntity;
 import org.mineplugin.locusazzurro.icaruswings.common.block.entity.MeadPotBlockEntity;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModData;
 
 import java.util.function.Supplier;
 
 public class BlockEntityTypeRegistry {
 
-	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, ModData.MOD_ID);
+	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, IcarusWings.MOD_ID);
 	
 	public static final Supplier<BlockEntityType<MeadPotBlockEntity>>
 			MEAD_POT_BLOCK_ENTITY = BLOCK_ENTITIES.register(

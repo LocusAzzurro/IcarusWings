@@ -14,8 +14,8 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import org.mineplugin.locusazzurro.icaruswings.common.item.SpearItem;
 import org.mineplugin.locusazzurro.icaruswings.client.render.models.SpearModel;
+import org.mineplugin.locusazzurro.icaruswings.common.item.SpearItem;
 
 @OnlyIn(Dist.CLIENT)
 public class SpearItemStackTileEntityRenderer extends BlockEntityWithoutLevelRenderer {
