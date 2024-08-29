@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.SpearItemStackTileEntityRenderer;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.SpearEntity;
+import org.mineplugin.locusazzurro.icaruswings.registry.DataComponentRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import java.util.function.Consumer;
@@ -109,20 +110,12 @@ public class SpearItem extends TieredItem{
     }
 
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return ((enchantment.category == EnchantmentCategory.WEAPON
-                && enchantment != Enchantments.SWEEPING_EDGE
-                && enchantment != Enchantments.MOB_LOOTING
-                && enchantment != Enchantments.FIRE_ASPECT)||
-                super.canApplyAtEnchantingTable(stack, enchantment));
-    }
-
-    @Override
     public UseAnim getUseAnimation(ItemStack itemStack) {
         return UseAnim.SPEAR;
     }
 
     @Override
+    @SuppressWarnings("removal") //todo
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
             public BlockEntityWithoutLevelRenderer getCustomRenderer()
@@ -178,9 +171,11 @@ public class SpearItem extends TieredItem{
     public void inventoryTick(ItemStack itemStack, Level worldIn, Entity entityIn, int inventorySlot, boolean isSelected){
         if (entityIn instanceof LivingEntity && isSelected){
             if (((LivingEntity) entityIn).isUsingItem()){
-                itemStack.getOrCreateTag().putBoolean("Throwing", true);
+                itemStack.set(DataComponentRegistry.THROWING, true);
             }
-            else {itemStack.getOrCreateTag().remove("Throwing");}
+            else {
+                itemStack.set(DataComponentRegistry.THROWING, false);
+            }
         }
     }
 

@@ -13,7 +13,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModConfig;
+import org.mineplugin.locusazzurro.icaruswings.common.data.IcarusWingsConfig;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public abstract class AbstractTransportCard extends Item {
     }
 
     protected static boolean canUseCard(Player playerIn){
-        switch (ModConfig.TRANSPORT_CARD_PERMISSION_LEVEL.get()) {
+        switch (IcarusWingsConfig.TRANSPORT_CARD_PERMISSION_LEVEL.get()) {
             case 0: return false;
             case 1: return playerIn.hasPermissions(2);
             case 2: return playerIn.isCreative() || playerIn.hasPermissions(2);

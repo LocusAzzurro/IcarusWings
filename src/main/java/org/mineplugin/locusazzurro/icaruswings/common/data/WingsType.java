@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.common.data;
 
+import com.google.common.base.Suppliers;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -8,7 +9,6 @@ import net.minecraft.world.item.Items;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
-import org.mineplugin.locusazzurro.icaruswings.util.IWLazy;
 
 import java.util.function.Supplier;
 
@@ -29,7 +29,7 @@ public enum WingsType implements IWingsType{
 	
 	private final String name;
 	private final int durability;
-	private final IWLazy<Item> repairItem;
+	private final Supplier<Item> repairItem;
 	private final boolean hasReversedTexture;
 	private final ResourceLocation texture;
 	private final ResourceLocation textureReversed;
@@ -38,7 +38,7 @@ public enum WingsType implements IWingsType{
 	WingsType(String name, int durability, Supplier<Item> repairItem, boolean hasReverse, Holder<SoundEvent> equipSound) {
 		this.name = name;
 		this.durability = durability;
-		this.repairItem = IWLazy.of(repairItem);
+		this.repairItem = Suppliers.memoize(repairItem::get);
 		this.hasReversedTexture = hasReverse;
 		this.texture = ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "textures/entity/" + name + "_wings.png");
 		this.textureReversed = ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "textures/entity/" + name + "_wings_reversed.png");

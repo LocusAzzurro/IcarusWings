@@ -8,14 +8,14 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModConfig;
+import org.mineplugin.locusazzurro.icaruswings.common.data.IcarusWingsConfig;
 import org.mineplugin.locusazzurro.icaruswings.common.item.SynapseWings;
 
 @EventBusSubscriber
 public class SynapseWingsFlyingHandler {
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    public static void onPlayerTick(PlayerTickEvent event) {
+    public static void onPlayerTick(PlayerTickEvent.Pre event) {
         Player player = event.getEntity();
         Item item = player.getItemBySlot(EquipmentSlot.CHEST).getItem();
         if (player.isFallFlying() && item instanceof SynapseWings wings) {
@@ -24,7 +24,7 @@ public class SynapseWingsFlyingHandler {
             double d = wings.getDirectSpeedMod();
             double i = wings.getInertialSpeedMod();
             double t = wings.getTotalSpeedMod();
-            double c = ModConfig.WINGS_SPEED_MOD.get();
+            double c = IcarusWingsConfig.WINGS_SPEED_MOD.get();
             player.setDeltaMovement(flyAngle.add(
                     (lookAngle.x * d + (lookAngle.x * i - flyAngle.x) * t) * c,
                     (lookAngle.y * d + (lookAngle.y * i - flyAngle.y) * t) * c,

@@ -65,7 +65,7 @@ public class InterdictionFieldTransportCard extends AbstractTransportCard{
         List<LivingEntity> entities = playerIn.level().getEntitiesOfClass(LivingEntity.class, aabb);
         entities.remove(playerIn);
         for (LivingEntity entity : entities) {
-            entity.addEffect(new MobEffectInstance(EffectRegistry.INTERDICTION.get(), 1200, 0));
+            entity.addEffect(new MobEffectInstance(EffectRegistry.INTERDICTION, 1200, 0));
         }
 
         if(!playerIn.isCreative()) {itemstack.shrink(1);}

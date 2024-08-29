@@ -1,10 +1,14 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileWeaponItem;
@@ -13,6 +17,7 @@ import org.mineplugin.locusazzurro.icaruswings.common.entity.TimeRiftParticleEnt
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
+import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
 public class TimeRiftGenerator extends ProjectileWeaponItem {
@@ -36,9 +41,8 @@ public class TimeRiftGenerator extends ProjectileWeaponItem {
         worldIn.playSound(null, playerIn, SoundRegistry.TIME_RIFT_GENERATOR_FIRE.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
         if (!worldIn.isClientSide()) {
-            itemStack.hurtAndBreak(1, playerIn, (player) -> {
-                player.broadcastBreakEvent(playerIn.getUsedItemHand());
-            });
+            itemStack.hurtAndBreak(1, (ServerLevel) worldIn, playerIn,
+                    item -> playerIn.onEquippedItemBroken(item, playerIn.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND));
         }
 
         if (!playerIn.getAbilities().instabuild) {
@@ -67,4 +71,9 @@ public class TimeRiftGenerator extends ProjectileWeaponItem {
     public int getDefaultProjectileRange() {
         return 32;
     }
+
+    protected void shootProjectile(LivingEntity shooter, Projectile projectile, int index, float velocity, float inaccuracy, float angle, @Nullable LivingEntity target) {
+        projectile.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot() + angle, 0.0F, velocity, inaccuracy);
+    }
+
 }

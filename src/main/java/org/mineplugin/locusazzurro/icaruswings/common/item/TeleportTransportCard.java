@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
+import net.minecraft.core.GlobalPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.phys.Vec3;
+import org.mineplugin.locusazzurro.icaruswings.registry.DataComponentRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.util.MathUtils;
 
@@ -31,7 +33,7 @@ public class TeleportTransportCard extends AbstractTransportCard{
     }
 
     @Override
-    public int getUseDuration(ItemStack itemStack) {
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 40;
     }
 
@@ -41,12 +43,12 @@ public class TeleportTransportCard extends AbstractTransportCard{
         if (!canUseCard(playerIn)) {
             return InteractionResultHolder.fail(itemstack);
         }
-        CompoundTag nbt = itemstack.getOrCreateTag();
-        if (!nbt.contains("Destination")){
+        boolean hasDestination = itemstack.getComponents().has(DataComponentRegistry.TELEPORT_DESTINATION.get());
+        if (!hasDestination){
             if (playerIn.isCrouching()) {
-                CompoundTag dest = new CompoundTag();
-                this.saveDestination(dest, playerIn, worldIn);
-                nbt.put("Destination", dest);
+
+                GlobalPos globalPos = this.saveDestination(playerIn, worldIn);
+                itemstack.set(DataComponentRegistry.TELEPORT_DESTINATION.get(), globalPos);
 
                 if (worldIn.isClientSide()){
                     List<Vec3> points = MathUtils.squareMatrixFrame(5);
@@ -92,18 +94,16 @@ public class TeleportTransportCard extends AbstractTransportCard{
         if (!worldIn.isClientSide() && entityIn instanceof ServerPlayer){
             ServerPlayer playerIn = (ServerPlayer) entityIn;
             if (!playerIn.hasDisconnected() && !playerIn.isSleeping()) {
-                CompoundTag dest = itemStack.getOrCreateTag().getCompound("Destination");
-                String dim = dest.getString("Dimension");
-                Level dimension = null;
-                DimensionType type = worldIn.registryAccess().registryOrThrow(Registries.DIMENSION_TYPE).get(ResourceLocation.fromNamespaceAndPath(dim));
-                if (type != null) {
-                    dimension = worldIn.getServer().getLevel(ResourceKey.create(Registries.DIMENSION, ResourceLocation.fromNamespaceAndPath(dim)));
+
+                GlobalPos dest = itemStack.get(DataComponentRegistry.TELEPORT_DESTINATION);
+                ResourceKey<Level> dimension = null;
+                if (dest != null){
+                    dimension = dest.dimension();
                 }
-                //ResourceKey<Level> dimension = ResourceKey.create(Registry.DIMENSION_REGISTRY, ResourceLocation.fromNamespaceAndPath(dim));
-                if (worldIn.equals(dimension)) {
-                    double x = dest.getDouble("X");
-                    double y = dest.getDouble("Y");
-                    double z = dest.getDouble("Z");
+                if (worldIn.dimension().equals(dimension)) {
+                    double x = dest.pos().getX();
+                    double y = dest.pos().getY();
+                    double z = dest.pos().getZ();
 
                     if (playerIn.isPassenger()) playerIn.stopRiding();
                     playerIn.fallDistance = 0.0F;
@@ -146,12 +146,8 @@ public class TeleportTransportCard extends AbstractTransportCard{
         return UseAnim.BOW;
     }
 
-    private CompoundTag saveDestination(CompoundTag nbt, Player playerIn, Level worldIn){
-        nbt.putDouble("X", playerIn.getX());
-        nbt.putDouble("Y", playerIn.getY());
-        nbt.putDouble("Z", playerIn.getZ());
-        nbt.putString("Dimension", worldIn.dimension().location().getPath());
-        return nbt;
+    private GlobalPos saveDestination(Player playerIn, Level worldIn){
+        return new GlobalPos(worldIn.dimension(), playerIn.getOnPos());
     }
 
 }

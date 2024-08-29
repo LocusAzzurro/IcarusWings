@@ -28,6 +28,7 @@ public class GreekFireFluidType extends FluidType {
     }
 
     @Override
+    @SuppressWarnings("removal") //todo
     public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
         consumer.accept(new IClientFluidTypeExtensions() {
             @Override

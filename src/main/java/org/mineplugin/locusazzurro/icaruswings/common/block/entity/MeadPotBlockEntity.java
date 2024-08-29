@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.common.block.entity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
@@ -87,19 +88,19 @@ public class MeadPotBlockEntity extends BlockEntity implements ITickableBlockEnt
 	}
 
 	@Override
-	public void load(CompoundTag nbt) {
-		super.load(nbt);
-		 this.fermentationProgress = nbt.getInt("FermentationProgress");
-		 this.isFermenting = nbt.getBoolean("Fermenting");
-		 this.isComplete = nbt.getBoolean("Complete");
-	     super.load(nbt);
-	 }
+	protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+		super.loadAdditional(tag, registries);
+		this.fermentationProgress = tag.getInt("FermentationProgress");
+		this.isFermenting = tag.getBoolean("Fermenting");
+		this.isComplete = tag.getBoolean("Complete");
+	}
 
 	@Override
-	protected void saveAdditional(CompoundTag compound) {
-		 compound.putInt("FermentationProgress", this.fermentationProgress);
-		 compound.putBoolean("Fermenting", this.isFermenting);
-		 compound.putBoolean("Complete", this.isComplete);
-	     super.saveAdditional(compound);
-	 }
+	protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+		super.saveAdditional(tag, registries);
+		tag.putInt("FermentationProgress", this.fermentationProgress);
+		tag.putBoolean("Fermenting", this.isFermenting);
+		tag.putBoolean("Complete", this.isComplete);
+	}
+
 }

@@ -1,0 +1,14 @@
+{
+  "type": "locusazzurro_icaruswings:add_item",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:gameplay/cat_morning_gift"
+    },
+    {
+      "chance": 0.02,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "item": "locusazzurro_icaruswings:fallen_relic_core"
+}

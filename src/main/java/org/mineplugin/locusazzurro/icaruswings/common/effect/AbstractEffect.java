@@ -1,5 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.common.effect;
 
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -17,15 +19,11 @@ import java.util.Set;
 
 public class AbstractEffect extends MobEffect {
 
-	protected ArrayList<ItemStack> CurativeItems = new ArrayList<>() ;
+	private final Holder<MobEffect> effect;
 
-	public AbstractEffect(MobEffectCategory a, int b ) {
-		super( a, b ) ;
-	}
-
-	@Override
-	public void applyEffectTick( LivingEntity entity, int level ) {
-
+	public AbstractEffect(Holder<MobEffect> effectHolder, MobEffectCategory category, int color) {
+		super(category, color);
+		effect = effectHolder;
 	}
 
 	@Override
@@ -60,13 +58,13 @@ public class AbstractEffect extends MobEffect {
 	 * @return   添加的成功与否
 	 */
 	protected boolean setEffect(LivingEntity entity, int expectationLevel, boolean isAdd, boolean force ) {
-		MobEffectInstance instance = entity.getEffect(this); // 获得实例
+		MobEffectInstance instance = entity.getEffect(effect); // 获得实例
 		int baseLevel, newLevel;
 		boolean isUpdate = false ;
 		if ( instance != null ) { // 存在效果
 			baseLevel = instance.getAmplifier( ) ; // 初始
 			if ( force || ( isAdd && expectationLevel < 0 ) ) { // 强制或减少
-				entity.removeEffect( this ) ; // 移除旧效果
+				entity.removeEffect(effect) ; // 移除旧效果
 				isUpdate = true ;
 			}
 		} else { // 不存在效果
@@ -80,7 +78,7 @@ public class AbstractEffect extends MobEffect {
 				newLevel = this.getMaxLevel( ); // 限定
 				isUpdate = true ; // 溢出默认视为更新
 			}
-			if ( entity.addEffect( new MobEffectInstance(this, this.getDuration(newLevel), newLevel, false, this.visible( ) ) ) ) {
+			if ( entity.addEffect( new MobEffectInstance(effect, this.getDuration(newLevel), newLevel, false, this.visible( ) ) ) ) {
 				isUpdate = true ;
 			} ;
 		} ;

@@ -4,24 +4,41 @@ import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import org.mineplugin.locusazzurro.icaruswings.client.render.IWingsExpandable;
+import org.mineplugin.locusazzurro.icaruswings.common.data.SynapseWingsSpeedData;
 import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 
 import java.util.List;
+import java.util.function.UnaryOperator;
 
-public abstract class SynapseWings extends AbstractWings{
+public class SynapseWings extends AbstractWings implements IWingsExpandable {
+
+	private static final double DEFAULT_EXPANSION_FACTOR = 1.0d;
+
+	private final SynapseWingsSpeedData speed;
+	private final double expansionFactor;
+	private final UnaryOperator<ItemAttributeModifiers> attributeModifiers;
+	private final WingsType type;
 
 	public SynapseWings(WingsType type) {
-		super(type, Rarity.RARE);
+		this(type, SynapseWingsSpeedData.DEFAULT, DEFAULT_EXPANSION_FACTOR, UnaryOperator.identity());
 	}
+
+	public SynapseWings(WingsType type, SynapseWingsSpeedData speed, double expansionFactor, UnaryOperator<ItemAttributeModifiers> attributes){
+		super(type, Rarity.RARE);
+		this.speed = speed;
+		this.expansionFactor = expansionFactor;
+		this.attributeModifiers = attributes;
+		this.type = type;
+	}
+
 
 	@Override
 	public float getXpRepairRatio(ItemStack stackIn) {
@@ -29,31 +46,20 @@ public abstract class SynapseWings extends AbstractWings{
 	}
 
 	@Override
-	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-		return enchantment == Enchantments.MENDING && !this.acceptsMending() ? false : super.canApplyAtEnchantingTable(stack, enchantment);
-	}
-
-	public boolean acceptsMending(){
-		return false;
-	}
-
 	@SuppressWarnings("deprecation")
-	@Override
-	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-		return slot == EquipmentSlot.CHEST ? this.getModifiers() : super.getDefaultAttributeModifiers(slot);
+	public ItemAttributeModifiers getDefaultAttributeModifiers(ItemStack stack) {
+		return this.attributeModifiers.apply(super.getDefaultAttributeModifiers());
 	}
-	
-	protected abstract Multimap<Attribute, AttributeModifier> getModifiers();
 
 	@Override
 	public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
 		return stack.getDamageValue() < stack.getMaxDamage() - 10;
 	}
 
-	//Default: Direct = 0.1, Inertial = 1.5, Total = 0.5
-	public abstract double getDirectSpeedMod();
-	public abstract double getInertialSpeedMod();
-	public abstract double getTotalSpeedMod();
+	public double getDirectSpeedMod() {return speed.directSpeed();}
+	public double getInertialSpeedMod() {return speed.inertialSpeed();}
+	public double getTotalSpeedMod() {return speed.totalSpeed();}
+	@Override public double getExpansionFactor() {return expansionFactor;}
 
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {

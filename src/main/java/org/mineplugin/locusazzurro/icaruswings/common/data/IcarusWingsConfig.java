@@ -2,7 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.common.data;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-public class ModConfig {
+public class IcarusWingsConfig {
 
     public static ModConfigSpec CONFIG;
     public static ModConfigSpec.DoubleValue WINGS_SPEED_MOD;

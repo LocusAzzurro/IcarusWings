@@ -16,6 +16,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.client.render.models.SpearModel;
 import org.mineplugin.locusazzurro.icaruswings.common.item.SpearItem;
+import org.mineplugin.locusazzurro.icaruswings.registry.DataComponentRegistry;
 
 @OnlyIn(Dist.CLIENT)
 public class SpearItemStackTileEntityRenderer extends BlockEntityWithoutLevelRenderer {
@@ -34,8 +35,7 @@ public class SpearItemStackTileEntityRenderer extends BlockEntityWithoutLevelRen
     @Override
     public void renderByItem(ItemStack stack, ItemDisplayContext transformType, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay){
         if (stack.getItem() instanceof SpearItem) {
-            CompoundTag stackTag = stack.getOrCreateTag();
-            boolean throwing = stackTag.contains("Throwing") && stackTag.getBoolean("Throwing");
+            boolean throwing = Boolean.TRUE.equals(stack.get(DataComponentRegistry.THROWING));
             matrixStack.pushPose();
             VertexConsumer vertexBuilder = ItemRenderer.getFoilBuffer(buffer, RenderType.entitySolid(SpearRenderer.getTexture(((SpearItem) stack.getItem()).getTier())), false, stack.hasFoil());
             boolean isFirstPerson = transformType.firstPerson();
@@ -45,7 +45,7 @@ public class SpearItemStackTileEntityRenderer extends BlockEntityWithoutLevelRen
                 matrixStack.scale(1.0F, -1.0F, -1.0F);
                 matrixStack.translate(0.0F, -2.0F, 0.0F);
             }
-            model.renderToBuffer(matrixStack, vertexBuilder, combinedLight, combinedOverlay, 1,1,1,1);
+            model.renderToBuffer(matrixStack, vertexBuilder, combinedLight, combinedOverlay, 0xff_ff_ff_ff);
             matrixStack.popPose();
         }
     }

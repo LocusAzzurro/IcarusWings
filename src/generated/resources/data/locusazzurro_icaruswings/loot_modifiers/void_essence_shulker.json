@@ -1,0 +1,14 @@
+{
+  "type": "locusazzurro_icaruswings:add_item",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:entities/shulker"
+    },
+    {
+      "chance": 0.2,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "item": "locusazzurro_icaruswings:void_essence"
+}

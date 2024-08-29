@@ -1,0 +1,14 @@
+{
+  "type": "locusazzurro_icaruswings:add_item",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:entities/blaze"
+    },
+    {
+      "chance": 0.05,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "item": "locusazzurro_icaruswings:nether_essence"
+}

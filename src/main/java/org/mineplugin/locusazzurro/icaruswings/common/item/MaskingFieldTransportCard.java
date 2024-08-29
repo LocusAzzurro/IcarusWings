@@ -54,7 +54,7 @@ public class MaskingFieldTransportCard extends AbstractTransportCard{
         AABB aabb = new AABB(r, r, r, -r, -r, -r).move(playerIn.position());
         List<Player> players = playerIn.level().getEntitiesOfClass(Player.class, aabb);
         for (Player player : players) {
-            player.addEffect(new MobEffectInstance(EffectRegistry.SENSORY_MASKING.get(), 2400, 0));
+            player.addEffect(new MobEffectInstance(EffectRegistry.SENSORY_MASKING, 2400, 0));
         }
 
         if(!playerIn.isCreative()) {itemstack.shrink(1);}

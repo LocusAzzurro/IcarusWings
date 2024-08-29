@@ -8,6 +8,7 @@ import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -149,10 +150,10 @@ public class TimeBombEntity extends Entity {
     }
 
     @Override
-    public void defineSynchedData() {
-        this.entityData.define(LIFE, 0);
-        this.entityData.define(MAX_LIFE, 0);
-        this.entityData.define(ATTACHED_TO_TARGET, OptionalInt.empty());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        builder.define(LIFE, 0);
+        builder.define(MAX_LIFE, 0);
+        builder.define(ATTACHED_TO_TARGET, OptionalInt.empty());
     }
 
     @Override
@@ -178,8 +179,7 @@ public class TimeBombEntity extends Entity {
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new ClientboundAddEntityPacket(this);
+    public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity entity) {
+        return new ClientboundAddEntityPacket(this, entity);
     }
-
 }

@@ -1,6 +1,9 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.TypedDataComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.Entity;
@@ -10,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.mineplugin.locusazzurro.icaruswings.registry.DataComponentRegistry;
 
 import java.util.List;
 
@@ -22,22 +26,19 @@ public class MagicalAnemone extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-    }
-
-    public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
-        super.appendHoverText(itemstack, world, list, flag);
-        if (itemstack.getOrCreateTag().contains("Speed")){
-            list.add(Component.translatable("item.locusazzurro_icaruswings.magical_anemone.tooltip")
-                    .append(Component.literal(String.format("%.2f", itemstack.getOrCreateTag().getDouble("Speed"))))
+        Double speed = stack.get(DataComponentRegistry.SPEED_TRACKER);
+        if (speed != null){
+            tooltipComponents.add(Component.translatable("item.locusazzurro_icaruswings.magical_anemone.tooltip")
+                    .append(Component.literal(String.format("%.2f", speed)))
                     .setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
         }
-
     }
+
 
     @Override
     public void inventoryTick(ItemStack itemStack, Level worldIn, Entity entityIn, int inventorySlot, boolean isSelected) {
         if (entityIn instanceof Player && !worldIn.isClientSide() && isSelected){
-            itemStack.getOrCreateTag().putDouble("Speed", entityIn.getDeltaMovement().length());
+            itemStack.set(DataComponentRegistry.SPEED_TRACKER, entityIn.getDeltaMovement().length());
         }
     }
 }

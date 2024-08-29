@@ -7,6 +7,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -46,32 +48,27 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
         this.fuel = DEFAULT_FUEL;
     }
 
-    public ArtemisMissileEntity(double x, double y, double z, double accelX, double accelY, double accelZ, Level world){
+    public ArtemisMissileEntity(double x, double y, double z, Vec3 mov, Level world){
         this(EntityTypeRegistry.ARTEMIS_MISSILE.get(), world);
         this.moveTo(x, y, z, this.getYRot(), this.getXRot());
         this.reapplyPosition();
-        double v = Mth.sqrt((float) (accelX * accelX + accelY * accelY + accelZ * accelZ));
-        if (v != 0.0D) {
-            this.xPower = accelX / v * 0.1D;
-            this.yPower = accelY / v * 0.1D;
-            this.zPower = accelZ / v * 0.1D;
-        }
+        this.setDeltaMovement(mov.normalize().scale(cruisingSpeed));
+        this.hasImpulse = true;
     }
 
-    public ArtemisMissileEntity(LivingEntity shooter, double accelX, double accelY, double accelZ, Level world){
-        this(shooter.getX(), shooter.getY(), shooter.getZ(), accelX, accelY, accelZ, world);
+    public ArtemisMissileEntity(LivingEntity shooter, Vec3 mov, Level world){
+        this(shooter.getX(), shooter.getY(), shooter.getZ(), mov, world);
         this.setOwner(shooter);
         this.setRot(shooter.getYRot(), shooter.getXRot());
     }
 
-    public ArtemisMissileEntity(Level world, LivingEntity shooter, double powerX, double powerY, double powerZ){
+    public ArtemisMissileEntity(Level world, LivingEntity shooter, Vec3 mov){
         this(EntityTypeRegistry.ARTEMIS_MISSILE.get(), world);
         this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
         this.reapplyPosition();
         this.setOwner(shooter);
-        this.xPower = powerX;
-        this.yPower = powerY;
-        this.zPower = powerZ;
+        this.setDeltaMovement(mov.normalize().scale(cruisingSpeed));
+        this.hasImpulse = true;
     }
 
     public ArtemisMissileEntity(Level world, LivingEntity shooter){
@@ -157,7 +154,7 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     protected void onHit(HitResult ray){
         super.onHit(ray);
         if(!this.level().isClientSide){
-            boolean flag = EventHooks.getMobGriefingEvent(this.level(), this.getOwner());
+            boolean flag = EventHooks.canEntityGrief(this.level(), this.getOwner());
             this.level().explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower, flag, Level.ExplosionInteraction.NONE);
         }
         this.discard();
@@ -176,16 +173,12 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
             Entity owner = this.getOwner();
             DamageSource damageSource = this.level().damageSources().explosion(this, owner);
             entity.hurt(damageSource, 8.0F);
-            if (owner instanceof LivingEntity) {
-                this.doEnchantDamageEffects((LivingEntity)owner, entity);
-            }
-
         }
     }
 
     protected void onEmptyFuel(){
         if(!this.level().isClientSide){
-            boolean flag = EventHooks.getMobGriefingEvent(this.level(), this.getOwner());
+            boolean flag = EventHooks.canEntityGrief(this.level(), this.getOwner());
             this.level().explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower + 0.5f, flag, Level.ExplosionInteraction.NONE);
         }
         this.discard();
@@ -253,27 +246,15 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     }
 
     @Override
-    protected void defineSynchedData() {
-
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity p_entity) {
         Entity entity = this.getOwner();
         int i = entity == null ? 0 : entity.getId();
-        return new ClientboundAddEntityPacket(
-                this.getId(),
-                this.getUUID(),
-                this.getX(),
-                this.getY(),
-                this.getZ(),
-                this.getXRot(),
-                this.getYRot(),
-                this.getType(),
-                i,
-                new Vec3(this.xPower, this.yPower, this.zPower),
-                0.0
-        );
+        Vec3 vec3 = p_entity.getPositionBase();
+        return new ClientboundAddEntityPacket(this.getId(), this.getUUID(), vec3.x(), vec3.y(), vec3.z(), p_entity.getLastSentXRot(), p_entity.getLastSentYRot(), this.getType(), i, p_entity.getLastSentMovement(), 0.0);
     }
-
 }

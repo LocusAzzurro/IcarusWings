@@ -30,9 +30,9 @@ public class TimeBombRenderer extends EntityRenderer<TimeBombEntity> {
     public void render(TimeBombEntity entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn){
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
         matrixStackIn.pushPose();
-        matrixStackIn.scale(0.1f,0.1f, 0.1f);
+        matrixStackIn.scale(0.1f, 0.1f, 0.1f);
         VertexConsumer vertexBuilder = bufferIn.getBuffer(model.renderType(TEXTURE));
-        this.model.renderToBuffer(matrixStackIn, vertexBuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.model.renderToBuffer(matrixStackIn, vertexBuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 0xff_ff_ff_ff);
         matrixStackIn.popPose();
     }
 

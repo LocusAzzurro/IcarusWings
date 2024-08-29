@@ -45,8 +45,8 @@ public class EffectEventHandler {
     @SubscribeEvent
     public static void onPotionApplication(MobEffectEvent.Applicable e) {
         if (e.getEffectInstance().getEffect().equals(MobEffects.POISON)
-                && (e.getEntity().hasEffect(EffectRegistry.POISON_IMMUNITY.get()))) {
-            e.setResult(Event.Result.DENY);
+                && (e.getEntity().hasEffect(EffectRegistry.POISON_IMMUNITY))) {
+            e.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
         }
     }
 
@@ -54,10 +54,10 @@ public class EffectEventHandler {
 
     @SubscribeEvent
     public static void onSetTarget(LivingChangeTargetEvent e) {
-        if (e.getNewTarget() != null) {
+        if (e.getNewAboutToBeSetTarget() != null) {
             LivingEntity targeter = e.getEntity();
-            if (e.getNewTarget().hasEffect(EffectRegistry.SENSORY_MASKING.get()) && targeter instanceof Mob) {
-                ((Mob) targeter).setTarget(e.getOriginalTarget());
+            if (e.getNewAboutToBeSetTarget().hasEffect(EffectRegistry.SENSORY_MASKING) && targeter instanceof Mob) {
+                ((Mob) targeter).setTarget(e.getOriginalAboutToBeSetTarget());
             }
         }
     }

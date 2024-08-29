@@ -1,14 +1,44 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
-public class TreasureTransportCard extends AbstractTransportCard{
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.SeededContainerLoot;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
+import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
+import org.mineplugin.locusazzurro.icaruswings.util.MathUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+public class TreasureTransportCard extends AbstractTransportCard{
 
     public TreasureTransportCard() {
         super(CardType.TREASURE);
     }
 
     //todo recheck loot table reading
-    /*
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
@@ -19,29 +49,28 @@ public class TreasureTransportCard extends AbstractTransportCard{
         byte errorCode = 0;
 
         if (!worldIn.isClientSide()){
-            CompoundTag nbt = itemstack.getOrCreateTag();
-            if (nbt.contains("LootTable")){
-                ResourceLocation lootTableResource = ResourceLocation.tryParse(nbt.getString("LootTable"));
-                if (lootTableResource != null){
-                    try {Objects.requireNonNull(worldIn.getServer());}
-                    catch (NullPointerException e) {return InteractionResultHolder.fail(itemstack);}
-                    LootTable lootTable = worldIn.getServer().getLootData().getLootTable(lootTableResource);
-                    long lootSeed = worldIn.random.nextLong();
-                    LootContext lootContext = new LootContext.Builder(new LootParams.Builder((ServerLevel) worldIn)
-                            .withParameter(LootContextParams.ORIGIN, playerIn.position())
-                            .withLuck(playerIn.getLuck())
-                            .create(LootContextParamSets.CHEST))
-                            .withOptionalRandomSeed(lootSeed)
-                            .create(Optional.of(lootTableResource));
-                    lootTable.getRandomItems(lootContext, lootItems::add);
-                    if (lootItems.isEmpty()) {
-                        errorCode = 2;
-                    } else {
-                        readLootTableSuccess = true;
-                    }
+            SeededContainerLoot containerLoot = itemstack.get(DataComponents.CONTAINER_LOOT);
+            if (containerLoot != null){
+                ResourceKey<LootTable> resourceKey = containerLoot.lootTable();
+                ResourceLocation resourceLocation = resourceKey.location();
+                try {
+                    Objects.requireNonNull(worldIn.getServer());
+                } catch (NullPointerException e) {
+                    return InteractionResultHolder.fail(itemstack);
                 }
-                else {
-                    errorCode = 2; //invalid loot table
+                LootTable lootTable = worldIn.getServer().reloadableRegistries().getLootTable(resourceKey);
+                long lootSeed = worldIn.random.nextLong();
+                LootContext lootContext = new LootContext.Builder(new LootParams.Builder((ServerLevel) worldIn)
+                        .withParameter(LootContextParams.ORIGIN, playerIn.position())
+                        .withLuck(playerIn.getLuck())
+                        .create(LootContextParamSets.CHEST))
+                        .withOptionalRandomSeed(lootSeed)
+                        .create(Optional.of(resourceLocation));
+                lootTable.getRandomItems(lootContext, lootItems::add);
+                if (lootItems.isEmpty()) {
+                    errorCode = 2;
+                } else {
+                    readLootTableSuccess = true;
                 }
             }
             else {
@@ -96,5 +125,5 @@ public class TreasureTransportCard extends AbstractTransportCard{
         }
     }
 
-     */
+
 }

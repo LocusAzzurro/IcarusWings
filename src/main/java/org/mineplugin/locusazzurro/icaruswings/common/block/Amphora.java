@@ -3,10 +3,7 @@ package org.mineplugin.locusazzurro.icaruswings.common.block;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.Container;
-import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -90,17 +87,6 @@ public class Amphora extends BaseEntityBlock{
 	public RenderShape getRenderShape(BlockState p_149645_1_) {
 		return RenderShape.MODEL;
 	}
-	
-	@Override
-	public void setPlacedBy(Level worldIn, BlockPos posIn, BlockState stateIn, LivingEntity entityIn, ItemStack stackIn) {
-	    worldIn.setBlock(posIn.above(), stateIn.setValue(HALF, DoubleBlockHalf.UPPER), 3);
-		if (stackIn.hasCustomHoverName()) {
-			BlockEntity tileentity = worldIn.getBlockEntity(posIn);
-			if (tileentity instanceof AmphoraBlockEntity) {
-				((AmphoraBlockEntity) tileentity).setCustomName(stackIn.getHoverName());
-			}
-		}
-	}
 
 	@Override
 	public boolean canSurvive(BlockState stateIn, LevelReader worldReaderIn, BlockPos posIn) {
@@ -153,19 +139,20 @@ public class Amphora extends BaseEntityBlock{
 
 		return null;
 	}
-	
+
+
 	@Override
-	public InteractionResult use(BlockState stateIn, Level worldIn, BlockPos posIn, Player playerIn, InteractionHand handIn, BlockHitResult rayIn) {
-		if (worldIn.isClientSide) {
+	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+		if (level.isClientSide) {
 			return InteractionResult.SUCCESS;
-		} 
+		}
 		else {
 			BlockEntity tileentity;
-			if (stateIn.getValue(HALF) == DoubleBlockHalf.UPPER) {
-				tileentity = worldIn.getBlockEntity(posIn.below());	}
-			else { tileentity = worldIn.getBlockEntity(posIn); }
+			if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
+				tileentity = level.getBlockEntity(pos.below());	}
+			else { tileentity = level.getBlockEntity(pos); }
 			if (tileentity instanceof AmphoraBlockEntity) {
-				playerIn.openMenu((AmphoraBlockEntity) tileentity);
+				player.openMenu((AmphoraBlockEntity) tileentity);
 			}
 			return InteractionResult.CONSUME;
 		}

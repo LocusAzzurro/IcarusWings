@@ -5,13 +5,14 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
 
 import javax.annotation.Nullable;
 
 public class EffectPoisonImmunity extends AbstractEffect{
 
 	public EffectPoisonImmunity() {
-		super(MobEffectCategory.BENEFICIAL, 0xe4fbbd);
+		super(EffectRegistry.POISON_IMMUNITY, MobEffectCategory.BENEFICIAL, 0xe4fbbd);
 	}
 	
 	@Override

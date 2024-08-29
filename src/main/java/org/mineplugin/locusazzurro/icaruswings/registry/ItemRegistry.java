@@ -8,10 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
-import org.mineplugin.locusazzurro.icaruswings.common.data.IWingsType;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModFoods;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModItemTiers;
-import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
+import org.mineplugin.locusazzurro.icaruswings.common.data.*;
 import org.mineplugin.locusazzurro.icaruswings.common.item.*;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -214,12 +211,18 @@ public class ItemRegistry {
     public static final Supplier<Item> NETHERITE_SPEAR = ITEMS.register("netherite_spear", () -> new SpearItem(Tiers.NETHERITE));
     public static final Supplier<Item> SYNAPSE_ALLOY_SPEAR = ITEMS.register("synapse_alloy_spear", () -> new SpearItem(ModItemTiers.SYNAPSE_ALLOY));
 
-    public static final Supplier<Item> IKAROS_WINGS = ITEMS.register("ikaros_wings", SynapseWingsAlpha::new);
-    public static final Supplier<Item> NYMPH_WINGS = ITEMS.register("nymph_wings", SynapseWingsBeta::new);
-    public static final Supplier<Item> ASTRAEA_WINGS = ITEMS.register("astraea_wings", SynapseWingsDelta::new);
-    public static final Supplier<Item> CHAOS_WINGS = ITEMS.register("chaos_wings", SynapseWingsEpsilon::new);
-    public static final Supplier<Item> HIYORI_WINGS = ITEMS.register("hiyori_wings", SynapseWingsZeta::new);
-    public static final Supplier<Item> MELAN_WINGS = ITEMS.register("melan_wings", SynapseWingsTheta::new);
+    public static final Supplier<Item> IKAROS_WINGS = ITEMS.register("ikaros_wings",
+            () -> new SynapseWings(WingsType.SYNAPSE_ALPHA, SynapseWingsSpeedData.ALPHA, 2.0d, SynapseWingsModifiers.ALPHA_MODIFIERS));
+    public static final Supplier<Item> NYMPH_WINGS = ITEMS.register("nymph_wings",
+            () -> new SynapseWings(WingsType.SYNAPSE_BETA, SynapseWingsSpeedData.BETA, 1.2d, SynapseWingsModifiers.BETA_MODIFIERS));
+    public static final Supplier<Item> ASTRAEA_WINGS = ITEMS.register("astraea_wings",
+            () -> new SynapseWings(WingsType.SYNAPSE_DELTA, SynapseWingsSpeedData.DELTA, 1.4d, SynapseWingsModifiers.DELTA_MODIFIERS));
+    public static final Supplier<Item> CHAOS_WINGS = ITEMS.register("chaos_wings",
+            () -> new SynapseWings(WingsType.SYNAPSE_EPSILON, SynapseWingsSpeedData.EPSILON, 1.8f, SynapseWingsModifiers.EPSILON_MODIFIERS));
+    public static final Supplier<Item> HIYORI_WINGS = ITEMS.register("hiyori_wings",
+            () -> new SynapseWings(WingsType.SYNAPSE_ZETA, SynapseWingsSpeedData.ZETA, 2.0f, SynapseWingsModifiers.ZETA_MODIFIERS));
+    public static final Supplier<Item> MELAN_WINGS = ITEMS.register("melan_wings",
+            () -> new SynapseWings(WingsType.SYNAPSE_THETA, SynapseWingsSpeedData.THETA, 2.0f, SynapseWingsModifiers.THETA_MODIFIERS));
 
     public static final Supplier<Item> ARTEMIS_LAUNCHER = ITEMS.register("artemis_launcher", ArtemisLauncher::new);
     public static final Supplier<Item> ARTEMIS_MISSILE = registerSimpleItem("artemis_missile");

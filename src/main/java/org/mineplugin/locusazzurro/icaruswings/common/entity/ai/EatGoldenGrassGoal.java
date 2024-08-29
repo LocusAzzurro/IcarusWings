@@ -71,7 +71,7 @@ public class EatGoldenGrassGoal extends Goal {
         if (this.eatAnimationTick == 4) {
             BlockPos mobPos = this.mob.blockPosition();
             if (IS_GOLDEN_GRASS.test(this.level.getBlockState(mobPos))) {
-                if (EventHooks.getMobGriefingEvent(this.level, this.mob)) {
+                if (EventHooks.canEntityGrief(this.level, this.mob)) {
                     this.level.destroyBlock(mobPos, false);
                 }
 
@@ -79,7 +79,7 @@ public class EatGoldenGrassGoal extends Goal {
             } else {
                 BlockPos mobPosBelow = mobPos.below();
                 if (this.level.getBlockState(mobPosBelow).is(this.eatBlock)) {
-                    if (EventHooks.getMobGriefingEvent(this.level, this.mob)) {
+                    if (EventHooks.canEntityGrief(this.level, this.mob)) {
                         this.level.levelEvent(2001, mobPosBelow, Block.getId(this.eatBlock.defaultBlockState()));
                         this.level.setBlock(mobPosBelow, this.eatenBlock.defaultBlockState(), 2);
                     }

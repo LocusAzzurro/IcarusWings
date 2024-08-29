@@ -26,6 +26,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModFoods;
 import org.mineplugin.locusazzurro.icaruswings.registry.*;
 
 import javax.annotation.Nullable;
@@ -37,19 +38,13 @@ public class Mead extends Item {
 	private Infusion infusionType = null;
 	
 	public Mead() {
-		super(new Properties().food(food).stacksTo(4));
+		super(new Properties().food(ModFoods.MEAD).stacksTo(4));
 	}
 	
 	public Mead(Infusion type) {
 		this();
 		this.infusionType = type;
 	}
-
-	private static final FoodProperties food = (new FoodProperties.Builder())
-			.saturationMod(1)
-			.nutrition(5)
-			.alwaysEat()
-			.build();
 	
 	@Override
 	public ItemStack finishUsingItem(ItemStack stackIn, Level worldIn, LivingEntity entityIn) {
@@ -89,7 +84,7 @@ public class Mead extends Item {
 					case HERBS -> {
                         extraEffect.add(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
                         extraEffect.add(new MobEffectInstance(MobEffects.LUCK, 1200, 0));
-						extraEffect.add(new MobEffectInstance(EffectRegistry.POISON_IMMUNITY.get(), 1200, 0));
+						extraEffect.add(new MobEffectInstance(EffectRegistry.POISON_IMMUNITY, 1200, 0));
                     }
                     default -> {
                     }
@@ -114,7 +109,7 @@ public class Mead extends Item {
 	}
 
 	@Override
-	public int getUseDuration(ItemStack p_77626_1_) {
+	public int getUseDuration(ItemStack stack, LivingEntity entity) {
 		return 60;
 	}
 

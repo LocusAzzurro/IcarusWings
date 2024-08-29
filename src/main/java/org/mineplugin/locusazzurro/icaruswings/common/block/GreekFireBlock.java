@@ -15,7 +15,7 @@ import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 public class GreekFireBlock extends LiquidBlock {
 
     public GreekFireBlock(){
-        super(FluidRegistry.GREEK_FIRE, Block.Properties.of().liquid().noCollission().strength(100.0F).noLootTable().lightLevel((b) -> 15).noLootTable());
+        super(FluidRegistry.GREEK_FIRE.get(), Block.Properties.of().liquid().noCollission().strength(100.0F).noLootTable().lightLevel((b) -> 15).noLootTable());
     }
 
     @SuppressWarnings("deprecation")
@@ -24,7 +24,7 @@ public class GreekFireBlock extends LiquidBlock {
         if (!entity.fireImmune()) {
             entity.setRemainingFireTicks(entity.getRemainingFireTicks() + 1);
             if (entity.getRemainingFireTicks() == 0) {
-                entity.setSecondsOnFire(8);
+                entity.setRemainingFireTicks(8);
             }
         }
 

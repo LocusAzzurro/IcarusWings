@@ -9,6 +9,7 @@ import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -21,7 +22,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import org.mineplugin.locusazzurro.icaruswings.common.data.ModConfig;
+import org.mineplugin.locusazzurro.icaruswings.common.data.IcarusWingsConfig;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModDamageSources;
 import org.mineplugin.locusazzurro.icaruswings.common.effect.EffectInevitability;
 import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
@@ -33,7 +34,7 @@ import org.mineplugin.locusazzurro.icaruswings.util.KayrosGenUtils;
 public class KayrosBlastEntity extends ThrowableItemProjectile {
 
 
-    private static final boolean ALLOW_TERRAIN = ModConfig.ALLOW_DEMETER_CHANGE_TERRAIN.get();
+    private static final boolean ALLOW_TERRAIN = IcarusWingsConfig.ALLOW_DEMETER_CHANGE_TERRAIN.get();
     private static final EntityDataAccessor<CompoundTag> LANDSCAPE = SynchedEntityData.defineId(KayrosBlastEntity.class, EntityDataSerializers.COMPOUND_TAG);
     private final int maxLife = 600;
     private int life;
@@ -132,15 +133,14 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(LANDSCAPE, KayrosGenUtils.convertToTag(KayrosGenUtils.cubeTerrain));
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(LANDSCAPE, KayrosGenUtils.convertToTag(KayrosGenUtils.cubeTerrain));
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity p_entity) {
         Entity entity = this.getOwner();
-        return new ClientboundAddEntityPacket(this, entity == null ? 0 : entity.getId());
+        return new ClientboundAddEntityPacket(this, p_entity, entity == null ? 0 : entity.getId());
     }
-
 }

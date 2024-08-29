@@ -70,9 +70,36 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 .add(ItemRegistry.SYNAPSE_CHESTPLATE.get())
                 .add(ItemRegistry.SYNAPSE_LEGGINGS.get())
                 .add(ItemRegistry.SYNAPSE_BOOTS.get());
-        tag(ItemTags.MUSIC_DISCS)
-                .add(ItemRegistry.DISC_FALLEN_DOWN.get())
-                .add(ItemRegistry.DISC_RING_MY_BELL.get());
+        tag(ModTags.ELYTRA_ENCHANTABLE)
+                .add(Items.ELYTRA)
+                .add(ItemRegistry.FEATHER_WINGS.get())
+                .add(ItemRegistry.COLORED_FEATHER_WINGS.get())
+                .add(ItemRegistry.GOLDEN_FEATHER_WINGS.get())
+                .add(ItemRegistry.PAPER_WINGS.get())
+                .add(ItemRegistry.MAGIC_WINGS.get())
+                .add(ItemRegistry.FLANDRE_MAGIC_WINGS.get())
+                .add(ItemRegistry.IKAROS_WINGS.get())
+                .add(ItemRegistry.NYMPH_WINGS.get())
+                .add(ItemRegistry.ASTRAEA_WINGS.get())
+                .add(ItemRegistry.CHAOS_WINGS.get())
+                .add(ItemRegistry.HIYORI_WINGS.get())
+                .add(ItemRegistry.MELAN_WINGS.get());
+        tag(ItemTags.SWORD_ENCHANTABLE)
+                .add(ItemRegistry.WOODEN_SPEAR.get())
+                .add(ItemRegistry.STONE_SPEAR.get())
+                .add(ItemRegistry.IRON_SPEAR.get())
+                .add(ItemRegistry.GOLDEN_FEATHER.get())
+                .add(ItemRegistry.DIAMOND_SPEAR.get())
+                .add(ItemRegistry.NETHERITE_SPEAR.get())
+                .add(ItemRegistry.SYNAPSE_ALLOY_SPEAR.get());
+        tag(ItemTags.FIRE_ASPECT_ENCHANTABLE)
+                .add(ItemRegistry.WOODEN_SPEAR.get())
+                .add(ItemRegistry.STONE_SPEAR.get())
+                .add(ItemRegistry.IRON_SPEAR.get())
+                .add(ItemRegistry.GOLDEN_FEATHER.get())
+                .add(ItemRegistry.DIAMOND_SPEAR.get())
+                .add(ItemRegistry.NETHERITE_SPEAR.get())
+                .add(ItemRegistry.SYNAPSE_ALLOY_SPEAR.get());
     }
 
     @Override

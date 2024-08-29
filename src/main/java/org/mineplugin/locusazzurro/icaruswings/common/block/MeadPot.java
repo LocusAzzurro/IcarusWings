@@ -4,13 +4,14 @@ import com.google.common.base.Suppliers;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -48,7 +49,6 @@ import org.mineplugin.locusazzurro.icaruswings.common.item.Mead;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockEntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
-import org.mineplugin.locusazzurro.icaruswings.util.IWLazy;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
@@ -70,9 +70,9 @@ public class MeadPot extends BaseEntityBlock {
 	protected static final VoxelShape SHAPE = Shapes.join(
 			Shapes.block(), INSIDE, BooleanOp.ONLY_FIRST);
 
-	private static final double particleR = 233D / 255D;
-	private static final double particleG = 147D / 255D;
-	private static final double particleB = 38D / 255D;
+	private static final float PARTICLE_R = 233f / 255f;
+	private static final float PARTICLE_G = 147f / 255f;
+	private static final float PARTICLE_B = 38f / 255f;
 
 	public static final Predicate<ItemStack> isValidInfusionItem = (itemStack) ->
 			itemStack.is(ModTags.WORLD_ESSENCES) || itemStack.is(Items.GOLDEN_APPLE) || itemStack.is(ItemRegistry.HERB_BUNCH.get());
@@ -153,11 +153,12 @@ public class MeadPot extends BaseEntityBlock {
 	}
 
 	@Override
-	public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+	protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
 		return false;
 	}
+
 	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         if (!worldIn.isClientSide && handIn == InteractionHand.MAIN_HAND && worldIn.getBlockEntity(pos) instanceof MeadPotBlockEntity meadPotTE) {
             ItemStack stackIn = player.getItemInHand(handIn);
             if (stackIn.getItem() == Items.HONEY_BOTTLE && stackIn.getCount() >= 4
@@ -169,12 +170,12 @@ public class MeadPot extends BaseEntityBlock {
 				}
             	meadPotTE.startFermenting();
             	worldIn.playSound(null, pos, SoundRegistry.MEAD_POT_BREW.get(), SoundSource.BLOCKS, 2.0f, 1.3f);
-            	return InteractionResult.SUCCESS;
+            	return ItemInteractionResult.CONSUME;
             }
             if (stackIn.getItem() == ItemRegistry.GLASS_JAR.get() && meadPotTE.isComplete()) {
 				Item itemOut = ItemRegistry.MEAD.get();
 				if (!player.getAbilities().instabuild) stackIn.shrink(1);
-				for (Map.Entry<Mead.Infusion, IWLazy<Item>> entry : INFUSION_MAP_OUT.entrySet()) {
+				for (Map.Entry<Mead.Infusion, Supplier<Item>> entry : INFUSION_MAP_OUT.entrySet()) {
 					if (state.getValue(INFUSION) == entry.getKey()) {
 						itemOut = entry.getValue().get();
 						break;
@@ -184,11 +185,11 @@ public class MeadPot extends BaseEntityBlock {
             	meadPotTE.setEmpty();
 				worldIn.setBlock(pos, worldIn.getBlockState(pos).setValue(INFUSION, Mead.Infusion.NONE), 3);
             	worldIn.playSound(null, pos, SoundRegistry.MEAD_POT_BREW.get(), SoundSource.BLOCKS, 2.0f, 1.3f);
-            	return InteractionResult.SUCCESS;
+				return ItemInteractionResult.SUCCESS;
             }
-            return InteractionResult.PASS;
+			return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
-        return InteractionResult.PASS;
+		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         
     }
 
@@ -220,12 +221,14 @@ public class MeadPot extends BaseEntityBlock {
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rng) {
 		if(stateIn.getValue(STATE) == MeadPotState.FERMENTING) {
 		for (int i = 0; i < 3; ++i) {
-			int j = rng.nextInt(2) * 2 - 1;
-			int k = rng.nextInt(2) * 2 - 1;
-			double d0 = (double) pos.getX() + 0.5D + 0.25D * (double) j;
-			double d1 = (float) pos.getY() + 0.5f +rng.nextFloat();
-			double d2 = (double) pos.getZ() + 0.5D + 0.25D * (double) k;
-			worldIn.addParticle(ParticleTypes.ENTITY_EFFECT, d0, d1, d2, particleR, particleG, particleB);
+            double x = pos.getX() + rng.nextFloat();
+			double y = pos.getY() + 0.5f + rng.nextFloat();
+			double z = pos.getZ() + rng.nextFloat();
+			double dx = rng.nextFloat() - 0.5f;
+			double dy = rng.nextFloat() * 0.25f;
+			double dz = rng.nextFloat() - 0.5f;
+			ColorParticleOption colorParticleOption = ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, PARTICLE_R, PARTICLE_G, PARTICLE_B);
+			worldIn.addParticle(colorParticleOption, x, y, z, dx, dy, dz);
 		}
 		}
 	}

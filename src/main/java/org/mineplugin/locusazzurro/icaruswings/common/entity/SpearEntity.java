@@ -7,6 +7,7 @@ import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -36,20 +37,22 @@ public class SpearEntity extends AbstractArrow {
     private ItemStack spearItem;
     private boolean dealtDamage;
 
+
+
     public SpearEntity(EntityType<? extends SpearEntity> type, Level world) {
-        super(type, world, WOODEN_SPEAR);
+        super(type, world);
         this.spearItem = new ItemStack(ItemRegistry.WOODEN_SPEAR.get());
     }
 
     public SpearEntity(Level worldIn, LivingEntity owner, ItemStack spear){
-        super(EntityTypeRegistry.SPEAR.get(), owner, worldIn, WOODEN_SPEAR);
+        super(EntityTypeRegistry.SPEAR.get(), owner, worldIn, WOODEN_SPEAR, null);
         this.spearItem = spear.copy();
         this.entityData.set(SPEAR_ITEM, spear);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public SpearEntity(Level p_i48791_1_, double p_i48791_2_, double p_i48791_4_, double p_i48791_6_) {
-        super(EntityTypeRegistry.SPEAR.get(), p_i48791_2_, p_i48791_4_, p_i48791_6_, p_i48791_1_, WOODEN_SPEAR);
+    public SpearEntity(Level level, double x, double y, double z) {
+        super(EntityTypeRegistry.SPEAR.get(), x, y, z, level, WOODEN_SPEAR, null);
         this.spearItem = new ItemStack(ItemRegistry.WOODEN_SPEAR.get());
     }
 
@@ -74,7 +77,7 @@ public class SpearEntity extends AbstractArrow {
         float f = ((SpearItem) this.spearItem.getItem()).getAttackDamage();
         if (target instanceof LivingEntity) {
             LivingEntity livingentity = (LivingEntity)target;
-            f += EnchantmentHelper.getDamageBonus(this.spearItem, livingentity.getMobType());
+            //f += EnchantmentHelper.getDamageBonus(this.spearItem, livingentity.getMobType()); //todo
         }
 
         Entity owner = this.getOwner();
@@ -90,8 +93,8 @@ public class SpearEntity extends AbstractArrow {
             if (target instanceof LivingEntity) {
                 LivingEntity targetLiving = (LivingEntity)target;
                 if (owner instanceof LivingEntity) {
-                    EnchantmentHelper.doPostHurtEffects(targetLiving, owner);
-                    EnchantmentHelper.doPostDamageEffects((LivingEntity)owner, targetLiving);
+                    //EnchantmentHelper.doPostHurtEffects(targetLiving, owner); //todo
+                    //EnchantmentHelper.doPostDamageEffects((LivingEntity)owner, targetLiving);
                 }
 
                 this.doPostHurtEffects(targetLiving);
@@ -122,6 +125,11 @@ public class SpearEntity extends AbstractArrow {
     }
 
     @Override
+    protected ItemStack getDefaultPickupItem() {
+        return WOODEN_SPEAR;
+    }
+
+    @Override
     public void tickDespawn() {
         if (this.pickup != AbstractArrow.Pickup.ALLOWED) {
             super.tickDespawn();
@@ -129,26 +137,26 @@ public class SpearEntity extends AbstractArrow {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SPEAR_ITEM, new ItemStack(ItemRegistry.WOODEN_SPEAR.get()));
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SPEAR_ITEM, new ItemStack(ItemRegistry.WOODEN_SPEAR.get()));
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
-        if (nbt.contains("Spear", 10)) {
-            this.spearItem = ItemStack.of(nbt.getCompound("Spear"));
+        if (nbt.contains("spear", 10)) {
+            this.spearItem = ItemStack.parse(this.registryAccess(), nbt.getCompound("spear")).orElse(ItemStack.EMPTY);
         }
 
-        this.dealtDamage = nbt.getBoolean("DealtDamage");
+        this.dealtDamage = nbt.getBoolean("dealt_damage");
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
-        nbt.put("Spear", this.spearItem.save(new CompoundTag()));
-        nbt.putBoolean("DealtDamage", this.dealtDamage);
+        nbt.put("spear", this.spearItem.save(this.registryAccess(), new CompoundTag()));
+        nbt.putBoolean("dealt_damage", this.dealtDamage);
     }
 
     public void setSpearItemData(ItemStack stackIn){
@@ -171,10 +179,9 @@ public class SpearEntity extends AbstractArrow {
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new ClientboundAddEntityPacket(this);
+    public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity p_entity) {
+        Entity entity = this.getOwner();
+        return new ClientboundAddEntityPacket(this, p_entity, entity == null ? 0 : entity.getId());
     }
-
-
 }
 

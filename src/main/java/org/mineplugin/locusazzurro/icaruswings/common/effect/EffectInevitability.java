@@ -3,11 +3,12 @@ package org.mineplugin.locusazzurro.icaruswings.common.effect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModDamageSources;
+import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
 
 public class EffectInevitability extends AbstractEffect{
 
     public EffectInevitability() {
-        super(MobEffectCategory.HARMFUL, 0x550066);
+        super(EffectRegistry.INEVITABILITY, MobEffectCategory.HARMFUL, 0x550066);
     }
 
     @Override

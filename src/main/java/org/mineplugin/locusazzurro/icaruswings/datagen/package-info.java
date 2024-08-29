@@ -1,5 +1,7 @@
-
 @MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 package org.mineplugin.locusazzurro.icaruswings.datagen;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
+
+import javax.annotation.ParametersAreNonnullByDefault;

@@ -30,6 +30,12 @@ neoForge {
             client()
         }
         data {
+            programArguments.addAll (
+                    '--mod', project.mod_id,
+                    '--all',
+                    '--output', file('src/generated/resources/').getAbsolutePath(),
+                    '--existing', file('src/main/resources/').getAbsolutePath()
+            )
             data()
         }
         server {
@@ -47,6 +53,7 @@ neoForge {
         minecraftVersion = minecraft_version
         mappingsVersion = parchment_version
     }
+
 }
 
 
@@ -65,11 +72,11 @@ repositories {
 
 dependencies {
 
-    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version_common}"
-    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version_neoforge}"
-    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version_neoforge}"
+    //compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version_common}"
+    //compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version_neoforge}"
+    //runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version_neoforge}"
 
-    implementation "mcjty.theoneprobe:theoneprobe:${top_version}"
+    //implementation "mcjty.theoneprobe:theoneprobe:${top_version}"
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -90,7 +97,7 @@ tasks.withType(ProcessResources).configureEach {
     ]
     inputs.properties replaceProperties
 
-    filesMatching(['META-INF/mods.toml']) {
+    filesMatching(['META-INF/neoforge.mods.toml']) {
         expand replaceProperties + [project: project]
     }
 }

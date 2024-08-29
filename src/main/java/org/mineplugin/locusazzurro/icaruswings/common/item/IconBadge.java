@@ -20,16 +20,17 @@ public class IconBadge extends Item{
     }
 
     @Override
-    public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
-        super.appendHoverText(itemstack, world, list, flag);
-        list.add(Component.literal(
-                """
-                        "Never regret thy fall,
-                        O Icarus of the fearless flight,
-                        For the greatest tragedy of them all,
-                        Is never to feel the burning light."
-                        - Oscar Wilde
-                        """)
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        tooltipComponents.add(Component.literal(
+                        """
+                                "Never regret thy fall,
+                                O Icarus of the fearless flight,
+                                For the greatest tragedy of them all,
+                                Is never to feel the burning light."
+                                - Oscar Wilde
+                                """)
                 .setStyle(Style.EMPTY.withItalic(true).withColor(ChatFormatting.GRAY)));
     }
+
 }
