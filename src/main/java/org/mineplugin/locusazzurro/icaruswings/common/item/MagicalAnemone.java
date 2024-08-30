@@ -1,9 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.component.DataComponentMap;
-import net.minecraft.core.component.DataComponentPatch;
-import net.minecraft.core.component.TypedDataComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.Entity;

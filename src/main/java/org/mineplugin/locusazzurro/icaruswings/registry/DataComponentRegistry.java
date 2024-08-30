@@ -8,7 +8,6 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 
-import java.util.Optional;
 import java.util.function.UnaryOperator;
 
 public class DataComponentRegistry {

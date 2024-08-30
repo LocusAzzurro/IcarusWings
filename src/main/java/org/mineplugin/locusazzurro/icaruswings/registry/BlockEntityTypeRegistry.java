@@ -8,8 +8,6 @@ import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.common.block.entity.AmphoraBlockEntity;
 import org.mineplugin.locusazzurro.icaruswings.common.block.entity.MeadPotBlockEntity;
 
-import java.util.function.Supplier;
-
 public class BlockEntityTypeRegistry {
 
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, IcarusWings.MOD_ID);

@@ -10,8 +10,6 @@ import org.mineplugin.locusazzurro.icaruswings.common.effect.EffectInterdiction;
 import org.mineplugin.locusazzurro.icaruswings.common.effect.EffectPoisonImmunity;
 import org.mineplugin.locusazzurro.icaruswings.common.effect.EffectSensoryMasking;
 
-import java.util.function.Supplier;
-
 public class EffectRegistry {
 	
 	public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, IcarusWings.MOD_ID);

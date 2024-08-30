@@ -1,20 +1,17 @@
 package org.mineplugin.locusazzurro.icaruswings.common.effect;
 
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.EffectCure;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.Set;
 
 public class AbstractEffect extends MobEffect {
