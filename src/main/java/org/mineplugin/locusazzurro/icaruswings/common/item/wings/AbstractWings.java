@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.common.item;
+package org.mineplugin.locusazzurro.icaruswings.common.item.wings;
 
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
@@ -9,8 +9,6 @@ import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
-import org.mineplugin.locusazzurro.icaruswings.common.data.IWingsType;
-import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 
 import javax.annotation.Nullable;
 
@@ -18,24 +16,24 @@ import javax.annotation.Nullable;
 
 public abstract class AbstractWings extends ElytraItem {
 
-	protected IWingsType type;
+	protected WingsType type;
 
-	protected AbstractWings(IWingsType type) {
+	protected AbstractWings(WingsType type) {
 		super(new Properties().durability(type.getDurability()));
 		this.type = type;
 	}
 
-	protected AbstractWings(IWingsType type, Rarity rarity) {
+	protected AbstractWings(WingsType type, Rarity rarity) {
 		super(new Properties().durability(type.getDurability()).rarity(rarity));
 		this.type = type;
 	}
 
 	protected AbstractWings() {
-		super(new Properties().durability(WingsType.FEATHER.getDurability()));
-		this.type = WingsType.FEATHER;
+		super(new Properties().durability(WingsTypes.FEATHER.getDurability()));
+		this.type = WingsTypes.FEATHER;
 	}
 
-	public IWingsType getType() {
+	public WingsType getType() {
 		return this.type;
 	}
 

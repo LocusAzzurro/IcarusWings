@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.common.item;
+package org.mineplugin.locusazzurro.icaruswings.common.item.wings;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -6,18 +6,17 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 
 @SuppressWarnings("unused")
 public class FeatherWings extends AbstractWings {
 
-	public FeatherWings(WingsType type) {
+	public FeatherWings(WingsTypes type) {
 		super(type);
 	}
 	
 	@Deprecated
 	public FeatherWings() {
-		this(WingsType.FEATHER);
+		this(WingsTypes.FEATHER);
 	}
 
 	@Override
@@ -32,7 +31,7 @@ public class FeatherWings extends AbstractWings {
 			if ((entity instanceof Player) && (stack.getItem() instanceof FeatherWings)) {
 				if (entity.level().dimension() == Level.NETHER) {
 					dmg = 5;
-					if(((FeatherWings)stack.getItem()).getType() != WingsType.FEATHER_GOLDEN)
+					if(((FeatherWings)stack.getItem()).getType() != WingsTypes.FEATHER_GOLDEN)
 						entity.setRemainingFireTicks(10);
 				}
 				else {

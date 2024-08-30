@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.common.item;
+package org.mineplugin.locusazzurro.icaruswings.common.item.transportcard;
 
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;

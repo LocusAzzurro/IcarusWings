@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.common.data;
+package org.mineplugin.locusazzurro.icaruswings.common.item.wings;
 
 import com.google.common.base.Suppliers;
 import net.minecraft.core.Holder;
@@ -12,7 +12,7 @@ import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import java.util.function.Supplier;
 
-public enum WingsType implements IWingsType{
+public enum WingsTypes implements WingsType {
 
 	FEATHER("feather", 100, ItemRegistry.FEATHER_BUNCH,false, SoundRegistry.WINGS_EQUIP_FEATHER),
 	FEATHER_COLORED("colored_feather", 150, ItemRegistry.COLORED_FEATHER_BUNCH,false, SoundRegistry.WINGS_EQUIP_FEATHER),
@@ -35,7 +35,7 @@ public enum WingsType implements IWingsType{
 	private final ResourceLocation textureReversed;
 	private final Holder<SoundEvent> equipSound;
 
-	WingsType(String name, int durability, Supplier<Item> repairItem, boolean hasReverse, Holder<SoundEvent> equipSound) {
+	WingsTypes(String name, int durability, Supplier<Item> repairItem, boolean hasReverse, Holder<SoundEvent> equipSound) {
 		this.name = name;
 		this.durability = durability;
 		this.repairItem = Suppliers.memoize(repairItem::get);

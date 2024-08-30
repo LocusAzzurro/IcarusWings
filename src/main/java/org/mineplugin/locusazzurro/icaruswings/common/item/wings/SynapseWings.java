@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.common.item;
+package org.mineplugin.locusazzurro.icaruswings.common.item.wings;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -9,8 +9,6 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import org.mineplugin.locusazzurro.icaruswings.client.render.IWingsExpandable;
-import org.mineplugin.locusazzurro.icaruswings.common.data.SynapseWingsSpeedData;
-import org.mineplugin.locusazzurro.icaruswings.common.data.WingsType;
 
 import java.util.List;
 import java.util.function.UnaryOperator;
@@ -22,13 +20,13 @@ public class SynapseWings extends AbstractWings implements IWingsExpandable {
 	private final SynapseWingsSpeedData speed;
 	private final double expansionFactor;
 	private final UnaryOperator<ItemAttributeModifiers> attributeModifiers;
-	private final WingsType type;
+	private final WingsTypes type;
 
-	public SynapseWings(WingsType type) {
+	public SynapseWings(WingsTypes type) {
 		this(type, SynapseWingsSpeedData.DEFAULT, DEFAULT_EXPANSION_FACTOR, UnaryOperator.identity());
 	}
 
-	public SynapseWings(WingsType type, SynapseWingsSpeedData speed, double expansionFactor, UnaryOperator<ItemAttributeModifiers> attributes){
+	public SynapseWings(WingsTypes type, SynapseWingsSpeedData speed, double expansionFactor, UnaryOperator<ItemAttributeModifiers> attributes){
 		super(type, Rarity.RARE);
 		this.speed = speed;
 		this.expansionFactor = expansionFactor;

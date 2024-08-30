@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.common.data;
+package org.mineplugin.locusazzurro.icaruswings.common.item.wings;
 
 public record SynapseWingsSpeedData (double directSpeed, double inertialSpeed, double totalSpeed){
 

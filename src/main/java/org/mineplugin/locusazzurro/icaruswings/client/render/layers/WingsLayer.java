@@ -26,7 +26,7 @@ import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.client.render.IWingsExpandable;
 import org.mineplugin.locusazzurro.icaruswings.client.render.IWingsTranslucent;
 import org.mineplugin.locusazzurro.icaruswings.client.render.models.WingsModel;
-import org.mineplugin.locusazzurro.icaruswings.common.item.AbstractWings;
+import org.mineplugin.locusazzurro.icaruswings.common.item.wings.AbstractWings;
 
 @OnlyIn(Dist.CLIENT)
 public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extends ElytraLayer<T, M> {

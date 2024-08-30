@@ -10,6 +10,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.common.data.*;
 import org.mineplugin.locusazzurro.icaruswings.common.item.*;
+import org.mineplugin.locusazzurro.icaruswings.common.item.transportcard.*;
+import org.mineplugin.locusazzurro.icaruswings.common.item.wings.*;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Supplier;
@@ -132,14 +134,14 @@ public class ItemRegistry {
             () -> new DeferredSpawnEggItem(EntityTypeRegistry.GOLDEN_RAM, 15198183, 0xf2f1aa, new Item.Properties()));
     
     public static final Supplier<Item> FEATHER_WINGS = ITEMS.register("feather_wings",
-    		() -> new FeatherWings(WingsType.FEATHER));
+    		() -> new FeatherWings(WingsTypes.FEATHER));
     public static final Supplier<Item> COLORED_FEATHER_WINGS = ITEMS.register("colored_feather_wings",
-    		() -> new FeatherWings(WingsType.FEATHER_COLORED));
+    		() -> new FeatherWings(WingsTypes.FEATHER_COLORED));
     public static final Supplier<Item> GOLDEN_FEATHER_WINGS = ITEMS.register("golden_feather_wings",
-    		() -> new FeatherWings(WingsType.FEATHER_GOLDEN));
+    		() -> new FeatherWings(WingsTypes.FEATHER_GOLDEN));
     public static final Supplier<Item> PAPER_WINGS = ITEMS.register("paper_wings",
             () -> new AbstractWings() {
-                @Override public IWingsType getType() {return WingsType.PAPER;}
+                @Override public WingsType getType() {return WingsTypes.PAPER;}
                 @Override public boolean canElytraFly(ItemStack stack, LivingEntity entity) {return true;}
             });
     
@@ -147,9 +149,9 @@ public class ItemRegistry {
     public static final Supplier<Item> PHILOSOPHER_STONE = ITEMS.register("philosopher_stone", PhilosopherStone::new);
     
     public static final Supplier<Item> MAGIC_WINGS = ITEMS.register("magic_wings",
-    		() -> new AbstractWings() {@Override public IWingsType getType() {return WingsType.MAGIC;}});
+    		() -> new AbstractWings() {@Override public WingsType getType() {return WingsTypes.MAGIC;}});
     public static final Supplier<Item> FLANDRE_MAGIC_WINGS = ITEMS.register("flandre_magic_wings",
-    		() -> new AbstractWings() {@Override public IWingsType getType() {return WingsType.PHI_STONE;}});
+    		() -> new AbstractWings() {@Override public WingsType getType() {return WingsTypes.PHI_STONE;}});
     
     public static final Supplier<Item> FALLEN_RELIC_CORE = ITEMS.register("fallen_relic_core",
     		() -> new FallenRelic(FallenRelic.RelicType.CORE));
@@ -212,17 +214,17 @@ public class ItemRegistry {
     public static final Supplier<Item> SYNAPSE_ALLOY_SPEAR = ITEMS.register("synapse_alloy_spear", () -> new SpearItem(ModItemTiers.SYNAPSE_ALLOY));
 
     public static final Supplier<Item> IKAROS_WINGS = ITEMS.register("ikaros_wings",
-            () -> new SynapseWings(WingsType.SYNAPSE_ALPHA, SynapseWingsSpeedData.ALPHA, 2.0d, SynapseWingsModifiers.ALPHA_MODIFIERS));
+            () -> new SynapseWings(WingsTypes.SYNAPSE_ALPHA, SynapseWingsSpeedData.ALPHA, 2.0d, SynapseWingsModifiers.ALPHA_MODIFIERS));
     public static final Supplier<Item> NYMPH_WINGS = ITEMS.register("nymph_wings",
-            () -> new SynapseWings(WingsType.SYNAPSE_BETA, SynapseWingsSpeedData.BETA, 1.2d, SynapseWingsModifiers.BETA_MODIFIERS));
+            () -> new SynapseWings(WingsTypes.SYNAPSE_BETA, SynapseWingsSpeedData.BETA, 1.2d, SynapseWingsModifiers.BETA_MODIFIERS));
     public static final Supplier<Item> ASTRAEA_WINGS = ITEMS.register("astraea_wings",
-            () -> new SynapseWings(WingsType.SYNAPSE_DELTA, SynapseWingsSpeedData.DELTA, 1.4d, SynapseWingsModifiers.DELTA_MODIFIERS));
+            () -> new SynapseWings(WingsTypes.SYNAPSE_DELTA, SynapseWingsSpeedData.DELTA, 1.4d, SynapseWingsModifiers.DELTA_MODIFIERS));
     public static final Supplier<Item> CHAOS_WINGS = ITEMS.register("chaos_wings",
-            () -> new SynapseWings(WingsType.SYNAPSE_EPSILON, SynapseWingsSpeedData.EPSILON, 1.8f, SynapseWingsModifiers.EPSILON_MODIFIERS));
+            () -> new SynapseWings(WingsTypes.SYNAPSE_EPSILON, SynapseWingsSpeedData.EPSILON, 1.8f, SynapseWingsModifiers.EPSILON_MODIFIERS));
     public static final Supplier<Item> HIYORI_WINGS = ITEMS.register("hiyori_wings",
-            () -> new SynapseWings(WingsType.SYNAPSE_ZETA, SynapseWingsSpeedData.ZETA, 2.0f, SynapseWingsModifiers.ZETA_MODIFIERS));
+            () -> new SynapseWings(WingsTypes.SYNAPSE_ZETA, SynapseWingsSpeedData.ZETA, 2.0f, SynapseWingsModifiers.ZETA_MODIFIERS));
     public static final Supplier<Item> MELAN_WINGS = ITEMS.register("melan_wings",
-            () -> new SynapseWings(WingsType.SYNAPSE_THETA, SynapseWingsSpeedData.THETA, 2.0f, SynapseWingsModifiers.THETA_MODIFIERS));
+            () -> new SynapseWings(WingsTypes.SYNAPSE_THETA, SynapseWingsSpeedData.THETA, 2.0f, SynapseWingsModifiers.THETA_MODIFIERS));
 
     public static final Supplier<Item> ARTEMIS_LAUNCHER = ITEMS.register("artemis_launcher", ArtemisLauncher::new);
     public static final Supplier<Item> ARTEMIS_MISSILE = registerSimpleItem("artemis_missile");

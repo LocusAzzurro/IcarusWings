@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.common.data;
+package org.mineplugin.locusazzurro.icaruswings.common.item.wings;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;

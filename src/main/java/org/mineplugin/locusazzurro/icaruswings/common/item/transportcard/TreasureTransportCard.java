@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.common.item;
+package org.mineplugin.locusazzurro.icaruswings.common.item.transportcard;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;

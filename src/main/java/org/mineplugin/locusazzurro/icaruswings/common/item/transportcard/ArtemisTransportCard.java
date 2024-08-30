@@ -1,4 +1,4 @@
-package org.mineplugin.locusazzurro.icaruswings.common.item;
+package org.mineplugin.locusazzurro.icaruswings.common.item.transportcard;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
@@ -18,14 +18,6 @@ public class ArtemisTransportCard extends AbstractTransportCard{
 
     private static final float HALF_PI = (float) Math.PI / 2;
     private static final float POWER = 2.1f;
-
-    public ArtemisTransportCard(boolean homing){
-        super(CardType.ARTEMIS_HOMING);
-    }
-
-    public ArtemisTransportCard(){
-        super(CardType.ARTEMIS_SCATTER);
-    }
 
     public ArtemisTransportCard(CardType type){
         super(type);
