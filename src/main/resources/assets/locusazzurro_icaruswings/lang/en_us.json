@@ -28,6 +28,8 @@
   "item.locusazzurro_icaruswings.sapphire_gem": "Sapphire Gem",
   "item.locusazzurro_icaruswings.ultramarine_gem": "Ultramarine Gem",
 
+  "item.locusazzurro_icaruswings.gold_upgrade_smithing_template": "Smithing Template",
+
   "item.locusazzurro_icaruswings.reforged_netherite_ingot": "Reforged Netherite Ingot",
   "item.locusazzurro_icaruswings.synapse_alloy_ingot": "Synapsian Alloy Ingot",
 
@@ -144,7 +146,7 @@
 
   "item.locusazzurro_icaruswings.ikaros_wings": "Dual Variable Wings",
   "item.locusazzurro_icaruswings.synapse_alpha.tooltip": "Gen I, Type α",
-  "item.locusazzurro_icaruswings.nymph_wings": "Eletronic Stealth Wings",
+  "item.locusazzurro_icaruswings.nymph_wings": "Electronic Stealth Wings",
   "item.locusazzurro_icaruswings.synapse_beta.tooltip": "Gen I, Type β",
   "item.locusazzurro_icaruswings.astraea_wings": "Hyper Acceleration Wings",
   "item.locusazzurro_icaruswings.synapse_delta.tooltip": "Gen I, Type δ",
@@ -180,9 +182,9 @@
   "item.locusazzurro_icaruswings.transport_card_treasure.error2": "This card has an invalid loot table.",
 
   "item.locusazzurro_icaruswings.disc_fallen_down": "Music Disc",
-  "item.locusazzurro_icaruswings.disc_fallen_down.desc": "Hayami Saori - Fallen Down",
+  "jukebox_song.locusazzurro_icaruswings.fallen_down": "Hayami Saori - Fallen Down",
   "item.locusazzurro_icaruswings.disc_ring_my_bell": "Music Disc",
-  "item.locusazzurro_icaruswings.disc_ring_my_bell.desc": "Blue Drops - Ring My Bell",
+  "jukebox_song.locusazzurro_icaruswings.ring_my_bell": "Blue Drops - Ring My Bell",
 
   "item.locusazzurro_icaruswings.icon_badge": "Icarus Wings Badge",
 

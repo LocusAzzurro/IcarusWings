@@ -28,6 +28,8 @@
   "item.locusazzurro_icaruswings.sapphire_gem": "蓝宝石",
   "item.locusazzurro_icaruswings.ultramarine_gem": "群青宝石",
 
+  "item.locusazzurro_icaruswings.gold_upgrade_smithing_template": "锻造模板",
+
   "item.locusazzurro_icaruswings.reforged_netherite_ingot": "重铸的下界合金锭",
   "item.locusazzurro_icaruswings.synapse_alloy_ingot": "空域神殿合金锭",
 
@@ -180,9 +182,9 @@
   "item.locusazzurro_icaruswings.transport_card_treasure.error2": "战利品列表错误",
 
   "item.locusazzurro_icaruswings.disc_fallen_down": "音乐唱片",
-  "item.locusazzurro_icaruswings.disc_fallen_down.desc": "早见沙织 - Fallen Down",
+  "jukebox_song.locusazzurro_icaruswings.fallen_down": "早见沙织 - Fallen Down",
   "item.locusazzurro_icaruswings.disc_ring_my_bell": "音乐唱片",
-  "item.locusazzurro_icaruswings.disc_ring_my_bell.desc": "Blue Drops - Ring My Bell",
+  "jukebox_song.locusazzurro_icaruswings.ring_my_bell": "Blue Drops - Ring My Bell",
 
   "item.locusazzurro_icaruswings.icon_badge": "伊卡洛斯之翼徽章",
 

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "locusazzurro_icaruswings:item/glistering_refined_beeswax_bar"
+  }
+}

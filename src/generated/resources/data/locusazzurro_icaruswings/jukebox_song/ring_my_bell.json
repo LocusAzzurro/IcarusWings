@@ -1,0 +1,8 @@
+{
+  "comparator_output": 2,
+  "description": {
+    "translate": "jukebox_song.locusazzurro_icaruswings.ring_my_bell"
+  },
+  "length_in_seconds": 90.0,
+  "sound_event": "locusazzurro_icaruswings:track.ring_my_bell"
+}

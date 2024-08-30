@@ -49,8 +49,4 @@ public class ModBlockTagsGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.MEAD_POT.get());
     }
 
-    @Override
-    public String getName() {
-        return DataGenerators.MOD_NAME + "Block Tags";
-    }
 }

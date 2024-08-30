@@ -248,9 +248,9 @@ public class ItemRegistry {
             TreasureTransportCard::new);
 
     public static final Supplier<Item> DISC_FALLEN_DOWN = ITEMS.register("disc_fallen_down",
-    		() -> new SkyMusicDisc(SkyMusicDisc.Track.FALLEN_DOWN));
+    		() -> new Item(new Item.Properties().rarity(Rarity.RARE).stacksTo(1).jukeboxPlayable(ModJukeboxSongs.FALLEN_DOWN)));
     public static final Supplier<Item> DISC_RING_MY_BELL = ITEMS.register("disc_ring_my_bell",
-    		() -> new SkyMusicDisc(SkyMusicDisc.Track.RING_MY_BELL));
+            () -> new Item(new Item.Properties().rarity(Rarity.RARE).stacksTo(1).jukeboxPlayable(ModJukeboxSongs.RING_MY_BELL)));
     
     public static final Supplier<Item> MELON = ITEMS.register("melon", MelonItem::new);
     public static final Supplier<Item> ICON_BADGE = ITEMS.register("icon_badge", IconBadge::new);

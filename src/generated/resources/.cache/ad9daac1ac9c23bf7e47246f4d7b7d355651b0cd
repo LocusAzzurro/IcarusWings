@@ -1,0 +1,7 @@
+// 1.21	2024-08-30T02:27:50.4789217	Tags for minecraft:block mod id locusazzurro_icaruswings
+979e25ed888a5b20cda2e2dc21e351998f39b80e data/minecraft/tags/block/mineable/pickaxe.json
+ff9f99cbd343a66dce509bf27bebcc63722eb35d data/minecraft/tags/block/mineable/shovel.json
+56bb632cd5fdd7cbeda8e09be29e0b908a983f9a data/minecraft/tags/block/needs_iron_tool.json
+967c11dbf3deb9d153a4175268222efc8b5f94fe data/minecraft/tags/block/needs_stone_tool.json
+f8a20788de08f2ee43580cbaae130bc1047d6734 data/minecraft/tags/block/wool.json
+0dbfd1ccd4c1029ebbd512b4eca46286318dcc5f data/minecraft/tags/block/wool_carpets.json

@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BeehiveBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -105,7 +106,6 @@ public class MeadPot extends BaseEntityBlock {
 				.setValue(INFUSION, Mead.Infusion.NONE));
 	}
 
-	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
 		return ITickableBlockEntity.getTicker(pLevel, BlockEntityTypeRegistry.MEAD_POT_BLOCK_ENTITY.get(), pBlockEntityType);

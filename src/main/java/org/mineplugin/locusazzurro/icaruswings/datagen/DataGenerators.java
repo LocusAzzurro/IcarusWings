@@ -16,6 +16,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModDamageSources;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModEnchantments;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModJukeboxSongs;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -32,7 +33,8 @@ public class DataGenerators {
 
     public static final RegistrySetBuilder DATAPACK_BUILDER = new RegistrySetBuilder()
             .add(Registries.ENCHANTMENT, ModEnchantments::bootstrap)
-            .add(Registries.DAMAGE_TYPE, ModDamageSources::bootstrap);
+            .add(Registries.DAMAGE_TYPE, ModDamageSources::bootstrap)
+            .add(Registries.JUKEBOX_SONG, ModJukeboxSongs::bootstrap);
 
     public static HolderLookup.Provider createLookup() {
         RegistryAccess.Frozen registryAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);

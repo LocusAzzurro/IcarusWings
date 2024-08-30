@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "locusazzurro_icaruswings:item/transport_card_chrono_teleport"
+  }
+}
