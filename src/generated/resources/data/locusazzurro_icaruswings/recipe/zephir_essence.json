@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "locusazzurro_icaruswings:zephir_air_jar"
+    },
+    "S": {
+      "item": "locusazzurro_icaruswings:philosopher_stone"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "ASA",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:zephir_essence"
+  }
+}

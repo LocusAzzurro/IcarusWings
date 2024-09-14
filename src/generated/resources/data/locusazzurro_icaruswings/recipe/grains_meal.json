@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:crop_grains"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:crop_grains"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:grains_meal"
+  }
+}

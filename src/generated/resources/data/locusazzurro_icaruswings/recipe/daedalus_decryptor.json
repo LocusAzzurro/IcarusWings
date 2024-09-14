@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "locusazzurro_icaruswings:daedalus_manuscript"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:fallen_relics"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:daedalus_decryptor"
+  }
+}

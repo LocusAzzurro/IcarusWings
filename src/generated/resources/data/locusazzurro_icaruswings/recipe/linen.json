@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "locusazzurro_icaruswings:linen_string"
+    },
+    {
+      "item": "locusazzurro_icaruswings:linen_string"
+    },
+    {
+      "item": "locusazzurro_icaruswings:linen_string"
+    },
+    {
+      "item": "locusazzurro_icaruswings:linen_string"
+    },
+    {
+      "item": "locusazzurro_icaruswings:linen_string"
+    },
+    {
+      "item": "locusazzurro_icaruswings:linen_string"
+    },
+    {
+      "item": "locusazzurro_icaruswings:linen_string"
+    },
+    {
+      "item": "locusazzurro_icaruswings:linen_string"
+    },
+    {
+      "item": "locusazzurro_icaruswings:linen_string"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:linen"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:flandre_magic_wings"
+    ]
+  },
+  "criteria": {
+    "has_magic_wings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["locusazzurro_icaruswings:magic_wings"]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:flandre_magic_wings"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_magic_wings",
+      "has_the_recipe"
+    ]
+  ]
+}

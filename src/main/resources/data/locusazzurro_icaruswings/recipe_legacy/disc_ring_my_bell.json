@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:smelting",
+	"ingredient":
+	{
+		"item": "minecraft:music_disc_cat"
+	},
+	"result":
+	{
+		"item": "locusazzurro_icaruswings:disc_ring_my_bell"
+	},
+	"experience": 1
+	
+}

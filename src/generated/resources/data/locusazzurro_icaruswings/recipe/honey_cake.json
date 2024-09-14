@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "tag": "c:eggs"
+    },
+    "H": {
+      "item": "minecraft:honey_bottle"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "W": {
+      "tag": "locusazzurro_icaruswings:crop_grains"
+    }
+  },
+  "pattern": [
+    "MMM",
+    "HEH",
+    "WWW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:honey_cake"
+  }
+}

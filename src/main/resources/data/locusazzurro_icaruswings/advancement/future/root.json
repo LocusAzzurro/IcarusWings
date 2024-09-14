@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "locusazzurro_icaruswings:feather_wings"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.future.root.title"
+    },
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.future.root.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "locusazzurro_icaruswings:textures/gui/advancements/backgrounds/future.png"
+  },
+  "criteria": {
+    "decryptor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["locusazzurro_icaruswings:daedalus_decryptor"]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "decryptor"
+    ]
+  ]
+}

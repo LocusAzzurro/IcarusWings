@@ -1,0 +1,46 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:quantum_fuel"
+    ]
+  },
+  "criteria": {
+    "has_nether_star": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["minecraft:nether_star"]
+          }
+        ]
+      }
+    },
+    "has_steel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["locusazzurro_icaruswings:steel_ingot"]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:quantum_fuel"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_nether_star",
+      "has_the_recipe"
+    ],
+    [
+      "has_steel",
+      "has_the_recipe"
+    ]
+  ]
+}

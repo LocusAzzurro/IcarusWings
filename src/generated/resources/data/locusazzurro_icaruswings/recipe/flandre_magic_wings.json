@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "1": {
+      "item": "minecraft:redstone_block"
+    },
+    "2": {
+      "item": "minecraft:copper_block"
+    },
+    "3": {
+      "item": "minecraft:gold_block"
+    },
+    "4": {
+      "item": "minecraft:emerald_block"
+    },
+    "5": {
+      "item": "minecraft:diamond_block"
+    },
+    "6": {
+      "item": "minecraft:lapis_block"
+    },
+    "7": {
+      "item": "minecraft:amethyst_block"
+    },
+    "S": {
+      "item": "locusazzurro_icaruswings:philosopher_stone"
+    },
+    "W": {
+      "item": "locusazzurro_icaruswings:magic_wings"
+    }
+  },
+  "pattern": [
+    "345",
+    "2W6",
+    "1S7"
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:flandre_magic_wings"
+  }
+}

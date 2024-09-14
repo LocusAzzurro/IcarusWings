@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "locusazzurro_icaruswings:colored_feathers"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:colored_feathers"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:colored_feathers"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:colored_feathers"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:crop_strings"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:colored_feather_bunch"
+  }
+}

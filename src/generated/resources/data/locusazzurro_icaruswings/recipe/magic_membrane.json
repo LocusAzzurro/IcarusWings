@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:phantom_membrane"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:world_essences"
+    },
+    {
+      "item": "locusazzurro_icaruswings:philosopher_stone"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:magic_membrane"
+  }
+}

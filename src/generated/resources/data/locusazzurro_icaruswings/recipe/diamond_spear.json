@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "P": {
+      "tag": "minecraft:logs"
+    },
+    "T": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "pattern": [
+    "  T",
+    " P ",
+    "P  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:diamond_spear"
+  }
+}

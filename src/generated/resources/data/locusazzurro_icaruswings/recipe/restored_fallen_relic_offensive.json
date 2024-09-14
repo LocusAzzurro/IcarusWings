@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "locusazzurro_icaruswings:daedalus_decryptor"
+    },
+    "M": {
+      "item": "locusazzurro_icaruswings:magma_ingot"
+    },
+    "R": {
+      "item": "locusazzurro_icaruswings:fallen_relic_offensive"
+    },
+    "S": {
+      "item": "locusazzurro_icaruswings:steel_ingot"
+    }
+  },
+  "pattern": [
+    " S ",
+    "MRM",
+    " D "
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:restored_fallen_relic_offensive"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_linen_string": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:linen_string"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:linen"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_linen_string"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:linen"
+    ]
+  }
+}

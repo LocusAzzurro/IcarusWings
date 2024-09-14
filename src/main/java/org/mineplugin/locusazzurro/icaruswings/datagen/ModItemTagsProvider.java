@@ -88,7 +88,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 .add(ItemRegistry.WOODEN_SPEAR.get())
                 .add(ItemRegistry.STONE_SPEAR.get())
                 .add(ItemRegistry.IRON_SPEAR.get())
-                .add(ItemRegistry.GOLDEN_FEATHER.get())
+                .add(ItemRegistry.GOLDEN_SPEAR.get())
                 .add(ItemRegistry.DIAMOND_SPEAR.get())
                 .add(ItemRegistry.NETHERITE_SPEAR.get())
                 .add(ItemRegistry.SYNAPSE_ALLOY_SPEAR.get());
@@ -96,7 +96,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 .add(ItemRegistry.WOODEN_SPEAR.get())
                 .add(ItemRegistry.STONE_SPEAR.get())
                 .add(ItemRegistry.IRON_SPEAR.get())
-                .add(ItemRegistry.GOLDEN_FEATHER.get())
+                .add(ItemRegistry.GOLDEN_SPEAR.get())
                 .add(ItemRegistry.DIAMOND_SPEAR.get())
                 .add(ItemRegistry.NETHERITE_SPEAR.get())
                 .add(ItemRegistry.SYNAPSE_ALLOY_SPEAR.get());

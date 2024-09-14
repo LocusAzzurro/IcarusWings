@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "T": {
+      "item": "minecraft:terracotta"
+    }
+  },
+  "pattern": [
+    "T T",
+    "T T",
+    " T "
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:amphora"
+  }
+}

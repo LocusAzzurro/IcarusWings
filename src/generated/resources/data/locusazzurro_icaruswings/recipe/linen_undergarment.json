@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "L": {
+      "item": "locusazzurro_icaruswings:linen"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "L L",
+    "L L"
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:linen_undergarment"
+  }
+}

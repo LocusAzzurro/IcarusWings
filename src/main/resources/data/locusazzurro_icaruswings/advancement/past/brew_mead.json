@@ -1,0 +1,35 @@
+{
+  "parent": "locusazzurro_icaruswings:past/pottery",
+  "display": {
+    "icon": {
+      "item": "locusazzurro_icaruswings:mead"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.past.brew_mead.title"
+    },
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.past.brew_mead.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "mead": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["locusazzurro_icaruswings:mead"]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mead"
+    ]
+  ]
+}

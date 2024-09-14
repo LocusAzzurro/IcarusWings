@@ -6,7 +6,7 @@
       "loot_table_id": "minecraft:entities/shulker"
     },
     {
-      "chance": 0.2,
+      "chance": 1.0,
       "condition": "minecraft:random_chance"
     }
   ],

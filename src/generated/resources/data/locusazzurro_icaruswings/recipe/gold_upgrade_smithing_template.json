@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "item": "locusazzurro_icaruswings:glistering_refined_beeswax_bar"
+    },
+    "N": {
+      "item": "minecraft:netherrack"
+    }
+  },
+  "pattern": [
+    "NNN",
+    "NGN",
+    "NNN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:gold_upgrade_smithing_template"
+  }
+}

@@ -16,19 +16,20 @@ public class IcarusWings {
 
 	public IcarusWings(ModContainer modContainer, IEventBus bus) {
 
-		FluidRegistry.FLUIDS.register(bus);
-		FluidRegistry.FLUID_TYPES.register(bus);
-		SoundRegistry.SOUNDS.register(bus);
 		BlockRegistry.BLOCKS.register(bus);
 		ItemRegistry.ITEMS.register(bus);
-		ArmorMaterialRegistry.ARMOR_MATERIALS.register(bus);
-		CreativeTabRegistry.CREATIVE_TABS.register(bus);
-		EntityTypeRegistry.ENTITIES.register(bus);
-		ParticleRegistry.PARTICLES.register(bus);
 		BlockEntityTypeRegistry.BLOCK_ENTITIES.register(bus);
+		EntityTypeRegistry.ENTITIES.register(bus);
+		FluidRegistry.FLUIDS.register(bus);
+		FluidRegistry.FLUID_TYPES.register(bus);
 		EffectRegistry.EFFECTS.register(bus);
+		CreativeTabRegistry.CREATIVE_TABS.register(bus);
+		ArmorMaterialRegistry.ARMOR_MATERIALS.register(bus);
 		LootModifierRegistry.LOOT_MODIFIERS.register(bus);
 		DataComponentRegistry.DATA_COMPONENT_TYPES.register(bus);
+
+		SoundRegistry.SOUNDS.register(bus);
+		ParticleRegistry.PARTICLES.register(bus);
 
 		bus.register(DataGenerators.class);
 

@@ -1,0 +1,32 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:disc_fallen_down"
+    ]
+  },
+  "criteria": {
+    "has_base_disc": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["minecraft:music_disc_13"]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:disc_fallen_down"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_base_disc",
+      "has_the_recipe"
+    ]
+  ]
+}

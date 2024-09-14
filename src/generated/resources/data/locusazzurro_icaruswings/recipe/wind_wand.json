@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "locusazzurro_icaruswings:anemone"
+    },
+    "N": {
+      "item": "locusazzurro_icaruswings:nether_essence"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "V": {
+      "item": "locusazzurro_icaruswings:void_essence"
+    },
+    "Z": {
+      "item": "locusazzurro_icaruswings:zephir_essence"
+    }
+  },
+  "pattern": [
+    "  A",
+    "NS ",
+    "ZV "
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:wind_wand"
+  }
+}

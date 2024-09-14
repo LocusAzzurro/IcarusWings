@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 400,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "locusazzurro_icaruswings:steel_mixture"
+  },
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:steel_ingot"
+  }
+}

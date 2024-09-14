@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "base": {
+    "tag": "forge:string"
+  },
+  "addition": {
+    "item": "minecraft:gold_ingot"
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:golden_string"
+  },
+  "template": {
+    "item": "locusazzurro_icaruswings:gold_upgrade_smithing_template"
+  }
+}

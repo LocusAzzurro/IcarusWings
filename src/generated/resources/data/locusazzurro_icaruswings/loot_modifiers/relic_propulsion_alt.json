@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_table",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:gameplay/hero_of_the_village/fisherman_gift"
+    }
+  ],
+  "table": "locusazzurro_icaruswings:relic/relic_propulsion_alt"
+}

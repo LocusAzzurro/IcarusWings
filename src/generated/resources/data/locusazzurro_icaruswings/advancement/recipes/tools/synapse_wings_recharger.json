@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_synapse_repair_kit": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:synapse_repair_kit"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:synapse_wings_recharger"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_synapse_repair_kit"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:synapse_wings_recharger"
+    ]
+  }
+}

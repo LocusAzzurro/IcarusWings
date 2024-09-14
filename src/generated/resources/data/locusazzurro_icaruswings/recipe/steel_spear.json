@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "P": {
+      "tag": "minecraft:logs"
+    },
+    "T": [
+      {
+        "tag": "c:ingots/steel"
+      },
+      {
+        "item": "locusazzurro_icaruswings:steel_ingot"
+      }
+    ]
+  },
+  "pattern": [
+    "  T",
+    " P ",
+    "P  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:steel_spear"
+  }
+}

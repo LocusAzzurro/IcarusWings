@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "locusazzurro_icaruswings:refined_beeswax_block"
+    }
+  },
+  "pattern": [
+    "# ",
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "id": "locusazzurro_icaruswings:refined_beeswax_stairs"
+  }
+}

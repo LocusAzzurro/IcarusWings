@@ -78,8 +78,7 @@ public class MeadPotBlockEntity extends BlockEntity implements ITickableBlockEnt
 				fermentationProgress ++;
 				needUpdate = true;
 			}
-			if (this.isFermenting && (fermentationProgress == FERMENTATION_TIME)) {
-				
+			if (this.isFermenting && (fermentationProgress >= FERMENTATION_TIME)) {
 				this.setComplete();
 				needUpdate = true;
 			}

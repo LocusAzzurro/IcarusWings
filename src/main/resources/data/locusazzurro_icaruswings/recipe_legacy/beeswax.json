@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:smelting",
+	"ingredient":
+	{
+		"item": "minecraft:honeycomb"
+	},
+	"result":
+	{
+		"item": "locusazzurro_icaruswings:beeswax"
+	},
+	"experience": 0.1
+	
+}

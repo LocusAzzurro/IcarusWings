@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "locusazzurro_icaruswings:golden_apple_infused_mead"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:crop_grains"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:crop_grains"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:crop_grains"
+    },
+    {
+      "tag": "locusazzurro_icaruswings:crop_grains"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:golden_apple_growth_infused_mead"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "345",
+    "2E6",
+	"1 7"
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:redstone"
+    },
+    "2": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "3": {
+      "item": "minecraft:gold_nugget"
+    },
+    "4": {
+      "item": "minecraft:emerald"
+    },
+    "5": {
+      "item": "minecraft:diamond"
+    },
+    "6": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "7": {
+      "item": "minecraft:popped_chorus_fruit"
+    },
+    "E": {
+      "item": "locusazzurro_icaruswings:magic_wings"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:flandre_magic_wings",
+    "count": 1
+  }
+}

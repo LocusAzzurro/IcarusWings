@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "locusazzurro_icaruswings:glass_jar"
+    },
+    "E": {
+      "item": "locusazzurro_icaruswings:void_essence"
+    }
+  },
+  "pattern": [
+    " B ",
+    "BEB",
+    " B "
+  ],
+  "result": {
+    "count": 4,
+    "id": "locusazzurro_icaruswings:void_air_jar"
+  }
+}

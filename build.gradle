@@ -63,20 +63,22 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     mavenLocal()
     maven { // JEI
-        url "https://maven.blamejared.com"
+        url = "https://maven.blamejared.com"
     }
     maven { // TOP
-        url "https://maven.k-4u.nl"
+        url = "https://maven.k-4u.nl"
+    }
+    maven {
+        url = "https://modmaven.dev"
     }
 }
 
 dependencies {
 
-    //compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version_common}"
-    //compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version_neoforge}"
-    //runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version_neoforge}"
+    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version_neoforge}"
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version_neoforge}"
 
-    //implementation "mcjty.theoneprobe:theoneprobe:${top_version}"
+    implementation "mcjty.theoneprobe:theoneprobe:${top_version}"
 }
 
 tasks.withType(ProcessResources).configureEach {

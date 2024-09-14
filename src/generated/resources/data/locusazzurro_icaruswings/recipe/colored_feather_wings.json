@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "F": {
+      "item": "locusazzurro_icaruswings:colored_feather_bunch"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "W": {
+      "item": "locusazzurro_icaruswings:refined_beeswax_bar"
+    }
+  },
+  "pattern": [
+    "WPW",
+    "F F",
+    "F F"
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:colored_feather_wings"
+  }
+}

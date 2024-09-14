@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_synapse_alloy_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:synapse_alloy_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:synapse_alloy_spear"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_synapse_alloy_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:synapse_alloy_spear"
+    ]
+  }
+}

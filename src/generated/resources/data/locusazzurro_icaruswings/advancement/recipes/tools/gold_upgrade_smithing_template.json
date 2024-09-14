@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_glistering_refined_beeswax_bar": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:glistering_refined_beeswax_bar"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:gold_upgrade_smithing_template"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_glistering_refined_beeswax_bar"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:gold_upgrade_smithing_template"
+    ]
+  }
+}

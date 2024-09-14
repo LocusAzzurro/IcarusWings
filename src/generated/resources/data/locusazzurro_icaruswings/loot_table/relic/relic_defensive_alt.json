@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "locusazzurro_icaruswings:fallen_relic_defensive"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:air",
+          "weight": 99
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "locusazzurro_icaruswings:relic/relic_defensive_alt"
+}

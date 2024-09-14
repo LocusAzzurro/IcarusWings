@@ -1,0 +1,46 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:synapse_chestplate"
+    ]
+  },
+  "criteria": {
+    "has_relic": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["locusazzurro_icaruswings:restored_fallen_relic_offensive"]
+          }
+        ]
+      }
+    },
+    "has_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["locusazzurro_icaruswings:synapse_alloy_ingot"]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:synapse_chestplate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_relic",
+      "has_the_recipe"
+    ],
+    [
+      "has_alloy",
+      "has_the_recipe"
+    ]
+  ]
+}

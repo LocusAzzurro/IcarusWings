@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:feathers"
+    },
+    {
+      "tag": "c:feathers"
+    },
+    {
+      "tag": "c:feathers"
+    },
+    {
+      "tag": "c:feathers"
+    },
+    {
+      "tag": "c:strings"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:feather_bunch"
+  }
+}

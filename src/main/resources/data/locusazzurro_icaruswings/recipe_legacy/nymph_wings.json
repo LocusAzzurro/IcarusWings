@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ACA",
+    "IEI",
+	"ORP"
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:elytra"
+    },
+    "A": {
+      "item": "locusazzurro_icaruswings:synapse_alloy_ingot"
+    },
+    "C": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_core"
+    },
+    "I": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_interface"
+    },
+    "O": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_offensive"
+    },
+    "P": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_propulsion"
+    },
+    "R": {
+      "item": "locusazzurro_icaruswings:synapse_wings_recharger"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:nymph_wings",
+    "count": 1
+  }
+}

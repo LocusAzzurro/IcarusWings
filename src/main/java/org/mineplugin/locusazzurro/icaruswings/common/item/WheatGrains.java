@@ -28,20 +28,19 @@ public class WheatGrains extends Item{
 	}
 	
 	@Override
-	public InteractionResult interactLivingEntity(ItemStack stack, Player player,
-                                                  LivingEntity target, InteractionHand hand) {
-		Level world = player.level();
+	public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
+		Level level = player.level();
 		
-		if (stack.getItem() == ItemRegistry.WHEAT_GRAINS.get() && target instanceof Parrot) {
-			if (!world.isClientSide)
+		if (stack.is(ItemRegistry.WHEAT_GRAINS.get()) && target instanceof Parrot parrot) {
+			if (!level.isClientSide)
 			{
 				if (!player.isCreative()) {
 					stack.shrink(1);
 				}
-				target.playSound(SoundEvents.PARROT_EAT, 2.0f, 1.3f);
-				if (Math.random() > ACQUIRE_FEATHER_CHANCE) {
+				parrot.playSound(SoundEvents.PARROT_EAT, 2.0f, 1.3f);
+				if (level.random.nextFloat() > ACQUIRE_FEATHER_CHANCE) {
 
-					Parrot.Variant var = ((Parrot) target).getVariant();
+					Parrot.Variant var = parrot.getVariant();
 					new ItemStack(Items.FEATHER);
 					ItemStack feather = switch (var) {
 						case RED_BLUE -> new ItemStack(ItemRegistry.RED_FEATHER.get());
@@ -53,7 +52,7 @@ public class WheatGrains extends Item{
 					ItemHandlerHelper.giveItemToPlayer(player, feather);
 				}
 			}
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(level.isClientSide);
 		}
 		
 		return InteractionResult.PASS;
@@ -62,11 +61,10 @@ public class WheatGrains extends Item{
 	@SubscribeEvent
 	public static void tamedParrotHandler(PlayerInteractEvent.EntityInteract evt){
 		if (evt.getTarget() instanceof Parrot parrot
-				&& evt.getEntity().getItemInHand(evt.getHand()).getItem() instanceof WheatGrains){
+				&& evt.getEntity().getItemInHand(evt.getHand()).is(ItemRegistry.WHEAT_GRAINS.get())){
 			ItemStack grains = evt.getEntity().getItemInHand(evt.getHand());
-			if (!parrot.isFlying() && parrot.isTame() && !evt.getLevel().isClientSide()) {
+			if (!evt.getLevel().isClientSide()){
 				grains.interactLivingEntity(evt.getEntity(), parrot, evt.getHand());
-				parrot.setOrderedToSit(!parrot.isOrderedToSit());
 			}
 			evt.setCanceled(true);
 			evt.setCancellationResult(InteractionResult.CONSUME);

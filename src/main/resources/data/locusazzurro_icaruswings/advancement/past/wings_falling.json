@@ -1,0 +1,57 @@
+{
+  "parent": "locusazzurro_icaruswings:past/icarus_flight",
+  "display": {
+    "icon": {
+      "item": "minecraft:peony"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.past.wings_falling.title"
+    },
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.past.wings_falling.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "broke_wing": {
+      "trigger": "minecraft:item_durability_changed",
+      "conditions": {
+        "item": {
+          "items": ["locusazzurro_icaruswings:colored_feather_wings"]
+        },
+        "durability": 
+		{
+			"min": -99,
+			"max": 0
+		}
+      }
+    },
+    "has_flowers": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["minecraft:oxeye_daisy"]
+          },
+		  {
+            "items": ["minecraft:lily_of_the_valley"]
+          },
+		  {
+            "items": ["minecraft:peony"]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "broke_wing"
+    ],
+	[
+	  "has_flowers"
+	]
+  ]
+}

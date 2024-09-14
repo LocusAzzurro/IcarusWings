@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_restored_fallen_relic_core": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:restored_fallen_relic_core"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:upgraded_fallen_relic_core"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_restored_fallen_relic_core"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:upgraded_fallen_relic_core"
+    ]
+  }
+}

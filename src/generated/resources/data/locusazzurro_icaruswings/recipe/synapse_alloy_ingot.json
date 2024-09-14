@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "locusazzurro_icaruswings:reforged_netherite_ingot"
+    },
+    {
+      "item": "locusazzurro_icaruswings:daedalus_decryptor"
+    },
+    {
+      "item": "locusazzurro_icaruswings:zephir_essence"
+    },
+    {
+      "item": "locusazzurro_icaruswings:nether_essence"
+    },
+    {
+      "item": "locusazzurro_icaruswings:void_essence"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:synapse_alloy_ingot"
+  }
+}

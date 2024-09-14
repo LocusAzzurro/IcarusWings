@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HHH",
+    "H H"
+  ],
+  "key": {
+    "H": {
+      "tag": "locusazzurro_icaruswings:herbs"
+    }
+  },
+  "result": {
+    "item": "locusazzurro_icaruswings:herbal_crown",
+    "count": 1
+  }
+}

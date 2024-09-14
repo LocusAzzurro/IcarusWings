@@ -6,7 +6,7 @@
       "loot_table_id": "minecraft:entities/blaze"
     },
     {
-      "chance": 0.05,
+      "chance": 0.25,
       "condition": "minecraft:random_chance"
     }
   ],

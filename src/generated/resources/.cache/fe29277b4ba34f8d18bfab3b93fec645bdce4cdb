@@ -1,4 +1,4 @@
-// 1.21	2024-08-29T13:59:41.6504134	Icarus WingsItem Tags
+// 1.21	2024-09-13T19:04:48.752063	Icarus WingsItem Tags
 b7e91efe4995c4b86573a2bd926e4182eee7cdec data/locusazzurro_icaruswings/tags/item/colored_feathers.json
 d66b65c515fdb20ffc9c22a41ecd1bc17b61d0f6 data/locusazzurro_icaruswings/tags/item/crop_grains.json
 1f8ac3247f3d11f23b38d6da6f4916a06e72aa05 data/locusazzurro_icaruswings/tags/item/crop_strings.json
@@ -9,5 +9,5 @@ fa60e0e62e1d0b70e384c267f47e6842e2981349 data/locusazzurro_icaruswings/tags/item
 32f3b055773092e08427b0ce90302c627390d345 data/locusazzurro_icaruswings/tags/item/synapse_armor.json
 e588fd94a320df5a6b4e19ca18827ce2374f7656 data/locusazzurro_icaruswings/tags/item/world_essences.json
 a83382822f5079fc344889eeba2d88894566d277 data/locusazzurro_icaruswings/tags/item/world_ingots.json
-98c0a3b837bdff29a1842414ac26a44fe60b42a1 data/minecraft/tags/item/enchantable/fire_aspect.json
-98c0a3b837bdff29a1842414ac26a44fe60b42a1 data/minecraft/tags/item/enchantable/sword.json
+975540b8bed6185e6faabb2d860868f134aec607 data/minecraft/tags/item/enchantable/fire_aspect.json
+975540b8bed6185e6faabb2d860868f134aec607 data/minecraft/tags/item/enchantable/sword.json

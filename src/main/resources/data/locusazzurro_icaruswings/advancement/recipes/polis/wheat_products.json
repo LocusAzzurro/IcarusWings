@@ -1,0 +1,33 @@
+{
+  "parent": "locusazzurro_icaruswings:recipes/root",
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:wheat_string_from_stonecutting",
+	  "locusazzurro_icaruswings:wheat_grains_from_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_wheat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["minecraft:wheat"]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:wheat_string_from_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wheat",
+      "has_the_recipe"
+    ]
+  ]
+}

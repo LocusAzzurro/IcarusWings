@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "locusazzurro_icaruswings:mead"
+    },
+    {
+      "item": "locusazzurro_icaruswings:nether_essence"
+    },
+    {
+      "item": "locusazzurro_icaruswings:nether_essence"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:nether_infused_mead"
+  }
+}

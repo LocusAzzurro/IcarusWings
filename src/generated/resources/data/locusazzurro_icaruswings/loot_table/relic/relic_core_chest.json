@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "locusazzurro_icaruswings:fallen_relic_core",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:air",
+          "weight": 90
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "locusazzurro_icaruswings:relic/relic_core_chest"
+}
