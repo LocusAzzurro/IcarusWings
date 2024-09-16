@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
@@ -35,7 +36,7 @@ public enum WingsTypes implements WingsType {
 	private final ResourceLocation textureReversed;
 	private final Holder<SoundEvent> equipSound;
 
-	WingsTypes(String name, int durability, Supplier<Item> repairItem, boolean hasReverse, Holder<SoundEvent> equipSound) {
+	WingsTypes(String name, int durability, Supplier<? extends Item> repairItem, boolean hasReverse, Holder<SoundEvent> equipSound) {
 		this.name = name;
 		this.durability = durability;
 		this.repairItem = Suppliers.memoize(repairItem::get);

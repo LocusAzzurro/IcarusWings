@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "locusazzurro_icaruswings:synapse_alloy_ingot"
+    },
+    "D": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_defensive"
+    },
+    "G": {
+      "item": "locusazzurro_icaruswings:time_rift_generator"
+    },
+    "I": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_interface"
+    },
+    "O": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_offensive"
+    },
+    "R": {
+      "item": "locusazzurro_icaruswings:synapse_repair_kit"
+    }
+  },
+  "pattern": [
+    " IA",
+    "OGD",
+    "AR "
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:demeter"
+  }
+}

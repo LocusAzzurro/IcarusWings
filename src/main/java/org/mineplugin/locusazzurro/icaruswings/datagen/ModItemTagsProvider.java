@@ -4,9 +4,11 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModTags;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
@@ -70,6 +72,15 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 .add(ItemRegistry.SYNAPSE_CHESTPLATE.get())
                 .add(ItemRegistry.SYNAPSE_LEGGINGS.get())
                 .add(ItemRegistry.SYNAPSE_BOOTS.get());
+
+        tag(ModTags.C_STEEL_INGOT)
+                .add(ItemRegistry.STEEL_INGOT.get());
+        tag(Tags.Items.STRINGS)
+                .add(ItemRegistry.WHEAT_STRING.get())
+                .add(ItemRegistry.LINEN_STRING.get());
+        tag(Tags.Items.FEATHERS)
+                .addTag(ModTags.COLORED_FEATHERS);
+
         tag(ModTags.ELYTRA_ENCHANTABLE)
                 .add(Items.ELYTRA)
                 .add(ItemRegistry.FEATHER_WINGS.get())
@@ -100,10 +111,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 .add(ItemRegistry.DIAMOND_SPEAR.get())
                 .add(ItemRegistry.NETHERITE_SPEAR.get())
                 .add(ItemRegistry.SYNAPSE_ALLOY_SPEAR.get());
+
     }
 
-    @Override
-    public String getName() {
-        return DataGenerators.MOD_NAME + "Item Tags";
-    }
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": {
+      "item": "locusazzurro_icaruswings:purpur_ingot"
+    },
+    "Q": {
+      "item": "locusazzurro_icaruswings:quantum_fuel"
+    }
+  },
+  "pattern": [
+    " I ",
+    "IQI",
+    " I "
+  ],
+  "result": {
+    "count": 4,
+    "id": "locusazzurro_icaruswings:time_rift_charge"
+  }
+}

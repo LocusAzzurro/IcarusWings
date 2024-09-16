@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "locusazzurro_icaruswings:time_rift_charge"
+    },
+    "V": {
+      "item": "locusazzurro_icaruswings:void_essence"
+    }
+  },
+  "pattern": [
+    " C ",
+    "CVC",
+    " C "
+  ],
+  "result": {
+    "count": 2,
+    "id": "locusazzurro_icaruswings:demeter_charge"
+  }
+}

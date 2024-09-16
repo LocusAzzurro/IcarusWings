@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
 import net.minecraft.Util;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -62,7 +63,7 @@ public class GlassJar extends Item {
         else return -1;
     }
 
-    private static Supplier<Item> getResultItem(int dimN){
+    private static Supplier<? extends Item> getResultItem(int dimN){
         if (dimN == 0) return ItemRegistry.ZEPHIR_AIR_JAR;
         else if (dimN == 1) return ItemRegistry.NETHER_AIR_JAR;
         else if (dimN == 2) return ItemRegistry.VOID_AIR_JAR;

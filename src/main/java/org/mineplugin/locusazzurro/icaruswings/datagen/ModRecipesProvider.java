@@ -1,13 +1,18 @@
 package org.mineplugin.locusazzurro.icaruswings.datagen;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.SeededContainerLoot;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
@@ -311,7 +316,130 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
         spear(Items.NETHERITE_INGOT, ItemRegistry.NETHERITE_SPEAR.get(), recipeOutput);
         spear(ItemRegistry.SYNAPSE_ALLOY_INGOT.get(), ItemRegistry.SYNAPSE_ALLOY_SPEAR.get(), recipeOutput);
 
+        synapseWings(ItemRegistry.IKAROS_WINGS.get(), ItemRegistry.RESTORED_FALLEN_RELIC_CORE.get(),
+                ItemRegistry.RESTORED_FALLEN_RELIC_INTERFACE.get(), ItemRegistry.RESTORED_FALLEN_RELIC_OFFENSIVE.get(),
+                ItemRegistry.RESTORED_FALLEN_RELIC_DEFENSIVE.get(), ItemRegistry.RESTORED_FALLEN_RELIC_PROPULSION.get(),
+                recipeOutput);
+        synapseWings(ItemRegistry.NYMPH_WINGS.get(), ItemRegistry.RESTORED_FALLEN_RELIC_CORE.get(),
+                ItemRegistry.RESTORED_FALLEN_RELIC_INTERFACE.get(), ItemRegistry.RESTORED_FALLEN_RELIC_INTERFACE.get(),
+                ItemRegistry.RESTORED_FALLEN_RELIC_OFFENSIVE.get(), ItemRegistry.RESTORED_FALLEN_RELIC_PROPULSION.get(),
+                recipeOutput);
+        synapseWings(ItemRegistry.ASTRAEA_WINGS.get(), ItemRegistry.RESTORED_FALLEN_RELIC_CORE.get(),
+                ItemRegistry.RESTORED_FALLEN_RELIC_OFFENSIVE.get(), ItemRegistry.RESTORED_FALLEN_RELIC_DEFENSIVE.get(),
+                ItemRegistry.RESTORED_FALLEN_RELIC_PROPULSION.get(), ItemRegistry.RESTORED_FALLEN_RELIC_PROPULSION.get(),
+                recipeOutput);
 
+        synapseWings(ItemRegistry.MELAN_WINGS.get(), ItemRegistry.UPGRADED_FALLEN_RELIC_CORE.get(),
+                ItemRegistry.RESTORED_FALLEN_RELIC_INTERFACE.get(), ItemRegistry.RESTORED_FALLEN_RELIC_OFFENSIVE.get(),
+                ItemRegistry.RESTORED_FALLEN_RELIC_DEFENSIVE.get(), ItemRegistry.RESTORED_FALLEN_RELIC_PROPULSION.get(),
+                recipeOutput);
+        synapseWings(ItemRegistry.CHAOS_WINGS.get(), ItemRegistry.UPGRADED_FALLEN_RELIC_CORE.get(),
+                ItemRegistry.RESTORED_FALLEN_RELIC_OFFENSIVE.get(), ItemRegistry.RESTORED_FALLEN_RELIC_OFFENSIVE.get(),
+                ItemRegistry.RESTORED_FALLEN_RELIC_INTERFACE.get(), ItemRegistry.RESTORED_FALLEN_RELIC_PROPULSION.get(),
+                recipeOutput);
+        synapseWings(ItemRegistry.HIYORI_WINGS.get(), ItemRegistry.UPGRADED_FALLEN_RELIC_CORE.get(),
+                ItemRegistry.RESTORED_FALLEN_RELIC_DEFENSIVE.get(), ItemRegistry.RESTORED_FALLEN_RELIC_DEFENSIVE.get(),
+                ItemRegistry.RESTORED_FALLEN_RELIC_OFFENSIVE.get(), ItemRegistry.RESTORED_FALLEN_RELIC_INTERFACE.get(),
+                recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemRegistry.ARTEMIS_LAUNCHER.get())
+                .define('R', ItemRegistry.RESTORED_FALLEN_RELIC_OFFENSIVE.get()).define('D', ItemRegistry.DAEDALUS_DECRYPTOR.get())
+                .define('S', ItemRegistry.STEEL_INGOT.get()).define('C', Items.CROSSBOW)
+                .pattern(" R ").pattern("SCS").pattern(" D ")
+                .unlockedBy(getHasName(ItemRegistry.RESTORED_FALLEN_RELIC_OFFENSIVE.get()), has(ItemRegistry.RESTORED_FALLEN_RELIC_OFFENSIVE.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemRegistry.ARTEMIS_MISSILE.get(), 4)
+                .define('S', ItemRegistry.STEEL_INGOT.get()).define('T', Items.TNT)
+                .pattern(" S ").pattern("STS").pattern(" S ")
+                .unlockedBy(getHasName(ItemRegistry.ARTEMIS_LAUNCHER.get()), has(ItemRegistry.ARTEMIS_LAUNCHER.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemRegistry.TIME_RIFT_GENERATOR.get())
+                .define('C', Items.CLOCK).define('S', Items.BREEZE_ROD).define('I', ItemRegistry.PURPUR_INGOT.get())
+                .pattern("  C").pattern(" S ").pattern("I  ")
+                .unlockedBy(getHasName(ItemRegistry.HIYORI_WINGS.get()), has(ItemRegistry.HIYORI_WINGS.get())).save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemRegistry.TIME_RIFT_CHARGE.get(), 4)
+                .define('I', ItemRegistry.PURPUR_INGOT.get()).define('Q', ItemRegistry.QUANTUM_FUEL.get())
+                .pattern(" I ").pattern("IQI").pattern(" I ")
+                .unlockedBy(getHasName(ItemRegistry.TIME_RIFT_GENERATOR.get()), has(ItemRegistry.TIME_RIFT_GENERATOR.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemRegistry.DEMETER.get())
+                .define('G', ItemRegistry.TIME_RIFT_GENERATOR.get()).define('R', ItemRegistry.SYNAPSE_REPAIR_KIT.get()).define('A', ItemRegistry.SYNAPSE_ALLOY_INGOT.get())
+                .define('I', ItemRegistry.RESTORED_FALLEN_RELIC_INTERFACE.get()).define('O', ItemRegistry.RESTORED_FALLEN_RELIC_OFFENSIVE.get()).define('D', ItemRegistry.RESTORED_FALLEN_RELIC_DEFENSIVE.get())
+                .pattern(" IA").pattern("OGD").pattern("AR ")
+                .unlockedBy(getHasName(ItemRegistry.TIME_RIFT_GENERATOR.get()), has(ItemRegistry.TIME_RIFT_GENERATOR.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemRegistry.DEMETER_CHARGE.get(), 2)
+                .define('C', ItemRegistry.TIME_RIFT_CHARGE.get()).define('V', ItemRegistry.VOID_ESSENCE.get())
+                .pattern(" C ").pattern("CVC").pattern(" C ")
+                .unlockedBy(getHasName(ItemRegistry.DEMETER.get()), has(ItemRegistry.DEMETER.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ItemRegistry.TRANSPORT_CARD_BASE.get(), 16)
+                .define('D', ItemRegistry.DAEDALUS_DECRYPTOR.get()).define('Q', ItemRegistry.QUANTUM_FUEL.get())
+                .define('P', Items.PAPER).define('R', Items.REDSTONE_BLOCK)
+                .pattern("PRP").pattern("PQP").pattern("PDP")
+                .unlockedBy(getHasName(ItemRegistry.QUANTUM_FUEL.get()), has(ItemRegistry.QUANTUM_FUEL.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ItemRegistry.TRANSPORT_CARD_ARTEMIS_HOMING.get(), 4)
+                .define('C', ItemRegistry.TRANSPORT_CARD_BASE.get()).define('A', ItemRegistry.ARTEMIS_MISSILE.get())
+                .define('T', Items.REDSTONE_TORCH).define('M', Items.COMPARATOR)
+                .pattern("AMA").pattern("ACA").pattern("ATA")
+                .unlockedBy(getHasName(ItemRegistry.TRANSPORT_CARD_BASE.get()), has(ItemRegistry.TRANSPORT_CARD_BASE.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ItemRegistry.TRANSPORT_CARD_ARTEMIS_SCATTER.get(), 4)
+                .define('C', ItemRegistry.TRANSPORT_CARD_BASE.get()).define('A', ItemRegistry.ARTEMIS_MISSILE.get())
+                .define('T', Items.REDSTONE_TORCH).define('M', Items.REPEATER)
+                .pattern("AMA").pattern("ACA").pattern("ATA")
+                .unlockedBy(getHasName(ItemRegistry.TRANSPORT_CARD_BASE.get()), has(ItemRegistry.TRANSPORT_CARD_BASE.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ItemRegistry.TRANSPORT_CARD_CHRONO_EXPLOSION.get(), 2)
+                .define('C', ItemRegistry.TRANSPORT_CARD_BASE.get()).define('P', ItemRegistry.TIME_RIFT_CHARGE.get())
+                .define('Q', ItemRegistry.QUANTUM_FUEL.get())
+                .pattern("PQP").pattern("PCP").pattern("PQP")
+                .unlockedBy(getHasName(ItemRegistry.TRANSPORT_CARD_BASE.get()), has(ItemRegistry.TRANSPORT_CARD_BASE.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ItemRegistry.TRANSPORT_CARD_CHRONO_TELEPORT.get(), 4)
+                .define('C', ItemRegistry.TRANSPORT_CARD_BASE.get()).define('E', Items.ENDER_PEARL)
+                .define('Q', ItemRegistry.QUANTUM_FUEL.get())
+                .pattern("EQE").pattern("ECE").pattern("EQE")
+                .unlockedBy(getHasName(ItemRegistry.TRANSPORT_CARD_BASE.get()), has(ItemRegistry.TRANSPORT_CARD_BASE.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ItemRegistry.TRANSPORT_CARD_MASKING_FIELD.get(), 1)
+                .define('C', ItemRegistry.TRANSPORT_CARD_BASE.get())
+                .define('G', Items.GOLDEN_CARROT).define('W', Items.NETHER_WART).define('E', Items.SPIDER_EYE).define('R', Items.COMPARATOR)
+                .pattern("ERE").pattern("GCG").pattern("WRW")
+                .unlockedBy(getHasName(ItemRegistry.TRANSPORT_CARD_BASE.get()), has(ItemRegistry.TRANSPORT_CARD_BASE.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ItemRegistry.TRANSPORT_CARD_INTERDICTION_FIELD.get(), 1)
+                .define('C', ItemRegistry.TRANSPORT_CARD_BASE.get())
+                .define('W', Items.COBWEB).define('R', Items.COMPARATOR)
+                .pattern("WRW").pattern("WCW").pattern("WRW")
+                .unlockedBy(getHasName(ItemRegistry.TRANSPORT_CARD_BASE.get()), has(ItemRegistry.TRANSPORT_CARD_BASE.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ItemRegistry.TRANSPORT_CARD_TREASURE.get(), 1)
+                .define('C', ItemRegistry.TRANSPORT_CARD_BASE.get())
+                .define('G', Items.GOLD_NUGGET).define('X', Items.CHEST)
+                .pattern(" X ").pattern("GCG").pattern(" X ")
+                .unlockedBy(getHasName(ItemRegistry.TRANSPORT_CARD_BASE.get()), has(ItemRegistry.TRANSPORT_CARD_BASE.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, new ItemStack(
+                ItemRegistry.TRANSPORT_CARD_TREASURE, 1, DataComponentPatch.builder().set(
+                        DataComponents.CONTAINER_LOOT, new SeededContainerLoot(ModChestLootSubProvider.TREASURE_CARD_RELICS, 0L)).build()))
+                .define('C', ItemRegistry.TRANSPORT_CARD_TREASURE.get()).define('A', ItemRegistry.SYNAPSE_ALLOY_INGOT.get())
+                .define('G', Items.GOLD_INGOT).define('X', Items.CHEST)
+                .pattern("GXG").pattern("ACA").pattern("GXG")
+                .unlockedBy(getHasName(ItemRegistry.TRANSPORT_CARD_TREASURE.get()), has(ItemRegistry.TRANSPORT_CARD_TREASURE.get()))
+                .save(recipeOutput, wrapModNamespace(getItemName(ItemRegistry.TRANSPORT_CARD_TREASURE.get()) + "_synapse_relics"));
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.MUSIC_DISC_13), RecipeCategory.MISC, ItemRegistry.DISC_FALLEN_DOWN.get(), 0.1f, 200)
+                .unlockedBy(getHasName(Items.MUSIC_DISC_13), has(Items.MUSIC_DISC_13)).save(recipeOutput);
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.MUSIC_DISC_CAT), RecipeCategory.MISC, ItemRegistry.DISC_RING_MY_BELL.get(), 0.1f, 200)
+                .unlockedBy(getHasName(Items.MUSIC_DISC_CAT), has(Items.MUSIC_DISC_CAT)).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ItemRegistry.MELON.get())
+                .requires(Items.MELON).requires(ItemRegistry.DAEDALUS_DECRYPTOR.get())
+                .unlockedBy(getHasName(ItemRegistry.DAEDALUS_DECRYPTOR.get()), has(ItemRegistry.DAEDALUS_DECRYPTOR.get()))
+                .save(recipeOutput);
     }
 
     private static void essenceConverting(ItemLike air, ItemLike essence, RecipeOutput recipeOutput){
@@ -343,6 +471,15 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .define('F', wing).define('W', bind).define('P', ItemTags.PLANKS)
                 .pattern("WPW").pattern("F F").pattern("F F")
                 .unlockedBy(getHasName(wing), has(wing)).save(recipeOutput);
+    }
+
+    private static void synapseWings(ItemLike result, ItemLike core, ItemLike l1, ItemLike r1, ItemLike l2, ItemLike r2, RecipeOutput output){
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result)
+                .define('E', Items.ELYTRA).define('A', ItemRegistry.SYNAPSE_ALLOY_INGOT.get())
+                .define('C', core).define('R', ItemRegistry.SYNAPSE_WINGS_RECHARGER.get())
+                .define('1', l1).define('2', r1).define('3', l2).define('4', r2)
+                .pattern("ACA").pattern("1E2").pattern("3R4")
+                .unlockedBy(getHasName(core), has(core)).save(output);
     }
 
     private static void stoneCutter(RecipeOutput recipeOutput, RecipeCategory category, ItemLike result, ItemLike material, int count){

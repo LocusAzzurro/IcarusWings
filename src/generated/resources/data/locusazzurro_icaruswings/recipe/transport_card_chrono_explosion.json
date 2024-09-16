@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "locusazzurro_icaruswings:transport_card_base"
+    },
+    "P": {
+      "item": "locusazzurro_icaruswings:time_rift_charge"
+    },
+    "Q": {
+      "item": "locusazzurro_icaruswings:quantum_fuel"
+    }
+  },
+  "pattern": [
+    "PQP",
+    "PCP",
+    "PQP"
+  ],
+  "result": {
+    "count": 2,
+    "id": "locusazzurro_icaruswings:transport_card_chrono_explosion"
+  }
+}

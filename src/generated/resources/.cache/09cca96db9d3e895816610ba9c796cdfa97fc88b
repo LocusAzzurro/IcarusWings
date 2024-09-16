@@ -1,0 +1,16 @@
+// 1.21	2024-09-16T23:25:34.7314555	Tags for minecraft:item mod id locusazzurro_icaruswings
+b1706506f0f3b43ffe7d2a234e148263dc37bae3 data/c/tags/item/feathers.json
+87c9fa31f14625d35b04bceb327b3a8317086a4d data/c/tags/item/ingots/steel.json
+1f8ac3247f3d11f23b38d6da6f4916a06e72aa05 data/c/tags/item/strings.json
+b7e91efe4995c4b86573a2bd926e4182eee7cdec data/locusazzurro_icaruswings/tags/item/colored_feathers.json
+d66b65c515fdb20ffc9c22a41ecd1bc17b61d0f6 data/locusazzurro_icaruswings/tags/item/crop_grains.json
+1f8ac3247f3d11f23b38d6da6f4916a06e72aa05 data/locusazzurro_icaruswings/tags/item/crop_strings.json
+fa60e0e62e1d0b70e384c267f47e6842e2981349 data/locusazzurro_icaruswings/tags/item/enchantable/elytra.json
+3a890ef8d740b0103c0e54a67c55349a6e1f966b data/locusazzurro_icaruswings/tags/item/fallen_relics.json
+646f584689ff7f41a680b0eadc8f786fe609a689 data/locusazzurro_icaruswings/tags/item/herbs.json
+7e5a857845e9eedfba30a8556abe866ecce677d6 data/locusazzurro_icaruswings/tags/item/restored_fallen_relics.json
+32f3b055773092e08427b0ce90302c627390d345 data/locusazzurro_icaruswings/tags/item/synapse_armor.json
+e588fd94a320df5a6b4e19ca18827ce2374f7656 data/locusazzurro_icaruswings/tags/item/world_essences.json
+a83382822f5079fc344889eeba2d88894566d277 data/locusazzurro_icaruswings/tags/item/world_ingots.json
+975540b8bed6185e6faabb2d860868f134aec607 data/minecraft/tags/item/enchantable/fire_aspect.json
+975540b8bed6185e6faabb2d860868f134aec607 data/minecraft/tags/item/enchantable/sword.json

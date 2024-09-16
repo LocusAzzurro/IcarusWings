@@ -1,4 +1,4 @@
-// 1.21	2024-09-14T04:43:25.1946972	Loot Tables
+// 1.21	2024-09-16T23:04:54.3535409	Loot Tables
 ec96b4ae18055057614dbe235b9f83ca67d2d9a5 data/locusazzurro_icaruswings/loot_table/blocks/amphora.json
 7d04ab1c786882309b856a2faa293a14cb6715bc data/locusazzurro_icaruswings/loot_table/blocks/beeswax_block.json
 8f0c71f9c34f3a5399b9878c1e0b066f9010a42c data/locusazzurro_icaruswings/loot_table/blocks/chiseled_refined_beeswax_block.json
@@ -25,3 +25,4 @@ b9db686b64f7fcccc06569428e89a8fac2a4ca68 data/locusazzurro_icaruswings/loot_tabl
 58f856cd3253a69cc90f62b3a574bf0281152303 data/locusazzurro_icaruswings/loot_table/relic/relic_offensive_chest.json
 7c23d6117fcfeb60971d336f77928f6b65ce2e6d data/locusazzurro_icaruswings/loot_table/relic/relic_propulsion_alt.json
 78c42d5a0c27ee834fb9200a35f660a575b281aa data/locusazzurro_icaruswings/loot_table/relic/relic_propulsion_chest.json
+f382c63ee7f79cd2e72079927aebfa57638ee217 data/locusazzurro_icaruswings/loot_table/relic/treasure_card_relics.json

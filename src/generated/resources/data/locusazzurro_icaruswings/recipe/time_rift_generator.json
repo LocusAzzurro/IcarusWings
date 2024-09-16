@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:clock"
+    },
+    "I": {
+      "item": "locusazzurro_icaruswings:purpur_ingot"
+    },
+    "S": {
+      "item": "minecraft:breeze_rod"
+    }
+  },
+  "pattern": [
+    "  C",
+    " S ",
+    "I  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:time_rift_generator"
+  }
+}

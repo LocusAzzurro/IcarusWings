@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "1": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_interface"
+    },
+    "2": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_interface"
+    },
+    "3": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_offensive"
+    },
+    "4": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_propulsion"
+    },
+    "A": {
+      "item": "locusazzurro_icaruswings:synapse_alloy_ingot"
+    },
+    "C": {
+      "item": "locusazzurro_icaruswings:restored_fallen_relic_core"
+    },
+    "E": {
+      "item": "minecraft:elytra"
+    },
+    "R": {
+      "item": "locusazzurro_icaruswings:synapse_wings_recharger"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "1E2",
+    "3R4"
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:nymph_wings"
+  }
+}

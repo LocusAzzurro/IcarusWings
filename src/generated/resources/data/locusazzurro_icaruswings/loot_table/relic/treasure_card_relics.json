@@ -1,0 +1,62 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "locusazzurro_icaruswings:fallen_relic_core",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "locusazzurro_icaruswings:fallen_relic_interface",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "locusazzurro_icaruswings:fallen_relic_offensive",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "locusazzurro_icaruswings:fallen_relic_defensive",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "locusazzurro_icaruswings:fallen_relic_propulsion",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "locusazzurro_icaruswings:synapse_alloy_ingot",
+          "weight": 25
+        },
+        {
+          "type": "minecraft:item",
+          "name": "locusazzurro_icaruswings:reforged_netherite_ingot",
+          "weight": 50
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:feather",
+          "weight": 99
+        },
+        {
+          "type": "minecraft:item",
+          "name": "locusazzurro_icaruswings:golden_feather"
+        }
+      ],
+      "rolls": 10.0
+    }
+  ],
+  "random_sequence": "locusazzurro_icaruswings:relic/treasure_card_relics"
+}

@@ -16,7 +16,7 @@ public class CreativeTabRegistry {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.icaruswings_group"))
                     .icon(ItemRegistry.ICON_BADGE.get()::getDefaultInstance)
-                    .withTabsBefore(CreativeModeTabs.OP_BLOCKS)
+                    .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
                     .displayItems((displayParameters, output) -> ItemRegistry.ITEMS.getEntries().stream().map(Supplier::get).forEach(output::accept))
                     .build());
 }

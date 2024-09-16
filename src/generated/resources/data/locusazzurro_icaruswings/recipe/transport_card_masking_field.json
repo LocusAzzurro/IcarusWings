@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "locusazzurro_icaruswings:transport_card_base"
+    },
+    "E": {
+      "item": "minecraft:spider_eye"
+    },
+    "G": {
+      "item": "minecraft:golden_carrot"
+    },
+    "R": {
+      "item": "minecraft:comparator"
+    },
+    "W": {
+      "item": "minecraft:nether_wart"
+    }
+  },
+  "pattern": [
+    "ERE",
+    "GCG",
+    "WRW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "locusazzurro_icaruswings:transport_card_masking_field"
+  }
+}

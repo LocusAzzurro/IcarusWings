@@ -1,5 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.client.event;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -7,9 +8,14 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -21,7 +27,9 @@ import net.neoforged.neoforge.client.ClientHooks;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.*;
+import org.mineplugin.locusazzurro.icaruswings.client.render.layers.WingsLayer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.models.SpearBakedModel;
 import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.ArtemisMissileRenderer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.GoldenRamRenderer;
@@ -32,6 +40,7 @@ import org.mineplugin.locusazzurro.icaruswings.registry.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Supplier;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -57,8 +66,12 @@ public class ModClientRenderEventHandler{
     public static void onModelBaked(ModelEvent.ModifyBakingResult e) {
         Map<ModelResourceLocation, BakedModel> modelRegistry = e.getModels();
         ModelResourceLocation location;
-        for (Supplier<Item> spear : SPEARS){
-            var spearResource = BuiltInRegistries.ITEM.getKey(spear.get());
+        for (Holder<Item> spear : SPEARS){
+            ResourceKey<Item> key = spear.getKey();
+            if (key == null){
+                throw new RuntimeException("Did not find registered item key");
+            }
+            ResourceLocation spearResource = key.location();
             location = new ModelResourceLocation(spearResource, "inventory");
             BakedModel existingModel = modelRegistry.get(location);
             if (existingModel == null) {
@@ -83,8 +96,17 @@ public class ModClientRenderEventHandler{
         layers.forEach((location, definition) -> ClientHooks.registerLayerDefinition(location, () -> definition));
     }
 
+    @SubscribeEvent
+    public static void addPlayerWingsLayer (EntityRenderersEvent.AddLayers event){
+        event.getRenderer(EntityType.PLAYER);
+        Set<PlayerSkin.Model> skins = event.getSkins();
+        for (PlayerSkin.Model skin : skins){
+            PlayerRenderer playerRenderer = event.getSkin(skin);
+            if (playerRenderer != null)
+                playerRenderer.addLayer(new WingsLayer<>(playerRenderer, Minecraft.getInstance().getEntityModels()));
+        }
+    }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
     //@SubscribeEvent
     public static void addLivingWingsLayer(EntityRenderersEvent.AddLayers event){
 
@@ -114,7 +136,7 @@ public class ModClientRenderEventHandler{
         EntityRenderers.register(type, renderer);
     }
 
-    private static final List<Supplier<Item>> SPEARS = Arrays.asList(
+    private static final List<Holder<Item>> SPEARS = Arrays.asList(
             ItemRegistry.WOODEN_SPEAR,
             ItemRegistry.STONE_SPEAR,
             ItemRegistry.IRON_SPEAR,

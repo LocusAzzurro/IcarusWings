@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:melan_wings"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_upgraded_fallen_relic_core": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:upgraded_fallen_relic_core"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_upgraded_fallen_relic_core"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:melan_wings"
+    ]
+  }
+}

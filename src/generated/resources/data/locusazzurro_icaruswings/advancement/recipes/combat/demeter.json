@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "locusazzurro_icaruswings:demeter"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_time_rift_generator": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:time_rift_generator"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_time_rift_generator"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "locusazzurro_icaruswings:demeter"
+    ]
+  }
+}

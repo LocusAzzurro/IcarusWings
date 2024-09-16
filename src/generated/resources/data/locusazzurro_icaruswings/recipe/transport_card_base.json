@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "locusazzurro_icaruswings:daedalus_decryptor"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "Q": {
+      "item": "locusazzurro_icaruswings:quantum_fuel"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    }
+  },
+  "pattern": [
+    "PRP",
+    "PQP",
+    "PDP"
+  ],
+  "result": {
+    "count": 16,
+    "id": "locusazzurro_icaruswings:transport_card_base"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "locusazzurro_icaruswings:flax"
-  },
-  "result": "locusazzurro_icaruswings:flax_seeds",
-  "count": 1
-}

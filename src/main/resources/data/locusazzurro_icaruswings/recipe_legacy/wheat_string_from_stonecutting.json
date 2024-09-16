@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "minecraft:wheat"
-  },
-  "result": "locusazzurro_icaruswings:wheat_string",
-  "count": 2
-}

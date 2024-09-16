@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -30,6 +31,7 @@ public class ModChestLootSubProvider implements LootTableSubProvider {
     public static final ResourceKey<LootTable> RELIC_DEFENSIVE_ALT = relic("relic_defensive_alt");
     public static final ResourceKey<LootTable> RELIC_PROPULSION_CHEST = relic("relic_propulsion_chest");
     public static final ResourceKey<LootTable> RELIC_PROPULSION_ALT = relic("relic_propulsion_alt");
+    public static final ResourceKey<LootTable> TREASURE_CARD_RELICS = relic("treasure_card_relics");
 
     public ModChestLootSubProvider(HolderLookup.Provider registries) {
 
@@ -42,6 +44,21 @@ public class ModChestLootSubProvider implements LootTableSubProvider {
         relicTables(RELIC_OFFENSIVE_CHEST, RELIC_OFFENSIVE_ALT, ItemRegistry.FALLEN_RELIC_OFFENSIVE.get(), output);
         relicTables(RELIC_DEFENSIVE_CHEST, RELIC_DEFENSIVE_ALT, ItemRegistry.FALLEN_RELIC_DEFENSIVE.get(), output);
         relicTables(RELIC_PROPULSION_CHEST, RELIC_PROPULSION_ALT, ItemRegistry.FALLEN_RELIC_PROPULSION.get(), output);
+        output.accept(TREASURE_CARD_RELICS, LootTable.lootTable().withPool(
+                LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ItemRegistry.FALLEN_RELIC_CORE.get()).setWeight(5))
+                        .add(LootItem.lootTableItem(ItemRegistry.FALLEN_RELIC_INTERFACE.get()).setWeight(5))
+                        .add(LootItem.lootTableItem(ItemRegistry.FALLEN_RELIC_OFFENSIVE.get()).setWeight(5))
+                        .add(LootItem.lootTableItem(ItemRegistry.FALLEN_RELIC_DEFENSIVE.get()).setWeight(5))
+                        .add(LootItem.lootTableItem(ItemRegistry.FALLEN_RELIC_PROPULSION.get()).setWeight(5))
+                        .add(LootItem.lootTableItem(ItemRegistry.SYNAPSE_ALLOY_INGOT.get()).setWeight(25))
+                        .add(LootItem.lootTableItem(ItemRegistry.REFORGED_NETHERITE_INGOT.get()).setWeight(50))
+                )
+                .withPool(
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(10.0F))
+                                .add(LootItem.lootTableItem(Items.FEATHER).setWeight(99))
+                                .add(LootItem.lootTableItem(ItemRegistry.GOLDEN_FEATHER.get()).setWeight(1))
+                ));
     }
 
     private static void relicTables(ResourceKey<LootTable> main, ResourceKey<LootTable> alt, ItemLike relicItem, BiConsumer<ResourceKey<LootTable>, LootTable.Builder> output){
