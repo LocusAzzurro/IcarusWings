@@ -37,9 +37,9 @@ public class ModEnchantments {
         context.register(COLLISION_PROTECTION, Enchantment.enchantment(
                 Enchantment.definition(
                         itemsRegistry.getOrThrow(ModTags.ELYTRA_ENCHANTABLE),
-                        5, 3,
-                        Enchantment.dynamicCost(10, 5),
-                        Enchantment.dynamicCost(12, 5), 2,
+                        10, 3,
+                        Enchantment.dynamicCost(1, 10),
+                        Enchantment.dynamicCost(8, 10), 2,
                         EquipmentSlotGroup.ARMOR)
                 )
                 .withEffect(
@@ -49,17 +49,17 @@ public class ModEnchantments {
                                 DamageSourcePredicate.Builder.damageType()
                                 .tag(TagPredicate.is(ModTags.IS_COLLISION))
                                 .tag(TagPredicate.isNot(DamageTypeTags.BYPASSES_INVULNERABILITY))
-                )) //todo add damage to armor
+                ))
                 .build(COLLISION_PROTECTION.location()));
 
         context.register(PYROTECHNIC_AFFINITY, Enchantment.enchantment(
                 Enchantment.definition(
                         itemsRegistry.getOrThrow(ModTags.ELYTRA_ENCHANTABLE),
                         5, 3,
-                        Enchantment.dynamicCost(10, 5),
-                        Enchantment.dynamicCost(12, 5), 2,
+                        Enchantment.dynamicCost(2, 10),
+                        Enchantment.dynamicCost(20, 10), 2,
                         EquipmentSlotGroup.ARMOR)
-                ) //todo add propulsion via event
+                )
                 .build(PYROTECHNIC_AFFINITY.location()));
 
         context.register(BLESSING_OF_THE_SKY, Enchantment.enchantment(
@@ -95,28 +95,11 @@ public class ModEnchantments {
                                         .tag(TagPredicate.isNot(DamageTypeTags.BYPASSES_INVULNERABILITY))
                                 )
                         )
-                        ) //todo add stronger protection when flying
+                        )
                 .build(BLESSING_OF_THE_SKY.location()));
 
         Enchantments.bootstrap(context);
     }
-
-    /* //todo propulsion
-    @SubscribeEvent
-    public static void fireworkExtender(EntityJoinLevelEvent e) {
-        Entity entity = e.getEntity();
-        if (entity instanceof FireworkRocketEntity){
-            FireworkRocketEntity firework = (FireworkRocketEntity) entity;
-            if (firework.isAttachedToEntity()
-                    && firework.attachedToEntity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ElytraItem){
-                int enchLvl = EnchantmentHelper.getEnchantmentLevel(EnchantmentRegistry.PYROTECHNIC_AFFINITY.get(), firework.attachedToEntity);
-                firework.lifetime *= 1 + enchLvl * 0.1;
-            }
-        }
-    }
-
-     */
-
 
     public static ResourceKey<Enchantment> key(String name) {
         return ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, name));

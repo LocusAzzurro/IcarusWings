@@ -33,17 +33,17 @@
     ]
   },
   "max_cost": {
-    "base": 12,
-    "per_level_above_first": 5
+    "base": 8,
+    "per_level_above_first": 10
   },
   "max_level": 3,
   "min_cost": {
-    "base": 10,
-    "per_level_above_first": 5
+    "base": 1,
+    "per_level_above_first": 10
   },
   "slots": [
     "armor"
   ],
   "supported_items": "#locusazzurro_icaruswings:enchantable/elytra",
-  "weight": 5
+  "weight": 10
 }

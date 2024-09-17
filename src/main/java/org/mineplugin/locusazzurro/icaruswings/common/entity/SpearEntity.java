@@ -8,6 +8,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerEntity;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -16,6 +17,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -72,37 +74,30 @@ public class SpearEntity extends AbstractArrow {
 
     @Override
     protected void onHitEntity(EntityHitResult ray) {
-        Entity target = ray.getEntity();
-        float f = ((SpearItem) this.spearItem.getItem()).getAttackDamage();
-        if (target instanceof LivingEntity) {
-            LivingEntity livingentity = (LivingEntity)target;
-            //f += EnchantmentHelper.getDamageBonus(this.spearItem, livingentity.getMobType()); //todo
-        }
+        if (!level().isClientSide) {
+            Entity target = ray.getEntity();
+            float damage = ((SpearItem) this.spearItem.getItem()).getAttackDamage();
 
-        Entity owner = this.getOwner();
-        DamageSource damageSource = ModDamageSources.spear(this.level(), this, owner == null ? this : owner);
-        //DamageSource damageSource = new DamageSource(this.level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypeRegistry.SPEAR),this, owner == null ? this : owner);
-        this.dealtDamage = true;
-        SoundEvent soundevent = SoundRegistry.SPEAR_HIT.get();
-        if (target.hurt(damageSource, f)) {
-            if (target.getType() == EntityType.ENDERMAN) {
-                return;
-            }
-
-            if (target instanceof LivingEntity) {
-                LivingEntity targetLiving = (LivingEntity)target;
-                if (owner instanceof LivingEntity) {
-                    //EnchantmentHelper.doPostHurtEffects(targetLiving, owner); //todo
-                    //EnchantmentHelper.doPostDamageEffects((LivingEntity)owner, targetLiving);
+            Entity owner = this.getOwner();
+            DamageSource damageSource = ModDamageSources.spear(this.level(), this, owner == null ? this : owner);
+            this.dealtDamage = true;
+            if (target.hurt(damageSource, damage)) {
+                if (target.getType() == EntityType.ENDERMAN) {
+                    return;
                 }
 
-                this.doPostHurtEffects(targetLiving);
+
+                if (target instanceof LivingEntity targetLiving) {
+                    if (owner instanceof LivingEntity) {
+                        EnchantmentHelper.doPostAttackEffects((ServerLevel) this.level(), targetLiving, damageSource);
+                    }
+                    this.doPostHurtEffects(targetLiving);
+                }
+
             }
+            this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01D, -0.1D, -0.01D));
         }
-
-        this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01D, -0.1D, -0.01D));
-
-        this.playSound(soundevent, 1.0F, 1.0F);
+        this.playSound(SoundRegistry.SPEAR_HIT.get());
     }
 
     @Override

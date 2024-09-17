@@ -12,10 +12,6 @@ import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import java.util.List;
 import java.util.stream.Stream;
 
-/**
- * @author DustW
- * @author LocusAzzurro
- **/
 public class ModItemModelGenerator extends ItemModelProvider {
 
     public ModItemModelGenerator(PackOutput output, ExistingFileHelper existingFileHelper) {

@@ -79,12 +79,6 @@ public class SpearItem extends TieredItem{
     @Override
     public float getDestroySpeed(ItemStack itemStack, BlockState blockState) {
         return 1.5f;
-        //todo repliacte new sword mechanics
-        /*Material material = blockState.getMaterial();
-        return material != Material.PLANT && material != Material.REPLACEABLE_PLANT
-                && !blockState.is(BlockTags.LEAVES) && material != Material.VEGETABLE ? 1.0F : 1.5F;
-
-         */
     }
 
     @Override
@@ -113,7 +107,7 @@ public class SpearItem extends TieredItem{
     }
 
     @Override
-    @SuppressWarnings("removal") //todo
+    @SuppressWarnings("removal")
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
             public BlockEntityWithoutLevelRenderer getCustomRenderer()

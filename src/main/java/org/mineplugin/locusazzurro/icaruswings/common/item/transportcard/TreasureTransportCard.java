@@ -35,8 +35,6 @@ public class TreasureTransportCard extends AbstractTransportCard{
         super(CardType.TREASURE);
     }
 
-    //todo recheck loot table reading
-
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);

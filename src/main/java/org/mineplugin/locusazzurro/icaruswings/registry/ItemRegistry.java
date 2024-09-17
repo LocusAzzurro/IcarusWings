@@ -80,7 +80,7 @@ public class ItemRegistry {
 
     public static final DeferredHolder<Item, GlassJar> GLASS_JAR = ITEMS.register("glass_jar", GlassJar::new);
 
-    public static final DeferredHolder<Item, Mead> MEAD = ITEMS.register("mead", () -> new Mead()); //todo all meads
+    public static final DeferredHolder<Item, Mead> MEAD = ITEMS.register("mead", () -> new Mead());
     public static final DeferredHolder<Item, Mead> ZEPHIR_INFUSED_MEAD = ITEMS.register("zephir_infused_mead",
     		() -> new Mead(Mead.Infusion.ZEPHIR));
     public static final DeferredHolder<Item, Mead> NETHER_INFUSED_MEAD = ITEMS.register("nether_infused_mead",
@@ -101,7 +101,7 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, AirJar> VOID_AIR_JAR = ITEMS.register("void_air_jar",
             () -> new AirJar(AirJar.AirType.VOID));
     public static final DeferredHolder<Item, Item> ANEMONE = registerSimpleItem("anemone");
-    public static final DeferredHolder<Item, MagicalAnemone> MAGICAL_ANEMONE = ITEMS.register("magical_anemone", MagicalAnemone::new); //todo
+    public static final DeferredHolder<Item, MagicalAnemone> MAGICAL_ANEMONE = ITEMS.register("magical_anemone", MagicalAnemone::new);
     public static final DeferredHolder<Item, WindWand> WIND_WAND = ITEMS.register("wind_wand", WindWand::new);
     
     public static final DeferredHolder<Item, WheatGrains> WHEAT_GRAINS = ITEMS.register("wheat_grains", WheatGrains::new);
@@ -205,7 +205,7 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, PickaxeItem> STEEL_PICKAXE = ITEMS.register("steel_pickaxe",
             () -> new PickaxeItem(ModItemTiers.STEEL, new Item.Properties()));
 
-    public static final DeferredHolder<Item, SpearItem> WOODEN_SPEAR = ITEMS.register("wooden_spear", () -> new SpearItem(Tiers.WOOD)); //todo rewrite spears
+    public static final DeferredHolder<Item, SpearItem> WOODEN_SPEAR = ITEMS.register("wooden_spear", () -> new SpearItem(Tiers.WOOD));
     public static final DeferredHolder<Item, SpearItem> STONE_SPEAR = ITEMS.register("stone_spear", () -> new SpearItem(Tiers.STONE));
     public static final DeferredHolder<Item, SpearItem> IRON_SPEAR = ITEMS.register("iron_spear", () -> new SpearItem(Tiers.IRON));
     public static final DeferredHolder<Item, SpearItem> STEEL_SPEAR = ITEMS.register("steel_spear", () -> new SpearItem(ModItemTiers.STEEL));

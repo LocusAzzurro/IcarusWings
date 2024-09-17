@@ -23,7 +23,7 @@ public class ModTags {
 
     public static final TagKey<Item> C_STEEL_INGOT = createUnifiedItemTag("ingots/steel");
 
-    public static final TagKey<DamageType> IS_COLLISION = createDamageTypeTag("is_collision");//todo populate damage tags
+    public static final TagKey<DamageType> IS_COLLISION = createDamageTypeTag("is_collision");
 
     private static TagKey<Item> createModItemTag(String name){
         return ItemTags.create(ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, name));

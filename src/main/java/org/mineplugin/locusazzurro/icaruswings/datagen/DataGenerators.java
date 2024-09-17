@@ -29,8 +29,6 @@ import java.util.concurrent.CompletableFuture;
 public class DataGenerators {
 
     public static final String MOD_ID = IcarusWings.MOD_ID;
-    public static final String MOD_NAME = "Icarus Wings";
-
 
     public static final RegistrySetBuilder DATAPACK_BUILDER = new RegistrySetBuilder()
             .add(Registries.ENCHANTMENT, ModEnchantments::bootstrap)
@@ -53,11 +51,13 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ModRecipesProvider(output, lookupProvider));
         generator.addProvider(event.includeServer(), ModLootTableProvider.create(output, lookupProvider));
 
-        ModBlockTagsGenerator blockTags = new ModBlockTagsGenerator(output, lookupProvider, fh);
-        generator.addProvider(event.includeServer(), blockTags);
-        generator.addProvider(event.includeServer(), new ModItemTagsProvider(output, lookupProvider, blockTags, fh));
         generator.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(output, modLookupProvider, DATAPACK_BUILDER, Set.of(MOD_ID)));
-        generator.addProvider(event.includeServer(), new ModDamageTagsGenerator(output, modLookupProvider, fh));
+        ModTagsProvider.ModBlockTagsProvider blockTags = new ModTagsProvider.ModBlockTagsProvider(output, lookupProvider, fh);
+        generator.addProvider(event.includeServer(), blockTags);
+        generator.addProvider(event.includeServer(), new ModTagsProvider.ModItemTagsProvider(output, lookupProvider, blockTags, fh));
+        generator.addProvider(event.includeServer(), new ModTagsProvider.ModEnchantmentTagsProvider(output, modLookupProvider, fh));
+        generator.addProvider(event.includeServer(), new ModTagsProvider.ModDamageTagsProvider(output, modLookupProvider, fh));
+        generator.addProvider(event.includeServer(), new ModTagsProvider.ModFluidTagsProvider(output, modLookupProvider, fh));
         generator.addProvider(event.includeServer(), new ModGlobalLootModifierProvider(output, lookupProvider));
 
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(output, fh));

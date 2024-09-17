@@ -44,6 +44,7 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@SuppressWarnings("unused")
 public class ModClientRenderEventHandler{
 
     @SubscribeEvent
@@ -103,21 +104,6 @@ public class ModClientRenderEventHandler{
             if (playerRenderer != null)
                 playerRenderer.addLayer(new WingsLayer<>(playerRenderer, Minecraft.getInstance().getEntityModels()));
         }
-    }
-
-    //@SubscribeEvent
-    public static void addLivingWingsLayer(EntityRenderersEvent.AddLayers event){
-
-        /* //todo add layer to all Living
-        EntityRenderDispatcher entityRenderDispatcher = Minecraft.getInstance().getEntityRenderDispatcher();
-
-        entityRenderDispatcher.renderers.forEach((entityType, entityRenderer) -> {
-            if (entityRenderer instanceof LivingEntityRenderer<?,?> livingEntityRenderer && !(livingEntityRenderer instanceof PlayerRenderer)) {
-                livingEntityRenderer.addLayer(new WingsLayer<>((RenderLayerParent) livingEntityRenderer, Minecraft.getInstance().getEntityModels()));
-            }
-        });
-
-         */
     }
 
     @SubscribeEvent
