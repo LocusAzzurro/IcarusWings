@@ -6,6 +6,7 @@ import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 @EventBusSubscriber
+@SuppressWarnings("unused")
 public class FuelBurnTimeHandler {
 
     @SubscribeEvent

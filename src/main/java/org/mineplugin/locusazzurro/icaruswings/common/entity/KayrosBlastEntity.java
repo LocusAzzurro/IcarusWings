@@ -24,8 +24,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import org.mineplugin.locusazzurro.icaruswings.common.data.IcarusWingsConfig;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModDamageSources;
-import org.mineplugin.locusazzurro.icaruswings.common.effect.EffectInevitability;
-import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
+import org.mineplugin.locusazzurro.icaruswings.common.effect.InevitabilityEffect;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
@@ -88,7 +87,7 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
                 }
             }
             this.level().getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(4)).forEach(e -> {
-                ((EffectInevitability) EffectRegistry.INEVITABILITY.get()).addEffect(e, 3);
+                InevitabilityEffect.addEffect(e, 3);
                 e.hurt(ModDamageSources.timeRift(this.level(), this.getOwner()), 5.0f);
             });
             ((ServerLevel)level()).sendParticles(ParticleTypes.WITCH,
@@ -103,7 +102,7 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
         super.onHitEntity(pResult);
         Entity entity = pResult.getEntity();
         if (entity instanceof LivingEntity livingEntity) {
-            ((EffectInevitability) EffectRegistry.INEVITABILITY.get()).addEffect(livingEntity, 5);
+            InevitabilityEffect.addEffect(livingEntity, 5);
             livingEntity.hurt(ModDamageSources.timeRift(this.level(), this.getOwner()), 15.0f);
         }
     }

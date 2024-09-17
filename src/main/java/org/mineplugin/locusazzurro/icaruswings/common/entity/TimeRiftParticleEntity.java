@@ -20,8 +20,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModDamageSources;
-import org.mineplugin.locusazzurro.icaruswings.common.effect.EffectInevitability;
-import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
+import org.mineplugin.locusazzurro.icaruswings.common.effect.InevitabilityEffect;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
@@ -87,7 +86,7 @@ public class TimeRiftParticleEntity extends ThrowableItemProjectile {
             Entity owner = this.getOwner();
             entity.hurt(ModDamageSources.timeRift(entity.level(), owner), 2.0f);
             if (entity instanceof LivingEntity) {
-                ((EffectInevitability) EffectRegistry.INEVITABILITY.get()).addEffect((LivingEntity) entity, 1);
+                InevitabilityEffect.addEffect((LivingEntity) entity, 1);
             }
         }
     }

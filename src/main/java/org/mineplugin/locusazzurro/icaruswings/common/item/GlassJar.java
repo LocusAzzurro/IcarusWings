@@ -1,7 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
 import net.minecraft.Util;
-import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;

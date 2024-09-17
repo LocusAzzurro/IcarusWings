@@ -5,7 +5,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
@@ -16,7 +15,6 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
-import java.util.Set;
 import java.util.function.BiConsumer;
 
 public class ModChestLootSubProvider implements LootTableSubProvider {
@@ -33,8 +31,7 @@ public class ModChestLootSubProvider implements LootTableSubProvider {
     public static final ResourceKey<LootTable> RELIC_PROPULSION_ALT = relic("relic_propulsion_alt");
     public static final ResourceKey<LootTable> TREASURE_CARD_RELICS = relic("treasure_card_relics");
 
-    public ModChestLootSubProvider(HolderLookup.Provider registries) {
-
+    public ModChestLootSubProvider(HolderLookup.Provider provider) {
     }
 
     @Override
