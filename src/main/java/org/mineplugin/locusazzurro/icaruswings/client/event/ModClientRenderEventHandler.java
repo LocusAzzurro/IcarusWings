@@ -97,10 +97,8 @@ public class ModClientRenderEventHandler{
     }
 
     @SubscribeEvent
-    public static void addPlayerWingsLayer (EntityRenderersEvent.AddLayers event){
-        event.getRenderer(EntityType.PLAYER);
-        Set<PlayerSkin.Model> skins = event.getSkins();
-        for (PlayerSkin.Model skin : skins){
+    public static void addPlayerWingsLayer(EntityRenderersEvent.AddLayers event){
+        for (PlayerSkin.Model skin : event.getSkins()){
             PlayerRenderer playerRenderer = event.getSkin(skin);
             if (playerRenderer != null)
                 playerRenderer.addLayer(new WingsLayer<>(playerRenderer, Minecraft.getInstance().getEntityModels()));

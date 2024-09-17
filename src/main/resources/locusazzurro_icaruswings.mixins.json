@@ -1,9 +1,10 @@
 {
   "required": true,
   "package": "org.mineplugin.locusazzurro.icaruswings.mixin",
+  "refmap": "mineplugin.locusazzurro_icaruswings.refmap.json",
   "compatibilityLevel": "JAVA_21",
-  "refmap": "locusazzurro_icaruswings.refmap.json",
-  "mixins": [],
+  "mixins": [
+  ],
   "client": [
     "CapeLayerMixin"
   ],

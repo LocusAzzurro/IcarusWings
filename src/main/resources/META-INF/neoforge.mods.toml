@@ -13,6 +13,8 @@ authors="${mod_authors}"
 credits="${mod_credits}"
 description='''${mod_description}'''
 
+[[mixins]]
+config="locusazzurro_icaruswings.mixins.json"
 
 [[dependencies.${mod_id}]]
 modId="neoforge"
