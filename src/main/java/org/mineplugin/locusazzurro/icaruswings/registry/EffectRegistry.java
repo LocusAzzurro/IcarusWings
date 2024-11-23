@@ -5,7 +5,10 @@ import net.minecraft.world.effect.MobEffect;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
-import org.mineplugin.locusazzurro.icaruswings.common.effect.*;
+import org.mineplugin.locusazzurro.icaruswings.common.effect.InevitabilityEffect;
+import org.mineplugin.locusazzurro.icaruswings.common.effect.InterdictionEffect;
+import org.mineplugin.locusazzurro.icaruswings.common.effect.PoisonImmunityEffect;
+import org.mineplugin.locusazzurro.icaruswings.common.effect.SensoryMaskingEffect;
 
 public class EffectRegistry {
 	

@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
@@ -27,7 +28,6 @@ import org.mineplugin.locusazzurro.icaruswings.common.block.entity.AmphoraBlockE
 
 import javax.annotation.Nullable;
 
-@SuppressWarnings("deprecation")
 public class Amphora extends BaseEntityBlock{
 	
 	private static final VoxelShape SHAPE_LOWER = box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
@@ -87,6 +87,11 @@ public class Amphora extends BaseEntityBlock{
 	@Override
 	public RenderShape getRenderShape(BlockState p_149645_1_) {
 		return RenderShape.MODEL;
+	}
+
+	@Override
+	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+		level.setBlock(pos.above(), state.setValue(HALF, DoubleBlockHalf.UPPER), Block.UPDATE_ALL);
 	}
 
 	@Override

@@ -23,7 +23,6 @@ import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModDamageSources;
 import org.mineplugin.locusazzurro.icaruswings.common.effect.InevitabilityEffect;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.KayrosBlastEntity;
-import org.mineplugin.locusazzurro.icaruswings.registry.EffectRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 import org.mineplugin.locusazzurro.icaruswings.util.KayrosGenUtils;
@@ -82,7 +81,6 @@ public class Demeter extends ProjectileWeaponItem {
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
         pStack.hurtAndBreak(1, pAttacker, pAttacker.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
         InevitabilityEffect.addEffect(pTarget, 0);
-        //EffectRegistry.INEVITABILITY.get().addEffect(pTarget, 1);
         pTarget.hurt(ModDamageSources.timeRift(pTarget.level(), pAttacker), 2.0f);
         return true;
     }

@@ -1,12 +1,14 @@
 package org.mineplugin.locusazzurro.icaruswings.client.event;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ArmorStandArmorModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.resources.PlayerSkin;
@@ -17,6 +19,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.item.Item;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -94,12 +97,15 @@ public class ModClientRenderEventHandler{
     }
 
     @SubscribeEvent
-    public static void addPlayerWingsLayer(EntityRenderersEvent.AddLayers event){
+    public static void addWingsLayer(EntityRenderersEvent.AddLayers event){
         for (PlayerSkin.Model skin : event.getSkins()){
             PlayerRenderer playerRenderer = event.getSkin(skin);
             if (playerRenderer != null)
                 playerRenderer.addLayer(new WingsLayer<>(playerRenderer, Minecraft.getInstance().getEntityModels()));
         }
+        LivingEntityRenderer<ArmorStand, ArmorStandArmorModel> armorStandEntityRenderer = event.getRenderer(EntityType.ARMOR_STAND);
+        if (armorStandEntityRenderer != null)
+            armorStandEntityRenderer.addLayer(new WingsLayer<>(armorStandEntityRenderer, Minecraft.getInstance().getEntityModels()));
     }
 
     @SubscribeEvent

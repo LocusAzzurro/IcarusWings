@@ -2,6 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.common.effect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -22,11 +23,15 @@ public class PoisonImmunityEffect extends MobEffect {
         livingEntity.removeEffect(MobEffects.POISON);
     }
 
+    @SuppressWarnings("unused")
     @SubscribeEvent
-    public static void onPotionApplication(MobEffectEvent.Applicable e) {
-        if (e.getEffectInstance().getEffect().equals(MobEffects.POISON)
-                && (e.getEntity().hasEffect(EffectRegistry.POISON_IMMUNITY))) {
-            e.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+    public static void onPotionApplication(MobEffectEvent.Applicable event) {
+        if (!event.getEntity().level().isClientSide()){
+            MobEffectInstance effectInstance = event.getEffectInstance();
+            if (effectInstance != null && effectInstance.is(MobEffects.POISON) &&
+                    event.getEntity().hasEffect(EffectRegistry.POISON_IMMUNITY)){
+                event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+            }
         }
     }
 

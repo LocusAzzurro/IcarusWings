@@ -203,9 +203,9 @@ public class ItemRegistry {
     		() -> new SynapseArmor(ArmorItem.Type.BOOTS));
     
     public static final DeferredHolder<Item, SwordItem> SYNAPSE_ALLOY_SWORD = ITEMS.register("synapse_alloy_sword",
-            () -> new SwordItem(ModItemTiers.SYNAPSE_ALLOY, new Item.Properties()));
+            () -> new SwordItem(ModItemTiers.SYNAPSE_ALLOY, new Item.Properties().attributes(SwordItem.createAttributes(ModItemTiers.SYNAPSE_ALLOY, 3, -2.0f))));
     public static final DeferredHolder<Item, PickaxeItem> STEEL_PICKAXE = ITEMS.register("steel_pickaxe",
-            () -> new PickaxeItem(ModItemTiers.STEEL, new Item.Properties()));
+            () -> new PickaxeItem(ModItemTiers.STEEL, new Item.Properties().attributes(PickaxeItem.createAttributes(ModItemTiers.STEEL, 1, -2.8f))));
 
     public static final DeferredHolder<Item, SpearItem> WOODEN_SPEAR = ITEMS.register("wooden_spear", () -> new SpearItem(Tiers.WOOD));
     public static final DeferredHolder<Item, SpearItem> STONE_SPEAR = ITEMS.register("stone_spear", () -> new SpearItem(Tiers.STONE));
