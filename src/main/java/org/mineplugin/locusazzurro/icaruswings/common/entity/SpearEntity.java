@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
 public class SpearEntity extends AbstractArrow {
 
     private static final EntityDataAccessor<ItemStack> SPEAR_ITEM = SynchedEntityData.defineId(SpearEntity.class, EntityDataSerializers.ITEM_STACK);
-    private static ItemStack WOODEN_SPEAR = new ItemStack(ItemRegistry.WOODEN_SPEAR.get());
+    private static final ItemStack WOODEN_SPEAR = new ItemStack(ItemRegistry.WOODEN_SPEAR.get());
     private ItemStack spearItem;
     private boolean dealtDamage;
 
@@ -42,19 +42,15 @@ public class SpearEntity extends AbstractArrow {
 
     public SpearEntity(EntityType<? extends SpearEntity> type, Level world) {
         super(type, world);
+        this.setPickupItemStack(WOODEN_SPEAR);
         this.spearItem = new ItemStack(ItemRegistry.WOODEN_SPEAR.get());
     }
 
     public SpearEntity(Level worldIn, LivingEntity owner, ItemStack spear){
         super(EntityTypeRegistry.SPEAR.get(), owner, worldIn, WOODEN_SPEAR, null);
+        this.setPickupItemStack(spear);
         this.spearItem = spear.copy();
         this.entityData.set(SPEAR_ITEM, spear);
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public SpearEntity(Level level, double x, double y, double z) {
-        super(EntityTypeRegistry.SPEAR.get(), x, y, z, level, WOODEN_SPEAR, null);
-        this.spearItem = new ItemStack(ItemRegistry.WOODEN_SPEAR.get());
     }
 
     @Override
@@ -76,7 +72,7 @@ public class SpearEntity extends AbstractArrow {
     protected void onHitEntity(EntityHitResult ray) {
         if (!level().isClientSide) {
             Entity target = ray.getEntity();
-            float damage = ((SpearItem) this.spearItem.getItem()).getAttackDamage();
+            float damage = ((SpearItem) this.getPickupItem().getItem()).getAttackDamage();
 
             Entity owner = this.getOwner();
             DamageSource damageSource = ModDamageSources.spear(this.level(), this, owner == null ? this : owner);
@@ -114,11 +110,6 @@ public class SpearEntity extends AbstractArrow {
     }
 
     @Override
-    public ItemStack getPickupItem() {
-        return this.spearItem.copy();
-    }
-
-    @Override
     protected ItemStack getDefaultPickupItem() {
         return WOODEN_SPEAR;
     }
@@ -140,9 +131,10 @@ public class SpearEntity extends AbstractArrow {
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
         if (nbt.contains("spear", 10)) {
-            this.spearItem = ItemStack.parse(this.registryAccess(), nbt.getCompound("spear")).orElse(ItemStack.EMPTY);
+            var spear = ItemStack.parse(this.registryAccess(), nbt.getCompound("spear")).orElse(ItemStack.EMPTY);
+            this.spearItem = spear;
+            this.setSpearItemData(spear);
         }
-
         this.dealtDamage = nbt.getBoolean("dealt_damage");
     }
 
@@ -163,7 +155,7 @@ public class SpearEntity extends AbstractArrow {
 
     @OnlyIn(Dist.CLIENT)
     public boolean isFoil() {
-        return this.entityData.get(SPEAR_ITEM).hasFoil();
+        return this.getPickupItem().hasFoil();
     }
 
     @Override
