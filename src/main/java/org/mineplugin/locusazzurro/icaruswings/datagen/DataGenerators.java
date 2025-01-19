@@ -59,6 +59,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ModTagsProvider.ModDamageTagsProvider(output, modLookupProvider, fh));
         generator.addProvider(event.includeServer(), new ModTagsProvider.ModFluidTagsProvider(output, modLookupProvider, fh));
         generator.addProvider(event.includeServer(), new ModGlobalLootModifierProvider(output, lookupProvider));
+        generator.addProvider(event.includeServer(), new ModAdvancementProvider(output, lookupProvider, fh));
 
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(output, fh));
         generator.addProvider(event.includeClient(), new ModItemModelGenerator(output, fh));
