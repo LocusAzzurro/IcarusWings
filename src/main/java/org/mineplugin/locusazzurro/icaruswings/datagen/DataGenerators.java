@@ -62,6 +62,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ModAdvancementProvider(output, lookupProvider, fh));
 
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(output, fh));
-        generator.addProvider(event.includeClient(), new ModItemModelGenerator(output, fh));
+        generator.addProvider(event.includeClient(), new ModItemModelProvider(output, fh));
+        generator.addProvider(event.includeClient(), new ModParticleProvider(output, fh));
     }
 }

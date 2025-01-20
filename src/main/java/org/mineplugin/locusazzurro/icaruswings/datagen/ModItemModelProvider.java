@@ -12,9 +12,9 @@ import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class ModItemModelGenerator extends ItemModelProvider {
+public class ModItemModelProvider extends ItemModelProvider {
 
-    public ModItemModelGenerator(PackOutput output, ExistingFileHelper existingFileHelper) {
+    public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, DataGenerators.MOD_ID, existingFileHelper);
     }
 
