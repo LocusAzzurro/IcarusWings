@@ -1,0 +1,38 @@
+{
+  "parent": "locusazzurro_icaruswings:future/core_upgrade",
+  "criteria": {
+    "has_wings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:hiyori_wings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.future.hiyori_wings.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:hiyori_wings"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.future.hiyori_wings.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_wings"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

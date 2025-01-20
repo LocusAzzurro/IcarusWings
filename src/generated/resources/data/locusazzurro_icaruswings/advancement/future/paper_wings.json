@@ -1,0 +1,37 @@
+{
+  "parent": "locusazzurro_icaruswings:future/root",
+  "criteria": {
+    "has_wings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:paper_wings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.future.paper_wings.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:paper_wings"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.future.paper_wings.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_wings"
+    ]
+  ],
+  "rewards": {
+    "experience": 20
+  },
+  "sends_telemetry_event": true
+}

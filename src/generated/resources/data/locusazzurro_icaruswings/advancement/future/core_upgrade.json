@@ -1,0 +1,33 @@
+{
+  "parent": "locusazzurro_icaruswings:future/synapse_wings",
+  "criteria": {
+    "has_upgraded_core": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:upgraded_fallen_relic_core"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.future.core_upgrade.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:upgraded_fallen_relic_core"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.future.core_upgrade.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_upgraded_core"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

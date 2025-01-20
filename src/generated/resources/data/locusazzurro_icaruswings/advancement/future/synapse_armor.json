@@ -1,0 +1,33 @@
+{
+  "parent": "locusazzurro_icaruswings:future/restored_relic",
+  "criteria": {
+    "has_armor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#locusazzurro_icaruswings:synapse_armor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.future.synapse_armor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:synapse_chestplate"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.future.synapse_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_armor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

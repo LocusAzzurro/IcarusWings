@@ -1,0 +1,33 @@
+{
+  "parent": "locusazzurro_icaruswings:future/root",
+  "criteria": {
+    "has_restored_relic": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#locusazzurro_icaruswings:restored_fallen_relics"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.future.restored_relic.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:fallen_relic_core"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.future.restored_relic.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_restored_relic"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

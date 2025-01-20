@@ -1,0 +1,33 @@
+{
+  "parent": "locusazzurro_icaruswings:future/root",
+  "criteria": {
+    "has_fuel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:quantum_fuel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.future.quantum_fuel.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:quantum_fuel"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.future.quantum_fuel.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_fuel"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

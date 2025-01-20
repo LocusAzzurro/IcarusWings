@@ -15,6 +15,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModTags;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 import java.io.Serializable;
@@ -35,6 +36,7 @@ public class ModAdvancementProvider extends AdvancementProvider {
     static class ModAdvancementGenerator implements AdvancementGenerator {
 
         @Override
+        @SuppressWarnings("unused")
         public void generate(HolderLookup.Provider provider, Consumer<AdvancementHolder> consumer, ExistingFileHelper existingFileHelper) {
 
             AdvancementHolder PAST_ROOT = Advancement.Builder.advancement()
@@ -129,12 +131,71 @@ public class ModAdvancementProvider extends AdvancementProvider {
                     .rewards(AdvancementRewards.Builder.experience(100))
                     .save(consumer, modLoc("past/wings_falling_adv").toString());
 
-
+            AdvancementHolder FUTURE_ROOT = Advancement.Builder.advancement()
+                    .display(makeDisplayInfo(ItemRegistry.FEATHER_WINGS.get(), Category.FUTURE, ROOT, AdvancementType.TASK, true, false, false))
+                    .addCriterion("has_decryptor", InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.DAEDALUS_DECRYPTOR.get()))
+                    .save(consumer, modLoc("future/root").toString());
+            AdvancementHolder RESTORED_RELIC = Advancement.Builder.advancement()
+                    .parent(FUTURE_ROOT)
+                    .display(makeDisplayInfo(ItemRegistry.FALLEN_RELIC_CORE.get(), Category.FUTURE, "restored_relic", AdvancementType.TASK, true, true, false))
+                    .addCriterion("has_restored_relic", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModTags.RESTORED_FALLEN_RELICS)))
+                    .save(consumer, modLoc("future/restored_relic").toString());
+            AdvancementHolder SYNAPSE_WINGS = Advancement.Builder.advancement()
+                    .parent(RESTORED_RELIC)
+                    .display(makeDisplayInfo(ItemRegistry.IKAROS_WINGS.get(), Category.FUTURE, "synapse_wings", AdvancementType.GOAL, true, true, false))
+                    .addCriterion("has_wings", InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.IKAROS_WINGS.get()))
+                    .save(consumer, modLoc("future/synapse_wings").toString());
+            AdvancementHolder SYNAPSE_ARMOR = Advancement.Builder.advancement()
+                    .parent(RESTORED_RELIC)
+                    .display(makeDisplayInfo(ItemRegistry.SYNAPSE_CHESTPLATE.get(), Category.FUTURE, "synapse_armor", AdvancementType.TASK, true, true, false))
+                    .addCriterion("has_armor", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModTags.SYNAPSE_ARMOR)))
+                    .save(consumer, modLoc("future/synapse_armor").toString());
+            AdvancementHolder ALL_FIRST_GEN_WINGS = Advancement.Builder.advancement()
+                    .parent(SYNAPSE_WINGS)
+                    .display(makeDisplayInfo(ItemRegistry.SYNAPSE_WINGS_RECHARGER.get(), Category.FUTURE, "all_first_gen_wings", AdvancementType.CHALLENGE, true, true, false))
+                    .addCriterion("has_ikaros_wings", InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.IKAROS_WINGS.get()))
+                    .addCriterion("has_nymph_wings", InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.NYMPH_WINGS.get()))
+                    .addCriterion("has_astraea_wings", InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.ASTRAEA_WINGS.get()))
+                    .requirements(AdvancementRequirements.Strategy.AND)
+                    .rewards(AdvancementRewards.Builder.experience(100))
+                    .save(consumer, modLoc("future/all_first_gen_wings").toString());
+            AdvancementHolder QUANTUM_FUEL = Advancement.Builder.advancement()
+                    .parent(FUTURE_ROOT)
+                    .display(makeDisplayInfo(ItemRegistry.QUANTUM_FUEL.get(), Category.FUTURE, "quantum_fuel", AdvancementType.TASK, true, true, false))
+                    .addCriterion("has_fuel", InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.QUANTUM_FUEL.get()))
+                    .save(consumer, modLoc("future/quantum_fuel").toString());
+            AdvancementHolder CORE_UPGRADE = Advancement.Builder.advancement()
+                    .parent(SYNAPSE_WINGS)
+                    .display(makeDisplayInfo(ItemRegistry.UPGRADED_FALLEN_RELIC_CORE.get(), Category.FUTURE, "core_upgrade", AdvancementType.TASK, true, true, false))
+                    .addCriterion("has_upgraded_core", InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.UPGRADED_FALLEN_RELIC_CORE.get()))
+                    .save(consumer, modLoc("future/core_upgrade").toString());
+            AdvancementHolder HIYORI_WINGS = Advancement.Builder.advancement()
+                    .parent(CORE_UPGRADE)
+                    .display(makeDisplayInfo(ItemRegistry.HIYORI_WINGS.get(), Category.FUTURE, "hiyori_wings", AdvancementType.CHALLENGE, true, true, true))
+                    .addCriterion("has_wings", InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.HIYORI_WINGS.get()))
+                    .rewards(AdvancementRewards.Builder.experience(50))
+                    .save(consumer, modLoc("future/hiyori_wings").toString());
+            AdvancementHolder PAPER_WINGS = Advancement.Builder.advancement()
+                    .parent(FUTURE_ROOT)
+                    .display(makeDisplayInfo(ItemRegistry.PAPER_WINGS.get(), Category.FUTURE, "paper_wings", AdvancementType.TASK, true, true, true))
+                    .addCriterion("has_wings", InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.PAPER_WINGS.get()))
+                    .rewards(AdvancementRewards.Builder.experience(20))
+                    .save(consumer, modLoc("future/paper_wings").toString());
+            AdvancementHolder MUSIC_DISC = Advancement.Builder.advancement()
+                    .parent(FUTURE_ROOT)
+                    .display(makeDisplayInfo(ItemRegistry.DISC_FALLEN_DOWN.get(), Category.FUTURE, "music_disc", AdvancementType.TASK, true, true, true))
+                    .addCriterion("has_disc_1", InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.DISC_FALLEN_DOWN.get()))
+                    .addCriterion("has_disc_2", InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.DISC_RING_MY_BELL.get()))
+                    .requirements(AdvancementRequirements.Strategy.OR)
+                    .save(consumer, modLoc("future/music_disc").toString());
+            AdvancementHolder MELON = Advancement.Builder.advancement()
+                    .parent(FUTURE_ROOT)
+                    .display(makeDisplayInfo(ItemRegistry.MELON.get(), Category.FUTURE, "melon", AdvancementType.CHALLENGE, true, true, true))
+                    .addCriterion("has_melon", InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.MELON.get()))
+                    .rewards(AdvancementRewards.Builder.experience(10))
+                    .save(consumer, modLoc("future/melon").toString());
 
         }
-
-
-
 
         private static DisplayInfo makeDisplayInfo(ItemLike display, Category category, String name, AdvancementType type, boolean showToast, boolean announceChat, boolean hidden){
             Optional<ResourceLocation> bg = name.equals(ROOT) ? Optional.of(ResourceLocation.fromNamespaceAndPath(DataGenerators.MOD_ID, "textures/gui/advancements/backgrounds/" + category + ".png")) : Optional.empty();
