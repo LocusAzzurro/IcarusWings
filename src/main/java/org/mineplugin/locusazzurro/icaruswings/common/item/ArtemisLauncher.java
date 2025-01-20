@@ -36,14 +36,8 @@ public class ArtemisLauncher extends ProjectileWeaponItem {
         }
 
         LivingEntity entity = ProjectileUtils.rayTraceTarget(playerIn, ProjectileUtils.IS_HOSTILE, 0.5f, 500, 2);
-        ArtemisMissileEntity missile;
-        if (entity != null) {
-            missile = new ArtemisMissileEntity(worldIn, playerIn, entity);
-            missile.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, 0.5f, 1.0f);
-        } else {
-            missile = new ArtemisMissileEntity(worldIn, playerIn);
-            missile.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, 2.0f, 1.0f);
-        }
+        ArtemisMissileEntity missile = new ArtemisMissileEntity(worldIn, playerIn, entity);
+        missile.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, 2.0f, 1.0f);
         worldIn.addFreshEntity(missile);
         worldIn.playSound(null, missile, SoundRegistry.ARTEMIS_MISSILE_LAUNCH.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
