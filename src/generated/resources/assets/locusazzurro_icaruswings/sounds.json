@@ -1,0 +1,435 @@
+{
+  "block.greek_fire.ambient": {
+    "replace": true,
+    "sounds": [
+      "liquid/lava"
+    ],
+    "subtitle": "subtitles.block.greek_fire.ambient"
+  },
+  "block.greek_fire.pop": {
+    "replace": true,
+    "sounds": [
+      "liquid/lavapop"
+    ],
+    "subtitle": "subtitles.block.greek_fire.pop"
+  },
+  "block.mead_pot.brew": {
+    "replace": true,
+    "sounds": [
+      "block/brewing_stand/brew1",
+      "block/brewing_stand/brew2"
+    ],
+    "subtitle": "subtitles.block.mead_pot.brew"
+  },
+  "entity.artemis_missile.launch": {
+    "replace": true,
+    "sounds": [
+      "locusazzurro_icaruswings:artemis_missile_launch_1",
+      "locusazzurro_icaruswings:artemis_missile_launch_2",
+      "locusazzurro_icaruswings:artemis_missile_launch_3"
+    ],
+    "subtitle": "subtitles.entity.artemis_missile.launch"
+  },
+  "entity.golden_ram.ambient": {
+    "replace": true,
+    "sounds": [
+      "mob/sheep/say1",
+      "mob/sheep/say2",
+      "mob/sheep/say3"
+    ],
+    "subtitle": "subtitles.entity.golden_ram.ambient"
+  },
+  "entity.golden_ram.death": {
+    "replace": true,
+    "sounds": [
+      "mob/sheep/say1",
+      "mob/sheep/say2",
+      "mob/sheep/say3"
+    ],
+    "subtitle": "subtitles.entity.golden_ram.death"
+  },
+  "entity.golden_ram.hurt": {
+    "replace": true,
+    "sounds": [
+      "mob/sheep/say1",
+      "mob/sheep/say2",
+      "mob/sheep/say3"
+    ],
+    "subtitle": "subtitles.entity.golden_ram.hurt"
+  },
+  "entity.golden_ram.shear": {
+    "replace": true,
+    "sounds": [
+      "mob/sheep/shear"
+    ],
+    "subtitle": "subtitles.entity.golden_ram.shear"
+  },
+  "entity.golden_ram.step": {
+    "replace": true,
+    "sounds": [
+      "mob/sheep/step1",
+      "mob/sheep/step2",
+      "mob/sheep/step3",
+      "mob/sheep/step4",
+      "mob/sheep/step5"
+    ],
+    "subtitle": "subtitles.entity.golden_ram.step"
+  },
+  "entity.time_rift.collapse": {
+    "replace": true,
+    "sounds": [
+      "locusazzurro_icaruswings:time_rift_collapse"
+    ],
+    "subtitle": "subtitles.entity.time_rift.collapse"
+  },
+  "item.air_jar.empty": {
+    "replace": true,
+    "sounds": [
+      "mob/chicken/plop"
+    ],
+    "subtitle": "subtitles.item.air_jar.empty"
+  },
+  "item.air_jar.fill": {
+    "replace": true,
+    "sounds": [
+      "item/bottle/fill_dragonbreath1",
+      "item/bottle/fill_dragonbreath2"
+    ],
+    "subtitle": "subtitles.item.air_jar.fill"
+  },
+  "item.armor.equip_beeswax": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "block/honeyblock/slide1",
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide2",
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide3",
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide4",
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide1",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide2",
+        "pitch": 0.8,
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide3",
+        "pitch": 0.8,
+        "volume": 0.8
+      },
+      {
+        "name": "block/honeyblock/slide4",
+        "pitch": 0.8,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.item.armor.equip_beeswax"
+  },
+  "item.armor.equip_feather": {
+    "replace": true,
+    "sounds": [
+      "item/armor/equip_chain1",
+      "item/armor/equip_chain2",
+      "item/armor/equip_chain3",
+      "item/armor/equip_chain4",
+      "item/armor/equip_chain5",
+      "item/armor/equip_chain6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_feather"
+  },
+  "item.armor.equip_golden_fleece": {
+    "replace": true,
+    "sounds": [
+      "item/armor/equip_leather1",
+      "item/armor/equip_leather2",
+      "item/armor/equip_leather3",
+      "item/armor/equip_leather4",
+      "item/armor/equip_leather5",
+      "item/armor/equip_leather6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_golden_fleece"
+  },
+  "item.armor.equip_herbal": {
+    "replace": true,
+    "sounds": [
+      "item/armor/equip_leather1",
+      "item/armor/equip_leather2",
+      "item/armor/equip_leather3",
+      "item/armor/equip_leather4",
+      "item/armor/equip_leather5",
+      "item/armor/equip_leather6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_herbal"
+  },
+  "item.armor.equip_linen": {
+    "replace": true,
+    "sounds": [
+      "item/armor/equip_leather1",
+      "item/armor/equip_leather2",
+      "item/armor/equip_leather3",
+      "item/armor/equip_leather4",
+      "item/armor/equip_leather5",
+      "item/armor/equip_leather6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_linen"
+  },
+  "item.armor.equip_synapse": {
+    "replace": true,
+    "sounds": [
+      "item/armor/equip_diamond1",
+      "item/armor/equip_diamond2",
+      "item/armor/equip_diamond3",
+      "item/armor/equip_diamond4",
+      "item/armor/equip_diamond5",
+      "item/armor/equip_diamond6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_synapse"
+  },
+  "item.bucket.empty_greek_fire": {
+    "replace": true,
+    "sounds": [
+      "item/bucket/empty_lava1",
+      "item/bucket/empty_lava2",
+      "item/bucket/empty_lava3"
+    ],
+    "subtitle": "subtitles.item.bucket.empty_greek_fire"
+  },
+  "item.bucket.fill_greek_fire": {
+    "replace": true,
+    "sounds": [
+      "item/bucket/fill_lava1",
+      "item/bucket/fill_lava2",
+      "item/bucket/fill_lava3"
+    ],
+    "subtitle": "subtitles.item.bucket.fill_greek_fire"
+  },
+  "item.demeter.blast": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "locusazzurro_icaruswings:time_rift_generator_fire",
+        "volume": 1.2
+      }
+    ],
+    "subtitle": "subtitles.item.demeter.blast"
+  },
+  "item.spear.hit": {
+    "replace": true,
+    "sounds": [
+      "item/trident/pierce1",
+      "item/trident/pierce2",
+      "item/trident/pierce3"
+    ],
+    "subtitle": "subtitles.item.spear.hit"
+  },
+  "item.spear.hit_ground": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "locusazzurro_icaruswings:spear_impact_1",
+        "volume": 0.9
+      },
+      {
+        "name": "locusazzurro_icaruswings:spear_impact_2",
+        "volume": 0.9
+      },
+      {
+        "name": "locusazzurro_icaruswings:spear_impact_3",
+        "volume": 0.9
+      },
+      {
+        "name": "locusazzurro_icaruswings:spear_impact_4",
+        "volume": 0.9
+      }
+    ],
+    "subtitle": "subtitles.item.spear.hit_ground"
+  },
+  "item.spear.throw": {
+    "replace": true,
+    "sounds": [
+      "locusazzurro_icaruswings:spear_throw_1",
+      "locusazzurro_icaruswings:spear_throw_2",
+      "locusazzurro_icaruswings:spear_throw_3"
+    ],
+    "subtitle": "subtitles.item.spear.throw"
+  },
+  "item.time_rift_generator.fire": {
+    "replace": true,
+    "sounds": [
+      "locusazzurro_icaruswings:time_rift_generator_fire"
+    ],
+    "subtitle": "subtitles.item.time_rift_generator.fire"
+  },
+  "item.transport_card.activation.artemis": {
+    "replace": true,
+    "sounds": [
+      "locusazzurro_icaruswings:transport_card_activation_artemis"
+    ],
+    "subtitle": "subtitles.item.transport_card.activation.artemis"
+  },
+  "item.transport_card.activation.chrono": {
+    "replace": true,
+    "sounds": [
+      "locusazzurro_icaruswings:transport_card_activation_chrono"
+    ],
+    "subtitle": "subtitles.item.transport_card.activation.chrono"
+  },
+  "item.transport_card.activation.electronic": {
+    "replace": true,
+    "sounds": [
+      "locusazzurro_icaruswings:transport_card_activation_electronic"
+    ],
+    "subtitle": "subtitles.item.transport_card.activation.electronic"
+  },
+  "item.transport_card.activation.fail": {
+    "replace": true,
+    "sounds": [
+      "random/fizz"
+    ],
+    "subtitle": "subtitles.item.transport_card.activation.fail"
+  },
+  "item.transport_card.activation.generic": {
+    "replace": true,
+    "sounds": [
+      "locusazzurro_icaruswings:transport_card_activation_generic"
+    ],
+    "subtitle": "subtitles.item.transport_card.activation.generic"
+  },
+  "item.transport_card.teleport": {
+    "replace": true,
+    "sounds": [
+      "mob/endermen/portal",
+      "mob/endermen/portal2"
+    ],
+    "subtitle": "subtitles.item.transport_card.teleport"
+  },
+  "item.transport_card.teleport_anchor": {
+    "replace": true,
+    "sounds": [
+      "block/respawn_anchor/charge1",
+      "block/respawn_anchor/charge2",
+      "block/respawn_anchor/charge3"
+    ],
+    "subtitle": "subtitles.item.transport_card.teleport_anchor"
+  },
+  "item.wind_wand.burst": {
+    "replace": true,
+    "sounds": [
+      "mob/ghast/fireball4"
+    ],
+    "subtitle": "subtitles.item.wind_wand.burst"
+  },
+  "item.wings.equip_feather": {
+    "replace": true,
+    "sounds": [
+      "item/armor/equip_leather1",
+      "item/armor/equip_leather2",
+      "item/armor/equip_leather3",
+      "item/armor/equip_leather4",
+      "item/armor/equip_leather5",
+      "item/armor/equip_leather6"
+    ],
+    "subtitle": "subtitles.item.wings.equip_feather"
+  },
+  "item.wings.equip_magic": {
+    "replace": true,
+    "sounds": [
+      "block/end_portal/eyeplace1",
+      "block/end_portal/eyeplace2",
+      "block/end_portal/eyeplace3"
+    ],
+    "subtitle": "subtitles.item.wings.equip_magic"
+  },
+  "item.wings.equip_paper": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "item/book/open_flip1",
+        "volume": 1.2
+      },
+      {
+        "name": "item/book/open_flip2",
+        "volume": 1.2
+      },
+      {
+        "name": "item/book/open_flip3",
+        "volume": 1.2
+      }
+    ],
+    "subtitle": "subtitles.item.wings.equip_paper"
+  },
+  "item.wings.equip_synapse": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "item/armor/equip_netherite1",
+        "volume": 0.8
+      },
+      {
+        "name": "item/armor/equip_netherite2",
+        "volume": 0.8
+      },
+      {
+        "name": "item/armor/equip_netherite3",
+        "volume": 0.8
+      },
+      {
+        "name": "item/armor/equip_netherite4",
+        "volume": 0.8
+      },
+      {
+        "name": "item/armor/equip_netherite1",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "item/armor/equip_netherite2",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "item/armor/equip_netherite3",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "item/armor/equip_netherite4",
+        "pitch": 0.9,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.item.wings.equip_synapse"
+  },
+  "track.fallen_down": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "locusazzurro_icaruswings:track_fallen_down",
+        "stream": true
+      }
+    ]
+  },
+  "track.ring_my_bell": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "locusazzurro_icaruswings:track_fallen_down",
+        "stream": true
+      }
+    ]
+  }
+}

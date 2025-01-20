@@ -64,5 +64,6 @@ public class DataGenerators {
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(output, fh));
         generator.addProvider(event.includeClient(), new ModItemModelProvider(output, fh));
         generator.addProvider(event.includeClient(), new ModParticleProvider(output, fh));
+        generator.addProvider(event.includeClient(), new ModSoundDefinitionsProvider(output, fh));
     }
 }
