@@ -1,0 +1,34 @@
+{
+  "parent": "locusazzurro_icaruswings:past/obtain_beeswax",
+  "criteria": {
+    "has_wings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:feather_wings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.past.icarus_flight.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:feather_wings"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.past.icarus_flight.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_wings"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,89 @@
+{
+  "parent": "locusazzurro_icaruswings:past/root",
+  "criteria": {
+    "has_blue_feather": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:blue_feather"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cyan_feather": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:cyan_feather"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_gray_feather": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:gray_feather"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_green_feather": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:green_feather"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_red_feather": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:red_feather"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.past.all_colored_feathers.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:red_feather"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.past.all_colored_feathers.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_red_feather"
+    ],
+    [
+      "has_blue_feather"
+    ],
+    [
+      "has_green_feather"
+    ],
+    [
+      "has_cyan_feather"
+    ],
+    [
+      "has_gray_feather"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

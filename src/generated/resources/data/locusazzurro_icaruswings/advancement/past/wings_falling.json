@@ -1,0 +1,155 @@
+{
+  "parent": "locusazzurro_icaruswings:past/icarus_flight",
+  "criteria": {
+    "broke_wings": {
+      "conditions": {
+        "durability": {
+          "max": 0
+        },
+        "item": {
+          "items": "locusazzurro_icaruswings:colored_feather_wings"
+        },
+        "player": [
+          {
+            "condition": "minecraft:any_of",
+            "terms": [
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "slots": {
+                    "inventory.*": {
+                      "items": "minecraft:oxeye_daisy"
+                    }
+                  }
+                }
+              },
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "slots": {
+                    "hotbar.*": {
+                      "items": "minecraft:oxeye_daisy"
+                    }
+                  }
+                }
+              },
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "slots": {
+                    "weapon.*": {
+                      "items": "minecraft:oxeye_daisy"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "condition": "minecraft:any_of",
+            "terms": [
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "slots": {
+                    "inventory.*": {
+                      "items": "minecraft:lily_of_the_valley"
+                    }
+                  }
+                }
+              },
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "slots": {
+                    "hotbar.*": {
+                      "items": "minecraft:lily_of_the_valley"
+                    }
+                  }
+                }
+              },
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "slots": {
+                    "weapon.*": {
+                      "items": "minecraft:lily_of_the_valley"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "condition": "minecraft:any_of",
+            "terms": [
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "slots": {
+                    "inventory.*": {
+                      "items": "minecraft:peony"
+                    }
+                  }
+                }
+              },
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "slots": {
+                    "hotbar.*": {
+                      "items": "minecraft:peony"
+                    }
+                  }
+                }
+              },
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "slots": {
+                    "weapon.*": {
+                      "items": "minecraft:peony"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:item_durability_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.past.wings_falling.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "minecraft:peony"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.past.wings_falling.title"
+    }
+  },
+  "requirements": [
+    [
+      "broke_wings"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "locusazzurro_icaruswings:past/root",
+  "criteria": {
+    "has_beeswax": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:beeswax"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.past.obtain_beeswax.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:beeswax"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.past.obtain_beeswax.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_beeswax"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

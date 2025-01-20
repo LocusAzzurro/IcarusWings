@@ -1,0 +1,44 @@
+{
+  "parent": "locusazzurro_icaruswings:past/root",
+  "criteria": {
+    "has_linen_cloak": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:linen_cloak"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_linen_undergarment": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:linen_undergarment"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.past.linen_cloth.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:linen_cloak"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.past.linen_cloth.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_linen_cloak",
+      "has_linen_undergarment"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
