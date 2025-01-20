@@ -2,6 +2,7 @@ package org.mineplugin.locusazzurro.icaruswings.common.item.transportcard;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -50,15 +51,8 @@ public class ArtemisTransportCard extends AbstractTransportCard{
         Vec3[] dPos = arrangePoints(pos, look);
 
         for (int i = 0; i < 6; i++){
-            ArtemisMissileEntity missile;
-            if (homing) {
-                missile = new ArtemisMissileEntity(worldIn, playerIn, target);
-                missile.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, 0.5f, 1.0f);
-            }
-            else {
-                missile = new ArtemisMissileEntity(worldIn, playerIn);
-                missile.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, POWER, 3.0f);
-            }
+            ArtemisMissileEntity missile = new ArtemisMissileEntity(worldIn, playerIn, homing ? target : null);
+            missile.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, homing ? 0.5f : POWER, 1.0f);
             missile.moveTo(dPos[i]);
             worldIn.addFreshEntity(missile);
             worldIn.playSound(null, missile, SoundRegistry.ARTEMIS_MISSILE_LAUNCH.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -71,14 +65,15 @@ public class ArtemisTransportCard extends AbstractTransportCard{
     }
 
     private Vec3[] arrangePoints(Vec3 pos, Vec3 look){
-        return new Vec3[]{
-                pos.add(look.yRot(HALF_PI)).add(0,0,0),
-                pos.add(look.yRot(HALF_PI)).add(0,1,0),
-                pos.add(look.yRot(HALF_PI)).add(0,2,0),
-                pos.add(look.yRot(-HALF_PI)).add(0,0,0),
-                pos.add(look.yRot(-HALF_PI)).add(0,1,0),
-                pos.add(look.yRot(-HALF_PI)).add(0,2,0),
-        };
+        int pointCount = 6;
+        Vec3[] points = new Vec3[pointCount];
+        float pitch = (float) Math.asin(-look.y());
+        float yaw = (float) Mth.atan2(look.x(), look.z());
+        for (int i = 0; i < pointCount; i++){
+            points[i] = new Vec3(Mth.cos(Mth.TWO_PI / pointCount * i), 0, Mth.sin(Mth.TWO_PI / pointCount * i)).normalize()
+                    .xRot(-pitch + Mth.HALF_PI).yRot(yaw).scale(2).add(pos).add(0, 1, 0);
+        }
+        return points;
     }
 
 }

@@ -81,7 +81,6 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
         this(EntityTypeRegistry.ARTEMIS_MISSILE.get(), world);
         this.setOwner(shooter);
         this.moveTo(shooter.getEyePosition(), shooter.getYRot(), shooter.getXRot());
-        //this.reapplyPosition();
         this.setTarget(target);
     }
 
