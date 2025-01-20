@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -176,16 +177,18 @@ public class Amphora extends BaseEntityBlock{
 			super.onRemove(pState, levelIn, pos, pNewState, pIsMoving);
 		}
 	}
-	
-	protected static void preventCreativeDropFromBottomPart(Level pLevel, BlockPos pos, BlockState pState, Player player) {
-		DoubleBlockHalf doubleblockhalf = pState.getValue(HALF);
+
+	protected static void preventCreativeDropFromBottomPart(Level level, BlockPos pos, BlockState state, Player player) {
+		DoubleBlockHalf doubleblockhalf = state.getValue(HALF);
 		if (doubleblockhalf == DoubleBlockHalf.UPPER) {
 			BlockPos blockpos = pos.below();
-			BlockState blockstate = pLevel.getBlockState(blockpos);
-			if (blockstate.getBlock() == pState.getBlock() && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER) {
-				pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
-				pLevel.levelEvent(player, 2001, blockpos, Block.getId(blockstate));
+			BlockState blockstate = level.getBlockState(blockpos);
+			if (blockstate.is(state.getBlock()) && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER) {
+				BlockState blockstate1 = blockstate.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+				level.setBlock(blockpos, blockstate1, 35);
+				level.levelEvent(player, 2001, blockpos, Block.getId(blockstate));
 			}
 		}
 	}
+
 }
