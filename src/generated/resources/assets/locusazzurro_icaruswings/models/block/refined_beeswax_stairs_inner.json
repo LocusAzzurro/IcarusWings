@@ -2,7 +2,7 @@
   "parent": "minecraft:block/inner_stairs",
   "textures": {
     "bottom": "locusazzurro_icaruswings:block/refined_beeswax_block",
-    "top": "locusazzurro_icaruswings:block/refined_beeswax_block",
-    "side": "locusazzurro_icaruswings:block/refined_beeswax_block"
+    "side": "locusazzurro_icaruswings:block/refined_beeswax_block",
+    "top": "locusazzurro_icaruswings:block/refined_beeswax_block"
   }
 }

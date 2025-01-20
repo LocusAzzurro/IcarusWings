@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "locusazzurro_icaruswings:block/chiseled_refined_beeswax_block_end",
+    "side": "locusazzurro_icaruswings:block/chiseled_refined_beeswax_block_side"
+  }
+}

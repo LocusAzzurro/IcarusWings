@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column_horizontal",
   "textures": {
-    "end": "locusazzurro_icaruswings:block/refined_beeswax_pillar_top",
+    "end": "locusazzurro_icaruswings:block/refined_beeswax_pillar_end",
     "side": "locusazzurro_icaruswings:block/refined_beeswax_pillar_side"
   }
 }
