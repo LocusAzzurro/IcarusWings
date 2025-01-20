@@ -1,13 +1,13 @@
 {
   "variants": {
+    "state=complete": {
+      "model": "locusazzurro_icaruswings:block/mead_pot_complete"
+    },
     "state=empty": {
       "model": "locusazzurro_icaruswings:block/mead_pot_empty"
     },
     "state=fermenting": {
       "model": "locusazzurro_icaruswings:block/mead_pot_fermenting"
-    },
-    "state=complete": {
-      "model": "locusazzurro_icaruswings:block/mead_pot_complete"
     }
-}
+  }
 }

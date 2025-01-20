@@ -48,19 +48,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(BlockRegistry.GOLDEN_WOOL_CARPET.get(), models().carpet(name(BlockRegistry.GOLDEN_WOOL_CARPET.get()), blockLoc(BlockRegistry.GOLDEN_WOOL_BLOCK.get())));
         getVariantBuilder(BlockRegistry.HONEY_CAKE.get()).forAllStates(blockState -> {
             int slice = blockState.getValue(CakeBlock.BITES);
-            return ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc(BLOCK + name(BlockRegistry.HONEY_CAKE.get()) + "_slice" + slice))).build();
+            return ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc(BLOCK + name(BlockRegistry.HONEY_CAKE.get()) + (slice > 0 ? "_slice" + slice : "")))).build();
         });
-        getVariantBuilder(BlockRegistry.MEAD_POT.get()).forAllStates(blockState -> {
+        getVariantBuilder(BlockRegistry.MEAD_POT.get()).forAllStatesExcept(blockState -> {
             var state = blockState.getValue(MeadPot.STATE);
             return ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc(BLOCK + name(BlockRegistry.MEAD_POT.get()) + "_" + state.getSerializedName()))).build();
-        });
-        getVariantBuilder(BlockRegistry.AMPHORA.get()).forAllStates(blockState -> {
+        }, MeadPot.INFUSION);
+        getVariantBuilder(BlockRegistry.AMPHORA.get()).forAllStatesExcept(blockState -> {
             DoubleBlockHalf half = blockState.getValue(Amphora.HALF);
             Direction.Axis axis = blockState.getValue(Amphora.FACING).getAxis();
             ModelFile.ExistingModelFile modelLower = models().getExistingFile(modLoc(BLOCK + "amphora_lower"));
             ModelFile.ExistingModelFile modelUpper = models().getExistingFile(modLoc(BLOCK + "amphora_upper"));
             return ConfiguredModel.builder().modelFile(half == DoubleBlockHalf.LOWER ? modelLower : modelUpper).rotationY(axis == Direction.Axis.X ? 0 : 90).build();
-        });
+        }, Amphora.TYPE);
 
     }
 

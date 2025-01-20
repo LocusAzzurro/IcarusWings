@@ -1,0 +1,32 @@
+{
+  "variants": {
+    "facing=east,half=lower": {
+      "model": "locusazzurro_icaruswings:block/amphora_lower"
+    },
+    "facing=east,half=upper": {
+      "model": "locusazzurro_icaruswings:block/amphora_upper"
+    },
+    "facing=north,half=lower": {
+      "model": "locusazzurro_icaruswings:block/amphora_lower",
+      "y": 90
+    },
+    "facing=north,half=upper": {
+      "model": "locusazzurro_icaruswings:block/amphora_upper",
+      "y": 90
+    },
+    "facing=south,half=lower": {
+      "model": "locusazzurro_icaruswings:block/amphora_lower",
+      "y": 90
+    },
+    "facing=south,half=upper": {
+      "model": "locusazzurro_icaruswings:block/amphora_upper",
+      "y": 90
+    },
+    "facing=west,half=lower": {
+      "model": "locusazzurro_icaruswings:block/amphora_lower"
+    },
+    "facing=west,half=upper": {
+      "model": "locusazzurro_icaruswings:block/amphora_upper"
+    }
+  }
+}
