@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "locusazzurro_icaruswings:block/elysian_soil",
+    "side": "locusazzurro_icaruswings:block/elysian_grass_block_side",
+    "top": "locusazzurro_icaruswings:block/elysian_grass_block_top"
+  }
+}
