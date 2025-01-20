@@ -4,7 +4,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
@@ -25,6 +27,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         stairsBlock(BlockRegistry.REFINED_BEESWAX_STAIRS.get(), blockLoc(BlockRegistry.REFINED_BEESWAX_BLOCK.get()));
         simpleBlock(BlockRegistry.CHISELED_REFINED_BEESWAX_BLOCK.get(), models().cubeColumn(name(BlockRegistry.CHISELED_REFINED_BEESWAX_BLOCK.get()), sideLoc(BlockRegistry.CHISELED_REFINED_BEESWAX_BLOCK.get()), endLoc(BlockRegistry.CHISELED_REFINED_BEESWAX_BLOCK.get())));
         simpleBlock(BlockRegistry.SMOOTH_REFINED_BEESWAX_BLOCK.get());
+        getVariantBuilder(BlockRegistry.FLAX_CROP.get()).forAllStates(blockState -> {
+            int age = blockState.getValue(CropBlock.AGE);
+            return ConfiguredModel.builder().modelFile(
+                    models().crop(name(BlockRegistry.FLAX_CROP.get()) + "_stage" + age, modLoc(BLOCK + name(BlockRegistry.FLAX_CROP.get()) + "_stage" + age)).renderType("cutout")).build();
+        });
     }
 
     private void existingModelBlock(Block block){
