@@ -1,0 +1,44 @@
+{
+  "parent": "locusazzurro_icaruswings:past/root",
+  "criteria": {
+    "has_amphora": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:amphora"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mead_pot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:mead_pot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.past.pottery.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:mead_pot"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.past.pottery.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_amphora",
+      "has_mead_pot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

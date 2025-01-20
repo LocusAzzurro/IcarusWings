@@ -1,0 +1,34 @@
+{
+  "parent": "locusazzurro_icaruswings:past/brew_mead",
+  "criteria": {
+    "has_philosopher_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:philosopher_stone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.past.philosopher_stone.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:philosopher_stone"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.past.philosopher_stone.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_philosopher_stone"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

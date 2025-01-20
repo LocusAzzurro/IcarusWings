@@ -1,0 +1,54 @@
+{
+  "parent": "locusazzurro_icaruswings:past/icarus_flight",
+  "criteria": {
+    "broke_wings": {
+      "conditions": {
+        "durability": {
+          "max": 0
+        },
+        "item": {
+          "items": "locusazzurro_icaruswings:golden_feather_wings"
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "position": {
+                  "y": {
+                    "min": 2222.0
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_durability_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.past.wings_falling_adv.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:golden_feather"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.past.wings_falling_adv.title"
+    }
+  },
+  "requirements": [
+    [
+      "broke_wings"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

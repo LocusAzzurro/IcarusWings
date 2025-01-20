@@ -1,0 +1,88 @@
+{
+  "parent": "locusazzurro_icaruswings:past/pottery",
+  "criteria": {
+    "has_golden_apple_mead": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:golden_apple_infused_mead"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_herbs_mead": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:herbs_infused_mead"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mead": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:mead"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_nether_mead": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:nether_infused_mead"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_void_mead": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:void_infused_mead"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_zephir_mead": {
+      "conditions": {
+        "items": [
+          {
+            "items": "locusazzurro_icaruswings:zephir_infused_mead"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.locusazzurro_icaruswings.past.brew_mead.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "locusazzurro_icaruswings:mead"
+    },
+    "title": {
+      "translate": "advancements.locusazzurro_icaruswings.past.brew_mead.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_mead",
+      "has_zephir_mead",
+      "has_nether_mead",
+      "has_void_mead",
+      "has_herbs_mead",
+      "has_golden_apple_mead"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
