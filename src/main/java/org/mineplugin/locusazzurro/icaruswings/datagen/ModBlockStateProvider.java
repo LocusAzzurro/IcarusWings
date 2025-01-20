@@ -61,7 +61,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
             ModelFile.ExistingModelFile modelUpper = models().getExistingFile(modLoc(BLOCK + "amphora_upper"));
             return ConfiguredModel.builder().modelFile(half == DoubleBlockHalf.LOWER ? modelLower : modelUpper).rotationY(axis == Direction.Axis.X ? 0 : 90).build();
         }, Amphora.TYPE);
-
+        existingModelBlock(BlockRegistry.GREEK_FIRE.get());
+        existingModelBlock(BlockRegistry.MELON.get());
     }
 
     private void existingModelBlock(Block block){
