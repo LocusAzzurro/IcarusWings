@@ -12,12 +12,11 @@ public class MathUtils {
 
     /**
      * Generates a set of equidistant points on unit sphere using fibonacci sphere algorithm
-     * @link https://stackoverflow.com/a/26127012
+     * @link <a href="https://stackoverflow.com/a/26127012">https://stackoverflow.com/a/26127012</a>
      * @param samples number of points
-     * @return ArrayList of points in Vector3d
+     * @return ArrayList of points in {@link org.joml.Vector3d}
      */
     public static List<Vector3d> fibonacciSphere(int samples){
-
         List<Vector3d> points = new ArrayList<>();
         double phi = Math.PI * (3.0d - Math.sqrt(5.0d));
         double theta,x,y,z,r;
@@ -32,6 +31,7 @@ public class MathUtils {
         return points;
     }
 
+    @SuppressWarnings("unused")
     public static List<Vector3f> fibonacciSphereFloat(int samples){
         List<Vector3d> pointsDouble = fibonacciSphere(samples);
         List<Vector3f> pointsFloat = new ArrayList<>();
@@ -58,11 +58,11 @@ public class MathUtils {
 
     /**
      * Generates a list of randomly sampled points in given radius
-     * @link https://stackoverflow.com/a/50746409
+     * @link <a href="https://stackoverflow.com/a/50746409">https://stackoverflow.com/a/50746409</a>
      * @param numPoints number of points
      * @param radius radius of the circle to sample points
      * @param random instance of RNG provider
-     * @return ArrayList of points in Vector3d with zero y value
+     * @return ArrayList of points in {@link org.joml.Vector3d} with zero y value
      */
     public static List<Vec3> randomPointsInCircle(int numPoints, double radius, RandomSource random){
         List<Vec3> points = new ArrayList<>();
@@ -109,7 +109,7 @@ public class MathUtils {
     /**
      * Generates a set of points on faces unit cube equally divided
      * @param subDivisions number of subdivisions (segments) for each side
-     * @return ArrayList of points in Vector3d
+     * @return ArrayList of points in {@link org.joml.Vector3d}
      */
     public static List<Vector3d> cubeMatrixFrame(int subDivisions){
         List<Vector3d> points = new ArrayList<>();

@@ -21,7 +21,7 @@ import java.util.List;
 @OnlyIn(Dist.CLIENT)
 public class SpearBakedModel implements BakedModel {
 
-    private BakedModel existingModel;
+    private final BakedModel existingModel;
 
     public SpearBakedModel(BakedModel existingModel) {
         this.existingModel = existingModel;

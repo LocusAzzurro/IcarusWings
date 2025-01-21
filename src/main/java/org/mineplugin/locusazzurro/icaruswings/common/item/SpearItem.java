@@ -135,8 +135,7 @@ public class SpearItem extends TieredItem{
 
     @Override
     public void releaseUsing(ItemStack itemStack, Level worldIn, LivingEntity livingIn, int charge) {
-        if (livingIn instanceof Player) {
-            Player playerIn = (Player)livingIn;
+        if (livingIn instanceof Player playerIn) {
             int i = this.getUseDuration(itemStack, livingIn) - charge;
             if (i >= 10) {
                 if (!worldIn.isClientSide){

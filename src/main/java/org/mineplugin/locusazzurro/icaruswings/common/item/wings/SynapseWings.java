@@ -21,7 +21,7 @@ public class SynapseWings extends AbstractWings implements IWingsExpandable {
 	private final double expansionFactor;
 	private final UnaryOperator<ItemAttributeModifiers> attributeModifiers;
 	private final WingsTypes type;
-
+	
 	public SynapseWings(WingsTypes type) {
 		this(type, SynapseWingsSpeedData.DEFAULT, DEFAULT_EXPANSION_FACTOR, UnaryOperator.identity());
 	}

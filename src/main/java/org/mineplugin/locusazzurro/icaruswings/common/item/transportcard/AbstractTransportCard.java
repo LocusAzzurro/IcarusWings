@@ -20,7 +20,7 @@ import java.util.List;
 
 public abstract class AbstractTransportCard extends Item {
 
-    private CardType type;
+    private final CardType type;
 
     public AbstractTransportCard(CardType type){
         super(new Item.Properties().rarity(Rarity.UNCOMMON));
@@ -34,13 +34,13 @@ public abstract class AbstractTransportCard extends Item {
     }
 
     protected static boolean canUseCard(Player playerIn){
-        switch (IcarusWingsConfig.TRANSPORT_CARD_PERMISSION_LEVEL.get()) {
-            case 0: return false;
-            case 1: return playerIn.hasPermissions(2);
-            case 2: return playerIn.isCreative() || playerIn.hasPermissions(2);
-            case 3: return true;
-        }
-        return false;
+        return switch (IcarusWingsConfig.TRANSPORT_CARD_PERMISSION_LEVEL.get()) {
+            case 0 -> false;
+            case 1 -> playerIn.hasPermissions(2);
+            case 2 -> playerIn.isCreative() || playerIn.hasPermissions(2);
+            case 3 -> true;
+            default -> false;
+        };
     }
 
     @Override

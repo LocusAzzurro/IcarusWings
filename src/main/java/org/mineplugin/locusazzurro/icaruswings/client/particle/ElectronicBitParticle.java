@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
 
 public class ElectronicBitParticle extends TextureSheetParticle {
 
-    private int phase;
+    private final int phase;
 
     public ElectronicBitParticle(ClientLevel world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(world, x, y, z, xSpeed, ySpeed, zSpeed);

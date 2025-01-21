@@ -33,7 +33,7 @@ public class TimeRiftExplosionParticle extends TextureSheetParticle {
             this.yd *= 0.95d;
             this.zd *= 0.95d;
             this.scale(1.3f);
-            this.alpha *= 0.95;
+            this.alpha *= 0.95f;
         }
     }
 

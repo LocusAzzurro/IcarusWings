@@ -87,8 +87,7 @@ public class TeleportTransportCard extends AbstractTransportCard{
 
     @Override
     public ItemStack finishUsingItem(ItemStack itemStack, Level worldIn, LivingEntity entityIn) {
-        if (!worldIn.isClientSide() && entityIn instanceof ServerPlayer){
-            ServerPlayer playerIn = (ServerPlayer) entityIn;
+        if (!worldIn.isClientSide() && entityIn instanceof ServerPlayer playerIn){
             if (!playerIn.hasDisconnected() && !playerIn.isSleeping()) {
 
                 GlobalPos dest = itemStack.get(DataComponentRegistry.TELEPORT_DESTINATION);
@@ -124,14 +123,13 @@ public class TeleportTransportCard extends AbstractTransportCard{
                     playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_teleport.error2"));
                     playerIn.getCooldowns().addCooldown(this, 20);
                 }
-                return itemStack;
             }
             else {
                 worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_FAIL.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_teleport.error3"));
                 playerIn.getCooldowns().addCooldown(this, 20);
-                return itemStack;
             }
+            return itemStack;
         }
 
         return itemStack;

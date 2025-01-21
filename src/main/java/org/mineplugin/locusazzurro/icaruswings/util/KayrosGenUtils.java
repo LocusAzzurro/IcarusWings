@@ -15,7 +15,7 @@ public class KayrosGenUtils {
 
     public final static BlockState[] palette = new BlockState[8];
     public static byte[] cubeTerrain = new byte[512];
-    private static PerlinNoise noise = PerlinNoise.create(new XoroshiroRandomSource(114514), IntStream.of(0, 1, 2));
+    private static final PerlinNoise NOISE = PerlinNoise.create(new XoroshiroRandomSource(114514), IntStream.of(0, 1, 2));
 
     static {
         palette[0] = Blocks.AIR.defaultBlockState();
@@ -51,7 +51,7 @@ public class KayrosGenUtils {
         for (int i = 0; i < map.length; i++){
             z = i / 8;
             x = i - z * 8;
-            v = Mth.clamp(4 + (int) Math.round(noise.getValue((xo + x)/10f, 64, (zo + z)/10f, 2.0d, 2.0d, true) * 10), 0 ,7);
+            v = Mth.clamp(4 + (int) Math.round(NOISE.getValue((xo + x)/10f, 64, (zo + z)/10f, 2.0d, 2.0d, true) * 10), 0 ,7);
             map[i] = (byte) v;
         }
         return map;

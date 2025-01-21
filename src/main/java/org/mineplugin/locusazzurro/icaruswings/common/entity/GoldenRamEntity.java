@@ -36,7 +36,6 @@ import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -51,7 +50,7 @@ public class GoldenRamEntity extends Animal implements IShearable {
 		super(entityType, worldIn);
 	}
 
-	@org.jetbrains.annotations.Nullable
+	@Nullable
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
 		return null;
@@ -64,7 +63,6 @@ public class GoldenRamEntity extends Animal implements IShearable {
 	}
 
 	@Override
-	@ParametersAreNonnullByDefault
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		this.setSheared(compound.getBoolean("Sheared"));
@@ -76,7 +74,6 @@ public class GoldenRamEntity extends Animal implements IShearable {
 	}
 
 	@Override
-	@ParametersAreNonnullByDefault
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("Sheared", this.isSheared());
@@ -124,7 +121,6 @@ public class GoldenRamEntity extends Animal implements IShearable {
 	protected SoundEvent getAmbientSound() {return SoundRegistry.GOLDEN_RAM_AMBIENT.get();}
 	
 	@Override
-	@ParametersAreNonnullByDefault
 	protected SoundEvent getHurtSound(DamageSource ds) {return SoundRegistry.GOLDEN_RAM_HURT.get();}
 	
 	@Override
@@ -154,8 +150,8 @@ public class GoldenRamEntity extends Animal implements IShearable {
 	}
 
 	@Override
-	public List<ItemStack> onSheared(Player player, ItemStack item, Level level, BlockPos pos) {
-		level.playSound(null, this, SoundRegistry.GOLDEN_RAM_SHEAR.get(), player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
+	public List<ItemStack> onSheared(@Nullable Player player, ItemStack item, Level level, BlockPos pos) {
+		level.playSound(null, this, SoundRegistry.GOLDEN_RAM_SHEAR.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 		if (!level.isClientSide) {
 			this.setSheared(true);
 			int i = 1 + this.random.nextInt(3);

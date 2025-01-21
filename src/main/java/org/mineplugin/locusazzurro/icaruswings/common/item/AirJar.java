@@ -26,7 +26,7 @@ import java.util.function.BiConsumer;
 
 public class AirJar extends Item {
 
-    private AirType type;
+    private final AirType type;
 
     public AirJar(AirType type) {
         super(new Properties().stacksTo(16));

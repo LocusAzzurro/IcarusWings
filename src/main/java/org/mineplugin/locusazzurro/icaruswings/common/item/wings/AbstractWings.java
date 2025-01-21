@@ -68,6 +68,7 @@ public abstract class AbstractWings extends ElytraItem {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public int getEnchantmentValue() {
 		return 15;
 	}

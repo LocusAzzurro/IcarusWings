@@ -1,7 +1,6 @@
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-@SuppressWarnings("unused")
-package org.mineplugin.locusazzurro.icaruswings.client.render.models;
+package org.mineplugin.locusazzurro.icaruswings.common.block.entity;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 

@@ -21,6 +21,7 @@ public interface ITickableBlockEntity<TYPE extends BlockEntity> {
      * @param <OTHER> getTicker提供的
      * @param <SELF> 自己
      */
+    @Nullable
     static <OTHER extends BlockEntity, SELF extends BlockEntity & ITickableBlockEntity<SELF>> BlockEntityTicker<SELF> getTicker(Level level, BlockEntityType<SELF> type, BlockEntityType<OTHER> current) {
         return level.isClientSide ? null : createTickerHelper(type, current, ITickableBlockEntity::tick);
     }

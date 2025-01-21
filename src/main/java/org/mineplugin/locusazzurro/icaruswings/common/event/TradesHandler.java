@@ -14,6 +14,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
+import org.jetbrains.annotations.NotNull;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
 import java.util.Arrays;
@@ -106,7 +107,7 @@ public class TradesHandler {
 		}
 
 		@Override
-		public MerchantOffer getOffer(Entity p_221182_1_, RandomSource p_221182_2_) {
+		public MerchantOffer getOffer(@NotNull Entity entity, @NotNull RandomSource random) {
 			return new MerchantOffer(
 					new ItemCost(Items.EMERALD, this.emeraldCost),
 					new ItemStack(this.itemStack.get().getItem(), this.numberOfItems), 

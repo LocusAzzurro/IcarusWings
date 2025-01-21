@@ -49,9 +49,8 @@ public class Mead extends Item {
 	public ItemStack finishUsingItem(ItemStack stackIn, Level worldIn, LivingEntity entityIn) {
 		Infusion type =((Mead)stackIn.getItem()).infusionType;
 		super.finishUsingItem(stackIn, worldIn, entityIn);
-		if (entityIn instanceof ServerPlayer) {
-			ServerPlayer serverplayerentity = (ServerPlayer) entityIn;
-			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, stackIn);
+		if (entityIn instanceof ServerPlayer serverplayerentity) {
+            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, stackIn);
 			serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
 		}
 
@@ -98,7 +97,7 @@ public class Mead extends Item {
 		if (stackIn.isEmpty()) {
 			return new ItemStack(ItemRegistry.GLASS_JAR.get());
 		} else {
-			if (entityIn instanceof Player player && !((Player) entityIn).getAbilities().instabuild) {
+			if (entityIn instanceof Player player && !player.getAbilities().instabuild) {
 				ItemStack itemstack = new ItemStack(ItemRegistry.GLASS_JAR.get());
                 ItemHandlerHelper.giveItemToPlayer(player, itemstack);
 			}
@@ -201,7 +200,7 @@ public class Mead extends Item {
 		NONE("none"),ZEPHIR("zephir"),NETHER("nether"),VOID("void"),
 		GOLDEN_APPLE("golden_apple"),GOLDEN_APPLE_GROWTH("golden_apple_growth"),HERBS("herbs");
 
-		private String name;
+		private final String name;
 
 		Infusion(String name) {this.name = name;}
 		@Override
