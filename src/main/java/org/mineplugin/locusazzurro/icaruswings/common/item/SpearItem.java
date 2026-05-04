@@ -1,12 +1,10 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -14,24 +12,29 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TieredItem;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.Tool;
+import net.minecraft.world.item.component.Weapon;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
-import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.SpearItemStackTileEntityRenderer;
+import net.minecraft.server.level.ServerLevel;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.SpearEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.DataComponentRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.tags.BlockTags;
 
-import java.util.function.Consumer;
+import java.util.List;
 
-public class SpearItem extends TieredItem{
+public class SpearItem extends Item {
 
+    private final ToolMaterial material;
     private final float attackDamage;
     private final float attackSpeed;
     private final float attackRange;
@@ -39,60 +42,70 @@ public class SpearItem extends TieredItem{
     private static final float BASE_ATTACK_SPEED = -2.5f;
     private static final float BASE_ATTACK_RANGE = 1.5f;
 
-    public SpearItem(Tier tier) {
-        super(tier, new Properties());
-        this.attackDamage = BASE_DAMAGE + tier.getAttackDamageBonus();
+    public SpearItem(ToolMaterial material, Properties properties) {
+        super(material.applyToolProperties(properties, BlockTags.MINEABLE_WITH_PICKAXE, BASE_DAMAGE, BASE_ATTACK_SPEED, 0.0F)
+            .component(
+                DataComponents.TOOL,
+                new Tool(
+                    List.of(
+                        Tool.Rule.deniesDrops(BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.BLOCK).getOrThrow(material.incorrectBlocksForDrops())),
+                        Tool.Rule.minesAndDrops(BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.BLOCK).getOrThrow(BlockTags.MINEABLE_WITH_PICKAXE), material.speed())
+                    ),
+                    1.5F,
+                    1,
+                    true
+                )
+            )
+            .attributes(
+                ItemAttributeModifiers.builder()
+                    .add(
+                        Attributes.ATTACK_DAMAGE,
+                        new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID, BASE_DAMAGE + material.attackDamageBonus(), AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.MAINHAND
+                    )
+                    .add(
+                        Attributes.ATTACK_SPEED,
+                        new AttributeModifier(Item.BASE_ATTACK_SPEED_ID, BASE_ATTACK_SPEED, AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.MAINHAND
+                    )
+                    .add(
+                        Attributes.ENTITY_INTERACTION_RANGE,
+                        new AttributeModifier(net.minecraft.resources.Identifier.withDefaultNamespace("entity_interaction_range"), BASE_ATTACK_RANGE, AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.MAINHAND
+                    )
+                    .build()
+            )
+            .component(DataComponents.WEAPON, new Weapon(2))
+            .enchantable(material.enchantmentValue()));
+        this.material = material;
+        this.attackDamage = BASE_DAMAGE + material.attackDamageBonus();
         this.attackSpeed = BASE_ATTACK_SPEED;
         this.attackRange = BASE_ATTACK_RANGE;
-    }
-
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public ItemAttributeModifiers getDefaultAttributeModifiers() {
-        ItemAttributeModifiers defaultAttributeModifiers = super.getDefaultAttributeModifiers();
-        return defaultAttributeModifiers
-                .withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(ResourceLocation.withDefaultNamespace("attack_damage"), this.attackDamage, AttributeModifier.Operation.ADD_VALUE),
-                        EquipmentSlotGroup.MAINHAND)
-                .withModifierAdded(Attributes.ATTACK_SPEED, new AttributeModifier(ResourceLocation.withDefaultNamespace("attack_speed"), this.attackSpeed, AttributeModifier.Operation.ADD_VALUE),
-                        EquipmentSlotGroup.MAINHAND)
-                .withModifierAdded(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(ResourceLocation.withDefaultNamespace("entity_interaction_range"), this.attackRange, AttributeModifier.Operation.ADD_VALUE),
-                        EquipmentSlotGroup.MAINHAND);
     }
 
     public float getAttackDamage() {
         return this.attackDamage;
     }
 
-    public static float getBaseAttackDamage() {return BASE_DAMAGE;}
-
-    @Override
-    public int getEnchantmentValue() {
-        return this.getTier().getEnchantmentValue();
+    public static float getBaseAttackDamage() {
+        return BASE_DAMAGE;
     }
 
     @Override
-    public boolean canAttackBlock(BlockState p_195938_1_, Level p_195938_2_, BlockPos p_195938_3_, Player p_195938_4_) {
-        return !p_195938_4_.isCreative();
-    }
-
-    @Override
-    public float getDestroySpeed(ItemStack itemStack, BlockState blockState) {
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
         return 1.5f;
     }
 
     @Override
-    public boolean hurtEnemy(ItemStack itemStack, LivingEntity target, LivingEntity attacker) {
-        itemStack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
-        return true;
+    public void hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
     }
 
     @Override
-    public boolean mineBlock(ItemStack itemStack, Level worldIn, BlockState blockState, BlockPos pos, LivingEntity user) {
-        if (blockState.getDestroySpeed(worldIn, pos) != 0.0F) {
-            itemStack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
+    public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity user) {
+        if (state.getDestroySpeed(level, pos) != 0.0F) {
+            stack.hurtAndBreak(1, user, EquipmentSlot.MAINHAND);
         }
-
         return true;
     }
 
@@ -102,19 +115,8 @@ public class SpearItem extends TieredItem{
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack itemStack) {
-        return UseAnim.SPEAR;
-    }
-
-    @Override
-    @SuppressWarnings("removal")
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
-            public BlockEntityWithoutLevelRenderer getCustomRenderer()
-            {
-                return new SpearItemStackTileEntityRenderer();
-            }
-        });
+    public ItemUseAnimation getUseAnimation(ItemStack stack) {
+        return ItemUseAnimation.SPEAR;
     }
 
     @Override
@@ -123,53 +125,47 @@ public class SpearItem extends TieredItem{
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
-        ItemStack itemstack = playerIn.getItemInHand(handIn);
-        if (itemstack.getDamageValue() >= itemstack.getMaxDamage() - 1) {
-            return InteractionResultHolder.fail(itemstack);
-        } else {
-            playerIn.startUsingItem(handIn);
-            return InteractionResultHolder.consume(itemstack);
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        if (stack.getDamageValue() >= stack.getMaxDamage() - 1) {
+            return InteractionResult.FAIL;
         }
+        player.startUsingItem(hand);
+        return InteractionResult.CONSUME;
     }
 
     @Override
-    public void releaseUsing(ItemStack itemStack, Level worldIn, LivingEntity livingIn, int charge) {
-        if (livingIn instanceof Player playerIn) {
-            int i = this.getUseDuration(itemStack, livingIn) - charge;
-            if (i >= 10) {
-                if (!worldIn.isClientSide){
-                    itemStack.hurtAndBreak(1, playerIn, EquipmentSlot.MAINHAND);
+    public boolean releaseUsing(ItemStack itemStack, Level level, LivingEntity livingEntity, int charge) {
+        if (livingEntity instanceof Player player) {
+            int used = this.getUseDuration(itemStack, livingEntity) - charge;
+            if (used >= 10) {
+                if (!level.isClientSide()) {
+                    itemStack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
                 }
-                SpearEntity spearEntity = new SpearEntity(worldIn, playerIn, itemStack);
-                spearEntity.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0F, 2.5F, 1.0F);
-                if (playerIn.getAbilities().instabuild) {
+                SpearEntity spearEntity = new SpearEntity(level, player, itemStack);
+                spearEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 2.5F, 1.0F);
+                if (player.getAbilities().instabuild) {
                     spearEntity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                 }
 
-                worldIn.addFreshEntity(spearEntity);
-                worldIn.playSound(null, spearEntity, SoundRegistry.SPEAR_THROW.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                if (!playerIn.getAbilities().instabuild) {
-                    playerIn.getInventory().removeItem(itemStack);
+                level.addFreshEntity(spearEntity);
+                level.playSound(null, spearEntity, SoundRegistry.SPEAR_THROW.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                if (!player.getAbilities().instabuild) {
+                    player.getInventory().removeItem(itemStack);
                 }
+                player.awardStat(Stats.ITEM_USED.get(this));
+                return true;
             }
-            playerIn.awardStat(Stats.ITEM_USED.get(this));
-
         }
+        return false;
     }
 
     @Override
-    public void inventoryTick(ItemStack itemStack, Level worldIn, Entity entityIn, int inventorySlot, boolean isSelected){
-        if (entityIn instanceof LivingEntity && isSelected){
-            if (((LivingEntity) entityIn).isUsingItem()){
-                itemStack.set(DataComponentRegistry.THROWING, true);
-            }
-            else {
-                itemStack.set(DataComponentRegistry.THROWING, false);
-            }
+    public void inventoryTick(ItemStack stack, ServerLevel level, Entity entity, EquipmentSlot slot) {
+        if (entity instanceof LivingEntity living && slot == EquipmentSlot.MAINHAND) {
+            stack.set(DataComponentRegistry.THROWING, living.isUsingItem());
         }
     }
-
-
 }
+
 

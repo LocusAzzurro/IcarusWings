@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "item": "locusazzurro_icaruswings:glass_jar"
-    },
-    "E": {
-      "item": "locusazzurro_icaruswings:void_essence"
-    }
+    "B": "locusazzurro_icaruswings:glass_jar",
+    "E": "locusazzurro_icaruswings:void_essence"
   },
   "pattern": [
     " B ",

@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "L": {
-      "item": "locusazzurro_icaruswings:linen"
-    }
+    "L": "locusazzurro_icaruswings:linen"
   },
   "pattern": [
     "L L",
@@ -12,7 +10,6 @@
     "LLL"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:linen_cloak"
   }
 }

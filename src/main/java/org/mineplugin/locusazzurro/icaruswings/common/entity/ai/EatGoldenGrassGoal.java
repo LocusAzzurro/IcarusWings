@@ -7,6 +7,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
+import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.event.EventHooks;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
@@ -71,7 +72,7 @@ public class EatGoldenGrassGoal extends Goal {
         if (this.eatAnimationTick == 4) {
             BlockPos mobPos = this.mob.blockPosition();
             if (IS_GOLDEN_GRASS.test(this.level.getBlockState(mobPos))) {
-                if (EventHooks.canEntityGrief(this.level, this.mob)) {
+                if (this.level instanceof ServerLevel serverLevel && EventHooks.canEntityGrief(serverLevel, this.mob)) {
                     this.level.destroyBlock(mobPos, false);
                 }
 
@@ -79,7 +80,7 @@ public class EatGoldenGrassGoal extends Goal {
             } else {
                 BlockPos mobPosBelow = mobPos.below();
                 if (this.level.getBlockState(mobPosBelow).is(this.eatBlock)) {
-                    if (EventHooks.canEntityGrief(this.level, this.mob)) {
+                    if (this.level instanceof ServerLevel serverLevel && EventHooks.canEntityGrief(serverLevel, this.mob)) {
                         this.level.levelEvent(2001, mobPosBelow, Block.getId(this.eatBlock.defaultBlockState()));
                         this.level.setBlock(mobPosBelow, this.eatenBlock.defaultBlockState(), 2);
                     }

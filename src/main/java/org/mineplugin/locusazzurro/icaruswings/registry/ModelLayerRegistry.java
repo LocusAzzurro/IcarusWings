@@ -3,9 +3,13 @@ package org.mineplugin.locusazzurro.icaruswings.registry;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
-import org.mineplugin.locusazzurro.icaruswings.client.render.models.*;
+import org.mineplugin.locusazzurro.icaruswings.client.render.models.ArtemisMissileModel;
+import org.mineplugin.locusazzurro.icaruswings.client.render.models.GoldenRamFleeceModel;
+import org.mineplugin.locusazzurro.icaruswings.client.render.models.GoldenRamModel;
+import org.mineplugin.locusazzurro.icaruswings.client.render.models.SpearModel;
+import org.mineplugin.locusazzurro.icaruswings.client.render.models.TimeBombModel;
 
 import java.util.Map;
 
@@ -30,7 +34,7 @@ public class ModelLayerRegistry {
     }
 
     private static ModelLayerLocation register(String pPath){
-        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MOD_ID, pPath), "main");
+        return new ModelLayerLocation(Identifier.fromNamespaceAndPath(MOD_ID, pPath), "main");
     }
 
 }

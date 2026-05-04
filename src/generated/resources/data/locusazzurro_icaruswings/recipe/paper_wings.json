@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "F": {
-      "item": "minecraft:paper"
-    },
-    "P": {
-      "tag": "minecraft:planks"
-    },
-    "W": {
-      "item": "minecraft:stick"
-    }
+    "F": "minecraft:paper",
+    "P": "#minecraft:planks",
+    "W": "minecraft:stick"
   },
   "pattern": [
     "WPW",
@@ -18,7 +12,6 @@
     "F F"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:paper_wings"
   }
 }

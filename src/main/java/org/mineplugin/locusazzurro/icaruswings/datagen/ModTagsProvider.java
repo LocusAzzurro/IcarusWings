@@ -7,26 +7,27 @@ import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.trading.VillagerTrade;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ItemTagsProvider;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModEnchantments;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModTags;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModVillagerTrades;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.DamageTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
-import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 public class ModTagsProvider {
 
     public static class ModItemTagsProvider extends ItemTagsProvider {
 
-        public ModItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, TagsProvider<Block> blockTagProvider, ExistingFileHelper existingFileHelper) {
-            super(output, lookupProvider, blockTagProvider.contentsGetter(), DataGenerators.MOD_ID, existingFileHelper);
+        public ModItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+            super(output, lookupProvider, DataGenerators.MOD_ID);
         }
 
         @Override
@@ -41,7 +42,11 @@ public class ModTagsProvider {
             tag(ModTags.HERBS)
                     .addTag(ItemTags.SMALL_FLOWERS)
                     .remove(Items.WITHER_ROSE)
-                    .addTag(ItemTags.TALL_FLOWERS)
+                    .add(Items.SUNFLOWER)
+                    .add(Items.LILAC)
+                    .add(Items.ROSE_BUSH)
+                    .add(Items.PEONY)
+                    .add(Items.PITCHER_PLANT)
                     .addTag(ItemTags.SAPLINGS)
                     .add(Items.FERN)
                     .add(Items.SEA_PICKLE)
@@ -100,7 +105,15 @@ public class ModTagsProvider {
                     .add(ItemRegistry.CHAOS_WINGS.get())
                     .add(ItemRegistry.HIYORI_WINGS.get())
                     .add(ItemRegistry.MELAN_WINGS.get());
-            tag(ItemTags.SWORD_ENCHANTABLE)
+            tag(ItemTags.SWEEPING_ENCHANTABLE)
+                    .add(ItemRegistry.WOODEN_SPEAR.get())
+                    .add(ItemRegistry.STONE_SPEAR.get())
+                    .add(ItemRegistry.IRON_SPEAR.get())
+                    .add(ItemRegistry.GOLDEN_SPEAR.get())
+                    .add(ItemRegistry.DIAMOND_SPEAR.get())
+                    .add(ItemRegistry.NETHERITE_SPEAR.get())
+                    .add(ItemRegistry.SYNAPSE_ALLOY_SPEAR.get());
+            tag(ItemTags.MELEE_WEAPON_ENCHANTABLE)
                     .add(ItemRegistry.WOODEN_SPEAR.get())
                     .add(ItemRegistry.STONE_SPEAR.get())
                     .add(ItemRegistry.IRON_SPEAR.get())
@@ -122,8 +135,8 @@ public class ModTagsProvider {
 
     public static class ModBlockTagsProvider extends BlockTagsProvider {
 
-        public ModBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @org.jetbrains.annotations.Nullable ExistingFileHelper helper) {
-            super(output, lookupProvider, DataGenerators.MOD_ID, helper);
+        public ModBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+            super(output, lookupProvider, DataGenerators.MOD_ID);
         }
 
         @Override
@@ -160,8 +173,8 @@ public class ModTagsProvider {
     public static class ModFluidTagsProvider extends FluidTagsProvider{
 
 
-        public ModFluidTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, @Nullable ExistingFileHelper existingFileHelper) {
-            super(output, provider, IcarusWings.MOD_ID, existingFileHelper);
+        public ModFluidTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+            super(output, provider, IcarusWings.MOD_ID);
         }
         @Override
         protected void addTags(HolderLookup.Provider provider) {
@@ -172,8 +185,8 @@ public class ModTagsProvider {
 
     public static class ModDamageTagsProvider extends DamageTypeTagsProvider {
 
-        public ModDamageTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, @Nullable ExistingFileHelper fh) {
-            super(output, provider, IcarusWings.MOD_ID, fh);
+        public ModDamageTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+            super(output, provider, IcarusWings.MOD_ID);
         }
 
         @Override
@@ -185,8 +198,8 @@ public class ModTagsProvider {
 
     public static class ModEnchantmentTagsProvider extends EnchantmentTagsProvider {
 
-        public ModEnchantmentTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, @Nullable ExistingFileHelper fh) {
-            super(output, provider, IcarusWings.MOD_ID, fh);
+        public ModEnchantmentTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+            super(output, provider, IcarusWings.MOD_ID);
         }
 
         @Override
@@ -194,6 +207,52 @@ public class ModTagsProvider {
             tag(EnchantmentTags.NON_TREASURE)
                     .add(ModEnchantments.COLLISION_PROTECTION)
                     .add(ModEnchantments.PYROTECHNIC_AFFINITY);
+        }
+    }
+
+    public static class ModVillagerTradeTagsProvider extends KeyTagProvider<VillagerTrade> {
+
+        public ModVillagerTradeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+            super(output, net.minecraft.core.registries.Registries.VILLAGER_TRADE, lookupProvider, DataGenerators.MOD_ID);
+        }
+
+        @Override
+        protected void addTags(HolderLookup.Provider provider) {
+            tag(VillagerTradeTags.FARMER_LEVEL_2)
+                    .add(ModVillagerTrades.FLAX_SEEDS);
+
+            tag(VillagerTradeTags.LEATHERWORKER_LEVEL_2)
+                    .add(ModVillagerTrades.LINEN);
+
+            tag(VillagerTradeTags.SHEPHERD_LEVEL_4)
+                    .add(ModVillagerTrades.GOLDEN_FLEECE);
+
+            tag(VillagerTradeTags.MASON_LEVEL_2)
+                    .add(ModVillagerTrades.AMPHORA);
+
+            tag(VillagerTradeTags.FLETCHER_LEVEL_3)
+                    .add(ModVillagerTrades.RED_FEATHER)
+                    .add(ModVillagerTrades.BLUE_FEATHER)
+                    .add(ModVillagerTrades.CYAN_FEATHER)
+                    .add(ModVillagerTrades.GREEN_FEATHER)
+                    .add(ModVillagerTrades.GRAY_FEATHER);
+
+            tag(VillagerTradeTags.WEAPONSMITH_LEVEL_5)
+                    .add(ModVillagerTrades.GREEK_FIRE_BUCKET);
+
+            tag(VillagerTradeTags.WANDERING_TRADER_UNCOMMON)
+                    .add(ModVillagerTrades.ZEPHIR_ESSENCE)
+                    .add(ModVillagerTrades.AMPHORA)
+                    .add(ModVillagerTrades.GOLDEN_FEATHER)
+                    .add(ModVillagerTrades.ANEMONE)
+                    .add(ModVillagerTrades.GREEK_FIRE_BUCKET);
+
+            tag(VillagerTradeTags.WANDERING_TRADER_COMMON)
+                    .add(ModVillagerTrades.RED_FEATHER)
+                    .add(ModVillagerTrades.BLUE_FEATHER)
+                    .add(ModVillagerTrades.CYAN_FEATHER)
+                    .add(ModVillagerTrades.GREEN_FEATHER)
+                    .add(ModVillagerTrades.GRAY_FEATHER);
         }
     }
 }

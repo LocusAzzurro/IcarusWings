@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "D": {
-      "item": "locusazzurro_icaruswings:daedalus_decryptor"
-    },
-    "M": {
-      "item": "locusazzurro_icaruswings:magma_ingot"
-    },
-    "P": {
-      "item": "locusazzurro_icaruswings:purpur_ingot"
-    },
-    "R": {
-      "item": "locusazzurro_icaruswings:fallen_relic_propulsion"
-    }
+    "D": "locusazzurro_icaruswings:daedalus_decryptor",
+    "M": "locusazzurro_icaruswings:magma_ingot",
+    "P": "locusazzurro_icaruswings:purpur_ingot",
+    "R": "locusazzurro_icaruswings:fallen_relic_propulsion"
   },
   "pattern": [
     " M ",
@@ -21,7 +13,6 @@
     " D "
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:restored_fallen_relic_propulsion"
   }
 }

@@ -2,24 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "tag": "locusazzurro_icaruswings:herbs"
-    },
-    {
-      "tag": "locusazzurro_icaruswings:herbs"
-    },
-    {
-      "tag": "locusazzurro_icaruswings:herbs"
-    },
-    {
-      "tag": "locusazzurro_icaruswings:herbs"
-    },
-    {
-      "tag": "locusazzurro_icaruswings:crop_strings"
-    }
+    "#locusazzurro_icaruswings:herbs",
+    "#locusazzurro_icaruswings:herbs",
+    "#locusazzurro_icaruswings:herbs",
+    "#locusazzurro_icaruswings:herbs",
+    "#locusazzurro_icaruswings:crop_strings"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:herb_bunch"
   }
 }

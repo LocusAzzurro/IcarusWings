@@ -2,17 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "N": {
-      "item": "minecraft:nether_star"
-    },
-    "S": [
-      {
-        "tag": "c:ingots/steel"
-      },
-      {
-        "item": "locusazzurro_icaruswings:steel_ingot"
-      }
-    ]
+    "N": "minecraft:nether_star",
+    "S": {
+      "neoforge:ingredient_type": "neoforge:compound",
+      "children": [
+        "#c:ingots/steel",
+        "locusazzurro_icaruswings:steel_ingot"
+      ]
+    }
   },
   "pattern": [
     " S ",
@@ -20,7 +17,6 @@
     " S "
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:quantum_fuel"
   }
 }

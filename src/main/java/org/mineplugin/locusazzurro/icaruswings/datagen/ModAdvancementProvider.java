@@ -1,20 +1,24 @@
 package org.mineplugin.locusazzurro.icaruswings.datagen;
 
 import net.minecraft.advancements.*;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.criterion.*;
+import net.minecraft.core.ClientAsset;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.advancements.AdvancementProvider;
+import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.inventory.SlotRanges;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.AnyOfCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
-import net.neoforged.neoforge.common.data.AdvancementProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModTags;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 
@@ -29,15 +33,16 @@ public class ModAdvancementProvider extends AdvancementProvider {
 
     private static final String ROOT = "root";
 
-    public ModAdvancementProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, ExistingFileHelper existingFileHelper) {
-        super(output, registries, existingFileHelper, List.of(new ModAdvancementGenerator()));
+    public ModAdvancementProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+        super(output, registries, List.of(new ModAdvancementGenerator()));
     }
 
-    static class ModAdvancementGenerator implements AdvancementGenerator {
+    static class ModAdvancementGenerator implements AdvancementSubProvider {
 
         @Override
         @SuppressWarnings("unused")
-        public void generate(HolderLookup.Provider provider, Consumer<AdvancementHolder> consumer, ExistingFileHelper existingFileHelper) {
+        public void generate(HolderLookup.Provider provider, Consumer<AdvancementHolder> consumer) {
+            HolderLookup.RegistryLookup<Item> itemLookup = provider.lookupOrThrow(Registries.ITEM);
 
             AdvancementHolder PAST_ROOT = Advancement.Builder.advancement()
                     .display(makeDisplayInfo(Items.FEATHER, Category.PAST, ROOT, AdvancementType.TASK, true, false, false))
@@ -111,11 +116,11 @@ public class ModAdvancementProvider extends AdvancementProvider {
                     .display(makeDisplayInfo(Items.PEONY, Category.PAST, "wings_falling", AdvancementType.CHALLENGE, true, true, true))
                     .addCriterion("broke_wings", ItemDurabilityTrigger.TriggerInstance.changedDurability(
                             Optional.of(ContextAwarePredicate.create(
-                                    hasItemInInventoryCondition(Items.OXEYE_DAISY),
-                                    hasItemInInventoryCondition(Items.LILY_OF_THE_VALLEY),
-                                    hasItemInInventoryCondition(Items.PEONY)
+                                    hasItemInInventoryCondition(itemLookup, Items.OXEYE_DAISY),
+                                    hasItemInInventoryCondition(itemLookup, Items.LILY_OF_THE_VALLEY),
+                                    hasItemInInventoryCondition(itemLookup, Items.PEONY)
                             )),
-                            Optional.of(ItemPredicate.Builder.item().of(ItemRegistry.COLORED_FEATHER_WINGS.get()).build()),
+                            Optional.of(ItemPredicate.Builder.item().of(itemLookup, ItemRegistry.COLORED_FEATHER_WINGS.get()).build()),
                             MinMaxBounds.Ints.atMost(0)))
                     .rewards(AdvancementRewards.Builder.experience(50))
                     .save(consumer, modLoc("past/wings_falling").toString());
@@ -126,7 +131,7 @@ public class ModAdvancementProvider extends AdvancementProvider {
                             Optional.of(ContextAwarePredicate.create(
                                     LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
                                             EntityPredicate.Builder.entity().located(LocationPredicate.Builder.atYLocation(MinMaxBounds.Doubles.atLeast(2222f))).build()).build())),
-                            Optional.of(ItemPredicate.Builder.item().of(ItemRegistry.GOLDEN_FEATHER_WINGS.get()).build()),
+                            Optional.of(ItemPredicate.Builder.item().of(itemLookup, ItemRegistry.GOLDEN_FEATHER_WINGS.get()).build()),
                             MinMaxBounds.Ints.atMost(0)))
                     .rewards(AdvancementRewards.Builder.experience(100))
                     .save(consumer, modLoc("past/wings_falling_adv").toString());
@@ -138,7 +143,7 @@ public class ModAdvancementProvider extends AdvancementProvider {
             AdvancementHolder RESTORED_RELIC = Advancement.Builder.advancement()
                     .parent(FUTURE_ROOT)
                     .display(makeDisplayInfo(ItemRegistry.FALLEN_RELIC_CORE.get(), Category.FUTURE, "restored_relic", AdvancementType.TASK, true, true, false))
-                    .addCriterion("has_restored_relic", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModTags.RESTORED_FALLEN_RELICS)))
+                    .addCriterion("has_restored_relic", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(itemLookup, ModTags.RESTORED_FALLEN_RELICS)))
                     .save(consumer, modLoc("future/restored_relic").toString());
             AdvancementHolder SYNAPSE_WINGS = Advancement.Builder.advancement()
                     .parent(RESTORED_RELIC)
@@ -148,7 +153,7 @@ public class ModAdvancementProvider extends AdvancementProvider {
             AdvancementHolder SYNAPSE_ARMOR = Advancement.Builder.advancement()
                     .parent(RESTORED_RELIC)
                     .display(makeDisplayInfo(ItemRegistry.SYNAPSE_CHESTPLATE.get(), Category.FUTURE, "synapse_armor", AdvancementType.TASK, true, true, false))
-                    .addCriterion("has_armor", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModTags.SYNAPSE_ARMOR)))
+                    .addCriterion("has_armor", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(itemLookup, ModTags.SYNAPSE_ARMOR)))
                     .save(consumer, modLoc("future/synapse_armor").toString());
             AdvancementHolder ALL_FIRST_GEN_WINGS = Advancement.Builder.advancement()
                     .parent(SYNAPSE_WINGS)
@@ -198,31 +203,33 @@ public class ModAdvancementProvider extends AdvancementProvider {
         }
 
         private static DisplayInfo makeDisplayInfo(ItemLike display, Category category, String name, AdvancementType type, boolean showToast, boolean announceChat, boolean hidden){
-            Optional<ResourceLocation> bg = name.equals(ROOT) ? Optional.of(ResourceLocation.fromNamespaceAndPath(DataGenerators.MOD_ID, "textures/gui/advancements/backgrounds/" + category + ".png")) : Optional.empty();
-            return new DisplayInfo(display.asItem().getDefaultInstance(),
+            Optional<ClientAsset.ResourceTexture> bg = name.equals(ROOT)
+                    ? Optional.of(new ClientAsset.ResourceTexture(Identifier.fromNamespaceAndPath(DataGenerators.MOD_ID, "gui/advancements/backgrounds/" + category + "")))
+                    : Optional.empty();
+            return new DisplayInfo(new ItemStackTemplate(display.asItem()),
                     Component.translatable("advancements.locusazzurro_icaruswings." + category + "." + name + ".title"),
                     Component.translatable("advancements.locusazzurro_icaruswings." + category + "." + name + ".description"),
                     bg, type, showToast, announceChat, hidden);
         }
 
         @SuppressWarnings("ConstantConditions")
-        private static LootItemCondition hasItemInInventoryCondition(ItemLike item){
+        private static LootItemCondition hasItemInInventoryCondition(HolderLookup.RegistryLookup<Item> itemLookup, ItemLike item){
             return AnyOfCondition.anyOf(
                     LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
                             EntityPredicate.Builder.entity().slots(new SlotsPredicate(Map.of(SlotRanges.nameToIds("inventory.*"),
-                                    ItemPredicate.Builder.item().of(item).build()))).build()),
+                                    ItemPredicate.Builder.item().of(itemLookup, item).build()))).build()),
                     LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
                             EntityPredicate.Builder.entity().slots(new SlotsPredicate(Map.of(SlotRanges.nameToIds("hotbar.*"),
-                                    ItemPredicate.Builder.item().of(item).build()))).build()),
+                                    ItemPredicate.Builder.item().of(itemLookup, item).build()))).build()),
                     LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
                             EntityPredicate.Builder.entity().slots(new SlotsPredicate(Map.of(SlotRanges.nameToIds("weapon.*"),
-                                    ItemPredicate.Builder.item().of(item).build()))).build())
+                                    ItemPredicate.Builder.item().of(itemLookup, item).build()))).build())
             ).build();
         }
 
 
-        private static ResourceLocation modLoc(String path) {
-            return ResourceLocation.fromNamespaceAndPath(DataGenerators.MOD_ID, path);
+        private static Identifier modLoc(String path) {
+            return Identifier.fromNamespaceAndPath(DataGenerators.MOD_ID, path);
         }
 
         private enum Category implements Serializable {

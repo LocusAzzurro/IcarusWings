@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "A": {
-      "item": "locusazzurro_icaruswings:synapse_alloy_ingot"
-    },
-    "C": {
-      "item": "locusazzurro_icaruswings:transport_card_treasure"
-    },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
-    "X": {
-      "item": "minecraft:chest"
-    }
+    "A": "locusazzurro_icaruswings:synapse_alloy_ingot",
+    "C": "locusazzurro_icaruswings:transport_card_treasure",
+    "G": "minecraft:gold_ingot",
+    "X": "minecraft:chest"
   },
   "pattern": [
     "GXG",
@@ -26,7 +18,6 @@
         "loot_table": "locusazzurro_icaruswings:relic/treasure_card_relics"
       }
     },
-    "count": 1,
     "id": "locusazzurro_icaruswings:transport_card_treasure"
   }
 }

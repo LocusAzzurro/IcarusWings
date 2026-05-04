@@ -15,8 +15,8 @@ import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
 public class ElysianGrassBlock extends GrassBlock {
 
-    public ElysianGrassBlock() {
-        super(BlockBehaviour.Properties.of()
+    public ElysianGrassBlock(BlockBehaviour.Properties properties) {
+        super(properties
                 .randomTicks()
                 .strength(0.7F)
                 .sound(SoundType.GRASS)
@@ -29,8 +29,8 @@ public class ElysianGrassBlock extends GrassBlock {
         if (blockstate.getFluidState().getAmount() == 8) {
             return false;
         } else {
-            int i = LightEngine.getLightBlockInto(levelReader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(levelReader, blockpos));
-            return i < levelReader.getMaxLightLevel();
+            int i = LightEngine.getLightBlockInto(state, blockstate, Direction.UP, blockstate.getLightDampening());
+            return i < LightEngine.MAX_LEVEL;
         }
     }
 

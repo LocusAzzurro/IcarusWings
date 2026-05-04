@@ -1,6 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item.wings;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -11,12 +11,12 @@ import java.util.function.UnaryOperator;
 
 public class SynapseWingsModifiers {
 
-    private static final ResourceLocation ARMOR = registerSynapseWingsResourceLocation("armor_modifier");
-    private static final ResourceLocation ARMOR_TOUGHNESS = registerSynapseWingsResourceLocation("armor_toughness");
-    private static final ResourceLocation ATTACK_DAMAGE = registerSynapseWingsResourceLocation("attack_damage");
-    private static final ResourceLocation MAX_HEALTH = registerSynapseWingsResourceLocation("max_health");
-    private static final ResourceLocation KNOCKBACK_RESISTANCE = registerSynapseWingsResourceLocation("knockback_resistance");
-    private static final ResourceLocation MOVEMENT_SPEED = registerSynapseWingsResourceLocation("movement_speed");
+    private static final Identifier ARMOR = registerSynapseWingsIdentifier("armor_modifier");
+    private static final Identifier ARMOR_TOUGHNESS = registerSynapseWingsIdentifier("armor_toughness");
+    private static final Identifier ATTACK_DAMAGE = registerSynapseWingsIdentifier("attack_damage");
+    private static final Identifier MAX_HEALTH = registerSynapseWingsIdentifier("max_health");
+    private static final Identifier KNOCKBACK_RESISTANCE = registerSynapseWingsIdentifier("knockback_resistance");
+    private static final Identifier MOVEMENT_SPEED = registerSynapseWingsIdentifier("movement_speed");
 
     public static final UnaryOperator<ItemAttributeModifiers> ALPHA_MODIFIERS = attributes -> attributes
             .withModifierAdded(Attributes.ARMOR, new AttributeModifier(ARMOR, 5.0f, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.CHEST)
@@ -57,8 +57,8 @@ public class SynapseWingsModifiers {
             .withModifierAdded(Attributes.MOVEMENT_SPEED, new AttributeModifier(MOVEMENT_SPEED, 0.05f, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.CHEST);
 
 
-    private static ResourceLocation registerSynapseWingsResourceLocation(String modifierName){
-        return ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "synapse_wings_" + modifierName);
+    private static Identifier registerSynapseWingsIdentifier(String modifierName){
+        return Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "synapse_wings_" + modifierName);
     }
 
 }

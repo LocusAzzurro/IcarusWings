@@ -2,33 +2,34 @@ package org.mineplugin.locusazzurro.icaruswings.common.item;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.ConversionParams;
+import net.minecraft.world.entity.ConversionType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.sheep.Sheep;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModFoods;
 import org.mineplugin.locusazzurro.icaruswings.registry.*;
+import org.mineplugin.locusazzurro.icaruswings.util.InventoryHelper;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +38,20 @@ public class Mead extends Item {
 	private Infusion infusionType = null;
 	
 	public Mead() {
-		super(new Properties().food(ModFoods.MEAD).stacksTo(4));
+		this(new Properties().food(ModFoods.MEAD, Consumables.DEFAULT_DRINK).stacksTo(4));
+	}
+
+	public Mead(Properties properties) {
+		super(properties.food(ModFoods.MEAD, Consumables.DEFAULT_DRINK).stacksTo(4));
 	}
 	
 	public Mead(Infusion type) {
 		this();
+		this.infusionType = type;
+	}
+
+	public Mead(Infusion type, Properties properties) {
+		this(properties);
 		this.infusionType = type;
 	}
 	
@@ -54,29 +64,29 @@ public class Mead extends Item {
 			serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
 		}
 
-		if (!worldIn.isClientSide) {
+		if (!worldIn.isClientSide()) {
 			entityIn.removeEffect(MobEffects.POISON);
 			entityIn.removeEffect(MobEffects.WITHER);
 			entityIn.removeEffect(MobEffects.WEAKNESS);
-			entityIn.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 400, 0));
+			entityIn.addEffect(new MobEffectInstance(MobEffects.NAUSEA, 400, 0));
 			entityIn.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20, 0));
 			List<MobEffectInstance> extraEffect = new ArrayList<>();
 			if(type != null) {
                 switch (type) {
                     case ZEPHIR -> {
-                        extraEffect.add(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 2));
+                        extraEffect.add(new MobEffectInstance(MobEffects.SPEED, 1200, 2));
                         extraEffect.add(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
                     }
                     case NETHER -> {
                         extraEffect.add(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1200, 0));
-                        extraEffect.add(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1200, 0));
+                        extraEffect.add(new MobEffectInstance(MobEffects.STRENGTH, 1200, 0));
                     }
                     case VOID -> {
                         extraEffect.add(new MobEffectInstance(MobEffects.SLOW_FALLING, 1200, 1));
                         extraEffect.add(new MobEffectInstance(MobEffects.INVISIBILITY, 1200, 0));
                     }
                     case GOLDEN_APPLE, GOLDEN_APPLE_GROWTH -> {
-                        extraEffect.add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 1));
+                        extraEffect.add(new MobEffectInstance(MobEffects.RESISTANCE, 1200, 1));
                         extraEffect.add(new MobEffectInstance(MobEffects.HEALTH_BOOST, 1200, 1));
                     }
 					case HERBS -> {
@@ -99,7 +109,7 @@ public class Mead extends Item {
 		} else {
 			if (entityIn instanceof Player player && !player.getAbilities().instabuild) {
 				ItemStack itemstack = new ItemStack(ItemRegistry.GLASS_JAR.get());
-                ItemHandlerHelper.giveItemToPlayer(player, itemstack);
+                InventoryHelper.giveToPlayer(player, itemstack);
 			}
 
 			return stackIn;
@@ -112,24 +122,13 @@ public class Mead extends Item {
 	}
 
 	@Override
-	public UseAnim getUseAnimation(ItemStack p_77661_1_) {
-		return UseAnim.DRINK;
+	public ItemUseAnimation getUseAnimation(ItemStack p_77661_1_) {
+		return ItemUseAnimation.DRINK;
 	}
 
 	@Override
-	public SoundEvent getDrinkingSound() {
-		return SoundEvents.GENERIC_DRINK;
-	}
-
-	@Override
-	public SoundEvent getEatingSound() {
-		return SoundEvents.GENERIC_DRINK;
-	}
-
-	@Override
-	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
-		ItemUtils.startUsingInstantly(worldIn, playerIn, handIn);
-		return InteractionResultHolder.success(playerIn.getItemInHand(handIn));
+	public InteractionResult use(Level worldIn, Player playerIn, InteractionHand handIn) {
+		return ItemUtils.startUsingInstantly(worldIn, playerIn, handIn);
 	}
 
 	@Override
@@ -149,7 +148,7 @@ public class Mead extends Item {
 					BlockPos.withinManhattan(pos,1,1,1).forEach(p -> {
 						BlockState block1 = level.getBlockState(p);
 						BlockState blockUp = level.getBlockState(p.above());
-						if ((block1.is(Blocks.DIRT) || block1.is(Blocks.GRASS_BLOCK)) && blockUp.isAir() && level.random.nextFloat() < 0.4) {
+						if ((block1.is(Blocks.DIRT) || block1.is(Blocks.GRASS_BLOCK)) && blockUp.isAir() && level.getRandom().nextFloat() < 0.4) {
 							level.setBlock(p.above(), BlockRegistry.ELYSIAN_GRASS.get().defaultBlockState(), 3);
 						}
 						if (block1.is(Blocks.DIRT)) {
@@ -162,15 +161,20 @@ public class Mead extends Item {
 
 					AABB aabb = new AABB(pos).inflate(1);
 					List<Sheep> sheep = level.getEntitiesOfClass(Sheep.class, aabb);
-					if (!sheep.isEmpty()){
-						Sheep sheep1 = sheep.get(level.random.nextInt(sheep.size()));
-						sheep1.convertTo(EntityTypeRegistry.GOLDEN_RAM.get(), true);
+					if (!sheep.isEmpty()) {
+						Sheep sheep1 = sheep.get(level.getRandom().nextInt(sheep.size()));
+						sheep1.convertTo(
+								EntityTypeRegistry.GOLDEN_RAM.get(),
+								ConversionParams.single(sheep1, true, false),
+								EntitySpawnReason.CONVERSION,
+                                _ -> {}
+						);
 					}
 
 					if (!player.getAbilities().instabuild) {
 						item.shrink(1);
 						ItemStack itemstack = new ItemStack(ItemRegistry.GLASS_JAR.get());
-						ItemHandlerHelper.giveItemToPlayer(player, itemstack);
+						InventoryHelper.giveToPlayer(player, itemstack);
 					}
 				}
 				else {
@@ -185,13 +189,12 @@ public class Mead extends Item {
 								(rnd.nextFloat() - 0.5) / 4);
 					}
 				}
-				return InteractionResult.sidedSuccess(clientSide);
+				return clientSide ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
 			}
 		}
 		return InteractionResult.PASS;
 	}
 
-	@Nullable
 	public Infusion getInfusionType() {
 		return this.infusionType;
 	}

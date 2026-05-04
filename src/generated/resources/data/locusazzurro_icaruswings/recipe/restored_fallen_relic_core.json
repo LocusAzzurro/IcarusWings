@@ -2,27 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "D": {
-      "item": "locusazzurro_icaruswings:daedalus_decryptor"
-    },
-    "F": {
-      "item": "locusazzurro_icaruswings:golden_feather"
-    },
-    "M": {
-      "item": "locusazzurro_icaruswings:magma_ingot"
-    },
-    "N": {
-      "item": "locusazzurro_icaruswings:reforged_netherite_ingot"
-    },
-    "P": {
-      "item": "locusazzurro_icaruswings:purpur_ingot"
-    },
-    "R": {
-      "item": "locusazzurro_icaruswings:fallen_relic_core"
-    },
-    "S": {
-      "item": "locusazzurro_icaruswings:steel_ingot"
-    }
+    "D": "locusazzurro_icaruswings:daedalus_decryptor",
+    "F": "locusazzurro_icaruswings:golden_feather",
+    "M": "locusazzurro_icaruswings:magma_ingot",
+    "N": "locusazzurro_icaruswings:reforged_netherite_ingot",
+    "P": "locusazzurro_icaruswings:purpur_ingot",
+    "R": "locusazzurro_icaruswings:fallen_relic_core",
+    "S": "locusazzurro_icaruswings:steel_ingot"
   },
   "pattern": [
     "FPF",
@@ -30,7 +16,6 @@
     "NDN"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:restored_fallen_relic_core"
   }
 }

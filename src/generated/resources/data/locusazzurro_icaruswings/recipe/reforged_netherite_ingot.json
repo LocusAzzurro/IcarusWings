@@ -3,11 +3,8 @@
   "category": "misc",
   "cookingtime": 400,
   "experience": 0.5,
-  "ingredient": {
-    "item": "minecraft:netherite_ingot"
-  },
+  "ingredient": "minecraft:netherite_ingot",
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:reforged_netherite_ingot"
   }
 }

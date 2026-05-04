@@ -3,7 +3,7 @@ package org.mineplugin.locusazzurro.icaruswings.common.item;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -23,16 +23,20 @@ import java.util.function.Predicate;
 public class ArtemisLauncher extends ProjectileWeaponItem {
 
     public ArtemisLauncher(){
-        super(new Item.Properties().durability(400));
+        this(new Item.Properties().durability(400).repairable(ItemRegistry.SYNAPSE_REPAIR_KIT.get()));
+    }
+
+    public ArtemisLauncher(Item.Properties properties) {
+        super(properties.durability(400).repairable(ItemRegistry.SYNAPSE_REPAIR_KIT.get()));
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn){
+    public InteractionResult use(Level worldIn, Player playerIn, InteractionHand handIn){
         ItemStack item = playerIn.getItemInHand(handIn);
         ItemStack projectile = playerIn.getProjectile(item);
 
         if (!playerIn.getAbilities().instabuild && projectile.isEmpty()){
-            return InteractionResultHolder.pass(item);
+            return InteractionResult.PASS;
         }
 
         LivingEntity entity = ProjectileUtils.rayTraceTarget(playerIn, ProjectileUtils.IS_HOSTILE, 0.5f, 500, 2);
@@ -52,12 +56,7 @@ public class ArtemisLauncher extends ProjectileWeaponItem {
             }
         }
         playerIn.awardStat(Stats.ITEM_USED.get(this));
-        return InteractionResultHolder.success(item);
-    }
-
-    @Override
-    public boolean isValidRepairItem(ItemStack thisItem, ItemStack repairItem) {
-        return repairItem.getItem() == ItemRegistry.SYNAPSE_REPAIR_KIT.get() || super.isValidRepairItem(thisItem, repairItem);
+        return InteractionResult.SUCCESS;
     }
 
     public static final Predicate<ItemStack> ARTEMIS_MISSILE = (item) -> item.getItem().equals(ItemRegistry.ARTEMIS_MISSILE.get());

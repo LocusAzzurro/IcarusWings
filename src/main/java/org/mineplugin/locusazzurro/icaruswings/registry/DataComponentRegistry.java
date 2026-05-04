@@ -4,6 +4,7 @@ import net.minecraft.core.GlobalPos;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.util.Unit;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
@@ -18,6 +19,8 @@ public class DataComponentRegistry {
             register("speed", builder -> builder.networkSynchronized(ByteBufCodecs.DOUBLE));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> THROWING =
             register("throwing", builder -> builder.networkSynchronized(ByteBufCodecs.BOOL));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> ICARUS_GLIDER =
+            register("icarus_glider", builder -> builder.persistent(Unit.CODEC).networkSynchronized(Unit.STREAM_CODEC).cacheEncoding());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<GlobalPos>> TELEPORT_DESTINATION =
             register("destination", builder -> builder.persistent(GlobalPos.CODEC).networkSynchronized(GlobalPos.STREAM_CODEC).cacheEncoding());
 

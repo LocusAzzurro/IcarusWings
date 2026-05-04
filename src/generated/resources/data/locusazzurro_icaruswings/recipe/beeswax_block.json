@@ -2,16 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "locusazzurro_icaruswings:beeswax"
-    }
+    "#": "locusazzurro_icaruswings:beeswax"
   },
   "pattern": [
     "##",
     "##"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:beeswax_block"
   }
 }

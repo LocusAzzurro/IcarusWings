@@ -13,13 +13,12 @@ import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 
 public class ElysianGrass extends TallGrassBlock {
 
-    public ElysianGrass() {
-        super(BlockBehaviour.Properties.of()
-                .noCollission()
+    public ElysianGrass(BlockBehaviour.Properties properties) {
+        super(properties
+                .noCollision()
                 .instabreak()
                 .replaceable()
-                .sound(SoundType.GRASS)
-        );
+                .sound(SoundType.GRASS));
     }
 
     @Override

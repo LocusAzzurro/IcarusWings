@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "A": {
-      "item": "locusazzurro_icaruswings:void_air_jar"
-    },
-    "S": {
-      "item": "locusazzurro_icaruswings:philosopher_stone"
-    }
+    "A": "locusazzurro_icaruswings:void_air_jar",
+    "S": "locusazzurro_icaruswings:philosopher_stone"
   },
   "pattern": [
     "AAA",
@@ -15,7 +11,6 @@
     "AAA"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:void_essence"
   }
 }

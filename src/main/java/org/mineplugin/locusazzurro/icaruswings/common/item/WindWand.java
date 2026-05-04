@@ -5,21 +5,25 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
+import org.mineplugin.locusazzurro.icaruswings.util.InventoryHelper;
 
 public class WindWand extends Item {
 
     public WindWand() {
-        super(new Properties().durability(100));
+        this(new Properties().durability(100));
+    }
+
+    public WindWand(Properties properties) {
+        super(properties.durability(100));
     }
 
     @Override
@@ -28,18 +32,18 @@ public class WindWand extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
+    public InteractionResult use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         if (itemstack.getDamageValue() >= itemstack.getMaxDamage() - 1) {
-            return InteractionResultHolder.fail(itemstack);
+            return InteractionResult.FAIL;
         } else {
             playerIn.startUsingItem(handIn);
-            return InteractionResultHolder.consume(itemstack);
+            return InteractionResult.CONSUME;
         }
     }
 
     @Override
-    public void releaseUsing(ItemStack itemStack, Level worldIn, LivingEntity livingIn, int charge) {
+    public boolean releaseUsing(ItemStack itemStack, Level worldIn, LivingEntity livingIn, int charge) {
         if (livingIn instanceof Player playerIn) {
             if (playerIn.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof AirJar && itemStack.getDamageValue() > 0) {
                 ItemStack offhandStack = playerIn.getItemInHand(InteractionHand.OFF_HAND);
@@ -50,10 +54,11 @@ public class WindWand extends Item {
                 };
                 if (!playerIn.getAbilities().instabuild) {
                     offhandStack.shrink(1);
-                    ItemHandlerHelper.giveItemToPlayer(playerIn, new ItemStack(ItemRegistry.GLASS_JAR.get()));
+                    InventoryHelper.giveToPlayer(playerIn, new ItemStack(ItemRegistry.GLASS_JAR.get()));
                 }
                 worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundRegistry.AIR_JAR_EMPTY.get(), SoundSource.NEUTRAL, 0.5f, 0.6f);
                 itemStack.setDamageValue(Math.max(itemStack.getDamageValue() - repairAmount, 0));
+                return true;
             }
             else {
                 Vec3 lookVec = playerIn.getLookAngle();
@@ -68,17 +73,19 @@ public class WindWand extends Item {
                 }
                 else {
                     for(int j = 0; j < 10; j++){
-                        double xR = worldIn.random.nextGaussian() * 0.1;
-                        double yR = worldIn.random.nextGaussian() * 0.05;
-                        double zR = worldIn.random.nextGaussian() * 0.1;
+                        double xR = worldIn.getRandom().nextGaussian() * 0.1;
+                        double yR = worldIn.getRandom().nextGaussian() * 0.05;
+                        double zR = worldIn.getRandom().nextGaussian() * 0.1;
                         worldIn.addParticle(ParticleTypes.CLOUD, playerIn.getX(), playerIn.getY(), playerIn.getZ(), xR, yR, zR);
                     }
                 }
                 worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(),
                         SoundRegistry.WIND_WAND_BURST.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
                 playerIn.awardStat(Stats.ITEM_USED.get(this));
+                return true;
             }
         }
+        return false;
     }
 
 

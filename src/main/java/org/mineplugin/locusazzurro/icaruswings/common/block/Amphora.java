@@ -3,6 +3,8 @@ package org.mineplugin.locusazzurro.icaruswings.common.block;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
@@ -13,10 +15,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
@@ -36,12 +39,12 @@ public class Amphora extends BaseEntityBlock{
 
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final EnumProperty<ChestType> TYPE = BlockStateProperties.CHEST_TYPE;
-	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+	public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
 
-	public static final MapCodec<Amphora> CODEC = simpleCodec(properties -> new Amphora());
+	public static final MapCodec<Amphora> CODEC = simpleCodec(Amphora::new);
 
-	public Amphora() {
-		super(Properties.of()
+	public Amphora(BlockBehaviour.Properties properties) {
+		super(properties
 				.strength(1.5f, 6.0f)
 				.sound(SoundType.STONE)
 				.noOcclusion());
@@ -66,7 +69,7 @@ public class Amphora extends BaseEntityBlock{
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		BlockPos blockpos = context.getClickedPos();
-		if (blockpos.getY() < 255 && context.getLevel().getBlockState(blockpos.above()).canBeReplaced(context)) {
+		if (blockpos.getY() < context.getLevel().getMaxY() && context.getLevel().getBlockState(blockpos.above()).canBeReplaced(context)) {
 			return this.defaultBlockState()
 					.setValue(FACING, context.getHorizontalDirection())
 					.setValue(HALF, DoubleBlockHalf.LOWER);
@@ -103,19 +106,30 @@ public class Amphora extends BaseEntityBlock{
 	}
 
 	@Override
-	public BlockState updateShape(BlockState pState, Direction dirIn, BlockState pNeighborState, LevelAccessor worldIn, BlockPos pCurrentPos, BlockPos pNeighborPos) {
+	protected BlockState updateShape(
+			BlockState pState,
+			LevelReader worldIn,
+			ScheduledTickAccess ticks,
+			BlockPos pCurrentPos,
+			Direction dirIn,
+			BlockPos pNeighborPos,
+			BlockState pNeighborState,
+			RandomSource random
+	) {
 		DoubleBlockHalf doubleblockhalf = pState.getValue(HALF);
 		if (dirIn.getAxis() == Direction.Axis.Y && doubleblockhalf == DoubleBlockHalf.LOWER == (dirIn == Direction.UP)) {
 			return pNeighborState.is(this) && pNeighborState.getValue(HALF) != doubleblockhalf ? pState.setValue(FACING, pNeighborState.getValue(FACING)) : Blocks.AIR.defaultBlockState();
 		} 
 		else {
-			return doubleblockhalf == DoubleBlockHalf.LOWER && dirIn == Direction.DOWN && !pState.canSurvive(worldIn, pCurrentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(pState, dirIn, pNeighborState, worldIn, pCurrentPos, pNeighborPos);
+			return doubleblockhalf == DoubleBlockHalf.LOWER && dirIn == Direction.DOWN && !pState.canSurvive(worldIn, pCurrentPos)
+					? Blocks.AIR.defaultBlockState()
+					: super.updateShape(pState, worldIn, ticks, pCurrentPos, dirIn, pNeighborPos, pNeighborState, random);
 		}
 	}
 
 	@Override
 	public void playerDestroy(Level pLevel, Player pPlayer, BlockPos pPos, BlockState pState, @Nullable BlockEntity pBlockEntity, ItemStack pTool) {
-		if (!pLevel.isClientSide && pPlayer.isCreative()) {
+		if (!pLevel.isClientSide() && pPlayer.isCreative()) {
 			preventCreativeDropFromBottomPart(pLevel, pPos, pState, pPlayer);
 		}
 		super.playerDestroy(pLevel, pPlayer, pPos, pState,pBlockEntity, pTool);
@@ -128,12 +142,12 @@ public class Amphora extends BaseEntityBlock{
 	}
 	
 	@Override
-	public boolean hasAnalogOutputSignal(BlockState stateIn) {
+	protected boolean hasAnalogOutputSignal(BlockState stateIn) {
 		return (stateIn.getValue(HALF) == DoubleBlockHalf.LOWER);
 	}
 	
 	@Override
-	public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
+	protected int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos, Direction direction) {
 		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(pLevel.getBlockEntity(pPos));
 	}
 
@@ -150,7 +164,7 @@ public class Amphora extends BaseEntityBlock{
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-		if (level.isClientSide) {
+		if (level.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		}
 		else {
@@ -166,16 +180,21 @@ public class Amphora extends BaseEntityBlock{
 	}
 
 	@Override
-	public void onRemove(BlockState pState, Level levelIn, BlockPos pos, BlockState pNewState, boolean pIsMoving) {
-		if (!pState.is(pNewState.getBlock())) {
-			BlockEntity tileentity = levelIn.getBlockEntity(pos);
-			if (tileentity instanceof Container) {
-				Containers.dropContents(levelIn, pos, (Container) tileentity);
-				levelIn.updateNeighbourForOutputSignal(pos, this);
+	public BlockState playerWillDestroy(Level levelIn, BlockPos pos, BlockState state, Player player) {
+		if (!levelIn.isClientSide()) {
+			BlockPos basePos = state.getValue(HALF) == DoubleBlockHalf.UPPER ? pos.below() : pos;
+			BlockEntity tileentity = levelIn.getBlockEntity(basePos);
+			if (tileentity instanceof Container container) {
+				Containers.dropContents(levelIn, basePos, container);
+				levelIn.updateNeighbourForOutputSignal(basePos, this);
 			}
-
-			super.onRemove(pState, levelIn, pos, pNewState, pIsMoving);
 		}
+		return super.playerWillDestroy(levelIn, pos, state, player);
+	}
+
+	@Override
+	protected void affectNeighborsAfterRemoval(BlockState pState, ServerLevel levelIn, BlockPos pos, boolean pIsMoving) {
+		Containers.updateNeighboursAfterDestroy(pState, levelIn, pos);
 	}
 
 	protected static void preventCreativeDropFromBottomPart(Level level, BlockPos pos, BlockState state, Player player) {

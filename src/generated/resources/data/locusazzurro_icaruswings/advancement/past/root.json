@@ -23,12 +23,11 @@
   },
   "display": {
     "announce_to_chat": false,
-    "background": "locusazzurro_icaruswings:textures/gui/advancements/backgrounds/past.png",
+    "background": "locusazzurro_icaruswings:gui/advancements/backgrounds/past",
     "description": {
       "translate": "advancements.locusazzurro_icaruswings.past.root.description"
     },
     "icon": {
-      "count": 1,
       "id": "minecraft:feather"
     },
     "title": {

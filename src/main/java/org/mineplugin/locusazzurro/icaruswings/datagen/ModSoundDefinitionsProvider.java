@@ -1,19 +1,17 @@
 package org.mineplugin.locusazzurro.icaruswings.datagen;
 
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.data.SoundDefinition;
 import net.neoforged.neoforge.common.data.SoundDefinitionsProvider;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
-
-import java.util.function.Supplier;
 
 public class ModSoundDefinitionsProvider extends SoundDefinitionsProvider {
 
-    protected ModSoundDefinitionsProvider(PackOutput output, ExistingFileHelper helper) {
-        super(output, DataGenerators.MOD_ID, helper);
+    protected ModSoundDefinitionsProvider(PackOutput output) {
+        super(output, DataGenerators.MOD_ID);
     }
 
     @Override
@@ -174,16 +172,16 @@ public class ModSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound(mcLoc("random/fizz")));
     }
 
-    private void addSound(Supplier<SoundEvent> soundEvent, SoundDefinition.Sound... sounds){
-        add(soundEvent, definition().with(sounds).subtitle("subtitles." + soundEvent.get().getLocation().getPath()).replace(true));
+    private void addSound(DeferredHolder<SoundEvent, SoundEvent> soundEvent, SoundDefinition.Sound... sounds){
+        add(soundEvent.get(), definition().with(sounds).subtitle("subtitles." + soundEvent.get().location().getPath()).replace(true));
     }
 
-    private ResourceLocation modLoc(String name){
-        return ResourceLocation.fromNamespaceAndPath(DataGenerators.MOD_ID, name);
+    private Identifier modLoc(String name){
+        return Identifier.fromNamespaceAndPath(DataGenerators.MOD_ID, name);
     }
 
-    private ResourceLocation mcLoc(String name){
-        return ResourceLocation.withDefaultNamespace(name);
+    private Identifier mcLoc(String name){
+        return Identifier.withDefaultNamespace(name);
     }
 
 }

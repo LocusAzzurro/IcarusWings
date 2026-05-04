@@ -1,11 +1,11 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
@@ -34,23 +34,38 @@ public class Demeter extends ProjectileWeaponItem {
 
     private static final float ATTACK_DAMAGE = 1.0f;
     private static final float ATTACK_SPEED = -2.0f;
-    private static final ResourceLocation ATTACK_DAMAGE_ID = ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "demeter_attack_damage");
-    private static final ResourceLocation ATTACK_SPEED_ID = ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "demeter_attack_speed");
+    private static final Identifier ATTACK_DAMAGE_ID = Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "demeter_attack_damage");
+    private static final Identifier ATTACK_SPEED_ID = Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "demeter_attack_speed");
 
     public Demeter(){
-        super(new Item.Properties().durability(600).rarity(Rarity.RARE));
+        this(new Item.Properties());
+    }
+
+    public Demeter(Item.Properties properties){
+        super(properties
+                .durability(600)
+                .rarity(Rarity.RARE)
+                .repairable(ItemRegistry.SYNAPSE_REPAIR_KIT.get())
+                .attributes(ItemAttributeModifiers.builder()
+                        .add(Attributes.ATTACK_DAMAGE,
+                                new AttributeModifier(ATTACK_DAMAGE_ID, ATTACK_DAMAGE, AttributeModifier.Operation.ADD_VALUE),
+                                EquipmentSlotGroup.MAINHAND)
+                        .add(Attributes.ATTACK_SPEED,
+                                new AttributeModifier(ATTACK_SPEED_ID, ATTACK_SPEED, AttributeModifier.Operation.ADD_VALUE),
+                                EquipmentSlotGroup.MAINHAND)
+                        .build()));
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
+    public InteractionResult use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemStack = playerIn.getItemInHand(handIn);
         ItemStack charge = playerIn.getProjectile(itemStack);
         if (!playerIn.getAbilities().instabuild && charge.isEmpty()){
-            return InteractionResultHolder.pass(itemStack);
+            return InteractionResult.PASS;
         }
         if (!worldIn.isClientSide()) {
             KayrosBlastEntity particle = new KayrosBlastEntity(playerIn, worldIn,
-                    KayrosGenUtils.generateTerrainTagWithJitter(playerIn.getX(), playerIn.getZ(), worldIn.random, 32f));
+                    KayrosGenUtils.generateTerrainTagWithJitter(playerIn.getX(), playerIn.getZ(), worldIn.getRandom(), 32f));
             particle.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, 1.0f, 0.5f);
             particle.setNoGravity(true);
             worldIn.addFreshEntity(particle);
@@ -66,28 +81,17 @@ public class Demeter extends ProjectileWeaponItem {
             }
         }
         playerIn.awardStat(Stats.ITEM_USED.get(this));
-        playerIn.getCooldowns().addCooldown(this, 60);
-        return InteractionResultHolder.success(itemStack);
+        playerIn.getCooldowns().addCooldown(itemStack, 60);
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    public ItemAttributeModifiers getDefaultAttributeModifiers(ItemStack stack) {
-        return super.getDefaultAttributeModifiers(stack)
-                .withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_ID, ATTACK_DAMAGE, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-                .withModifierAdded(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_ID, ATTACK_SPEED, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
-    }
-
-    @Override
-    public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
+    public void hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
         pStack.hurtAndBreak(1, pAttacker, pAttacker.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
         InevitabilityEffect.addEffect(pTarget, 0);
-        pTarget.hurt(ModDamageSources.timeRift(pTarget.level(), pAttacker), 2.0f);
-        return true;
-    }
-
-    @Override
-    public boolean isValidRepairItem(ItemStack thisItem, ItemStack repairItem) {
-        return repairItem.getItem() == ItemRegistry.SYNAPSE_REPAIR_KIT.get() || super.isValidRepairItem(thisItem, repairItem);
+        if (pTarget.level() instanceof ServerLevel serverLevel) {
+            pTarget.hurtServer(serverLevel, ModDamageSources.timeRift(pTarget.level(), pAttacker), 2.0f);
+        }
     }
 
     public static final Predicate<ItemStack> DEMETER_CHARGE = (item) -> item.getItem().equals(ItemRegistry.DEMETER_CHARGE.get());

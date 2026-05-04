@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "C": {
-      "item": "locusazzurro_icaruswings:transport_card_base"
-    },
-    "E": {
-      "item": "minecraft:ender_pearl"
-    },
-    "Q": {
-      "item": "locusazzurro_icaruswings:quantum_fuel"
-    }
+    "C": "locusazzurro_icaruswings:transport_card_base",
+    "E": "minecraft:ender_pearl",
+    "Q": "locusazzurro_icaruswings:quantum_fuel"
   },
   "pattern": [
     "EQE",

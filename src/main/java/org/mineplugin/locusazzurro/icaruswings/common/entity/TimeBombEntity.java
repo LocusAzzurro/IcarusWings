@@ -1,7 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.common.entity;
 
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
@@ -16,6 +15,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModDamageSources;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
@@ -94,15 +95,14 @@ public class TimeBombEntity extends Entity {
 
 
     private void explode(){
-
         float r = this.range;
-        if (this.getAttachedTo() != null) {
+        if (this.level() instanceof ServerLevel serverLevel && this.getAttachedTo() != null) {
             Entity attachedTo = this.getAttachedTo();
             AABB aabb = new AABB(r, r, r, -r, -r, -r).move(attachedTo.position());
             List<LivingEntity> entities = attachedTo.level().getEntitiesOfClass(LivingEntity.class, aabb);
             DamageSource damagesource = ModDamageSources.timeRift(this.level(), attachedTo);
             for (LivingEntity entity : entities) {
-                entity.hurt(damagesource, this.damage);
+                entity.hurtServer(serverLevel, damagesource, this.damage);
             }
         }
         this.discard();
@@ -150,6 +150,11 @@ public class TimeBombEntity extends Entity {
     }
 
     @Override
+    public boolean hurtServer(ServerLevel level, DamageSource source, float damage) {
+        return false;
+    }
+
+    @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         builder.define(LIFE, 0);
         builder.define(MAX_LIFE, 0);
@@ -157,21 +162,21 @@ public class TimeBombEntity extends Entity {
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundTag nbt) {
-        if(nbt.hasUUID("Victim")){
-            this.attachedUUID = nbt.getUUID("Victim");
-        }
-        this.damage = nbt.getFloat("Damage");
-        this.range = nbt.getFloat("Range");
-        this.life = nbt.getInt("Life");
-        this.maxLife = nbt.getInt("MaxLife");
+    protected void readAdditionalSaveData(ValueInput nbt) {
+        nbt.getString("Victim").ifPresent(victim -> {
+            this.attachedUUID = UUID.fromString(victim);
+        });
+        this.damage = nbt.getFloatOr("Damage", this.damage);
+        this.range = nbt.getFloatOr("Range", this.range);
+        this.life = nbt.getIntOr("Life", this.life);
+        this.maxLife = nbt.getIntOr("MaxLife", this.maxLife);
+        this.entityData.set(LIFE, this.life);
+        this.entityData.set(MAX_LIFE, this.maxLife);
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundTag nbt) {
-        if(this.attachedUUID != null){
-            nbt.putUUID("Victim", this.attachedUUID);
-        }
+    protected void addAdditionalSaveData(ValueOutput nbt) {
+        nbt.putString("Victim", this.attachedUUID.toString());
         nbt.putFloat("Damage", this.damage);
         nbt.putFloat("Range", this.range);
         nbt.putInt("Life", this.life);

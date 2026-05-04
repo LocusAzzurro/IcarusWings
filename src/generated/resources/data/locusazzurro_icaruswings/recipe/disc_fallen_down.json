@@ -3,11 +3,8 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "minecraft:music_disc_13"
-  },
+  "ingredient": "minecraft:music_disc_13",
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:disc_fallen_down"
   }
 }

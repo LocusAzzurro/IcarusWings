@@ -1,12 +1,12 @@
 package org.mineplugin.locusazzurro.icaruswings.common.block.entity;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.mineplugin.locusazzurro.icaruswings.common.block.MeadPot;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockEntityTypeRegistry;
 
@@ -72,7 +72,7 @@ public class MeadPotBlockEntity extends BlockEntity implements ITickableBlockEnt
 	public void tick() {
 		Level world = this.level;
 		boolean needUpdate = false;
-		if (world != null && !world.isClientSide) {
+		if (world != null && !world.isClientSide()) {
 			int skyLight = this.level.getBrightness(LightLayer.SKY, this.getBlockPos().above());
 			if (this.isFermenting && (fermentationProgress < FERMENTATION_TIME) && skyLight > 13) {
 				fermentationProgress ++;
@@ -87,16 +87,16 @@ public class MeadPotBlockEntity extends BlockEntity implements ITickableBlockEnt
 	}
 
 	@Override
-	protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-		super.loadAdditional(tag, registries);
-		this.fermentationProgress = tag.getInt("FermentationProgress");
-		this.isFermenting = tag.getBoolean("Fermenting");
-		this.isComplete = tag.getBoolean("Complete");
+	protected void loadAdditional(ValueInput tag) {
+		super.loadAdditional(tag);
+		this.fermentationProgress = tag.getIntOr("FermentationProgress", 0);
+		this.isFermenting = tag.getBooleanOr("Fermenting", false);
+		this.isComplete = tag.getBooleanOr("Complete", false);
 	}
 
 	@Override
-	protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-		super.saveAdditional(tag, registries);
+	protected void saveAdditional(ValueOutput tag) {
+		super.saveAdditional(tag);
 		tag.putInt("FermentationProgress", this.fermentationProgress);
 		tag.putBoolean("Fermenting", this.isFermenting);
 		tag.putBoolean("Complete", this.isComplete);

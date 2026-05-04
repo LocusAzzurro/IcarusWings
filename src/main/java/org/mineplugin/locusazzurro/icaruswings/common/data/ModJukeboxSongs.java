@@ -1,13 +1,13 @@
 package org.mineplugin.locusazzurro.icaruswings.common.data;
 
-import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Util;
 import net.minecraft.world.item.JukeboxSong;
 import net.minecraft.world.item.JukeboxSongs;
 import net.minecraft.world.level.Level;
@@ -28,11 +28,11 @@ public class ModJukeboxSongs {
     }
 
     private static ResourceKey<JukeboxSong> key(String name) {
-        return ResourceKey.create(Registries.JUKEBOX_SONG, ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, name));
+        return ResourceKey.create(Registries.JUKEBOX_SONG, Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, name));
     }
 
     private static void register(BootstrapContext<JukeboxSong> context, ResourceKey<JukeboxSong> key, Holder<SoundEvent> soundEvent, int lengthInSeconds, int comparatorOutput) {
-        context.register(key, new JukeboxSong(soundEvent, Component.translatable(Util.makeDescriptionId("jukebox_song", key.location())), (float)lengthInSeconds, comparatorOutput));
+        context.register(key, new JukeboxSong(soundEvent, Component.translatable(Util.makeDescriptionId("jukebox_song", key.identifier())), (float)lengthInSeconds, comparatorOutput));
     }
 
     public static Holder<JukeboxSong> getHolder(Level level, ResourceKey<JukeboxSong> song) {

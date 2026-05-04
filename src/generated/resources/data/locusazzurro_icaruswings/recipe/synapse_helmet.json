@@ -2,19 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "A": {
-      "item": "locusazzurro_icaruswings:synapse_alloy_ingot"
-    },
-    "R": {
-      "item": "locusazzurro_icaruswings:restored_fallen_relic_interface"
-    }
+    "A": "locusazzurro_icaruswings:synapse_alloy_ingot",
+    "R": "locusazzurro_icaruswings:restored_fallen_relic_interface"
   },
   "pattern": [
     "ARA",
     "A A"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:synapse_helmet"
   }
 }

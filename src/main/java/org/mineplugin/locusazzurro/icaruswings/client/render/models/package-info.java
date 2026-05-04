@@ -1,8 +1,5 @@
-@MethodsReturnNonnullByDefault
-@ParametersAreNonnullByDefault
+@NullMarked
 @SuppressWarnings("unused")
 package org.mineplugin.locusazzurro.icaruswings.client.render.models;
 
-import net.minecraft.MethodsReturnNonnullByDefault;
-
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;

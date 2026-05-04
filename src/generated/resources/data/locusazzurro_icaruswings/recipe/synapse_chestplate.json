@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "A": {
-      "item": "locusazzurro_icaruswings:synapse_alloy_ingot"
-    },
-    "R": {
-      "item": "locusazzurro_icaruswings:restored_fallen_relic_offensive"
-    }
+    "A": "locusazzurro_icaruswings:synapse_alloy_ingot",
+    "R": "locusazzurro_icaruswings:restored_fallen_relic_offensive"
   },
   "pattern": [
     "A A",
@@ -15,7 +11,6 @@
     "AAA"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:synapse_chestplate"
   }
 }

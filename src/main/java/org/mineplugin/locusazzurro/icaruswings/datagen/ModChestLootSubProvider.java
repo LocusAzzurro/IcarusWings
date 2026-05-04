@@ -4,10 +4,10 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -62,12 +62,12 @@ public class ModChestLootSubProvider implements LootTableSubProvider {
         output.accept(main, LootTable.lootTable().withPool(
                 LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
                         .add(LootItem.lootTableItem(relicItem).setWeight(10))
-                        .add(LootItem.lootTableItem(ItemStack.EMPTY.getItem()).setWeight(90))
+                        .add(EmptyLootItem.emptyItem().setWeight(90))
         ));
         output.accept(alt, LootTable.lootTable().withPool(
                 LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
                         .add(LootItem.lootTableItem(relicItem).setWeight(1))
-                        .add(LootItem.lootTableItem(ItemStack.EMPTY.getItem()).setWeight(99))
+                        .add(EmptyLootItem.emptyItem().setWeight(99))
         ));
     }
 
@@ -76,7 +76,7 @@ public class ModChestLootSubProvider implements LootTableSubProvider {
     }
 
     public static ResourceKey<LootTable> key(String name) {
-        return ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, name));
+        return ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, name));
     }
 
 }

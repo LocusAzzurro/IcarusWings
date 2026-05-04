@@ -1,7 +1,4 @@
-@ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
+@NullMarked
 package org.mineplugin.locusazzurro.icaruswings.client.render.renderers;
 
-import net.minecraft.MethodsReturnNonnullByDefault;
-
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;

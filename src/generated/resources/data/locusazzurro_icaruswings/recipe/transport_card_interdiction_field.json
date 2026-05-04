@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "C": {
-      "item": "locusazzurro_icaruswings:transport_card_base"
-    },
-    "R": {
-      "item": "minecraft:comparator"
-    },
-    "W": {
-      "item": "minecraft:cobweb"
-    }
+    "C": "locusazzurro_icaruswings:transport_card_base",
+    "R": "minecraft:comparator",
+    "W": "minecraft:cobweb"
   },
   "pattern": [
     "WRW",
@@ -18,7 +12,6 @@
     "WRW"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:transport_card_interdiction_field"
   }
 }

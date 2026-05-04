@@ -2,18 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "F": {
-      "item": "locusazzurro_icaruswings:quantum_fuel"
-    },
-    "R": {
-      "item": "locusazzurro_icaruswings:synapse_repair_kit"
-    }
+    "F": "locusazzurro_icaruswings:quantum_fuel",
+    "R": "locusazzurro_icaruswings:synapse_repair_kit"
   },
   "pattern": [
     "FRF"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:synapse_wings_recharger"
   }
 }

@@ -2,18 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    {
-      "item": "minecraft:paper"
-    },
-    {
-      "tag": "c:feathers"
-    },
-    {
-      "item": "minecraft:ink_sac"
-    }
+    "minecraft:paper",
+    "#c:feathers",
+    "minecraft:ink_sac"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:daedalus_manuscript"
   }
 }

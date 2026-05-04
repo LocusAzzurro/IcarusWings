@@ -1,6 +1,5 @@
 package org.mineplugin.locusazzurro.icaruswings.common.entity;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
@@ -15,14 +14,14 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModDamageSources;
 import org.mineplugin.locusazzurro.icaruswings.common.item.SpearItem;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
@@ -70,14 +69,14 @@ public class SpearEntity extends AbstractArrow {
 
     @Override
     protected void onHitEntity(EntityHitResult ray) {
-        if (!level().isClientSide) {
+        if (this.level() instanceof ServerLevel serverLevel) {
             Entity target = ray.getEntity();
             float damage = ((SpearItem) this.getPickupItem().getItem()).getAttackDamage();
 
             Entity owner = this.getOwner();
             DamageSource damageSource = ModDamageSources.spear(this.level(), this, owner == null ? this : owner);
             this.dealtDamage = true;
-            if (target.hurt(damageSource, damage)) {
+            if (target.hurtServer(serverLevel, damageSource, damage)) {
                 if (target.getType() == EntityType.ENDERMAN) {
                     return;
                 }
@@ -85,7 +84,7 @@ public class SpearEntity extends AbstractArrow {
 
                 if (target instanceof LivingEntity targetLiving) {
                     if (owner instanceof LivingEntity) {
-                        EnchantmentHelper.doPostAttackEffects((ServerLevel) this.level(), targetLiving, damageSource);
+                        EnchantmentHelper.doPostAttackEffects(serverLevel, targetLiving, damageSource);
                     }
                     this.doPostHurtEffects(targetLiving);
                 }
@@ -104,7 +103,7 @@ public class SpearEntity extends AbstractArrow {
     @Override
     public void playerTouch(Player playerIn) {
         Entity owner = this.getOwner();
-        if (owner == null || owner.getUUID() == playerIn.getUUID()) {
+        if (owner == null || owner.getUUID().equals(playerIn.getUUID())) {
             super.playerTouch(playerIn);
         }
     }
@@ -128,20 +127,19 @@ public class SpearEntity extends AbstractArrow {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag nbt) {
+    protected void readAdditionalSaveData(ValueInput nbt) {
         super.readAdditionalSaveData(nbt);
-        if (nbt.contains("spear", 10)) {
-            var spear = ItemStack.parse(this.registryAccess(), nbt.getCompound("spear")).orElse(ItemStack.EMPTY);
+        nbt.read("spear", ItemStack.CODEC).ifPresent(spear -> {
             this.spearItem = spear;
             this.setSpearItemData(spear);
-        }
-        this.dealtDamage = nbt.getBoolean("dealt_damage");
+        });
+        this.dealtDamage = nbt.getBooleanOr("dealt_damage", false);
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag nbt) {
+    protected void addAdditionalSaveData(ValueOutput nbt) {
         super.addAdditionalSaveData(nbt);
-        nbt.put("spear", this.spearItem.save(this.registryAccess(), new CompoundTag()));
+        nbt.store("spear", ItemStack.CODEC, this.spearItem);
         nbt.putBoolean("dealt_damage", this.dealtDamage);
     }
 
@@ -152,14 +150,11 @@ public class SpearEntity extends AbstractArrow {
     public ItemStack getSpearItemData(){
         return this.entityData.get(SPEAR_ITEM);
     }
-
-    @OnlyIn(Dist.CLIENT)
     public boolean isFoil() {
         return this.getPickupItem().hasFoil();
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public boolean shouldRender(double p_145770_1_, double p_145770_3_, double p_145770_5_) {
         return true;
     }
@@ -170,4 +165,5 @@ public class SpearEntity extends AbstractArrow {
         return new ClientboundAddEntityPacket(this, p_entity, entity == null ? 0 : entity.getId());
     }
 }
+
 
