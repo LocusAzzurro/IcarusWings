@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "locusazzurro_icaruswings:linen"
+      }
+    ],
+    "humanoid_baby": [
+      {
+        "texture": "locusazzurro_icaruswings:linen"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "locusazzurro_icaruswings:linen"
+      }
+    ]
+  }
+}

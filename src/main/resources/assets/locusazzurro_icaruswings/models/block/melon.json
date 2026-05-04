@@ -3,7 +3,8 @@
   "model": "locusazzurro_icaruswings:models/block/melon.obj",
   "flip_v": true,
   "textures": {
-    "particle": "locusazzurro_icaruswings:block/melon_green"
+    "particle": "locusazzurro_icaruswings:block/melon_green",
+    "texture": "locusazzurro_icaruswings:block/melon"
   },
   "display": {
     "head": {

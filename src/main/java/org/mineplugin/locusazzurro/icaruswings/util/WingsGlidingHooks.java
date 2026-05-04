@@ -26,6 +26,9 @@ public final class WingsGlidingHooks {
         if (entity.onGround() || entity.isPassenger() || entity.hasEffect(MobEffects.LEVITATION)) {
             return false;
         }
+        if (entity instanceof Player player && player.getAbilities().flying) {
+            return false;
+        }
         for (EquipmentSlot slot : EquipmentSlot.VALUES) {
             ItemStack stack = entity.getItemBySlot(slot);
             if (canUseIcarusGlider(stack, slot)
@@ -38,14 +41,6 @@ public final class WingsGlidingHooks {
     }
 
     public static void icarusUpdateFallFlying(LivingEntity entity) {
-        if (!entity.isFallFlying()) {
-            if (entity instanceof Player player && canIcarusGlide(player)) {
-                player.startFallFlying();
-            } else {
-                return;
-            }
-        }
-
         entity.checkFallDistanceAccumulation();
 
         if (!entity.level().isClientSide()) {

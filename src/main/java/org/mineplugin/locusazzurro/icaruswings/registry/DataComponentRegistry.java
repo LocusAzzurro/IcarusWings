@@ -18,7 +18,7 @@ public class DataComponentRegistry {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Double>> SPEED_TRACKER =
             register("speed", builder -> builder.networkSynchronized(ByteBufCodecs.DOUBLE));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> THROWING =
-            register("throwing", builder -> builder.networkSynchronized(ByteBufCodecs.BOOL));
+            register("throwing", builder -> builder.networkSynchronized(ByteBufCodecs.BOOL).ignoreSwapAnimation());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> ICARUS_GLIDER =
             register("icarus_glider", builder -> builder.persistent(Unit.CODEC).networkSynchronized(Unit.STREAM_CODEC).cacheEncoding());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<GlobalPos>> TELEPORT_DESTINATION =

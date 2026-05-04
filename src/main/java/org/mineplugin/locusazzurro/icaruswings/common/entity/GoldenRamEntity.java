@@ -87,7 +87,8 @@ public class GoldenRamEntity extends Animal implements IShearable {
 		return LivingEntity.createLivingAttributes()
 				.add(Attributes.MAX_HEALTH, 18.0d)
 				.add(Attributes.MOVEMENT_SPEED, 0.27d)
-				.add(Attributes.FOLLOW_RANGE, 32d);
+				.add(Attributes.FOLLOW_RANGE, 32d)
+				.add(Attributes.TEMPT_RANGE, 10d);
 	}
 	
 	@Override

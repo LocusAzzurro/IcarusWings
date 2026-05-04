@@ -3,6 +3,6 @@
 newmtl Mat
 Ka 1 1 1
 Kd 0.08820000290871 0.62999999523163 0.27783000469208
-map_Kd locusazzurro_icaruswings:block/melon
+map_Kd #texture
 illum 7
 

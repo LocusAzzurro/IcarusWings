@@ -1,0 +1,10 @@
+{
+  "layers": {
+    "wings": [
+      {
+        "texture": "locusazzurro_icaruswings:philosopher_stone",
+        "use_player_texture": true
+      }
+    ]
+  }
+}

@@ -5,6 +5,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import org.mineplugin.locusazzurro.icaruswings.client.render.state.GoldenRamRenderState;
+
 public class GoldenRamFleeceModel extends QuadrupedModel<GoldenRamRenderState> {
 
     public GoldenRamFleeceModel(ModelPart pRoot) {

@@ -9,13 +9,15 @@ import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.FluidType;
-import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
 import org.joml.Vector4f;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 public class GreekFireFluidType extends FluidType {
+    public static final int TINT_COLOR = 0xFFF79059;
+    public static final Identifier FLUID_OVERLAY_TEXTURE = Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "block/greek_fire_still");
+    public static final Identifier RENDER_OVERLAY_TEXTURE = Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "textures/block/greek_fire_overlay.png");
 
     public GreekFireFluidType() {
         super(FluidType.Properties.create()
@@ -33,7 +35,7 @@ public class GreekFireFluidType extends FluidType {
         return new IClientFluidTypeExtensions() {
             @Override
             public Identifier getRenderOverlayTexture(Minecraft mc) {
-                return Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "textures/block/greek_fire_overlay.png");
+                return RENDER_OVERLAY_TEXTURE;
             }
 
             @Override
@@ -45,7 +47,7 @@ public class GreekFireFluidType extends FluidType {
                 float darkenWorldAmount,
                 Vector4f fluidFogColor
             ) {
-                int color = 0xFFF79059;
+                int color = TINT_COLOR;
                 fluidFogColor.set((color >> 16 & 0xFF) / 255F, (color >> 8 & 0xFF) / 255F, (color & 0xFF) / 255F, 1.0F);
             }
 
@@ -53,6 +55,9 @@ public class GreekFireFluidType extends FluidType {
             public void modifyFogRender(Camera camera, @Nullable FogEnvironment environment, float renderDistance, float partialTick, FogData fogData) {
                 fogData.environmentalStart = -8F;
                 fogData.environmentalEnd = Math.min(24F, renderDistance);
+
+//                fogData.renderDistanceStart = fogData.environmentalStart;
+//                fogData.renderDistanceEnd = fogData.environmentalEnd;
             }
         };
     }

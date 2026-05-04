@@ -19,7 +19,7 @@ public class PlayerFallFlyingMixin {
         if (!chest.has(DataComponentRegistry.ICARUS_GLIDER)) {
             return;
         }
-        if (!self.isFallFlying() && WingsGlidingHooks.canIcarusGlide(self) && !self.isInWater()) {
+        if (!self.isFallFlying() && !self.getAbilities().flying && WingsGlidingHooks.canIcarusGlide(self) && !self.isInWater()) {
             self.startFallFlying();
             cir.setReturnValue(true);
         } else {
