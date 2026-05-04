@@ -6,12 +6,13 @@ import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import org.jspecify.annotations.Nullable;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModConsumables;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModFoods;
 
 public class PhilosopherStone extends Item {
 
 	public PhilosopherStone(Item.Properties properties) {
-		super(properties.stacksTo(1).food(ModFoods.PHILOSOPHER_STONE));
+		super(properties.stacksTo(1).food(ModFoods.PHILOSOPHER_STONE, ModConsumables.PHILOSOPHER_STONE));
 	}
 
 	@Override

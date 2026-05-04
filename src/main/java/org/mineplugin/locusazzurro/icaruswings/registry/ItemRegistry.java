@@ -111,7 +111,7 @@ public class ItemRegistry {
     public static final DeferredHolder<Item, Item> GOLDEN_FLEECE = registerSimpleItem("golden_fleece");
     
     public static final DeferredHolder<Item, Item> LINEN = registerSimpleItem("linen");
-    public static final DeferredHolder<Item, Item> GRAINS_MEAL = ITEMS.registerSimpleItem("grains_meal", properties -> properties.food(ModFoods.GRAINS_MEAL));
+    public static final DeferredHolder<Item, Item> GRAINS_MEAL = ITEMS.registerSimpleItem("grains_meal", properties -> properties.food(ModFoods.GRAINS_MEAL).usingConvertsTo(Items.BOWL));
 
     public static final DeferredHolder<Item, Item> HERBAL_CROWN = ITEMS.registerItem("herbal_crown",
             properties -> new Item(properties.durability(ArmorType.HELMET.getDurability(1)).humanoidArmor(ArmorMaterialRegistry.HERBAL, ArmorType.HELMET)));
