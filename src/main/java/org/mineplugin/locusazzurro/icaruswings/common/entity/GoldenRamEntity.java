@@ -1,7 +1,6 @@
 package org.mineplugin.locusazzurro.icaruswings.common.entity;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
@@ -27,8 +26,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.common.IShearable;
 import org.jetbrains.annotations.Nullable;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.ai.EatGoldenGrassGoal;
@@ -63,9 +62,9 @@ public class GoldenRamEntity extends Animal implements IShearable {
 	}
 
 	@Override
-	public void readAdditionalSaveData(CompoundTag compound) {
-		super.readAdditionalSaveData(compound);
-		this.setSheared(compound.getBoolean("Sheared"));
+	protected void readAdditionalSaveData(ValueInput input) {
+		super.readAdditionalSaveData(input);
+		this.setSheared(input.getBooleanOr("Sheared", false));
     }
 
 	@Override
@@ -74,9 +73,9 @@ public class GoldenRamEntity extends Animal implements IShearable {
 	}
 
 	@Override
-	public void addAdditionalSaveData(CompoundTag compound) {
-		super.addAdditionalSaveData(compound);
-		compound.putBoolean("Sheared", this.isSheared());
+	protected void addAdditionalSaveData(ValueOutput output) {
+		super.addAdditionalSaveData(output);
+		output.putBoolean("Sheared", this.isSheared());
     }
 
 	@Override
@@ -152,9 +151,9 @@ public class GoldenRamEntity extends Animal implements IShearable {
 	@Override
 	public List<ItemStack> onSheared(@Nullable Player player, ItemStack item, Level level, BlockPos pos) {
 		level.playSound(null, this, SoundRegistry.GOLDEN_RAM_SHEAR.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-		if (!level.isClientSide) {
+		if (!level.isClientSide()) {
 			this.setSheared(true);
-			int i = 1 + this.random.nextInt(3);
+			int i = 1 + this.getRandom().nextInt(3);
 
 			List<ItemStack> items = new ArrayList<>();
 			for (int j = 0; j < i; ++j) {
@@ -166,21 +165,20 @@ public class GoldenRamEntity extends Animal implements IShearable {
 	}
 
 	@Override
-	protected void customServerAiStep() {
+	protected void customServerAiStep(ServerLevel level) {
 		this.eatAnimationTick = this.eatBlockGoal.getEatAnimationTick();
-		super.customServerAiStep();
+		super.customServerAiStep(level);
 	}
 
 	@Override
 	public void aiStep() {
-		if (this.level().isClientSide) {
+		if (this.level().isClientSide()) {
 			this.eatAnimationTick = Math.max(0, this.eatAnimationTick - 1);
 		}
 		super.aiStep();
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void handleEntityEvent(byte p_70103_1_) {
 		if (p_70103_1_ == 10) {
 			this.eatAnimationTick = 40;
@@ -189,8 +187,6 @@ public class GoldenRamEntity extends Animal implements IShearable {
 		}
 
 	}
-
-	@OnlyIn(Dist.CLIENT)
 	public float getHeadEatPositionScale(float z) {
 		if (this.eatAnimationTick <= 0) {
 			return 0.0F;
@@ -200,8 +196,6 @@ public class GoldenRamEntity extends Animal implements IShearable {
 			return this.eatAnimationTick < 4 ? ((float)this.eatAnimationTick - z) / 4.0F : -((float)(this.eatAnimationTick - 40) - z) / 4.0F;
 		}
 	}
-
-	@OnlyIn(Dist.CLIENT)
 	public float getHeadEatAngleScale(float z) {
 		if (this.eatAnimationTick > 4 && this.eatAnimationTick <= 36) {
 			float f = ((float)(this.eatAnimationTick - 4) - z) / 32.0F;
@@ -214,3 +208,4 @@ public class GoldenRamEntity extends Animal implements IShearable {
 
 
 }
+

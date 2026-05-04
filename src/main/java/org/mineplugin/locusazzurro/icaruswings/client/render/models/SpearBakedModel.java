@@ -1,80 +1,91 @@
 package org.mineplugin.locusazzurro.icaruswings.client.render.models;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.ItemOverrides;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.mojang.math.Transformation;
+import net.minecraft.client.data.models.model.ItemModelUtils;
+import net.minecraft.client.renderer.item.ItemModel;
+import net.minecraft.client.renderer.item.properties.select.DisplayContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import org.joml.Vector3f;
+import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.SpearItemStackTileEntityRenderer;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 
-@SuppressWarnings("deprecation")
-@OnlyIn(Dist.CLIENT)
-public class SpearBakedModel implements BakedModel {
+public final class SpearBakedModel {
+    public static final Transformation HAND_TRANSFORMATION = new Transformation(null, null, new Vector3f(1.0F, -1.0F, -1.0F), null);
+    private static final List<ItemDisplayContext> FLAT_CONTEXTS = List.of(
+            ItemDisplayContext.GUI,
+            ItemDisplayContext.GROUND,
+            ItemDisplayContext.FIXED,
+            ItemDisplayContext.ON_SHELF
+    );
 
-    private final BakedModel existingModel;
+    private SpearBakedModel() {}
 
-    public SpearBakedModel(BakedModel existingModel) {
-        this.existingModel = existingModel;
+    public static ItemModel.Unbaked createItemModel(Identifier flatModel, Identifier inHandModel, Identifier throwingModel) {
+        ItemModel.Unbaked inHandSpecial = ItemModelUtils.specialModel(inHandModel, SpearItemStackTileEntityRenderer.Unbaked.INSTANCE);
+        ItemModel.Unbaked throwingSpecial = ItemModelUtils.specialModel(throwingModel, SpearItemStackTileEntityRenderer.Unbaked.INSTANCE);
+        ItemModel.Unbaked handConditional = ItemModelUtils.conditional(
+                HAND_TRANSFORMATION,
+                ItemModelUtils.isUsingItem(),
+                throwingSpecial,
+                inHandSpecial
+        );
+        return ItemModelUtils.select(
+                new DisplayContext(),
+                handConditional,
+                ItemModelUtils.when(FLAT_CONTEXTS, ItemModelUtils.plainModel(flatModel))
+        );
     }
 
-    @Override
-    public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction direction, @Nonnull RandomSource rand) {
-        return this.existingModel.getQuads(state, direction, rand);
+    public static JsonObject createThrowingBaseModel(Identifier particleTexture) {
+        JsonObject root = new JsonObject();
+        root.addProperty("gui_light", "front");
+
+        JsonObject textures = new JsonObject();
+        textures.addProperty("particle", particleTexture.toString());
+        root.add("textures", textures);
+
+        JsonObject display = new JsonObject();
+        addTransform(display, "thirdperson_righthand", 0F, 90F, 180F, 8F, -17F, 9F, 1F, 1F, 1F);
+        addTransform(display, "thirdperson_lefthand", 0F, 90F, 180F, 8F, -17F, -7F, 1F, 1F, 1F);
+        addTransform(display, "firstperson_righthand", 0F, -90F, 25F, -3F, 17F, 1F, 1F, 1F, 1F);
+        addTransform(display, "firstperson_lefthand", 0F, 90F, -25F, 13F, 17F, 1F, 1F, 1F, 1F);
+        addTransform(display, "gui", 15F, -25F, -5F, 2F, 3F, 0F, 0.65F, 0.65F, 0.65F);
+        addTransform(display, "fixed", 0F, 180F, 0F, -2F, 4F, -5F, 0.5F, 0.5F, 0.5F);
+        addTransform(display, "ground", 0F, 0F, 0F, 4F, 4F, 2F, 0.25F, 0.25F, 0.25F);
+        root.add("display", display);
+
+        return root;
     }
 
-    @Override
-    public boolean useAmbientOcclusion() {
-        return this.existingModel.useAmbientOcclusion();
+    private static void addTransform(
+            JsonObject display,
+            String name,
+            float rotX,
+            float rotY,
+            float rotZ,
+            float transX,
+            float transY,
+            float transZ,
+            float scaleX,
+            float scaleY,
+            float scaleZ
+    ) {
+        JsonObject transform = new JsonObject();
+        transform.add("rotation", floatArray(rotX, rotY, rotZ));
+        transform.add("translation", floatArray(transX, transY, transZ));
+        transform.add("scale", floatArray(scaleX, scaleY, scaleZ));
+        display.add(name, transform);
     }
 
-    @Override
-    public boolean isGui3d() {
-        return false;
-    }
-
-    @Override
-    public boolean usesBlockLight() {
-        return this.existingModel.usesBlockLight();
-    }
-
-    @Override
-    public boolean isCustomRenderer() {
-        return true;
-    }
-
-    @Override
-    public TextureAtlasSprite getParticleIcon() {
-        return this.existingModel.getParticleIcon();
-    }
-
-    @Override
-    public ItemTransforms getTransforms() {
-        return this.existingModel.getTransforms();
-    }
-
-    @Override
-    public BakedModel applyTransform(ItemDisplayContext cameraTransformType, PoseStack poseStack, boolean applyLeftHandTransform) {
-        if (cameraTransformType == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND ||
-                cameraTransformType == ItemDisplayContext.FIRST_PERSON_LEFT_HAND ||
-                cameraTransformType == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND ||
-                cameraTransformType == ItemDisplayContext.THIRD_PERSON_LEFT_HAND) {
-            return this;
-        }
-        return this.existingModel.applyTransform(cameraTransformType, poseStack, applyLeftHandTransform);
-    }
-
-    @Override
-    public ItemOverrides getOverrides() {
-        return this.existingModel.getOverrides();
+    private static JsonArray floatArray(float x, float y, float z) {
+        JsonArray arr = new JsonArray();
+        arr.add(x);
+        arr.add(y);
+        arr.add(z);
+        return arr;
     }
 }

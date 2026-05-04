@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "P": {
-      "tag": "minecraft:logs"
-    },
-    "T": {
-      "tag": "minecraft:stone_tool_materials"
-    }
+    "P": "#minecraft:logs",
+    "T": "#minecraft:stone_tool_materials"
   },
   "pattern": [
     "  T",
@@ -15,7 +11,6 @@
     "P  "
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:stone_spear"
   }
 }

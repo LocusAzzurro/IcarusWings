@@ -13,12 +13,11 @@
   },
   "display": {
     "announce_to_chat": false,
-    "background": "locusazzurro_icaruswings:textures/gui/advancements/backgrounds/future.png",
+    "background": "locusazzurro_icaruswings:gui/advancements/backgrounds/future",
     "description": {
       "translate": "advancements.locusazzurro_icaruswings.future.root.description"
     },
     "icon": {
-      "count": 1,
       "id": "locusazzurro_icaruswings:feather_wings"
     },
     "title": {

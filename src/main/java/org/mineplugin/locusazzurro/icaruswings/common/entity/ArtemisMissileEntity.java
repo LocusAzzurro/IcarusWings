@@ -3,7 +3,6 @@ package org.mineplugin.locusazzurro.icaruswings.common.entity;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
@@ -14,9 +13,11 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
+import net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -49,10 +50,10 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
 
     public ArtemisMissileEntity(double x, double y, double z, Vec3 mov, Level world){
         this(EntityTypeRegistry.ARTEMIS_MISSILE.get(), world);
-        this.moveTo(x, y, z, this.getYRot(), this.getXRot());
+        this.snapTo(x, y, z, this.getYRot(), this.getXRot());
         this.reapplyPosition();
         this.setDeltaMovement(mov.normalize().scale(cruisingSpeed));
-        this.hasImpulse = true;
+        this.needsSync = true;
     }
 
     public ArtemisMissileEntity(LivingEntity shooter, Vec3 mov, Level world){
@@ -63,24 +64,24 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
 
     public ArtemisMissileEntity(Level world, LivingEntity shooter, Vec3 mov){
         this(EntityTypeRegistry.ARTEMIS_MISSILE.get(), world);
-        this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
+        this.snapTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
         this.reapplyPosition();
         this.setOwner(shooter);
         this.setDeltaMovement(mov.normalize().scale(cruisingSpeed));
-        this.hasImpulse = true;
+        this.needsSync = true;
     }
 
     public ArtemisMissileEntity(Level world, LivingEntity shooter){
         this(EntityTypeRegistry.ARTEMIS_MISSILE.get(), world);
         this.setOwner(shooter);
-        this.moveTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
+        this.snapTo(shooter.getX(), shooter.getY(), shooter.getZ(), shooter.getYRot(), shooter.getXRot());
         this.reapplyPosition();
     }
 
     public ArtemisMissileEntity(Level world, LivingEntity shooter, @Nullable LivingEntity target){
         this(EntityTypeRegistry.ARTEMIS_MISSILE.get(), world);
         this.setOwner(shooter);
-        this.moveTo(shooter.getEyePosition(), shooter.getYRot(), shooter.getXRot());
+        this.snapTo(shooter.getEyePosition(), shooter.getYRot(), shooter.getXRot());
         this.setTarget(target);
     }
 
@@ -95,9 +96,9 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
             if (vec.length() > 0.1) {
                 for (int j = 0; j < 4; j++) {
                     for (int i = 0; i < 4; i++) {
-                        double xR = level().random.nextDouble() * 0.2d - 0.1d;
-                        double yR = level().random.nextDouble() * 0.2d - 0.1d;
-                        double zR = level().random.nextDouble() * 0.2d - 0.1d;
+                        double xR = this.getRandom().nextDouble() * 0.2d - 0.1d;
+                        double yR = this.getRandom().nextDouble() * 0.2d - 0.1d;
+                        double zR = this.getRandom().nextDouble() * 0.2d - 0.1d;
                         level().addParticle(PARTICLE,
                                 this.getX() - (vec.x * 0.25 * j) + xR,
                                 this.getY() - (vec.y * 0.25 * j) + yR + 0.1,
@@ -110,9 +111,9 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
             }
             else {
                 for (int i = 0; i < 2; i++){
-                    double xR = level().random.nextDouble() * 0.1d - 0.05d;
-                    double yR = level().random.nextDouble() * 0.1d - 0.05d;
-                    double zR = level().random.nextDouble() * 0.1d - 0.05d;
+                    double xR = this.getRandom().nextDouble() * 0.1d - 0.05d;
+                    double yR = this.getRandom().nextDouble() * 0.1d - 0.05d;
+                    double zR = this.getRandom().nextDouble() * 0.1d - 0.05d;
                     level().addParticle(PARTICLE,
                             this.getX() + (facing.x * 0.1) + xR,
                             this.getY() + (facing.y * 0.1) + yR + 0.1,
@@ -151,9 +152,9 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     @Override
     protected void onHit(HitResult ray){
         super.onHit(ray);
-        if(!this.level().isClientSide){
-            boolean flag = EventHooks.canEntityGrief(this.level(), this.getOwner());
-            this.level().explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower, flag, Level.ExplosionInteraction.NONE);
+        if (this.level() instanceof ServerLevel serverLevel){
+            boolean flag = EventHooks.canEntityGrief(serverLevel, this.getOwner());
+            serverLevel.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower, flag, Level.ExplosionInteraction.NONE);
         }
         this.discard();
     }
@@ -166,18 +167,18 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     @Override
     protected void onHitEntity(EntityHitResult ray){
         super.onHitEntity(ray);
-        if (!this.level().isClientSide) {
+        if (this.level() instanceof ServerLevel serverLevel) {
             Entity entity = ray.getEntity();
             Entity owner = this.getOwner();
             DamageSource damageSource = this.level().damageSources().explosion(this, owner);
-            entity.hurt(damageSource, 8.0F);
+            entity.hurtServer(serverLevel, damageSource, 8.0F);
         }
     }
 
     protected void onEmptyFuel(){
-        if(!this.level().isClientSide){
-            boolean flag = EventHooks.canEntityGrief(this.level(), this.getOwner());
-            this.level().explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower + 0.5f, flag, Level.ExplosionInteraction.NONE);
+        if (this.level() instanceof ServerLevel serverLevel){
+            boolean flag = EventHooks.canEntityGrief(serverLevel, this.getOwner());
+            serverLevel.explode(null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower + 0.5f, flag, Level.ExplosionInteraction.NONE);
         }
         this.discard();
     }
@@ -228,19 +229,21 @@ public class ArtemisMissileEntity extends AbstractHurtingProjectile {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag nbt) {
+    protected void addAdditionalSaveData(ValueOutput nbt) {
+        super.addAdditionalSaveData(nbt);
         if (this.targetUUID != null) {
-            nbt.putUUID("Target", this.targetUUID);
+            nbt.putString("Target", this.targetUUID.toString());
         }
         nbt.putInt("Fuel", this.fuel);
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag nbt) {
-        if (nbt.hasUUID("Target")) {
-            this.targetUUID = nbt.getUUID("Owner");
-        }
-        this.fuel = nbt.getInt("Fuel");
+    protected void readAdditionalSaveData(ValueInput nbt) {
+        super.readAdditionalSaveData(nbt);
+        nbt.getString("Target").ifPresent(target -> {
+            this.targetUUID = UUID.fromString(target);
+        });
+        this.fuel = nbt.getIntOr("Fuel", DEFAULT_FUEL);
     }
 
     @Override

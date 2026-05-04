@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "A": {
-      "item": "locusazzurro_icaruswings:synapse_alloy_ingot"
-    },
-    "D": {
-      "item": "locusazzurro_icaruswings:daedalus_decryptor"
-    },
-    "F": {
-      "item": "locusazzurro_icaruswings:quantum_fuel"
-    },
-    "R": {
-      "item": "locusazzurro_icaruswings:restored_fallen_relic_core"
-    }
+    "A": "locusazzurro_icaruswings:synapse_alloy_ingot",
+    "D": "locusazzurro_icaruswings:daedalus_decryptor",
+    "F": "locusazzurro_icaruswings:quantum_fuel",
+    "R": "locusazzurro_icaruswings:restored_fallen_relic_core"
   },
   "pattern": [
     "FAF",
@@ -21,7 +13,6 @@
     " D "
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:upgraded_fallen_relic_core"
   }
 }

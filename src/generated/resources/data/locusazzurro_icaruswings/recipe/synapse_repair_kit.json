@@ -2,23 +2,17 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    [
-      {
-        "tag": "locusazzurro_icaruswings:fallen_relics"
-      },
-      {
-        "item": "locusazzurro_icaruswings:reforged_netherite_ingot"
-      }
-    ],
     {
-      "tag": "locusazzurro_icaruswings:world_essences"
+      "neoforge:ingredient_type": "neoforge:compound",
+      "children": [
+        "#locusazzurro_icaruswings:fallen_relics",
+        "locusazzurro_icaruswings:reforged_netherite_ingot"
+      ]
     },
-    {
-      "item": "locusazzurro_icaruswings:daedalus_decryptor"
-    }
+    "#locusazzurro_icaruswings:world_essences",
+    "locusazzurro_icaruswings:daedalus_decryptor"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:synapse_repair_kit"
   }
 }

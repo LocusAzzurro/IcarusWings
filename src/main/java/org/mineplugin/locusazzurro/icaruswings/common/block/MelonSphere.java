@@ -14,8 +14,8 @@ public class MelonSphere extends Block {
 	
 	private static final VoxelShape SHAPE = box(1.0D, 1.0D, 1.0D, 15.0D, 15.0D, 15.0D);
 	
-	public MelonSphere() {
-		super(BlockBehaviour.Properties.of()
+	public MelonSphere(BlockBehaviour.Properties properties) {
+		super(properties
 				.strength(1.2f)
 				.noOcclusion()
 				.sound(SoundType.WOOD));

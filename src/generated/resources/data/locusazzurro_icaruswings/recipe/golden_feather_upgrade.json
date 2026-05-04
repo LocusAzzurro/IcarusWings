@@ -1,16 +1,9 @@
 {
   "type": "minecraft:smithing_transform",
-  "addition": {
-    "item": "minecraft:gold_ingot"
-  },
-  "base": {
-    "tag": "c:feathers"
-  },
+  "addition": "minecraft:gold_ingot",
+  "base": "#c:feathers",
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:golden_feather"
   },
-  "template": {
-    "item": "locusazzurro_icaruswings:gold_upgrade_smithing_template"
-  }
+  "template": "locusazzurro_icaruswings:gold_upgrade_smithing_template"
 }

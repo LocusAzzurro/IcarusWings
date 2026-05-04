@@ -24,14 +24,11 @@ public class IcarusWings {
 		FluidRegistry.FLUID_TYPES.register(bus);
 		EffectRegistry.EFFECTS.register(bus);
 		CreativeTabRegistry.CREATIVE_TABS.register(bus);
-		ArmorMaterialRegistry.ARMOR_MATERIALS.register(bus);
 		LootModifierRegistry.LOOT_MODIFIERS.register(bus);
 		DataComponentRegistry.DATA_COMPONENT_TYPES.register(bus);
 
 		SoundRegistry.SOUNDS.register(bus);
 		ParticleRegistry.PARTICLES.register(bus);
-
-		bus.register(DataGenerators.class);
 
 		modContainer.registerConfig(ModConfig.Type.COMMON, IcarusWingsConfig.CONFIG);
 

@@ -1,43 +1,38 @@
 package org.mineplugin.locusazzurro.icaruswings.client.render.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.minecraft.resources.Identifier;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.client.render.models.TimeBombModel;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.TimeBombEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.ModelLayerRegistry;
+public class TimeBombRenderer extends EntityRenderer<TimeBombEntity, EntityRenderState> {
+    private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "textures/entity/time_bomb.png");
+    private final TimeBombModel model;
 
-@OnlyIn(Dist.CLIENT)
-public class TimeBombRenderer extends EntityRenderer<TimeBombEntity> {
-
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "textures/entity/time_bomb.png");
-    private final TimeBombModel<TimeBombEntity> model;
-
-    public TimeBombRenderer(Context context) {
+    public TimeBombRenderer(EntityRendererProvider.Context context) {
         super(context);
-        model = new TimeBombModel<>(context.bakeLayer(ModelLayerRegistry.TIME_BOMB));
-    }
-
-
-    @Override
-    public void render(TimeBombEntity entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn){
-        super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-        matrixStackIn.pushPose();
-        matrixStackIn.scale(0.1f, 0.1f, 0.1f);
-        VertexConsumer vertexBuilder = bufferIn.getBuffer(model.renderType(TEXTURE));
-        this.model.renderToBuffer(matrixStackIn, vertexBuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 0xff_ff_ff_ff);
-        matrixStackIn.popPose();
+        this.model = new TimeBombModel(context.bakeLayer(ModelLayerRegistry.TIME_BOMB));
     }
 
     @Override
-    public ResourceLocation getTextureLocation(TimeBombEntity entity) {
-        return TEXTURE;
+    public void submit(EntityRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera) {
+        poseStack.pushPose();
+        poseStack.scale(0.1F, 0.1F, 0.1F);
+        submitNodeCollector.submitModel(this.model, state, poseStack, TEXTURE, state.lightCoords, OverlayTexture.NO_OVERLAY, state.outlineColor, null);
+        poseStack.popPose();
+        super.submit(state, poseStack, submitNodeCollector, camera);
+    }
+
+    @Override
+    public EntityRenderState createRenderState() {
+        return new EntityRenderState();
     }
 }
+

@@ -1,27 +1,22 @@
 package org.mineplugin.locusazzurro.icaruswings.datagen;
 
-import net.minecraft.Util;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModDamageSources;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModEnchantments;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModJukeboxSongs;
+import org.mineplugin.locusazzurro.icaruswings.common.data.ModVillagerTrades;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(modid = DataGenerators.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = DataGenerators.MOD_ID)
 public class DataGenerators {
 
     public static final String MOD_ID = IcarusWings.MOD_ID;
@@ -29,37 +24,30 @@ public class DataGenerators {
     public static final RegistrySetBuilder DATAPACK_BUILDER = new RegistrySetBuilder()
             .add(Registries.ENCHANTMENT, ModEnchantments::bootstrap)
             .add(Registries.DAMAGE_TYPE, ModDamageSources::bootstrap)
-            .add(Registries.JUKEBOX_SONG, ModJukeboxSongs::bootstrap);
-
-    public static HolderLookup.Provider createLookup() {
-        RegistryAccess.Frozen registryAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-        return DATAPACK_BUILDER.build(registryAccess);
-    }
+            .add(Registries.JUKEBOX_SONG, ModJukeboxSongs::bootstrap)
+            .add(Registries.VILLAGER_TRADE, ModVillagerTrades::bootstrap);
 
     @SubscribeEvent
-    public static void gatherData(GatherDataEvent event) {
-        DataGenerator generator = event.getGenerator();
-        PackOutput output = generator.getPackOutput();
-        ExistingFileHelper fh = event.getExistingFileHelper();
+    public static void gatherClientData(GatherDataEvent.Client event) {
+        PackOutput output = event.getGenerator().getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
-        CompletableFuture<HolderLookup.Provider> modLookupProvider = CompletableFuture.supplyAsync(DataGenerators::createLookup, Util.backgroundExecutor());
 
-        generator.addProvider(event.includeServer(), new ModRecipesProvider(output, lookupProvider));
-        generator.addProvider(event.includeServer(), ModLootTableProvider.create(output, lookupProvider));
+        event.addProvider(new ModRecipesProvider.Runner(output, lookupProvider));
+        event.addProvider(ModLootTableProvider.create(output, lookupProvider));
 
-        generator.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(output, modLookupProvider, DATAPACK_BUILDER, Set.of(MOD_ID)));
-        ModTagsProvider.ModBlockTagsProvider blockTags = new ModTagsProvider.ModBlockTagsProvider(output, lookupProvider, fh);
-        generator.addProvider(event.includeServer(), blockTags);
-        generator.addProvider(event.includeServer(), new ModTagsProvider.ModItemTagsProvider(output, lookupProvider, blockTags, fh));
-        generator.addProvider(event.includeServer(), new ModTagsProvider.ModEnchantmentTagsProvider(output, modLookupProvider, fh));
-        generator.addProvider(event.includeServer(), new ModTagsProvider.ModDamageTagsProvider(output, modLookupProvider, fh));
-        generator.addProvider(event.includeServer(), new ModTagsProvider.ModFluidTagsProvider(output, modLookupProvider, fh));
-        generator.addProvider(event.includeServer(), new ModGlobalLootModifierProvider(output, lookupProvider));
-        generator.addProvider(event.includeServer(), new ModAdvancementProvider(output, lookupProvider, fh));
+        event.createDatapackRegistryObjects(DATAPACK_BUILDER, Set.of(MOD_ID));
+        CompletableFuture<HolderLookup.Provider> modLookupProvider = event.getLookupProvider();
 
-        generator.addProvider(event.includeClient(), new ModBlockStateProvider(output, fh));
-        generator.addProvider(event.includeClient(), new ModItemModelProvider(output, fh));
-        generator.addProvider(event.includeClient(), new ModParticleProvider(output, fh));
-        generator.addProvider(event.includeClient(), new ModSoundDefinitionsProvider(output, fh));
+        event.addProvider(new ModTagsProvider.ModBlockTagsProvider(output, lookupProvider));
+        event.addProvider(new ModTagsProvider.ModItemTagsProvider(output, lookupProvider));
+        event.addProvider(new ModTagsProvider.ModEnchantmentTagsProvider(output, modLookupProvider));
+        event.addProvider(new ModTagsProvider.ModDamageTagsProvider(output, modLookupProvider));
+        event.addProvider(new ModTagsProvider.ModFluidTagsProvider(output, modLookupProvider));
+        event.addProvider(new ModTagsProvider.ModVillagerTradeTagsProvider(output, modLookupProvider));
+        event.addProvider(new ModGlobalLootModifierProvider(output, lookupProvider));
+        event.addProvider(new ModAdvancementProvider(output, lookupProvider));
+        event.addProvider(new ModModelProvider(output));
+        event.addProvider(new ModParticleProvider(output));
+        event.addProvider(new ModSoundDefinitionsProvider(output));
     }
 }

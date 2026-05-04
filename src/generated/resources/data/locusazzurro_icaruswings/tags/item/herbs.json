@@ -4,7 +4,11 @@
   ],
   "values": [
     "#minecraft:small_flowers",
-    "#minecraft:tall_flowers",
+    "minecraft:sunflower",
+    "minecraft:lilac",
+    "minecraft:rose_bush",
+    "minecraft:peony",
+    "minecraft:pitcher_plant",
     "#minecraft:saplings",
     "minecraft:fern",
     "minecraft:sea_pickle",

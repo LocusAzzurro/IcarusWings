@@ -9,6 +9,6 @@ public class FlaxCrop extends CropBlock {
 
     public FlaxCrop() {
         super(BlockBehaviour.Properties.of()
-                .noCollission().randomTicks().instabreak().sound(SoundType.CROP));
+                .noCollision().randomTicks().instabreak().sound(SoundType.CROP));
     }
 }

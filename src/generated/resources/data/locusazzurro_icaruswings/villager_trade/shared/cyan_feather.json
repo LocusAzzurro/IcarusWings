@@ -1,0 +1,11 @@
+{
+  "gives": {
+    "id": "locusazzurro_icaruswings:cyan_feather"
+  },
+  "max_uses": 3.0,
+  "reputation_discount": 1.0,
+  "wants": {
+    "count": 2.0,
+    "id": "minecraft:emerald"
+  }
+}

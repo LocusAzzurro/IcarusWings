@@ -1,21 +1,16 @@
-package org.mineplugin.locusazzurro.icaruswings.client.render.models;// Made with Blockbench 4.2.1
-// Exported for Minecraft version 1.17 with Mojang mappings
-// Paste this class into your mod and generate all required imports
+package org.mineplugin.locusazzurro.icaruswings.client.render.models;
 
-
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
 
-public class ArtemisMissileModel<T extends Entity> extends EntityModel<T> {
-	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
+public class ArtemisMissileModel extends EntityModel<EntityRenderState> {
 	private final ModelPart missile;
 
 	public ArtemisMissileModel(ModelPart root) {
+		super(root);
 		this.missile = root.getChild("missile");
 	}
 
@@ -36,13 +31,4 @@ public class ArtemisMissileModel<T extends Entity> extends EntityModel<T> {
 		return LayerDefinition.create(meshdefinition, 128, 64);
 	}
 
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
-	}
-
-	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
-		missile.render(poseStack, buffer, packedLight, packedOverlay);
-	}
 }

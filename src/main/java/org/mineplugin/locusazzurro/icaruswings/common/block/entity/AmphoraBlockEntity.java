@@ -1,9 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.common.block.entity;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
@@ -13,6 +11,8 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockEntityTypeRegistry;
 
 public class AmphoraBlockEntity extends RandomizableContainerBlockEntity {
@@ -50,19 +50,19 @@ public class AmphoraBlockEntity extends RandomizableContainerBlockEntity {
 	}
 
 	@Override
-	protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-		super.saveAdditional(tag, registries);
+	protected void saveAdditional(ValueOutput tag) {
+		super.saveAdditional(tag);
 		if (!this.trySaveLootTable(tag)) {
-			ContainerHelper.saveAllItems(tag, this.items, registries);
+			ContainerHelper.saveAllItems(tag, this.items);
 		}
 	}
 
 	@Override
-	protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-		super.loadAdditional(tag, registries);
+	protected void loadAdditional(ValueInput tag) {
+		super.loadAdditional(tag);
 		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		if (!this.tryLoadLootTable(tag)) {
-			ContainerHelper.loadAllItems(tag, this.items, registries);
+			ContainerHelper.loadAllItems(tag, this.items);
 		}
 	}
 

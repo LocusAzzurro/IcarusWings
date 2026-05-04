@@ -4,17 +4,11 @@ import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import org.mineplugin.locusazzurro.icaruswings.common.entity.GoldenRamEntity;
-
-@OnlyIn(Dist.CLIENT)
-public class GoldenRamFleeceModel <T extends GoldenRamEntity> extends QuadrupedModel<T> {
-
-    private float headXRot;
+import org.mineplugin.locusazzurro.icaruswings.client.render.state.GoldenRamRenderState;
+public class GoldenRamFleeceModel extends QuadrupedModel<GoldenRamRenderState> {
 
     public GoldenRamFleeceModel(ModelPart pRoot) {
-        super(pRoot, false, 8.0F, 4.0F, 2.0F, 2.0F, 24);
+        super(pRoot);
     }
 
     public static LayerDefinition createFurLayer() {
@@ -30,15 +24,12 @@ public class GoldenRamFleeceModel <T extends GoldenRamEntity> extends QuadrupedM
         return LayerDefinition.create(meshdefinition, 64, 32);
     }
 
-    public void prepareMobModel(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick) {
-        super.prepareMobModel(pEntity, pLimbSwing, pLimbSwingAmount, pPartialTick);
-        this.head.y = 6.0F + pEntity.getHeadEatPositionScale(pPartialTick) * 9.0F;
-        this.headXRot = pEntity.getHeadEatAngleScale(pPartialTick);
-    }
-
-    public void setupAnim(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-        super.setupAnim(pEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
-        this.head.xRot = this.headXRot;
+    @Override
+    public void setupAnim(GoldenRamRenderState state) {
+        super.setupAnim(state);
+        this.head.y = this.head.y + state.headEatPositionScale * 9.0F * state.ageScale;
+        this.head.xRot = state.headEatAngleScale;
     }
 
 }
+

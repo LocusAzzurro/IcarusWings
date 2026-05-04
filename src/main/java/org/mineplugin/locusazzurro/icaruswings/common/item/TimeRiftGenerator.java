@@ -4,7 +4,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -23,15 +23,19 @@ import java.util.function.Predicate;
 public class TimeRiftGenerator extends ProjectileWeaponItem {
 
     public TimeRiftGenerator(){
-        super(new Item.Properties().durability(400));
+        this(new Item.Properties().durability(400).repairable(ItemRegistry.SYNAPSE_REPAIR_KIT.get()));
+    }
+
+    public TimeRiftGenerator(Item.Properties properties) {
+        super(properties.durability(400).repairable(ItemRegistry.SYNAPSE_REPAIR_KIT.get()));
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
+    public InteractionResult use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemStack = playerIn.getItemInHand(handIn);
         ItemStack charge = playerIn.getProjectile(itemStack);
         if (!playerIn.getAbilities().instabuild && charge.isEmpty()){
-            return InteractionResultHolder.pass(itemStack);
+            return InteractionResult.PASS;
         }
 
         TimeRiftParticleEntity particle = new TimeRiftParticleEntity(playerIn, worldIn);
@@ -52,12 +56,7 @@ public class TimeRiftGenerator extends ProjectileWeaponItem {
             }
         }
         playerIn.awardStat(Stats.ITEM_USED.get(this));
-        return InteractionResultHolder.success(itemStack);
-    }
-
-    @Override
-    public boolean isValidRepairItem(ItemStack thisItem, ItemStack repairItem) {
-        return repairItem.getItem() == ItemRegistry.SYNAPSE_REPAIR_KIT.get() || super.isValidRepairItem(thisItem, repairItem);
+        return InteractionResult.SUCCESS;
     }
 
     public static final Predicate<ItemStack> TIME_RIFT_CHARGE = (item) -> item.getItem().equals(ItemRegistry.TIME_RIFT_CHARGE.get());

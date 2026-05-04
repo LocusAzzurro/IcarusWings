@@ -9,8 +9,7 @@
           "name": "locusazzurro_icaruswings:fallen_relic_offensive"
         },
         {
-          "type": "minecraft:item",
-          "name": "minecraft:air",
+          "type": "minecraft:empty",
           "weight": 99
         }
       ],

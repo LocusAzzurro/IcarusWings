@@ -2,36 +2,30 @@ package org.mineplugin.locusazzurro.icaruswings.client.render.layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.minecraft.resources.Identifier;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.client.render.models.GoldenRamFleeceModel;
 import org.mineplugin.locusazzurro.icaruswings.client.render.models.GoldenRamModel;
-import org.mineplugin.locusazzurro.icaruswings.common.entity.GoldenRamEntity;
+import org.mineplugin.locusazzurro.icaruswings.client.render.state.GoldenRamRenderState;
 import org.mineplugin.locusazzurro.icaruswings.registry.ModelLayerRegistry;
+public class GoldenRamFleeceLayer extends RenderLayer<GoldenRamRenderState, GoldenRamModel> {
 
-import javax.annotation.ParametersAreNonnullByDefault;
+    private static final Identifier FLEECE_TEXTURE = Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "textures/entity/golden_ram_fleece.png");
+    private final GoldenRamFleeceModel model;
 
-@OnlyIn(Dist.CLIENT)
-public class GoldenRamFleeceLayer extends RenderLayer<GoldenRamEntity, GoldenRamModel<GoldenRamEntity>> {
-
-    private static final ResourceLocation FLEECE_TEXTURE = ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, "textures/entity/golden_ram_fleece.png");
-    private final GoldenRamFleeceModel<GoldenRamEntity> model;
-
-    public GoldenRamFleeceLayer(RenderLayerParent<GoldenRamEntity, GoldenRamModel<GoldenRamEntity>> renderer, EntityModelSet set) {
+    public GoldenRamFleeceLayer(RenderLayerParent<GoldenRamRenderState, GoldenRamModel> renderer, EntityModelSet set) {
         super(renderer);
-        this.model = new GoldenRamFleeceModel<>(set.bakeLayer(ModelLayerRegistry.GOLDEN_RAM_FLEECE));
+        this.model = new GoldenRamFleeceModel(set.bakeLayer(ModelLayerRegistry.GOLDEN_RAM_FLEECE));
     }
 
     @Override
-    @ParametersAreNonnullByDefault
-    public void render(PoseStack stack, MultiBufferSource buffer, int packedLightIn, GoldenRamEntity entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (!entity.isSheared() &&!entity.isInvisible()) {
-            coloredCutoutModelCopyLayerRender(this.getParentModel(), this.model, FLEECE_TEXTURE, stack, buffer, packedLightIn, entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, 0xff_ff_ff_ff);
+    public void submit(PoseStack stack, SubmitNodeCollector submitNodeCollector, int packedLightIn, GoldenRamRenderState state, float yRot, float xRot) {
+        if (!state.isSheared) {
+            coloredCutoutModelCopyLayerRender(this.model, FLEECE_TEXTURE, stack, submitNodeCollector, packedLightIn, state, 0xFFFFFFFF, 0);
         }
     }
 }
+

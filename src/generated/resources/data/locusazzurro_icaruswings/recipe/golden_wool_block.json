@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "G": {
-      "item": "minecraft:glowstone_dust"
-    },
-    "S": {
-      "item": "locusazzurro_icaruswings:golden_string"
-    },
-    "W": {
-      "item": "locusazzurro_icaruswings:golden_fleece"
-    }
+    "G": "minecraft:glowstone_dust",
+    "S": "locusazzurro_icaruswings:golden_string",
+    "W": "locusazzurro_icaruswings:golden_fleece"
   },
   "pattern": [
     "SWS",
@@ -18,7 +12,6 @@
     "SWS"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:golden_wool_block"
   }
 }

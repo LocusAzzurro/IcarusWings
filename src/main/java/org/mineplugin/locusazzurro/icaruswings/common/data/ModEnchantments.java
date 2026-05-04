@@ -1,13 +1,14 @@
 package org.mineplugin.locusazzurro.icaruswings.common.data;
 
-import net.minecraft.advancements.critereon.DamageSourcePredicate;
-import net.minecraft.advancements.critereon.TagPredicate;
+import net.minecraft.advancements.criterion.DamageSourcePredicate;
+import net.minecraft.advancements.criterion.TagPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.Item;
@@ -50,7 +51,7 @@ public class ModEnchantments {
                                 .tag(TagPredicate.is(ModTags.IS_COLLISION))
                                 .tag(TagPredicate.isNot(DamageTypeTags.BYPASSES_INVULNERABILITY))
                 ))
-                .build(COLLISION_PROTECTION.location()));
+                .build(COLLISION_PROTECTION.identifier()));
 
         context.register(PYROTECHNIC_AFFINITY, Enchantment.enchantment(
                 Enchantment.definition(
@@ -60,7 +61,7 @@ public class ModEnchantments {
                         Enchantment.dynamicCost(20, 10), 2,
                         EquipmentSlotGroup.ARMOR)
                 )
-                .build(PYROTECHNIC_AFFINITY.location()));
+                .build(PYROTECHNIC_AFFINITY.identifier()));
 
         context.register(BLESSING_OF_THE_SKY, Enchantment.enchantment(
                 Enchantment.definition(
@@ -96,17 +97,17 @@ public class ModEnchantments {
                                 )
                         )
                         )
-                .build(BLESSING_OF_THE_SKY.location()));
+                .build(BLESSING_OF_THE_SKY.identifier()));
 
         Enchantments.bootstrap(context);
     }
 
     public static ResourceKey<Enchantment> key(String name) {
-        return ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, name));
+        return ResourceKey.create(Registries.ENCHANTMENT, Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, name));
     }
 
     public static void register(BootstrapContext<Enchantment> context, ResourceKey<Enchantment> enchantment, Enchantment.Builder builder) {
-        context.register(enchantment, builder.build(enchantment.location()));
+        context.register(enchantment, builder.build(enchantment.identifier()));
     }
 
     public static Holder<Enchantment> getHolder(Level level, ResourceKey<Enchantment> enchantment) {

@@ -1,4 +1,4 @@
-// 1.21	2024-09-14T04:43:25.1986982	Global Loot Modifiers : locusazzurro_icaruswings
+// 26.1.2	2026-05-03T22:11:56.8962036	Global Loot Modifiers : locusazzurro_icaruswings
 f96da90b4d62ef430f4dff29af26122f75237404 data/locusazzurro_icaruswings/loot_modifiers/nether_essence_blaze.json
 ea5d2dd5b9ec62f166b6f2ffef1b64b36ce0fad6 data/locusazzurro_icaruswings/loot_modifiers/nether_essence_wither_skeleton.json
 67d198c7cd523c75bd9ef2c81f100484964878b9 data/locusazzurro_icaruswings/loot_modifiers/relic_core_alt.json
@@ -15,4 +15,3 @@ a9669c3fd27e6d4ecfa9eb01ac35dff252aec67f data/locusazzurro_icaruswings/loot_modi
 a35e3326923fe963ecf7b5d3c5f612421ca98e88 data/locusazzurro_icaruswings/loot_modifiers/void_essence_shulker.json
 0d267189b0cb6997d32c3946797fde222f52e07d data/locusazzurro_icaruswings/loot_modifiers/zephir_essence_bat.json
 7134c1782a566284ff39e11038c469866fde7e45 data/locusazzurro_icaruswings/loot_modifiers/zephir_essence_phantom.json
-f401c13c7e1426c2d29fce02f420862415a4cc01 data/neoforge/loot_modifiers/global_loot_modifiers.json

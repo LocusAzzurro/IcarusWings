@@ -8,9 +8,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 public class FallenRelic extends Item{
 	
@@ -19,7 +20,16 @@ public class FallenRelic extends Item{
 	private final boolean isUpgraded = false;
 	
 	public FallenRelic(RelicType type, boolean restored){
-		super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.UNCOMMON));
+		this(type, restored, new Item.Properties()
+				.stacksTo(1)
+				.fireResistant()
+				.rarity(Rarity.UNCOMMON)
+				.overrideDescription(getCustomDescriptionId(type, restored))
+		);
+	}
+
+	public FallenRelic(RelicType type, boolean restored, Item.Properties properties){
+		super(properties.stacksTo(1).fireResistant().rarity(Rarity.UNCOMMON).overrideDescription(getCustomDescriptionId(type, restored)));
 		this.relicType = type;
 		this.isRestored = restored;
 	}
@@ -42,16 +52,16 @@ public class FallenRelic extends Item{
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-		super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+		super.appendHoverText(stack, context, display, tooltipComponents, tooltipFlag);
 		RelicType type = ((FallenRelic)stack.getItem()).getType();
-		tooltipComponents.add(Component.translatable("item.locusazzurro_icaruswings.fallen_relic_"+ type +".tooltip")
+		tooltipComponents.accept(Component.translatable("item.locusazzurro_icaruswings.fallen_relic_"+ type +".tooltip")
 				.setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
 	}
 
-	@Override
-	public String getDescriptionId(){
-		return "item." + IcarusWings.MOD_ID + "." + (this.getType().isUpgraded() ? "upgraded_" : (this.isRestored ? "restored_" : "")) + "fallen_relic";
+	private static String getCustomDescriptionId(RelicType type, boolean restored) {
+		String prefix = type.isUpgraded() ? "upgraded_" : (restored ? "restored_" : "");
+		return "item." + IcarusWings.MOD_ID + "." + prefix + "fallen_relic";
 	}
 
     public boolean isUpgraded() {

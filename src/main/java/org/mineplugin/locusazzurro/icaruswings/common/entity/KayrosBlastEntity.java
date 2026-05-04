@@ -6,8 +6,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
@@ -15,9 +13,12 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
+import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -34,17 +35,17 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
 
 
     private static final boolean ALLOW_TERRAIN = IcarusWingsConfig.ALLOW_DEMETER_CHANGE_TERRAIN.get();
-    private static final EntityDataAccessor<CompoundTag> LANDSCAPE = SynchedEntityData.defineId(KayrosBlastEntity.class, EntityDataSerializers.COMPOUND_TAG);
     private final int maxLife = 600;
     private int life;
+    private byte[] landscape = KayrosGenUtils.cubeTerrain;
 
     public KayrosBlastEntity(EntityType<? extends KayrosBlastEntity> type, Level level) {
         super(type, level);
     }
 
     public KayrosBlastEntity(LivingEntity entity, Level world, CompoundTag terrain){
-        super(EntityTypeRegistry.KAYROS_BLAST.get(), entity, world);
-        this.entityData.set(LANDSCAPE, terrain);
+        super(EntityTypeRegistry.KAYROS_BLAST.get(), entity, world, new ItemStack(ItemRegistry.DEMETER_CHARGE.get()));
+        this.landscape = terrain.getByteArray("Landscape").orElse(KayrosGenUtils.cubeTerrain);
     }
 
     @Override
@@ -56,41 +57,40 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
         life++;
 
         if (level().isClientSide()){
-            double xR = level().random.nextDouble() * 0.1d - 0.05d;
-            double yR = level().random.nextDouble() * 0.1d - 0.05d;
-            double zR = level().random.nextDouble() * 0.1d - 0.05d;
+            double xR = level().getRandom().nextDouble() * 0.1d - 0.05d;
+            double yR = level().getRandom().nextDouble() * 0.1d - 0.05d;
+            double zR = level().getRandom().nextDouble() * 0.1d - 0.05d;
             level().addParticle(ParticleTypes.WITCH, this.getX(), this.getY(), this.getZ(), xR,yR,zR);
         }
     }
 
     @Override
-    public void onHit(HitResult ray){
+    protected void onHit(HitResult ray){
         super.onHit(ray);
         this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundRegistry.TIME_RIFT_COLLAPSE.get(), SoundSource.PLAYERS, 2.0F, 1.1F);
     }
 
     @Override
-    public void onHitBlock(BlockHitResult ray){
+    protected void onHitBlock(BlockHitResult ray){
         super.onHitBlock(ray);
         BlockPos pos = ray.getBlockPos();
-        if (!level().isClientSide()){
+        if (this.level() instanceof ServerLevel serverLevel){
             if (ALLOW_TERRAIN) {
-                byte[] terrain = this.entityData.get(LANDSCAPE).getByteArray("Landscape");
                 int xo = pos.getX() - 4;
-                int yo = pos.getY() - level().random.nextInt(3);
+                int yo = pos.getY() - this.level().getRandom().nextInt(3);
                 int zo = pos.getZ() - 4;
-                for (int i = 0; i < terrain.length; i++) {
+                for (int i = 0; i < this.landscape.length; i++) {
                     int y = i / 64;
                     int z = (i - 64 * y) / 8;
                     int x = i - 64 * y - 8 * z;
-                    level().setBlock(new BlockPos(xo + x, yo + y, zo + z), KayrosGenUtils.palette[terrain[i]], 3);
+                    this.level().setBlock(new BlockPos(xo + x, yo + y, zo + z), KayrosGenUtils.palette[this.landscape[i]], 3);
                 }
             }
             this.level().getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(4)).forEach(e -> {
                 InevitabilityEffect.addEffect(e, 3);
-                e.hurt(ModDamageSources.timeRift(this.level(), this.getOwner()), 5.0f);
+                e.hurtServer(serverLevel, ModDamageSources.timeRift(this.level(), this, this.getOwner() == null ? this : this.getOwner()), 5.0f);
             });
-            ((ServerLevel)level()).sendParticles(ParticleTypes.WITCH,
+            serverLevel.sendParticles(ParticleTypes.WITCH,
                     pos.getX(), pos.getY(), pos.getZ(),
                     4000, 4, 4, 4, 0.001);
         }
@@ -101,9 +101,9 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
     protected void onHitEntity(EntityHitResult pResult) {
         super.onHitEntity(pResult);
         Entity entity = pResult.getEntity();
-        if (entity instanceof LivingEntity livingEntity) {
+        if (entity instanceof LivingEntity livingEntity && this.level() instanceof ServerLevel serverLevel) {
             InevitabilityEffect.addEffect(livingEntity, 5);
-            livingEntity.hurt(ModDamageSources.timeRift(this.level(), this.getOwner()), 15.0f);
+            livingEntity.hurtServer(serverLevel, ModDamageSources.timeRift(this.level(), this, this.getOwner() == null ? this : this.getOwner()), 15.0f);
         }
     }
 
@@ -113,17 +113,27 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag nbt) {
+    protected void addAdditionalSaveData(ValueOutput nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.putInt("Life", this.life);
-        nbt.putByteArray("Landscape", entityData.get(LANDSCAPE).getByteArray("Landscape"));
+        int[] raw = new int[this.landscape.length];
+        for (int i = 0; i < this.landscape.length; i++) {
+            raw[i] = this.landscape[i];
+        }
+        nbt.putIntArray("Landscape", raw);
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag nbt) {
+    protected void readAdditionalSaveData(ValueInput nbt) {
         super.readAdditionalSaveData(nbt);
-        this.life = nbt.getInt("Life");
-        entityData.set(LANDSCAPE, KayrosGenUtils.convertToTag(nbt.getByteArray("Landscape")));
+        this.life = nbt.getIntOr("Life", this.life);
+        int[] raw = nbt.getIntArray("Landscape").orElse(new int[0]);
+        if (raw.length > 0) {
+            this.landscape = new byte[raw.length];
+            for (int i = 0; i < raw.length; i++) {
+                this.landscape[i] = (byte)raw[i];
+            }
+        }
     }
 
     @Override
@@ -134,7 +144,6 @@ public class KayrosBlastEntity extends ThrowableItemProjectile {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(LANDSCAPE, KayrosGenUtils.convertToTag(KayrosGenUtils.cubeTerrain));
     }
 
     @Override

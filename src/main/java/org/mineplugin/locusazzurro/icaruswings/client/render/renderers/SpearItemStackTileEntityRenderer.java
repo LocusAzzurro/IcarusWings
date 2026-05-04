@@ -1,54 +1,74 @@
 package org.mineplugin.locusazzurro.icaruswings.client.render.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.world.item.ItemDisplayContext;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.client.renderer.special.SpecialModelRenderer;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3fc;
 import org.mineplugin.locusazzurro.icaruswings.client.render.models.SpearModel;
-import org.mineplugin.locusazzurro.icaruswings.common.item.SpearItem;
-import org.mineplugin.locusazzurro.icaruswings.registry.DataComponentRegistry;
+import org.mineplugin.locusazzurro.icaruswings.registry.ModelLayerRegistry;
 
-@OnlyIn(Dist.CLIENT)
-public class SpearItemStackTileEntityRenderer extends BlockEntityWithoutLevelRenderer {
-
+import java.util.function.Consumer;
+public class SpearItemStackTileEntityRenderer implements SpecialModelRenderer<Identifier> {
     private final SpearModel model;
 
-    public SpearItemStackTileEntityRenderer(BlockEntityRenderDispatcher blockEntityRenderDispatcher, EntityModelSet entityModelSet) {
-        super(blockEntityRenderDispatcher, entityModelSet);
-        model = new SpearModel(entityModelSet.bakeLayer(SpearModel.LAYER_LOCATION));
-    }
-
-    public SpearItemStackTileEntityRenderer(){
-        this(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
+    public SpearItemStackTileEntityRenderer(SpecialModelRenderer.BakingContext context) {
+        this.model = new SpearModel(context.entityModelSet().bakeLayer(ModelLayerRegistry.SPEAR));
     }
 
     @Override
-    public void renderByItem(ItemStack stack, ItemDisplayContext transformType, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay){
-        if (stack.getItem() instanceof SpearItem) {
-            boolean throwing = Boolean.TRUE.equals(stack.get(DataComponentRegistry.THROWING));
-            matrixStack.pushPose();
-            VertexConsumer vertexBuilder = ItemRenderer.getFoilBuffer(buffer, RenderType.entitySolid(SpearRenderer.getTexture(((SpearItem) stack.getItem()).getTier())), false, stack.hasFoil());
-            boolean isFirstPerson = transformType.firstPerson();
-            matrixStack.translate(0.5F, isFirstPerson ? 1.4F : 1.5F, 0.6F);
-            matrixStack.scale(1.0F, -1.0F, -1.0F);
-            if (!isFirstPerson && throwing){
-                matrixStack.scale(1.0F, -1.0F, -1.0F);
-                matrixStack.translate(0.0F, -2.0F, 0.0F);
-            }
-            model.renderToBuffer(matrixStack, vertexBuilder, combinedLight, combinedOverlay, 0xff_ff_ff_ff);
-            matrixStack.popPose();
-        }
+    public @Nullable Identifier extractArgument(ItemStack stack) {
+        return SpearRenderer.getTexture(stack);
     }
 
+    @Override
+    public void submit(
+            @Nullable Identifier texture,
+            PoseStack poseStack,
+            SubmitNodeCollector submitNodeCollector,
+            int lightCoords,
+            int overlayCoords,
+            boolean hasFoil,
+            int outlineColor
+    ) {
+        Identifier renderTexture = texture == null ? SpearRenderer.FALLBACK : texture;
+        submitNodeCollector.submitModelPart(
+                this.model.root(),
+                poseStack,
+                RenderTypes.entitySolid(renderTexture),
+                lightCoords,
+                overlayCoords,
+                null,
+                false,
+                hasFoil,
+                -1,
+                null,
+                outlineColor
+        );
+    }
 
+    @Override
+    public void getExtents(Consumer<Vector3fc> output) {
+        PoseStack poseStack = new PoseStack();
+        this.model.root().getExtentsForGui(poseStack, output);
+    }
+    public record Unbaked() implements SpecialModelRenderer.Unbaked<Identifier> {
+        public static final Unbaked INSTANCE = new Unbaked();
+        public static final MapCodec<Unbaked> MAP_CODEC = MapCodec.unit(INSTANCE);
 
+        @Override
+        public SpecialModelRenderer<Identifier> bake(SpecialModelRenderer.BakingContext context) {
+            return new SpearItemStackTileEntityRenderer(context);
+        }
+
+        @Override
+        public MapCodec<Unbaked> type() {
+            return MAP_CODEC;
+        }
+    }
 }
+

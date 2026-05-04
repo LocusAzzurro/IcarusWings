@@ -5,22 +5,23 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 public class GreekFireBlock extends LiquidBlock {
 
-    public GreekFireBlock(){
-        super(FluidRegistry.GREEK_FIRE.get(), Block.Properties.of().liquid().noCollission().strength(100.0F).noLootTable().lightLevel((b) -> 15).noLootTable());
+    public GreekFireBlock(BlockBehaviour.Properties properties){
+        super(FluidRegistry.GREEK_FIRE.get(), properties.liquid().noCollision().strength(100.0F).noLootTable().lightLevel((b) -> 15).noLootTable());
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier, boolean isPrecise) {
         if (!entity.fireImmune()) {
             entity.setRemainingFireTicks(entity.getRemainingFireTicks() + 1);
             if (entity.getRemainingFireTicks() == 0) {
@@ -29,13 +30,13 @@ public class GreekFireBlock extends LiquidBlock {
         }
 
         entity.hurt(level.damageSources().inFire(), 4);
-        super.entityInside(state, level, pos, entity);
+        super.entityInside(state, level, pos, entity, effectApplier, isPrecise);
     }
 
     @Override
     public void animateTick(BlockState state, Level worldIn, BlockPos blockPos, RandomSource random) {
         BlockPos blockpos = blockPos.above();
-        if (worldIn.getBlockState(blockpos).isAir() && !worldIn.getBlockState(blockpos).isSolidRender(worldIn, blockpos)) {
+        if (worldIn.getBlockState(blockpos).isAir() && !worldIn.getBlockState(blockpos).isSolidRender()) {
             int seed = random.nextInt(200);
             if (seed == 0) {
                 worldIn.playLocalSound((double)blockPos.getX(), (double)blockPos.getY(), (double)blockPos.getZ(), SoundRegistry.GREEK_FIRE_AMBIENT.get(), SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);

@@ -22,7 +22,7 @@ public class ModDamageSources {
     }
 
     public static Reference<DamageType> damageTypeReference(Level pLevel, ResourceKey<DamageType> type){
-        return pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(type);
+        return pLevel.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(type);
     }
 
     public static DamageSource spear(Level level, Entity projectile, Entity owner){

@@ -4,9 +4,8 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.phys.Vec3;
-
-import javax.annotation.Nullable;
 
 public class InterdictionEffect extends MobEffect {
 
@@ -15,7 +14,7 @@ public class InterdictionEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(@Nullable LivingEntity livingEntity, int amplifier) {
+    public boolean applyEffectTick(ServerLevel level, LivingEntity livingEntity, int amplifier) {
         if (livingEntity instanceof Player player && player.isFallFlying()){
             player.stopFallFlying();
             player.setDeltaMovement(player.getDeltaMovement().add(new Vec3(0.0, -0.5 * (amplifier + 1), 0.0)));

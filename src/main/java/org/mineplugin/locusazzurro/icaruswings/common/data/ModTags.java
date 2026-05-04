@@ -1,7 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.common.data;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
@@ -26,16 +26,16 @@ public class ModTags {
     public static final TagKey<DamageType> IS_COLLISION = createDamageTypeTag("is_collision");
 
     private static TagKey<Item> createModItemTag(String name){
-        return ItemTags.create(ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, name));
+        return ItemTags.create(Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, name));
     }
 
     private static TagKey<Item> createUnifiedItemTag(String name){
-        return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
+        return ItemTags.create(Identifier.fromNamespaceAndPath("c", name));
     }
 
     private static TagKey<DamageType> createDamageTypeTag(String name)
     {
-        return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(IcarusWings.MOD_ID, name));
+        return TagKey.create(Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, name));
     }
 
 

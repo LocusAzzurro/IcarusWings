@@ -21,9 +21,10 @@ public interface ITickableBlockEntity<TYPE extends BlockEntity> {
      * @param <OTHER> getTicker提供的
      * @param <SELF> 自己
      */
+    @SuppressWarnings("unchecked")
     @Nullable
-    static <OTHER extends BlockEntity, SELF extends BlockEntity & ITickableBlockEntity<SELF>> BlockEntityTicker<SELF> getTicker(Level level, BlockEntityType<SELF> type, BlockEntityType<OTHER> current) {
-        return level.isClientSide ? null : createTickerHelper(type, current, ITickableBlockEntity::tick);
+    static <OTHER extends BlockEntity, SELF extends BlockEntity & ITickableBlockEntity<SELF>> BlockEntityTicker<OTHER> getTicker(Level level, BlockEntityType<SELF> type, BlockEntityType<OTHER> current) {
+        return level.isClientSide() ? null : (BlockEntityTicker<OTHER>) createTickerHelper(type, current, ITickableBlockEntity::tick);
     }
 
     private static <SELF extends BlockEntity & ITickableBlockEntity<SELF>> void tick(Level level, BlockPos pos, BlockState state, SELF self) {

@@ -2,16 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "locusazzurro_icaruswings:refined_beeswax_slab"
-    }
+    "#": "locusazzurro_icaruswings:refined_beeswax_slab"
   },
   "pattern": [
     "#",
     "#"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:chiseled_refined_beeswax_block"
   }
 }

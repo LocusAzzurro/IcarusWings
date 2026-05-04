@@ -3,7 +3,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '1.0.11'
+    id 'net.neoforged.moddev' version '2.0.141'
 }
 
 version = mod_version
@@ -15,7 +15,7 @@ base {
     archivesName = mod_id
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
 neoForge {
 
@@ -36,7 +36,7 @@ neoForge {
                     '--output', file('src/generated/resources/').getAbsolutePath(),
                     '--existing', file('src/main/resources/').getAbsolutePath()
             )
-            data()
+            clientData()
         }
         server {
             server()
@@ -44,21 +44,25 @@ neoForge {
     }
 
     mods {
-        mod_id {
+        "${mod_id}" {
             sourceSet sourceSets.main
         }
     }
-
-    parchment {
-        minecraftVersion = minecraft_version
-        mappingsVersion = parchment_version
-    }
-
 }
 
 
+tasks.named('wrapper', Wrapper).configure {
+    distributionType = Wrapper.DistributionType.BIN
+}
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+    exclude("src/generated/**/.cache")
+}
 
 repositories {
     mavenLocal()
@@ -78,7 +82,7 @@ dependencies {
     compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version_neoforge}"
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version_neoforge}"
 
-    implementation "mcjty.theoneprobe:theoneprobe:${top_version}"
+//    implementation "mcjty.theoneprobe:theoneprobe:${top_version}"
 }
 
 tasks.withType(ProcessResources).configureEach {

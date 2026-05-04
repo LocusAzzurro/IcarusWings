@@ -2,8 +2,8 @@ package org.mineplugin.locusazzurro.icaruswings.common.block;
 
 import com.google.common.base.Suppliers;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -11,10 +11,11 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -38,10 +39,9 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.items.ItemHandlerHelper;
-import org.jetbrains.annotations.Nullable;
+
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import org.mineplugin.locusazzurro.icaruswings.common.block.entity.ITickableBlockEntity;
 import org.mineplugin.locusazzurro.icaruswings.common.block.entity.MeadPotBlockEntity;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModTags;
@@ -49,22 +49,20 @@ import org.mineplugin.locusazzurro.icaruswings.common.item.Mead;
 import org.mineplugin.locusazzurro.icaruswings.registry.BlockEntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
+import org.mineplugin.locusazzurro.icaruswings.util.InventoryHelper;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-@SuppressWarnings("deprecation")
-@ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
+@NullMarked
 public class MeadPot extends BaseEntityBlock {
 	
 	public static final EnumProperty<MeadPotState> STATE = EnumProperty.create("state", MeadPotState.class);
 	public static final EnumProperty<Mead.Infusion> INFUSION = EnumProperty.create("infusion", Mead.Infusion.class);
 
-	public static final MapCodec<MeadPot> CODEC = simpleCodec(properties -> new MeadPot());
+	public static final MapCodec<MeadPot> CODEC = simpleCodec(MeadPot::new);
 	
 	private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	protected static final VoxelShape SHAPE = Shapes.join(
@@ -94,8 +92,8 @@ public class MeadPot extends BaseEntityBlock {
 		INFUSION_MAP_OUT.put(Mead.Infusion.GOLDEN_APPLE, Suppliers.memoize(ItemRegistry.GOLDEN_APPLE_INFUSED_MEAD::get));
 	}
 
-	public MeadPot() {
-		super(BlockBehaviour.Properties.of()
+	public MeadPot(BlockBehaviour.Properties properties) {
+		super(properties
 				.strength(1.5f, 6.0f)
 				.sound(SoundType.STONE)
 				.requiresCorrectToolForDrops()
@@ -106,7 +104,7 @@ public class MeadPot extends BaseEntityBlock {
 	}
 
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
 		return ITickableBlockEntity.getTicker(pLevel, BlockEntityTypeRegistry.MEAD_POT_BLOCK_ENTITY.get(), pBlockEntityType);
 	}
 
@@ -137,12 +135,12 @@ public class MeadPot extends BaseEntityBlock {
 	}
 	
 	@Override
-	public boolean hasAnalogOutputSignal(BlockState pState) {
+	protected boolean hasAnalogOutputSignal(BlockState pState) {
 		return true;
 	}
 	
 	@Override
-	public int getAnalogOutputSignal(BlockState stateIn, Level worldIn, BlockPos pos) {
+	protected int getAnalogOutputSignal(BlockState stateIn, Level worldIn, BlockPos pos, Direction direction) {
 		if (worldIn.getBlockEntity(pos) != null && worldIn.getBlockEntity(pos) instanceof MeadPotBlockEntity meadPotTE){
 			float progress = meadPotTE.getFermentationProgress();
 			float fermentationTime = MeadPotBlockEntity.getFermentationTime();
@@ -157,19 +155,19 @@ public class MeadPot extends BaseEntityBlock {
 	}
 
 	@Override
-	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if (!worldIn.isClientSide && handIn == InteractionHand.MAIN_HAND && worldIn.getBlockEntity(pos) instanceof MeadPotBlockEntity meadPotTE) {
+	public InteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+        if (!worldIn.isClientSide() && handIn == InteractionHand.MAIN_HAND && worldIn.getBlockEntity(pos) instanceof MeadPotBlockEntity meadPotTE) {
             ItemStack stackIn = player.getItemInHand(handIn);
             if (stackIn.getItem() == Items.HONEY_BOTTLE && stackIn.getCount() >= 4
             		&& !meadPotTE.isFermenting() && !meadPotTE.isComplete()) {
 				if (!player.getAbilities().instabuild) {
 					ItemStack stackOut = new ItemStack(Items.GLASS_BOTTLE, 4);
 					stackIn.shrink(4);
-					ItemHandlerHelper.giveItemToPlayer(player, stackOut);
+					InventoryHelper.giveToPlayer(player, stackOut);
 				}
             	meadPotTE.startFermenting();
             	worldIn.playSound(null, pos, SoundRegistry.MEAD_POT_BREW.get(), SoundSource.BLOCKS, 2.0f, 1.3f);
-            	return ItemInteractionResult.CONSUME;
+            	return InteractionResult.CONSUME;
             }
             if (stackIn.getItem() == ItemRegistry.GLASS_JAR.get() && meadPotTE.isComplete()) {
 				Item itemOut = ItemRegistry.MEAD.get();
@@ -180,20 +178,20 @@ public class MeadPot extends BaseEntityBlock {
 						break;
 					}
 				}
-				ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(itemOut));
+				InventoryHelper.giveToPlayer(player, new ItemStack(itemOut));
             	meadPotTE.setEmpty();
 				worldIn.setBlock(pos, worldIn.getBlockState(pos).setValue(INFUSION, Mead.Infusion.NONE), 3);
             	worldIn.playSound(null, pos, SoundRegistry.MEAD_POT_BREW.get(), SoundSource.BLOCKS, 2.0f, 1.3f);
-				return ItemInteractionResult.SUCCESS;
+				return InteractionResult.SUCCESS;
             }
-			return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+			return InteractionResult.PASS;
         }
-		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+		return InteractionResult.PASS;
         
     }
 
 	@Override
-	public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
+	protected void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity, InsideBlockEffectApplier effectApplier, boolean isPrecise) {
 		if (pEntity instanceof ItemEntity itemEntity
 				&& isValidInfusionItem.test(itemEntity.getItem())
 				&& pState.getValue(STATE) == MeadPotState.FERMENTING && pState.getValue(INFUSION) == Mead.Infusion.NONE){
@@ -214,8 +212,6 @@ public class MeadPot extends BaseEntityBlock {
 			pLevel.blockEntityChanged(pPos);
 		}
 	}
-
-	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rng) {
 		if(stateIn.getValue(STATE) == MeadPotState.FERMENTING) {
@@ -270,3 +266,4 @@ public class MeadPot extends BaseEntityBlock {
 		}
 	}
 }
+

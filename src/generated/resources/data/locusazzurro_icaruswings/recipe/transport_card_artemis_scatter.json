@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "A": {
-      "item": "locusazzurro_icaruswings:artemis_missile"
-    },
-    "C": {
-      "item": "locusazzurro_icaruswings:transport_card_base"
-    },
-    "M": {
-      "item": "minecraft:repeater"
-    },
-    "T": {
-      "item": "minecraft:redstone_torch"
-    }
+    "A": "locusazzurro_icaruswings:artemis_missile",
+    "C": "locusazzurro_icaruswings:transport_card_base",
+    "M": "minecraft:repeater",
+    "T": "minecraft:redstone_torch"
   },
   "pattern": [
     "AMA",

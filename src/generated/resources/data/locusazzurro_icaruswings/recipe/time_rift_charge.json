@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "I": {
-      "item": "locusazzurro_icaruswings:purpur_ingot"
-    },
-    "Q": {
-      "item": "locusazzurro_icaruswings:quantum_fuel"
-    }
+    "I": "locusazzurro_icaruswings:purpur_ingot",
+    "Q": "locusazzurro_icaruswings:quantum_fuel"
   },
   "pattern": [
     " I ",

@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "S": {
-      "item": "locusazzurro_icaruswings:refined_beeswax_block"
-    }
+    "S": "locusazzurro_icaruswings:refined_beeswax_block"
   },
   "pattern": [
     "SS",

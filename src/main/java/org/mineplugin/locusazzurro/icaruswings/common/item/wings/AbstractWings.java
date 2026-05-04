@@ -1,80 +1,87 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item.wings;
 
-import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Unit;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
-
-import javax.annotation.Nullable;
+import net.minecraft.world.item.equipment.EquipmentAsset;
+import net.minecraft.world.item.equipment.EquipmentAssets;
+import net.minecraft.world.item.equipment.Equippable;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
+import org.mineplugin.locusazzurro.icaruswings.registry.DataComponentRegistry;
 
 @SuppressWarnings("unused")
+public abstract class AbstractWings extends Item implements IcarusGlider {
 
-public abstract class AbstractWings extends ElytraItem {
+    private static final ResourceKey<EquipmentAsset> WINGS_EQUIPMENT_ASSET = ResourceKey.create(
+        EquipmentAssets.ROOT_ID,
+        Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "wings")
+    );
 
-	protected WingsType type;
+    protected WingsType type;
 
-	protected AbstractWings(WingsType type) {
-		super(new Properties().durability(type.getDurability()));
-		this.type = type;
-	}
+    protected AbstractWings(WingsType type) {
+        this(type, null, new Properties());
+    }
 
-	protected AbstractWings(WingsType type, Rarity rarity) {
-		super(new Properties().durability(type.getDurability()).rarity(rarity));
-		this.type = type;
-	}
+    protected AbstractWings(WingsType type, Rarity rarity) {
+        this(type, rarity, new Properties());
+    }
 
-	protected AbstractWings() {
-		super(new Properties().durability(WingsTypes.FEATHER.getDurability()));
-		this.type = WingsTypes.FEATHER;
-	}
+    protected AbstractWings(WingsType type, Properties properties) {
+        this(type, null, properties);
+    }
 
-	public WingsType getType() {
-		return this.type;
-	}
+    protected AbstractWings(WingsType type, Rarity rarity, Properties properties) {
+        super(createProperties(type, rarity, properties));
+        this.type = type;
+    }
 
-	@Nullable
-	@Override
-	public EquipmentSlot getEquipmentSlot(ItemStack stack) {
-		return EquipmentSlot.CHEST;
-	}
+    protected AbstractWings() {
+        this(WingsTypes.FEATHER);
+    }
 
-	@Override
-	public Holder<SoundEvent> getEquipSound() {
-		return getType().getEquipSound();
-	}
+    private static Properties createProperties(WingsType type, Rarity rarity, Properties properties) {
+        Properties built = properties
+            .durability(type.getDurability())
+            .component(DataComponentRegistry.ICARUS_GLIDER, Unit.INSTANCE)
+            .component(
+                DataComponents.EQUIPPABLE,
+                Equippable.builder(EquipmentSlot.CHEST)
+                    .setEquipSound(type.getEquipSound())
+                    .setDamageOnHurt(false)
+                    .setAsset(WINGS_EQUIPMENT_ASSET)
+                    .build()
+            )
+            .repairable(type.getRepairItem())
+            .enchantable(15);
+        if (rarity != null) {
+            built = built.rarity(rarity);
+        }
+        return built;
+    }
 
-	@Override
-	public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
-		return super.canElytraFly(stack, entity);
-	}
+    public WingsType getType() {
+        return this.type;
+    }
 
-	@Override
-	public boolean isValidRepairItem(ItemStack toBeRepaired, ItemStack repairMat) {
-		Item item = toBeRepaired.getItem();
-		if (item instanceof AbstractWings) {
-			return ((AbstractWings) item).getType().getRepairItem() == repairMat.getItem();
-		}
-		return false;
-	}
+    @Override
+    public EquipmentSlot getEquipmentSlot(ItemStack stack) {
+        return EquipmentSlot.CHEST;
+    }
 
-	@Override
-	public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
-		return super.elytraFlightTick(stack, entity, flightTicks);
-	}
-	
-	@Override
-	@SuppressWarnings("deprecation")
-	public int getEnchantmentValue() {
-		return 15;
-	}
+    public SoundEvent getEquipSound() {
+        return getType().getEquipSound().value();
+    }
 
-	public static boolean isEntityFloating (LivingEntity entity){
-		return entity.hasEffect(MobEffects.SLOW_FALLING) || entity.hasEffect(MobEffects.LEVITATION);
-	}
-
+    public static boolean isEntityFloating(LivingEntity entity) {
+        return entity.hasEffect(MobEffects.SLOW_FALLING) || entity.hasEffect(MobEffects.LEVITATION);
+    }
 }

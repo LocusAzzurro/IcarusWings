@@ -14,11 +14,9 @@ public class BlockEntityTypeRegistry {
 	
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<MeadPotBlockEntity>>
 			MEAD_POT_BLOCK_ENTITY = BLOCK_ENTITIES.register(
-		"mead_pot_block_entity", () -> BlockEntityType.Builder
-		.of(MeadPotBlockEntity::new, BlockRegistry.MEAD_POT.get()).build(null));
+		"mead_pot_block_entity", () -> new BlockEntityType<>(MeadPotBlockEntity::new, BlockRegistry.MEAD_POT.get()));
 	
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<AmphoraBlockEntity>>
 			AMPHORA_BLOCK_ENTITY = BLOCK_ENTITIES.register(
-		"amphora_block_entity", () -> BlockEntityType.Builder
-		.of(AmphoraBlockEntity::new, BlockRegistry.AMPHORA.get()).build(null));
+		"amphora_block_entity", () -> new BlockEntityType<>(AmphoraBlockEntity::new, BlockRegistry.AMPHORA.get()));
 }

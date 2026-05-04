@@ -1,9 +1,9 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
-import net.minecraft.Util;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.Util;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -11,9 +11,9 @@ import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.registry.ItemRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
+import org.mineplugin.locusazzurro.icaruswings.util.InventoryHelper;
 
 import java.util.function.Supplier;
 
@@ -21,7 +21,11 @@ import java.util.function.Supplier;
 public class GlassJar extends Item {
 
     public GlassJar(){
-        super(new Item.Properties().stacksTo(16));
+        this(new Item.Properties().stacksTo(16));
+    }
+
+    public GlassJar(Item.Properties properties) {
+        super(properties.stacksTo(16));
     }
 
     @SubscribeEvent
@@ -29,9 +33,9 @@ public class GlassJar extends Item {
         Player player = e.getEntity();
         Level world = player.level();
         if (player.isFallFlying() && player.tickCount % 20 == 0 && !world.isClientSide()){
-            int slot = player.getInventory().findSlotMatchingUnusedItem(new ItemStack(ItemRegistry.GLASS_JAR.get()));
+            int slot = player.getInventory().findSlotMatchingCraftingIngredient(ItemRegistry.GLASS_JAR, new ItemStack(ItemRegistry.GLASS_JAR.get()));
             if (slot != -1){
-                float rand = world.random.nextFloat();
+                float rand = world.getRandom().nextFloat();
                 int altitude = (int)Math.round(Mth.clamp(player.getY(), 0, 255));
                 float speedFactor = (float) Mth.clamp(player.getDeltaMovement().length() / 2.0, 1.0, 1.25);
                 int dim = getDimNum(world.dimension());
@@ -43,7 +47,7 @@ public class GlassJar extends Item {
                 }
                 if (rand <= chance) {
                     targetStack.shrink(1);
-                    ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(getResultItem(dim).get()));
+                    InventoryHelper.giveToPlayer(player, new ItemStack(getResultItem(dim).get()));
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundRegistry.AIR_JAR_FILL.get(), SoundSource.NEUTRAL, 0.9f, 0.8f);
                 }
             }

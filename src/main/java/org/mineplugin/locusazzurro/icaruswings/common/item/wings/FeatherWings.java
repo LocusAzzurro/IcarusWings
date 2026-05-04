@@ -3,7 +3,7 @@ package org.mineplugin.locusazzurro.icaruswings.common.item.wings;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
@@ -13,7 +13,11 @@ public class FeatherWings extends AbstractWings {
 	public FeatherWings(WingsTypes type) {
 		super(type);
 	}
-	
+
+	public FeatherWings(WingsTypes type, Item.Properties properties) {
+		super(type, properties);
+	}
+
 	@Deprecated
 	public FeatherWings() {
 		this(WingsTypes.FEATHER);
@@ -25,24 +29,24 @@ public class FeatherWings extends AbstractWings {
 	}
 
 	@Override
-	public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
-		if (!entity.level().isClientSide() && (flightTicks + 1) % 20 == 0) {
-			int dmg = 1;
-			if ((entity instanceof Player) && (stack.getItem() instanceof FeatherWings)) {
-				if (entity.level().dimension() == Level.NETHER) {
-					dmg = 5;
-					if(((FeatherWings)stack.getItem()).getType() != WingsTypes.FEATHER_GOLDEN)
-						entity.setRemainingFireTicks(10);
-				}
-				else {
-					int y = (int) entity.getY();
-					dmg = randomRound(Math.max(1, y / 64.0), entity.level().getRandom());
-				}
-			}
-			stack.hurtAndBreak(dmg, entity,	EquipmentSlot.CHEST);
-			return true;
+	public void elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
+		if (entity.level().isClientSide()) {
+			return;
 		}
-		return true;
+		if ((flightTicks + 1) % 20 == 0) {
+			stack.hurtAndBreak(getFlightDamage(entity), entity, EquipmentSlot.CHEST);
+		}
+	}
+
+	public int getFlightDamage(LivingEntity entity) {
+		if (entity.level().dimension() == Level.NETHER) {
+			if (this.getType() != WingsTypes.FEATHER_GOLDEN) {
+				entity.setRemainingFireTicks(10);
+			}
+			return 5;
+		}
+		int y = (int)entity.getY();
+		return randomRound(Math.max(1, y / 64.0), entity.level().getRandom());
 	}
 
 	int randomRound(double value, RandomSource random) {

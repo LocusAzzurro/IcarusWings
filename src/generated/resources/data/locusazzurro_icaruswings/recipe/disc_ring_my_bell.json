@@ -3,11 +3,8 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "minecraft:music_disc_cat"
-  },
+  "ingredient": "minecraft:music_disc_cat",
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:disc_ring_my_bell"
   }
 }

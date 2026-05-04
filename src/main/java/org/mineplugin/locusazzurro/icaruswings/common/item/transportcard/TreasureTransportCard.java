@@ -3,13 +3,14 @@ package org.mineplugin.locusazzurro.icaruswings.common.item.transportcard;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.SeededContainerLoot;
 import net.minecraft.world.level.Level;
@@ -19,9 +20,9 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
+import org.mineplugin.locusazzurro.icaruswings.util.InventoryHelper;
 import org.mineplugin.locusazzurro.icaruswings.util.MathUtils;
 
 import java.util.ArrayList;
@@ -31,14 +32,14 @@ import java.util.Optional;
 
 public class TreasureTransportCard extends AbstractTransportCard{
 
-    public TreasureTransportCard() {
-        super(CardType.TREASURE);
+    public TreasureTransportCard(Item.Properties properties) {
+        super(CardType.TREASURE, properties);
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
+    public InteractionResult use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
-        if (!canUseCard(playerIn)) return InteractionResultHolder.fail(itemstack);
+        if (!canUseCard(playerIn)) return InteractionResult.FAIL;
 
         List<ItemStack> lootItems = new ArrayList<>();
         boolean readLootTableSuccess = false;
@@ -48,20 +49,20 @@ public class TreasureTransportCard extends AbstractTransportCard{
             SeededContainerLoot containerLoot = itemstack.get(DataComponents.CONTAINER_LOOT);
             if (containerLoot != null){
                 ResourceKey<LootTable> resourceKey = containerLoot.lootTable();
-                ResourceLocation resourceLocation = resourceKey.location();
+                Identifier identifier = resourceKey.identifier();
                 try {
                     Objects.requireNonNull(worldIn.getServer());
                 } catch (NullPointerException e) {
-                    return InteractionResultHolder.fail(itemstack);
+                    return InteractionResult.FAIL;
                 }
                 LootTable lootTable = worldIn.getServer().reloadableRegistries().getLootTable(resourceKey);
-                long lootSeed = worldIn.random.nextLong();
+                long lootSeed = worldIn.getRandom().nextLong();
                 LootContext lootContext = new LootContext.Builder(new LootParams.Builder((ServerLevel) worldIn)
                         .withParameter(LootContextParams.ORIGIN, playerIn.position())
                         .withLuck(playerIn.getLuck())
                         .create(LootContextParamSets.CHEST))
                         .withOptionalRandomSeed(lootSeed)
-                        .create(Optional.of(resourceLocation));
+                        .create(Optional.of(identifier));
                 lootTable.getRandomItems(lootContext, lootItems::add);
                 if (lootItems.isEmpty()) {
                     errorCode = 2;
@@ -81,15 +82,15 @@ public class TreasureTransportCard extends AbstractTransportCard{
                     ((ServerLevel) worldIn).sendParticles(ParticleRegistry.GOLDEN_SPARKLE_BASE.get(), playerIn.getX(), playerIn.getY(), playerIn.getZ(),
                             30, 0.5d, 0.5d, 0.5d, 0.0d);
                     for (ItemStack item : lootItems){
-                        ItemHandlerHelper.giveItemToPlayer(playerIn, item);
+                        InventoryHelper.giveToPlayer(playerIn, item);
                     }
                 }
                 else {
-                    Vec3[] dropPoints = MathUtils.randomPointsInCircle(lootItems.size(), 5, worldIn.random)
+                    Vec3[] dropPoints = MathUtils.randomPointsInCircle(lootItems.size(), 5, worldIn.getRandom())
                             .toArray(new Vec3[lootItems.size()]);
                     int pI = 0;
                     for (ItemStack item : lootItems){
-                        double yR = worldIn.random.nextDouble() * 0.5 - 0.25;
+                        double yR = worldIn.getRandom().nextDouble() * 0.5 - 0.25;
                         double yP = playerIn.getY() + 3 + yR;
                         ItemEntity itemEntity = new ItemEntity(worldIn,
                                 playerIn.getX() + dropPoints[pI].x, yP,
@@ -105,8 +106,8 @@ public class TreasureTransportCard extends AbstractTransportCard{
             }
 
             if (!playerIn.isCreative()){itemstack.shrink(1);}
-            playerIn.getCooldowns().addCooldown(this, 20);
-            return InteractionResultHolder.consume(itemstack);
+            playerIn.getCooldowns().addCooldown(itemstack, 20);
+            return InteractionResult.CONSUME;
         }
         else {
             worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_FAIL.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -116,8 +117,8 @@ public class TreasureTransportCard extends AbstractTransportCard{
             if (errorCode == 2) {
                 playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_treasure.error2"));
             }
-            playerIn.getCooldowns().addCooldown(this, 20);
-            return InteractionResultHolder.pass(itemstack);
+            playerIn.getCooldowns().addCooldown(itemstack, 20);
+            return InteractionResult.PASS;
         }
     }
 

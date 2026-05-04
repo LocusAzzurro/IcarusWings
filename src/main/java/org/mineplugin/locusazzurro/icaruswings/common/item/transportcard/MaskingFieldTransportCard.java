@@ -2,9 +2,10 @@ package org.mineplugin.locusazzurro.icaruswings.common.item.transportcard;
 
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -22,15 +23,15 @@ public class MaskingFieldTransportCard extends AbstractTransportCard{
     private static final List<Vector3d> PARTICLE_POINTS = MathUtils.cubeMatrixFrame(20);
     private static final float RANGE = 4;
 
-    public MaskingFieldTransportCard() {
-        super(CardType.MASKING_FIELD);
+    public MaskingFieldTransportCard(Item.Properties properties) {
+        super(CardType.MASKING_FIELD, properties);
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
+    public InteractionResult use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         if (!canUseCard(playerIn)) {
-            return InteractionResultHolder.fail(itemstack);
+            return InteractionResult.FAIL;
         }
 
         if (worldIn.isClientSide()) {
@@ -41,9 +42,9 @@ public class MaskingFieldTransportCard extends AbstractTransportCard{
                         rPoint.x(), rPoint.y(), rPoint.z());
             });
             for (int i = 0; i < 60; i++) {
-                double xR = worldIn.random.nextDouble() * 2 - 1;
-                double yR = worldIn.random.nextDouble() * 2 - 1;
-                double zR = worldIn.random.nextDouble() * 2 - 1;
+                double xR = worldIn.getRandom().nextDouble() * 2 - 1;
+                double yR = worldIn.getRandom().nextDouble() * 2 - 1;
+                double zR = worldIn.getRandom().nextDouble() * 2 - 1;
                 worldIn.addParticle(ParticleRegistry.ELECTRONIC_BIT.get(), playerIn.getX(), playerIn.getY() + 0.5, playerIn.getZ(), xR, yR, zR);
             }
         }
@@ -58,8 +59,8 @@ public class MaskingFieldTransportCard extends AbstractTransportCard{
         }
 
         if(!playerIn.isCreative()) {itemstack.shrink(1);}
-        playerIn.getCooldowns().addCooldown(this, 200);
-        return InteractionResultHolder.consume(itemstack);
+        playerIn.getCooldowns().addCooldown(itemstack, 200);
+        return InteractionResult.CONSUME;
     }
 
 }

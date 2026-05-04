@@ -1,0 +1,12 @@
+{
+  "gives": {
+    "id": "locusazzurro_icaruswings:zephir_essence"
+  },
+  "max_uses": 1.0,
+  "reputation_discount": 1.0,
+  "wants": {
+    "count": 16.0,
+    "id": "minecraft:emerald"
+  },
+  "xp": 2.0
+}

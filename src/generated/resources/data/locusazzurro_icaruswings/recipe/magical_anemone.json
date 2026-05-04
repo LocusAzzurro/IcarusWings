@@ -2,15 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    {
-      "item": "locusazzurro_icaruswings:anemone"
-    },
-    {
-      "tag": "locusazzurro_icaruswings:world_essences"
-    }
+    "locusazzurro_icaruswings:anemone",
+    "#locusazzurro_icaruswings:world_essences"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:magical_anemone"
   }
 }

@@ -4,7 +4,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -20,15 +20,15 @@ public class ArtemisTransportCard extends AbstractTransportCard{
     private static final float HALF_PI = (float) Math.PI / 2;
     private static final float POWER = 2.1f;
 
-    public ArtemisTransportCard(CardType type){
-        super(type);
+    public ArtemisTransportCard(CardType type, Item.Properties properties){
+        super(type, properties);
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
+    public InteractionResult use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemStack = playerIn.getItemInHand(handIn);
         if (!canUseCard(playerIn)) {
-            return InteractionResultHolder.fail(itemStack);
+            return InteractionResult.FAIL;
         }
         Item item = itemStack.getItem();
         AbstractTransportCard.CardType type = ((AbstractTransportCard) item).getType();
@@ -41,8 +41,8 @@ public class ArtemisTransportCard extends AbstractTransportCard{
                     playerIn.sendSystemMessage(Component.translatable("item.locusazzurro_icaruswings.transport_card_artemis.error1"));
                 }
                 worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_FAIL.get(), SoundSource.PLAYERS, 1.0F, 0.5F);
-                playerIn.getCooldowns().addCooldown(this, 10);
-                return InteractionResultHolder.pass(itemStack);
+                playerIn.getCooldowns().addCooldown(itemStack, 10);
+                return InteractionResult.PASS;
             }
         }
 
@@ -53,15 +53,15 @@ public class ArtemisTransportCard extends AbstractTransportCard{
         for (int i = 0; i < 6; i++){
             ArtemisMissileEntity missile = new ArtemisMissileEntity(worldIn, playerIn, homing ? target : null);
             missile.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0f, homing ? 0.5f : POWER, 1.0f);
-            missile.moveTo(dPos[i]);
+            missile.snapTo(dPos[i].x, dPos[i].y, dPos[i].z, missile.getYRot(), missile.getXRot());
             worldIn.addFreshEntity(missile);
             worldIn.playSound(null, missile, SoundRegistry.ARTEMIS_MISSILE_LAUNCH.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
         }
         worldIn.playSound(null, playerIn, SoundRegistry.TRANSPORT_CARD_ACTIVATION_ARTEMIS.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
         if (!playerIn.isCreative()){ itemStack.shrink(1); }
-        playerIn.getCooldowns().addCooldown(this, 40);
-        return InteractionResultHolder.success(itemStack);
+        playerIn.getCooldowns().addCooldown(itemStack, 40);
+        return InteractionResult.SUCCESS;
     }
 
     private Vec3[] arrangePoints(Vec3 pos, Vec3 look){

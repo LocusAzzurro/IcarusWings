@@ -10,9 +10,9 @@ import org.mineplugin.locusazzurro.icaruswings.registry.BlockRegistry;
 import javax.annotation.Nullable;
 
 public class MelonItem extends BlockItem {
-	
-	public MelonItem() {
-		super(BlockRegistry.MELON.get(), new Item.Properties().rarity(Rarity.RARE));
+
+	public MelonItem(Item.Properties properties) {
+		super(BlockRegistry.MELON.get(), properties.rarity(Rarity.RARE));
 	}
 	
 	@Nullable

@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "C": {
-      "item": "locusazzurro_icaruswings:time_rift_charge"
-    },
-    "V": {
-      "item": "locusazzurro_icaruswings:void_essence"
-    }
+    "C": "locusazzurro_icaruswings:time_rift_charge",
+    "V": "locusazzurro_icaruswings:void_essence"
   },
   "pattern": [
     " C ",

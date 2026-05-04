@@ -3,11 +3,8 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "locusazzurro_icaruswings:beeswax_block"
-  },
+  "ingredient": "locusazzurro_icaruswings:beeswax_block",
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:refined_beeswax_bar"
   }
 }

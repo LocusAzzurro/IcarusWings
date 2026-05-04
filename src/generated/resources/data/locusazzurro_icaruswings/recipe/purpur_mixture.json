@@ -2,21 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:popped_chorus_fruit"
-    },
-    {
-      "item": "minecraft:dragon_breath"
-    },
-    {
-      "item": "minecraft:phantom_membrane"
-    },
-    {
-      "item": "minecraft:ender_pearl"
-    }
+    "minecraft:popped_chorus_fruit",
+    "minecraft:dragon_breath",
+    "minecraft:phantom_membrane",
+    "minecraft:ender_pearl"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:purpur_mixture"
   }
 }

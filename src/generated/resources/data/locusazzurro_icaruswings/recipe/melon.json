@@ -2,15 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:melon"
-    },
-    {
-      "item": "locusazzurro_icaruswings:daedalus_decryptor"
-    }
+    "minecraft:melon",
+    "locusazzurro_icaruswings:daedalus_decryptor"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:melon"
   }
 }

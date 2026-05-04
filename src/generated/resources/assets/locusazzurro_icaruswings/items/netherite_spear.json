@@ -1,0 +1,63 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "locusazzurro_icaruswings:item/netherite_spear"
+        },
+        "when": [
+          "gui",
+          "ground",
+          "fixed",
+          "on_shelf"
+        ]
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:condition",
+      "on_false": {
+        "type": "minecraft:special",
+        "base": "locusazzurro_icaruswings:item/netherite_spear_in_hand",
+        "model": {
+          "type": "locusazzurro_icaruswings:spear"
+        }
+      },
+      "on_true": {
+        "type": "minecraft:special",
+        "base": "locusazzurro_icaruswings:item/netherite_spear_throwing",
+        "model": {
+          "type": "locusazzurro_icaruswings:spear"
+        }
+      },
+      "property": "minecraft:using_item",
+      "transformation": {
+        "left_rotation": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "right_rotation": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          1.0,
+          -1.0,
+          -1.0
+        ],
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "property": "minecraft:display_context"
+  },
+  "swap_animation_scale": 1.95
+}

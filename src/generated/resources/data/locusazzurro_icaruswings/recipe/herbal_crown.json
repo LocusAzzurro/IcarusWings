@@ -2,16 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "H": {
-      "tag": "locusazzurro_icaruswings:herbs"
-    }
+    "H": "#locusazzurro_icaruswings:herbs"
   },
   "pattern": [
     "HHH",
     "H H"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:herbal_crown"
   }
 }

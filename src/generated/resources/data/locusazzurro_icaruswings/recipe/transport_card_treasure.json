@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "C": {
-      "item": "locusazzurro_icaruswings:transport_card_base"
-    },
-    "G": {
-      "item": "minecraft:gold_nugget"
-    },
-    "X": {
-      "item": "minecraft:chest"
-    }
+    "C": "locusazzurro_icaruswings:transport_card_base",
+    "G": "minecraft:gold_nugget",
+    "X": "minecraft:chest"
   },
   "pattern": [
     " X ",
@@ -18,7 +12,6 @@
     " X "
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:transport_card_treasure"
   }
 }

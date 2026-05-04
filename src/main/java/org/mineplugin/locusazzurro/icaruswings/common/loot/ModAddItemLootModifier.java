@@ -23,8 +23,8 @@ public class ModAddItemLootModifier extends LootModifier {
                 .and(BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(modifierInstance -> modifierInstance.item))
                 .apply(instance, ModAddItemLootModifier::new)));
 
-    public ModAddItemLootModifier(LootItemCondition[] conditionsIn, Item item) {
-        super(conditionsIn);
+    public ModAddItemLootModifier(LootItemCondition[] conditionsIn, int priority, Item item) {
+        super(conditionsIn, priority);
         this.item = item;
     }
 

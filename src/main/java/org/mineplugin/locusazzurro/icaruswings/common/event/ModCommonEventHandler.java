@@ -8,7 +8,7 @@ import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.GoldenRamEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 
-@EventBusSubscriber(modid = IcarusWings.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = IcarusWings.MOD_ID)
 @SuppressWarnings("unused")
 public class ModCommonEventHandler {
 

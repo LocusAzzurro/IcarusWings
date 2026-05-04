@@ -3,11 +3,8 @@
   "category": "misc",
   "cookingtime": 400,
   "experience": 0.2,
-  "ingredient": {
-    "item": "locusazzurro_icaruswings:purpur_mixture"
-  },
+  "ingredient": "locusazzurro_icaruswings:purpur_mixture",
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:purpur_ingot"
   }
 }

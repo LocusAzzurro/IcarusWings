@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "B": {
-      "item": "locusazzurro_icaruswings:refined_beeswax_bar"
-    },
-    "G": {
-      "item": "minecraft:gold_nugget"
-    }
+    "B": "locusazzurro_icaruswings:refined_beeswax_bar",
+    "G": "minecraft:gold_nugget"
   },
   "pattern": [
     "GGG",
@@ -15,7 +11,6 @@
     "GGG"
   ],
   "result": {
-    "count": 1,
     "id": "locusazzurro_icaruswings:glistering_refined_beeswax_bar"
   }
 }
