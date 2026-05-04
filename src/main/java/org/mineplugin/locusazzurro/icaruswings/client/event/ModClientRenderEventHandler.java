@@ -22,6 +22,7 @@ import org.mineplugin.locusazzurro.icaruswings.client.particle.GoldenSparklePart
 import org.mineplugin.locusazzurro.icaruswings.client.particle.NullityParticle;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.PlasmaTrailParticle;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.TimeRiftExplosionParticle;
+import org.mineplugin.locusazzurro.icaruswings.client.render.layers.MelonHeadLayer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.layers.WingsLayer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.models.properties.SpearThrowingProperty;
 import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.ArtemisMissileRenderer;
@@ -62,10 +63,12 @@ public class ModClientRenderEventHandler {
             var playerRenderer = event.getPlayerRenderer(skin);
             if (playerRenderer != null) {
                 playerRenderer.addLayer(new WingsLayer<>(playerRenderer, event.getEntityModels()));
+                playerRenderer.addLayer(new MelonHeadLayer<>(playerRenderer, event.getEntityModels()));
             }
             var mannequinRenderer = event.getMannequinRenderer(skin);
             if (mannequinRenderer != null) {
                 mannequinRenderer.addLayer(new WingsLayer<>(mannequinRenderer, event.getEntityModels()));
+                mannequinRenderer.addLayer(new MelonHeadLayer<>(mannequinRenderer, event.getEntityModels()));
             }
         }
     }

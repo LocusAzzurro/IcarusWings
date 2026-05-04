@@ -82,7 +82,7 @@ public class SpearItemStackTileEntityRenderer implements SpecialModelRenderer<Id
         }
     }
 
-    private enum PoseMode {
+    public enum PoseMode {
         FIRST_PERSON,
         THIRD_PERSON,
         THIRD_PERSON_THROWING
