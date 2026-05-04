@@ -1,3 +1,6 @@
 {
-  "parent": "minecraft:item/template_spawn_egg"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "locusazzurro_icaruswings:item/golden_ram_spawn_egg"
+  }
 }

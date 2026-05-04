@@ -13,49 +13,38 @@
           "fixed",
           "on_shelf"
         ]
+      },
+      {
+        "model": {
+          "type": "minecraft:special",
+          "base": "locusazzurro_icaruswings:item/wooden_spear_special_base",
+          "model": {
+            "type": "locusazzurro_icaruswings:spear_first_person"
+          }
+        },
+        "when": [
+          "firstperson_lefthand",
+          "firstperson_righthand"
+        ]
       }
     ],
     "fallback": {
       "type": "minecraft:condition",
       "on_false": {
         "type": "minecraft:special",
-        "base": "locusazzurro_icaruswings:item/wooden_spear_in_hand",
+        "base": "locusazzurro_icaruswings:item/wooden_spear_special_base",
         "model": {
-          "type": "locusazzurro_icaruswings:spear"
+          "type": "locusazzurro_icaruswings:spear_third_person"
         }
       },
       "on_true": {
         "type": "minecraft:special",
-        "base": "locusazzurro_icaruswings:item/wooden_spear_throwing",
+        "base": "locusazzurro_icaruswings:item/wooden_spear_special_base",
         "model": {
-          "type": "locusazzurro_icaruswings:spear"
+          "type": "locusazzurro_icaruswings:spear_third_person_throwing"
         }
       },
-      "property": "minecraft:using_item",
-      "transformation": {
-        "left_rotation": [
-          0.0,
-          0.0,
-          0.0,
-          1.0
-        ],
-        "right_rotation": [
-          0.0,
-          0.0,
-          0.0,
-          1.0
-        ],
-        "scale": [
-          1.0,
-          -1.0,
-          -1.0
-        ],
-        "translation": [
-          0.0,
-          0.0,
-          0.0
-        ]
-      }
+      "property": "locusazzurro_icaruswings:spear_throwing"
     },
     "property": "minecraft:display_context"
   },

@@ -20,10 +20,12 @@ import org.mineplugin.locusazzurro.icaruswings.registry.DataComponentRegistry;
 @SuppressWarnings("unused")
 public abstract class AbstractWings extends Item implements IcarusGlider {
 
-    private static final ResourceKey<EquipmentAsset> WINGS_EQUIPMENT_ASSET = ResourceKey.create(
-        EquipmentAssets.ROOT_ID,
-        Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "wings")
-    );
+    private static ResourceKey<EquipmentAsset> createAssetKey(String name) {
+        return ResourceKey.create(
+            EquipmentAssets.ROOT_ID,
+            Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, name + "_wings")
+        );
+    }
 
     protected WingsType type;
 
@@ -57,7 +59,7 @@ public abstract class AbstractWings extends Item implements IcarusGlider {
                 Equippable.builder(EquipmentSlot.CHEST)
                     .setEquipSound(type.getEquipSound())
                     .setDamageOnHurt(false)
-                    .setAsset(WINGS_EQUIPMENT_ASSET)
+                    .setAsset(createAssetKey(type.getName()))
                     .build()
             )
             .repairable(type.getRepairItem())

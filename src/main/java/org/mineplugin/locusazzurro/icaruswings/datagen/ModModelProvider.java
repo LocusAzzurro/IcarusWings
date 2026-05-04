@@ -29,10 +29,6 @@ import java.util.Optional;
 import java.util.Set;
 
 public class ModModelProvider extends ModelProvider {
-    private static final ModelTemplate SPAWN_EGG_TEMPLATE = new ModelTemplate(
-            Optional.of(Identifier.withDefaultNamespace("item/template_spawn_egg")),
-            Optional.empty()
-    );
 
     public ModModelProvider(PackOutput output) {
         super(output, DataGenerators.MOD_ID);
@@ -209,7 +205,7 @@ public class ModModelProvider extends ModelProvider {
                 ItemRegistry.ELYSIAN_GRASS.get(),
                 ItemRegistry.FLAX_SEEDS.get()
         );
-        Item customSpawnEgg = ItemRegistry.GOLDEN_RAM_SPAWN_EGG.get();
+        Item goldenRamSpawnEgg = ItemRegistry.GOLDEN_RAM_SPAWN_EGG.get();
         Item customModelItem = ItemRegistry.DEMETER.get();
 
         for (Item item : ItemRegistry.ITEMS.getEntries().stream().map(DeferredHolder::get).toList()) {
@@ -218,9 +214,8 @@ public class ModModelProvider extends ModelProvider {
                 continue;
             }
 
-            if (item == customSpawnEgg) {
-                SPAWN_EGG_TEMPLATE.create(item, new TextureMapping(), itemModels.modelOutput);
-                itemModels.declareCustomModelItem(item);
+            if (item == goldenRamSpawnEgg) {
+                itemModels.generateFlatItem(item, ModelTemplates.FLAT_ITEM);
                 continue;
             }
 
@@ -263,16 +258,11 @@ public class ModModelProvider extends ModelProvider {
 
     private void generateSpearItemModel(ItemModelGenerators itemModels, Item spear) {
         Identifier flatModel = itemModels.createFlatItemModel(spear, ModelTemplates.FLAT_ITEM);
-        Identifier inHandModel = ModelTemplates.SPEAR_IN_HAND.create(
-                ModelLocationUtils.getModelLocation(spear, "_in_hand"),
-                TextureMapping.layer0(TextureMapping.getItemTexture(spear)),
-                itemModels.modelOutput
-        );
-        Identifier throwingModel = ModelLocationUtils.getModelLocation(spear, "_throwing");
-        itemModels.modelOutput.accept(throwingModel, () -> SpearBakedModel.createThrowingBaseModel(TextureMapping.getItemTexture(spear).sprite()));
+        Identifier specialBaseModel = ModelLocationUtils.getModelLocation(spear, "_special_base");
+        itemModels.modelOutput.accept(specialBaseModel, () -> SpearBakedModel.createSpecialBaseModel(TextureMapping.getItemTexture(spear).sprite()));
         itemModels.itemModelOutput.accept(
                 spear,
-                SpearBakedModel.createItemModel(flatModel, inHandModel, throwingModel),
+                SpearBakedModel.createItemModel(flatModel, specialBaseModel),
                 new ClientItem.Properties(true, false, 1.95F)
         );
     }

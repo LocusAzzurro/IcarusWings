@@ -1,0 +1,10 @@
+{
+  "layers": {
+    "wings": [
+      {
+        "texture": "locusazzurro_icaruswings:magic",
+        "use_player_texture": true
+      }
+    ]
+  }
+}

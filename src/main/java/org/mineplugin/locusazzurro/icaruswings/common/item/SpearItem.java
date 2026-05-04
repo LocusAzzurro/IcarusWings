@@ -1,6 +1,7 @@
 package org.mineplugin.locusazzurro.icaruswings.common.item;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -23,6 +24,7 @@ import net.minecraft.world.item.component.Weapon;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.server.level.ServerLevel;
+import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.common.entity.SpearEntity;
 import org.mineplugin.locusazzurro.icaruswings.registry.DataComponentRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
@@ -41,6 +43,8 @@ public class SpearItem extends Item {
     private static final float BASE_DAMAGE = 2.5f;
     private static final float BASE_ATTACK_SPEED = -2.5f;
     private static final float BASE_ATTACK_RANGE = 1.5f;
+    private static final Identifier SPEAR_ATTACK_DAMAGE_ID = Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "spear_attack_damage");
+    private static final Identifier SPEAR_ATTACK_SPEED_ID = Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "spear_attack_speed");
 
     public SpearItem(ToolMaterial material, Properties properties) {
         super(material.applyToolProperties(properties, BlockTags.MINEABLE_WITH_PICKAXE, BASE_DAMAGE, BASE_ATTACK_SPEED, 0.0F)
@@ -70,7 +74,7 @@ public class SpearItem extends Item {
                     )
                     .add(
                         Attributes.ENTITY_INTERACTION_RANGE,
-                        new AttributeModifier(net.minecraft.resources.Identifier.withDefaultNamespace("entity_interaction_range"), BASE_ATTACK_RANGE, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(Identifier.withDefaultNamespace("entity_interaction_range"), BASE_ATTACK_RANGE, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND
                     )
                     .build()
@@ -116,7 +120,7 @@ public class SpearItem extends Item {
 
     @Override
     public ItemUseAnimation getUseAnimation(ItemStack stack) {
-        return ItemUseAnimation.SPEAR;
+        return ItemUseAnimation.TRIDENT;
     }
 
     @Override
@@ -167,5 +171,3 @@ public class SpearItem extends Item {
         }
     }
 }
-
-

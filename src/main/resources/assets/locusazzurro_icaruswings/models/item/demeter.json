@@ -2,6 +2,10 @@
   "loader": "neoforge:obj",
   "model": "locusazzurro_icaruswings:models/item/demeter.obj",
   "flip_v": true,
+  "textures": {
+    "texture": "locusazzurro_icaruswings:item/demeter",
+    "particle": "locusazzurro_icaruswings:item/demeter"
+  },
   "display": {
     "firstperson_righthand": {
       "rotation": [-5,-3.5,5],

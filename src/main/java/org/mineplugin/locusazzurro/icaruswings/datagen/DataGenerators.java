@@ -47,6 +47,7 @@ public class DataGenerators {
         event.addProvider(new ModGlobalLootModifierProvider(output, lookupProvider));
         event.addProvider(new ModAdvancementProvider(output, lookupProvider));
         event.addProvider(new ModModelProvider(output));
+        event.addProvider(new ModEquipmentAssetProvider(output));
         event.addProvider(new ModParticleProvider(output));
         event.addProvider(new ModSoundDefinitionsProvider(output));
     }

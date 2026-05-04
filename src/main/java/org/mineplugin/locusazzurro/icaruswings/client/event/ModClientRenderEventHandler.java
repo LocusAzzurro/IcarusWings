@@ -1,6 +1,8 @@
 package org.mineplugin.locusazzurro.icaruswings.client.event;
 
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.block.FluidModel;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.PlayerModelType;
@@ -8,9 +10,12 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterFluidModelsEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
+import net.neoforged.neoforge.client.fluid.FluidTintSources;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.ElectronicBitParticle;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.GoldenSparkleParticle;
@@ -18,11 +23,13 @@ import org.mineplugin.locusazzurro.icaruswings.client.particle.NullityParticle;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.PlasmaTrailParticle;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.TimeRiftExplosionParticle;
 import org.mineplugin.locusazzurro.icaruswings.client.render.layers.WingsLayer;
+import org.mineplugin.locusazzurro.icaruswings.client.render.models.properties.SpearThrowingProperty;
 import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.ArtemisMissileRenderer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.GoldenRamRenderer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.SpearRenderer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.SpearItemStackTileEntityRenderer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.TimeBombRenderer;
+import org.mineplugin.locusazzurro.icaruswings.common.block.GreekFireFluid;
 import org.mineplugin.locusazzurro.icaruswings.common.block.GreekFireFluidType;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
@@ -69,10 +76,37 @@ public class ModClientRenderEventHandler {
     }
 
     @SubscribeEvent
+    public static void registerFluidModels(RegisterFluidModelsEvent event) {
+        FluidModel.Unbaked greekFireModel = new FluidModel.Unbaked(
+                new Material(GreekFireFluid.GREEK_FIRE_STILL, true),
+                new Material(GreekFireFluid.GREEK_FIRE_FLOWING),
+                new Material(GreekFireFluidType.FLUID_OVERLAY_TEXTURE),
+                FluidTintSources.constant(GreekFireFluidType.TINT_COLOR)
+        );
+        event.register(greekFireModel, FluidRegistry.GREEK_FIRE, FluidRegistry.GREEK_FIRE_FLOWING);
+    }
+
+    @SubscribeEvent
     public static void registerSpecialModelRenderers(RegisterSpecialModelRendererEvent event) {
         event.register(
-                Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "spear"),
-                SpearItemStackTileEntityRenderer.Unbaked.MAP_CODEC
+                Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "spear_first_person"),
+                SpearItemStackTileEntityRenderer.FirstPersonUnbaked.MAP_CODEC
+        );
+        event.register(
+                Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "spear_third_person"),
+                SpearItemStackTileEntityRenderer.ThirdPersonUnbaked.MAP_CODEC
+        );
+        event.register(
+                Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "spear_third_person_throwing"),
+                SpearItemStackTileEntityRenderer.ThirdPersonThrowingUnbaked.MAP_CODEC
+        );
+    }
+
+    @SubscribeEvent
+    public static void registerConditionalItemModelProperties(RegisterConditionalItemModelPropertyEvent event) {
+        event.register(
+                Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, "spear_throwing"),
+                SpearThrowingProperty.MAP_CODEC
         );
     }
 
