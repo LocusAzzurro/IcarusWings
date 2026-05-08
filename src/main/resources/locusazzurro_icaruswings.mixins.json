@@ -4,6 +4,7 @@
   "refmap": "mineplugin.locusazzurro_icaruswings.refmap.json",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "CapeLayerMixin",
     "LivingEntityFallFlyingMixin",
     "PlayerFallFlyingMixin"
   ],

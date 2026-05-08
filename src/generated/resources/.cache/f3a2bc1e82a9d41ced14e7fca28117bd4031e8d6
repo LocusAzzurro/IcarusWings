@@ -1,0 +1,9 @@
+// 26.1.2	2026-05-08T17:20:51.9242535	Tags for minecraft:villager_trade mod id locusazzurro_icaruswings
+1f7e68bdacdc48b25b13c22af25b0bf22ec8f1d7 data/minecraft/tags/villager_trade/farmer/level_2.json
+719ed968cba8e0b2269144f61976807917a47137 data/minecraft/tags/villager_trade/fletcher/level_3.json
+22680a4773b9085e1fd7172fd97b30087a279b8a data/minecraft/tags/villager_trade/leatherworker/level_2.json
+b29de32c535b367c39785f7bd94475f44e6bec72 data/minecraft/tags/villager_trade/mason/level_2.json
+67630daf0a54cad64d0abdec95dd29149ecb3dd7 data/minecraft/tags/villager_trade/shepherd/level_4.json
+719ed968cba8e0b2269144f61976807917a47137 data/minecraft/tags/villager_trade/wandering_trader/common.json
+68da193299fd2c8feeeccba4d3e7bcf957eaad0a data/minecraft/tags/villager_trade/wandering_trader/uncommon.json
+dbfbc875bf5f0ce5e104ded7d8528170908669cf data/minecraft/tags/villager_trade/weaponsmith/level_5.json

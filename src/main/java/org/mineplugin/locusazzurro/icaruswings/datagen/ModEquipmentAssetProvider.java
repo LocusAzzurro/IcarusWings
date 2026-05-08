@@ -9,7 +9,6 @@ import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.EquipmentAssets;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 
-import java.util.Optional;
 import java.util.function.BiConsumer;
 
 public class ModEquipmentAssetProvider extends EquipmentAssetProvider {
@@ -28,6 +27,7 @@ public class ModEquipmentAssetProvider extends EquipmentAssetProvider {
         armor(output, "herbal");
         armor(output, "synapse_tech");
 
+        /*
         wings(output, "feather");
         wings(output, "colored_feather");
         wings(output, "golden_feather");
@@ -40,6 +40,8 @@ public class ModEquipmentAssetProvider extends EquipmentAssetProvider {
         wings(output, "paper");
         wings(output, "magic");
         wings(output, "philosopher_stone");
+
+         */
     }
 
     private static void armor(BiConsumer<ResourceKey<EquipmentAsset>, EquipmentClientInfo> output, String name) {
@@ -48,6 +50,7 @@ public class ModEquipmentAssetProvider extends EquipmentAssetProvider {
         output.accept(id, EquipmentClientInfo.builder().addHumanoidLayers(textureId).build());
     }
 
+    /*
     private static void wings(BiConsumer<ResourceKey<EquipmentAsset>, EquipmentClientInfo> output, String name) {
         var id = ResourceKey.create(EquipmentAssets.ROOT_ID, Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, name + "_wings"));
         var textureId = Identifier.fromNamespaceAndPath(IcarusWings.MOD_ID, name);
@@ -57,4 +60,6 @@ public class ModEquipmentAssetProvider extends EquipmentAssetProvider {
                     new EquipmentClientInfo.Layer(textureId, Optional.empty(), true))
                 .build());
     }
+
+     */
 }
