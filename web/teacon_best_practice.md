@@ -11,7 +11,7 @@
 本文档列出了来自“伊卡洛斯之翼”模组的一些物品及物品组合，这些内容可能会在TeaCon展示中无意间破坏展馆、绕过保护机制、导致服务器卡顿或提供不公平的优势。  
 鉴于展示期间所有模组的物品均可自由使用，请在建造或测试前仔细阅读本说明。
 
-本文件中的关键词“必须”(MUST)、“禁止”(MUST NOT)、“强制要求”(REQUIRED)、“应当”(SHALL)、“不应当”(SHALL NOT)、“推荐”(SHOULD)、“不推荐”(SHOULD NOT)、“建议”(RECOMMENDED)、“不建议”(NOT RECOMMENDED)、“可以”(MAY)和“可选”(OPTIONAL)，应参照对应英文关键词，按照 RFC 2119 中的说明进行解释。
+本文档中的关键词“必须”(MUST)、“禁止”(MUST NOT)、“强制要求”(REQUIRED)、“应当”(SHALL)、“不应当”(SHALL NOT)、“推荐”(SHOULD)、“不推荐”(SHOULD NOT)、“建议”(RECOMMENDED)、“不建议”(NOT RECOMMENDED)、“可以”(MAY)和“可选”(OPTIONAL)，应参照对应英文关键词，按照 RFC 2119 中的说明进行解释。
 
 ---
 
@@ -40,7 +40,7 @@
 
 
 - **物品/组合名称：** 空域羽翼  
-  **游戏内 ID：** `locusazzurro_icaruswings:ikaros_wings`,`locusazzurro_icaruswings:nymph_wings`,`locusazzurro_icaruswings:astraea_wings`,`locusazzurro_icaruswings:chaos_wings`,`locusazzurro_icaruswings:hiyori_wings`,`locusazzurro_icaruswings:melan_wings`,  
+  **游戏内 ID：** `locusazzurro_icaruswings:ikaros_wings`,`locusazzurro_icaruswings:nymph_wings`,`locusazzurro_icaruswings:astraea_wings`,`locusazzurro_icaruswings:chaos_wings`,`locusazzurro_icaruswings:hiyori_wings`,`locusazzurro_icaruswings:melan_wings`  
   **类型：** 装备  
   **严重程度：** 🟠 高危  
   **简介：**  动力羽翼，相当于无限烟花助推原版鞘翅，且速度更快并提供大量装备加成。  
@@ -62,7 +62,7 @@
 
 
 - **物品/组合名称：** 普通羽翼/魔法羽翼  
-  **游戏内 ID：** `locusazzurro_icaruswings:feather_wings`,`locusazzurro_icaruswings:colored_feather_wings`,`locusazzurro_icaruswings:golden_feather_wings`,`locusazzurro_icaruswings:paper_wings`,`locusazzurro_icaruswings:magic_wings`,`locusazzurro_icaruswings:flandre_magic_wings`,  
+  **游戏内 ID：** `locusazzurro_icaruswings:feather_wings`,`locusazzurro_icaruswings:colored_feather_wings`,`locusazzurro_icaruswings:golden_feather_wings`,`locusazzurro_icaruswings:paper_wings`,`locusazzurro_icaruswings:magic_wings`,`locusazzurro_icaruswings:flandre_magic_wings`  
   **类型：** 装备  
   **严重程度：** 🟡 中等  
   **简介：**  无动力羽翼，与原版鞘翅机制类似。  
