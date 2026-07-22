@@ -22,9 +22,9 @@ public class ParticleRegistry {
             () -> new SimpleParticleType(true));
     public static Supplier<SimpleParticleType> GOLDEN_SPARKLE = PARTICLES.register("golden_sparkle",
             () -> new SimpleParticleType(true));
+    /*
     public static Supplier<SimpleParticleType> TIME_RIFT_EXPLOSION = PARTICLES.register("time_rift_explosion",
             () -> new SimpleParticleType(true));
-
-
+    */
 
 }

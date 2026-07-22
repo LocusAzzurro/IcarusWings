@@ -1,42 +1,33 @@
 package org.mineplugin.locusazzurro.icaruswings.client.event;
 
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.block.FluidModel;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.PlayerModelType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterFluidModelsEvent;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
-import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
-import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 import net.neoforged.neoforge.client.fluid.FluidTintSources;
 import org.mineplugin.locusazzurro.icaruswings.IcarusWings;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.ElectronicBitParticle;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.GoldenSparkleParticle;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.NullityParticle;
 import org.mineplugin.locusazzurro.icaruswings.client.particle.PlasmaTrailParticle;
-import org.mineplugin.locusazzurro.icaruswings.client.particle.TimeRiftExplosionParticle;
 import org.mineplugin.locusazzurro.icaruswings.client.render.layers.MelonHeadLayer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.layers.WingsLayer;
 import org.mineplugin.locusazzurro.icaruswings.client.render.models.properties.SpearThrowingProperty;
-import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.ArtemisMissileRenderer;
-import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.GoldenRamRenderer;
-import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.SpearRenderer;
-import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.SpearItemStackTileEntityRenderer;
-import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.TimeBombRenderer;
+import org.mineplugin.locusazzurro.icaruswings.client.render.renderers.*;
 import org.mineplugin.locusazzurro.icaruswings.common.block.GreekFireFluid;
 import org.mineplugin.locusazzurro.icaruswings.common.block.GreekFireFluidType;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.FluidRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ModelLayerRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
-import net.minecraft.resources.Identifier;
 
 @EventBusSubscriber(modid = IcarusWings.MOD_ID, value = Dist.CLIENT)
 @SuppressWarnings("unused")
@@ -120,7 +111,7 @@ public class ModClientRenderEventHandler {
         event.registerSpriteSet(ParticleRegistry.ELECTRONIC_BIT.get(), ElectronicBitParticle.Factory::new);
         event.registerSpriteSet(ParticleRegistry.GOLDEN_SPARKLE_BASE.get(), GoldenSparkleParticle.BaseFactory::new);
         event.registerSpriteSet(ParticleRegistry.GOLDEN_SPARKLE.get(), GoldenSparkleParticle.AdvFactory::new);
-        event.registerSpriteSet(ParticleRegistry.TIME_RIFT_EXPLOSION.get(), TimeRiftExplosionParticle.Factory::new);
+        //event.registerSpriteSet(ParticleRegistry.TIME_RIFT_EXPLOSION.get(), TimeRiftExplosionParticle.Factory::new);
     }
 
     private static <E extends Entity> void registerEntityRenderer(EntityRenderersEvent.RegisterRenderers event, EntityType<E> type, net.minecraft.client.renderer.entity.EntityRendererProvider<E> renderer) {

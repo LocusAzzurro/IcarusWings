@@ -20,7 +20,6 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import org.mineplugin.locusazzurro.icaruswings.common.data.ModDamageSources;
 import org.mineplugin.locusazzurro.icaruswings.registry.EntityTypeRegistry;
-import org.mineplugin.locusazzurro.icaruswings.registry.ParticleRegistry;
 import org.mineplugin.locusazzurro.icaruswings.registry.SoundRegistry;
 
 import javax.annotation.Nullable;
@@ -66,9 +65,12 @@ public class TimeBombEntity extends Entity {
 
         if(level().isClientSide()){
             level().addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0,0,0);
+            /*
             if (this.life >= this.maxLife){
                 level().addParticle(ParticleRegistry.TIME_RIFT_EXPLOSION.get(), this.getX(), this.getY(), this.getZ(), 0,0,0);
             }
+
+             *///todo add small particle explosion
         }
 
         if (this.life >= this.maxLife){

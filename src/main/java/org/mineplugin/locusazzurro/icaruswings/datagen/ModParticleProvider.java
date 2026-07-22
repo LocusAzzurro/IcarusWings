@@ -19,7 +19,7 @@ public class ModParticleProvider extends ParticleDescriptionProvider {
         spriteSet(ParticleRegistry.ELECTRONIC_BIT.get(), modLoc("electronic_bit"), 10, false);
         spriteSet(ParticleRegistry.GOLDEN_SPARKLE.get(), modLoc("golden_sparkle"));
         spriteSet(ParticleRegistry.GOLDEN_SPARKLE_BASE.get(), modLoc("golden_sparkle"));
-        spriteSet(ParticleRegistry.TIME_RIFT_EXPLOSION.get(), modLoc("time_rift_explosion"));
+        //spriteSet(ParticleRegistry.TIME_RIFT_EXPLOSION.get(), modLoc("time_rift_explosion"));
     }
 
     private Identifier modLoc(String name){
