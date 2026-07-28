@@ -1,6 +1,8 @@
 package org.mineplugin.locusazzurro.icaruswings.client.event;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.FluidModel;
+import net.minecraft.client.renderer.entity.ArmorStandRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
@@ -61,6 +63,10 @@ public class ModClientRenderEventHandler {
                 mannequinRenderer.addLayer(new WingsLayer<>(mannequinRenderer, event.getEntityModels()));
                 mannequinRenderer.addLayer(new MelonHeadLayer<>(mannequinRenderer, event.getEntityModels()));
             }
+        }
+        ArmorStandRenderer armorStandEntityRenderer = event.getRenderer(EntityType.ARMOR_STAND);
+        if (armorStandEntityRenderer != null){
+            armorStandEntityRenderer.addLayer(new WingsLayer<>(armorStandEntityRenderer, Minecraft.getInstance().getEntityModels()));
         }
     }
 
